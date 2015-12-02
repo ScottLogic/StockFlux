@@ -1,0 +1,6 @@
+{
+    "_comment": "bower requires git to be installed, we do not need git as a dependency.",
+    "name": "OpenfinPOC",
+    "version": "0.0.0",
+    "dependencies": {}
+}
