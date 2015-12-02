@@ -117,7 +117,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', ['jshint', 'jsbeautifier']);
     grunt.registerTask('test', ['jshint', 'jsbeautifier']);
-    grunt.registerTask('serve', ['test', 'connect:livereload', 'openfin:serve', 'watch']);
-    grunt.registerTask('build', ['test', 'openfin:build']);
+    grunt.registerTask('serve', ['connect:livereload', 'openfin:serve', 'watch']);
+    grunt.registerTask('build', ['openfin:build']);
 
 };
