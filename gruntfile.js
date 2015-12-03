@@ -37,36 +37,6 @@ module.exports = function(grunt) {
                 files: [].concat(files.html, files.css, files.js)
             }
         },
-        jshint: {
-            jsFiles: files.js,
-            options: {
-                node: false
-            }
-        },
-        jsbeautifier: {
-            jsFiles: files.js,
-            options: {
-                js: {
-                    braceStyle: "collapse",
-                    breakChainedMethods: false,
-                    e4x: false,
-                    evalCode: false,
-                    indentChar: " ",
-                    indentLevel: 0,
-                    indentSize: 4,
-                    indentWithTabs: false,
-                    jslintHappy: false,
-                    keepArrayIndentation: false,
-                    keepFunctionIndentation: false,
-                    maxPreserveNewlines: 10,
-                    preserveNewlines: true,
-                    spaceBeforeConditional: true,
-                    spaceInParen: false,
-                    unescapeStrings: false,
-                    wrapLineLength: 0
-                }
-            }
-        },
         connect: {
             options: {
                 port: port,
@@ -110,13 +80,9 @@ module.exports = function(grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-jsbeautifier');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-openfin');
-
-    grunt.registerTask('default', ['jshint', 'jsbeautifier']);
-    grunt.registerTask('test', ['jshint', 'jsbeautifier']);
+	
     grunt.registerTask('serve', ['connect:livereload', 'openfin:serve', 'watch']);
     grunt.registerTask('build', ['openfin:build']);
 
