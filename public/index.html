@@ -1,5 +1,5 @@
-<!DOCTYPE HTML>
-<html lang="en">
+﻿<!DOCTYPE HTML>
+<html lang="en" ng-app="openfin">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,22 +7,24 @@
     <title>OpenFin D3FC</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
-<h1>Scott Logic</h1>
+<body ng-controller="HomeCtrl as homeCtrl">
+    <h1>Scott Logic</h1>
 
-<h3>Altogether Smarter</h3>
-<input/>
-<br>
-<button type="button" class="btn btn-primary">Search</button>
-<div class="container">
-    <div class="col-xs-3">
-    <a class="thumbnail bg-primary" href="google.com">
-        <div style="color: black">
-            Appl
+    <h3>Altogether Smarter</h3>
+    <input />
+    <br>
+    <button type="button" class="btn btn-primary">Search</button>
+    <div class="container">
+        <div class="col-xs-3">
+            <a class="thumbnail bg-primary" ng-click="homeCtrl.openShowcase()">
+                <div style="color: black">
+                    Appl
+                </div>
+            </a>
         </div>
-    </a>
     </div>
-</div>
-
 </body>
 </html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
+<script src="home-controller.js"></script>
