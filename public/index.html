@@ -8,14 +8,58 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body ng-controller="HomeCtrl as homeCtrl">
-    <h1>Scott Logic</h1>
+<h1 class="text-center">Scott Logic</h1>
+<h4 class="text-center">Altogether Smarter</h4>
 
-    <h3>Altogether Smarter</h3>
-    <input />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 col-xs-12">
+            <div class="input-group" style="width: 100%">
+                <input class="form-control" type="text"/>
+                <br>
+                <br>
+                <button type="button" class="btn btn-primary center-block">Search</button>
+            </div>
+        </div>
+    </div>
     <br>
-    <button type="button" class="btn btn-primary">Search</button>
-    <div class="container">
-        <div class="col-xs-3">
+    <div class="row">
+        <div class="col-xs-4">
+            <a class="thumbnail bg-primary" ng-click="homeCtrl.openShowcase()">
+                <div style="color: black">
+                    Appl
+                </div>
+            </a>
+        </div>
+        <div class="col-xs-4">
+            <a class="thumbnail bg-primary" ng-click="homeCtrl.openShowcase()">
+                <div style="color: black">
+                    Appl
+                </div>
+            </a>
+        </div>
+        <div class="col-xs-4">
+            <a class="thumbnail bg-primary" ng-click="homeCtrl.openShowcase()">
+                <div style="color: black">
+                    Appl
+                </div>
+            </a>
+        </div>
+        <div class="col-xs-4">
+            <a class="thumbnail bg-primary" ng-click="homeCtrl.openShowcase()">
+                <div style="color: black">
+                    Appl
+                </div>
+            </a>
+        </div>
+        <div class="col-xs-4">
+            <a class="thumbnail bg-primary" ng-click="homeCtrl.openShowcase()">
+                <div style="color: black">
+                    Appl
+                </div>
+            </a>
+        </div>
+        <div class="col-xs-4">
             <a class="thumbnail bg-primary" ng-click="homeCtrl.openShowcase()">
                 <div style="color: black">
                     Appl
@@ -23,8 +67,8 @@
             </a>
         </div>
     </div>
-</body>
-</html>
-
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
 <script src="home-controller.js"></script>
+</body>
+</html>
