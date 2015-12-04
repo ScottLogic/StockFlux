@@ -1,5 +1,5 @@
-<!DOCTYPE HTML>
-<html lang="en">
+﻿<!DOCTYPE HTML>
+<html lang="en" ng-app="openfin">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +7,7 @@
     <title>OpenFin D3FC</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body ng-controller="HomeCtrl as homeCtrl">
 <h1 class="text-center">Scott Logic</h1>
 <h4 class="text-center">Altogether Smarter</h4>
 
@@ -25,42 +25,42 @@
     <br>
     <div class="row">
         <div class="col-xs-4">
-            <a class="thumbnail bg-primary" href="google.com">
+            <a class="thumbnail bg-primary" ng-click="homeCtrl.openShowcase()">
                 <div style="color: black">
                     Appl
                 </div>
             </a>
         </div>
         <div class="col-xs-4">
-            <a class="thumbnail bg-primary" href="google.com">
+            <a class="thumbnail bg-primary" ng-click="homeCtrl.openShowcase()">
                 <div style="color: black">
                     Appl
                 </div>
             </a>
         </div>
         <div class="col-xs-4">
-            <a class="thumbnail bg-primary" href="google.com">
+            <a class="thumbnail bg-primary" ng-click="homeCtrl.openShowcase()">
                 <div style="color: black">
                     Appl
                 </div>
             </a>
         </div>
         <div class="col-xs-4">
-            <a class="thumbnail bg-primary" href="google.com">
+            <a class="thumbnail bg-primary" ng-click="homeCtrl.openShowcase()">
                 <div style="color: black">
                     Appl
                 </div>
             </a>
         </div>
         <div class="col-xs-4">
-            <a class="thumbnail bg-primary" href="google.com">
+            <a class="thumbnail bg-primary" ng-click="homeCtrl.openShowcase()">
                 <div style="color: black">
                     Appl
                 </div>
             </a>
         </div>
         <div class="col-xs-4">
-            <a class="thumbnail bg-primary" href="google.com">
+            <a class="thumbnail bg-primary" ng-click="homeCtrl.openShowcase()">
                 <div style="color: black">
                     Appl
                 </div>
@@ -68,6 +68,7 @@
         </div>
     </div>
 </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
+<script src="home-controller.js"></script>
 </body>
 </html>
