@@ -15,5 +15,8 @@
         "grunt-cli": "^0.1.13",
         "grunt-openfin": ">=1.0.2"
     },
+    "dependencies": {
+        "d3fc-showcase": "git://github.com/ScottLogic/d3fc-showcase.git#733adb260f"
+    },
     "description": "Hosts the d3fc-showcase as an OpenFin application."
 }
