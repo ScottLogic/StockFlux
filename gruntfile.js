@@ -15,6 +15,9 @@ module.exports = function(grunt) {
             ],
             css: [
                 'public/**/*.css'
+            ],
+            showcase: [
+                'node_modules/d3fc-showcase/dist/'
             ]
         };
 
@@ -76,14 +79,49 @@ module.exports = function(grunt) {
             build: {
                 open: false
             }
+        },
+        copy: {
+            main: {
+                files: [
+                  {
+                      expand: true,
+                      cwd: 'node_modules/d3fc-showcase/dist/',
+                      src: ['**'],
+                      dest: 'public/',
+                      rename: function(dest, src) {
+                          if (src.split('.').pop() === 'html') {
+                              return dest + 'd3fc-showcase.html';
+                          }
+
+                          return dest + src;
+                      }
+                  },
+                ],
+            },
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-openfin');
-	
-    grunt.registerTask('serve', ['connect:livereload', 'openfin:serve', 'watch']);
-    grunt.registerTask('build', ['openfin:build']);
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
+    grunt.registerTask('showcase', function() {
+        var callback = this.async();
+        grunt.util.spawn({
+            grunt: true,
+            args: ['build'],
+            opts: {
+                cwd: 'node_modules/d3fc-showcase/'
+            }
+        }, function(error, result, code) {
+            console.log(result.stdout);
+            callback();
+        });
+
+        grunt.task.run('copy');
+    });
+
+    grunt.registerTask('serve', ['connect:livereload', 'openfin:serve', 'watch']);
+    grunt.registerTask('build', ['openfin:build', 'showcase']);
 };
