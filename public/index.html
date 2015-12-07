@@ -1,5 +1,6 @@
-﻿<!DOCTYPE HTML>
-<html lang="en" ng-app="openfin">
+﻿
+<!DOCTYPE HTML>
+<html lang="en" ng-app="OpenFinD3FC">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +11,7 @@
 <body ng-controller="ShowcaseCtrl as showcaseCtrl">
     <h1 class="text-center">Scott Logic</h1>
     <h4 class="text-center">Altogether Smarter</h4>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-offset-3 col-md-6 col-xs-12">
@@ -22,52 +24,11 @@
             </div>
         </div>
         <br>
-        <div class="row">
-            <div class="col-xs-4">
-                <a class="thumbnail bg-primary" ng-click="showcaseCtrl.open()">
-                    <div style="color: black">
-                        Appl
-                    </div>
-                </a>
-            </div>
-            <div class="col-xs-4">
-                <a class="thumbnail bg-primary" ng-click="homeCtrl.open()">
-                    <div style="color: black">
-                        Appl
-                    </div>
-                </a>
-            </div>
-            <div class="col-xs-4">
-                <a class="thumbnail bg-primary" ng-click="showcaseCtrl.open()">
-                    <div style="color: black">
-                        Appl
-                    </div>
-                </a>
-            </div>
-            <div class="col-xs-4">
-                <a class="thumbnail bg-primary" ng-click="showcaseCtrl.open()">
-                    <div style="color: black">
-                        Appl
-                    </div>
-                </a>
-            </div>
-            <div class="col-xs-4">
-                <a class="thumbnail bg-primary" ng-click="showcaseCtrl.open()">
-                    <div style="color: black">
-                        Appl
-                    </div>
-                </a>
-            </div>
-            <div class="col-xs-4">
-                <a class="thumbnail bg-primary" ng-click="showcaseCtrl.open()">
-                    <div style="color: black">
-                        Appl
-                    </div>
-                </a>
-            </div>
-        </div>
+        <div ng-view></div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
+    <script src="app.js"></script>
     <script src="showcase-controller.js"></script>
 </body>
 </html>
