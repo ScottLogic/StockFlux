@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('openfin', [])
-        .controller('HomeCtrl', [function() {
+        .controller('ShowcaseCtrl', [function() {
             var self = this;
 
-            self.openShowcase = function() {
+            self.open = function() {
                 var child = new fin.desktop.Window({
                     name: 'd3fc-showcase',
                     url: 'd3fc-showcase.html'
