@@ -1,0 +1,11 @@
+OpenFin Questions
+
+How does one create properly the exe? (The online way only runs the OpenFin demo.)
+
+How can one download and run the app without having any internet connection?
+
+`autofocus` doesn't work in OpenFin, but does in the browser.
+
+Why does using `grunt watch` after `openfin:serve` not work, but it does the other way round?
+
+Does OpenFin look at the `<object>` element to run, so can create two instances when importing, e.g. an SVG?
