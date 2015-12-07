@@ -80,6 +80,28 @@ module.exports = function(grunt) {
                 open: false
             }
         },
+        less: {
+            development: {
+                options: {
+                    strictMath: true,
+                    sourceMap: true,
+                    outputSourceFiles: true,
+                    sourceMapURL: 'style.css.map',
+                    sourceMapFilename: 'public/assets/css/style.css.map'
+                },
+                files: {
+                    'public/assets/css/style.css': 'src/assets/styles/style.less'
+                }
+            },
+            production: {
+                options: {
+                    strictMath: true
+                },
+                files: {
+                    'public/assets/css/style.css': 'src/assets/styles/style.less'
+                }
+            }
+        },
         copy: {
             main: {
                 files: [
@@ -105,6 +127,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-openfin');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-less');
 
     grunt.registerTask('showcase', function() {
         var callback = this.async();
@@ -122,6 +145,6 @@ module.exports = function(grunt) {
         grunt.task.run('copy');
     });
 
-    grunt.registerTask('serve', ['showcase', 'connect:livereload', 'openfin:serve', 'watch']);
+    grunt.registerTask('serve', ['showcase', 'less:development', 'connect:livereload', 'openfin:serve', 'watch']);
     grunt.registerTask('build', ['openfin:build', 'showcase']);
 };
