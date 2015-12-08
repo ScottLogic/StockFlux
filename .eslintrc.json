@@ -1,9 +1,0 @@
-{
-    "extends": "airbnb",
-    "plugins": [
-        "react"
-    ],
-    "rules": {
-
-    }
-}
