@@ -1,5 +1,5 @@
 ﻿<div class="container-fluid">
     <ul>
-        <li>{{stockCtrl.stock}}</li>
+        <li ng-repeat="stock in stockCtrl.results">Name: {{stock.name}}, Code: {{stock.dataset_code}}</li>
     </ul>
 </div>
