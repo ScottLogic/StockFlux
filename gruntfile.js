@@ -103,7 +103,7 @@ module.exports = function(grunt) {
             }
         },
         download: {
-            foo: {
+            openfinZip: {
                 src: ['https://dl.openfin.co/services/download?fileName=OpenFinD3FC&config=http://localhost:5000/app.json'],
                 dest: './public/OpenFinD3FC.zip'
             },
@@ -152,6 +152,6 @@ module.exports = function(grunt) {
         grunt.task.run('copy');
     });
 
-    grunt.registerTask('serve', ['showcase', 'less:development', 'connect:livereload', 'download', 'openfin:serve', 'watch']);
-    grunt.registerTask('build', ['openfin:build', 'showcase']);
+    grunt.registerTask('serve', ['showcase', 'less:development', 'connect:livereload', 'openfin:serve', 'watch']);
+    grunt.registerTask('build', ['showcase', 'less:development', 'connect:livereload', 'download', 'openfin:serve', 'watch']);
 };
