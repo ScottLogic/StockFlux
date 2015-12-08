@@ -19,7 +19,7 @@
     "less": "^2.5.3"
   },
   "dependencies": {
-    "d3fc-showcase": "git://github.com/ScottLogic/d3fc-showcase.git#733adb260f"
+    "d3fc-showcase": "ScottLogic/d3fc-showcase#733adb260f"
   },
   "description": "Hosts the d3fc-showcase as an OpenFin application."
 }
