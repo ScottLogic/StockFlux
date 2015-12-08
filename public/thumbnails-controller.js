@@ -1,8 +1,8 @@
 ﻿(function() {
     'use strict';
 
-    angular.module('openfin.showcase', [])
-        .controller('ShowcaseCtrl', [function() {
+    angular.module('openfin.thumbnails', [])
+        .controller('ThumbnailsCtrl', [function() {
             var self = this;
 
             self.stocks = [
