@@ -1,9 +1,10 @@
-﻿(function() {
+(function() {
+
     'use strict';
 
     angular.module('OpenFinD3FC', [
         'ngRoute',
-        'openfin.thumbnails', 
+        'openfin.thumbnails',
         'openfin.search',
         'openfin.stock'
     ])
@@ -32,5 +33,5 @@
                     window.location = '404.html';
                 }
             });
-    }])
+    }]);
 }());

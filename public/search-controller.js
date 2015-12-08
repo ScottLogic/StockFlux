@@ -1,4 +1,4 @@
-﻿(function() {
+(function() {
     'use strict';
 
     angular.module('openfin.search', [])
@@ -9,7 +9,7 @@
 
                 self.message = function() {
                     return 'Searching Quandl for "' + self.query + '"';
-                }
+                };
 
                 self.submit = function() {
                     $location.path('/search/' + self.query);
