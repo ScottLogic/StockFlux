@@ -1,0 +1,14 @@
+language: node_js
+
+node_js:
+  - "4.0"
+
+sudo: false
+
+install:
+- npm install
+- npm install -g grunt-cli
+- npm install -g npm@'>=2.13.5'
+- cd node_modules/d3fc-showcase
+- npm install
+- cd ../../
