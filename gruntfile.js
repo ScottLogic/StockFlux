@@ -152,6 +152,7 @@ module.exports = function(grunt) {
         grunt.task.run('copy');
     });
 
-    grunt.registerTask('serve', ['showcase', 'less:development', 'connect:livereload', 'openfin:serve', 'watch']);
-    grunt.registerTask('build', ['showcase', 'less:development', 'connect:livereload', 'download', 'openfin:serve', 'watch']);
+    grunt.registerTask('build', ['showcase', 'less:development', 'connect:livereload']);
+    grunt.registerTask('serve', ['build', 'openfin:serve', 'watch']);
+    grunt.registerTask('createZip', ['build', 'download']);
 };
