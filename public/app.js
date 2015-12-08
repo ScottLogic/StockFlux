@@ -18,7 +18,7 @@
                 controller: 'ThumbnailsCtrl',
                 controllerAs: 'thumbnailsCtrl'
             })
-            .when('/stock/:stock', {
+            .when('/stock/:query', {
                 templateUrl: 'stockData.html',
                 controller: 'StockCtrl',
                 controllerAs: 'stockCtrl'

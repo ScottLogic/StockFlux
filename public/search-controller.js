@@ -1,9 +1,9 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.search', [])
-        .controller('SearchCtrl', ['$scope', '$routeParams', '$location',
-            function($scope, $routeParams, $location) {
+    angular.module('openfin.search', ['openfin.quandl'])
+        .controller('SearchCtrl', ['$scope', '$routeParams', '$location', 'quandlService',
+            function($scope, $routeParams, $location, quandlService) {
                 var self = this;
                 self.query = $routeParams.query;
 
@@ -14,11 +14,10 @@
                 self.submit = function() {
                     $location.path('/search/' + self.query);
 
-                    // Change after 1 seconds to simulate delay when searching.
-                    setTimeout(function() {
+                    quandlService.get({ query: self.query }, function(result) {
+                        // When the result has been fetched it will have been cached.
                         $location.path('/stock/' + self.query);
-                        $scope.$apply();
-                    }, 1000);
+                    });
                 };
             }
         ]);
