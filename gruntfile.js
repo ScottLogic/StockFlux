@@ -40,6 +40,23 @@ module.exports = function(grunt) {
                 files: [].concat(files.html, files.css, files.js)
             }
         },
+        'gh-pages': {
+            origin: {
+                options: {
+                    base: 'public',
+                    message: 'Deploy to GitHub Pages'
+                },
+                src: ['**/*']
+            },
+            upstream: {
+                options: {
+                    base: 'public',
+                    message: 'Deploy to GitHub Pages',
+                    repo: 'https://github.com/owennw/OpenFinD3FC.git'
+                },
+                src: ['**/*']
+            }
+        },
         connect: {
             options: {
                 port: port,
@@ -104,7 +121,7 @@ module.exports = function(grunt) {
         },
         download: {
             openfinZip: {
-                src: ['https://dl.openfin.co/services/download?fileName=OpenFinD3FC&config=http://localhost:5000/app.json'],
+                src: ['https://dl.openfin.co/services/download?fileName=OpenFinD3FC&config=http://owennw.github.io/OpenFinD3FC/app.json'],
                 dest: './public/OpenFinD3FC.zip'
             }
         },
@@ -143,6 +160,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-eslint');
     grunt.loadNpmTasks('grunt-http-download');
+    grunt.loadNpmTasks('grunt-gh-pages');
 
     grunt.registerTask('showcase', function() {
         var callback = this.async();
@@ -164,4 +182,6 @@ module.exports = function(grunt) {
     grunt.registerTask('serve', ['build', 'openfin:serve', 'watch']);
     grunt.registerTask('createZip', ['build', 'download']);
     grunt.registerTask('ci', ['showcase', 'eslint', 'less:development', 'connect:livereload', 'download']);
+    grunt.registerTask('deploy', ['ci', 'gh-pages:origin']);
+    grunt.registerTask('deploy:upstream', ['ci', 'gh-pages:upstream']);
 };

@@ -2,6 +2,8 @@
 
 Using OpenFin this will be a locally hosted financial charting application, pulling data from [Quandl](https://www.quandl.com/) and viewing it using the [d3fc-showcase](http://scottlogic.github.io/d3fc-showcase/).
 
+You can download the OpenFin demo from [here](http://owennw.github.io/OpenFinD3FC/OpenFinD3FC.zip).
+
 ## Developing
 
 [npm](https://www.npmjs.com/), the package manager for [Node.js](https://nodejs.org/), is used to manage the project's dependencies. [Grunt](http://gruntjs.com/), a JavaScript task runner, is used to test and build the project.
