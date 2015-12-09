@@ -15,9 +15,6 @@ module.exports = function(grunt) {
             ],
             css: [
                 'public/**/*.css'
-            ],
-            showcase: [
-                'node_modules/d3fc-showcase/dist/'
             ]
         };
 
@@ -97,36 +94,11 @@ module.exports = function(grunt) {
                 open: false
             }
         },
-        less: {
-            development: {
-                options: {
-                    strictMath: true,
-                    sourceMap: true,
-                    outputSourceFiles: true,
-                    sourceMapURL: 'style.css.map',
-                    sourceMapFilename: 'public/assets/css/style.css.map'
-                },
-                files: {
-                    'public/assets/css/style.css': 'src/assets/styles/style.less'
-                }
-            },
-            production: {
-                options: {
-                    strictMath: true
-                },
-                files: {
-                    'public/assets/css/style.css': 'src/assets/styles/style.less'
-                }
-            }
-        },
         download: {
             openfinZip: {
                 src: ['https://dl.openfin.co/services/download?fileName=OpenFinD3FC&config=http://owennw.github.io/OpenFinD3FC/app.json'],
                 dest: './public/OpenFinD3FC.zip'
             }
-        },
-        eslint: {
-            target: ['public/**.js', 'src/**.js']
         },
         copy: {
             main: {
@@ -135,14 +107,7 @@ module.exports = function(grunt) {
                       expand: true,
                       cwd: 'node_modules/d3fc-showcase/dist/',
                       src: ['**'],
-                      dest: 'public/',
-                      rename: function(dest, src) {
-                          if (src.split('.').pop() === 'html') {
-                              return dest + 'd3fc-showcase.html';
-                          }
-
-                          return dest + src;
-                      }
+                      dest: 'public/'
                   }
                 ]
             }
@@ -157,8 +122,6 @@ module.exports = function(grunt) {
         grunt.loadNpmTasks('grunt-openfin');
     }
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-eslint');
     grunt.loadNpmTasks('grunt-http-download');
     grunt.loadNpmTasks('grunt-gh-pages');
 
@@ -178,10 +141,10 @@ module.exports = function(grunt) {
         grunt.task.run('copy');
     });
 
-    grunt.registerTask('build', ['showcase', 'eslint', 'less:development', 'connect:livereload']);
+    grunt.registerTask('build', ['showcase', 'connect:livereload']);
     grunt.registerTask('serve', ['build', 'openfin:serve', 'watch']);
     grunt.registerTask('createZip', ['build', 'download']);
-    grunt.registerTask('ci', ['showcase', 'eslint', 'less:development', 'connect:livereload', 'download']);
+    grunt.registerTask('ci', ['showcase', 'connect:livereload', 'download']);
     grunt.registerTask('deploy', ['ci', 'gh-pages:origin']);
     grunt.registerTask('deploy:upstream', ['ci', 'gh-pages:upstream']);
 };
