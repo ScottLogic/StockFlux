@@ -12,9 +12,9 @@
                 'SNDK'
             ];
 
-            self.open = function() {
+            self.open = function(stock) {
                 var child = new fin.desktop.Window({
-                    name: 'd3fc-showcase',
+                    name: stock + ' Stock Data',
                     url: 'd3fc-showcase.html'
                 }, function() {
                     child.show();
