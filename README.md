@@ -39,6 +39,15 @@ grunt serve
 ```
 
 The project is also accessible at http://localhost:5000
+ 
+To package the application into an OpenFin exe run the task
+
+```
+grunt createZip
+```
+
+This will create a zip file for the OpenFinD3FC.exe, which can then be run locally in production.
+
 
 ## License
 
