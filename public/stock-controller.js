@@ -11,6 +11,5 @@
                // Re-fetch the cached result.
                self.results = result.datasets;
            });
-       }
-       ]);
+       }]);
 }());
