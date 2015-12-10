@@ -1,50 +1,50 @@
-<!DOCTYPE HTML>
-<html lang="en">
+﻿<!DOCTYPE HTML>
+<html lang="en" ng-app="OpenFinD3FC">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A cross-platform financial charting application to showcase the functionality of d3fc components">
-    <title>d3fc Showcase</title>
+    <title>OpenFin D3FC</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <!-- Version: 0.8.0 -->
+    <style>
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
 </head>
-<body>
-<div class="container" id="app-container">
-    <div class="row head-menu head-row">
-        <div class="col-md-12 head-sub-row">
-            <div id="product-dropdown" class="dropdown product-dropdown"></div>
-            <div id="period-selector"></div>
-        </div>
-    </div>
-    <div class="row primary-row">
-        <div class="col-md-12" id="loading-message">
-            <p class="content">Loading...</p>
-        </div>
-        <div id="charts" class="col-md-12 hidden">
-            <div id="selectors">
-                <div id="series-dropdown" class="dropdown selector-dropdown"></div>
-                <div id="indicator-dropdown" class="dropdown selector-dropdown"></div>
+<body ng-cloak ng-controller="SearchCtrl as searchCtrl">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <a ng-href="#/" class="svg" ng-click="searchCtrl.clear()">
+                    <object type="image/svg+xml" data="logo.svg">Your browser does not support SVG</object>
+                </a>
             </div>
-            <div id="legend"></div>
-            <div id="charts-container">
-                <svg id="primary-container"></svg>
-                <svg class="secondary-container"></svg>
-                <svg class="secondary-container"></svg>
-                <svg class="secondary-container"></svg>
-                <div id="x-axis-row">
-                    <svg id="x-axis-container"></svg>
-                </div>
-                <div id="navbar-row">
-                    <svg id="navbar-container"></svg>
-                    <svg id="navbar-reset"></svg>
+            <div class="col-sm-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6 col-xs-12">
+                <div class="input-group" style="width: 100%">
+                    <form class="form-horizontal" ng-submit="searchCtrl.submit()">
+                        <input type="text" class="form-control" maxlength="50" placeholder="Stock name" ng-model="searchCtrl.query" />
+                        <br>
+                        <br>
+                        <input type="submit" class="btn btn-primary center-block" value="Search" />
+                    </form>
                 </div>
             </div>
         </div>
+        <br>
+        <div ng-view></div>
     </div>
-</div>
-
-<script src="assets/js/app.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-resource.js"></script>
+    <script src="app.js"></script>
+    <script src="thumbnails-controller.js"></script>
+    <script src="search-controller.js"></script>
+    <script src="stock-controller.js"></script>
+    <script src="quandl-service.js"></script>
 </body>
 </html>
