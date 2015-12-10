@@ -1,7 +1,7 @@
 /* jshint node: true*/
 'use strict';
 module.exports = function(grunt) {
-    var target = grunt.option('target') || 'http://localhost:5000',
+    var target = grunt.option('target') || 'http://owennw.github.io/OpenFinD3FC',
         port = process.env.PORT || 5000,
         files = {
             js: [
