@@ -1,4 +1,5 @@
 node_modules
-public/assets/css/style.css*
 public/OpenFinD3FC.zip
 .idea
+public/assets
+public/d3fc-showcase.html
