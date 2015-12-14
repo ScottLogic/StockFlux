@@ -1,7 +1,7 @@
 ﻿<div class="container-fluid">
     <ul>
         <li ng-repeat="stock in stockCtrl.stocks">
-            Name: {{stock.name}}, Code: {{stock.code}}, Start Date: {{stock.startDate}}, End Date: {{stock.endDate}}
+            Name: <a ng-click="stockCtrl.open(stock.code)">{{stock.name}}</a>, Code: {{stock.code}}, Start Date: {{stock.startDate}}, End Date: {{stock.endDate}}
             <ul>
                 <li ng-repeat="stockData in stock.data">
                     Date: {{stockData.date}}, Open: {{stockData.open}}
