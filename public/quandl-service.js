@@ -3,10 +3,16 @@
 
     angular.module('openfin.quandl', ['ngResource'])
         .factory('quandlService', ['$resource', function($resource) {
-            var apiKey = 'api_key=kM9Z9aEULVDD7svZ4A8B';
+            var API_KEY = 'api_key=kM9Z9aEULVDD7svZ4A8B',
+                DATE_INDEX = 0,
+                OPEN_INDEX = 1,
+                HIGH_INDEX = 2,
+                LOW_INDEX = 3,
+                CLOSE_INDEX = 4,
+                VOLUME_INDEX = 5;
 
             function stock() {
-                return $resource('https://www.quandl.com/api/v3/datasets.json?' + apiKey + '&query=:query&database_code=WIKI', {}, {
+                return $resource('https://www.quandl.com/api/v3/datasets.json?' + API_KEY + '&query=:query&database_code=WIKI', {}, {
                     get: { method: 'GET', cache: true }
                 });
             }
@@ -15,7 +21,7 @@
                 var startDate = moment().subtract(1, 'weeks').format('YYYY-MM-DD'),
                     json;
 
-                return $resource('https://www.quandl.com/api/v3/datasets/WIKI/:code/data.json?' + apiKey + '&start_date=' + startDate, {}, {
+                return $resource('https://www.quandl.com/api/v3/datasets/WIKI/:code/data.json?' + API_KEY + '&start_date=' + startDate, {}, {
                     get: {
                         method: 'GET',
                         transformResponse: function(data, headers) {
@@ -48,12 +54,12 @@
 
             function extract(data) {
                 return {
-                    date: data[0],
-                    open: data[1],
-                    high: data[2],
-                    low: data[3],
-                    close: data[4],
-                    volume: data[5]
+                    date: data[DATE_INDEX],
+                    open: data[OPEN_INDEX],
+                    high: data[HIGH_INDEX],
+                    low: data[LOW_INDEX],
+                    close: data[CLOSE_INDEX],
+                    volume: data[VOLUME_INDEX]
                 };
             }
 
