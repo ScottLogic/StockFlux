@@ -23,13 +23,14 @@
         </div>
         <div class="row">
             <div class="col-md-offset-3 col-md-6 col-xs-12">
-                <div class="input-group" style="width: 100%">
+                <div class="input-group {{searchCtrl.validation()}}" style="width: 100%">
                     <form class="form-horizontal" ng-submit="searchCtrl.submit()">
                         <input type="text" class="form-control" maxlength="50" placeholder="Stock name"
                                ng-model="searchCtrl.query"/>
                         <br>
                         <br>
-                        <input type="submit" class="btn btn-primary center-block" value="Search"/>
+                        <input type="submit" class="btn btn-primary center-block" value="Search" 
+                               ng-disabled="searchCtrl.searchDisabled"/>
                     </form>
                 </div>
             </div>
@@ -41,6 +42,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-route.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-resource.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
     <script src="app.js"></script>
     <script src="thumbnails-controller.js"></script>
     <script src="search-controller.js"></script>
