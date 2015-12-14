@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <a ng-href="#/" class="svg logo" ng-click="searchCtrl.clear()">
-                    <img src="logo.svg"></img>
+                    <img src="logo.svg" />
                 </a>
             </div>
         </div>
@@ -30,7 +30,7 @@
                         <br>
                         <br>
                         <input type="submit" class="btn btn-primary center-block" value="Search" 
-                               ng-disabled="searchCtrl.searchDisabled"/>
+                               ng-disabled="searchCtrl.searchDisabled" onclick="this.blur()"/>
                     </form>
                 </div>
             </div>
