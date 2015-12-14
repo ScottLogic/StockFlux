@@ -25,7 +25,7 @@
                 self.submit = function() {
                     $location.path('/search/' + self.query);
 
-                    quandlService.get({ query: self.query }, function(result) {
+                    quandlService.stock().get({ query: self.query }, function(result) {
                         // When the result has been fetched it will have been cached.
                         $location.path('/stock/' + self.query);
                     });
