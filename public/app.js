@@ -1,5 +1,4 @@
 (function() {
-
     'use strict';
 
     angular.module('OpenFinD3FC', [
@@ -14,17 +13,17 @@
                 redirectTo: 'stocks'
             })
             .when('/stocks/', {
-                templateUrl: 'thumbnails.html',
+                templateUrl: 'thumbnails/thumbnails.html',
                 controller: 'ThumbnailsCtrl',
                 controllerAs: 'thumbnailsCtrl'
             })
             .when('/stock/:query', {
-                templateUrl: 'stockData.html',
+                templateUrl: 'search/stockData.html',
                 controller: 'StockCtrl',
                 controllerAs: 'stockCtrl'
             })
             .when('/search/:query', {
-                templateUrl: 'search.html',
+                templateUrl: 'search/search.html',
                 controller: 'SearchCtrl',
                 controllerAs: 'searchCtrl'
             })
