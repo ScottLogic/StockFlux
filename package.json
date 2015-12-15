@@ -2,7 +2,8 @@
   "name": "OpenFinD3FC",
   "version": "0.0.0",
   "scripts": {
-    "test": "grunt ci"
+    "test": "grunt ci",
+    "postinstall": "cd node_modules/d3fc-showcase && npm i"
   },
   "devDependencies": {
     "connect-livereload": "^0.4.0",
