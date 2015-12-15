@@ -14,7 +14,8 @@ module.exports = function(grunt) {
                 'public/**/*.html'
             ],
             css: [
-                'public/**/*.css'
+                'public/**/*.css',
+                'src/**/*.less'
             ],
             showcase: [
                 'node_modules/d3fc-showcase/dist/'
@@ -22,24 +23,6 @@ module.exports = function(grunt) {
         };
 
     grunt.initConfig({
-        watch: {
-            code: {
-                files: [].concat(files.html, files.css, files.js),
-                tasks: ['default'],
-                options: {
-                    livereload: true
-                }
-            },
-            livereload: {
-                options: {
-                    open: true,
-                    base: [
-                        'public'
-                    ]
-                },
-                files: [].concat(files.html, files.css, files.js)
-            }
-        },
         'gh-pages': {
             origin: {
                 options: {
@@ -151,7 +134,6 @@ module.exports = function(grunt) {
 
     var isWin = (/^win/).test(process.platform);
 
-    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
     if (isWin) {
         grunt.loadNpmTasks('grunt-openfin');
@@ -179,9 +161,10 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('build', ['showcase', 'eslint', 'less:development', 'connect:livereload']);
-    grunt.registerTask('serve', ['build', 'openfin:serve', 'watch']);
+    grunt.registerTask('serve', ['build', 'openfin:serve']);
     grunt.registerTask('createZip', ['build', 'download']);
     grunt.registerTask('ci', ['showcase', 'eslint', 'less:development', 'connect:livereload', 'download']);
     grunt.registerTask('deploy', ['ci', 'gh-pages:origin']);
     grunt.registerTask('deploy:upstream', ['ci', 'gh-pages:upstream']);
+    grunt.registerTask('default', ['serve']);
 };
