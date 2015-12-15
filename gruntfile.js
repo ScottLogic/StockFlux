@@ -6,15 +6,15 @@ module.exports = function(grunt) {
         files = {
             js: [
                 'gruntfile.js',
-                'public/**/*.js',
-                'public/**/*.json',
+                'src/**/*.js',
+                'src/**/*.json',
                 '*.json'
             ],
             html: [
-                'public/**/*.html'
+                'src/**/*.html'
             ],
             css: [
-                'public/**/*.css',
+                'src/**/*.css',
                 'src/**/*.less'
             ],
             showcase: [
@@ -40,6 +40,7 @@ module.exports = function(grunt) {
                 src: ['**/*']
             }
         },
+
         connect: {
             options: {
                 port: port,
@@ -50,12 +51,11 @@ module.exports = function(grunt) {
             livereload: {
                 options: {
                     open: false,
-                    base: [
-                        'public'
-                    ]
+                    base: ['public']
                 }
             }
         },
+
         openfin: {
             options: {
                 configPath: target + '/app.json',
@@ -80,6 +80,7 @@ module.exports = function(grunt) {
                 open: false
             }
         },
+
         less: {
             development: {
                 options: {
@@ -102,32 +103,55 @@ module.exports = function(grunt) {
                 }
             }
         },
+
         download: {
             openfinZip: {
                 src: ['https://dl.openfin.co/services/download?fileName=OpenFinD3FC&config=http://owennw.github.io/OpenFinD3FC/app.json'],
                 dest: './public/OpenFinD3FC.zip'
             }
         },
-        eslint: {
-            target: ['public/**.js', 'src/**.js']
-        },
-        copy: {
-            main: {
-                files: [
-                  {
-                      expand: true,
-                      cwd: 'node_modules/d3fc-showcase/dist/',
-                      src: ['**'],
-                      dest: 'public/',
-                      rename: function(dest, src) {
-                          if (src.split('.').pop() === 'html') {
-                              return dest + 'd3fc-showcase.html';
-                          }
 
-                          return dest + src;
-                      }
-                  }
-                ]
+        eslint: {
+            target: ['src/**.js']
+        },
+
+        clean: {
+            dist: {
+                src: ['pubic', 'node_modules/d3fc-showcase/dist']
+            }
+        },
+
+        copy: {
+            showcase: {
+                expand: true,
+                cwd: 'node_modules/d3fc-showcase/dist/',
+                src: ['**'],
+                dest: 'public/',
+                rename: function(dest, src) {
+                    if (src.split('.').pop() === 'html') {
+                        return dest + 'd3fc-showcase.html';
+                    }
+
+                    return dest + src;
+                }
+            },
+            html: {
+                expand: true,
+                cwd: 'src/',
+                src: ['**/*.html'],
+                dest: 'public'
+            },
+            js: {
+                expand: true,
+                cwd: 'src/',
+                src: ['**/*.js', '**/*.json'],
+                dest: 'public'
+            },
+            icons: {
+                expand: true,
+                cwd: 'src/',
+                src: ['**/*.svg', '**/*.ico'],
+                dest: 'public'
             }
         }
     });
@@ -139,6 +163,7 @@ module.exports = function(grunt) {
         grunt.loadNpmTasks('grunt-openfin');
     }
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-eslint');
     grunt.loadNpmTasks('grunt-http-download');
@@ -156,14 +181,12 @@ module.exports = function(grunt) {
             console.log(result.stdout);
             callback();
         });
-
-        grunt.task.run('copy');
     });
 
-    grunt.registerTask('build', ['showcase', 'eslint', 'less:development', 'connect:livereload']);
+    grunt.registerTask('build', ['eslint', 'clean', 'showcase', 'copy', 'less:development', 'connect:livereload']);
     grunt.registerTask('serve', ['build', 'openfin:serve']);
     grunt.registerTask('createZip', ['build', 'download']);
-    grunt.registerTask('ci', ['showcase', 'eslint', 'less:development', 'connect:livereload', 'download']);
+    grunt.registerTask('ci', ['build', 'download']);
     grunt.registerTask('deploy', ['ci', 'gh-pages:origin']);
     grunt.registerTask('deploy:upstream', ['ci', 'gh-pages:upstream']);
     grunt.registerTask('default', ['serve']);
