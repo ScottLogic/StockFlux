@@ -22,11 +22,6 @@
                 controller: 'StockCtrl',
                 controllerAs: 'stockCtrl'
             })
-            .when('/search/:query', {
-                templateUrl: 'search/search.html',
-                controller: 'SearchCtrl',
-                controllerAs: 'searchCtrl'
-            })
             .otherwise({
                 redirectTo: function() {
                     window.location = '404.html';

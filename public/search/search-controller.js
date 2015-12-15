@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('openfin.search', ['openfin.quandl'])
-        .controller('SearchCtrl', ['$routeParams', '$location', 'quandlService',
-            function($routeParams, $location, quandlService) {
+        .controller('SearchCtrl', ['$routeParams', '$location',
+            function($routeParams, $location) {
                 var self = this;
                 self.query = $routeParams.query;
                 self.searchDisabled = true;
@@ -23,12 +23,7 @@
                 };
 
                 self.submit = function() {
-                    $location.path('/search/' + self.query);
-
-                    quandlService.stock().get({ query: self.query }, function(result) {
-                        // When the result has been fetched it will have been cached.
-                        $location.path('/stock/' + self.query);
-                    });
+                    $location.path('/stock/' + self.query);
                 };
 
                 self.clear = function() {
