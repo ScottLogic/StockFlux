@@ -1,0 +1,15 @@
+﻿<div class="container-fluid" ng-show="stockCtrl.stocksLoaded">
+    <ul>
+        <li ng-repeat="stock in stockCtrl.stocks">
+            Name: <a ng-click="stockCtrl.open(stock.code)">{{stock.name}}</a>, Code: {{stock.code}}, Start Date: {{stock.startDate}}, End Date: {{stock.endDate}}
+            <ul>
+                <li ng-repeat="stockData in stock.data">
+                    Date: {{stockData.date}}, Open: {{stockData.open}}
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div class="container" id="search" ng-hide="stockCtrl.stocksLoaded" ng-controller="SearchCtrl as searchCtrl">
+    <div class="alert alert-info" role="alert">{{searchCtrl.message()}}</div>
+</div>

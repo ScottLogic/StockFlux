@@ -1,0 +1,20 @@
+{
+    "devtools_port": 9090,
+    "startup_app": {
+        "name": "OpenFinD3FC",
+        "url": "http://owennw.github.io/OpenFinD3FC/index.html",
+        "uuid": "OpenFinD3FC",
+        "applicationIcon": "http://owennw.github.io/OpenFinD3FC/favicon.ico",
+        "autoShow": true
+    },
+    "runtime": {
+        "arguments": "",
+        "version": "stable"
+    },
+    "shortcut": {
+        "company": "OpenFin",
+        "description": "Hosts the d3fc-showcase as an OpenFin application.",
+        "icon": "http://owennw.github.io/OpenFinD3FC/favicon.ico",
+        "name": "OpenFinD3FC"
+    }
+}
