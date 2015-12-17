@@ -1,5 +1,8 @@
 @import "../../../node_modules/d3fc-showcase/src/assets/styles/style.less";
 
+@middle-background: #28313D;
+@dark-background: #1A1F26;
+
 .row {
     margin-left: 0px;
 }
@@ -11,6 +14,17 @@ a.svg:after {
     right: 0;
     bottom: 0;
     left: 0;
+}
+
+.main {
+    height: 100%;
+    background-color: @dark-background;
+    padding: 4px;
+}
+
+.preview {
+    padding: 4px;
+    height: 121px;
 }
 
 .logo {
@@ -33,4 +47,34 @@ a.svg {
 
 #search {
     cursor: wait;
+}
+
+.top-buffer {
+    margin-top: 4px;
+}
+
+.tearout-container {
+    height: 121px;
+    border: 1px solid @middle-background;
+}
+
+.tearout {
+    border: 1px solid @middle-background;
+    height: 121px;
+}
+
+.tear {
+    background-color: @middle-background;
+}
+
+h6 small, h4 small {
+    color: white;
+}
+
+h6, h4 {
+    margin: 2px;
+}
+
+.col-xs-12 {
+    padding: 0px;
 }

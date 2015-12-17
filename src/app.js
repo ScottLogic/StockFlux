@@ -5,7 +5,8 @@
         'ngRoute',
         'openfin.thumbnails',
         'openfin.search',
-        'openfin.stock'
+        'openfin.stock',
+        'openfin.preview'
     ])
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider

@@ -13,31 +13,41 @@
     </style>
 </head>
 <body ng-cloak ng-controller="SearchCtrl as searchCtrl">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12">
-                <a ng-href="#/" class="svg logo" ng-click="searchCtrl.clear()">
-                    <img src="logo.svg" />
-                </a>
+    <div class="container-fluid main" ng-controller="PreviewCtrl as previewCtrl">
+        <div class="col-xs-3" style="background-color:#464E59">
+            <div class="row">
+                <div class="glyphicon glyphicon-star pull-right"></div>
+            </div>
+            <div class="row top-buffer" ng-repeat="stock in previewCtrl.stocks">
+                <preview-tabs stock="stock" bell-style="previewCtrl.bellStyle(stock)" bell-click="previewCtrl.bellClick(stock)"></preview-tabs>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-offset-3 col-md-6 col-xs-12">
-                <div class="input-group {{searchCtrl.validation()}}" style="width: 100%">
-                    <form class="form-horizontal" ng-submit="searchCtrl.submit()">
-                        <input type="text" class="form-control" maxlength="50" placeholder="Stock name"
-                               ng-model="searchCtrl.query" autofocus/>
-                        <br>
-                        <br>
-                        <input type="submit" class="btn btn-primary center-block" value="Search" 
-                               ng-disabled="searchCtrl.searchDisabled" onclick="this.blur()"/>
-                    </form>
+        <div class="col-xs-9">
+            <div class="row">
+                <div class="col-sm-12">
+                    <a ng-href="#/" class="svg logo" draggable="false" ng-click="searchCtrl.clear()">
+                        <img src="logo.svg" />
+                    </a>
                 </div>
             </div>
-        </div>
-        <br>
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6 col-xs-12">
+                    <div class="input-group {{searchCtrl.validation()}}" style="width: 100%">
+                        <form class="form-horizontal" ng-submit="searchCtrl.submit()">
+                            <input type="text" class="form-control" maxlength="50" placeholder="Stock name"
+                                   ng-model="searchCtrl.query" autofocus />
+                            <br>
+                            <br>
+                            <input type="submit" class="btn btn-primary center-block" value="Search"
+                                   ng-disabled="searchCtrl.searchDisabled" onclick="this.blur()" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br>
 
-        <div ng-view></div>
+            <div ng-view></div>
+        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-route.min.js"></script>
@@ -46,6 +56,10 @@
     <script src="https://cdn.rawgit.com/auth0/angular-storage/master/dist/angular-storage.js"></script>
     <script src="app.js"></script>
     <script src="thumbnails/thumbnails-controller.js"></script>
+    <script src="tearout/tearout.js"></script>
+    <script src="tearout/geometry.js"></script>
+    <script src="tearout/drop-target.js"></script>
+    <script src="previews/previews.js"></script>
     <script src="search/search-controller.js"></script>
     <script src="search/stock-controller.js"></script>
     <script src="services/openfin-service.js"></script>
