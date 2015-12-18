@@ -1,0 +1,55 @@
+﻿<!DOCTYPE HTML>
+<html lang="en" ng-app="OpenFinD3FC">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OpenFin D3FC</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
+</head>
+<body ng-cloak ng-controller="SearchCtrl as searchCtrl">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <a ng-href="#/" class="svg logo" ng-click="searchCtrl.clear()">
+                    <img src="logo.svg" />
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6 col-xs-12">
+                <div class="input-group {{searchCtrl.validation()}}" style="width: 100%">
+                    <form class="form-horizontal" ng-submit="searchCtrl.submit()">
+                        <input type="text" class="form-control" maxlength="50" placeholder="Stock name"
+                               ng-model="searchCtrl.query" autofocus/>
+                        <br>
+                        <br>
+                        <input type="submit" class="btn btn-primary center-block" value="Search" 
+                               ng-disabled="searchCtrl.searchDisabled" onclick="this.blur()"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div ng-view></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-resource.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <script src="https://cdn.rawgit.com/auth0/angular-storage/master/dist/angular-storage.js"></script>
+    <script src="app.js"></script>
+    <script src="thumbnails/thumbnails-controller.js"></script>
+    <script src="search/search-controller.js"></script>
+    <script src="search/stock-controller.js"></script>
+    <script src="services/openfin-service.js"></script>
+    <script src="services/store-service.js"></script>
+    <script src="services/quandl-service.js"></script>
+</body>
+</html>

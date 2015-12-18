@@ -1,42 +1,28 @@
 /* jshint node: true*/
 'use strict';
 module.exports = function(grunt) {
-    var target = grunt.option('target') || 'http://localhost:5000',
+    var target = grunt.option('target') || 'http://owennw.github.io/OpenFinD3FC',
         port = process.env.PORT || 5000,
         files = {
             js: [
                 'gruntfile.js',
-                'public/**/*.js',
-                'public/**/*.json',
+                'src/**/*.js',
+                'src/**/*.json',
                 '*.json'
             ],
             html: [
-                'public/**/*.html'
+                'src/**/*.html'
             ],
             css: [
-                'public/**/*.css'
+                'src/**/*.css',
+                'src/**/*.less'
+            ],
+            showcase: [
+                'node_modules/d3fc-showcase/dist/'
             ]
         };
 
     grunt.initConfig({
-        watch: {
-            code: {
-                files: [].concat(files.html, files.css, files.js),
-                tasks: ['default'],
-                options: {
-                    livereload: true
-                }
-            },
-            livereload: {
-                options: {
-                    open: true,
-                    base: [
-                        'public'
-                    ]
-                },
-                files: [].concat(files.html, files.css, files.js)
-            }
-        },
         'gh-pages': {
             origin: {
                 options: {
@@ -54,6 +40,7 @@ module.exports = function(grunt) {
                 src: ['**/*']
             }
         },
+
         connect: {
             options: {
                 port: port,
@@ -64,12 +51,11 @@ module.exports = function(grunt) {
             livereload: {
                 options: {
                     open: false,
-                    base: [
-                        'public'
-                    ]
+                    base: ['public']
                 }
             }
         },
+
         openfin: {
             options: {
                 configPath: target + '/app.json',
@@ -94,34 +80,92 @@ module.exports = function(grunt) {
                 open: false
             }
         },
+
+        less: {
+            development: {
+                options: {
+                    strictMath: true,
+                    sourceMap: true,
+                    outputSourceFiles: true,
+                    sourceMapURL: 'style.css.map',
+                    sourceMapFilename: 'public/assets/css/style.css.map'
+                },
+                files: {
+                    'public/assets/css/style.css': 'src/assets/styles/style.less'
+                }
+            },
+            production: {
+                options: {
+                    strictMath: true
+                },
+                files: {
+                    'public/assets/css/style.css': 'src/assets/styles/style.less'
+                }
+            }
+        },
+
         download: {
             openfinZip: {
                 src: ['https://dl.openfin.co/services/download?fileName=OpenFinD3FC&config=http://owennw.github.io/OpenFinD3FC/app.json'],
                 dest: './public/OpenFinD3FC.zip'
             }
         },
+
+        eslint: {
+            target: ['src/**.js']
+        },
+
+        clean: {
+            dist: {
+                src: ['pubic', 'node_modules/d3fc-showcase/dist']
+            }
+        },
+
         copy: {
-            main: {
-                files: [
-                  {
-                      expand: true,
-                      cwd: 'node_modules/d3fc-showcase/dist/',
-                      src: ['**'],
-                      dest: 'public/'
-                  }
-                ]
+            showcase: {
+                expand: true,
+                cwd: 'node_modules/d3fc-showcase/dist/',
+                src: ['**'],
+                dest: 'public/',
+                rename: function(dest, src) {
+                    if (src.split('.').pop() === 'html') {
+                        return dest + 'd3fc-showcase.html';
+                    }
+
+                    return dest + src;
+                }
+            },
+            html: {
+                expand: true,
+                cwd: 'src/',
+                src: ['**/*.html'],
+                dest: 'public'
+            },
+            js: {
+                expand: true,
+                cwd: 'src/',
+                src: ['**/*.js', '**/*.json'],
+                dest: 'public'
+            },
+            icons: {
+                expand: true,
+                cwd: 'src/',
+                src: ['**/*.svg', '**/*.ico'],
+                dest: 'public'
             }
         }
     });
 
     var isWin = (/^win/).test(process.platform);
 
-    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
     if (isWin) {
         grunt.loadNpmTasks('grunt-openfin');
     }
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-eslint');
     grunt.loadNpmTasks('grunt-http-download');
     grunt.loadNpmTasks('grunt-gh-pages');
 
@@ -137,14 +181,13 @@ module.exports = function(grunt) {
             console.log(result.stdout);
             callback();
         });
-
-        grunt.task.run('copy');
     });
 
-    grunt.registerTask('build', ['showcase', 'connect:livereload']);
-    grunt.registerTask('serve', ['build', 'openfin:serve', 'watch']);
+    grunt.registerTask('build', ['eslint', 'clean', 'showcase', 'copy', 'less:development', 'connect:livereload']);
+    grunt.registerTask('serve', ['build', 'openfin:serve']);
     grunt.registerTask('createZip', ['build', 'download']);
-    grunt.registerTask('ci', ['showcase', 'connect:livereload', 'download']);
+    grunt.registerTask('ci', ['build', 'download']);
     grunt.registerTask('deploy', ['ci', 'gh-pages:origin']);
     grunt.registerTask('deploy:upstream', ['ci', 'gh-pages:upstream']);
+    grunt.registerTask('default', ['serve']);
 };
