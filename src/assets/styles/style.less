@@ -2,9 +2,10 @@
 
 @middle-background: #28313D;
 @dark-background: #1A1F26;
+@separator-color: #464E59;
 
 .row {
-    margin-left: 0px;
+    margin: 0px;
 }
 
 a.svg:after {
@@ -23,7 +24,7 @@ a.svg:after {
 }
 
 .preview {
-    padding: 4px;
+    padding: 0px;
     height: 121px;
 }
 
@@ -49,12 +50,15 @@ a.svg {
     cursor: wait;
 }
 
-.top-buffer {
+.buffer {
+    height: 3px;
+    color: @separator-color;
+    margin: 0px;
     margin-top: 4px;
 }
 
 .tearout-container {
-    height: 121px;
+    height: 125px;
     border: 1px solid @middle-background;
 }
 
@@ -77,4 +81,15 @@ h6, h4 {
 
 .col-xs-12 {
     padding: 0px;
+}
+
+.favourites {
+    background-color: @middle-background;
+    width: 230px!important;
+    float: left;
+    height: 100%;
+}
+
+.preview-top {
+    margin-bottom: 5px;
 }

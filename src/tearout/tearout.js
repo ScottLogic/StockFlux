@@ -267,11 +267,11 @@ fin.desktop.main(function() {
     function createConfig() {
         return {
             'name': 'duplicate-demo' + Math.random(),
-            'maxWidth': 284,
+            'maxWidth': 226,
             'maxHeight': 119,
-            'defaultWidth': 284,
+            'defaultWidth': 226,
             'defaultHeight': 119,
-            'width': 284,
+            'width': 226,
             'height': 119,
             'autoShow': false,
             'url': 'tearout/tearout.html',

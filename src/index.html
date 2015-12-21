@@ -14,11 +14,11 @@
 </head>
 <body ng-cloak ng-controller="SearchCtrl as searchCtrl">
     <div class="container-fluid main" ng-controller="PreviewCtrl as previewCtrl">
-        <div class="col-xs-3" style="background-color:#464E59">
-            <div class="row">
-                <div class="glyphicon glyphicon-star pull-right"></div>
+        <div class="favourites">
+            <div class="row preview-top">
+                <div class="glyphicon glyphicon-star pull-right" style="padding:10px"></div>
             </div>
-            <div class="row top-buffer" ng-repeat="stock in previewCtrl.stocks">
+            <div class="row" ng-repeat="stock in previewCtrl.stocks">
                 <preview-tabs stock="stock" bell-style="previewCtrl.bellStyle(stock)" bell-click="previewCtrl.bellClick(stock)"></preview-tabs>
             </div>
         </div>
