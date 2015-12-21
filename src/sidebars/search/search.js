@@ -8,6 +8,23 @@
                 self.query = $routeParams.query;
                 self.stocks = [];
 
+                var favouriteColours = {
+                    on: '#42D8BD',
+                    off: '#1A1F26'
+                };
+
+                self.favouriteStyle = function(stock) {
+                    return stock.favouriteColour;
+                };
+
+                self.favouriteClick = function(stock) {
+                    if (stock.favouriteColour == favouriteColours.on) {
+                        stock.favouriteColour = favouriteColours.off;
+                    } else {
+                        stock.favouriteColour = favouriteColours.on;
+                    }
+                };
+
                 self.submit = function() {
                     self.stocks = [];
                     if (self.query) {
@@ -22,7 +39,8 @@
                                 fetchedStock = fetchedStocks[i];
                                 self.stocks.push({
                                     name: fetchedStock.name,
-                                    code: fetchedStock.dataset_code
+                                    code: fetchedStock.dataset_code,
+                                    favouriteColour: favouriteColours.off
                                 });
                             }
 
@@ -71,7 +89,9 @@
 
                 },
                 scope: {
-                    stock: '='
+                    stock: '=',
+                    favouriteStyle: '&',
+                    favouriteClick: '&'
                 }
             }
         }])

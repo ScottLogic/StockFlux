@@ -5,8 +5,8 @@
             <h4 class="pull-left"><strong>{{stock.code | uppercase}}</strong></h4>
         </div>
         <div class="col-xs-2">
-            <div class="glyphicon glyphicon-star-empty pull-right"></div>
+            <div class="glyphicon glyphicon-star pull-right" ng-style="{'color': favouriteStyle(stock)}" ng-click="favouriteClick(stock)"></div>
         </div>
     </div>
-    <hr class="buffer">
 </div>
+<hr class="buffer">

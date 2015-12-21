@@ -30,7 +30,8 @@
                     </div>
                 </div>
                 <div class="previews" ng-repeat="stock in searchCtrl.stocks" ng-style="{'opacity': sidebarCtrl.searchBarOpacity()}">
-                    <search stock="stock"></search>
+                    <search stock="stock" favourite-style="searchCtrl.favouriteStyle(stock)" 
+                            favourite-click="searchCtrl.favouriteClick(stock)"></search>
                 </div>
             </div>
             <div class="favourites" ng-click="sidebarCtrl.favouritesClick()"
