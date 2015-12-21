@@ -9,6 +9,7 @@
                 self.stocks = [];
 
                 self.submit = function() {
+                    self.stocks = [];
                     if (self.query) {
                         quandlService.stock().get({ query: self.query }, function(result) {
                             var fetchedStocks = result.datasets,
@@ -73,5 +74,11 @@
                     stock: '='
                 }
             }
-        }]);
+        }])
+        .filter('truncate', function() {
+            return function(input) {
+                var closeBracketIndex = input.indexOf(')');
+                return input.slice(0, closeBracketIndex + 1);
+            };
+        });
 }());
