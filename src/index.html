@@ -13,13 +13,32 @@
     </style>
 </head>
 <body ng-cloak ng-controller="SearchCtrl as searchCtrl">
-    <div class="container-fluid main" ng-controller="PreviewCtrl as previewCtrl">
-        <div class="favourites">
-            <div class="row preview-top">
-                <div class="glyphicon glyphicon-star pull-right" style="padding:10px"></div>
+    <div class="container-fluid main">
+        <div class="sidebars" ng-controller="SidebarCtrl as sidebarCtrl">
+            <div class="search" ng-click="sidebarCtrl.searchClick()" ng-style="{'width': sidebarCtrl.searchWidth()}">
+                <div class="row preview-top">
+                    <div class="col-xs-10" style="padding:0px">
+                        <div class="input-group" style="width: 100%">
+                            <form class="form-horizontal" ng-submit="searchCtrl.submit()">
+                                <input type="text" class="form-control" maxlength="50" placeholder="Enter stock name or symbol"
+                                       ng-style="{'opacity': sidebarCtrl.searchBarOpacity()}" ng-model="searchCtrl.query" />
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-xs-2" style="padding:0px">
+                        <div class="glyphicon glyphicon-search pull-right" style="padding:10px" ng-click="searchCtrl.submit()"></div>
+                    </div>
+                </div>
             </div>
-            <div class="row" ng-repeat="stock in previewCtrl.stocks">
-                <preview-tabs stock="stock" bell-style="previewCtrl.bellStyle(stock)" bell-click="previewCtrl.bellClick(stock)"></preview-tabs>
+            <div class="favourites" ng-click="sidebarCtrl.favouritesClick()"
+                 ng-style="{'width': sidebarCtrl.favouritesWidth()}" ng-controller="PreviewCtrl as previewCtrl">
+                <div class="row preview-top">
+                    <div class="glyphicon glyphicon-star pull-right" style="padding:10px"></div>
+                </div>
+                <div class="previews" ng-repeat="stock in previewCtrl.stocks" ng-style="{'opacity': sidebarCtrl.previewsOpacity()}">
+                    <preview-tabs stock="stock" bell-style="previewCtrl.bellStyle(stock)" 
+                                  bell-click="previewCtrl.bellClick(stock)"></preview-tabs>
+                </div>
             </div>
         </div>
         <div class="col-xs-9">
@@ -28,20 +47,6 @@
                     <a ng-href="#/" class="svg logo" draggable="false" ng-click="searchCtrl.clear()">
                         <img src="logo.svg" />
                     </a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-offset-3 col-md-6 col-xs-12">
-                    <div class="input-group {{searchCtrl.validation()}}" style="width: 100%">
-                        <form class="form-horizontal" ng-submit="searchCtrl.submit()">
-                            <input type="text" class="form-control" maxlength="50" placeholder="Stock name"
-                                   ng-model="searchCtrl.query" autofocus />
-                            <br>
-                            <br>
-                            <input type="submit" class="btn btn-primary center-block" value="Search"
-                                   ng-disabled="searchCtrl.searchDisabled" onclick="this.blur()" />
-                        </form>
-                    </div>
                 </div>
             </div>
             <br>
@@ -59,9 +64,10 @@
     <script src="tearout/tearout.js"></script>
     <script src="tearout/geometry.js"></script>
     <script src="tearout/drop-target.js"></script>
-    <script src="previews/previews.js"></script>
-    <script src="search/search-controller.js"></script>
-    <script src="search/stock-controller.js"></script>
+    <script src="sidebars/sidebar-controller.js"></script>
+    <script src="sidebars/previews/previews.js"></script>
+    <script src="sidebars/search/search-controller.js"></script>
+    <script src="sidebars/search/stock-controller.js"></script>
     <script src="services/openfin-service.js"></script>
     <script src="services/store-service.js"></script>
     <script src="services/quandl-service.js"></script>

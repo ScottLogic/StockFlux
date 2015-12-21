@@ -49,7 +49,7 @@
         .directive('previewTabs', [function() {
             return {
                 restrict: 'E',
-                templateUrl: 'previews/stock-preview.html',
+                templateUrl: 'sidebars/previews/stock-preview.html',
                 link: function(scope, element, attrs) {
 
                 },

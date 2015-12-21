@@ -3,6 +3,8 @@
 @middle-background: #28313D;
 @dark-background: #1A1F26;
 @separator-color: #464E59;
+@icon-color: #AEB1B5;
+@transition: all 0.4s linear;
 
 .row {
     margin: 0px;
@@ -26,6 +28,10 @@ a.svg:after {
 .preview {
     padding: 0px;
     height: 121px;
+}
+
+.previews {
+    transition: @transition;
 }
 
 .logo {
@@ -83,13 +89,35 @@ h6, h4 {
     padding: 0px;
 }
 
-.favourites {
-    background-color: @middle-background;
-    width: 230px!important;
+.sidebars {
+    width: 271px!important;
+    height: 100%;
+    float: left;
+}
+
+.search {
     float: left;
     height: 100%;
+    background-color: @separator-color;
+    margin-right: 1px;
+    transition: @transition;
+}
+
+.favourites {
+    background-color: @middle-background;
+    height: 100%;
+    float: right;
+    transition: @transition;
 }
 
 .preview-top {
     margin-bottom: 5px;
+}
+
+.form-control {
+    border: none;
+    background: transparent;
+    color: @icon-color;
+    transition: @transition;
+    font-size: 13px;
 }

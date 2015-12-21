@@ -6,7 +6,8 @@
         'openfin.thumbnails',
         'openfin.search',
         'openfin.stock',
-        'openfin.preview'
+        'openfin.preview',
+        'openfin.sidebar'
     ])
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider
@@ -19,7 +20,7 @@
                 controllerAs: 'thumbnailsCtrl'
             })
             .when('/stock/:query', {
-                templateUrl: 'search/stockData.html',
+                templateUrl: 'sidebars/search/stockData.html',
                 controller: 'StockCtrl',
                 controllerAs: 'stockCtrl'
             })

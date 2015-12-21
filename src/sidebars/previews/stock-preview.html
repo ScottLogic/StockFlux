@@ -1,14 +1,12 @@
 ﻿<div class="tearout-container" draggable="false">
     <div class="tearout tear">
-        <div class="container-fluid preview">
-            <div class="row">
-                <div class="col">
-                    <h6 class="pull-left"><small>{{stock.name}}</small></h6>
-                    <div class="glyphicon glyphicon-option-vertical pull-right tearable"></div>
-                    <div class="glyphicon glyphicon-bell pull-right" ng-style="{'color': bellStyle(stock)}" ng-click="bellClick(stock)"></div>
-                </div>
+        <div class="preview">
+            <div>
+                <h6 class="pull-left"><small>{{stock.name}}</small></h6>
+                <div class="glyphicon glyphicon-option-vertical pull-right tearable"></div>
+                <div class="glyphicon glyphicon-bell pull-right" ng-style="{'color': bellStyle(stock)}" ng-click="bellClick(stock)"></div>
             </div>
-            <div class="row">
+            <div>
                 <div class="col-xs-12">
                     <h4 class="pull-left"><strong>{{stock.code | uppercase}}</strong></h4>
                 </div>
