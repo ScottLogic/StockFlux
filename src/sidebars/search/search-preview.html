@@ -1,21 +1,19 @@
 ﻿<div class="container-fluid">
-    <div ng-repeat="stock in stockCtrl.stocks">
-        <h6 class="pull-left" ng-click="stockCtrl.open(stock.code)"><small>{{stock.name}}</small></h6>
-        <div>
-            <div class="col-xs-12">
-                <h4 class="pull-left"><strong>{{stock.code | uppercase}}</strong></h4>
-            </div>
+    <h6 class="pull-left"><small>{{stock.name}}</small></h6>
+    <div>
+        <div class="col-xs-12">
+            <h4 class="pull-left"><strong>{{stock.code | uppercase}}</strong></h4>
         </div>
-        <div class="row">
-            <div class="col-xs-2 col-xs-offset-10">
-                <div class="glyphicon glyphicon-star-empty pull-right"></div>
-            </div>
-        </div>
-        <hr class="buffer">
-        <ul>
-            <li ng-repeat="stockData in stock.data">
-                Date: {{stockData.date}}, Open: {{stockData.open}}
-            </li>
-        </ul>
     </div>
+    <div class="row">
+        <div class="col-xs-2 col-xs-offset-10">
+            <div class="glyphicon glyphicon-star-empty pull-right"></div>
+        </div>
+    </div>
+    <hr class="buffer">
+    <ul>
+        <li ng-repeat="stockData in stock.data">
+            Date: {{stockData.date}}, Open: {{stockData.open}}
+        </li>
+    </ul>
 </div>

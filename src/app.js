@@ -5,7 +5,6 @@
         'ngRoute',
         'openfin.thumbnails',
         'openfin.search',
-        'openfin.stock',
         'openfin.favourites',
         'openfin.sidebar'
     ])
@@ -18,11 +17,6 @@
                 templateUrl: 'thumbnails/thumbnails.html',
                 controller: 'ThumbnailsCtrl',
                 controllerAs: 'thumbnailsCtrl'
-            })
-            .when('/stock/:query', {
-                templateUrl: 'sidebars/search/search-preview.html',
-                controller: 'StockCtrl',
-                controllerAs: 'stockCtrl'
             })
             .otherwise({
                 redirectTo: function() {

@@ -29,7 +29,7 @@
                         <div class="glyphicon glyphicon-search pull-right" style="padding:10px" ng-click="searchCtrl.submit()"></div>
                     </div>
                 </div>
-                <div class="previews" ng-repeat="stock in stockCtrl.stocks" ng-style="{'opacity': sidebarCtrl.searchBarOpacity()}">
+                <div class="previews" ng-repeat="stock in searchCtrl.stocks" ng-style="{'opacity': sidebarCtrl.searchBarOpacity()}">
                     <search stock="stock"></search>
                 </div>
             </div>
@@ -69,8 +69,7 @@
     <script src="tearout/drop-target.js"></script>
     <script src="sidebars/sidebar-controller.js"></script>
     <script src="sidebars/favourites/favourites.js"></script>
-    <script src="sidebars/search/search-controller.js"></script>
-    <script src="sidebars/search/stock-controller.js"></script>
+    <script src="sidebars/search/search.js"></script>
     <script src="services/openfin-service.js"></script>
     <script src="services/store-service.js"></script>
     <script src="services/quandl-service.js"></script>
