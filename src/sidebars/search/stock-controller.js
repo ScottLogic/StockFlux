@@ -6,7 +6,6 @@
            function($routeParams, quandlService, openfinService) {
                var self = this;
                self.stocks = [];
-               self.stocksLoaded = false;
 
                quandlService.stock().get({ query: $routeParams.query }, function(result) {
                    // Re-fetch the cached result.
@@ -15,8 +14,6 @@
                        i,
                        fetchedStock,
                        stock;
-
-                   self.stocksLoaded = true;
 
                    for (i = 0; i < length; i++) {
                        fetchedStock = fetchedStocks[i];

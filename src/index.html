@@ -29,15 +29,18 @@
                         <div class="glyphicon glyphicon-search pull-right" style="padding:10px" ng-click="searchCtrl.submit()"></div>
                     </div>
                 </div>
+                <div class="previews" ng-repeat="stock in stockCtrl.stocks" ng-style="{'opacity': sidebarCtrl.searchBarOpacity()}">
+                    <search stock="stock"></search>
+                </div>
             </div>
             <div class="favourites" ng-click="sidebarCtrl.favouritesClick()"
-                 ng-style="{'width': sidebarCtrl.favouritesWidth()}" ng-controller="PreviewCtrl as previewCtrl">
+                 ng-style="{'width': sidebarCtrl.favouritesWidth()}" ng-controller="FavouritesCtrl as favouritesCtrl">
                 <div class="row preview-top">
                     <div class="glyphicon glyphicon-star pull-right" style="padding:10px"></div>
                 </div>
-                <div class="previews" ng-repeat="stock in previewCtrl.stocks" ng-style="{'opacity': sidebarCtrl.previewsOpacity()}">
-                    <preview-tabs stock="stock" bell-style="previewCtrl.bellStyle(stock)" 
-                                  bell-click="previewCtrl.bellClick(stock)"></preview-tabs>
+                <div class="previews" ng-repeat="stock in favouritesCtrl.stocks" ng-style="{'opacity': sidebarCtrl.previewsOpacity()}">
+                    <favourite stock="stock" bell-style="favouritesCtrl.bellStyle(stock)"
+                               bell-click="favouritesCtrl.bellClick(stock)"></favourite>
                 </div>
             </div>
         </div>
@@ -65,7 +68,7 @@
     <script src="tearout/geometry.js"></script>
     <script src="tearout/drop-target.js"></script>
     <script src="sidebars/sidebar-controller.js"></script>
-    <script src="sidebars/previews/previews.js"></script>
+    <script src="sidebars/favourites/favourites.js"></script>
     <script src="sidebars/search/search-controller.js"></script>
     <script src="sidebars/search/stock-controller.js"></script>
     <script src="services/openfin-service.js"></script>

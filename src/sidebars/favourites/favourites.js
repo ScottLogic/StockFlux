@@ -1,8 +1,8 @@
 ﻿(function() {
     'use strict';
 
-    angular.module('openfin.preview', [])
-        .controller('PreviewCtrl', [function() {
+    angular.module('openfin.favourites', [])
+        .controller('FavouritesCtrl', [function() {
             var self = this;
             self.stocks = [];
 
@@ -46,10 +46,10 @@
             createStock('Standard & Poor 500 Index (INX)', 'S&P 500', createStockData(346.20, -80.15, 0.67));
             createStock('FTSE 100 Index (UKX)', 'FTSE 100', createStockData(247.17, 102.15, 0.59));
         }])
-        .directive('previewTabs', [function() {
+        .directive('favourite', [function() {
             return {
                 restrict: 'E',
-                templateUrl: 'sidebars/previews/stock-preview.html',
+                templateUrl: 'sidebars/favourites/favourite-preview.html',
                 link: function(scope, element, attrs) {
 
                 },
