@@ -6,7 +6,8 @@
         'openfin.thumbnails',
         'openfin.search',
         'openfin.favourites',
-        'openfin.sidebar'
+        'openfin.sidebar',
+        'openfin.filters'
     ])
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider

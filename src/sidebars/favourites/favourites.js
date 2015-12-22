@@ -1,8 +1,8 @@
 ﻿(function() {
     'use strict';
 
-    angular.module('openfin.favourites', [])
-        .controller('FavouritesCtrl', [function() {
+    angular.module('openfin.favourites', ['openfin.store', 'openfin.quandl'])
+        .controller('FavouritesCtrl', ['storeService', 'quandlService', function(storeService, quandlService) {
             var self = this;
             self.stocks = [];
 
@@ -12,39 +12,32 @@
             };
 
             self.bellStyle = function(stock) {
-                return stock.bellColour;
+                return stock.notification ? bellColours.on : bellColours.off;
             };
 
             self.bellClick = function(stock) {
-                if (stock.bellColour == bellColours.on) {
-                    stock.bellColour = bellColours.off;
-                } else {
-                    stock.bellColour = bellColours.on;
-                }
+                stock.notification = !stock.notification;
             };
 
-            function createStock(name, code, data) {
-                self.stocks.push({
-                    name: name,
-                    code: code,
-                    price: data.currentPrice,
-                    delta: data.delta,
-                    percentage: data.percentage,
-                    bellColour: bellColours.off
+            var favourites = storeService.getStocks();
+
+            favourites.map(function(favourite) {
+                quandlService.search(favourite, function(stock) {
+                    var data = stock.data[0];
+                    var price = data.close;
+                    var delta = data.close - data.open;
+                    var percentage = delta / data.open * 100;
+
+                    self.stocks.push({
+                        name: stock.name,
+                        code: stock.code,
+                        price: price,
+                        delta: delta,
+                        percentage: percentage,
+                        notification: false
+                    });
                 });
-            }
-
-            function createStockData(currentPrice, delta, percentage) {
-                return {
-                    currentPrice: currentPrice,
-                    delta: delta,
-                    percentage: percentage
-                };
-            }
-
-            createStock('Dow Jones Industrial Average (DIA)', 'DJIA', createStockData(247.17, 102.15, 0.59));
-            createStock('Standard & Poor 500 Index (INX)', 'S&P 500', createStockData(346.20, -80.15, 0.67));
-            createStock('FTSE 100 Index (UKX)', 'FTSE 100', createStockData(247.17, 102.15, 0.59));
+            });
         }])
         .directive('favourite', [function() {
             return {

@@ -14,52 +14,21 @@
                 };
 
                 self.favouriteStyle = function(stock) {
-                    return stock.favouriteColour;
+                    return stock.favourite ? favouriteColours.on : favouriteColours.off;
                 };
 
                 self.favouriteClick = function(stock) {
-                    if (stock.favouriteColour == favouriteColours.on) {
-                        stock.favouriteColour = favouriteColours.off;
-                    } else {
-                        stock.favouriteColour = favouriteColours.on;
-                    }
+                    stock.favourite = !stock.favourite;
                 };
 
                 self.submit = function() {
                     self.stocks = [];
                     if (self.query) {
-                        quandlService.stock().get({ query: self.query }, function(result) {
-                            var fetchedStocks = result.datasets,
-                                length = fetchedStocks.length,
-                                i,
-                                fetchedStock,
-                                stock;
-
-                            for (i = 0; i < length; i++) {
-                                fetchedStock = fetchedStocks[i];
-                                self.stocks.push({
-                                    name: fetchedStock.name,
-                                    code: fetchedStock.dataset_code,
-                                    favouriteColour: favouriteColours.off
-                                });
-                            }
-
-                            // After the stock meta-data has been fetched and displayed the financial data
-                            // can be retrieved and displayed
-                            for (i = 0; i < length; i++) {
-                                stock = self.stocks[i];
-                                fetchStockData(stock);
-                            }
+                        quandlService.search(self.query, function(stock) {
+                            self.stocks.push(stock);
                         });
                     }
                 };
-
-                function fetchStockData(stock) {
-                    quandlService.stockData().get({ code: stock.code }, function(result) {
-                        var data = result.stockData;
-                        stock.data = data.data;
-                    });
-                }
 
                 self.clear = function() {
                     self.query = '';

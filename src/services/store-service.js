@@ -11,7 +11,7 @@
                 'TSLA': 0
             };
 
-            var mostVisitedStocks = store.get('stocks') || initialStocks;
+            var favouriteStocks = store.get('stocks') || initialStocks;
 
             function order(obj) {
                 var tuples = [];
@@ -32,17 +32,17 @@
             }
 
             function get() {
-                return order(mostVisitedStocks);
+                return order(favouriteStocks);
             }
 
             function increment(stockName) {
-                if (mostVisitedStocks[stockName] !== undefined) {
-                    mostVisitedStocks[stockName]++;
+                if (favouriteStocks[stockName] !== undefined) {
+                    favouriteStocks[stockName]++;
                 } else {
-                    mostVisitedStocks[stockName] = 1;
+                    favouriteStocks[stockName] = 1;
                 }
 
-                store.set('stocks', mostVisitedStocks);
+                store.set('stocks', favouriteStocks);
             }
 
             return {

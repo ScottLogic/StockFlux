@@ -18,7 +18,7 @@
             }
 
             function stockData() {
-                var startDate = moment().subtract(1, 'weeks').format('YYYY-MM-DD'),
+                var startDate = moment().subtract(1, 'days').format('YYYY-MM-DD'),
                     json;
 
                 return $resource('https://www.quandl.com/api/v3/datasets/WIKI/:code/data.json?' + API_KEY + '&start_date=' + startDate, {}, {
@@ -31,6 +31,23 @@
                         },
                         cache: true
                     }
+                });
+            }
+
+            function search(query, cb) {
+                stock().get({ query: query }, function(result1) {
+                    result1.datasets.map(function(dataset) {
+                        var code = dataset.dataset_code;
+
+                        stockData().get({ code: code }, function(result2) {
+                            cb({
+                                name: dataset.name,
+                                code: code,
+                                data: result2.stockData.data,
+                                favourite: false
+                            });
+                        });
+                    });
                 });
             }
 
@@ -65,7 +82,8 @@
 
             return {
                 stock: stock,
-                stockData: stockData
+                stockData: stockData,
+                search: search
             };
         }]);
 }());
