@@ -1,7 +1,14 @@
 @import "../../../node_modules/d3fc-showcase/src/assets/styles/style.less";
 
+@middle-background: #28313D;
+@dark-background: #1A1F26;
+@search-color: #464E59; 
+@separator-color:#5B626B; 
+@icon-color: #AEB1B5;
+@transition: all 0.4s linear;
+
 .row {
-    margin-left: 0px;
+    margin: 0px;
 }
 
 a.svg:after {
@@ -11,6 +18,21 @@ a.svg:after {
     right: 0;
     bottom: 0;
     left: 0;
+}
+
+.main {
+    height: 100%;
+    background-color: @dark-background;
+    padding: 4px;
+}
+
+.preview {
+    padding: 0px;
+    height: 121px;
+}
+
+.previews {
+    transition: @transition;
 }
 
 .logo {
@@ -33,4 +55,66 @@ a.svg {
 
 #search {
     cursor: wait;
+}
+
+.buffer {
+    height: 3px;
+    color: @separator-color;
+    margin: 0px;
+    margin-top: 4px;
+}
+
+.tearout-container {
+    height: 125px;
+    border: 1px solid @middle-background;
+}
+
+.tearout {
+    border: 1px solid @middle-background;
+    height: 121px;
+}
+
+.tear {
+    background-color: @middle-background;
+}
+
+h6 small, h4 small {
+    color: white;
+}
+
+h6, h4 {
+    margin: 2px;
+}
+
+.sidebars {
+    width: 271px!important;
+    height: 100%;
+    float: left;
+}
+
+.search {
+    float: left;
+    height: 100%;
+    background-color: @search-color;
+    margin-right: 1px;
+    transition: @transition;
+}
+
+.favourites {
+    background-color: @middle-background;
+    height: 100%;
+    float: right;
+    transition: @transition;
+}
+
+.preview-top {
+    margin-bottom: 5px;
+}
+
+.form-control {
+    border: none;
+    background: transparent;
+    color: @icon-color;
+    transition: @transition;
+    font-size: 13px;
 }

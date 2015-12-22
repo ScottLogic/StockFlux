@@ -1,0 +1,24 @@
+﻿<div class="tearout-container" draggable="false">
+    <div class="tearout tear">
+        <div class="preview">
+            <div>
+                <h6 class="pull-left"><small>{{stock.name | truncate}}</small></h6>
+                <div class="glyphicon glyphicon-option-vertical pull-right tearable"></div>
+                <div class="glyphicon glyphicon-bell pull-right" ng-style="{'color': bellStyle(stock)}" ng-click="bellClick(stock)"></div>
+            </div>
+            <div>
+                <div class="col-xs-12" style="padding:0px">
+                    <h4 class="pull-left"><strong>{{stock.code | uppercase}}</strong></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2 col-xs-offset-10">
+                    <h4 class="pull-right"><small>{{stock.price | number:2 }}</small></h4>
+                    <h6 class="pull-right"><small>{{stock.delta | number:2 }}</small></h6>
+                    <h6 class="pull-right"><small>{{stock.percentage | number:2 }}%</small></h6>
+                </div>
+            </div>
+            <hr class="buffer">
+        </div>
+    </div>
+</div>

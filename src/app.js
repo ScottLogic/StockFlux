@@ -5,7 +5,9 @@
         'ngRoute',
         'openfin.thumbnails',
         'openfin.search',
-        'openfin.stock'
+        'openfin.favourites',
+        'openfin.sidebar',
+        'openfin.filters'
     ])
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider
@@ -16,11 +18,6 @@
                 templateUrl: 'thumbnails/thumbnails.html',
                 controller: 'ThumbnailsCtrl',
                 controllerAs: 'thumbnailsCtrl'
-            })
-            .when('/stock/:query', {
-                templateUrl: 'search/stockData.html',
-                controller: 'StockCtrl',
-                controllerAs: 'stockCtrl'
             })
             .otherwise({
                 redirectTo: function() {
