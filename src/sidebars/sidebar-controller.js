@@ -9,8 +9,8 @@
                 largeBarWidth = totalWidth - smallBarWidth - 1, // The 1 is for the gap
                 searchWidth = smallBarWidth,
                 favouritesWidth = largeBarWidth,
-                searchBarOpacity = 0,
-                previewsOpacity = 1,
+                showSearches = false,
+                showFavourites = true,
                 searchSmall = true;
 
             self.searchWidth = function() {
@@ -21,21 +21,21 @@
                 return favouritesWidth + 'px';
             };
 
-            self.searchBarOpacity = function() {
-                return searchBarOpacity;
+            self.showSearches = function() {
+                return showSearches;
             };
 
-            self.previewsOpacity = function() {
-                return previewsOpacity;
+            self.showFavourites = function() {
+                return showFavourites;
             };
 
             self.searchClick = function() {
                 if (searchSmall) {
                     searchSmall = false;
-                    previewsOpacity = 0;
+                    showFavourites = false;
                     searchWidth = largeBarWidth;
                     favouritesWidth = smallBarWidth;
-                    searchBarOpacity = 1;
+                    showSearches = true;
                 }
             };
 
@@ -44,8 +44,8 @@
                     searchSmall = true;
                     searchWidth = smallBarWidth;
                     favouritesWidth = largeBarWidth;
-                    searchBarOpacity = 0;
-                    previewsOpacity = 1;
+                    showSearches = false;
+                    showFavourites = true;
                 }
             };
         }]);

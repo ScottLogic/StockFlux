@@ -18,7 +18,7 @@
             <div class="search" ng-click="sidebarCtrl.searchClick()" ng-style="{'width': sidebarCtrl.searchWidth()}">
                 <div class="row preview-top">
                     <div class="col-xs-10" style="padding:0px">
-                        <div class="input-group" style="width: 100%">
+                        <div class="input-group previews" style="width: 100%" ng-show="sidebarCtrl.showSearches()">
                             <form class="form-horizontal" ng-submit="searchCtrl.submit()">
                                 <input type="text" class="form-control" maxlength="50" placeholder="Enter stock name or symbol"
                                        ng-style="{'opacity': sidebarCtrl.searchBarOpacity()}" ng-model="searchCtrl.query" />
@@ -29,7 +29,7 @@
                         <div class="glyphicon glyphicon-search pull-right" style="padding:10px" ng-click="searchCtrl.submit()"></div>
                     </div>
                 </div>
-                <div class="previews" ng-repeat="stock in searchCtrl.stocks" ng-style="{'opacity': sidebarCtrl.searchBarOpacity()}">
+                <div class="previews" ng-repeat="stock in searchCtrl.stocks" ng-show="sidebarCtrl.showSearches()">
                     <search stock="stock" favourite-style="searchCtrl.favouriteStyle(stock)" 
                             favourite-click="searchCtrl.favouriteClick(stock)"></search>
                 </div>
@@ -39,7 +39,7 @@
                 <div class="row preview-top">
                     <div class="glyphicon glyphicon-star pull-right" style="padding:10px"></div>
                 </div>
-                <div class="previews" ng-repeat="stock in favouritesCtrl.stocks" ng-style="{'opacity': sidebarCtrl.previewsOpacity()}">
+                <div class="previews" ng-repeat="stock in favouritesCtrl.stocks" ng-show="sidebarCtrl.showFavourites()">
                     <favourite stock="stock" bell-style="favouritesCtrl.bellStyle(stock)"
                                bell-click="favouritesCtrl.bellClick(stock)"></favourite>
                 </div>
@@ -62,6 +62,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-route.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-resource.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-animate.js"></script>
     <script src="https://cdn.rawgit.com/auth0/angular-storage/master/dist/angular-storage.js"></script>
     <script src="app.js"></script>
     <script src="thumbnails/thumbnails-controller.js"></script>

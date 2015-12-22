@@ -2,6 +2,7 @@
     'use strict';
 
     angular.module('OpenFinD3FC', [
+        'ngAnimate',
         'ngRoute',
         'openfin.thumbnails',
         'openfin.search',
