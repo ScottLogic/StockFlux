@@ -44,7 +44,32 @@
                 restrict: 'E',
                 templateUrl: 'sidebars/favourites/favourite-preview.html',
                 link: function(scope, element, attrs) {
+                    var tearElement = element[0].getElementsByClassName('tear')[0];
 
+                    fin.desktop.main(function() {
+                        function createConfig() {
+                            return {
+                                'name': 'duplicate-demo' + Math.random(),
+                                'maxWidth': 226,
+                                'maxHeight': 119,
+                                'defaultWidth': 226,
+                                'defaultHeight': 119,
+                                'width': 226,
+                                'height': 119,
+                                'autoShow': false,
+                                'url': 'tearout/tearout.html',
+                                'frame': false,
+                                'resizable': false,
+                                'maximizable': false
+                            }
+                        }
+
+                        tearout.initialise({
+                            element: tearElement,
+                            tearoutWindow: new fin.desktop.Window(createConfig()),
+                            dropTarget: tearElement.parentNode
+                        });
+                    });
                 },
                 scope: {
                     stock: '=',
