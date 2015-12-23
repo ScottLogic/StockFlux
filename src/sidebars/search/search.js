@@ -24,7 +24,7 @@
                 self.submit = function() {
                     self.stocks = [];
                     if (self.query) {
-                        quandlService.search(self.query, function(stock) {
+                        quandlService.getMeta(self.query, function(stock) {
                             self.stocks.push(stock);
                         });
                     }

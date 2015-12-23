@@ -22,7 +22,7 @@
             var favourites = storeService.getStocks();
 
             favourites.map(function(favourite) {
-                quandlService.search(favourite, function(stock) {
+                quandlService.getData(favourite, function(stock) {
                     var data = stock.data[0];
                     var price = data.close;
                     var delta = data.close - data.open;

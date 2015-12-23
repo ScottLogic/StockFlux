@@ -34,19 +34,27 @@
                 });
             }
 
-            function search(query, cb) {
-                stock().get({ query: query }, function(result1) {
-                    result1.datasets.map(function(dataset) {
+            function getMeta(query, cb) {
+                stock().get({ query: query }, function(result) {
+                    result.datasets.map(function(dataset) {
                         var code = dataset.dataset_code;
+                        var stock = {
+                            name: dataset.name,
+                            code: code,
+                            favourite: false
+                        };
 
-                        stockData().get({ code: code }, function(result2) {
-                            cb({
-                                name: dataset.name,
-                                code: code,
-                                data: result2.stockData.data,
-                                favourite: false
-                            });
-                        });
+                        cb(stock);
+                    });
+                });
+            }
+
+            function getData(query, cb) {
+                return getMeta(query, function(stock) {
+                    stockData().get({ code: stock.code }, function(result) {
+                        stock.data = result.stockData.data;
+
+                        cb(stock);
                     });
                 });
             }
@@ -81,9 +89,8 @@
             }
 
             return {
-                stock: stock,
-                stockData: stockData,
-                search: search
+                getData: getData,
+                getMeta: getMeta
             };
         }]);
 }());
