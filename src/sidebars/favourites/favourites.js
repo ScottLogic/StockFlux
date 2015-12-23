@@ -6,9 +6,18 @@
             var self = this;
             self.stocks = [];
 
+            var icons = {
+                up: 'glyphicon-triangle-top',
+                down: 'glyphicon-triangle-bottom'
+            };
+
             var bellColours = {
                 on: '#42D8BD',
                 off: '#1A1F26'
+            };
+
+            self.icon = function(stock) {
+                return stock.delta < 0 ? icons.down : icons.up;
             };
 
             self.bellStyle = function(stock) {
@@ -33,7 +42,7 @@
                         code: stock.code,
                         price: price,
                         delta: delta,
-                        percentage: percentage,
+                        percentage: Math.abs(percentage),
                         notification: false
                     });
                 });
@@ -73,6 +82,7 @@
                 },
                 scope: {
                     stock: '=',
+                    icon: '&',
                     bellStyle: '&',
                     bellClick: '&'
                 }
