@@ -1,9 +1,9 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.search', ['openfin.quandl', 'openfin.openfin'])
-        .controller('SearchCtrl', ['$scope', '$routeParams', 'quandlService', 'openfinService',
-            function($scope, $routeParams, quandlService, openfinService) {
+    angular.module('openfin.search', ['openfin.quandl', 'openfin.store'])
+        .controller('SearchCtrl', ['$scope', '$routeParams', 'quandlService', 'storeService',
+            function($scope, $routeParams, quandlService, storeService) {
                 var self = this;
                 self.query = $routeParams.query;
                 self.stocks = [];
@@ -23,19 +23,35 @@
 
                 self.submit = function() {
                     self.stocks = [];
+                    var favourites = storeService.get();
                     if (self.query) {
+                        var length = favourites.length;
                         quandlService.getMeta(self.query, function(stock) {
-                            self.stocks.push(stock);
+                            var stockAdded = false;
+                            for (var i = 0; i < length; i++) {
+                                if (stock.code === favourites[i]) {
+                                    stock.favourite = true;
+                                    self.stocks.unshift(stock);
+                                    stockAdded = true;
+                                }
+                            }
+
+                            if (!stockAdded) {
+                                self.stocks.push(stock);
+                            }
+                        });
+                    } else {
+                        favourites.map(function(favourite) {
+                            quandlService.getMeta(favourite, function(stock) {
+                                stock.favourite = true;
+                                self.stocks.push(stock);
+                            });
                         });
                     }
                 };
 
                 self.clear = function() {
                     self.query = '';
-                };
-
-                self.open = function(stockName) {
-                    openfinService.open(stockName);
                 };
 
                 $scope.$watch(

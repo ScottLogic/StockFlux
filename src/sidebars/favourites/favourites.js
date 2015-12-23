@@ -19,7 +19,7 @@
                 stock.notification = !stock.notification;
             };
 
-            var favourites = storeService.getStocks();
+            var favourites = storeService.get();
 
             favourites.map(function(favourite) {
                 quandlService.getData(favourite, function(stock) {

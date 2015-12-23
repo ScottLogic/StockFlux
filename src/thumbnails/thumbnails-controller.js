@@ -6,7 +6,7 @@
             var self = this;
             var visitedNumber = 9;
 
-            self.stocks = storeService.getStocks().slice(0, visitedNumber);
+            self.stocks = storeService.get().slice(0, visitedNumber);
 
             self.open = function(stockName) {
                 openfinService.open(stockName);

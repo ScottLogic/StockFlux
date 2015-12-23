@@ -5,10 +5,10 @@
         .factory('storeService', ['store', function(store) {
             var initialStocks = {
                 'AAPL': 0,
-                'MSFT': 0,
-                'TITN': 0,
-                'SNDK': 0,
-                'TSLA': 0
+                'MSFT': 1,
+                'TITN': 2,
+                'SNDK': 3,
+                'TSLA': 4
             };
 
             var favouriteStocks = store.get('stocks') || initialStocks;
@@ -23,7 +23,7 @@
                 }
 
                 tuples = tuples.sort(function(a, b) {
-                    return b[1] - a[1];
+                    return a[1] - b[1];
                 });
 
                 return tuples.map(function(x) {
@@ -31,23 +31,16 @@
                 });
             }
 
+            function save() {
+                store.set('stocks', favouriteStocks);
+            }
+
             function get() {
                 return order(favouriteStocks);
             }
 
-            function increment(stockName) {
-                if (favouriteStocks[stockName] !== undefined) {
-                    favouriteStocks[stockName]++;
-                } else {
-                    favouriteStocks[stockName] = 1;
-                }
-
-                store.set('stocks', favouriteStocks);
-            }
-
             return {
-                getStocks: get,
-                incrementStock: increment
+                get: get
             };
         }]);
 }());
