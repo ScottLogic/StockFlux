@@ -18,7 +18,13 @@
                 };
 
                 self.favouriteClick = function(stock) {
-                    stock.favourite = !stock.favourite;
+                    if (stock.favourite) {
+                        stock.favourite = false;
+                        storeService.remove(stock);
+                    } else {
+                        stock.favourite = true;
+                        storeService.add(stock);
+                    }
                 };
 
                 self.submit = function() {

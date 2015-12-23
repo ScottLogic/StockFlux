@@ -32,10 +32,16 @@
 
             favourites.map(function(favourite) {
                 quandlService.getData(favourite, function(stock) {
-                    var data = stock.data[0];
-                    var price = data.close;
-                    var delta = data.close - data.open;
-                    var percentage = delta / data.open * 100;
+                    var data = stock.data[0],
+                        price,
+                        delta,
+                        percentage;
+
+                    if (data) {
+                        price = data.close;
+                        delta = data.close - data.open;
+                        percentage = delta / data.open * 100;
+                    }
 
                     self.stocks.push({
                         name: stock.name,

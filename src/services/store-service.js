@@ -39,8 +39,35 @@
                 return order(favouriteStocks);
             }
 
+            function add(stock) {
+                var stockName = stock.code;
+                if (!favouriteStocks[stockName]) {
+                    favouriteStocks[stockName] = Object.keys(favouriteStocks).length;
+                    save();
+                }
+            }
+
+            function remove(stock) {
+                var stockName = stock.code;
+                var stockOrder = favouriteStocks[stockName];
+                if (stockOrder) {
+                    delete favouriteStocks[stockName];
+                    var keys = Object.keys(favouriteStocks),
+                        newLength = keys.length;
+
+                    for (var i = 0; i < newLength; i++) {
+                        if (favouriteStocks[keys[i]] > stockOrder) {
+                            favouriteStocks[keys[i]]--;
+                        }
+                    }
+                    save();
+                }
+            }
+
             return {
-                get: get
+                get: get,
+                add: add,
+                remove: remove
             };
         }]);
 }());
