@@ -13,6 +13,8 @@
                 showFavourites = true,
                 searchSmall = true;
 
+            self.largeBarWidth = largeBarWidth + 'px';
+
             self.searchWidth = function() {
                 return searchWidth + 'px';
             };

@@ -21,7 +21,7 @@
                         <div class="input-group previews" style="width: 100%" ng-show="sidebarCtrl.showSearches()">
                             <form class="form-horizontal" ng-submit="searchCtrl.submit()">
                                 <input type="text" class="form-control" maxlength="50" placeholder="Enter stock name or symbol"
-                                       ng-style="{'opacity': sidebarCtrl.searchBarOpacity()}" ng-model="searchCtrl.query" />
+                                       ng-show="sidebarCtrl.showSearches()" ng-model="searchCtrl.query" />
                             </form>
                         </div>
                     </div>
@@ -29,8 +29,9 @@
                         <div class="glyphicon glyphicon-search pull-right" style="padding:10px" ng-click="searchCtrl.submit()"></div>
                     </div>
                 </div>
-                <div class="previews" ng-repeat="stock in searchCtrl.stocks" ng-show="sidebarCtrl.showSearches()">
-                    <search stock="stock" favourite-style="searchCtrl.favouriteStyle(stock)" 
+                <div class="previews" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in searchCtrl.stocks"
+                     ng-show="sidebarCtrl.showSearches()">
+                    <search stock="stock" favourite-style="searchCtrl.favouriteStyle(stock)"
                             favourite-click="searchCtrl.favouriteClick(stock)"></search>
                 </div>
             </div>
@@ -39,7 +40,8 @@
                 <div class="row preview-top">
                     <div class="glyphicon glyphicon-star pull-right" style="padding:10px"></div>
                 </div>
-                <div class="previews" ng-repeat="stock in favouritesCtrl.stocks" ng-show="sidebarCtrl.showFavourites()">
+                <div class="previews" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in favouritesCtrl.stocks"
+                     ng-show="sidebarCtrl.showFavourites()">
                     <favourite stock="stock" bell-style="favouritesCtrl.bellStyle(stock)"
                                bell-click="favouritesCtrl.bellClick(stock)"></favourite>
                 </div>

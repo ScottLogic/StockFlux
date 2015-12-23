@@ -5,7 +5,7 @@
 @search-color: #464E59;
 @separator-color: #5B626B;
 @icon-color: #AEB1B5;
-@transition: all 0.4s linear;
+@transition: all 0.2s linear 0.1s;
 
 .row {
     margin: 0px;
@@ -36,11 +36,11 @@ a.svg:after {
 }
 
 .previews.ng-hide-remove {
-    transition: all 0.2s linear 0.2s;
+    transition: all 0.1s linear 0.3s;
 }
 
 .previews.ng-hide-add {
-    transition: all 0.2s linear;
+    transition: all 0.1s linear;
 }
 
 .previews.ng-hide {
@@ -78,8 +78,8 @@ a.svg {
 }
 
 .tearout {
-    border: 1px solid @middle-background;
     height: 121px;
+    border: 1px solid @middle-background;
 }
 
 .tear {
@@ -109,9 +109,9 @@ h6, h4 {
 }
 
 .favourites {
-    background-color: @middle-background;
-    height: 100%;
     float: right;
+    height: 100%;
+    background-color: @middle-background;
     transition: @transition;
 }
 
