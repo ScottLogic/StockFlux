@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('openfin.search', ['openfin.quandl', 'openfin.store'])
-        .controller('SearchCtrl', ['$scope', '$routeParams', 'quandlService', 'storeService',
-            function($scope, $routeParams, quandlService, storeService) {
+        .controller('SearchCtrl', ['$scope', 'quandlService', 'storeService',
+            function($scope, quandlService, storeService) {
                 var self = this;
-                self.query = $routeParams.query;
+                self.query = '';
                 self.stocks = [];
 
                 var favouriteColours = {
