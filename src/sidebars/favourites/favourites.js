@@ -41,16 +41,16 @@
                         price = data.close;
                         delta = data.close - data.open;
                         percentage = delta / data.open * 100;
-                    }
 
-                    self.stocks.push({
-                        name: stock.name,
-                        code: stock.code,
-                        price: price,
-                        delta: delta,
-                        percentage: Math.abs(percentage),
-                        notification: false
-                    });
+                        self.stocks.push({
+                            name: stock.name,
+                            code: stock.code,
+                            price: price,
+                            delta: delta,
+                            percentage: Math.abs(percentage),
+                            notification: false
+                        });
+                    }
                 });
             });
         }])
