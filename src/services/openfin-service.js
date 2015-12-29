@@ -9,7 +9,7 @@
                 storeService.incrementStock(title);
                 var child = new fin.desktop.Window({
                     name: title + ' Stock Data',
-                    url: 'd3fc-showcase.html'
+                    url: 'd3fc-showcase.html?stockcode='+title
                 }, function() {
                     child.show();
                 });

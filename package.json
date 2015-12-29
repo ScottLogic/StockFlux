@@ -22,7 +22,7 @@
     "less": "^2.5.3"
   },
   "dependencies": {
-    "d3fc-showcase": "ScottLogic/d3fc-showcase#9607ca04aa"
+    "d3fc-showcase": "bjedrzejewski/d3fc-showcase#5ba007a"
   },
   "description": "Hosts the d3fc-showcase as an OpenFin application."
 }
