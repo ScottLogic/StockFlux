@@ -13,7 +13,7 @@
     </style>
 </head>
 <body ng-cloak ng-controller="SearchCtrl as searchCtrl">
-    <div class="container-fluid main">
+    <div class="container-fluid main"  ng-controller="FavouritesCtrl as favouritesCtrl">
         <div class="sidebars" ng-controller="SidebarCtrl as sidebarCtrl">
             <div class="search" ng-click="sidebarCtrl.searchClick()" ng-style="{'width': sidebarCtrl.searchWidth()}">
                 <div class="row preview-top">
@@ -32,11 +32,11 @@
                 <div class="previews" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in searchCtrl.stocks"
                      ng-show="sidebarCtrl.showSearches()">
                     <search stock="stock" favourite-style="searchCtrl.favouriteStyle(stock)"
-                            favourite-click="searchCtrl.favouriteClick(stock)"></search>
+                            favourite-click="searchCtrl.favouriteClick(stock); favouritesCtrl.updateFavourites();"></search>
                 </div>
             </div>
             <div class="favourites" ng-click="sidebarCtrl.favouritesClick()"
-                 ng-style="{'width': sidebarCtrl.favouritesWidth()}" ng-controller="FavouritesCtrl as favouritesCtrl">
+                 ng-style="{'width': sidebarCtrl.favouritesWidth()}">
                 <div class="row preview-top">
                     <div class="glyphicon glyphicon-star pull-right" style="padding:10px"></div>
                 </div>

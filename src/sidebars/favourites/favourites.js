@@ -4,7 +4,6 @@
     angular.module('openfin.favourites', ['openfin.store', 'openfin.quandl'])
         .controller('FavouritesCtrl', ['storeService', 'quandlService', function(storeService, quandlService) {
             var self = this;
-            self.stocks = [];
 
             var icons = {
                 up: 'glyphicon-triangle-top',
@@ -28,31 +27,37 @@
                 stock.notification = !stock.notification;
             };
 
-            var favourites = storeService.get();
 
-            favourites.map(function(favourite) {
-                quandlService.getData(favourite, function(stock) {
-                    var data = stock.data[0],
-                        price,
-                        delta,
-                        percentage;
 
-                    if (data) {
-                        price = data.close;
-                        delta = data.close - data.open;
-                        percentage = delta / data.open * 100;
+            self.updateFavourites = function() {
+                self.stocks = [];
+                self.favourites = storeService.get();
+                self.favourites.map(function (favourite) {
+                    quandlService.getData(favourite, function (stock) {
+                        var data = stock.data[0],
+                            price,
+                            delta,
+                            percentage;
 
-                        self.stocks.push({
-                            name: stock.name,
-                            code: stock.code,
-                            price: price,
-                            delta: delta,
-                            percentage: Math.abs(percentage),
-                            notification: false
-                        });
-                    }
+                        if (data) {
+                            price = data.close;
+                            delta = data.close - data.open;
+                            percentage = delta / data.open * 100;
+
+                            self.stocks.push({
+                                name: stock.name,
+                                code: stock.code,
+                                price: price,
+                                delta: delta,
+                                percentage: Math.abs(percentage),
+                                notification: false
+                            });
+                        }
+                    });
                 });
-            });
+            };
+
+            self.updateFavourites();
         }])
         .directive('favourite', [function() {
             return {
