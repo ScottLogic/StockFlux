@@ -29,7 +29,7 @@
                         <div class="glyphicon glyphicon-search pull-right" style="padding:10px" ng-click="searchCtrl.submit()"></div>
                     </div>
                 </div>
-                <div class="previews" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in searchCtrl.stocks"
+                <div class="previews darkens" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in searchCtrl.stocks"
                      ng-show="sidebarCtrl.showSearches()">
                     <search stock="stock" favourite-style="searchCtrl.favouriteStyle(stock)"
                             favourite-click="searchCtrl.favouriteClick(stock); favouritesCtrl.updateFavourites();"></search>
