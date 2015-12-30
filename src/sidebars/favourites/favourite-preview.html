@@ -12,7 +12,10 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-2 col-xs-offset-10">
+                <div class="col-xs-9" style="padding-left: 0px">
+
+                </div>
+                <div class="col-xs-3">
                     <h4 class="pull-right"><small>{{stock.price | number:2 }}</small></h4>
                     <h6 class="pull-right"><small>{{stock.delta < 0 ? '' : '+'}}{{stock.delta | number:2 }}</small></h6>
                     <h6 class="glyphicon {{icon(stock)}} pull-right"><small>{{stock.percentage | number:2 }}%</small></h6>
