@@ -12,7 +12,8 @@
 
             var bellColours = {
                 on: '#42D8BD',
-                off: '#1A1F26'
+                off: '#1A1F26',
+                offhover: "#263337"
             };
 
             self.icon = function(stock) {
@@ -20,14 +21,19 @@
             };
 
             self.bellStyle = function(stock) {
-                return stock.notification ? bellColours.on : bellColours.off;
+                if(stock.notification){
+                    return bellColours.on;
+                } else if (stock.isHovered){
+                    return bellColours.offhover;
+                }  else
+                {
+                    return bellColours.off;
+                }
             };
 
             self.bellClick = function(stock) {
                 stock.notification = !stock.notification;
             };
-
-
 
             self.updateFavourites = function() {
                 self.stocks = [];
@@ -95,7 +101,7 @@
                     stock: '=',
                     icon: '&',
                     bellStyle: '&',
-                    bellClick: '&'
+                    bellClick: '&',
                 }
             }
         }]);

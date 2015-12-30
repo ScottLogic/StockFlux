@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="previews darkens" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in searchCtrl.stocks"
-                     ng-show="sidebarCtrl.showSearches()">
+                     ng-show="sidebarCtrl.showSearches()" ng-mouseenter="stock.isHovered = true;" ng-mouseleave="stock.isHovered = false;">
                     <search stock="stock" favourite-style="searchCtrl.favouriteStyle(stock)"
                             favourite-click="searchCtrl.favouriteClick(stock); favouritesCtrl.updateFavourites();"></search>
                 </div>

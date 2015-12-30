@@ -10,11 +10,19 @@
 
                 var favouriteColours = {
                     on: '#42D8BD',
-                    off: '#1A1F26'
+                    off: '#1A1F26',
+                    offhover: "#263337"
                 };
 
                 self.favouriteStyle = function(stock) {
-                    return stock.favourite ? favouriteColours.on : favouriteColours.off;
+                    if(stock.favourite){
+                        return favouriteColours.on;
+                    } else if (stock.isHovered){
+                        return favouriteColours.offhover;
+                    }  else
+                    {
+                        return favouriteColours.off;
+                    }
                 };
 
                 self.favouriteClick = function(stock) {
