@@ -33,8 +33,19 @@
                     if (self.query) {
                         var length = favourites.length;
                         quandlService.getMeta(self.query, function(stock) {
+                            var i;
+
+                            //removing stocks found with old query
+                            self.stocks = self.stocks.filter(function(stock, i) {
+                                return stock.query !== self.query;
+                            });
+                            //not adding old stocks
+                            if(stock.query !== self.query){
+                                return;
+                            }
+
                             var stockAdded = false;
-                            for (var i = 0; i < length; i++) {
+                            for (i = 0; i < length; i++) {
                                 if (stock.code === favourites[i]) {
                                     stock.favourite = true;
                                     self.stocks.unshift(stock);
