@@ -37,7 +37,7 @@
 
                             //removing stocks found with old query
                             self.stocks = self.stocks.filter(function(stock, i) {
-                                return stock.query !== self.query;
+                                return stock.query === self.query;
                             });
                             //not adding old stocks
                             if(stock.query !== self.query){
