@@ -35,6 +35,10 @@
                 stock.notification = !stock.notification;
             };
 
+            self.renderChart = function(stock) {
+                //chart rendering code here
+            };
+
             self.updateFavourites = function() {
                 self.stocks = [];
                 self.favourites = storeService.get();
@@ -102,6 +106,7 @@
                     icon: '&',
                     bellStyle: '&',
                     bellClick: '&',
+                    renderChart: '&'
                 }
             }
         }]);

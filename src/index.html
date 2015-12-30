@@ -44,7 +44,7 @@
                 <div class="previews" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in favouritesCtrl.stocks"
                      ng-show="sidebarCtrl.showFavourites()">
                     <favourite stock="stock" icon="favouritesCtrl.icon(stock)" bell-style="favouritesCtrl.bellStyle(stock)"
-                               bell-click="favouritesCtrl.bellClick(stock)"></favourite>
+                               render-chart="favouritesCtrl.renderChart(stock)" bell-click="favouritesCtrl.bellClick(stock)"></favourite>
                 </div>
             </div>
         </div>
