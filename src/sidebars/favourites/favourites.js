@@ -21,12 +21,11 @@
             };
 
             self.bellStyle = function(stock) {
-                if(stock.notification){
+                if (stock.notification){
                     return bellColours.on;
                 } else if (stock.isHovered){
                     return bellColours.offhover;
-                }  else
-                {
+                }  else {
                     return bellColours.off;
                 }
             };
@@ -43,7 +42,7 @@
                 self.stocks = [];
                 self.favourites = storeService.get();
                 self.favourites.map(function (favourite) {
-                    quandlService.getData(favourite, function (stock) {
+                    quandlService.getData(favourite, function(stock) {
                         var data = stock.data[0],
                             price,
                             delta,

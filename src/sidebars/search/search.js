@@ -15,12 +15,11 @@
                 };
 
                 self.favouriteStyle = function(stock) {
-                    if(stock.favourite){
+                    if(stock.favourite) {
                         return favouriteColours.on;
                     } else if (stock.isHovered){
                         return favouriteColours.offhover;
-                    }  else
-                    {
+                    }  else {
                         return favouriteColours.off;
                     }
                 };
@@ -48,7 +47,7 @@
                                 return stock.query === self.query;
                             });
                             //not adding old stocks
-                            if(stock.query !== self.query){
+                            if (stock.query !== self.query){
                                 return;
                             }
 
