@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('openfin.favourites', ['openfin.store', 'openfin.quandl'])
-        .controller('FavouritesCtrl', ['storeService', 'quandlService', function(storeService, quandlService) {
+        .controller('FavouritesCtrl', ['storeService', 'quandlService', '$timeout', function(storeService, quandlService, $timeout) {
             var self = this;
 
             var icons = {
@@ -36,48 +36,46 @@
 
             //Render the mini chart on the stock card
             self.renderChart = function(stock) {
-                //fix temp id
-                var chartElement = document.getElementById('tempChartId');
-                chartElement.id = stock.code + 'chart';
+                $timeout(
+                    function() {quandlService.getData(stock.code, function(stock) {
+                        var extent = fc.util.innerDimensions(document.getElementById(stock.code + 'chart'));
+                        var width = extent.width,
+                            height = extent.height;
+                        var data = stock.data;
+                        data = data.map(function (d){
+                            var str1 = d.date;
+                            var dt1   = parseInt(str1.substring(8,10));
+                            var mon1  = parseInt(str1.substring(5,7));
+                            var yr1   = parseInt(str1.substring(0,4));
+                            var date1 = new Date(yr1, mon1-1, dt1);
+                            d.date= date1;
+                            return d;
+                        });
+                        var container = d3.select('#' + stock.code + 'chart')
+                            .insert('svg', 'div')
+                            .attr('width', width)
+                            .attr('height', height);
 
-                quandlService.getData(stock.code, function(stock) {
-                    var extent = fc.util.innerDimensions(document.getElementById(stock.code + 'chart'));
-                    var width = extent.width,
-                        height = extent.height;
-                    var data = stock.data;
-                    data = data.map(function (d){
-                        var str1 = d.date;
-                        var dt1   = parseInt(str1.substring(8,10));
-                        var mon1  = parseInt(str1.substring(5,7));
-                        var yr1   = parseInt(str1.substring(0,4));
-                        var date1 = new Date(yr1, mon1-1, dt1);
-                        d.date= date1;
-                        return d;
-                    });
-                    var container = d3.select('#' + stock.code + 'chart')
-                        .insert('svg', 'div')
-                        .attr('width', width)
-                        .attr('height', height);
+                        // Create scale for x axis
+                        var xScale = fc.scale.dateTime()
+                            .domain(fc.util.extent().fields('date')(data))
+                            .range([0, width]);
 
-                    // Create scale for x axis
-                    var xScale = fc.scale.dateTime()
-                        .domain(fc.util.extent().fields('date')(data))
-                        .range([0, width]);
+                        // Create scale for y axis
+                        var yScale = d3.scale.linear()
+                            .domain(fc.util.extent().fields(['high', 'low'])(data))
+                            .range([height, 0])
+                            .nice();
 
-                    // Create scale for y axis
-                    var yScale = d3.scale.linear()
-                        .domain(fc.util.extent().fields(['high', 'low'])(data))
-                        .range([height, 0])
-                        .nice();
+                        var area = fc.series.area()
+                            .xScale(xScale)
+                            .yScale(yScale);
 
-                    var area = fc.series.area()
-                        .xScale(xScale)
-                        .yScale(yScale);
-
-                    container.append('g')
-                        .datum(data)
-                        .call(area);
-                });
+                        container.append('g')
+                            .datum(data)
+                            .call(area);
+                    })}
+                );
             };
 
             self.updateFavourites = function() {
