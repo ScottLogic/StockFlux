@@ -41,7 +41,8 @@
                         var stock = {
                             name: dataset.name,
                             code: code,
-                            favourite: false
+                            favourite: false,
+                            query: query
                         };
 
                         cb(stock);
