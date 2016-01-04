@@ -43,20 +43,23 @@
                 </div>
                 <div class="previews" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in favouritesCtrl.stocks"
                      ng-show="sidebarCtrl.showFavourites()">
-                    <favourite stock="stock" icon="favouritesCtrl.icon(stock)" bell-style="favouritesCtrl.bellStyle(stock)"
+                    <favourite selection="favouritesCtrl.selection" stock="stock" icon="favouritesCtrl.icon(stock)" bell-style="favouritesCtrl.bellStyle(stock)"
                                render-chart="favouritesCtrl.renderChart(stock)" bell-click="favouritesCtrl.bellClick(stock)"></favourite>
                 </div>
             </div>
         </div>
-        <div class="col-xs-9">
-            <div class="row">
-                <div class="col-sm-12">
+        <div class="left-content">
+            <div>
+                <div>
                     <a ng-href="#/" class="svg logo" draggable="false" ng-click="searchCtrl.clear()">
                         <img src="logo.svg" />
                     </a>
                 </div>
+                <div class="main-content">
+                    <iframe class="full-content"
+                            src="{{favouritesCtrl.selection !== '' ? 'd3fc-showcase.html?stockcode=' + favouritesCtrl.selection : ''}}"></iframe>
+                </div>
             </div>
-            <br>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
