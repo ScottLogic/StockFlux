@@ -117,7 +117,7 @@ module.exports = function(grunt) {
 
         clean: {
             dist: {
-                src: ['pubic', 'node_modules/d3fc-showcase/dist']
+                src: ['public', 'node_modules/d3fc-showcase/dist']
             }
         },
 
