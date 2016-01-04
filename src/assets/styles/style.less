@@ -7,6 +7,11 @@
 @icon-color: #AEB1B5;
 @chart-teal: #42D8BD;
 @transition: all 0.2s linear 0.1s;
+@search-sidebar-width: 271px;
+
+//override d3fc-showcase
+@primary-dark-blue: @dark-background;
+@secondary-orange: @chart-teal;
 
 .row {
   margin: 0px;
@@ -37,6 +42,10 @@ a.svg:after {
 }
 
 .darkens:hover {
+  background: @dark-background;
+}
+
+.dark {
   background: @dark-background;
 }
 
@@ -91,7 +100,7 @@ h6, h4 {
 }
 
 .sidebars {
-  width: 271px !important;
+  width: @search-sidebar-width !important;
   height: 100%;
   float: left;
 }
@@ -132,17 +141,26 @@ h6, h4 {
   vertical-align: sub;
 }
 
+@main-content-left-padding: (@search-sidebar-width + 9);
 .main-content {
   bottom: 10px;
   position: absolute;
   top: 166px;
-  left: 285px;
+  left: @main-content-left-padding;
   right: 10px;
   height: auto;
+}
+
+.left-content {
+  padding-left: @search-sidebar-width;
 }
 
 .full-content {
   width: 100%;
   height: 100%;
   border: none
+}
+
+.stock-tile {
+  cursor: pointer;
 }
