@@ -16,7 +16,14 @@
             // Queries Quandl for all stocks matching the input query
             function stockSearch() {
                 return $resource(QUANDL_URL + 'datasets.json?' + API_KEY + '&query=:query&database_code=WIKI', {}, {
-                    get: { method: 'GET', cache: true }
+                    get: {
+                        method: 'GET',
+                        cache: true,
+                        transformResponse: function(data, headers) {
+                            var json = angular.fromJson(data);
+                            return filterByDate(json);
+                        }
+                    }
                 });
             }
 
@@ -80,6 +87,21 @@
                 };
 
                 cb(stock);
+            }
+
+            function filterByDate(json) {
+                var datasets = json.datasets,
+                    result = [];
+
+                for (var i = 0, max = datasets.length; i < max; i++) {
+                    if (moment(datasets[i].newest_available_date) > moment().subtract(14, 'days')) {
+                        result.push(datasets[i]);
+                    }
+                }
+
+                return {
+                    datasets: result
+                };
             }
 
             function processResponse(json) {
