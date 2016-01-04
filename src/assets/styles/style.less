@@ -9,125 +9,140 @@
 @transition: all 0.2s linear 0.1s;
 
 .row {
-    margin: 0px;
+  margin: 0px;
 }
 
 a.svg:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .main {
-    height: 100%;
-    background-color: @dark-background;
-    padding: 4px;
+  height: 100%;
+  background-color: @dark-background;
+  padding: 4px;
 }
 
 .preview {
-    padding: 0px;
-    height: 121px;
+  padding: 0px;
+  height: 121px;
 }
 
 .previews {
-    opacity: 1;
+  opacity: 1;
 }
 
 .darkens:hover {
-    background: @dark-background;
+  background: @dark-background;
 }
 
 .previews.ng-hide-remove {
-    transition: all 0.1s linear 0.3s;
+  transition: all 0.1s linear 0.3s;
 }
 
 .previews.ng-hide-add {
-    transition: all 0.1s linear;
+  transition: all 0.1s linear;
 }
 
 .previews.ng-hide {
-    opacity: 0;
+  opacity: 0;
 }
 
 .logo {
-    display: table !important;
-    margin: 0 auto;
+  display: table !important;
+  margin: 0 auto;
 }
 
 a {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 a.svg {
-    display: block;
-    position: relative;
+  display: block;
+  position: relative;
 }
 
 .thumbnail {
-    text-align: center;
+  text-align: center;
 }
 
 .buffer {
-    height: 3px;
-    color: @separator-color;
-    margin: 0px;
-    margin-top: 4px;
+  height: 3px;
+  color: @separator-color;
+  margin: 0px;
+  margin-top: 4px;
 }
 
 .favourite-container {
-    height: 125px;
-    border: 1px solid @middle-background;
+  height: 125px;
+  border: 1px solid @middle-background;
 }
 
 h6 small, h4 small {
-    color: white;
+  color: white;
 }
 
 h6, h4 {
-    margin: 2px;
+  margin: 2px;
 }
 
 .sidebars {
-    width: 271px !important;
-    height: 100%;
-    float: left;
+  width: 271px !important;
+  height: 100%;
+  float: left;
 }
 
 .search {
-    float: left;
-    height: 100%;
-    background-color: @search-color;
-    margin-right: 1px;
-    transition: @transition;
+  float: left;
+  height: 100%;
+  background-color: @search-color;
+  margin-right: 1px;
+  transition: @transition;
 }
 
 .favourites {
-    float: right;
-    height: 100%;
-    background-color: @middle-background;
-    transition: @transition;
+  float: right;
+  height: 100%;
+  background-color: @middle-background;
+  transition: @transition;
 }
 
 .preview-top {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .minichart svg {
-    fill: @chart-teal;
+  fill: @chart-teal;
 }
 
 .form-control {
-    border: none;
-    background: transparent;
-    color: @icon-color;
-    transition: @transition;
-    font-size: 13px;
+  border: none;
+  background: transparent;
+  color: @icon-color;
+  transition: @transition;
+  font-size: 13px;
 }
 
 .glyphicon-triangle-bottom:before, .glyphicon-triangle-top:before {
-    margin-right: 3px;
-    vertical-align: sub;
+  margin-right: 3px;
+  vertical-align: sub;
+}
+
+.main-content {
+  bottom: 10px;
+  position: absolute;
+  top: 166px;
+  left: 285px;
+  right: 10px;
+  height: auto;
+}
+
+.full-content {
+  width: 100%;
+  height: 100%;
+  border: none
 }
