@@ -28,6 +28,10 @@
                     if (stock.favourite) {
                         stock.favourite = false;
                         storeService.remove(stock);
+                        var index = self.stocks.indexOf(stock);
+                        if (index > -1 && !self.query) {
+                            self.stocks.splice(index, 1);
+                        }
                     } else {
                         stock.favourite = true;
                         storeService.add(stock);
@@ -39,14 +43,15 @@
                     var favourites = storeService.get();
                     if (self.query) {
                         var length = favourites.length;
-                        quandlService.getMeta(self.query, function(stock) {
+                        quandlService.search(self.query, function(stock) {
                             var i;
 
-                            //removing stocks found with old query
+                            // removing stocks found with old query
                             self.stocks = self.stocks.filter(function(stock, i) {
                                 return stock.query === self.query;
                             });
-                            //not adding old stocks
+
+                            // not adding old stocks
                             if (stock.query !== self.query) {
                                 return;
                             }

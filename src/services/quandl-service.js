@@ -9,10 +9,20 @@
                 HIGH_INDEX = 2,
                 LOW_INDEX = 3,
                 CLOSE_INDEX = 4,
-                VOLUME_INDEX = 5;
+                VOLUME_INDEX = 5,
+                QUANDL_URL = 'https://www.quandl.com/api/v3/',
+                QUANDL_WIKI = 'datasets/WIKI/';
 
-            function stock() {
-                return $resource('https://www.quandl.com/api/v3/datasets.json?' + API_KEY + '&query=:query&database_code=WIKI', {}, {
+            // Queries Quandl for all stocks matching the input query
+            function stockSearch() {
+                return $resource(QUANDL_URL + 'datasets.json?' + API_KEY + '&query=:query&database_code=WIKI', {}, {
+                    get: { method: 'GET', cache: true }
+                });
+            }
+
+            // Queries Quandl for the specific stock code
+            function stockMetadata() {
+                return $resource(QUANDL_URL + QUANDL_WIKI + ':stock_code/metadata.json?' + API_KEY, {}, {
                     get: { method: 'GET', cache: true }
                 });
             }
@@ -21,7 +31,7 @@
                 var startDate = moment().subtract(14, 'days').format('YYYY-MM-DD'),
                     json;
 
-                return $resource('https://www.quandl.com/api/v3/datasets/WIKI/:code/data.json?' + API_KEY + '&start_date=' + startDate, {}, {
+                return $resource(QUANDL_URL + QUANDL_WIKI + ':code.json?' + API_KEY + '&start_date=' + startDate, {}, {
                     get: {
                         method: 'GET',
                         transformResponse: function(data, headers) {
@@ -34,34 +44,46 @@
                 });
             }
 
-            function getMeta(query, cb) {
-                stock().get({ query: query }, function(result) {
+            function search(query, cb) {
+                stockSearch().get({ query: query }, function(result) {
                     result.datasets.map(function(dataset) {
-                        var code = dataset.dataset_code;
-                        var stock = {
-                            name: dataset.name,
-                            code: code,
-                            favourite: false,
-                            query: query
-                        };
-
-                        cb(stock);
-                    });
+                        processDataset(dataset, query, cb);
+                    })
                 });
             }
 
-            function getData(query, cb) {
-                return getMeta(query, function(stock) {
-                    stockData().get({ code: stock.code }, function(result) {
-                        stock.data = result.stockData.data;
-
-                        cb(stock);
-                    });
+            function getMeta(stockCode, cb) {
+                stockMetadata().get({ stock_code: stockCode }, function(result) {
+                    processDataset(result.dataset, stockCode, cb);
                 });
+            }
+
+            function getData(stockCode, cb) {
+                return stockData().get({ code: stockCode }, function(result) {
+                    var stock = {
+                        name: result.dataset.name,
+                        code: stockCode,
+                        data: result.stockData.data
+                    };
+
+                    cb(stock);
+                });
+            }
+
+            function processDataset(dataset, query, cb) {
+                var code = dataset.dataset_code;
+                var stock = {
+                    name: dataset.name,
+                    code: code,
+                    favourite: false,
+                    query: query
+                };
+
+                cb(stock);
             }
 
             function processResponse(json) {
-                var datasetData = json.dataset_data,
+                var datasetData = json.dataset,
                     financialData = datasetData.data,
                     results = [],
                     i = 0,
@@ -91,6 +113,7 @@
 
             return {
                 getData: getData,
+                search: search,
                 getMeta: getMeta
             };
         }]);
