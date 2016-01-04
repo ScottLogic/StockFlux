@@ -5,6 +5,8 @@
         .controller('FavouritesCtrl', ['storeService', 'quandlService', '$timeout', function(storeService, quandlService, $timeout) {
             var self = this;
 
+            self.selection = '';
+
             var icons = {
                 up: 'glyphicon-triangle-top',
                 down: 'glyphicon-triangle-bottom'
@@ -96,6 +98,7 @@
                 templateUrl: 'sidebars/favourites/favourite-preview.html',
                 scope: {
                     stock: '=',
+                    selection: '=',
                     icon: '&',
                     renderChart: '&'
                 }
