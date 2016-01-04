@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>OpenFin D3FC</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/d3fc/5.1.0/d3fc.min.css" rel="stylesheet"/>
     <style>
         [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
             display: none !important;
@@ -13,7 +14,7 @@
     </style>
 </head>
 <body ng-cloak ng-controller="SearchCtrl as searchCtrl">
-    <div class="container-fluid main">
+    <div class="container-fluid main" ng-controller="FavouritesCtrl as favouritesCtrl">
         <div class="sidebars" ng-controller="SidebarCtrl as sidebarCtrl">
             <div class="search" ng-click="sidebarCtrl.searchClick()" ng-style="{'width': sidebarCtrl.searchWidth()}">
                 <div class="row preview-top">
@@ -29,21 +30,21 @@
                         <div class="glyphicon glyphicon-search pull-right" style="padding:10px" ng-click="searchCtrl.submit()"></div>
                     </div>
                 </div>
-                <div class="previews" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in searchCtrl.stocks"
-                     ng-show="sidebarCtrl.showSearches()">
+                <div class="previews darkens" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in searchCtrl.stocks"
+                     ng-show="sidebarCtrl.showSearches()" ng-mouseenter="stock.isHovered = true;" ng-mouseleave="stock.isHovered = false;">
                     <search stock="stock" favourite-style="searchCtrl.favouriteStyle(stock)"
-                            favourite-click="searchCtrl.favouriteClick(stock)"></search>
+                            favourite-click="searchCtrl.favouriteClick(stock); favouritesCtrl.updateFavourites();"></search>
                 </div>
             </div>
             <div class="favourites" ng-click="sidebarCtrl.favouritesClick()"
-                 ng-style="{'width': sidebarCtrl.favouritesWidth()}" ng-controller="FavouritesCtrl as favouritesCtrl">
+                 ng-style="{'width': sidebarCtrl.favouritesWidth()}">
                 <div class="row preview-top">
                     <div class="glyphicon glyphicon-star pull-right" style="padding:10px"></div>
                 </div>
                 <div class="previews" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in favouritesCtrl.stocks"
                      ng-show="sidebarCtrl.showFavourites()">
                     <favourite stock="stock" icon="favouritesCtrl.icon(stock)" bell-style="favouritesCtrl.bellStyle(stock)"
-                               bell-click="favouritesCtrl.bellClick(stock)"></favourite>
+                               render-chart="favouritesCtrl.renderChart(stock)" bell-click="favouritesCtrl.bellClick(stock)"></favourite>
                 </div>
             </div>
         </div>
@@ -63,6 +64,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-animate.js"></script>
     <script src="https://cdn.rawgit.com/auth0/angular-storage/master/dist/angular-storage.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3fc/5.1.0/d3fc.bundle.min.js"></script>
     <script src="app.js"></script>
     <script src="tearout/tearout.js"></script>
     <script src="tearout/geometry.js"></script>

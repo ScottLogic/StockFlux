@@ -18,7 +18,7 @@
             }
 
             function stockData() {
-                var startDate = moment().subtract(1, 'days').format('YYYY-MM-DD'),
+                var startDate = moment().subtract(14, 'days').format('YYYY-MM-DD'),
                     json;
 
                 return $resource('https://www.quandl.com/api/v3/datasets/WIKI/:code/data.json?' + API_KEY + '&start_date=' + startDate, {}, {
@@ -41,7 +41,8 @@
                         var stock = {
                             name: dataset.name,
                             code: code,
-                            favourite: false
+                            favourite: false,
+                            query: query
                         };
 
                         cb(stock);

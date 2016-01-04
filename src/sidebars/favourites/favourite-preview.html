@@ -1,10 +1,11 @@
 ﻿<div class="tearout-container" draggable="false">
     <div class="tearout tear">
-        <div class="preview">
+        <div class="preview darkens" ng-mouseenter="stock.isHovered = true;" ng-mouseleave="stock.isHovered = false;">
             <div>
                 <h6 class="pull-left"><small>{{stock.name | truncate}}</small></h6>
                 <div class="glyphicon glyphicon-option-vertical pull-right tearable"></div>
-                <div class="glyphicon glyphicon-bell pull-right" ng-style="{'color': bellStyle(stock)}" ng-click="bellClick(stock)"></div>
+                <div class="glyphicon glyphicon-bell pull-right" ng-style="{'color': bellStyle(stock)}"
+                     ng-click="bellClick(stock)"></div>
             </div>
             <div>
                 <div class="col-xs-12" style="padding:0px">
@@ -12,7 +13,10 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-2 col-xs-offset-10">
+                <div class="col-xs-9" style="padding-left: 0px">
+                    <svg class="minichart" id="{{stock.code}}chart" width="100%" height="65px" ng-init="renderChart(stock)"></svg>
+                </div>
+                <div class="col-xs-3">
                     <h4 class="pull-right"><small>{{stock.price | number:2 }}</small></h4>
                     <h6 class="pull-right"><small>{{stock.delta < 0 ? '' : '+'}}{{stock.delta | number:2 }}</small></h6>
                     <h6 class="glyphicon {{icon(stock)}} pull-right"><small>{{stock.percentage | number:2 }}%</small></h6>
