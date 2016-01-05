@@ -8,36 +8,6 @@
                 self.query = '';
                 self.stocks = [];
 
-                var favouriteColours = {
-                    on: '#42D8BD',
-                    off: '#1A1F26',
-                    offhover: "#263337"
-                };
-
-                self.favouriteStyle = function(stock) {
-                    if (stock.favourite) {
-                        return favouriteColours.on;
-                    } else if (stock.isHovered) {
-                        return favouriteColours.offhover;
-                    } else {
-                        return favouriteColours.off;
-                    }
-                };
-
-                self.favouriteClick = function(stock) {
-                    if (stock.favourite) {
-                        stock.favourite = false;
-                        storeService.remove(stock);
-                        var index = self.stocks.indexOf(stock);
-                        if (index > -1 && !self.query) {
-                            self.stocks.splice(index, 1);
-                        }
-                    } else {
-                        stock.favourite = true;
-                        storeService.add(stock);
-                    }
-                };
-
                 self.submit = function() {
                     self.stocks = [];
                     var favourites = storeService.get();
@@ -93,6 +63,13 @@
                     function() {
                         self.submit();
                     });
+
+                $scope.$on('favouriteChanged', function(event, data) {
+                    var index = self.stocks.indexOf(data);
+                    if (index > -1 && !self.query) {
+                        self.stocks.splice(index, 1);
+                    }
+                });
             }
         ])
         .directive('search', [function() {
@@ -103,9 +80,7 @@
 
                 },
                 scope: {
-                    stock: '=',
-                    favouriteStyle: '&',
-                    favouriteClick: '&'
+                    stock: '='
                 }
             }
         }]);

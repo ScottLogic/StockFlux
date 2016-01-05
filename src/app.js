@@ -6,6 +6,7 @@
         'openfin.search',
         'openfin.favourites',
         'openfin.sidebar',
-        'openfin.filters'
+        'openfin.filters',
+        'openfin.star'
     ]);
 }());

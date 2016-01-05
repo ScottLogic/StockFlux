@@ -32,8 +32,7 @@
                 </div>
                 <div class="previews darkens" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in searchCtrl.stocks"
                      ng-show="sidebarCtrl.showSearches()" ng-mouseenter="stock.isHovered = true;" ng-mouseleave="stock.isHovered = false;">
-                    <search stock="stock" favourite-style="searchCtrl.favouriteStyle(stock)"
-                            favourite-click="searchCtrl.favouriteClick(stock); favouritesCtrl.updateFavourites();"></search>
+                    <search stock="stock"></search>
                 </div>
             </div>
             <div class="favourites" ng-click="sidebarCtrl.favouritesClick()"
@@ -43,8 +42,8 @@
                 </div>
                 <div class="previews" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in favouritesCtrl.stocks"
                      ng-show="sidebarCtrl.showFavourites()">
-                    <favourite selection="favouritesCtrl.selection" stock="stock" icon="favouritesCtrl.icon(stock)" bell-style="favouritesCtrl.bellStyle(stock)"
-                               render-chart="favouritesCtrl.renderChart(stock)" bell-click="favouritesCtrl.bellClick(stock)"></favourite>
+                    <favourite selection="favouritesCtrl.selection" stock="stock" icon="favouritesCtrl.icon(stock)" 
+                               render-chart="favouritesCtrl.renderChart(stock)"></favourite>
                 </div>
             </div>
         </div>
@@ -73,6 +72,7 @@
     <script src="sidebars/favourites/favourites.js"></script>
     <script src="sidebars/search/search.js"></script>
     <script src="sidebars/filters.js"></script>
+    <script src="sidebars/star.js"></script>
     <script src="services/openfin-service.js"></script>
     <script src="services/store-service.js"></script>
     <script src="services/quandl-service.js"></script>
