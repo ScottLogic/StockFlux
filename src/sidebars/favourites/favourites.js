@@ -103,7 +103,8 @@
                                         price: price,
                                         delta: delta,
                                         percentage: Math.abs(percentage),
-                                        notification: false
+                                        notification: false,
+                                        favourite: true
                                     });
                                 }
                             });
