@@ -63,6 +63,10 @@
                     );
                 };
 
+                self.remove = function(stock) {
+                    return confirm('Are you sure you wish to remove this stock (' + stock.code + ') from your favourites?');
+                };
+
                 self.update = function() {
                     self.favourites = storeService.get();
                     var i,

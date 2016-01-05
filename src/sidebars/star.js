@@ -21,16 +21,18 @@
                 }
             };
 
-            self.click = function(stock) {
-                if (stock.favourite) {
-                    stock.favourite = false;
-                    storeService.remove(stock);
-                } else {
-                    stock.favourite = true;
-                    storeService.add(stock);
-                }
+            self.click = function(stock, check) {
+                if (!check || check(stock)) {
+                    if (stock.favourite) {
+                        stock.favourite = false;
+                        storeService.remove(stock);
+                    } else {
+                        stock.favourite = true;
+                        storeService.add(stock);
+                    }
 
-                $scope.$emit('favouriteChanged', stock);
+                    $scope.$emit('favouriteChanged', stock);
+                }
             };
 
         }])

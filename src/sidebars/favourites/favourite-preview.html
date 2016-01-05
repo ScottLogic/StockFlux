@@ -1,8 +1,10 @@
 ﻿<div class="favourite-container" draggable="false">
     <div class="preview darkens stock-tile {{selection !== stock.code ? '' : 'dark'}}" ng-click="selection = stock.code;">
-        <div ng-controller="StarCtrl as starCtrl">
+        <div ng-controller="FavouritesCtrl as favouritesCtrl">
             <h6 class="pull-left"><small>{{stock.name | truncate}}</small></h6>
-            <star star-style="starCtrl.style(stock)" star-click="starCtrl.click(stock)"></star>
+            <div ng-controller="StarCtrl as starCtrl">
+                <star star-style="starCtrl.style(stock)" star-click="starCtrl.click(stock, favouritesCtrl.remove)"></star>
+            </div>
         </div>
         <div>
             <div class="col-xs-12" style="padding:0px">
