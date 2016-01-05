@@ -1,0 +1,12 @@
+﻿<div class="container-fluid">
+    <h6 class="pull-left"><small>{{stock.name | truncate}}</small></h6>
+    <div class="row">
+        <div class="col-xs-10" style="padding:0px">
+            <h4 class="pull-left"><strong>{{stock.code | uppercase}}</strong></h4>
+        </div>
+        <div class="col-xs-2">
+            <div class="glyphicon glyphicon-star pull-right" ng-style="{'color': favouriteStyle(stock)}" ng-click="favouriteClick(stock)"></div>
+        </div>
+    </div>
+</div>
+<hr class="buffer">

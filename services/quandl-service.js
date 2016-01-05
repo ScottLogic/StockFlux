@@ -9,19 +9,36 @@
                 HIGH_INDEX = 2,
                 LOW_INDEX = 3,
                 CLOSE_INDEX = 4,
-                VOLUME_INDEX = 5;
+                VOLUME_INDEX = 5,
+                QUANDL_URL = 'https://www.quandl.com/api/v3/',
+                QUANDL_WIKI = 'datasets/WIKI/';
 
-            function stock() {
-                return $resource('https://www.quandl.com/api/v3/datasets.json?' + API_KEY + '&query=:query&database_code=WIKI', {}, {
+            // Queries Quandl for all stocks matching the input query
+            function stockSearch() {
+                return $resource(QUANDL_URL + 'datasets.json?' + API_KEY + '&query=:query&database_code=WIKI', {}, {
+                    get: {
+                        method: 'GET',
+                        cache: true,
+                        transformResponse: function(data, headers) {
+                            var json = angular.fromJson(data);
+                            return filterByDate(json);
+                        }
+                    }
+                });
+            }
+
+            // Queries Quandl for the specific stock code
+            function stockMetadata() {
+                return $resource(QUANDL_URL + QUANDL_WIKI + ':stock_code/metadata.json?' + API_KEY, {}, {
                     get: { method: 'GET', cache: true }
                 });
             }
 
             function stockData() {
-                var startDate = moment().subtract(1, 'weeks').format('YYYY-MM-DD'),
+                var startDate = moment().subtract(14, 'days').format('YYYY-MM-DD'),
                     json;
 
-                return $resource('https://www.quandl.com/api/v3/datasets/WIKI/:code/data.json?' + API_KEY + '&start_date=' + startDate, {}, {
+                return $resource(QUANDL_URL + QUANDL_WIKI + ':code.json?' + API_KEY + '&start_date=' + startDate, {}, {
                     get: {
                         method: 'GET',
                         transformResponse: function(data, headers) {
@@ -34,8 +51,61 @@
                 });
             }
 
+            function search(query, cb) {
+                stockSearch().get({ query: query }, function(result) {
+                    result.datasets.map(function(dataset) {
+                        processDataset(dataset, query, cb);
+                    })
+                });
+            }
+
+            function getMeta(stockCode, cb) {
+                stockMetadata().get({ stock_code: stockCode }, function(result) {
+                    processDataset(result.dataset, stockCode, cb);
+                });
+            }
+
+            function getData(stockCode, cb) {
+                return stockData().get({ code: stockCode }, function(result) {
+                    var stock = {
+                        name: result.dataset.name,
+                        code: stockCode,
+                        data: result.stockData.data
+                    };
+
+                    cb(stock);
+                });
+            }
+
+            function processDataset(dataset, query, cb) {
+                var code = dataset.dataset_code;
+                var stock = {
+                    name: dataset.name,
+                    code: code,
+                    favourite: false,
+                    query: query
+                };
+
+                cb(stock);
+            }
+
+            function filterByDate(json) {
+                var datasets = json.datasets,
+                    result = [];
+
+                for (var i = 0, max = datasets.length; i < max; i++) {
+                    if (moment(datasets[i].newest_available_date) > moment().subtract(14, 'days')) {
+                        result.push(datasets[i]);
+                    }
+                }
+
+                return {
+                    datasets: result
+                };
+            }
+
             function processResponse(json) {
-                var datasetData = json.dataset_data,
+                var datasetData = json.dataset,
                     financialData = datasetData.data,
                     results = [],
                     i = 0,
@@ -64,8 +134,9 @@
             }
 
             return {
-                stock: stock,
-                stockData: stockData
+                getData: getData,
+                search: search,
+                getMeta: getMeta
             };
         }]);
 }());

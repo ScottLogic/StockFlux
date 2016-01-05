@@ -7,14 +7,19 @@
     <meta name="description" content="A cross-platform financial charting application to showcase the functionality of d3fc components">
     <title>d3fc Showcase</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <!-- Version: 0.8.0 -->
+    <!-- Version: 0.9.0 -->
 </head>
 <body>
 <div class="container" id="app-container">
     <div class="row head-menu head-row">
         <div class="col-md-12 head-sub-row">
+            <h4 id="stock-title"></h4>
+        </div>
+        <div class="col-md-12 head-sub-row hidden">
             <div id="product-dropdown" class="dropdown product-dropdown"></div>
-            <div id="period-selector"></div>
+            <div id="period-selector" class="hidden-xs hidden-sm"></div>
+            <div id="mobile-period-selector" class="hidden-md hidden-lg dropdown"></div>
+            <span id="clear-indicators" class="icon sc-icon-delete delete-button hidden-md hidden-lg"></span>
         </div>
     </div>
     <div class="row primary-row">
@@ -22,23 +27,43 @@
             <p class="content">Loading...</p>
         </div>
         <div id="charts" class="col-md-12 hidden">
-            <div id="selectors">
-                <div id="series-dropdown" class="dropdown selector-dropdown"></div>
-                <div id="indicator-dropdown" class="dropdown selector-dropdown"></div>
-            </div>
-            <div id="legend"></div>
             <div id="charts-container">
                 <svg id="primary-container"></svg>
                 <svg class="secondary-container"></svg>
                 <svg class="secondary-container"></svg>
                 <svg class="secondary-container"></svg>
-                <div id="x-axis-row">
+                <div class="x-axis-row">
                     <svg id="x-axis-container"></svg>
                 </div>
-                <div id="navbar-row">
+                <div id="navbar-row" class="hidden-xs hidden-sm">
                     <svg id="navbar-container"></svg>
                     <svg id="navbar-reset"></svg>
                 </div>
+            </div>
+            <div id="overlay">
+                <div id="overlay-primary-container">
+                    <div id="overlay-primary-head">
+                        <div id="selectors">
+                            <div id="series-dropdown" class="dropdown selector-dropdown"></div>
+                            <div id="indicator-dropdown" class="dropdown selector-dropdown"></div>
+                        </div>
+                        <div id="legend" class="hidden-xs hidden-sm"></div>
+                    </div>
+                    <div id="overlay-primary-bottom">
+                        <div class="edit-indicator-container"></div>
+                    </div>
+                </div>
+                <div class="overlay-secondary-container">
+                    <div class="edit-indicator-container"></div>
+                </div>
+                <div class="overlay-secondary-container">
+                    <div class="edit-indicator-container"></div>
+                </div>
+                <div class="overlay-secondary-container">
+                    <div class="edit-indicator-container"></div>
+                </div>
+                <div class="x-axis-row"></div>
+                <div id="overlay-navbar-row" class="hidden-xs hidden-sm"></div>
             </div>
         </div>
     </div>

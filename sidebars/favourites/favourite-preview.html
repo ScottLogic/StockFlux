@@ -1,0 +1,24 @@
+﻿<div class="favourite-container" draggable="false">
+    <div class="preview darkens stock-tile
+    {{selection !== stock.code ? '' : 'dark'}}" ng-click="selection = stock.code;">
+        <div>
+            <h6 class="pull-left"><small>{{stock.name | truncate}}</small></h6>
+        </div>
+        <div>
+            <div class="col-xs-12" style="padding:0px">
+                <h4 class="pull-left"><strong>{{stock.code | uppercase}}</strong></h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-9" style="padding-left: 0px">
+                <svg class="minichart" id="{{stock.code}}chart" width="100%" height="65px" ng-init="renderChart(stock)"></svg>
+            </div>
+            <div class="col-xs-3">
+                <h4 class="pull-right"><small>{{stock.price | number:2 }}</small></h4>
+                <h6 class="pull-right"><small>{{stock.delta < 0 ? '' : '+'}}{{stock.delta | number:2 }}</small></h6>
+                <h6 class="glyphicon {{icon(stock)}} pull-right"><small>{{stock.percentage | number:2 }}%</small></h6>
+            </div>
+        </div>
+        <hr class="buffer">
+    </div>
+</div>
