@@ -76,9 +76,6 @@
             return {
                 restrict: 'E',
                 templateUrl: 'sidebars/search/search-preview.html',
-                link: function(scope, element, attrs) {
-
-                },
                 scope: {
                     stock: '='
                 }

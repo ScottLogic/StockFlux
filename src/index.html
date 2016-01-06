@@ -21,7 +21,7 @@
                     <div class="col-xs-10" style="padding:0px">
                         <div class="input-group previews" style="width: 100%" ng-show="sidebarCtrl.showSearches()">
                             <form class="form-horizontal" ng-submit="searchCtrl.submit()">
-                                <input type="text" class="form-control" maxlength="50" placeholder="Enter stock name or symbol"
+                                <input type="text" class="form-control" maxlength="20" placeholder="Enter stock name or symbol"
                                        ng-show="sidebarCtrl.showSearches()" ng-model="searchCtrl.query" />
                             </form>
                         </div>
@@ -42,7 +42,7 @@
                 </div>
                 <div class="previews" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in favouritesCtrl.stocks"
                      ng-show="sidebarCtrl.showFavourites()">
-                    <favourite selection="favouritesCtrl.selection" stock="stock" icon="favouritesCtrl.icon(stock)" 
+                    <favourite selection="favouritesCtrl.selection" stock="stock" icon="favouritesCtrl.icon(stock)"
                                render-chart="favouritesCtrl.renderChart(stock)"></favourite>
                 </div>
             </div>
@@ -73,7 +73,6 @@
     <script src="sidebars/search/search.js"></script>
     <script src="sidebars/filters.js"></script>
     <script src="sidebars/star.js"></script>
-    <script src="services/openfin-service.js"></script>
     <script src="services/store-service.js"></script>
     <script src="services/quandl-service.js"></script>
 </body>

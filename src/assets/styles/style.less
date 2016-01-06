@@ -10,7 +10,7 @@
 @transition: all 0.2s linear 0.1s;
 @search-sidebar-width: 271px;
 
-//override d3fc-showcase
+// Override d3fc-showcase
 @primary-dark-blue: @dark-background;
 @secondary-orange: @chart-teal;
 
@@ -76,10 +76,6 @@ a.svg {
   position: relative;
 }
 
-.thumbnail {
-  text-align: center;
-}
-
 .buffer {
   height: 3px;
   color: @separator-color;
@@ -127,6 +123,8 @@ h6, h4 {
 
 .minichart {
   background-image: linear-gradient(to top, @middle-background, @chart-fade);
+  width: 100%;
+  height: 65px;
 }
 
 .minichart g {
