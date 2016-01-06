@@ -17,7 +17,7 @@
                     return stock.delta < 0 ? icons.down : icons.up;
                 };
 
-                //Render the mini chart on the stock card
+                // Render the mini chart on the stock card
                 self.renderChart = function(stock) {
                     $timeout(
                         function() {
@@ -27,12 +27,8 @@
                                     height = extent.height;
                                 var data = stock.data;
                                 data = data.map(function(d) {
-                                    var str1 = d.date;
-                                    var dt1 = parseInt(str1.substring(8, 10));
-                                    var mon1 = parseInt(str1.substring(5, 7));
-                                    var yr1 = parseInt(str1.substring(0, 4));
-                                    var date1 = new Date(yr1, mon1 - 1, dt1);
-                                    d.date = date1;
+                                    var date = moment(d.date);
+                                    d.date = date.toDate();;
                                     return d;
                                 });
                                 var container = d3.select('#' + stock.code + 'chart')
@@ -115,7 +111,6 @@
                                         price: price,
                                         delta: delta,
                                         percentage: Math.abs(percentage),
-                                        notification: false,
                                         favourite: true
                                     });
                                 }
