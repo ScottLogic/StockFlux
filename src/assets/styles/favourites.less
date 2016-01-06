@@ -1,0 +1,43 @@
+﻿.favourite-container {
+  height: 125px;
+  border: 1px solid @middle-background;
+}
+
+.favourites {
+  float: right;
+  height: 100%;
+  background-color: @middle-background;
+  transition: @transition;
+}
+
+.stock-tile {
+  cursor: pointer;
+}
+
+.minichart {
+  background-image: linear-gradient(to top, @middle-background, @chart-fade);
+  width: 100%;
+  height: 65px;
+}
+
+.minichart g {
+  fill: @middle-background;
+  stroke: @chart-teal !important;
+}
+
+.dark {
+  background: @dark-background;
+}
+
+.darkens:hover .minichart, .dark .minichart {
+  background-image: linear-gradient(to top, @dark-background, @chart-fade);
+}
+
+.darkens:hover .minichart g, .dark .minichart g {
+  fill: @dark-background !important;
+}
+
+.glyphicon-triangle-bottom:before, .glyphicon-triangle-top:before {
+  margin-right: 3px;
+  vertical-align: sub;
+}
