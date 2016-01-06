@@ -43,6 +43,7 @@
                                 // Create scale for x axis
                                 var xScale = fc.scale.dateTime()
                                     .domain(fc.util.extent().fields('date')(data))
+                                    .discontinuityProvider(fc.scale.discontinuity.skipWeekends())
                                     .range([0, width]);
 
                                 // Create scale for y axis
@@ -52,12 +53,19 @@
                                     .nice();
 
                                 var area = fc.series.area()
+                                    .y1Value(function(d) { return 1000; })
+                                    .y0Value(function(d) { return d.close; });
+
+                                var line = fc.series.line();
+
+                                var multi = fc.series.multi()
+                                    .series([area, line])
                                     .xScale(xScale)
                                     .yScale(yScale);
 
                                 container.append('g')
                                     .datum(data)
-                                    .call(area);
+                                    .call(multi);
                             })
                         }
                     );
