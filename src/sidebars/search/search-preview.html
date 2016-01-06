@@ -4,8 +4,8 @@
         <div class="col-xs-10" style="padding:0px">
             <h4 class="pull-left"><strong>{{stock.code | uppercase}}</strong></h4>
         </div>
-        <div class="col-xs-2">
-            <div class="glyphicon glyphicon-star pull-right" ng-style="{'color': favouriteStyle(stock)}" ng-click="favouriteClick(stock)"></div>
+        <div class="col-xs-2" ng-controller="StarCtrl as starCtrl">
+            <star star-style="starCtrl.style(stock)" star-click="starCtrl.click(stock)"></star>
         </div>
     </div>
 </div>
