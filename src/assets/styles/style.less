@@ -6,6 +6,7 @@
 @separator-color: #5B626B;
 @icon-color: #AEB1B5;
 @chart-teal: #42D8BD;
+@chart-fade: #427075;
 @transition: all 0.2s linear 0.1s;
 @search-sidebar-width: 271px;
 
@@ -124,8 +125,21 @@ h6, h4 {
   margin-bottom: 5px;
 }
 
-.minichart svg {
-  fill: @chart-teal;
+.minichart {
+  background-image: linear-gradient(to top, @middle-background, @chart-fade);
+}
+
+.minichart g {
+  fill: @middle-background;
+  stroke: @chart-teal !important;
+}
+
+.darkens:hover .minichart, .dark .minichart {
+  background-image: linear-gradient(to top, @dark-background, @chart-fade);
+}
+
+.darkens:hover .minichart g, .dark .minichart g {
+  fill: @dark-background !important;
 }
 
 .form-control {
@@ -142,6 +156,7 @@ h6, h4 {
 }
 
 @main-content-left-padding: (@search-sidebar-width + 9);
+
 .main-content {
   bottom: 10px;
   position: absolute;
@@ -158,7 +173,7 @@ h6, h4 {
 .full-content {
   width: 100%;
   height: 100%;
-  border: none
+  border: none;
 }
 
 .stock-tile {
