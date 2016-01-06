@@ -6,10 +6,11 @@
         "uuid": "OpenFinD3FC",
         "applicationIcon": "http://owennw.github.io/OpenFinD3FC/favicon.ico",
         "autoShow": true,
-        "minWidth": 844,
-        "minHeight": 475,
+        "minWidth": 918,
+        "minHeight": 510,
         "defaultWidth": 1280,
-        "defaultHeight": 720 
+        "defaultHeight": 720,
+        "frame": false
     },
     "runtime": {
         "arguments": "",
