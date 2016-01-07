@@ -1,42 +1,43 @@
-﻿.preview {
-  padding: 0px;
-  height: 121px;
+﻿.sidetab {
+  opacity: 1;
 }
 
-.previews {
-  opacity: 1;
+.sidetab.ng-hide-remove {
+  transition: all 0.1s linear 0.3s;
+}
+
+.sidetab.ng-hide-add {
+  transition: all 0.1s linear;
+}
+
+.sidetab.ng-hide {
+  opacity: 0;
+}
+
+.sidebars {
+  width: @sidebar-width !important;
+  height: 100%;
+  float: left;
+}
+
+.sidetab-top {
+  height: 50px;
 }
 
 .darkens:hover {
   background: @dark-background;
 }
 
-.previews.ng-hide-remove {
-  transition: all 0.1s linear 0.3s;
+.top-icon {
+  color: @icon-colour;
+  float: right;
+  padding-right: 15px;
+  padding-top: 17px;
 }
 
-.previews.ng-hide-add {
-  transition: all 0.1s linear;
-}
-
-.previews.ng-hide {
-  opacity: 0;
-}
-
-.sidebars {
-  width: @search-sidebar-width !important;
-  height: 100%;
-  float: left;
-}
-
-.preview-top {
-  margin-bottom: 5px;
-}
-
-h6 small, h4 small {
-  color: white;
-}
-
-h6, h4 {
-  margin: 2px;
+.splitter {
+  height: (@splitter-height - 1);
+  color: @icon-colour;
+  margin: 0px;
+  opacity: 0.5;
 }

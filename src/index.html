@@ -17,30 +17,26 @@
     <div class="container-fluid main" ng-controller="FavouritesCtrl as favouritesCtrl">
         <div class="sidebars" ng-controller="SidebarCtrl as sidebarCtrl">
             <div class="search" ng-click="sidebarCtrl.searchClick()" ng-style="{'width': sidebarCtrl.searchWidth()}">
-                <div class="row preview-top">
-                    <div class="col-xs-10" style="padding:0px">
-                        <div class="input-group previews" style="width: 100%" ng-show="sidebarCtrl.showSearches()">
-                            <form class="form-horizontal" ng-submit="searchCtrl.submit()">
-                                <input type="text" class="form-control" maxlength="20" placeholder="Enter stock name or symbol"
-                                       ng-show="sidebarCtrl.showSearches()" ng-model="searchCtrl.query" />
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-xs-2" style="padding:0px">
-                        <div class="glyphicon glyphicon-search pull-right" style="padding:10px" ng-click="searchCtrl.submit()"></div>
+                <div class="row sidetab-top">
+                    <div class="glyphicon glyphicon-search top-icon" ng-click="searchCtrl.submit()"></div>
+                    <div class="input-group sidetab" ng-show="sidebarCtrl.showSearches()">
+                        <form class="form-horizontal" ng-submit="searchCtrl.submit()">
+                            <input type="text" class="form-control" maxlength="20" placeholder="Enter stock name or symbol"
+                                   ng-show="sidebarCtrl.showSearches()" ng-model="searchCtrl.query" />
+                        </form>
                     </div>
                 </div>
-                <div class="previews darkens" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in searchCtrl.stocks"
+                <div class="sidetab" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in searchCtrl.stocks"
                      ng-show="sidebarCtrl.showSearches()" ng-mouseenter="stock.isHovered = true;" ng-mouseleave="stock.isHovered = false;">
                     <search stock="stock"></search>
                 </div>
             </div>
             <div class="favourites" ng-click="sidebarCtrl.favouritesClick()"
                  ng-style="{'width': sidebarCtrl.favouritesWidth()}">
-                <div class="row preview-top">
-                    <div class="glyphicon glyphicon-star pull-right" style="padding:10px"></div>
+                <div class="row sidetab-top">
+                    <div class="glyphicon glyphicon-star top-icon"></div>
                 </div>
-                <div class="previews" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in favouritesCtrl.stocks"
+                <div class="sidetab" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in favouritesCtrl.stocks"
                      ng-show="sidebarCtrl.showFavourites()">
                     <favourite selection="favouritesCtrl.selection" stock="stock" icon="favouritesCtrl.icon(stock)"
                                render-chart="favouritesCtrl.renderChart(stock)"></favourite>
