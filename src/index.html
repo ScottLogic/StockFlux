@@ -28,17 +28,17 @@
                 </div>
                 <div class="sidetab" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in searchCtrl.stocks"
                      ng-show="sidebarCtrl.showSearches()" ng-mouseenter="stock.isHovered = true;" ng-mouseleave="stock.isHovered = false;">
-                    <search stock="stock"></search>
+                    <search stock="stock" selection="mainCtrl.selection" select="mainCtrl.select(stock)"></search>
                 </div>
             </div>
-            <div class="favourites"  ng-controller="FavouritesCtrl as favouritesCtrl" ng-click="sidebarCtrl.favouritesClick()"
+            <div class="favourites" ng-controller="FavouritesCtrl as favouritesCtrl" ng-click="sidebarCtrl.favouritesClick()"
                  ng-style="{'width': sidebarCtrl.favouritesWidth()}">
                 <div class="row sidetab-top">
                     <div class="glyphicon glyphicon-star top-icon"></div>
                 </div>
                 <div class="sidetab" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in favouritesCtrl.stocks"
                      ng-show="sidebarCtrl.showFavourites()">
-                    <favourite selection="mainCtrl.selection" select="mainCtrl.select(stock)" 
+                    <favourite selection="mainCtrl.selection" select="mainCtrl.select(stock)"
                                stock="stock" icon="favouritesCtrl.icon(stock)" render-chart="favouritesCtrl.renderChart(stock)">
                     </favourite>
                 </div>
