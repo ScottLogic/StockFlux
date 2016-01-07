@@ -73,7 +73,9 @@
                 restrict: 'E',
                 templateUrl: 'sidebars/search/search-preview.html',
                 scope: {
-                    stock: '='
+                    stock: '=',
+                    selection: '=',
+                    select: '&'
                 }
             }
         }]);
