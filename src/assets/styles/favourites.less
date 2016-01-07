@@ -1,7 +1,13 @@
-﻿.favourite-container {
-  height: 125px;
-  border: 1px solid @middle-background;
-}
+﻿@favourite-padding-left: 0px;
+@favourite-padding-top: 5px;
+@favourite-padding-right: 5px;
+@favourite-padding-bottom: 10px;
+@chart-width: 220px;
+@chart-height: 60px;
+@details-width: (@expanded-width - @favourite-padding-left - @favourite-padding-right - @chart-width);
+@splitter-height: 2px;
+@favourite-height: 150px;
+@total-height: (@favourite-height + @splitter-height);
 
 .favourites {
   float: right;
@@ -10,19 +16,63 @@
   transition: @transition;
 }
 
-.stock-tile {
+.favourite {
+  padding-top: @favourite-padding-top;
+  padding-bottom: @favourite-padding-bottom;
+  padding-right: @favourite-padding-right;
+  padding-left: @favourite-padding-left;
   cursor: pointer;
+  height: @favourite-height;
+
+  .star {
+    float: right;
+  }
+
+  .row {
+    padding-left: 10px;
+  }
+
+  .name {
+    padding-top: 5px;
+    font-size: 12px;
+  }
+
+  .details {
+    position: relative;
+    float: right;
+
+    * {
+      width: @details-width;
+      text-align: right;
+    }
+  }
+
+  .code {
+    font-size: 24px;
+  }
+
+  .price {
+    font-size: 20px;
+  }
+
+  .delta {
+    font-size: 15px;
+  }
+
+  .percentage {
+    font-size: 15px;
+  }
 }
 
 .minichart {
-  background-image: linear-gradient(to top, @middle-background, @chart-fade);
-  width: 100%;
-  height: 65px;
-}
+  background-image: linear-gradient(to bottom, @chart-fade, @middle-background 92%);
+  width: @chart-width;
+  height: @chart-height;
 
-.minichart g {
-  fill: @middle-background;
-  stroke: @chart-teal !important;
+  g {
+    fill: @middle-background;
+    stroke: @chart-teal !important;
+  }
 }
 
 .dark {
@@ -30,7 +80,7 @@
 }
 
 .darkens:hover .minichart, .dark .minichart {
-  background-image: linear-gradient(to top, @dark-background, @chart-fade);
+  background-image: linear-gradient(to bottom, @chart-fade, @dark-background 92%);
 }
 
 .darkens:hover .minichart g, .dark .minichart g {
@@ -39,5 +89,5 @@
 
 .glyphicon-triangle-bottom:before, .glyphicon-triangle-top:before {
   margin-right: 3px;
-  vertical-align: sub;
+  vertical-align: middle;
 }

@@ -1,14 +1,41 @@
-﻿.search {
+﻿@search-result-height: 70px;
+@star-height: 16px;
+
+.search {
   float: left;
   height: 100%;
-  background-color: @search-color;
-  margin-right: 1px;
+  background-color: @light-background;
   transition: @transition;
 }
 
-.buffer {
-  height: 3px;
-  color: @separator-color;
-  margin: 0px;
-  margin-top: 4px;
+.search-result {
+  height: @search-result-height;
+
+  .name {
+    font-size: 12px;
+  }
+
+  .code {
+    font-size: 24px;
+  }
+
+  .details {
+    position: relative;
+    float: left;
+    padding-left: 20px;
+    padding-top: 10px;
+  }
+
+  .star {
+    padding-right: 15px;
+    padding-top: ((@search-result-height - @star-height) / 2);
+    float: right;
+  }
+}
+
+.input-group {
+  position: relative;
+  float: left;
+  width: 254px;
+  margin-top: 5px;
 }
