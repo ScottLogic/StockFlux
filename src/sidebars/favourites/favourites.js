@@ -116,7 +116,7 @@
 
                 self.update();
 
-                $scope.$on('update', function(event, data) {
+                $scope.$on('updateFavourites', function(event, data) {
                     self.update();
                 })
             }])

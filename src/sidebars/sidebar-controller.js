@@ -52,7 +52,7 @@
             };
 
             $scope.$on('favouriteChanged', function(event, data) {
-                $scope.$broadcast('update', data);
+                $scope.$broadcast('updateFavourites', data);
             });
         }]);
 }());
