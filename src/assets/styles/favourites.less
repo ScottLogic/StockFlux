@@ -1,12 +1,12 @@
-﻿@favourite-padding-left: 0px;
+﻿@favourite-height: 150px;
+@favourite-padding-left: 0px;
 @favourite-padding-top: 5px;
 @favourite-padding-right: 5px;
 @favourite-padding-bottom: 10px;
 @chart-width: 220px;
-@chart-height: 60px;
+@top-height: 62px;
+@chart-height: 75px;
 @details-width: (@expanded-width - @favourite-padding-left - @favourite-padding-right - @chart-width);
-@splitter-height: 2px;
-@favourite-height: 150px;
 @total-height: (@favourite-height + @splitter-height);
 
 .favourites {
@@ -24,6 +24,15 @@
   cursor: pointer;
   height: @favourite-height;
 
+  .top {
+    height: @top-height;
+    padding-left: 5px;
+  }
+
+  .bottom {
+    height: @chart-height;
+  }
+
   .star {
     float: right;
   }
@@ -33,12 +42,12 @@
   }
 
   .name {
-    padding-top: 5px;
+    padding-top: 1px;
     font-size: 12px;
+    font-weight: @font-thin;
   }
 
   .details {
-    position: relative;
     float: right;
 
     * {
@@ -49,18 +58,30 @@
 
   .code {
     font-size: 24px;
+    font-weight: @font-medium;
+    line-height: 1.0;
   }
 
   .price {
     font-size: 20px;
+    font-weight: @font-medium;
+    line-height: 0.8;
   }
 
   .delta {
+    padding-top: 18px;
+    line-height: 1.0;
+  }
+
+  .delta, .percentage {
     font-size: 15px;
+    font-weight: @font-light;
+    padding-right: 1px;
   }
 
   .percentage {
-    font-size: 15px;
+    display: inherit;
+    padding-top: 4px;
   }
 }
 
