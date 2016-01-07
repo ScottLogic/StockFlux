@@ -51,8 +51,7 @@
                     </a>
                 </div>
                 <div class="main-content">
-                    <iframe class="full-content"
-                            src="{{favouritesCtrl.selection !== '' ? 'd3fc-showcase.html?stockcode=' + favouritesCtrl.selection : ''}}"></iframe>
+                    <showcase selection="favouritesCtrl.selection"></showcase>
                 </div>
             </div>
         </div>
@@ -64,6 +63,7 @@
     <script src="https://cdn.rawgit.com/auth0/angular-storage/master/dist/angular-storage.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3fc/5.1.0/d3fc.bundle.min.js"></script>
     <script src="app.js"></script>
+    <script src="showcase/showcase-directive.js"></script>
     <script src="sidebars/sidebar-controller.js"></script>
     <script src="sidebars/favourites/favourites.js"></script>
     <script src="sidebars/search/search.js"></script>

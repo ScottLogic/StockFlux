@@ -3,6 +3,7 @@
 
     angular.module('OpenFinD3FC', [
         'ngAnimate',
+        'openfin.showcase',
         'openfin.search',
         'openfin.favourites',
         'openfin.sidebar',
