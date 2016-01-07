@@ -49,10 +49,6 @@
                     }
                 };
 
-                self.clear = function() {
-                    self.query = '';
-                };
-
                 $scope.$watch(
                     // Can't watch `self.query` as the subscribers to this controller
                     // may alias it (e.g. `searchCtrl.query`), so instead define a

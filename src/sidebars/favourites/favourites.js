@@ -6,7 +6,6 @@
             function(storeService, quandlService, $timeout, $scope) {
                 var self = this;
                 self.stocks = [];
-                self.selection = '';
 
                 var icons = {
                     up: 'glyphicon-triangle-top',
@@ -132,6 +131,7 @@
                 scope: {
                     stock: '=',
                     selection: '=',
+                    select: '&',
                     icon: '&',
                     renderChart: '&'
                 }
