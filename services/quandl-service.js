@@ -13,6 +13,10 @@
                 QUANDL_URL = 'https://www.quandl.com/api/v3/',
                 QUANDL_WIKI = 'datasets/WIKI/';
 
+            function period() {
+                return moment().subtract(28, 'days');
+            }
+
             // Queries Quandl for all stocks matching the input query
             function stockSearch() {
                 return $resource(QUANDL_URL + 'datasets.json?' + API_KEY + '&query=:query&database_code=WIKI', {}, {
@@ -35,7 +39,7 @@
             }
 
             function stockData() {
-                var startDate = moment().subtract(14, 'days').format('YYYY-MM-DD'),
+                var startDate = period().format('YYYY-MM-DD'),
                     json;
 
                 return $resource(QUANDL_URL + QUANDL_WIKI + ':code.json?' + API_KEY + '&start_date=' + startDate, {}, {
@@ -94,7 +98,7 @@
                     result = [];
 
                 for (var i = 0, max = datasets.length; i < max; i++) {
-                    if (moment(datasets[i].newest_available_date) > moment().subtract(14, 'days')) {
+                    if (moment(datasets[i].newest_available_date) > period()) {
                         result.push(datasets[i]);
                     }
                 }

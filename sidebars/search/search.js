@@ -8,36 +8,6 @@
                 self.query = '';
                 self.stocks = [];
 
-                var favouriteColours = {
-                    on: '#42D8BD',
-                    off: '#1A1F26',
-                    offhover: "#263337"
-                };
-
-                self.favouriteStyle = function(stock) {
-                    if (stock.favourite) {
-                        return favouriteColours.on;
-                    } else if (stock.isHovered) {
-                        return favouriteColours.offhover;
-                    } else {
-                        return favouriteColours.off;
-                    }
-                };
-
-                self.favouriteClick = function(stock) {
-                    if (stock.favourite) {
-                        stock.favourite = false;
-                        storeService.remove(stock);
-                        var index = self.stocks.indexOf(stock);
-                        if (index > -1 && !self.query) {
-                            self.stocks.splice(index, 1);
-                        }
-                    } else {
-                        stock.favourite = true;
-                        storeService.add(stock);
-                    }
-                };
-
                 self.submit = function() {
                     self.stocks = [];
                     var favourites = storeService.get();
@@ -79,10 +49,6 @@
                     }
                 };
 
-                self.clear = function() {
-                    self.query = '';
-                };
-
                 $scope.$watch(
                     // Can't watch `self.query` as the subscribers to this controller
                     // may alias it (e.g. `searchCtrl.query`), so instead define a
@@ -93,19 +59,23 @@
                     function() {
                         self.submit();
                     });
+
+                $scope.$on('favouriteChanged', function(event, data) {
+                    var index = self.stocks.map(function(stock) { return stock.code; }).indexOf(data.code);
+                    if (index > -1 && !self.query) {
+                        self.stocks.splice(index, 1);
+                    }
+                });
             }
         ])
         .directive('search', [function() {
             return {
                 restrict: 'E',
                 templateUrl: 'sidebars/search/search-preview.html',
-                link: function(scope, element, attrs) {
-
-                },
                 scope: {
                     stock: '=',
-                    favouriteStyle: '&',
-                    favouriteClick: '&'
+                    selection: '=',
+                    select: '&'
                 }
             }
         }]);

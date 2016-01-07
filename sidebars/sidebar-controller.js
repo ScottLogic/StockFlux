@@ -4,9 +4,9 @@
     angular.module('openfin.sidebar', [])
         .controller('SidebarCtrl', [function() {
             var self = this,
-                totalWidth = 271,
-                smallBarWidth = 40,
-                largeBarWidth = totalWidth - smallBarWidth - 1, // The 1 is for the gap
+                totalWidth = 350,
+                smallBarWidth = 50,
+                largeBarWidth = totalWidth - smallBarWidth,
                 searchWidth = smallBarWidth,
                 favouritesWidth = largeBarWidth,
                 showSearches = false,
