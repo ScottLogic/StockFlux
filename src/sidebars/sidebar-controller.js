@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('openfin.sidebar', [])
-        .controller('SidebarCtrl', [function() {
+        .controller('SidebarCtrl', ['$scope', function($scope) {
             var self = this,
                 totalWidth = 350,
                 smallBarWidth = 50,
@@ -50,5 +50,9 @@
                     showFavourites = true;
                 }
             };
+
+            $scope.$on('favouriteChanged', function(event, data) {
+                $scope.$broadcast('update', data);
+            });
         }]);
 }());

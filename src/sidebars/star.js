@@ -4,6 +4,7 @@
     angular.module('openfin.star', ['openfin.store'])
         .controller('StarCtrl', ['$scope', 'storeService', function($scope, storeService) {
             var self = this;
+            self.check = false;
 
             var favouriteColours = {
                 on: '#42D8BD',
@@ -21,8 +22,8 @@
                 }
             };
 
-            self.click = function(stock, check) {
-                if (!check || check(stock)) {
+            self.click = function(stock) {
+                if (!self.check || confirm('Are you sure you wish to remove this stock (' + stock.code + ') from your favourites?')) {
                     if (stock.favourite) {
                         stock.favourite = false;
                         storeService.remove(stock);
@@ -42,7 +43,8 @@
                 templateUrl: 'sidebars/star.html',
                 scope: {
                     starStyle: '&',
-                    starClick: '&'
+                    starClick: '&',
+                    check: '='
                 }
             };
         }]);

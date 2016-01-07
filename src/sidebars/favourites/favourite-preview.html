@@ -1,7 +1,7 @@
 ﻿<div class="favourite sidetab darkens {{selection !== stock.code ? '' : 'dark'}}" ng-click="select(stock)" draggable="false">
-    <div class="top" ng-controller="FavouritesCtrl as favouritesCtrl">
+    <div class="top">
         <div class="star" ng-controller="StarCtrl as starCtrl">
-            <star star-style="starCtrl.style(stock)" star-click="starCtrl.click(stock, favouritesCtrl.remove)"></star>
+            <star ng-init="starCtrl.check = true" star-style="starCtrl.style(stock)" star-click="starCtrl.click(stock)"></star>
         </div>
         <div class="name">{{stock.name | truncate}}</div>
         <div class="code">{{stock.code | uppercase}}</div>
