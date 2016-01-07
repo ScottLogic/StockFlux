@@ -1,12 +1,12 @@
 ﻿<div class="favourite sidetab darkens {{selection !== stock.code ? '' : 'dark'}}" ng-click="selection = stock.code;" draggable="false">
-    <div class="row" ng-controller="FavouritesCtrl as favouritesCtrl">
+    <div class="top" ng-controller="FavouritesCtrl as favouritesCtrl">
         <div class="star" ng-controller="StarCtrl as starCtrl">
             <star star-style="starCtrl.style(stock)" star-click="starCtrl.click(stock, favouritesCtrl.remove)"></star>
         </div>
         <div class="name">{{stock.name | truncate}}</div>
         <div class="code">{{stock.code | uppercase}}</div>
     </div>
-    <div class="row-fluid">
+    <div class="bottom">
         <svg class="minichart" id="{{stock.code}}chart" ng-init="renderChart(stock)"></svg>
         <div class="details">
             <div class="price">{{stock.price | number:2 }}</div>
