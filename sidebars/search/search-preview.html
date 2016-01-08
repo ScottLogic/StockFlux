@@ -4,7 +4,7 @@
         <div class="code">{{stock.code | uppercase}}</div>
     </div>
     <div class="star" ng-controller="StarCtrl as starCtrl">
-        <star star-style="starCtrl.style(stock)" star-click="starCtrl.click(stock)"></star>
+        <star ng-init="starCtrl.check = false" star-classes="starCtrl.classes(stock)" star-click="starCtrl.click(stock)"></star>
     </div>
 </div>
 <hr class="splitter" />

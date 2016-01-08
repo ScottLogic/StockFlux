@@ -4,25 +4,18 @@
     angular.module('openfin.star', ['openfin.store'])
         .controller('StarCtrl', ['$scope', 'storeService', function($scope, storeService) {
             var self = this;
+            self.check = false;
 
-            var favouriteColours = {
-                on: '#42D8BD',
-                off: '#1A1F26',
-                offhover: "#263337"
-            };
-
-            self.style = function(stock) {
+            self.classes = function(stock) {
                 if (stock.favourite) {
-                    return favouriteColours.on;
-                } else if (stock.isHovered) {
-                    return favouriteColours.offhover;
+                    return 'light';
                 } else {
-                    return favouriteColours.off;
+                    return '';
                 }
             };
 
-            self.click = function(stock, check) {
-                if (!check || check(stock)) {
+            self.click = function(stock) {
+                if (!self.check || confirm('Are you sure you wish to remove this stock (' + stock.code + ') from your favourites?')) {
                     if (stock.favourite) {
                         stock.favourite = false;
                         storeService.remove(stock);
@@ -41,8 +34,10 @@
                 restrict: 'E',
                 templateUrl: 'sidebars/star.html',
                 scope: {
-                    starStyle: '&',
-                    starClick: '&'
+                    starClasses: '&',
+                    starClick: '&',
+                    check: '=',
+                    selection: '='
                 }
             };
         }]);

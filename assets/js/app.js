@@ -4005,7 +4005,7 @@
       dateTime: exportedScale
   };
 
-  function elderRay() {
+  function elderRay$1() {
 
       var xScale = d3.time.scale(),
           yScale = d3.scale.linear(),
@@ -4096,7 +4096,7 @@
       return elderRay;
   }
 
-  function envelope() {
+  function envelope$1() {
 
       var xScale = d3.time.scale(),
           yScale = d3.scale.linear(),
@@ -4190,7 +4190,7 @@
       return envelope;
   }
 
-  function forceIndex() {
+  function forceIndex$1() {
 
       var xScale = d3.time.scale(),
           yScale = d3.scale.linear(),
@@ -4257,7 +4257,7 @@
       return force;
   }
 
-  function stochasticOscillator() {
+  function stochasticOscillator$1() {
 
       var xScale = d3.time.scale(),
           yScale = d3.scale.linear(),
@@ -4345,7 +4345,7 @@
       return stochastic;
   }
 
-  function relativeStrengthIndex() {
+  function relativeStrengthIndex$1() {
 
       var xScale = d3.time.scale(),
           yScale = d3.scale.linear(),
@@ -4425,7 +4425,7 @@
       return rsi;
   }
 
-  function macd$1() {
+  function macd$2() {
 
       var xScale = d3.time.scale(),
           yScale = d3.scale.linear(),
@@ -4501,7 +4501,7 @@
       return macd;
   }
 
-  function bollingerBands() {
+  function bollingerBands$1() {
 
       var xScale = d3.time.scale(),
           yScale = d3.scale.linear(),
@@ -4602,13 +4602,13 @@
   }
 
   var renderer = {
-      bollingerBands: bollingerBands,
-      macd: macd$1,
-      relativeStrengthIndex: relativeStrengthIndex,
-      stochasticOscillator: stochasticOscillator,
-      forceIndex: forceIndex,
-      envelope: envelope,
-      elderRay: elderRay
+      bollingerBands: bollingerBands$1,
+      macd: macd$2,
+      relativeStrengthIndex: relativeStrengthIndex$1,
+      stochasticOscillator: stochasticOscillator$1,
+      forceIndex: forceIndex$1,
+      envelope: envelope$1,
+      elderRay: elderRay$1
   };
 
   function exponentialMovingAverage$1() {
@@ -4802,7 +4802,7 @@
       return mergeCompute;
   }
 
-  function elderRay$1() {
+  function elderRay() {
 
       var elderRayAlgorithm = elderRay$2()
           .value(function(d) { return d.close; });
@@ -4906,7 +4906,7 @@
       return undefinedInputAdapter;
   }
 
-  function envelope$1() {
+  function envelope() {
 
       var envelopeAlgorithm = envelope$2();
 
@@ -4970,7 +4970,7 @@
       return force;
   }
 
-  function forceIndex$1() {
+  function forceIndex() {
 
       var force = forceIndex$2();
 
@@ -5055,7 +5055,7 @@
       return stochastic;
   }
 
-  function stochasticOscillator$1() {
+  function stochasticOscillator() {
 
       var stoc = stochasticOscillator$2();
 
@@ -5135,7 +5135,7 @@
       return rsi;
   }
 
-  function relativeStrengthIndex$1() {
+  function relativeStrengthIndex() {
 
       var rsi = relativeStrengthIndex$2();
 
@@ -5235,7 +5235,7 @@
       return macd;
   }
 
-  function macd$2() {
+  function macd$1() {
 
       var macdAlgorithm = macd$3()
           .value(function(d) { return d.close; });
@@ -5360,7 +5360,7 @@
       elderRay: elderRay$2
   };
 
-  function bollingerBands$1() {
+  function bollingerBands() {
 
       var bollingerAlgorithm = bollingerBands$3()
           .value(function(d) { return d.close; });
@@ -5384,17 +5384,17 @@
   }
 
   var algorithm = {
-      bollingerBands: bollingerBands$1,
+      bollingerBands: bollingerBands,
       calculator: calculator,
       exponentialMovingAverage: exponentialMovingAverage,
-      macd: macd$2,
+      macd: macd$1,
       merge: merge,
       movingAverage: movingAverage,
-      relativeStrengthIndex: relativeStrengthIndex$1,
-      stochasticOscillator: stochasticOscillator$1,
-      forceIndex: forceIndex$1,
-      envelope: envelope$1,
-      elderRay: elderRay$1
+      relativeStrengthIndex: relativeStrengthIndex,
+      stochasticOscillator: stochasticOscillator,
+      forceIndex: forceIndex,
+      envelope: envelope,
+      elderRay: elderRay
   };
 
   var indicator = {
