@@ -6,19 +6,11 @@
             var self = this;
             self.check = false;
 
-            var favouriteColours = {
-                on: '#42D8BD',
-                off: '#1A1F26',
-                offhover: "#263337"
-            };
-
-            self.style = function(stock) {
+            self.classes = function(stock) {
                 if (stock.favourite) {
-                    return favouriteColours.on;
-                } else if (stock.isHovered) {
-                    return favouriteColours.offhover;
+                    return 'light';
                 } else {
-                    return favouriteColours.off;
+                    return '';
                 }
             };
 
@@ -42,9 +34,10 @@
                 restrict: 'E',
                 templateUrl: 'sidebars/star.html',
                 scope: {
-                    starStyle: '&',
+                    starClasses: '&',
                     starClick: '&',
-                    check: '='
+                    check: '=',
+                    selection: '='
                 }
             };
         }]);
