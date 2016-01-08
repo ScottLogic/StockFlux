@@ -1,6 +1,44 @@
 // Override d3fc-showcase colours
 @primary-dark-blue: @dark-background;
 @secondary-orange: @chart-teal;
+@secondary-grey: @chart-teal;
+@primary-blue: @chart-teal;
+
+.y-axis .closeLine.tick > path {
+  stroke: @chart-teal !important;
+  fill: @chart-teal !important;
+}
+
+.secondary-container .bar {
+  stroke: @chart-fade !important;
+  fill: @chart-fade !important;
+}
+
+#navbar-row #navbar-container .plot-area .multi .area {
+  fill: @chart-fade !important;
+}
+#navbar-row #navbar-container .plot-area .multi path {
+  stroke: @chart-fade !important;
+  stroke-width: @chart-fade !important;
+}
+
+.secondary-container .macd-divergence .bar {
+  stroke: @chart-fade !important;
+  fill: @chart-fade !important;
+}
+
+#navbar-row #navbar-reset {
+  stroke: none !important;
+  fill: @chart-fade !important;
+}
+
+.y-axis .closeLine.tick > text {
+  fill: black !important;
+}
+
+.dropdown-menu{
+  background-color: @middle-background !important;
+}
 
 .head-row {
   display: none;
