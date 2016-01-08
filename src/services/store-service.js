@@ -5,13 +5,13 @@
         .factory('storeService', ['store', function(store) {
             var initialStocks = {
                 'AAPL': 0,
-                'MSFT': 0,
-                'TITN': 0,
-                'SNDK': 0,
-                'TSLA': 0
+                'MSFT': 1,
+                'TITN': 2,
+                'SNDK': 3,
+                'TSLA': 4
             };
 
-            var mostVisitedStocks = store.get('stocks') || initialStocks;
+            var favouriteStocks = store.get('stocks') || initialStocks;
 
             function order(obj) {
                 var tuples = [];
@@ -23,7 +23,7 @@
                 }
 
                 tuples = tuples.sort(function(a, b) {
-                    return b[1] - a[1];
+                    return a[1] - b[1];
                 });
 
                 return tuples.map(function(x) {
@@ -31,23 +31,43 @@
                 });
             }
 
-            function get() {
-                return order(mostVisitedStocks);
+            function save() {
+                store.set('stocks', favouriteStocks);
             }
 
-            function increment(stockName) {
-                if (mostVisitedStocks[stockName] !== undefined) {
-                    mostVisitedStocks[stockName]++;
-                } else {
-                    mostVisitedStocks[stockName] = 1;
-                }
+            function get() {
+                return order(favouriteStocks);
+            }
 
-                store.set('stocks', mostVisitedStocks);
+            function add(stock) {
+                var stockName = stock.code;
+                if (!favouriteStocks[stockName]) {
+                    favouriteStocks[stockName] = Object.keys(favouriteStocks).length;
+                    save();
+                }
+            }
+
+            function remove(stock) {
+                var stockName = stock.code;
+                var stockOrder = favouriteStocks[stockName];
+                if (stockOrder) {
+                    delete favouriteStocks[stockName];
+                    var keys = Object.keys(favouriteStocks),
+                        newLength = keys.length;
+
+                    for (var i = 0; i < newLength; i++) {
+                        if (favouriteStocks[keys[i]] > stockOrder) {
+                            favouriteStocks[keys[i]]--;
+                        }
+                    }
+                    save();
+                }
             }
 
             return {
-                getStocks: get,
-                incrementStock: increment
+                get: get,
+                add: add,
+                remove: remove
             };
         }]);
 }());

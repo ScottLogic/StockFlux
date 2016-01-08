@@ -1,36 +1,51 @@
 @import "../../../node_modules/d3fc-showcase/src/assets/styles/style.less";
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500);
+
+@import "variables.less";
+@import "logo.less";
+@import "sidebar.less";
+@import "search.less";
+@import "favourites.less";
+@import "star.less";
+@import "showcase-changes.less";
 
 .row {
-    margin-left: 0px;
+  margin: 0px;
 }
 
-a.svg:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+.main {
+  background-color: @dark-background;
+  padding: 0px;
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
 }
 
-.logo {
-    display: table !important;
-    margin: 0 auto;
+.form-control {
+  border: none;
+  background: transparent;
+  transition: @transition;
+  font-size: 13px;
+  color: white;
 }
 
-a {
-    cursor: pointer;
+.main-content {
+  bottom: 10px;
+  position: absolute;
+  top: 50px;
+  left: @sidebar-width;
+  right: 15px;
+  height: auto;
 }
 
-a.svg {
-    display: block;
-    position: relative;
+.full-content {
+  width: 100%;
+  height: 100%;
+  border: none;
 }
 
-.thumbnail {
-    text-align: center;
-}
-
-#search {
-    cursor: wait;
+.right-content {
+  padding-left: @sidebar-width;
 }
