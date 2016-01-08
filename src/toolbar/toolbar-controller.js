@@ -1,13 +1,13 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.toolbar', [])
-        .controller('ToolbarCtrl', ['$timeout', function($timeout) {
+    angular.module('openfin.toolbar', ['openfin.desktop'])
+        .controller('ToolbarCtrl', ['$timeout', 'desktopService', function($timeout, desktopService) {
             var self = this;
             var maximised = false;
 
-            fin.desktop.main(function() {
-                var window = fin.desktop.Window.getCurrent();
+            desktopService.ready(function() {
+                var window = desktopService.getCurrentWindow();
                 window.addEventListener('maximized', function(e) {
                     $timeout(function() {
                         maximised = true;

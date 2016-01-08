@@ -1,39 +1,39 @@
 (function(window) {
     'use strict';
 
-    angular.module('openfin.tearout', ['openfin.geometry', 'openfin.hover', 'openfin.store'])
-        .directive('tearable', ['geometryService', 'hoverService', 'storeService', function(geometryService, hoverService, storeService) {
-            return {
-                restrict: 'C',
-                link: function(scope, element, attrs) {
-                    // TODO: Improve this. Search for first class element upwards?
-                    var dragElement = element[0],
-                        tearElement = dragElement.parentNode.parentNode,
-                        tileWidth = tearElement.clientWidth,
-                        tileHeight = tearElement.clientHeight;
+    angular.module('openfin.tearout', ['openfin.geometry', 'openfin.hover', 'openfin.store', 'openfin.desktop'])
+        .directive('tearable', ['geometryService', 'hoverService', 'storeService', 'desktopService',
+            function(geometryService, hoverService, storeService, desktopService) {
+                return {
+                    restrict: 'C',
+                    link: function(scope, element, attrs) {
+                        // TODO: Improve this. Search for first class element upwards?
+                        var dragElement = element[0],
+                            tearElement = dragElement.parentNode.parentNode,
+                            tileWidth = tearElement.clientWidth,
+                            tileHeight = tearElement.clientHeight;
 
-                    function createConfig() {
-                        return {
-                            'name': scope.stock.code + ' window',
-                            'maxWidth': tileWidth,
-                            'minHeight': tileHeight,
-                            'defaultWidth': tileWidth,
-                            'defaultHeight': tileHeight,
-                            'width': tileWidth,
-                            'height': tileHeight,
-                            'autoShow': false,
-                            'url': 'sidebars/favourites/tearout.html',
-                            'frame': false,
-                            'resizable': false,
-                            'maximizable': false,
-                            'showTaskbarIcon': false,
-                            'saveWindowState': false
-                        };
-                    }
+                        function createConfig() {
+                            return {
+                                'name': scope.stock.code + ' window',
+                                'maxWidth': tileWidth,
+                                'minHeight': tileHeight,
+                                'defaultWidth': tileWidth,
+                                'defaultHeight': tileHeight,
+                                'width': tileWidth,
+                                'height': tileHeight,
+                                'autoShow': false,
+                                'url': 'sidebars/favourites/tearout.html',
+                                'frame': false,
+                                'resizable': false,
+                                'maximizable': false,
+                                'showTaskbarIcon': false,
+                                'saveWindowState': false
+                            };
+                        }
 
-                    var tearoutWindow = new fin.desktop.Window(createConfig());
+                        var tearoutWindow = desktopService.createWindow(createConfig());
 
-                    fin.desktop.main(function() {
                         function initialiseTearout() {
                             var myDropTarget = tearElement.parentNode,
                                 offset = { x: 0, y: 0 },
@@ -89,7 +89,7 @@
                                     .document
                                     .body
                                     .appendChild(injection);
-                                console.log(injection);
+
                                 return me;
                             };
 
@@ -214,8 +214,7 @@
                         });
 
                         initialiseTearout();
-                    });
-                }
-            };
-        }]);
+                    }
+                };
+            }]);
 }(window));
