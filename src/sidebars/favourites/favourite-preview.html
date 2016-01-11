@@ -1,5 +1,7 @@
-﻿<div class="favourite sidetab darkens {{selection !== stock.code ? '' : 'dark'}}" ng-click="select(stock)" draggable="false">
+﻿<hr class="splitter" />
+<div class="favourite sidetab darkens {{selection !== stock.code ? '' : 'dark'}}" ng-click="select(stock)" draggable="false">
     <div class="top">
+        <img class="tearable" src="assets/svg/drag_handle.svg" />
         <div class="star" ng-controller="StarCtrl as starCtrl">
             <star ng-init="starCtrl.check = true" star-classes="starCtrl.classes(stock)" star-click="starCtrl.click(stock)"></star>
         </div>
@@ -15,4 +17,3 @@
         </div>
     </div>
 </div>
-<hr class="splitter" />

@@ -27,15 +27,21 @@
 
   .top {
     height: @top-height;
-    padding-left: 5px;
+    padding-left: 20px;
   }
 
   .bottom {
     height: @chart-height;
   }
 
-  .star {
+  .star, .tearable {
     float: right;
+  }
+
+  .tearable {
+    width: 16px;
+    margin-left: 4px;
+    cursor: default;
   }
 
   .row {

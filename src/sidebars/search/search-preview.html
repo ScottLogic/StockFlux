@@ -1,4 +1,5 @@
-﻿<div class="search-result darkens {{selection !== stock.code ? '' : 'dark'}}" ng-click="select(stock)">
+﻿<hr class="splitter" />
+<div class="search-result darkens {{selection !== stock.code ? '' : 'dark'}}" ng-click="select(stock)">
     <div class="details">
         <div class="name">{{stock.name | truncate}}</div>
         <div class="code">{{stock.code | uppercase}}</div>
@@ -7,4 +8,3 @@
         <star ng-init="starCtrl.check = false" star-classes="starCtrl.classes(stock)" star-click="starCtrl.click(stock)"></star>
     </div>
 </div>
-<hr class="splitter" />
