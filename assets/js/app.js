@@ -1754,7 +1754,7 @@
   // overriding where the series value is stored on the node (__series__) and
   // forcing the node datum (__data__) to be the user supplied data (via mapping).
 
-  function multiSeries() {
+  function _multi() {
 
       var xScale = d3.time.scale(),
           yScale = d3.scale.linear(),
@@ -2046,7 +2046,7 @@
               crosshairElement.enter()
                   .style('pointer-events', 'none');
 
-              var multi = multiSeries()
+              var multi = _multi()
                   .series([horizontalLine, verticalLine, pointSeries])
                   .xScale(identityScale(xScale))
                   .yScale(identityScale(yScale))
@@ -3887,7 +3887,7 @@
       candlestick: candlestick,
       cycle: cycle,
       line: _line,
-      multi: multiSeries,
+      multi: _multi,
       ohlc: ohlc,
       point: point,
       stacked: stacked,
@@ -4137,7 +4137,7 @@
           bearBar = _bar(),
           bullBarTop = _bar(),
           bearBarTop = _bar(),
-          multi = multiSeries(),
+          multi = _multi(),
           decorate = noop;
 
       var elderRay = function(selection) {
@@ -4247,7 +4247,7 @@
 
       var envelope = function(selection) {
 
-          var multi = multiSeries()
+          var multi = _multi()
               .xScale(xScale)
               .yScale(yScale)
               .series([area, upperLine, lowerLine])
@@ -4316,7 +4316,7 @@
 
       var xScale = d3.time.scale(),
           yScale = d3.scale.linear(),
-          multiSeries$$ = multiSeries(),
+          multiSeries = _multi(),
           decorate = noop;
 
       var annotations = annotationLine();
@@ -4328,7 +4328,7 @@
 
       var force = function(selection) {
 
-          multiSeries$$.xScale(xScale)
+          multiSeries.xScale(xScale)
               .yScale(yScale)
               .series([annotations, forceLine])
               .mapping(function(series) {
@@ -4347,7 +4347,7 @@
                   decorate(g, data, index);
               });
 
-          selection.call(multiSeries$$);
+          selection.call(multiSeries);
       };
 
       force.xScale = function(x) {
@@ -4385,7 +4385,7 @@
           yScale = d3.scale.linear(),
           upperValue = 80,
           lowerValue = 20,
-          multi = multiSeries(),
+          multi = _multi(),
           decorate = noop;
 
       var annotations = annotationLine();
@@ -4473,7 +4473,7 @@
           yScale = d3.scale.linear(),
           upperValue = 70,
           lowerValue = 30,
-          multiSeries$$ = multiSeries(),
+          multiSeries = _multi(),
           decorate = noop;
 
       var annotations = annotationLine();
@@ -4482,7 +4482,7 @@
 
       var rsi = function(selection) {
 
-          multiSeries$$.xScale(xScale)
+          multiSeries.xScale(xScale)
               .yScale(yScale)
               .series([rsiLine, annotations])
               .mapping(function(series) {
@@ -4503,7 +4503,7 @@
                   decorate(g, data, index);
               });
 
-          selection.call(multiSeries$$);
+          selection.call(multiSeries);
       };
 
       rsi.xScale = function(x) {
@@ -4556,7 +4556,7 @@
           macdLine = _line(),
           signalLine = _line(),
           divergenceBar = _bar(),
-          multiSeries$$ = multiSeries(),
+          multiSeries = _multi(),
           decorate = noop;
 
       var macd = function(selection) {
@@ -4570,7 +4570,7 @@
           divergenceBar.xValue(xValue)
               .yValue(function(d, i) { return root(d).divergence; });
 
-          multiSeries$$.xScale(xScale)
+          multiSeries.xScale(xScale)
               .yScale(yScale)
               .series([divergenceBar, macdLine, signalLine])
               .decorate(function(g, data, index) {
@@ -4581,7 +4581,7 @@
                   decorate(g, data, index);
               });
 
-          selection.call(multiSeries$$);
+          selection.call(multiSeries);
       };
 
       macd.xScale = function(x) {
@@ -4657,7 +4657,7 @@
 
       var bollingerBands = function(selection) {
 
-          var multi = multiSeries()
+          var multi = _multi()
               .xScale(xScale)
               .yScale(yScale)
               .series([area, upperLine, lowerLine, averageLine])
@@ -4836,7 +4836,7 @@
       return elderRay;
   }
 
-  function _slidingWindow() {
+  function slidingWindow() {
 
       var undefinedValue = d3.functor(undefined),
           windowSize = d3.functor(10),
@@ -4896,7 +4896,7 @@
   function merge() {
 
       var merge = noop,
-          algorithm = _slidingWindow();
+          algorithm = slidingWindow();
 
       var mergeCompute = function(data) {
           return d3.zip(data, algorithm(data))
@@ -4981,7 +4981,7 @@
   // of 'undefined' values to the output.
   function undefinedInputAdapter() {
 
-      var algorithm = _slidingWindow()
+      var algorithm = slidingWindow()
           .accumulator(d3.mean);
       var undefinedValue = d3.functor(undefined),
           defined = function(value) {
@@ -5062,14 +5062,14 @@
       var volumeValue = function(d, i) { return d.volume; },
           closeValue = function(d, i) { return d.close; };
 
-      var slidingWindow = _slidingWindow()
+      var slidingWindow$$ = slidingWindow()
           .windowSize(2)
           .accumulator(function(values) {
               return (closeValue(values[1]) - closeValue(values[0])) * volumeValue(values[1]);
           });
 
       var force = function(data) {
-          return slidingWindow(data);
+          return slidingWindow$$(data);
       };
 
       force.volumeValue = function(x) {
@@ -5087,7 +5087,7 @@
           return force;
       };
 
-      d3.rebind(force, slidingWindow, 'windowSize');
+      d3.rebind(force, slidingWindow$$, 'windowSize');
 
       return force;
   }
@@ -5118,7 +5118,7 @@
           highValue = function(d, i) { return d.high; },
           lowValue = function(d, i) { return d.low; };
 
-      var kWindow = _slidingWindow()
+      var kWindow = slidingWindow()
           .windowSize(5)
           .accumulator(function(values) {
               var maxHigh = d3.max(values, highValue);
@@ -5126,7 +5126,7 @@
               return 100 * (closeValue(values[values.length - 1]) - minLow) / (maxHigh - minLow);
           });
 
-      var dWindow = _slidingWindow()
+      var dWindow = slidingWindow()
           .windowSize(3)
           .accumulator(function(values) {
               if (values[0] === undefined) {
@@ -5207,7 +5207,7 @@
           prevDownChangesAvg,
           prevUpChangesAvg;
 
-      var slidingWindow = _slidingWindow()
+      var slidingWindow$$ = slidingWindow()
           .windowSize(14)
           .accumulator(function(values) {
               var closes = values.map(closeValue);
@@ -5244,7 +5244,7 @@
           });
 
       var rsi = function(data) {
-          return slidingWindow(data);
+          return slidingWindow$$(data);
       };
 
       rsi.closeValue = function(x) {
@@ -5255,7 +5255,7 @@
           return rsi;
       };
 
-      d3.rebind(rsi, slidingWindow, 'windowSize');
+      d3.rebind(rsi, slidingWindow$$, 'windowSize');
 
       return rsi;
   }
@@ -5280,7 +5280,7 @@
 
   function movingAverage() {
 
-      var ma = _slidingWindow()
+      var ma = slidingWindow()
               .accumulator(d3.mean)
               .value(function(d) { return d.close; });
 
@@ -5438,7 +5438,7 @@
 
       var multiplier = 2;
 
-      var slidingWindow = _slidingWindow()
+      var slidingWindow$$ = slidingWindow()
           .undefinedValue({
               upper: undefined,
               average: undefined,
@@ -5455,7 +5455,7 @@
           });
 
       var bollingerBands = function(data) {
-          return slidingWindow(data);
+          return slidingWindow$$(data);
       };
 
       bollingerBands.multiplier = function(x) {
@@ -5466,7 +5466,7 @@
           return bollingerBands;
       };
 
-      d3.rebind(bollingerBands, slidingWindow, 'windowSize', 'value');
+      d3.rebind(bollingerBands, slidingWindow$$, 'windowSize', 'value');
 
       return bollingerBands;
   }
@@ -5478,7 +5478,7 @@
       percentageChange: percentageChange,
       relativeStrengthIndex: relativeStrengthIndex$2,
       stochasticOscillator: stochasticOscillator$2,
-      slidingWindow: _slidingWindow,
+      slidingWindow: slidingWindow,
       undefinedInputAdapter: undefinedInputAdapter,
       forceIndex: forceIndex$2,
       envelope: envelope$2,
@@ -6662,7 +6662,7 @@
               });
           });
 
-      var multi = multiSeries()
+      var multi = _multi()
           .series([line, point$$])
           .mapping(function(series) {
               switch (series) {
