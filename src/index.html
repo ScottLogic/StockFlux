@@ -30,6 +30,7 @@
                 <div id="searchScroll" class="sideScroll">
                     <div class="sidetab" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in searchCtrl.stocks"
                          ng-show="sidebarCtrl.showSearches()" ng-mouseenter="stock.isHovered = true;" ng-mouseleave="stock.isHovered = false;">
+                        <hr class="splitter" />
                         <search stock="stock" selection="mainCtrl.selection" select="mainCtrl.select(stock)"></search>
                     </div>
                 </div>
@@ -42,6 +43,7 @@
                 <div id="favScroll" class="sideScroll">
                     <div class="sidetab" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in favouritesCtrl.stocks"
                          ng-show="sidebarCtrl.showFavourites()">
+                        <hr class="splitter" />
                         <favourite selection="mainCtrl.selection" select="mainCtrl.select(stock)"
                                    stock="stock" icon="favouritesCtrl.icon(stock)" render-chart="favouritesCtrl.renderChart(stock)">
                         </favourite>
@@ -56,7 +58,7 @@
                 </div>
                 <div id="toolbar" style="height: 50px">
                     <a ng-href="#/" draggable="false" class="svg logo">
-                        <img src="assets/svg/logo_small.svg" style="vertical-align: initial;"/>
+                        <img src="assets/svg/logo_small.svg" style="vertical-align: initial;" />
                     </a>
                 </div>
             </div>
