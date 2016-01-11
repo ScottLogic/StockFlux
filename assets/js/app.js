@@ -1600,7 +1600,7 @@
       return fan;
   }
 
-  function lineAnnotation() {
+  function annotationLine() {
 
       var xScale = d3.time.scale(),
           yScale = d3.scale.linear(),
@@ -2001,11 +2001,11 @@
           .xValue(x)
           .yValue(y);
 
-      var horizontalLine = lineAnnotation()
+      var horizontalLine = annotationLine()
           .value(y)
           .label(function(d) { return d.y; });
 
-      var verticalLine = lineAnnotation()
+      var verticalLine = annotationLine()
           .orient('vertical')
           .value(x)
           .label(function(d) { return d.x; });
@@ -4319,7 +4319,7 @@
           multiSeries$$ = multiSeries(),
           decorate = noop;
 
-      var annotations = lineAnnotation();
+      var annotations = annotationLine();
 
       var forceLine = _line()
           .yValue(function(d, i) {
@@ -4388,7 +4388,7 @@
           multi = multiSeries(),
           decorate = noop;
 
-      var annotations = lineAnnotation();
+      var annotations = annotationLine();
       var dLine = _line()
           .yValue(function(d, i) {
               return d.stochastic.d;
@@ -4476,7 +4476,7 @@
           multiSeries$$ = multiSeries(),
           decorate = noop;
 
-      var annotations = lineAnnotation();
+      var annotations = annotationLine();
       var rsiLine = _line()
           .yValue(function(d, i) { return d.rsi; });
 
@@ -7277,7 +7277,7 @@
   var annotation = {
       band: band,
       gridline: gridline,
-      line: lineAnnotation
+      line: annotationLine
   };
 
   var cssLayout = (function (module) {
