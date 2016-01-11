@@ -22,7 +22,7 @@
     "less": "^2.5.3"
   },
   "dependencies": {
-    "d3fc-showcase": "bjedrzejewski/d3fc-showcase#2f44b01"
+    "d3fc-showcase": "bjedrzejewski/d3fc-showcase#4f5daad"
   },
   "description": "Hosts the d3fc-showcase as an OpenFin application."
 }
