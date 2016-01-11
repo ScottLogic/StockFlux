@@ -183,6 +183,106 @@
       };
   }
 
+  function randomItem(array) {
+      return array[randomIndex(array)];
+  }
+
+  function randomIndex(array) {
+      return Math.floor(Math.random() * array.length);
+  }
+
+  function cloneAndReplace(array, index, replacement) {
+      var clone = array.slice();
+      clone[index] = replacement;
+      return clone;
+  }
+
+
+  var array = Object.freeze({
+      randomItem: randomItem,
+      randomIndex: randomIndex,
+      cloneAndReplace: cloneAndReplace
+  });
+
+  function annealing() {
+
+      var container = containerUtils();
+      var temperature = 1000;
+      var cooling = 1;
+
+      var strategy = function(data) {
+
+          var originalData = data;
+          var iteratedData = data;
+
+          var lastScore = Infinity;
+          var currentTemperature = temperature;
+          while (currentTemperature > 0) {
+
+              var potentialReplacement = getPotentialState(originalData, iteratedData);
+
+              var potentialScore = scorer(potentialReplacement);
+
+              // Accept the state if it's a better state
+              // or at random based off of the difference between scores.
+              // This random % helps the algorithm break out of local minima
+              var probablityOfChoosing = Math.exp((lastScore - potentialScore) / currentTemperature);
+              if (potentialScore < lastScore || probablityOfChoosing > Math.random()) {
+                  iteratedData = potentialReplacement;
+                  lastScore = potentialScore;
+              }
+
+              currentTemperature -= cooling;
+          }
+          return iteratedData;
+      };
+
+      strategy.temperature = function(i) {
+          if (!arguments.length) {
+              return temperature;
+          }
+
+          temperature = i;
+          return strategy;
+      };
+
+      strategy.cooling = function(i) {
+          if (!arguments.length) {
+              return cooling;
+          }
+
+          cooling = i;
+          return strategy;
+      };
+
+      function getPotentialState(originalData, iteratedData) {
+          // For one point choose a random other placement.
+
+          var victimLabelIndex = randomIndex(originalData);
+          var label = originalData[victimLabelIndex];
+
+          var replacements = getAllPlacements(label);
+          var replacement = randomItem(replacements);
+
+          return cloneAndReplace(iteratedData, victimLabelIndex, replacement);
+      }
+
+      d3.rebind(strategy, container, 'containerWidth');
+      d3.rebind(strategy, container, 'containerHeight');
+
+      function scorer(placement) {
+          var collisionArea = totalCollisionArea(placement);
+          var pointsOnScreen = 1;
+          for (var i = 0; i < placement.length; i++) {
+              var point = placement[i];
+              pointsOnScreen += container(point) ? 0 : 100;
+          }
+          return collisionArea * pointsOnScreen;
+      }
+
+      return strategy;
+  }
+
   function local() {
 
       var container = containerUtils();
@@ -233,9 +333,7 @@
 
               // Create different states the algorithm could transition to
               var candidateReplacements = placements.map(function(placement) {
-                  var clone = iteratedData.slice();
-                  clone[d[1]] = placement;
-                  return clone;
+                  return cloneAndReplace(iteratedData, d[1], placement);
               });
 
               // Choose the best state.
@@ -340,7 +438,8 @@
   var strategy = {
       boundingBox: boundingBox,
       greedy: greedy,
-      local: local
+      local: local,
+      annealing: annealing
   };
 
   function context() {
@@ -600,9 +699,11 @@
                   return 'translate(' + offset.x + ', ' + offset.y + ')';
               });
 
+              // set the anchor-point for each rectangle
               data.forEach(function(d, i) {
                   var pos = position(d, i);
-                  anchor(i, pos[0] - layout[i].x, pos[1] - layout[i].y);
+                  var relativeAnchorPosition = [pos[0] - layout[i].x, pos[1] - layout[i].y];
+                  anchor(d, i, relativeAnchorPosition);
               });
 
               // set the layout width / height so that children can use SVG layout if required
@@ -794,7 +895,8 @@
 
       var fields = [],
           extraPoint = null,
-          padding = 0,
+          padUnit = 'percent',
+          pad = 0,
           symmetricalAbout = null;
 
       /**
@@ -849,15 +951,26 @@
               max = symmetrical + halfRange;
           }
 
-          // pad
-          if (Array.isArray(padding)) {
-              var deltaArray = [padding[0] * (max - min), padding[1] * (max - min)];
-              min -= deltaArray[0];
-              max += deltaArray[1];
-          } else {
-              var delta = padding * (max - min) / 2;
-              min -= delta;
-              max += delta;
+          if (padUnit === 'domain') {
+              // pad absolutely
+              if (Array.isArray(pad)) {
+                  min -= pad[0];
+                  max += pad[1];
+              } else {
+                  min -= pad;
+                  max += pad;
+              }
+          } else if (padUnit === 'percent') {
+              // pad percentagely
+              if (Array.isArray(pad)) {
+                  var deltaArray = [pad[0] * (max - min), pad[1] * (max - min)];
+                  min -= deltaArray[0];
+                  max += deltaArray[1];
+              } else {
+                  var delta = pad * (max - min) / 2;
+                  min -= delta;
+                  max += delta;
+              }
           }
 
           // Include the specified point in the range
@@ -904,11 +1017,19 @@
           return extents;
       };
 
+      extents.padUnit = function(x) {
+          if (!arguments.length) {
+              return padUnit;
+          }
+          padUnit = x;
+          return extents;
+      };
+
       extents.pad = function(x) {
           if (!arguments.length) {
-              return padding;
+              return pad;
           }
-          padding = x;
+          pad = x;
           return extents;
       };
 
@@ -963,7 +1084,8 @@
       seriesPointSnapXOnly: seriesPointSnapXOnly,
       seriesPointSnapYOnly: seriesPointSnapYOnly,
       render: render,
-      arrayFunctor: functoredArray
+      arrayFunctor: functoredArray,
+      array: array
   };
 
   function measure() {
@@ -4714,7 +4836,7 @@
       return elderRay;
   }
 
-  function slidingWindow() {
+  function _slidingWindow() {
 
       var undefinedValue = d3.functor(undefined),
           windowSize = d3.functor(10),
@@ -4774,7 +4896,7 @@
   function merge() {
 
       var merge = noop,
-          algorithm = slidingWindow();
+          algorithm = _slidingWindow();
 
       var mergeCompute = function(data) {
           return d3.zip(data, algorithm(data))
@@ -4859,7 +4981,7 @@
   // of 'undefined' values to the output.
   function undefinedInputAdapter() {
 
-      var algorithm = slidingWindow()
+      var algorithm = _slidingWindow()
           .accumulator(d3.mean);
       var undefinedValue = d3.functor(undefined),
           defined = function(value) {
@@ -4940,14 +5062,14 @@
       var volumeValue = function(d, i) { return d.volume; },
           closeValue = function(d, i) { return d.close; };
 
-      var slidingWindow$$ = slidingWindow()
+      var slidingWindow = _slidingWindow()
           .windowSize(2)
           .accumulator(function(values) {
               return (closeValue(values[1]) - closeValue(values[0])) * volumeValue(values[1]);
           });
 
       var force = function(data) {
-          return slidingWindow$$(data);
+          return slidingWindow(data);
       };
 
       force.volumeValue = function(x) {
@@ -4965,7 +5087,7 @@
           return force;
       };
 
-      d3.rebind(force, slidingWindow$$, 'windowSize');
+      d3.rebind(force, slidingWindow, 'windowSize');
 
       return force;
   }
@@ -4996,7 +5118,7 @@
           highValue = function(d, i) { return d.high; },
           lowValue = function(d, i) { return d.low; };
 
-      var kWindow = slidingWindow()
+      var kWindow = _slidingWindow()
           .windowSize(5)
           .accumulator(function(values) {
               var maxHigh = d3.max(values, highValue);
@@ -5004,7 +5126,7 @@
               return 100 * (closeValue(values[values.length - 1]) - minLow) / (maxHigh - minLow);
           });
 
-      var dWindow = slidingWindow()
+      var dWindow = _slidingWindow()
           .windowSize(3)
           .accumulator(function(values) {
               if (values[0] === undefined) {
@@ -5075,53 +5197,56 @@
 
   function relativeStrengthIndex$2() {
 
-      var openValue = function(d, i) { return d.open; },
-          closeValue = function(d, i) { return d.close; },
-          averageAccumulator = function(values) {
-              var alpha = 1 / values.length;
-              var result = values[0];
-              for (var i = 1, l = values.length; i < l; i++) {
-                  result = alpha * values[i] + (1 - alpha) * result;
-              }
+      var closeValue = function(d, i) { return d.close; },
+          wildersSmoothing = function(values, prevAvg) {
+              var result = prevAvg + ((values[values.length - 1] - prevAvg) / values.length);
               return result;
-          };
+          },
+          sum = function(a, b) { return a + b; },
+          prevClose,
+          prevDownChangesAvg,
+          prevUpChangesAvg;
 
-      var slidingWindow$$ = slidingWindow()
+      var slidingWindow = _slidingWindow()
           .windowSize(14)
           .accumulator(function(values) {
-              var downCloses = [];
-              var upCloses = [];
+              var closes = values.map(closeValue);
 
-              for (var i = 0, l = values.length; i < l; i++) {
-                  var value = values[i];
-
-                  var open = openValue(value);
-                  var close = closeValue(value);
-
-                  downCloses.push(open > close ? open - close : 0);
-                  upCloses.push(open < close ? close - open : 0);
+              if (!prevClose) {
+                  prevClose = closes[0];
+                  return undefined;
               }
 
-              var downClosesAvg = averageAccumulator(downCloses);
-              if (downClosesAvg === 0) {
-                  return 100;
-              }
+              var downChanges = [];
+              var upChanges = [];
 
-              var rs = averageAccumulator(upCloses) / downClosesAvg;
+              closes.forEach(function(close) {
+                  var downChange = prevClose > close ? prevClose - close : 0;
+                  var upChange = prevClose < close ? close - prevClose : 0;
+
+                  downChanges.push(downChange);
+                  upChanges.push(upChange);
+
+                  prevClose = close;
+              });
+
+              var downChangesAvg = prevDownChangesAvg ? wildersSmoothing(downChanges, prevDownChangesAvg) :
+                  downChanges.reduce(sum) / closes.length;
+
+              var upChangesAvg = prevUpChangesAvg ? wildersSmoothing(upChanges, prevUpChangesAvg) :
+                  upChanges.reduce(sum) / closes.length;
+
+              prevDownChangesAvg = downChangesAvg;
+              prevUpChangesAvg = upChangesAvg;
+
+              var rs = upChangesAvg / downChangesAvg;
               return 100 - (100 / (1 + rs));
           });
 
       var rsi = function(data) {
-          return slidingWindow$$(data);
+          return slidingWindow(data);
       };
 
-      rsi.openValue = function(x) {
-          if (!arguments.length) {
-              return openValue;
-          }
-          openValue = x;
-          return rsi;
-      };
       rsi.closeValue = function(x) {
           if (!arguments.length) {
               return closeValue;
@@ -5130,7 +5255,7 @@
           return rsi;
       };
 
-      d3.rebind(rsi, slidingWindow$$, 'windowSize');
+      d3.rebind(rsi, slidingWindow, 'windowSize');
 
       return rsi;
   }
@@ -5148,14 +5273,14 @@
       };
 
       d3.rebind(relativeStrengthIndex, mergedAlgorithm, 'merge');
-      d3.rebind(relativeStrengthIndex, rsi, 'windowSize', 'openValue', 'closeValue');
+      d3.rebind(relativeStrengthIndex, rsi, 'windowSize', 'closeValue');
 
       return relativeStrengthIndex;
   }
 
   function movingAverage() {
 
-      var ma = slidingWindow()
+      var ma = _slidingWindow()
               .accumulator(d3.mean)
               .value(function(d) { return d.close; });
 
@@ -5313,7 +5438,7 @@
 
       var multiplier = 2;
 
-      var slidingWindow$$ = slidingWindow()
+      var slidingWindow = _slidingWindow()
           .undefinedValue({
               upper: undefined,
               average: undefined,
@@ -5330,7 +5455,7 @@
           });
 
       var bollingerBands = function(data) {
-          return slidingWindow$$(data);
+          return slidingWindow(data);
       };
 
       bollingerBands.multiplier = function(x) {
@@ -5341,7 +5466,7 @@
           return bollingerBands;
       };
 
-      d3.rebind(bollingerBands, slidingWindow$$, 'windowSize', 'value');
+      d3.rebind(bollingerBands, slidingWindow, 'windowSize', 'value');
 
       return bollingerBands;
   }
@@ -5353,7 +5478,7 @@
       percentageChange: percentageChange,
       relativeStrengthIndex: relativeStrengthIndex$2,
       stochasticOscillator: stochasticOscillator$2,
-      slidingWindow: slidingWindow,
+      slidingWindow: _slidingWindow,
       undefinedInputAdapter: undefinedInputAdapter,
       forceIndex: forceIndex$2,
       envelope: envelope$2,

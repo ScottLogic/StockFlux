@@ -8778,13 +8778,19 @@ a.svg {
 }
 .favourite .top {
   height: 62px;
-  padding-left: 5px;
+  padding-left: 20px;
 }
 .favourite .bottom {
   height: 75px;
 }
-.favourite .star {
+.favourite .star,
+.favourite .tearable {
   float: right;
+}
+.favourite .tearable {
+  width: 16px;
+  margin-left: 4px;
+  cursor: default;
 }
 .favourite .row {
   padding-left: 10px;
@@ -8910,6 +8916,28 @@ star .light {
   margin-right: 0px;
   padding-right: 0px;
   width: 100%;
+}
+.sideScroll {
+  top: 52px;
+  bottom: 0px;
+  position: fixed;
+  padding-bottom: 30px;
+  padding-bottom: 0px;
+}
+.sideScroll .mCSB_scrollTools {
+  left: 2px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.mCSB_dragger_bar {
+  width: 10px !important;
+  background-color: #1A1F25 !important;
+}
+.mCSB_draggerRail {
+  display: none !important;
+}
+.mSCB_container {
+  margin-right: 0px !important;
 }
 .row {
   margin: 0px;
