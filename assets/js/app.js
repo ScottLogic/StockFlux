@@ -1600,7 +1600,7 @@
       return fan;
   }
 
-  function annotationLine() {
+  function lineAnnotation() {
 
       var xScale = d3.time.scale(),
           yScale = d3.scale.linear(),
@@ -1754,7 +1754,7 @@
   // overriding where the series value is stored on the node (__series__) and
   // forcing the node datum (__data__) to be the user supplied data (via mapping).
 
-  function _multi() {
+  function multiSeries() {
 
       var xScale = d3.time.scale(),
           yScale = d3.scale.linear(),
@@ -2001,11 +2001,11 @@
           .xValue(x)
           .yValue(y);
 
-      var horizontalLine = annotationLine()
+      var horizontalLine = lineAnnotation()
           .value(y)
           .label(function(d) { return d.y; });
 
-      var verticalLine = annotationLine()
+      var verticalLine = lineAnnotation()
           .orient('vertical')
           .value(x)
           .label(function(d) { return d.x; });
@@ -2046,7 +2046,7 @@
               crosshairElement.enter()
                   .style('pointer-events', 'none');
 
-              var multi = _multi()
+              var multi = multiSeries()
                   .series([horizontalLine, verticalLine, pointSeries])
                   .xScale(identityScale(xScale))
                   .yScale(identityScale(yScale))
@@ -3887,7 +3887,7 @@
       candlestick: candlestick,
       cycle: cycle,
       line: _line,
-      multi: _multi,
+      multi: multiSeries,
       ohlc: ohlc,
       point: point,
       stacked: stacked,
@@ -4137,7 +4137,7 @@
           bearBar = _bar(),
           bullBarTop = _bar(),
           bearBarTop = _bar(),
-          multi = _multi(),
+          multi = multiSeries(),
           decorate = noop;
 
       var elderRay = function(selection) {
@@ -4247,7 +4247,7 @@
 
       var envelope = function(selection) {
 
-          var multi = _multi()
+          var multi = multiSeries()
               .xScale(xScale)
               .yScale(yScale)
               .series([area, upperLine, lowerLine])
@@ -4316,10 +4316,10 @@
 
       var xScale = d3.time.scale(),
           yScale = d3.scale.linear(),
-          multiSeries = _multi(),
+          multiSeries$$ = multiSeries(),
           decorate = noop;
 
-      var annotations = annotationLine();
+      var annotations = lineAnnotation();
 
       var forceLine = _line()
           .yValue(function(d, i) {
@@ -4328,7 +4328,7 @@
 
       var force = function(selection) {
 
-          multiSeries.xScale(xScale)
+          multiSeries$$.xScale(xScale)
               .yScale(yScale)
               .series([annotations, forceLine])
               .mapping(function(series) {
@@ -4347,7 +4347,7 @@
                   decorate(g, data, index);
               });
 
-          selection.call(multiSeries);
+          selection.call(multiSeries$$);
       };
 
       force.xScale = function(x) {
@@ -4385,10 +4385,10 @@
           yScale = d3.scale.linear(),
           upperValue = 80,
           lowerValue = 20,
-          multi = _multi(),
+          multi = multiSeries(),
           decorate = noop;
 
-      var annotations = annotationLine();
+      var annotations = lineAnnotation();
       var dLine = _line()
           .yValue(function(d, i) {
               return d.stochastic.d;
@@ -4473,16 +4473,16 @@
           yScale = d3.scale.linear(),
           upperValue = 70,
           lowerValue = 30,
-          multiSeries = _multi(),
+          multiSeries$$ = multiSeries(),
           decorate = noop;
 
-      var annotations = annotationLine();
+      var annotations = lineAnnotation();
       var rsiLine = _line()
           .yValue(function(d, i) { return d.rsi; });
 
       var rsi = function(selection) {
 
-          multiSeries.xScale(xScale)
+          multiSeries$$.xScale(xScale)
               .yScale(yScale)
               .series([rsiLine, annotations])
               .mapping(function(series) {
@@ -4503,7 +4503,7 @@
                   decorate(g, data, index);
               });
 
-          selection.call(multiSeries);
+          selection.call(multiSeries$$);
       };
 
       rsi.xScale = function(x) {
@@ -4556,7 +4556,7 @@
           macdLine = _line(),
           signalLine = _line(),
           divergenceBar = _bar(),
-          multiSeries = _multi(),
+          multiSeries$$ = multiSeries(),
           decorate = noop;
 
       var macd = function(selection) {
@@ -4570,7 +4570,7 @@
           divergenceBar.xValue(xValue)
               .yValue(function(d, i) { return root(d).divergence; });
 
-          multiSeries.xScale(xScale)
+          multiSeries$$.xScale(xScale)
               .yScale(yScale)
               .series([divergenceBar, macdLine, signalLine])
               .decorate(function(g, data, index) {
@@ -4581,7 +4581,7 @@
                   decorate(g, data, index);
               });
 
-          selection.call(multiSeries);
+          selection.call(multiSeries$$);
       };
 
       macd.xScale = function(x) {
@@ -4657,7 +4657,7 @@
 
       var bollingerBands = function(selection) {
 
-          var multi = _multi()
+          var multi = multiSeries()
               .xScale(xScale)
               .yScale(yScale)
               .series([area, upperLine, lowerLine, averageLine])
@@ -6662,7 +6662,7 @@
               });
           });
 
-      var multi = _multi()
+      var multi = multiSeries()
           .series([line, point$$])
           .mapping(function(series) {
               switch (series) {
@@ -7277,7 +7277,7 @@
   var annotation = {
       band: band,
       gridline: gridline,
-      line: annotationLine
+      line: lineAnnotation
   };
 
   var cssLayout = (function (module) {
