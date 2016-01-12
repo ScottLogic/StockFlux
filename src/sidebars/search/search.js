@@ -8,7 +8,7 @@
                 self.query = '';
                 self.stocks = [];
 
-                self.submit = function() {
+                function submit() {
                     self.stocks = [];
                     var favourites = storeService.get();
                     if (self.query) {
@@ -57,7 +57,7 @@
                         return self.query;
                     },
                     function() {
-                        self.submit();
+                        submit();
                     });
 
                 $scope.$on('updateFavourites', function(event, data) {
