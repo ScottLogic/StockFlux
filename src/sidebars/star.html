@@ -1,1 +1,1 @@
-﻿<div class="glyphicon glyphicon-star {{starClasses(stock)}}" ng-click="starClick(stock)"></div>
+﻿<div class="glyphicon glyphicon-star {{starClasses(stock)}}" ng-click="starClick(stock); $event.stopPropagation();"></div>
