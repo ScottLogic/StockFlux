@@ -10,6 +10,10 @@
   g {
     fill: @middle-background;
     stroke: @chart-teal !important;
+
+    .point {
+      fill: @chart-teal !important;
+    }
   }
 }
 
@@ -19,4 +23,8 @@
 
 .darkens:hover .minichart g, .dark .minichart g {
   fill: @dark-background !important;
+
+  .point {
+    fill: @chart-teal !important;
+  }
 }
