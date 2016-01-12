@@ -4,6 +4,7 @@
         "moment":  true,
         "fin": true,
         "window": true,
-        "jQuery": true
+        "jQuery": true,
+        "sc": true
     }
 }

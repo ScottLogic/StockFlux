@@ -152,6 +152,14 @@ module.exports = function(grunt) {
                 cwd: 'src/',
                 src: ['**/*.svg', '**/*.ico'],
                 dest: 'public'
+            },
+            fonts: {
+                files: [{
+                    expand: true,
+                    cwd: 'node_modules/d3fc-showcase/node_modules/bootstrap/dist/fonts/',
+                    src: ['**'],
+                    dest: 'public/assets/fonts'
+                }]
             }
         }
     });
@@ -173,7 +181,7 @@ module.exports = function(grunt) {
         var callback = this.async();
         grunt.util.spawn({
             grunt: true,
-            args: ['build'],
+            args: ['build:module'],
             opts: {
                 cwd: 'node_modules/d3fc-showcase/'
             }
