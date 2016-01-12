@@ -67,16 +67,5 @@
                     }
                 });
             }
-        ])
-        .directive('search', [function() {
-            return {
-                restrict: 'E',
-                templateUrl: 'sidebars/search/search-preview.html',
-                scope: {
-                    stock: '=',
-                    selection: '=',
-                    select: '&'
-                }
-            }
-        }]);
+        ]);
 }());
