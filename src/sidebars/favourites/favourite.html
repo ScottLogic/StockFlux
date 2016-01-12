@@ -8,7 +8,9 @@
         <div class="code">{{stock.code | uppercase}}</div>
     </div>
     <div class="bottom">
-        <svg class="minichart" id="{{stock.code}}chart" ng-init="renderChart(stock)"></svg>
+        <div ng-controller="MinichartCtrl as minichartCtrl">
+            <minichart stock="stock" render-chart="minichartCtrl.renderChart(stock)"></minichart>
+        </div>
         <div class="details">
             <div class="price">{{stock.price | number:2 }}</div>
             <div class="delta">{{stock.delta < 0 ? '' : '+'}}{{stock.delta | number:2 }}</div>
