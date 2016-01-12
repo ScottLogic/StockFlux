@@ -6,7 +6,6 @@
             function(storeService, quandlService, $timeout, $scope) {
                 var self = this;
                 self.stocks = [];
-
                 var icons = {
                     up: 'glyphicon-triangle-top',
                     down: 'glyphicon-triangle-bottom'
@@ -119,18 +118,5 @@
                 $scope.$on('updateFavourites', function(event, data) {
                     self.update();
                 })
-            }])
-        .directive('favourite', [function() {
-            return {
-                restrict: 'E',
-                templateUrl: 'sidebars/favourites/favourite-preview.html',
-                scope: {
-                    stock: '=',
-                    selection: '=',
-                    select: '&',
-                    icon: '&',
-                    renderChart: '&'
-                }
-            }
-        }]);
+            }]);
 }());
