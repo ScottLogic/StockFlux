@@ -5,7 +5,7 @@
         .directive('star', [function() {
             return {
                 restrict: 'E',
-                templateUrl: 'sidebars/star.html',
+                templateUrl: 'sidebars/star/star.html',
                 scope: {
                     starClasses: '&',
                     starClick: '&',
