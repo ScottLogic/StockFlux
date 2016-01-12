@@ -1,0 +1,22 @@
+﻿minichart {
+  position: fixed;
+}
+
+.minichart {
+  background-image: linear-gradient(to bottom, @chart-fade, @middle-background 92%);
+  width: @chart-width;
+  height: @chart-height;
+
+  g {
+    fill: @middle-background;
+    stroke: @chart-teal !important;
+  }
+}
+
+.darkens:hover .minichart, .dark .minichart {
+  background-image: linear-gradient(to bottom, @chart-fade, @dark-background 92%);
+}
+
+.darkens:hover .minichart g, .dark .minichart g {
+  fill: @dark-background !important;
+}

@@ -3,9 +3,7 @@
 @favourite-padding-top: 5px;
 @favourite-padding-right: 5px;
 @favourite-padding-bottom: 10px;
-@chart-width: 220px;
 @top-height: 62px;
-@chart-height: 75px;
 @details-width: (@expanded-width - @favourite-padding-left - @favourite-padding-right - @chart-width);
 @total-height: (@favourite-height + @splitter-height);
 
@@ -92,27 +90,8 @@
   }
 }
 
-.minichart {
-  background-image: linear-gradient(to bottom, @chart-fade, @middle-background 92%);
-  width: @chart-width;
-  height: @chart-height;
-
-  g {
-    fill: @middle-background;
-    stroke: @chart-teal !important;
-  }
-}
-
 .dark {
   background: @dark-background;
-}
-
-.darkens:hover .minichart, .dark .minichart {
-  background-image: linear-gradient(to bottom, @chart-fade, @dark-background 92%);
-}
-
-.darkens:hover .minichart g, .dark .minichart g {
-  fill: @dark-background !important;
 }
 
 .glyphicon-triangle-bottom:before, .glyphicon-triangle-top:before {
