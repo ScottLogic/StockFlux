@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML>
+﻿﻿﻿<!DOCTYPE HTML>
 <html lang="en" ng-app="OpenFinD3FC">
 <head>
     <meta charset="utf-8">
@@ -56,10 +56,18 @@
                 <div class="main-content">
                     <showcase selection="mainCtrl.selection"></showcase>
                 </div>
-                <div id="toolbar" style="height: 50px">
-                    <a ng-href="#/" draggable="false" class="svg logo">
-                        <img src="assets/svg/logo_small.svg" style="vertical-align: initial;" />
+                <div id="toolbar">
+                    <a ng-href="#/" id="logo" class="logo">
+                        <img src="assets/svg/logo_small.svg"/>
                     </a>
+                    <a id="minimizeWindow" class="min-button" onclick="fin.desktop.Window.getCurrent().minimize();">
+                        <img src="assets/svg/minimize.svg"/>
+                    </a>
+                    <a id="closeWindow" class="close-button"
+                       onclick="fin.desktop.Window.getCurrent().close();">
+                        <img src="assets/svg/close.svg"/>
+                    </a>
+                    <div class="drag"></div>
                 </div>
             </div>
         </div>
