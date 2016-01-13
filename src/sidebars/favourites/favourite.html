@@ -1,4 +1,5 @@
-﻿<div class="favourite darkens {{selection !== stock.code ? '' : 'dark'}}" ng-click="select(stock)" draggable="false">
+﻿<div class="favourite darkens {{selection !== stock.code ? '' : 'dark'}}" ng-click="select(stock)" draggable="false"
+     ng-init="(selection == '') && select(stock);">
     <div class="top">
         <img class="tearable" src="assets/svg/drag_handle.svg" />
         <div class="star" ng-controller="StarCtrl as starCtrl">
