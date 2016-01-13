@@ -4,7 +4,6 @@
 @favourite-padding-right: 5px;
 @favourite-padding-bottom: 10px;
 @top-height: 62px;
-@total-height: (@favourite-height + @splitter-height);
 
 .favourites {
   float: right;
@@ -14,6 +13,11 @@
   cursor: pointer;
 }
 
+.favourites .sidetab:first-of-type{
+  border-top: @splitter-style;
+}
+
+
 .favourite {
   padding-top: @favourite-padding-top;
   padding-bottom: @favourite-padding-bottom;
@@ -21,6 +25,7 @@
   padding-left: @favourite-padding-left;
   cursor: pointer;
   height: @favourite-height;
+  border-bottom: @splitter-style;
 
   .top {
     height: @top-height;
