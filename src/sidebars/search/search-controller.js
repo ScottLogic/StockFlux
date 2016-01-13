@@ -67,8 +67,8 @@
                             // There are no search results, so remove the favourite.
                             self.stocks.splice(index, 1);
                         } else {
-                            // Un-favourite the stock, but don't remove it from the search results.
-                            self.stocks[index].favourite = false;
+                            // Update the stock's favourite
+                            self.stocks[index].favourite = data.favourite;
                         }
                     }
                 });
