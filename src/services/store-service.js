@@ -50,7 +50,7 @@
             function remove(stock) {
                 var stockName = stock.code;
                 var stockOrder = favouriteStocks[stockName];
-                if (stockOrder) {
+                if (!isNaN(stockOrder)) {
                     delete favouriteStocks[stockName];
                     var keys = Object.keys(favouriteStocks),
                         newLength = keys.length;
