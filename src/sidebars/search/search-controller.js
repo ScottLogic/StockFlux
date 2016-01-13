@@ -62,8 +62,14 @@
 
                 $scope.$on('updateFavourites', function(event, data) {
                     var index = self.stocks.map(function(stock) { return stock.code; }).indexOf(data.code);
-                    if (index > -1 && !self.query) {
-                        self.stocks.splice(index, 1);
+                    if (index > -1) {
+                        if (!self.query) {
+                            // There are no search results, so remove the favourite.
+                            self.stocks.splice(index, 1);
+                        } else {
+                            // Un-favourite the stock, but don't remove it from the search results.
+                            self.stocks[index].favourite = false;
+                        }
                     }
                 });
             }
