@@ -4,7 +4,7 @@
 @favourite-padding-right: 5px;
 @favourite-padding-bottom: 10px;
 @top-height: 62px;
-@total-height: (@favourite-height + @splitter-height);
+@total-height: (@favourite-height);
 
 .favourites {
   float: right;
@@ -21,6 +21,7 @@
   padding-left: @favourite-padding-left;
   cursor: pointer;
   height: @favourite-height;
+  border-bottom: 1px solid @icon-colour;
 
   .top {
     height: @top-height;
