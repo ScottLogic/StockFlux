@@ -4,7 +4,6 @@
 @favourite-padding-right: 5px;
 @favourite-padding-bottom: 10px;
 @top-height: 62px;
-@details-width: (@expanded-width - @favourite-padding-left - @favourite-padding-right - @chart-width);
 @total-height: (@favourite-height + @splitter-height);
 
 .favourites {
@@ -54,11 +53,7 @@
 
   .details {
     float: right;
-
-    * {
-      width: @details-width;
-      text-align: right;
-    }
+    text-align: right;
   }
 
   .code {
