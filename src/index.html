@@ -28,9 +28,15 @@
                     </div>
                 </div>
                 <div id="searchScroll" class="sideScroll">
-                    <div class="sidetab" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in searchCtrl.stocks"
-                         ng-show="sidebarCtrl.showSearches()" ng-mouseenter="stock.isHovered = true;" ng-mouseleave="stock.isHovered = false;">
-                        <search stock="stock" selection="mainCtrl.selection" select="mainCtrl.select(stock)"></search>
+                    <div class="sidetab" ng-show="sidebarCtrl.showSearches()">
+                        <div ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in searchCtrl.stocks"
+                             ng-mouseenter="stock.isHovered = true;" ng-mouseleave="stock.isHovered = false;">
+                            <search stock="stock" selection="mainCtrl.selection" select="mainCtrl.select(stock)"></search>
+                        </div>
+                        <div class="no-results" ng-show="searchCtrl.noResults">
+                            Oops!<br>
+                            Looks like no matches were found.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -56,14 +62,14 @@
                 </div>
                 <div id="toolbar">
                     <a ng-href="#/" id="logo" class="logo">
-                        <img src="assets/svg/logo_small.svg"/>
+                        <img src="assets/svg/logo_small.svg" />
                     </a>
                     <a id="minimizeWindow" class="min-button" onclick="fin.desktop.Window.getCurrent().minimize();">
-                        <img src="assets/svg/minimize.svg"/>
+                        <img src="assets/svg/minimize.svg" />
                     </a>
                     <a id="closeWindow" class="close-button"
                        onclick="fin.desktop.Window.getCurrent().close();">
-                        <img src="assets/svg/close.svg"/>
+                        <img src="assets/svg/close.svg" />
                     </a>
                     <div class="drag"></div>
                 </div>
