@@ -1,4 +1,4 @@
-﻿@search-result-height: 70px;
+﻿@search-result-height: 60px;
 @star-height: 16px;
 
 .search {
@@ -21,22 +21,24 @@
 
   .name {
     font-size: 12px;
+    font-weight: @font-thin;
   }
 
   .code {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: @font-medium;
+    line-height: 1.4;
   }
 
   .details {
     position: relative;
     float: left;
     padding-left: 20px;
-    padding-top: 10px;
+    padding-top: 8px;
   }
 
   .star {
-    padding-right: 15px;
+    padding-right: 12px;
     padding-top: ((@search-result-height - @star-height) / 2);
     float: right;
   }
@@ -45,7 +47,7 @@
 .input-group {
   position: relative;
   float: left;
-  width: 254px;
+  width: 184px;
   margin-top: 5px;
 }
 
