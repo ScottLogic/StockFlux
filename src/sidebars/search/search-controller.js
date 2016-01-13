@@ -6,10 +6,12 @@
             function($scope, quandlService, storeService) {
                 var self = this;
                 self.query = '';
+                self.noResults = false;
                 self.stocks = [];
 
                 function submit() {
                     self.stocks = [];
+                    self.noResults = false;
                     var favourites = storeService.get();
                     if (self.query) {
                         var length = favourites.length;
@@ -38,6 +40,9 @@
                             if (!stockAdded) {
                                 self.stocks.push(stock);
                             }
+                        },
+                        function() {
+                            self.noResults = true;
                         });
                     } else {
                         favourites.map(function(favourite) {
