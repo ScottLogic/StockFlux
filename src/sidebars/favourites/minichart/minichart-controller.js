@@ -51,10 +51,10 @@
                                 .yScale(yScale)
                                 .mapping(function(series) {
                                     switch (series) {
-                                        case point:
-                                            return pointData;
-                                        default:
-                                            return data;
+                                    case point:
+                                        return pointData;
+                                    default:
+                                        return data;
                                     }
                                 });
 
