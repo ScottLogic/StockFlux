@@ -17,6 +17,20 @@
 <body ng-cloak>
     <div class="container-fluid main" ng-controller="MainCtrl as mainCtrl">
         <div class="sidebars" ng-controller="SidebarCtrl as sidebarCtrl">
+            <div class="favourites" ng-controller="FavouritesCtrl as favouritesCtrl" ng-click="sidebarCtrl.favouritesClick()"
+                 ng-style="{'width': sidebarCtrl.favouritesWidth()}">
+                <div class="row sidetab-top">
+                    <div class="glyphicon glyphicon-star top-icon"></div>
+                </div>
+                <div id="favScroll" class="sideScroll">
+                    <div class="sidetab" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in favouritesCtrl.stocks"
+                         ng-show="sidebarCtrl.showFavourites()">
+                        <favourite selection="mainCtrl.selection" select="mainCtrl.select(stock)"
+                                   stock="stock" icon="favouritesCtrl.icon(stock)" render-chart="favouritesCtrl.renderChart(stock)">
+                        </favourite>
+                    </div>
+                </div>
+            </div>
             <div class="search" ng-controller="SearchCtrl as searchCtrl" ng-click="sidebarCtrl.searchClick()" ng-style="{'width': sidebarCtrl.searchWidth()}">
                 <div class="row sidetab-top">
                     <div class="glyphicon glyphicon-search top-icon"></div>
@@ -37,20 +51,6 @@
                             Oops!<br>
                             Looks like no matches were found.
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="favourites" ng-controller="FavouritesCtrl as favouritesCtrl" ng-click="sidebarCtrl.favouritesClick()"
-                 ng-style="{'width': sidebarCtrl.favouritesWidth()}">
-                <div class="row sidetab-top">
-                    <div class="glyphicon glyphicon-star top-icon"></div>
-                </div>
-                <div id="favScroll" class="sideScroll">
-                    <div class="sidetab" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in favouritesCtrl.stocks"
-                         ng-show="sidebarCtrl.showFavourites()">
-                        <favourite selection="mainCtrl.selection" select="mainCtrl.select(stock)"
-                                   stock="stock" icon="favouritesCtrl.icon(stock)" render-chart="favouritesCtrl.renderChart(stock)">
-                        </favourite>
                     </div>
                 </div>
             </div>
