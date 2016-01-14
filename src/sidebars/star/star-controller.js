@@ -6,11 +6,19 @@
             var self = this;
             self.check = false;
 
-            self.classes = function(stock) {
+            var starUrls = {
+                off: 'favourite_OFF',
+                on: 'favourite_ON',
+                hover: 'favourite_HOVER'
+            };
+
+            self.favouriteUrl = function(stock) {
                 if (stock.favourite) {
-                    return 'light';
+                    return starUrls.on;
+                } else if (stock.isHovered) {
+                    return starUrls.hover;
                 } else {
-                    return '';
+                    return starUrls.off;
                 }
             };
 
