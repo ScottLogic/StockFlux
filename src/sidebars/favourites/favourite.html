@@ -3,7 +3,7 @@
     <div class="top">
         <img class="tearable" src="assets/svg/drag_handle.svg" />
         <div class="star" ng-controller="StarCtrl as starCtrl">
-            <star ng-init="starCtrl.check = true" star-classes="starCtrl.classes(stock)" star-click="starCtrl.click(stock)"></star>
+            <star ng-init="starCtrl.check = true" favourite-url="starCtrl.favouriteUrl(stock)" star-click="starCtrl.click(stock)"></star>
         </div>
         <div class="name">{{stock.name | truncate}}</div>
         <div class="code">{{stock.code | uppercase}}</div>

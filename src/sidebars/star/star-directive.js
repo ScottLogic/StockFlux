@@ -7,10 +7,8 @@
                 restrict: 'E',
                 templateUrl: 'sidebars/star/star.html',
                 scope: {
-                    starClasses: '&',
                     starClick: '&',
-                    check: '=',
-                    selection: '='
+                    favouriteUrl: '&'
                 }
             };
         }]);
