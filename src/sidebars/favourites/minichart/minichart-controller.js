@@ -1,4 +1,4 @@
-﻿(function() {
+(function() {
     'use strict';
 
     angular.module('openfin.minichart', ['openfin.quandl'])
@@ -9,17 +9,17 @@
             self.renderChart = function(stock) {
                 $timeout(
                     function() {
-                        quandlService.getData(stock.code, function(stock) {
-                            var extent = fc.util.innerDimensions(document.getElementById(stock.code + 'chart'));
+                        quandlService.getData(stock.code, function(result) {
+                            var extent = fc.util.innerDimensions(document.getElementById(result.code + 'chart'));
                             var width = extent.width,
                                 height = extent.height;
-                            var data = stock.data;
+                            var data = result.data;
                             data = data.map(function(d) {
                                 var date = moment(d.date);
-                                d.date = date.toDate();;
+                                d.date = date.toDate();
                                 return d;
                             });
-                            var container = d3.select('#' + stock.code + 'chart')
+                            var container = d3.select('#' + result.code + 'chart')
                                 .insert('svg', 'div')
                                 .attr('width', width)
                                 .attr('height', height);
@@ -50,9 +50,9 @@
                             container.append('g')
                                 .datum(data)
                                 .call(multi);
-                        })
+                        });
                     }
                 );
             };
-        }])
+        }]);
 }());

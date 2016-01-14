@@ -68,7 +68,7 @@
             }
 
             function getMeta(stockCode, cb) {
-                stockMetadata().get({ stock_code: stockCode }, function(result) {
+                stockMetadata().get({ 'stock_code': stockCode }, function(result) {
                     processDataset(result.dataset, stockCode, cb);
                 });
             }

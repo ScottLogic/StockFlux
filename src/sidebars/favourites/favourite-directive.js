@@ -1,4 +1,4 @@
-﻿(function() {
+(function() {
     'use strict';
 
     angular.module('openfin.favourites')
@@ -13,6 +13,6 @@
                     icon: '&',
                     renderChart: '&'
                 }
-            }
+            };
         }]);
 }());

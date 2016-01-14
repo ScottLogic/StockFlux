@@ -19,8 +19,8 @@
                             var i;
 
                             // removing stocks found with old query
-                            self.stocks = self.stocks.filter(function(stock, i) {
-                                return stock.query === self.query;
+                            self.stocks = self.stocks.filter(function(result, j) {
+                                return result.query === self.query;
                             });
 
                             // not adding old stocks
@@ -52,7 +52,7 @@
                             });
                         });
                     }
-                };
+                }
 
                 $scope.$watch(
                     // Can't watch `self.query` as the subscribers to this controller
