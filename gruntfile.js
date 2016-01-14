@@ -122,6 +122,23 @@ module.exports = function(grunt) {
         },
 
         copy: {
+            modulescss: {
+                expand: true,
+                cwd: 'node_modules/',
+                src: ['d3fc/dist/d3fc.min.css'],
+                dest: 'public/assets/css/',
+                flatten: true
+            },
+            modulesjs: {
+                expand: true,
+                cwd: 'node_modules/',
+                src: ['jquery/dist/jquery.min.js', 'angular/angular.min.js', 'angular-resource/angular-resource.min.js',
+                    'moment/min/moment.min.js', 'angular-animate/angular-animate.min.js',
+                    'angular-storage/dist/angular-storage.min.js', 'd3fc/dist/d3fc.bundle.min.js',
+                    'bootstrap/dist/js/bootstrap.min.js'],
+                dest: 'public/assets/js/',
+                flatten: true
+            },
             showcase: {
                 expand: true,
                 cwd: 'node_modules/d3fc-showcase/dist/',
@@ -139,6 +156,12 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: 'src/',
                 src: ['**/*.html'],
+                dest: 'public'
+            },
+            css: {
+                expand: true,
+                cwd: 'src/',
+                src: ['**/*.css', '**/*.css'],
                 dest: 'public'
             },
             js: {
