@@ -28,6 +28,14 @@
                                 return;
                             }
 
+                            // Due to the asynchronicity of the search, if multiple searches
+                            // are fired off in a small amount of time, with an intermediate one
+                            // returning no results it's possible to have both the noResults flag
+                            // set to true, while some stocks have been retrieved by a later search.
+                            //
+                            // Here we re-set the flag to keep it up-to-date.
+                            self.noResults = false;
+
                             var stockAdded = false;
                             for (i = 0; i < length; i++) {
                                 if (stock.code === favourites[i]) {
