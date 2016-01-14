@@ -1,4 +1,5 @@
 ﻿@search-result-height: 60px;
+@search-splitter-style: 1px solid #323A48;
 
 .search {
   float: left;
@@ -12,13 +13,13 @@
 
 
 .search search:first-of-type {
-  border-top: @splitter-style;
+  border-top: @search-splitter-style;
 }
 
 .search-result {
   height: @search-result-height;
   cursor: pointer;
-  border-bottom: @splitter-style;
+  border-bottom: @search-splitter-style;
 
   .name {
     font-size: 12px;
