@@ -1,4 +1,4 @@
-﻿(function() {
+(function() {
     'use strict';
 
     angular.module('openfin.minichart')
@@ -11,5 +11,5 @@
                     stock: '='
                 }
             };
-        }])
+        }]);
 }());

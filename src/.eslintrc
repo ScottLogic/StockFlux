@@ -5,6 +5,10 @@
         "fin": true,
         "window": true,
         "jQuery": true,
-        "sc": true
+        "sc": true,
+        "d3": true,
+        "fc": true,
+        "document": true,
+        "confirm": true
     }
 }

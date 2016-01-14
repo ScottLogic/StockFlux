@@ -43,7 +43,7 @@
         "dot-location": 0,
         "eqeqeq": [2, "allow-null"],
         "guard-for-in": 2,
-        "no-alert": 2,
+        "no-alert": 0, //we are using alerts for removing favourites for now
         "no-caller": 2,
         "no-div-regex": 2,
         "no-else-return": 0,

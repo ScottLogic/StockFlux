@@ -1,4 +1,4 @@
-﻿(function() {
+(function() {
     'use strict';
 
     angular.module('openfin.favourites', ['openfin.store', 'openfin.quandl'])
@@ -59,13 +59,13 @@
                             }
                         });
                     }
-                })
+                });
             };
 
             self.update();
 
             $scope.$on('updateFavourites', function(event, data) {
                 self.update();
-            })
+            });
         }]);
 }());
