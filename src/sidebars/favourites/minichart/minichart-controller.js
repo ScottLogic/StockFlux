@@ -42,10 +42,21 @@
 
                             var line = fc.series.line();
 
+                            var pointData = [].concat(data.slice(0)[0]);
+                            var point = fc.series.point();
+
                             var multi = fc.series.multi()
-                                .series([area, line])
+                                .series([area, line, point])
                                 .xScale(xScale)
-                                .yScale(yScale);
+                                .yScale(yScale)
+                                .mapping(function(series) {
+                                    switch (series) {
+                                        case point:
+                                            return pointData;
+                                        default:
+                                            return data;
+                                    }
+                                });
 
                             container.append('g')
                                 .datum(data)
