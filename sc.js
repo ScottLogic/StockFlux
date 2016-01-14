@@ -2053,6 +2053,7 @@
 
         function quandlAdaptor(cb) {
             var startDate = d3.time.second.offset(historicFeed.end(), -candles * granularity);
+            historicFeed.apiKey('kM9Z9aEULVDD7svZ4A8B');
             historicFeed.start(startDate)
                 .collapse(allowedPeriods.get(granularity));
             historicFeed(cb);

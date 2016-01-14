@@ -8709,7 +8709,7 @@ fieldset[disabled] .btn-danger.active {
 #toolbar {
   height: 50px;
   right: 65px;
-  left: 350px;
+  left: 280px;
   position: absolute;
 }
 #toolbar .drag {
@@ -8754,7 +8754,7 @@ fieldset[disabled] .btn-danger.active {
   opacity: 0;
 }
 .sidebars {
-  width: 350px !important;
+  width: 280px !important;
   height: 100%;
   float: left;
 }
@@ -8770,13 +8770,6 @@ fieldset[disabled] .btn-danger.active {
   padding-right: 15px;
   padding-top: 17px;
 }
-.splitter {
-  height: 0px;
-  color: #AEB1B5;
-  margin: 0px;
-  opacity: 0.5;
-  border-top-width: 1px;
-}
 .search {
   float: left;
   height: 100%;
@@ -8784,33 +8777,45 @@ fieldset[disabled] .btn-danger.active {
   transition: all 0.2s linear 0.1s;
   cursor: pointer;
 }
+.search search:first-of-type {
+  border-top: 1px solid #AEB1B5;
+}
 .search-result {
-  height: 70px;
+  height: 60px;
   cursor: pointer;
+  border-bottom: 1px solid #AEB1B5;
 }
 .search-result .name {
   font-size: 12px;
+  font-weight: 100;
 }
 .search-result .code {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
+  line-height: 1.4;
 }
 .search-result .details {
   position: relative;
   float: left;
   padding-left: 20px;
-  padding-top: 10px;
+  padding-top: 8px;
 }
 .search-result .star {
-  padding-right: 15px;
-  padding-top: 27px;
+  padding-right: 12px;
+  padding-top: 22px;
   float: right;
 }
 .input-group {
   position: relative;
   float: left;
-  width: 254px;
+  width: 184px;
   margin-top: 5px;
+}
+.no-results {
+  color: #AEB1B5;
+  font-size: 14px;
+  font-weight: 400;
+  padding-left: 12px;
 }
 .favourites {
   float: right;
@@ -8819,20 +8824,23 @@ fieldset[disabled] .btn-danger.active {
   transition: all 0.2s linear 0.1s;
   cursor: pointer;
 }
+.favourites .sidetab:first-of-type {
+  border-top: 1px solid #AEB1B5;
+}
 .favourite {
   padding-top: 5px;
   padding-bottom: 10px;
-  padding-right: 5px;
+  padding-right: 4px;
   padding-left: 0px;
   cursor: pointer;
-  height: 150px;
+  height: 101px;
+  border-bottom: 1px solid #AEB1B5;
 }
 .favourite .top {
-  height: 62px;
-  padding-left: 20px;
+  padding-left: 10px;
 }
 .favourite .bottom {
-  height: 75px;
+  padding-top: 1px;
 }
 .favourite .star,
 .favourite .tearable {
@@ -8840,47 +8848,44 @@ fieldset[disabled] .btn-danger.active {
 }
 .favourite .tearable {
   width: 16px;
-  margin-left: 4px;
+  margin-left: 5px;
   cursor: default;
 }
-.favourite .row {
-  padding-left: 10px;
-}
 .favourite .name {
-  padding-top: 1px;
   font-size: 12px;
   font-weight: 100;
+  line-height: 1.4;
 }
 .favourite .details {
   float: right;
-}
-.favourite .details * {
-  width: 75px;
   text-align: right;
+  padding-top: 1px;
 }
-.favourite .code {
-  font-size: 24px;
+.favourite .details .price {
+  font-size: 18px;
   font-weight: 500;
   line-height: 1.0;
 }
-.favourite .price {
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 0.8;
-}
-.favourite .delta {
-  padding-top: 18px;
+.favourite .details .delta {
+  padding-top: 4px;
   line-height: 1.0;
+  font-size: 14px;
 }
-.favourite .delta,
-.favourite .percentage {
-  font-size: 15px;
+.favourite .details .delta,
+.favourite .details .percentage {
   font-weight: 300;
   padding-right: 1px;
 }
-.favourite .percentage {
+.favourite .details .percentage {
   display: inherit;
-  padding-top: 4px;
+  font-size: 12px;
+  line-height: 1.2;
+}
+.favourite .code {
+  padding-top: 1px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.0;
 }
 .dark {
   background: #1A1F25;
@@ -8888,15 +8893,16 @@ fieldset[disabled] .btn-danger.active {
 .glyphicon-triangle-bottom:before,
 .glyphicon-triangle-top:before {
   margin-right: 3px;
-  vertical-align: middle;
+  vertical-align: bottom;
 }
 minichart {
   position: absolute;
+  padding-top: 10px;
 }
 .minichart {
   background-image: linear-gradient(to bottom, #427075, #28313D 92%);
-  width: 220px;
-  height: 75px;
+  width: 155px;
+  height: 40px;
 }
 .minichart g {
   fill: #28313D;
@@ -8983,7 +8989,11 @@ star .light {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.sideScroll:hover .mCSB_dragger_bar {
+  opacity: 1;
+}
 .mCSB_dragger_bar {
+  opacity: 0;
   width: 10px !important;
   background-color: #1A1F25 !important;
 }
@@ -9019,7 +9029,7 @@ body {
   bottom: 10px;
   position: absolute;
   top: 50px;
-  left: 350px;
+  left: 280px;
   right: 15px;
   height: auto;
 }
@@ -9029,6 +9039,6 @@ body {
   border: none;
 }
 .right-content {
-  padding-left: 350px;
+  padding-left: 280px;
 }
 /*# sourceMappingURL=style.css.map */

@@ -4,7 +4,7 @@
     angular.module('openfin.sidebar', [])
         .controller('SidebarCtrl', ['$scope', function($scope) {
             var self = this,
-                totalWidth = 350,
+                totalWidth = 280,
                 smallBarWidth = 50,
                 largeBarWidth = totalWidth - smallBarWidth,
                 searchWidth = smallBarWidth,
