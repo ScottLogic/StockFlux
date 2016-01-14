@@ -1,11 +1,9 @@
-﻿@favourite-height: 150px;
+﻿@favourite-height: 101px; // the 1 is for the border
 @favourite-padding-left: 0px;
 @favourite-padding-top: 5px;
-@favourite-padding-right: 5px;
+@favourite-padding-right: 4px; // not sure why this isn't 5
 @favourite-padding-bottom: 10px;
-@top-height: 62px;
-@details-width: (@expanded-width - @favourite-padding-left - @favourite-padding-right - @chart-width);
-@total-height: (@favourite-height + @splitter-height);
+@top-height: 30px;
 
 .favourites {
   float: right;
@@ -15,6 +13,11 @@
   cursor: pointer;
 }
 
+.favourites .sidetab:first-of-type {
+  border-top: @splitter-style;
+}
+
+
 .favourite {
   padding-top: @favourite-padding-top;
   padding-bottom: @favourite-padding-bottom;
@@ -22,14 +25,14 @@
   padding-left: @favourite-padding-left;
   cursor: pointer;
   height: @favourite-height;
+  border-bottom: @splitter-style;
 
   .top {
-    height: @top-height;
-    padding-left: 20px;
+    padding-left: 10px;
   }
 
   .bottom {
-    height: @chart-height;
+    padding-top: 1px;
   }
 
   .star, .tearable {
@@ -38,55 +41,50 @@
 
   .tearable {
     width: 16px;
-    margin-left: 4px;
+    margin-left: 5px;
     cursor: default;
   }
 
-  .row {
-    padding-left: 10px;
-  }
-
   .name {
-    padding-top: 1px;
     font-size: 12px;
     font-weight: @font-thin;
+    line-height: 1.4;
   }
 
   .details {
     float: right;
+    text-align: right;
+    padding-top: 1px;
 
-    * {
-      width: @details-width;
-      text-align: right;
+    .price {
+      font-size: 18px;
+      font-weight: @font-medium;
+      line-height: 1.0;
+    }
+
+    .delta {
+      padding-top: 4px;
+      line-height: 1.0;
+      font-size: 14px;
+    }
+
+    .delta, .percentage {
+      font-weight: @font-light;
+      padding-right: 1px;
+    }
+
+    .percentage {
+      display: inherit;
+      font-size: 12px;
+      line-height: 1.2;
     }
   }
 
   .code {
-    font-size: 24px;
-    font-weight: @font-medium;
-    line-height: 1.0;
-  }
-
-  .price {
+    padding-top: 1px;
     font-size: 20px;
     font-weight: @font-medium;
-    line-height: 0.8;
-  }
-
-  .delta {
-    padding-top: 18px;
     line-height: 1.0;
-  }
-
-  .delta, .percentage {
-    font-size: 15px;
-    font-weight: @font-light;
-    padding-right: 1px;
-  }
-
-  .percentage {
-    display: inherit;
-    padding-top: 4px;
   }
 }
 
@@ -96,5 +94,5 @@
 
 .glyphicon-triangle-bottom:before, .glyphicon-triangle-top:before {
   margin-right: 3px;
-  vertical-align: middle;
+  vertical-align: bottom;
 }

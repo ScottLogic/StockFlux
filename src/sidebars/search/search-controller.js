@@ -6,10 +6,12 @@
             function($scope, quandlService, storeService) {
                 var self = this;
                 self.query = '';
+                self.noResults = false;
                 self.stocks = [];
 
                 function submit() {
                     self.stocks = [];
+                    self.noResults = false;
                     var favourites = storeService.get();
                     if (self.query) {
                         var length = favourites.length;
@@ -38,6 +40,9 @@
                             if (!stockAdded) {
                                 self.stocks.push(stock);
                             }
+                        },
+                        function() {
+                            self.noResults = true;
                         });
                     } else {
                         favourites.map(function(favourite) {
@@ -62,8 +67,14 @@
 
                 $scope.$on('updateFavourites', function(event, data) {
                     var index = self.stocks.map(function(stock) { return stock.code; }).indexOf(data.code);
-                    if (index > -1 && !self.query) {
-                        self.stocks.splice(index, 1);
+                    if (index > -1) {
+                        if (!self.query) {
+                            // There are no search results, so remove the favourite.
+                            self.stocks.splice(index, 1);
+                        } else {
+                            // Update the stock's favourite
+                            self.stocks[index].favourite = data.favourite;
+                        }
                     }
                 });
             }

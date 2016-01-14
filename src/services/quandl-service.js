@@ -55,11 +55,15 @@
                 });
             }
 
-            function search(query, cb) {
+            function search(query, cb, noResultsCb) {
                 stockSearch().get({ query: query }, function(result) {
                     result.datasets.map(function(dataset) {
                         processDataset(dataset, query, cb);
-                    })
+                    });
+
+                    if (result.datasets.length === 0) {
+                        noResultsCb();
+                    }
                 });
             }
 
