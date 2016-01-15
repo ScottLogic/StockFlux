@@ -8779,45 +8779,52 @@ fieldset[disabled] .btn-danger.active {
   position: absolute;
   box-shadow: 2px 0px 2px #1A1F25;
 }
-.search search:first-of-type {
+.search input {
+  border: none;
+  background: transparent;
+  transition: all 0.2s linear 0.1s;
+  font-size: 12px;
+  color: #AEB1B5;
+  width: 184px;
+  padding-left: 15px;
+  padding-top: 16px;
+}
+.search input:focus {
+  outline: none;
+}
+.search .no-results {
+  color: #AEB1B5;
+  font-size: 14px;
+  font-weight: 400;
+  padding-left: 12px;
+}
+.search .sidetab > div:first-of-type search .search-result {
   border-top: 1px solid #5B626B;
 }
-.search-result {
+.search .search-result {
   height: 60px;
   cursor: pointer;
   border-bottom: 1px solid #5B626B;
 }
-.search-result .name {
+.search .search-result .name {
   font-size: 12px;
   font-weight: 100;
 }
-.search-result .code {
+.search .search-result .code {
   font-size: 20px;
   font-weight: 500;
   line-height: 1.4;
 }
-.search-result .details {
+.search .search-result .details {
   position: relative;
   float: left;
   padding-left: 20px;
   padding-top: 8px;
 }
-.search-result .star-icon {
-  padding-right: 12px;
-  padding-top: 16px;
+.search .search-result .star-icon {
+  padding-right: 15px;
+  padding-top: 21px;
   float: right;
-}
-.input-group {
-  position: relative;
-  float: left;
-  width: 184px;
-  margin-top: 5px;
-}
-.no-results {
-  color: #AEB1B5;
-  font-size: 14px;
-  font-weight: 400;
-  padding-left: 12px;
 }
 .favourites {
   float: right;
@@ -8826,10 +8833,7 @@ fieldset[disabled] .btn-danger.active {
   transition: all 0.2s linear 0.1s;
   cursor: pointer;
 }
-.scrollPadding:hover .top {
-  padding-left: 20px !important;
-}
-.favourite {
+.favourites .favourite {
   padding-top: 5px;
   padding-bottom: 10px;
   padding-right: 4px;
@@ -8838,65 +8842,68 @@ fieldset[disabled] .btn-danger.active {
   height: 101px;
   border-bottom: 1px solid #323A48;
 }
-.favourite .top {
+.favourites .favourite .top {
   padding-left: 10px;
   transition: all 0.2s linear 0.1s;
 }
-.favourite .bottom {
+.favourites .favourite .bottom {
   padding-top: 1px;
 }
-.favourite .star,
-.favourite .tearable {
+.favourites .favourite .star,
+.favourites .favourite .tearable {
   float: right;
 }
-.favourite .tearable {
+.favourites .favourite .tearable {
   width: 16px;
   margin-left: 5px;
   cursor: default;
 }
-.favourite .name {
+.favourites .favourite .name {
   font-size: 12px;
   font-weight: 100;
   line-height: 1.4;
 }
-.favourite .details {
+.favourites .favourite .details {
   float: right;
   text-align: right;
   padding-top: 1px;
 }
-.favourite .details .price {
+.favourites .favourite .details .price {
   font-size: 18px;
   font-weight: 500;
   line-height: 1.0;
 }
-.favourite .details .delta {
+.favourites .favourite .details .delta {
   padding-top: 4px;
   line-height: 1.0;
   font-size: 14px;
 }
-.favourite .details .delta,
-.favourite .details .percentage {
+.favourites .favourite .details .delta,
+.favourites .favourite .details .percentage {
   font-weight: 300;
   padding-right: 1px;
 }
-.favourite .details .percentage {
+.favourites .favourite .details .stock-arrow {
+  height: 9px;
+  padding-bottom: 1px;
+  padding-right: 3px;
+}
+.favourites .favourite .details .percentage {
   display: inherit;
   font-size: 12px;
   line-height: 1.2;
 }
-.favourite .code {
+.favourites .favourite .code {
   padding-top: 1px;
   font-size: 20px;
   font-weight: 500;
   line-height: 1.0;
 }
+.scrollPadding:hover .top {
+  padding-left: 20px !important;
+}
 .dark {
   background: #1A1F25;
-}
-.glyphicon-triangle-bottom:before,
-.glyphicon-triangle-top:before {
-  margin-right: 3px;
-  vertical-align: bottom;
 }
 minichart {
   position: absolute;
@@ -9017,13 +9024,6 @@ body {
   bottom: 0px;
   left: 0px;
   right: 0px;
-}
-.form-control {
-  border: none;
-  background: transparent;
-  transition: all 0.2s linear 0.1s;
-  font-size: 13px;
-  color: #AEB1B5;
 }
 .main-content {
   bottom: 10px;

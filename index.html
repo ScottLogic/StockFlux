@@ -15,7 +15,7 @@
     </style>
 </head>
 <body ng-cloak>
-    <div class="container-fluid main">
+    <div class="main">
         <div class="sidebars" ng-controller="SidebarCtrl as sidebarCtrl">
             <div class="favourites" ng-controller="FavouritesCtrl as favouritesCtrl" ng-click="sidebarCtrl.favouritesClick()"
                  ng-style="{'width': sidebarCtrl.favouritesWidth()}">
@@ -33,13 +33,9 @@
             </div>
             <div class="search" ng-controller="SearchCtrl as searchCtrl" ng-click="sidebarCtrl.searchClick()" ng-style="{'width': sidebarCtrl.searchWidth()}">
                 <div class="sidetab-top">
-                    <div class="glyphicon glyphicon-search top-icon"></div>
-                    <div class="input-group sidetab" ng-show="sidebarCtrl.showSearches()">
-                        <form class="form-horizontal">
-                            <input type="text" class="form-control" maxlength="20" placeholder="Enter stock name or symbol"
-                                   ng-show="sidebarCtrl.showSearches()" ng-model="searchCtrl.query" />
-                        </form>
-                    </div>
+                    <img src="assets/svg/search_tab.svg" class="top-icon" />
+                    <input class="sidetab" type="text" maxlength="20" placeholder="Enter stock name or symbol"
+                           ng-show="sidebarCtrl.showSearches()" ng-model="searchCtrl.query" />
                 </div>
                 <div id="searchScroll" class="sideScroll">
                     <div class="sidetab" ng-show="sidebarCtrl.showSearches()">
@@ -83,7 +79,6 @@
     <script src="assets/js/angular-animate.min.js"></script>
     <script src="assets/js/angular-storage.min.js"></script>
     <script src="assets/js/d3fc.bundle.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
     <script src="customScroller.js"></script>
     <script src="app.js"></script>
     <script src="sc.js"></script>
