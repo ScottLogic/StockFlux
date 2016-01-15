@@ -34,12 +34,8 @@
             <div class="search" ng-controller="SearchCtrl as searchCtrl" ng-click="sidebarCtrl.searchClick()" ng-style="{'width': sidebarCtrl.searchWidth()}">
                 <div class="sidetab-top">
                     <img src="assets/svg/search_tab.svg" class="top-icon" />
-                    <div class="input-group sidetab" ng-show="sidebarCtrl.showSearches()">
-                        <form class="form-horizontal">
-                            <input type="text" class="form-control" maxlength="20" placeholder="Enter stock name or symbol"
-                                   ng-show="sidebarCtrl.showSearches()" ng-model="searchCtrl.query" />
-                        </form>
-                    </div>
+                    <input class="sidetab" type="text" maxlength="20" placeholder="Enter stock name or symbol"
+                           ng-show="sidebarCtrl.showSearches()" ng-model="searchCtrl.query" />
                 </div>
                 <div id="searchScroll" class="sideScroll">
                     <div class="sidetab" ng-show="sidebarCtrl.showSearches()">
