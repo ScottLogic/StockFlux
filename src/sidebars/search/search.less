@@ -1,0 +1,68 @@
+﻿@search-result-height: 60px;
+@search-splitter-style: 1px solid @separator-colour;
+
+.search {
+  float: left;
+  height: 100%;
+  background-color: @light-background;
+  transition: @transition;
+  cursor: pointer;
+  position: absolute;
+  box-shadow: 2px 0px 2px @dark-background;
+
+  input {
+    border: none;
+    background: transparent;
+    transition: @transition;
+    font-size: 12px;
+    color: @icon-colour;
+    width: 184px;
+    padding-left: 15px;
+    padding-top: 16px;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  .no-results {
+    color: @icon-colour;
+    font-size: 14px;
+    font-weight: 400;
+    padding-left: 12px;
+  }
+
+  .sidetab > div:first-of-type search .search-result {
+    border-top: @search-splitter-style;
+  }
+
+  .search-result {
+    height: @search-result-height;
+    cursor: pointer;
+    border-bottom: @search-splitter-style;
+
+    .name {
+      font-size: 12px;
+      font-weight: @font-thin;
+    }
+
+    .code {
+      font-size: 20px;
+      font-weight: @font-medium;
+      line-height: 1.4;
+    }
+
+    .details {
+      position: relative;
+      float: left;
+      padding-left: 20px;
+      padding-top: 8px;
+    }
+
+    .star-icon {
+      padding-right: 15px;
+      padding-top: 21px;
+      float: right;
+    }
+  }
+}

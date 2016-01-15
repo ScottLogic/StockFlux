@@ -4,6 +4,11 @@
         "moment":  true,
         "fin": true,
         "window": true,
-        "jQuery": true
+        "jQuery": true,
+        "sc": true,
+        "d3": true,
+        "fc": true,
+        "document": true,
+        "confirm": true
     }
 }

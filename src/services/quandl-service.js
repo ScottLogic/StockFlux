@@ -55,16 +55,20 @@
                 });
             }
 
-            function search(query, cb) {
+            function search(query, cb, noResultsCb) {
                 stockSearch().get({ query: query }, function(result) {
                     result.datasets.map(function(dataset) {
                         processDataset(dataset, query, cb);
-                    })
+                    });
+
+                    if (result.datasets.length === 0) {
+                        noResultsCb();
+                    }
                 });
             }
 
             function getMeta(stockCode, cb) {
-                stockMetadata().get({ stock_code: stockCode }, function(result) {
+                stockMetadata().get({ 'stock_code': stockCode }, function(result) {
                     processDataset(result.dataset, stockCode, cb);
                 });
             }

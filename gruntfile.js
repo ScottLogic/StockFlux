@@ -112,7 +112,7 @@ module.exports = function(grunt) {
         },
 
         eslint: {
-            target: ['src/**.js']
+            target: ['src/**/*.js']
         },
 
         clean: {
@@ -122,6 +122,30 @@ module.exports = function(grunt) {
         },
 
         copy: {
+            modulescss: {
+                expand: true,
+                cwd: 'node_modules/',
+                src: ['d3fc/dist/d3fc.min.css',
+                    'malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css'],
+                dest: 'public/assets/css/',
+                flatten: true
+            },
+            modulesjs: {
+                expand: true,
+                cwd: 'node_modules/',
+                src: [
+                    'jquery/dist/jquery.min.js',
+                    'angular/angular.min.js',
+                    'angular-resource/angular-resource.min.js',
+                    'moment/min/moment.min.js',
+                    'angular-animate/angular-animate.min.js',
+                    'angular-storage/dist/angular-storage.min.js',
+                    'd3fc/dist/d3fc.bundle.min.js',
+                    'malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js'
+                ],
+                dest: 'public/assets/js/',
+                flatten: true
+            },
             showcase: {
                 expand: true,
                 cwd: 'node_modules/d3fc-showcase/dist/',
@@ -152,6 +176,14 @@ module.exports = function(grunt) {
                 cwd: 'src/',
                 src: ['**/*.svg', '**/*.ico'],
                 dest: 'public'
+            },
+            fonts: {
+                files: [{
+                    expand: true,
+                    cwd: 'node_modules/d3fc-showcase/node_modules/bootstrap/dist/fonts/',
+                    src: ['**'],
+                    dest: 'public/assets/fonts'
+                }]
             }
         }
     });
@@ -173,7 +205,7 @@ module.exports = function(grunt) {
         var callback = this.async();
         grunt.util.spawn({
             grunt: true,
-            args: ['build'],
+            args: ['build:module'],
             opts: {
                 cwd: 'node_modules/d3fc-showcase/'
             }

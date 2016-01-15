@@ -2,16 +2,17 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500);
 
 @import "variables.less";
-@import "logo.less";
-@import "sidebar.less";
-@import "search.less";
-@import "favourites.less";
-@import "star.less";
-@import "showcase-changes.less";
+@import "toolbar.less";
+@import "../../sidebars/sidebar.less";
+@import "../../sidebars/search/search.less";
+@import "../../sidebars/favourites/favourites.less";
+@import "../../sidebars/favourites/minichart/minichart.less";
+@import "../../sidebars/star/star.less";
+@import "../../showcase/showcase-changes.less";
 @import "custom-scroll.less";
 
-.row {
-  margin: 0px;
+body {
+  -webkit-user-select: none;
 }
 
 .main {
@@ -24,18 +25,10 @@
   right: 0px;
 }
 
-.form-control {
-  border: none;
-  background: transparent;
-  transition: @transition;
-  font-size: 13px;
-  color: white;
-}
-
 .main-content {
   bottom: 10px;
   position: absolute;
-  top: 50px;
+  top: @toolbar-height;
   left: @sidebar-width;
   right: 15px;
   height: auto;

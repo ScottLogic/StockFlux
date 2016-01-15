@@ -14,12 +14,15 @@
   fill: @chart-fade !important;
 }
 
-#navbar-row #navbar-container .plot-area .multi .area {
-  fill: @chart-fade !important;
-}
-#navbar-row #navbar-container .plot-area .multi path {
-  stroke: @chart-fade !important;
-  stroke-width: @chart-fade !important;
+#navbar-row #navbar-container .plot-area .multi {
+  .area {
+    fill: @chart-fade !important;
+  }
+
+  path {
+    stroke: @chart-fade !important;
+    stroke-width: @chart-fade !important;
+  }
 }
 
 .secondary-container .macd-divergence .bar {
@@ -36,7 +39,7 @@
   fill: black !important;
 }
 
-.dropdown-menu{
+.dropdown-menu {
   background-color: @middle-background !important;
 }
 
@@ -52,7 +55,7 @@
   padding-right: 0px !important;
 }
 
-#charts-container{
+#charts-container {
   padding-bottom: 3px;
 }
 

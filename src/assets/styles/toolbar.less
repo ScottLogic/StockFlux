@@ -1,0 +1,38 @@
+﻿#toolbar {
+  height: @toolbar-height;
+  right: 65px;
+  left: @sidebar-width;
+  position: absolute;
+}
+
+#toolbar .drag {
+  -webkit-app-region: drag;
+  height: 100%;
+}
+
+#logo, #min-button, #close-button {
+  position: fixed;
+  top: 15px;
+}
+
+#logo {
+  right: 74px;
+  width: 350px;
+}
+
+#min-button, #close-button {
+  cursor: pointer;
+  width: 14px;
+}
+
+#min-button {
+  right: 45px;
+}
+
+#close-button {
+  right: 15px;
+}
+
+#toolbar img {
+  vertical-align: initial;
+}
