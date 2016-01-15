@@ -10,7 +10,7 @@
                     selection: '&'
                 },
                 link: function(scope, element) {
-                    var chart = sc.app(),
+                    var chart = sc.app().quandlApiKey('kM9Z9aEULVDD7svZ4A8B'),
                         firstRun = true;
 
                     scope.$watch('selection()', function(newSelection, previousSelection) {
