@@ -12,88 +12,87 @@
   background-color: @middle-background;
   transition: @transition;
   cursor: pointer;
+
+  .favourite {
+    padding-top: @favourite-padding-top;
+    padding-bottom: @favourite-padding-bottom;
+    padding-right: @favourite-padding-right;
+    padding-left: @favourite-padding-left;
+    cursor: pointer;
+    height: @favourite-height;
+    border-bottom: @favourite-splitter-style;
+
+    .top {
+      padding-left: 10px;
+      transition: @transition;
+    }
+
+    .bottom {
+      padding-top: 1px;
+    }
+
+    .star, .tearable {
+      float: right;
+    }
+
+    .tearable {
+      width: 16px;
+      margin-left: 5px;
+      cursor: default;
+    }
+
+    .name {
+      font-size: 12px;
+      font-weight: @font-thin;
+      line-height: 1.4;
+    }
+
+    .details {
+      float: right;
+      text-align: right;
+      padding-top: 1px;
+
+      .price {
+        font-size: 18px;
+        font-weight: @font-medium;
+        line-height: 1.0;
+      }
+
+      .delta {
+        padding-top: 4px;
+        line-height: 1.0;
+        font-size: 14px;
+      }
+
+      .delta, .percentage {
+        font-weight: @font-light;
+        padding-right: 1px;
+      }
+
+      .stock-arrow {
+        height: 9px;
+        padding-bottom: 1px;
+        padding-right: 3px;
+      }
+
+      .percentage {
+        display: inherit;
+        font-size: 12px;
+        line-height: 1.2;
+      }
+    }
+
+    .code {
+      padding-top: 1px;
+      font-size: 20px;
+      font-weight: @font-medium;
+      line-height: 1.0;
+    }
+  }
 }
 
 .scrollPadding:hover .top {
   padding-left: 20px !important;
-}
-
-
-.favourite {
-  padding-top: @favourite-padding-top;
-  padding-bottom: @favourite-padding-bottom;
-  padding-right: @favourite-padding-right;
-  padding-left: @favourite-padding-left;
-  cursor: pointer;
-  height: @favourite-height;
-  border-bottom: @favourite-splitter-style;
-
-  .top {
-    padding-left: 10px;
-    transition: @transition;
-  }
-
-  .bottom {
-    padding-top: 1px;
-  }
-
-  .star, .tearable {
-    float: right;
-  }
-
-  .tearable {
-    width: 16px;
-    margin-left: 5px;
-    cursor: default;
-  }
-
-  .name {
-    font-size: 12px;
-    font-weight: @font-thin;
-    line-height: 1.4;
-  }
-
-  .details {
-    float: right;
-    text-align: right;
-    padding-top: 1px;
-
-    .price {
-      font-size: 18px;
-      font-weight: @font-medium;
-      line-height: 1.0;
-    }
-
-    .delta {
-      padding-top: 4px;
-      line-height: 1.0;
-      font-size: 14px;
-    }
-
-    .delta, .percentage {
-      font-weight: @font-light;
-      padding-right: 1px;
-    }
-
-    .stock-arrow {
-      height: 9px;
-      padding-bottom: 1px;
-      padding-right: 3px;
-    }
-
-    .percentage {
-      display: inherit;
-      font-size: 12px;
-      line-height: 1.2;
-    }
-  }
-
-  .code {
-    padding-top: 1px;
-    font-size: 20px;
-    font-weight: @font-medium;
-    line-height: 1.0;
-  }
 }
 
 .dark {
