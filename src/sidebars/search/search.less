@@ -1,5 +1,6 @@
 ﻿@search-result-height: 60px;
 @search-splitter-style: 1px solid @separator-colour;
+@left-padding: 20px;
 
 .search {
   float: left;
@@ -10,11 +11,19 @@
   position: absolute;
   box-shadow: 2px 0px 2px @dark-background;
 
-  .input-group {
-    position: relative;
-    float: left;
+  input {
+    border: none;
+    background: transparent;
+    transition: @transition;
+    font-size: 13px;
+    color: @icon-colour;
     width: 184px;
-    margin-top: 5px;
+    padding-left: @left-padding;
+    padding-top: 16px;
+  }
+
+  input:focus {
+    outline: none;
   }
 
   .no-results {
@@ -47,7 +56,7 @@
     .details {
       position: relative;
       float: left;
-      padding-left: 20px;
+      padding-left: @left-padding;
       padding-top: 8px;
     }
 
