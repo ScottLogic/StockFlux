@@ -15,7 +15,7 @@
     </style>
 </head>
 <body ng-cloak>
-    <div class="container-fluid main">
+    <div class="main">
         <div class="sidebars" ng-controller="SidebarCtrl as sidebarCtrl">
             <div class="favourites" ng-controller="FavouritesCtrl as favouritesCtrl" ng-click="sidebarCtrl.favouritesClick()"
                  ng-style="{'width': sidebarCtrl.favouritesWidth()}">
@@ -83,7 +83,6 @@
     <script src="assets/js/angular-animate.min.js"></script>
     <script src="assets/js/angular-storage.min.js"></script>
     <script src="assets/js/d3fc.bundle.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
     <script src="customScroller.js"></script>
     <script src="app.js"></script>
     <script src="sc.js"></script>
