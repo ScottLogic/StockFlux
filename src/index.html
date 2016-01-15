@@ -19,8 +19,8 @@
         <div class="sidebars" ng-controller="SidebarCtrl as sidebarCtrl">
             <div class="favourites" ng-controller="FavouritesCtrl as favouritesCtrl" ng-click="sidebarCtrl.favouritesClick()"
                  ng-style="{'width': sidebarCtrl.favouritesWidth()}">
-                <div class="row sidetab-top">
-                    <div class="glyphicon glyphicon-star top-icon"></div>
+                <div class="sidetab-top">
+                    <img src="assets/svg/favourite_TOP.svg" class="top-icon" />
                 </div>
                 <div id="favScroll" class="sideScroll">
                     <div class="sidetab" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in favouritesCtrl.stocks"
@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="search" ng-controller="SearchCtrl as searchCtrl" ng-click="sidebarCtrl.searchClick()" ng-style="{'width': sidebarCtrl.searchWidth()}">
-                <div class="row sidetab-top">
+                <div class="sidetab-top">
                     <div class="glyphicon glyphicon-search top-icon"></div>
                     <div class="input-group sidetab" ng-show="sidebarCtrl.showSearches()">
                         <form class="form-horizontal">
