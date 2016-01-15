@@ -7,8 +7,8 @@
                 var self = this;
                 self.stocks = [];
                 var icons = {
-                    up: 'glyphicon-triangle-top',
-                    down: 'glyphicon-triangle-bottom'
+                    up: 'arrow_up',
+                    down: 'arrow_down'
                 };
 
                 self.icon = function(stock) {
