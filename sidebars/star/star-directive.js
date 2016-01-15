@@ -1,4 +1,4 @@
-﻿(function() {
+(function() {
     'use strict';
 
     angular.module('openfin.star')
@@ -7,10 +7,8 @@
                 restrict: 'E',
                 templateUrl: 'sidebars/star/star.html',
                 scope: {
-                    starClasses: '&',
                     starClick: '&',
-                    check: '=',
-                    selection: '='
+                    favouriteUrl: '&'
                 }
             };
         }]);

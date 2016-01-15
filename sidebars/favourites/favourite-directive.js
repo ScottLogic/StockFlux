@@ -1,4 +1,4 @@
-﻿(function() {
+(function() {
     'use strict';
 
     angular.module('openfin.favourites')
@@ -8,11 +8,11 @@
                 templateUrl: 'sidebars/favourites/favourite.html',
                 scope: {
                     stock: '=',
-                    selection: '=',
+                    selection: '&',
                     select: '&',
                     icon: '&',
                     renderChart: '&'
                 }
-            }
+            };
         }]);
 }());

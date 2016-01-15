@@ -1,13 +1,21 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.search', ['openfin.quandl', 'openfin.store'])
-        .controller('SearchCtrl', ['$scope', 'quandlService', 'storeService',
-            function($scope, quandlService, storeService) {
+    angular.module('openfin.search', ['openfin.quandl', 'openfin.store', 'openfin.selection'])
+        .controller('SearchCtrl', ['$scope', 'quandlService', 'storeService', 'selectionService',
+            function($scope, quandlService, storeService, selectionService) {
                 var self = this;
                 self.query = '';
                 self.noResults = false;
                 self.stocks = [];
+
+                self.selection = function() {
+                    return selectionService.getSelection();
+                };
+
+                self.select = function(stock) {
+                    selectionService.select(stock);
+                };
 
                 function submit() {
                     self.stocks = [];
@@ -19,14 +27,22 @@
                             var i;
 
                             // removing stocks found with old query
-                            self.stocks = self.stocks.filter(function(stock, i) {
-                                return stock.query === self.query;
+                            self.stocks = self.stocks.filter(function(result, j) {
+                                return result.query === self.query;
                             });
 
                             // not adding old stocks
                             if (stock.query !== self.query) {
                                 return;
                             }
+
+                            // Due to the asynchronicity of the search, if multiple searches
+                            // are fired off in a small amount of time, with an intermediate one
+                            // returning no results it's possible to have both the noResults flag
+                            // set to true, while some stocks have been retrieved by a later search.
+                            //
+                            // Here we re-set the flag to keep it up-to-date.
+                            self.noResults = false;
 
                             var stockAdded = false;
                             for (i = 0; i < length; i++) {
@@ -52,7 +68,7 @@
                             });
                         });
                     }
-                };
+                }
 
                 $scope.$watch(
                     // Can't watch `self.query` as the subscribers to this controller

@@ -8,9 +8,9 @@
                 templateUrl: 'sidebars/search/search.html',
                 scope: {
                     stock: '=',
-                    selection: '=',
+                    selection: '&',
                     select: '&'
                 }
-            }
+            };
         }]);
 }());

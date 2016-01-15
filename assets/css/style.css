@@ -8716,27 +8716,26 @@ fieldset[disabled] .btn-danger.active {
   -webkit-app-region: drag;
   height: 100%;
 }
-.logo {
+#logo,
+#min-button,
+#close-button {
   position: fixed;
   top: 15px;
-  right: 95px;
-  width: 448px;
 }
-.min-button {
-  position: fixed;
-  top: 15px;
+#logo {
+  right: 74px;
+  width: 350px;
+}
+#min-button,
+#close-button {
+  cursor: pointer;
+  width: 14px;
+}
+#min-button {
   right: 45px;
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
 }
-.close-button {
-  position: fixed;
-  top: 15px;
+#close-button {
   right: 15px;
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
 }
 #toolbar img {
   vertical-align: initial;
@@ -8767,8 +8766,9 @@ fieldset[disabled] .btn-danger.active {
 .top-icon {
   color: #AEB1B5;
   float: right;
-  padding-right: 15px;
-  padding-top: 17px;
+  width: 20px;
+  margin-right: 15px;
+  margin-top: 15px;
 }
 .search {
   float: left;
@@ -8776,14 +8776,16 @@ fieldset[disabled] .btn-danger.active {
   background-color: #464E58;
   transition: all 0.2s linear 0.1s;
   cursor: pointer;
+  position: absolute;
+  box-shadow: 2px 0px 2px #1A1F25;
 }
 .search search:first-of-type {
-  border-top: 1px solid #AEB1B5;
+  border-top: 1px solid #5B626B;
 }
 .search-result {
   height: 60px;
   cursor: pointer;
-  border-bottom: 1px solid #AEB1B5;
+  border-bottom: 1px solid #5B626B;
 }
 .search-result .name {
   font-size: 12px;
@@ -8800,9 +8802,9 @@ fieldset[disabled] .btn-danger.active {
   padding-left: 20px;
   padding-top: 8px;
 }
-.search-result .star {
+.search-result .star-icon {
   padding-right: 12px;
-  padding-top: 22px;
+  padding-top: 16px;
   float: right;
 }
 .input-group {
@@ -8824,8 +8826,8 @@ fieldset[disabled] .btn-danger.active {
   transition: all 0.2s linear 0.1s;
   cursor: pointer;
 }
-.favourites .sidetab:first-of-type {
-  border-top: 1px solid #AEB1B5;
+.scrollPadding:hover .top {
+  padding-left: 20px !important;
 }
 .favourite {
   padding-top: 5px;
@@ -8834,10 +8836,11 @@ fieldset[disabled] .btn-danger.active {
   padding-left: 0px;
   cursor: pointer;
   height: 101px;
-  border-bottom: 1px solid #AEB1B5;
+  border-bottom: 1px solid #323A48;
 }
 .favourite .top {
   padding-left: 10px;
+  transition: all 0.2s linear 0.1s;
 }
 .favourite .bottom {
   padding-top: 1px;
@@ -8908,6 +8911,9 @@ minichart {
   fill: #28313D;
   stroke: #42D8BD !important;
 }
+.minichart g .point {
+  fill: #42D8BD !important;
+}
 .darkens:hover .minichart,
 .dark .minichart {
   background-image: linear-gradient(to bottom, #427075, #1A1F25 92%);
@@ -8916,15 +8922,12 @@ minichart {
 .dark .minichart g {
   fill: #1A1F25 !important;
 }
-.dark star,
-.darkens:hover star {
-  color: #28313D;
+.darkens:hover .minichart g .point,
+.dark .minichart g .point {
+  fill: #42D8BD !important;
 }
-star {
-  color: #1A1F25;
-}
-star .light {
-  color: #42D8BD;
+.star {
+  width: 16px;
 }
 .y-axis .closeLine.tick > path {
   stroke: #42D8BD !important;
@@ -8990,7 +8993,7 @@ star .light {
   margin-bottom: 10px;
 }
 .sideScroll:hover .mCSB_dragger_bar {
-  opacity: 1;
+  opacity: 0.75;
 }
 .mCSB_dragger_bar {
   opacity: 0;
@@ -9006,9 +9009,6 @@ star .light {
 body {
   -webkit-user-select: none;
 }
-.row {
-  margin: 0px;
-}
 .main {
   background-color: #1A1F25;
   padding: 0px;
@@ -9023,7 +9023,7 @@ body {
   background: transparent;
   transition: all 0.2s linear 0.1s;
   font-size: 13px;
-  color: white;
+  color: #AEB1B5;
 }
 .main-content {
   bottom: 10px;
