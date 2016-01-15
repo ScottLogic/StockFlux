@@ -4,23 +4,24 @@
     angular.module('openfin.sidebar', [])
         .controller('SidebarCtrl', ['$scope', function($scope) {
             var self = this,
-                totalWidth = 280,
-                smallBarWidth = 50,
-                largeBarWidth = totalWidth - smallBarWidth,
-                searchWidth = smallBarWidth,
-                favouritesWidth = largeBarWidth,
                 showSearches = false,
                 showFavourites = true,
                 searchSmall = true;
 
-            self.largeBarWidth = largeBarWidth + 'px';
-
-            self.searchWidth = function() {
-                return searchWidth + 'px';
+            var classes = {
+                expanded: 'expanded',
+                contracted: 'contracted'
             };
 
-            self.favouritesWidth = function() {
-                return favouritesWidth + 'px';
+            var favouritesClass = classes.expanded,
+                searchClass = classes.contracted;
+
+            self.searchClass = function() {
+                return searchClass;
+            };
+
+            self.favouritesClass = function() {
+                return favouritesClass;
             };
 
             self.showSearches = function() {
@@ -35,8 +36,8 @@
                 if (searchSmall) {
                     searchSmall = false;
                     showFavourites = false;
-                    searchWidth = largeBarWidth;
-                    favouritesWidth = smallBarWidth;
+                    searchClass = classes.expanded;
+                    favouritesClass = classes.contracted;
                     showSearches = true;
                 }
             };
@@ -44,8 +45,8 @@
             self.favouritesClick = function() {
                 if (!searchSmall) {
                     searchSmall = true;
-                    searchWidth = smallBarWidth;
-                    favouritesWidth = largeBarWidth;
+                    searchClass = classes.contracted;
+                    favouritesClass = classes.expanded;
                     showSearches = false;
                     showFavourites = true;
                 }
