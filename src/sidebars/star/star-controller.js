@@ -1,16 +1,24 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.star', ['openfin.store'])
-        .controller('StarCtrl', ['$scope', 'storeService', function($scope, storeService) {
+    angular.module('openfin.star', ['openfin.store', 'openfin.selection'])
+        .controller('StarCtrl', ['$scope', 'storeService', 'selectionService', function($scope, storeService, selectionService) {
             var self = this;
             self.check = false;
 
-            self.classes = function(stock) {
+            var starUrls = {
+                off: 'favourite_OFF',
+                on: 'favourite_ON',
+                hover: 'favourite_HOVER'
+            };
+
+            self.favouriteUrl = function(stock) {
                 if (stock.favourite) {
-                    return 'light';
+                    return starUrls.on;
+                } else if (stock.isHovered || selectionService.getSelection() === stock.code) {
+                    return starUrls.hover;
                 } else {
-                    return '';
+                    return starUrls.off;
                 }
             };
 
