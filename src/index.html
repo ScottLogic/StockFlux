@@ -1,11 +1,11 @@
-﻿﻿﻿<!DOCTYPE HTML>
+﻿﻿<!DOCTYPE HTML>
 <html lang="en" ng-app="OpenFinD3FC">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>OpenFin D3FC</title>
-    <link href="assets/css/style.css" rel="stylesheet" >
+    <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/d3fc.min.css" rel="stylesheet" />
     <link href="assets/css/jquery.mCustomScrollbar.css" rel="stylesheet" />
     <style>
@@ -15,7 +15,7 @@
     </style>
 </head>
 <body ng-cloak>
-    <div class="container-fluid main" ng-controller="MainCtrl as mainCtrl">
+    <div class="container-fluid main">
         <div class="sidebars" ng-controller="SidebarCtrl as sidebarCtrl">
             <div class="favourites" ng-controller="FavouritesCtrl as favouritesCtrl" ng-click="sidebarCtrl.favouritesClick()"
                  ng-style="{'width': sidebarCtrl.favouritesWidth()}">
@@ -25,7 +25,7 @@
                 <div id="favScroll" class="sideScroll">
                     <div class="sidetab" ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in favouritesCtrl.stocks"
                          ng-show="sidebarCtrl.showFavourites()">
-                        <favourite selection="mainCtrl.selection" select="mainCtrl.select(stock)"
+                        <favourite selection="favouritesCtrl.selection()" select="favouritesCtrl.select(stock)"
                                    stock="stock" icon="favouritesCtrl.icon(stock)" render-chart="favouritesCtrl.renderChart(stock)">
                         </favourite>
                     </div>
@@ -45,7 +45,7 @@
                     <div class="sidetab" ng-show="sidebarCtrl.showSearches()">
                         <div ng-style="{'width': sidebarCtrl.largeBarWidth}" ng-repeat="stock in searchCtrl.stocks"
                              ng-mouseenter="stock.isHovered = true;" ng-mouseleave="stock.isHovered = false;">
-                            <search stock="stock" selection="mainCtrl.selection" select="mainCtrl.select(stock)"></search>
+                            <search stock="stock" selection="searchCtrl.selection()" select="searchCtrl.select(stock)"></search>
                         </div>
                         <div class="no-results" ng-show="searchCtrl.noResults">
                             Oops!<br>
@@ -56,23 +56,23 @@
             </div>
         </div>
         <div class="right-content">
-            <div>
-                <div class="main-content">
-                    <showcase selection="mainCtrl.selection"></showcase>
+            <div class="main-content">
+                <div ng-controller="ShowcaseCtrl as showcaseCtrl">
+                    <showcase selection="showcaseCtrl.selection()"></showcase>
                 </div>
-                <div id="toolbar">
-                    <a ng-href="#/" id="logo" class="logo">
-                        <img src="assets/svg/logo_small.svg" />
-                    </a>
-                    <a id="minimizeWindow" class="min-button" onclick="fin.desktop.Window.getCurrent().minimize();">
-                        <img src="assets/svg/minimize.svg" />
-                    </a>
-                    <a id="closeWindow" class="close-button"
-                       onclick="fin.desktop.Window.getCurrent().close();">
-                        <img src="assets/svg/close.svg" />
-                    </a>
-                    <div class="drag"></div>
-                </div>
+            </div>
+            <div id="toolbar">
+                <a ng-href="#/" id="logo" class="logo">
+                    <img src="assets/svg/logo_small.svg" />
+                </a>
+                <a id="minimizeWindow" class="min-button" onclick="fin.desktop.Window.getCurrent().minimize();">
+                    <img src="assets/svg/minimize.svg" />
+                </a>
+                <a id="closeWindow" class="close-button"
+                   onclick="fin.desktop.Window.getCurrent().close();">
+                    <img src="assets/svg/close.svg" />
+                </a>
+                <div class="drag"></div>
             </div>
         </div>
     </div>
@@ -87,8 +87,8 @@
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="customScroller.js"></script>
     <script src="app.js"></script>
-    <script src="main-controller.js"></script>
     <script src="sc.js"></script>
+    <script src="showcase/showcase-controller.js"></script>
     <script src="showcase/showcase-directive.js"></script>
     <script src="sidebars/sidebar-controller.js"></script>
     <script src="sidebars/favourites/favourite-controller.js"></script>
@@ -102,5 +102,6 @@
     <script src="sidebars/star/star-directive.js"></script>
     <script src="services/store-service.js"></script>
     <script src="services/quandl-service.js"></script>
+    <script src="services/selection-service.js"></script>
 </body>
 </html>

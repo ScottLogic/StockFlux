@@ -1,13 +1,21 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.search', ['openfin.quandl', 'openfin.store'])
-        .controller('SearchCtrl', ['$scope', 'quandlService', 'storeService',
-            function($scope, quandlService, storeService) {
+    angular.module('openfin.search', ['openfin.quandl', 'openfin.store', 'openfin.selection'])
+        .controller('SearchCtrl', ['$scope', 'quandlService', 'storeService', 'selectionService',
+            function($scope, quandlService, storeService, selectionService) {
                 var self = this;
                 self.query = '';
                 self.noResults = false;
                 self.stocks = [];
+
+                self.selection = function() {
+                    return selectionService.getSelection();
+                };
+
+                self.select = function(stock) {
+                    selectionService.select(stock);
+                };
 
                 function submit() {
                     self.stocks = [];
