@@ -141,6 +141,7 @@ module.exports = function(grunt) {
                     'angular-animate/angular-animate.min.js',
                     'angular-storage/dist/angular-storage.min.js',
                     'd3fc/dist/d3fc.bundle.min.js',
+                    'd3fc-showcase/node_modules/bootstrap/js/dropdown.js',
                     'malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js'
                 ],
                 dest: 'public/assets/js/',
