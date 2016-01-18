@@ -8751,6 +8751,12 @@ fieldset[disabled] .btn-danger.active {
 #toolbar img {
   vertical-align: initial;
 }
+.expanded {
+  width: 230px;
+}
+.contracted {
+  width: 50px;
+}
 .sidetab {
   opacity: 1;
 }
@@ -8790,11 +8796,18 @@ fieldset[disabled] .btn-danger.active {
   position: absolute;
   box-shadow: 2px 0px 2px #1A1F25;
 }
-.search .input-group {
-  position: relative;
-  float: left;
+.search input {
+  border: none;
+  background: transparent;
+  transition: all 0.2s linear 0.1s;
+  font-size: 12px;
+  color: #AEB1B5;
   width: 184px;
-  margin-top: 5px;
+  padding-left: 15px;
+  padding-top: 16px;
+}
+.search input:focus {
+  outline: none;
 }
 .search .no-results {
   color: #AEB1B5;
@@ -8802,11 +8815,12 @@ fieldset[disabled] .btn-danger.active {
   font-weight: 400;
   padding-left: 12px;
 }
-.search search:first-of-type {
+.search .sidetab > div:first-of-type search .search-result {
   border-top: 1px solid #5B626B;
 }
 .search .search-result {
   height: 60px;
+  width: 230px;
   cursor: pointer;
   border-bottom: 1px solid #5B626B;
 }
@@ -8844,6 +8858,7 @@ fieldset[disabled] .btn-danger.active {
   padding-left: 0px;
   cursor: pointer;
   height: 101px;
+  width: 230px;
   border-bottom: 1px solid #323A48;
 }
 .favourites .favourite .top {
@@ -9028,13 +9043,6 @@ body {
   bottom: 0px;
   left: 0px;
   right: 0px;
-}
-.form-control {
-  border: none;
-  background: transparent;
-  transition: all 0.2s linear 0.1s;
-  font-size: 13px;
-  color: #AEB1B5;
 }
 .main-content {
   bottom: 10px;
