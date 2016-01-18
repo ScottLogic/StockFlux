@@ -50,8 +50,7 @@
 
         var useableHeight = fc.util.innerDimensions(containers.app.node()).height - headRowHeight;
 
-        containers.charts
-          .style('height', useableHeight + 'px');
+        containers.chartsAndOverlay.style('height', useableHeight + 'px');
 
         charts.xAxis.dimensionChanged(containers.xAxis);
         charts.navbar.dimensionChanged(containers.navbar);
@@ -65,15 +64,6 @@
         var latestViewedTime = d3.max(domain, function(d) { return d.getTime(); });
         var latestDatumTime = d3.max(data, function(d) { return d.date.getTime(); });
         return latestViewedTime === latestDatumTime;
-    }
-
-    function padYDomain(yExtent, paddingPercentage) {
-        var paddingArray = Array.isArray(paddingPercentage) ?
-          paddingPercentage : [paddingPercentage, paddingPercentage];
-        var orderedYExtentDifference = yExtent[1] - yExtent[0];
-
-        return [yExtent[0] - orderedYExtentDifference * paddingArray[0],
-            yExtent[1] + orderedYExtentDifference * paddingArray[1]];
     }
 
     function moveToLatest(domain, data, ratio) {
@@ -134,7 +124,6 @@
         centerOnDate: centerOnDate,
         filterDataInDateRange: filterDataInDateRange,
         moveToLatest: moveToLatest,
-        padYDomain: padYDomain,
         trackingLatestData: trackingLatestData
     };
 
@@ -619,48 +608,14 @@
         return annotatedTickValues;
     }
 
-    function findTotalYExtent(visibleData, currentSeries, currentIndicators) {
-        var extentAccessor;
-        switch (currentSeries.valueString) {
-        case 'candlestick':
-        case 'ohlc':
-            extentAccessor = [currentSeries.option.yLowValue(), currentSeries.option.yHighValue()];
-            break;
-        case 'line':
-        case 'point':
-            extentAccessor = currentSeries.option.yValue();
-            break;
-        case 'area' :
-            extentAccessor = currentSeries.option.y1Value();
-            break;
-        default:
-            throw new Error('Main series given to chart does not have expected interface');
-        }
-        var extent = fc.util.extent()
-          .fields(extentAccessor)(visibleData);
-
-        if (currentIndicators.length) {
-            var indicators = currentIndicators.map(function(indicator) { return indicator.valueString; });
-            var movingAverageShown = (indicators.indexOf('movingAverage') !== -1);
-            var bollingerBandsShown = (indicators.indexOf('bollinger') !== -1);
-            if (bollingerBandsShown) {
-                var bollingerBandsVisibleDataObject = visibleData.map(function(d) { return d.bollingerBands; });
-                var bollingerBandsExtent = fc.util.extent()
-                  .fields(['lower', 'upper'])(bollingerBandsVisibleDataObject);
-                extent[0] = d3.min([bollingerBandsExtent[0], extent[0]]);
-                extent[1] = d3.max([bollingerBandsExtent[1], extent[1]]);
+    function getExtentAccessors(multiSeries) {
+        return multiSeries.reduce(function(extentAccessors, series) {
+            if (series.extentAccessor) {
+                return extentAccessors.concat(series.extentAccessor);
+            } else {
+                return extentAccessors;
             }
-            if (movingAverageShown) {
-                var movingAverageExtent = fc.util.extent()
-                  .fields('movingAverage')(visibleData);
-                extent[0] = d3.min([movingAverageExtent[0], extent[0]]);
-                extent[1] = d3.max([movingAverageExtent[1], extent[1]]);
-            }
-            if (!(movingAverageShown || bollingerBandsShown)) {
-                throw new Error('Unexpected indicator type');
-            }
-        }
-        return extent;
+        }, []);
     }
 
     function primary() {
@@ -802,9 +757,11 @@
 
             // Scale y axis
             var visibleData = util.domain.filterDataInDateRange(primaryChart.xDomain(), model.data);
-            var yExtent = findTotalYExtent(visibleData, currentSeries, currentIndicators);
             // Add percentage padding either side of extreme high/lows
-            var paddedYExtent = util.domain.padYDomain(yExtent, 0.04);
+            var extentAccessors = getExtentAccessors(multi.series());
+            var paddedYExtent = fc.util.extent()
+                .fields(extentAccessors)
+                .pad(0.08)(visibleData);
             primaryChart.yDomain(paddedYExtent);
 
             // Find current tick values and add close price to this list, then set it explicitly below
@@ -812,13 +769,17 @@
             var tickValues = produceAnnotatedTickValues(yScale, [latestPrice]);
             primaryChart.yTickValues(tickValues)
               .yDecorate(function(s) {
-                  s.selectAll('.tick')
+                  var closePriceTick = s.selectAll('.tick')
                     .filter(function(d) { return d === latestPrice; })
-                    .classed('closeLine', true)
-                    .select('path')
+                    .classed('closeLine', true);
+
+                  var calloutHeight = 18;
+                  closePriceTick.select('path')
                     .attr('d', function(d) {
-                        return d3.svg.area()(calculateCloseAxisTagPath(yAxisWidth, 14));
+                        return d3.svg.area()(calculateCloseAxisTagPath(yAxisWidth, calloutHeight));
                     });
+                  closePriceTick.select('text')
+                    .attr('transform', 'translate(' + calloutHeight / 2 + ',1)');
               });
 
             // Redraw
@@ -891,6 +852,9 @@
               selection.selectAll('.resize.w>rect, .resize.e>rect')
                 .attr('height', barHeight)
                 .attr('y', borderWidth);
+              enter.select('.extent')
+                .attr('mask', 'url("#brush-mask")')
+                .attr('fill', 'url("#brush-gradient")');
 
               // Adds the handles to the brush sides
               var handles = enter.selectAll('.e, .w');
@@ -914,6 +878,15 @@
                   return this.data;
               }
           });
+
+        var maskXScale = fc.scale.dateTime();
+        var maskYScale = d3.scale.linear();
+
+        var brushMask = fc.series.area()
+          .yValue(function(d) { return d.close; })
+          .xScale(maskXScale)
+          .yScale(maskYScale);
+
         var layoutWidth;
 
 
@@ -927,8 +900,37 @@
             return ((navBrush.extent()[0][0] - navBrush.extent()[1][0]) === 0);
         }
 
+        function createDefs(selection, data) {
+            var defsEnter = selection.selectAll('defs')
+              .data([0])
+              .enter()
+              .append('defs');
+
+            defsEnter.html('<linearGradient id="brush-gradient" x1="0" x2="0" y1="0" y2="1"> \
+              <stop offset="0%" class="brush-gradient-top" /> \
+              <stop offset="100%" class="brush-gradient-bottom" /> \
+          </linearGradient> \
+          <mask id="brush-mask"> \
+              <rect class="mask-background"></rect> \
+          </mask>');
+
+            selection.select('.mask-background').attr({
+                width: layoutWidth,
+                height: navChartHeight
+            });
+
+            maskXScale.domain(fc.util.extent().fields('date')(data));
+            maskYScale.domain(fc.util.extent().fields(['low', 'high'])(data));
+
+            selection.select('mask')
+                .datum(data)
+                .call(brushMask);
+        }
+
         function nav(selection) {
             var model = selection.datum();
+
+            createDefs(selection, model.data);
 
             viewScale.domain(model.viewDomain);
 
@@ -982,6 +984,8 @@
         nav.dimensionChanged = function(container) {
             layoutWidth = parseInt(container.style('width'), 10);
             viewScale.range([0, layoutWidth]);
+            maskXScale.range([0, layoutWidth]);
+            maskYScale.range([navChartHeight, 0]);
         };
 
         return nav;
@@ -1731,6 +1735,7 @@
         var candlestick = candlestickSeries();
         candlestick.id = util.uid();
         var _series = option('Candlestick', 'candlestick', candlestick);
+        _series.option.extentAccessor = ['high', 'low'];
         Object.defineProperty(model, 'series', {
             get: function() { return _series; },
             set: function(newValue) {
@@ -1899,6 +1904,10 @@
             return dataGeneratorAdaptor;
         };
 
+        dataGeneratorAdaptor.apiKey = function() {
+            throw new Error('Not implemented.');
+        };
+
         return dataGeneratorAdaptor;
     }
 
@@ -1959,6 +1968,10 @@
             }
             candles = x;
             return coinbaseAdaptor;
+        };
+
+        coinbaseAdaptor.apiKey = function() {
+            throw new Error('Not implemented.');
         };
 
         d3.rebind(coinbaseAdaptor, historicFeed, 'end', 'granularity', 'product');
@@ -2053,7 +2066,6 @@
 
         function quandlAdaptor(cb) {
             var startDate = d3.time.second.offset(historicFeed.end(), -candles * granularity);
-            historicFeed.apiKey('kM9Z9aEULVDD7svZ4A8B');
             historicFeed.start(startDate)
                 .collapse(allowedPeriods.get(granularity));
             historicFeed(cb);
@@ -2080,7 +2092,8 @@
 
         fc.util.rebind(quandlAdaptor, historicFeed, {
             end: 'end',
-            product: 'dataset'
+            product: 'dataset',
+            apiKey: 'apiKey'
         });
 
         return quandlAdaptor;
@@ -2094,26 +2107,7 @@
         return message;
     }
 
-    function coinbaseGetProducts(callback) {
-        d3.json('https://api.exchange.coinbase.com/products', function(error, response) {
-            if (error) {
-                callback(error);
-                return;
-            }
-            callback(error, response);
-        });
-    }
-
-    function coninbaseFormatProducts(products, source, defaultPeriods, productPeriodOverrides) {
-        return products.map(function(product) {
-            return model.data.product(product.id, product.id,
-                productPeriodOverrides.get(product.id) || defaultPeriods, source);
-        });
-    }
-
-    function initialiseModel(app) {
-        var initialModel = {};
-
+    function initialiseModel() {
         function initPeriods() {
             return {
                 week1: model.data.period('Weekly', 60 * 60 * 24 * 7, {unit: d3.time.week, value: 1}, '%b %d'),
@@ -2141,33 +2135,45 @@
         }
 
         function initSeriesSelector() {
+
             var candlestick = candlestickSeries();
             candlestick.id = util.uid();
-
-            var candlestickOption = model.menu.option('Candlestick', 'candlestick',
-                candlestick, 'sc-icon-candlestick-series');
+            var candlestickOption = model.menu.option(
+                'Candlestick',
+                'candlestick',
+                candlestick,
+                'sc-icon-candlestick-series');
             candlestickOption.isSelected = true;
+            candlestickOption.option.extentAccessor = ['high', 'low'];
 
             var ohlc = fc.series.ohlc();
             ohlc.id = util.uid();
+            var ohlcOption = model.menu.option('OHLC', 'ohlc', ohlc, 'sc-icon-ohlc-series');
+            ohlcOption.option.extentAccessor = ['high', 'low'];
 
             var line = fc.series.line();
             line.id = util.uid();
+            var lineOption = model.menu.option('Line', 'line', line, 'sc-icon-line-series');
+            lineOption.option.extentAccessor = 'close';
 
             var point = fc.series.point();
             point.id = util.uid();
+            var pointOption = model.menu.option('Point', 'point', point, 'sc-icon-point-series');
+            pointOption.option.extentAccessor = 'close';
 
             var area = fc.series.area();
             area.id = util.uid();
+            var areaOption = model.menu.option('Area', 'area', area, 'sc-icon-area-series');
+            areaOption.option.extentAccessor = 'close';
 
             var config = model.menu.dropdownConfig(null, false, true, true);
 
             var options = [
                 candlestickOption,
-                model.menu.option('OHLC', 'ohlc', ohlc, 'sc-icon-ohlc-series'),
-                model.menu.option('Line', 'line', line, 'sc-icon-line-series'),
-                model.menu.option('Point', 'point', point, 'sc-icon-point-series'),
-                model.menu.option('Area', 'area', area, 'sc-icon-area-series')
+                ohlcOption,
+                lineOption,
+                pointOption,
+                areaOption
             ];
 
             return model.menu.selector(config, options);
@@ -2184,14 +2190,21 @@
                 .yValue(function(d) { return d.movingAverage; });
             movingAverage.id = util.uid();
 
+            var movingAverageOption = model.menu.option('Moving Average', 'movingAverage',
+                movingAverage, 'sc-icon-moving-average-indicator', true);
+            movingAverageOption.option.extentAccessor = function(d) { return d.movingAverage; };
+
             var bollingerBands = fc.indicator.renderer.bollingerBands();
             bollingerBands.id = util.uid();
 
+            var bollingerBandsOption = model.menu.option('Bollinger Bands', 'bollinger',
+                bollingerBands, 'sc-icon-bollinger-bands-indicator', true);
+            bollingerBandsOption.option.extentAccessor = [function(d) { return d.bollingerBands.lower; },
+                function(d) { return d.bollingerBands.upper; }];
+
             var indicators = [
-                model.menu.option('Moving Average', 'movingAverage',
-                    movingAverage, 'sc-icon-moving-average-indicator', true),
-                model.menu.option('Bollinger Bands', 'bollinger',
-                    bollingerBands, 'sc-icon-bollinger-bands-indicator', true),
+                movingAverageOption,
+                bollingerBandsOption,
                 model.menu.option('Relative Strength Index', 'secondary-rsi',
                     secondary.rsi(), 'sc-icon-rsi-indicator', false),
                 model.menu.option('MACD', 'secondary-macd',
@@ -2220,42 +2233,40 @@
         var sources = initSources();
         var products = initProducts();
 
-        coinbaseGetProducts(function(error, bitcoinProducts) {
-            if (error) {
-                var statusText = error.statusText || 'Unknown reason.';
-                var message$$ = 'Error retrieving Coinbase products: ' + statusText;
-                app.updateModel(function(appModel) {
-                    appModel.notificationMessages.messages.unshift(message(message$$));
-                });
-            } else {
-                var defaultPeriods = [periods.hour1, periods.day1];
-                var productPeriodOverrides = d3.map();
-                productPeriodOverrides.set('BTC-USD', [periods.minute1, periods.minute5, periods.hour1, periods.day1]);
-                var formattedProducts = coninbaseFormatProducts(bitcoinProducts, sources.bitcoin, defaultPeriods, productPeriodOverrides);
-
-                app.updateModel(function(appModel) {
-                    appModel.headMenu.products = appModel.headMenu.products.concat(formattedProducts);
-                });
-            }
-        });
-
-        initialModel.periods = periods; // TODO: remove if unused
-        initialModel.sources = sources; // TODO: remove if unused
-        initialModel.primaryChart = model.chart.primary(products.generated);
-        initialModel.secondaryChart = model.chart.secondary(products.generated);
-        initialModel.selectors = initSelectors();
-        initialModel.xAxis = model.chart.xAxis(periods.day1);
-        initialModel.nav = model.chart.nav();
-        initialModel.navReset = model.chart.navigationReset();
-        initialModel.headMenu = model.menu.head([products.generated, products.quandl], products.generated, periods.day1);
-        initialModel.legend = model.chart.legend(products.generated, periods.day1);
-        initialModel.overlay = model.menu.overlay();
-        initialModel.notificationMessages = model.notification.messages();
-
-        return initialModel;
+        return {
+            periods: periods,
+            sources: sources,
+            primaryChart: model.chart.primary(products.generated),
+            secondaryChart: model.chart.secondary(products.generated),
+            selectors: initSelectors(),
+            xAxis: model.chart.xAxis(periods.day1),
+            nav: model.chart.nav(),
+            navReset: model.chart.navigationReset(),
+            headMenu: model.menu.head([products.generated, products.quandl], products.generated, periods.day1),
+            legend: model.chart.legend(products.generated, periods.day1),
+            overlay: model.menu.overlay(),
+            notificationMessages: model.notification.messages()
+        };
     }
 
-    function app(initialModel) {
+    function getCoinbaseProducts(callback) {
+        d3.json('https://api.exchange.coinbase.com/products', function(error, response) {
+            if (error) {
+                callback(error);
+                return;
+            }
+            callback(error, response);
+        });
+    }
+
+    function formatCoinbaseProducts(products, source, defaultPeriods, productPeriodOverrides) {
+        return products.map(function(product) {
+            return model.data.product(product.id, product.id,
+                productPeriodOverrides.get(product.id) || defaultPeriods, source);
+        });
+    }
+
+    function app() {
 
         var appTemplate = '<div class="container-fluid"> \
         <div id="notifications"></div> \
@@ -2318,7 +2329,7 @@
 
         var containers;
 
-        var model = initialModel || initialiseModel(app);
+        var model = initialiseModel();
 
         var _dataInterface;
 
@@ -2336,10 +2347,12 @@
         var selectors;
         var toastNotifications;
 
-        var rendered = false;
+        var fetchCoinbaseProducts = false;
+
+        var firstRender = true;
         function renderInternal() {
-            if (!rendered) {
-                rendered = true;
+            if (firstRender) {
+                firstRender = false;
             }
             if (layoutRedrawnInNextRender) {
                 containers.suspendLayout(false);
@@ -2644,11 +2657,26 @@
                 .on(event.notificationClose, onNotificationClose);
         }
 
-        app.updateModel = function(callback) {
-            callback.call(this, model);
-            if (rendered) {
-                render();
+        function addCoinbaseProducts(error, bitcoinProducts) {
+            if (error) {
+                var statusText = error.statusText || 'Unknown reason.';
+                var message$$ = 'Error retrieving Coinbase products: ' + statusText;
+                model.notificationMessages.messages.unshift(message(message$$));
+            } else {
+                var defaultPeriods = [model.periods.hour1, model.periods.day1];
+                var productPeriodOverrides = d3.map();
+                productPeriodOverrides.set('BTC-USD', [model.periods.minute1, model.periods.minute5, model.periods.hour1, model.periods.day1]);
+                var formattedProducts = formatCoinbaseProducts(bitcoinProducts, model.sources.bitcoin, defaultPeriods, productPeriodOverrides);
+                model.headMenu.products = model.headMenu.products.concat(formattedProducts);
             }
+        }
+
+        app.fetchCoinbaseProducts = function(x) {
+            if (!arguments.length) {
+                return fetchCoinbaseProducts;
+            }
+            fetchCoinbaseProducts = x;
+            return app;
         };
 
         app.changeQuandlProduct = function(productString) {
@@ -2661,21 +2689,26 @@
 
             changeProduct(product);
 
-            if (rendered) {
+            if (!firstRender) {
                 render();
             }
         };
 
         app.run = function(element) {
+            if (!element) {
+                throw new Error('An element must be specified when running the application.');
+            }
+
             var appContainer = d3.select(element);
-            // TODO: Could potentially use d3.html() to load the html from an external file
             appContainer.html(appTemplate);
 
+            var chartsAndOverlayContainer = appContainer.select('#charts');
             var chartsContainer = appContainer.select('#charts-container');
             var overlayContainer = appContainer.select('#overlay');
             containers = {
                 app: appContainer,
                 charts: chartsContainer,
+                chartsAndOverlay: chartsAndOverlayContainer,
                 primary: chartsContainer.select('#primary-container'),
                 secondaries: chartsContainer.selectAll('.secondary-container'),
                 xAxis: chartsContainer.select('#x-axis-container'),
@@ -2706,7 +2739,17 @@
             updateLayout();
             initialiseResize();
             _dataInterface(model.headMenu.selectedPeriod.seconds, model.headMenu.selectedProduct);
+
+            if (fetchCoinbaseProducts) {
+                getCoinbaseProducts(addCoinbaseProducts);
+            } else if (model.sources.bitcoin) {
+                delete model.sources.bitcoin;
+            }
         };
+
+        fc.util.rebind(app, model.sources.quandl.historicFeed, {
+            quandlApiKey: 'apiKey'
+        });
 
         return app;
     }

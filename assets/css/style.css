@@ -8154,6 +8154,7 @@ fieldset[disabled] .btn-danger.active {
 }
 #charts {
   user-select: none;
+  cursor: default;
 }
 .head-menu .form-control {
   min-width: 0;
@@ -8378,9 +8379,7 @@ fieldset[disabled] .btn-danger.active {
   margin-right: 0 !important;
 }
 #navbar-row #navbar-container .extent {
-  fill: #FFFFFF;
   stroke: none;
-  fill-opacity: 0.125;
   shape-rendering: crispEdges;
 }
 #navbar-row #navbar-container .background {
@@ -8422,6 +8421,18 @@ fieldset[disabled] .btn-danger.active {
 #navbar-row #navbar-container text {
   font-size: 16px;
   fill: #FFFFFF;
+}
+#navbar-row #navbar-container #brush-mask .mask-background {
+  fill: #000000;
+}
+#navbar-row #navbar-container #brush-mask .area {
+  fill: #FFFFFF;
+}
+#navbar-row #navbar-container #brush-gradient .brush-gradient-top {
+  stop-color: #42D8BD;
+}
+#navbar-row #navbar-container #brush-gradient .brush-gradient-bottom {
+  stop-color: #c1f2e9;
 }
 #navbar-row #navbar-reset {
   flex: 0 0 24px;
@@ -8576,6 +8587,7 @@ fieldset[disabled] .btn-danger.active {
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
 }
 #charts-container #primary-container,
 #overlay #primary-container,
@@ -8625,7 +8637,6 @@ fieldset[disabled] .btn-danger.active {
   display: block;
 }
 #overlay {
-  height: 100%;
   position: absolute;
   top: 0;
   pointer-events: none;
@@ -8779,18 +8790,11 @@ fieldset[disabled] .btn-danger.active {
   position: absolute;
   box-shadow: 2px 0px 2px #1A1F25;
 }
-.search input {
-  border: none;
-  background: transparent;
-  transition: all 0.2s linear 0.1s;
-  font-size: 12px;
-  color: #AEB1B5;
+.search .input-group {
+  position: relative;
+  float: left;
   width: 184px;
-  padding-left: 15px;
-  padding-top: 16px;
-}
-.search input:focus {
-  outline: none;
+  margin-top: 5px;
 }
 .search .no-results {
   color: #AEB1B5;
@@ -8798,7 +8802,7 @@ fieldset[disabled] .btn-danger.active {
   font-weight: 400;
   padding-left: 12px;
 }
-.search .sidetab > div:first-of-type search .search-result {
+.search search:first-of-type {
   border-top: 1px solid #5B626B;
 }
 .search .search-result {
@@ -9024,6 +9028,13 @@ body {
   bottom: 0px;
   left: 0px;
   right: 0px;
+}
+.form-control {
+  border: none;
+  background: transparent;
+  transition: all 0.2s linear 0.1s;
+  font-size: 13px;
+  color: #AEB1B5;
 }
 .main-content {
   bottom: 10px;
