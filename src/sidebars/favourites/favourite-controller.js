@@ -63,7 +63,8 @@
                                         price: price,
                                         delta: delta,
                                         percentage: Math.abs(percentage),
-                                        favourite: true
+                                        favourite: true,
+                                        index: self.favourites.indexOf(stock.code)
                                     });
                                 }
                             });
