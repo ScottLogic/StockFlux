@@ -6,8 +6,11 @@
             return {
                 restrict: 'C',
                 link: function(scope, element, attrs) {
-                    var tileWidth = 230,
-                        tileHeight = 100;
+                    // TODO: Improve this. Search for first class element upwards?
+                    var dragElement = element[0],
+                        tearElement = dragElement.parentNode.parentNode,
+                        tileWidth = tearElement.clientWidth,
+                        tileHeight = tearElement.clientHeight;
 
                     function createConfig() {
                         return {
@@ -28,10 +31,6 @@
 
                     var tearoutWindow = new fin.desktop.Window(createConfig());
 
-                    // TODO: Improve this. Search for first class element upwards?
-                    var dragElement = element[0];
-                    var tearElement = dragElement.parentNode.parentNode;
-
                     fin.desktop.main(function() {
                         function initialiseTearout() {
                             var myDropTarget = tearElement.parentNode,
@@ -40,7 +39,7 @@
 
                             var me = {};
 
-                            hoverService.add(myDropTarget.parentNode.getElementsByClassName('hover-area')[0], myDropTarget, scope.stock.code);
+                            hoverService.add(myDropTarget.parentNode.getElementsByClassName('hover-area')[0], scope.stock.code);
 
                             // The distance from where the mouse click occurred from the origin of the element that will be torn out.
                             // This is to place the tearout window exactly over the tornout element
@@ -189,12 +188,10 @@
                                 // Check if you are over a drop target by seeing if the tearout rectangle intersects the drop target
                                 var hoverTargets = hoverService.get();
                                 var nativeWindow = tearoutWindow.getNativeWindow();
-                                var overDropTarget = false;
                                 for (var i = 0, max = hoverTargets.length; i < max; i++) {
-                                    var hoverArea = hoverTargets[i].hoverArea;
-
-                                    var dropTargetRectangle = geometryService.rectangle(elementScreenPosition(getWindowPosition(window), hoverArea));
-                                    overDropTarget = geometryService.rectangle(getWindowPosition(nativeWindow))
+                                    var dropTargetRectangle = geometryService.rectangle(
+                                        elementScreenPosition(getWindowPosition(window), hoverTargets[i].hoverArea));
+                                    var overDropTarget = geometryService.rectangle(getWindowPosition(nativeWindow))
                                             .intersects(dropTargetRectangle);
 
                                     if (overDropTarget) {
@@ -209,6 +206,10 @@
                             document.addEventListener('mousemove', me.handleMouseMove, true);
                             document.addEventListener('mouseup', me.handleMouseUp, true);
                         }
+
+                        scope.$on('$destroy', function(e) {
+                            hoverService.remove(scope.stock.code);
+                        });
 
                         initialiseTearout();
                     });

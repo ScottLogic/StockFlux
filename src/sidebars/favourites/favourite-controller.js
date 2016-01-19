@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('openfin.favourites', ['openfin.store', 'openfin.quandl', 'openfin.selection'])
-        .controller('FavouritesCtrl', ['storeService', 'quandlService', 'selectionService', '$scope',
-            function(storeService, quandlService, selectionService, $scope) {
+        .controller('FavouritesCtrl', ['storeService', 'quandlService', 'selectionService', '$scope', '$timeout',
+            function(storeService, quandlService, selectionService, $scope, $timeout) {
                 var self = this;
                 self.stocks = [];
                 var icons = {
@@ -86,8 +86,9 @@
                 self.update();
 
                 $scope.$on('updateFavourites', function(event, data) {
-                    self.update();
-                    $scope.$apply();
+                    $timeout(function() {
+                        self.update();
+                    });
                 });
             }]);
 }());
