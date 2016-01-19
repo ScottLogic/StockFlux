@@ -25,9 +25,16 @@
 
                 self.update = function() {
                     self.favourites = storeService.get();
+
                     var i,
                         max,
                         min;
+
+                    // Update indices
+                    for (i = 0, max = self.stocks.length; i < max; i++) {
+                        var thisStock = self.stocks[i];
+                        thisStock.index = self.stockSortFunction(thisStock);
+                    }
 
                     // Remove the stocks no longer in the favourites
                     var removedStocksIndices = [];
@@ -64,7 +71,7 @@
                                         delta: delta,
                                         percentage: Math.abs(percentage),
                                         favourite: true,
-                                        index: self.favourites.indexOf(stock.code)
+                                        index: self.stockSortFunction(stock)
                                     });
                                 }
                             });
@@ -72,10 +79,15 @@
                     });
                 };
 
+                self.stockSortFunction = function(stock) {
+                    return self.favourites.indexOf(stock.code);
+                };
+
                 self.update();
 
                 $scope.$on('updateFavourites', function(event, data) {
                     self.update();
+                    $scope.$apply();
                 });
             }]);
 }());

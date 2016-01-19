@@ -1,10 +1,10 @@
-﻿@favourite-height: 101px; // the 1 is for the border
+﻿@favourite-height: 100px;
 @favourite-padding-left: 0px;
 @favourite-padding-top: 5px;
 @favourite-padding-right: 4px; // not sure why this isn't 5
 @favourite-padding-bottom: 10px;
 @top-height: 30px;
-@favourite-splitter-style: 1px solid #323A48;
+@fav-split-color: #323A48;
 
 .favourites {
   float: right;
@@ -12,6 +12,15 @@
   background-color: @middle-background;
   transition: @transition;
   cursor: pointer;
+
+  .hover-area {
+    background-color: @fav-split-color;
+    height: 1px;
+  }
+
+  .drop-target {
+    height: @favourite-height;
+  }
 
   .favourite {
     padding-top: @favourite-padding-top;
@@ -21,7 +30,6 @@
     cursor: pointer;
     height: @favourite-height;
     width: @expanded-width;
-    border-bottom: @favourite-splitter-style;
 
     .top {
       padding-left: 10px;
@@ -39,7 +47,7 @@
     .tearable {
       width: 16px;
       margin-left: 5px;
-      cursor: default;
+      cursor: move;
     }
 
     .name {

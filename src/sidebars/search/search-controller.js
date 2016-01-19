@@ -82,6 +82,10 @@
                     });
 
                 $scope.$on('updateFavourites', function(event, data) {
+                    if (!data) {
+                        return;
+                    }
+
                     var index = self.stocks.map(function(stock) { return stock.code; }).indexOf(data.code);
                     if (index > -1) {
                         if (!self.query) {

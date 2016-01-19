@@ -9,6 +9,7 @@
         'openfin.sidebar',
         'openfin.filters',
         'openfin.star',
+        'openfin.tearout',
         'openfin.minichart'
     ]);
 }());
