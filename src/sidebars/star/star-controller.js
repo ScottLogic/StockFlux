@@ -31,8 +31,6 @@
                         stock.favourite = true;
                         storeService.add(stock);
                     }
-
-                    $scope.$emit('favouriteChanged', stock);
                 }
             };
 

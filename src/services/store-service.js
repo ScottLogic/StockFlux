@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('openfin.store', ['angular-storage'])
-        .factory('storeService', ['store', function(store) {
+        .factory('storeService', ['store', '$rootScope', function(store, $rootScope) {
             var initialStocks = {
                 'AAPL': 0,
                 'MSFT': 1,
@@ -31,8 +31,9 @@
                 });
             }
 
-            function save() {
+            function save(stock) {
                 store.set('stocks', favouriteStocks);
+                $rootScope.$broadcast('updateFavourites', stock);
             }
 
             function get() {
@@ -43,7 +44,7 @@
                 var stockName = stock.code;
                 if (!favouriteStocks[stockName]) {
                     favouriteStocks[stockName] = Object.keys(favouriteStocks).length;
-                    save();
+                    save(stock);
                 }
             }
 
@@ -60,7 +61,7 @@
                             favouriteStocks[keys[i]]--;
                         }
                     }
-                    save();
+                    save(stock);
                 }
             }
 
