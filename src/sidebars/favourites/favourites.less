@@ -12,91 +12,92 @@
   background-color: @middle-background;
   transition: @transition;
   cursor: pointer;
+}
 
-  .hover-area {
-    background-color: @fav-split-color;
-    height: 1px;
+.hover-area {
+  background-color: @fav-split-color;
+  height: 1px;
+}
+
+.drop-target {
+  height: @favourite-height;
+}
+
+// Don't nest this as it is the root element of the injected HTML for tearout windows
+.favourite {
+  padding-top: @favourite-padding-top;
+  padding-bottom: @favourite-padding-bottom;
+  padding-right: @favourite-padding-right;
+  padding-left: @favourite-padding-left;
+  cursor: pointer;
+  height: @favourite-height;
+  width: @expanded-width;
+
+  .top {
+    padding-left: 10px;
+    transition: @transition;
   }
 
-  .drop-target {
-    height: @favourite-height;
+  .bottom {
+    padding-top: 1px;
   }
 
-  .favourite {
-    padding-top: @favourite-padding-top;
-    padding-bottom: @favourite-padding-bottom;
-    padding-right: @favourite-padding-right;
-    padding-left: @favourite-padding-left;
-    cursor: pointer;
-    height: @favourite-height;
-    width: @expanded-width;
+  .star, .tearable {
+    float: right;
+  }
 
-    .top {
-      padding-left: 10px;
-      transition: @transition;
-    }
+  .tearable {
+    width: 16px;
+    margin-left: 5px;
+    cursor: move;
+  }
 
-    .bottom {
-      padding-top: 1px;
-    }
+  .name {
+    font-size: 12px;
+    font-weight: @font-thin;
+    line-height: 1.4;
+  }
 
-    .star, .tearable {
-      float: right;
-    }
+  .details {
+    float: right;
+    text-align: right;
+    padding-top: 1px;
 
-    .tearable {
-      width: 16px;
-      margin-left: 5px;
-      cursor: move;
-    }
-
-    .name {
-      font-size: 12px;
-      font-weight: @font-thin;
-      line-height: 1.4;
-    }
-
-    .details {
-      float: right;
-      text-align: right;
-      padding-top: 1px;
-
-      .price {
-        font-size: 18px;
-        font-weight: @font-medium;
-        line-height: 1.0;
-      }
-
-      .delta {
-        padding-top: 4px;
-        line-height: 1.0;
-        font-size: 14px;
-      }
-
-      .delta, .percentage {
-        font-weight: @font-light;
-        padding-right: 1px;
-      }
-
-      .stock-arrow {
-        height: 9px;
-        padding-bottom: 1px;
-        padding-right: 3px;
-      }
-
-      .percentage {
-        display: inherit;
-        font-size: 12px;
-        line-height: 1.2;
-      }
-    }
-
-    .code {
-      padding-top: 1px;
-      font-size: 20px;
+    .price {
+      font-size: 18px;
       font-weight: @font-medium;
       line-height: 1.0;
     }
+
+    .delta {
+      padding-top: 4px;
+      line-height: 1.0;
+      font-size: 14px;
+    }
+
+    .delta, .percentage {
+      font-weight: @font-light;
+      padding-right: 1px;
+    }
+
+    .stock-arrow {
+      height: 9px;
+      padding-bottom: 1px;
+      padding-right: 3px;
+    }
+
+    .percentage {
+      display: inherit;
+      font-size: 12px;
+      line-height: 1.2;
+    }
+  }
+
+  .code {
+    padding-top: 1px;
+    font-size: 20px;
+    font-weight: @font-medium;
+    line-height: 1.0;
   }
 }
 

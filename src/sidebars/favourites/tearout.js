@@ -25,7 +25,9 @@
                             'url': 'sidebars/favourites/tearout.html',
                             'frame': false,
                             'resizable': false,
-                            'maximizable': false
+                            'maximizable': false,
+                            'showTaskbarIcon': false,
+                            'saveWindowState': false
                         };
                     }
 
@@ -87,7 +89,7 @@
                                     .document
                                     .body
                                     .appendChild(injection);
-
+                                console.log(injection);
                                 return me;
                             };
 
