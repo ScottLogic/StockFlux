@@ -9,7 +9,7 @@
             var starUrls = {
                 off: 'favourite_OFF',
                 on: 'favourite_ON',
-                hover: 'favourite_HOVER'
+                hover: 'favourite_OFF_hover'
             };
 
             self.favouriteUrl = function(stock) {
