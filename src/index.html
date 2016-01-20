@@ -22,7 +22,7 @@
                     <img src="assets/svg/favourite_TOP.svg" class="top-icon" />
                 </div>
                 <div id="favScroll" class="sideScroll">
-                    <div class="sidetab" ng-repeat="stock in favouritesCtrl.stocks" ng-show="sidebarCtrl.showFavourites()">
+                    <div class="sidetab" ng-repeat="stock in favouritesCtrl.stocks | orderBy: 'index'" ng-show="sidebarCtrl.showFavourites()">
                         <favourite selection="favouritesCtrl.selection()" select="favouritesCtrl.select(stock)"
                                    stock="stock" icon="favouritesCtrl.icon(stock)" render-chart="favouritesCtrl.renderChart(stock)">
                         </favourite>
@@ -87,6 +87,9 @@
     <script src="sidebars/favourites/favourite-directive.js"></script>
     <script src="sidebars/favourites/minichart/minichart-controller.js"></script>
     <script src="sidebars/favourites/minichart/minichart-directive.js"></script>
+    <script src="sidebars/favourites/tearout.js"></script>
+    <script src="sidebars/favourites/hover-service.js"></script>
+    <script src="sidebars/favourites/geometry-service.js"></script>
     <script src="sidebars/search/search-controller.js"></script>
     <script src="sidebars/search/search-directive.js"></script>
     <script src="sidebars/filters.js"></script>

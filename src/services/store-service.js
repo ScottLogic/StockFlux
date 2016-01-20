@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('openfin.store', ['angular-storage'])
-        .factory('storeService', ['store', function(store) {
+        .factory('storeService', ['store', '$rootScope', function(store, $rootScope) {
             var initialStocks = {
                 'AAPL': 0,
                 'MSFT': 1,
@@ -31,19 +31,38 @@
                 });
             }
 
-            function save() {
+            function save(stock) {
                 store.set('stocks', favouriteStocks);
+                $rootScope.$broadcast('updateFavourites', stock);
             }
 
             function get() {
                 return order(favouriteStocks);
             }
 
+            // Move given item in an array to directly after the to-item
+            function reorder(fromItem, toItem) {
+                if (fromItem === toItem) {
+                    return;
+                }
+
+                var oldArray = order(favouriteStocks);
+                var fromIndex = oldArray.indexOf(fromItem);
+                var toIndex = oldArray.indexOf(toItem);
+                oldArray.splice(toIndex, 0, oldArray.splice(fromIndex, 1)[0]);
+
+                for (var i = 0, max = oldArray.length; i < max; i++) {
+                    favouriteStocks[oldArray[i]] = i;
+                }
+
+                save();
+            }
+
             function add(stock) {
                 var stockName = stock.code;
                 if (!favouriteStocks[stockName]) {
                     favouriteStocks[stockName] = Object.keys(favouriteStocks).length;
-                    save();
+                    save(stock);
                 }
             }
 
@@ -60,12 +79,13 @@
                             favouriteStocks[keys[i]]--;
                         }
                     }
-                    save();
+                    save(stock);
                 }
             }
 
             return {
                 get: get,
+                reorder: reorder,
                 add: add,
                 remove: remove
             };
