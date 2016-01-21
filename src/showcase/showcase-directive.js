@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('openfin.showcase')
-        .directive('showcase', [function() {
+        .directive('showcase', ['quandlService', function(quandlService) {
             return {
                 restrict: 'E',
                 templateUrl: 'showcase/showcase.html',
@@ -10,7 +10,7 @@
                     selection: '&'
                 },
                 link: function(scope, element) {
-                    var chart = sc.app().quandlApiKey('kM9Z9aEULVDD7svZ4A8B'),
+                    var chart = sc.app().quandlApiKey(quandlService.apiKey()),
                         firstRun = true;
 
                     scope.$watch('selection()', function(newSelection, previousSelection) {
