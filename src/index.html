@@ -54,16 +54,10 @@
                     <showcase selection="showcaseCtrl.selection()"></showcase>
                 </div>
             </div>
-            <div id="toolbar">
-                <a ng-href="#/" id="logo">
-                    <img src="assets/svg/scottlogic_logo.svg" />
-                </a>
-                <a id="min-button" onclick="fin.desktop.Window.getCurrent().minimize();">
-                    <img src="assets/svg/minimise.svg" />
-                </a>
-                <a id="close-button" onclick="fin.desktop.Window.getCurrent().close();">
-                    <img src="assets/svg/close.svg" />
-                </a>
+            <div id="toolbar" ng-controller="ToolbarCtrl as toolbarCtrl">
+                <img id="logo" src="assets/svg/scottlogic_logo.svg" />
+                <toolbar-icon name="minimise" icon-click="toolbarCtrl.minimiseClick()"></toolbar-icon>
+                <toolbar-icon name="close" icon-click="toolbarCtrl.closeClick()"></toolbar-icon>
                 <div class="drag"></div>
             </div>
         </div>
@@ -80,6 +74,9 @@
     <script src="customScroller.js"></script>
     <script src="app.js"></script>
     <script src="sc.js"></script>
+    <script src="toolbar/toolbar-controller.js"></script>
+    <script src="toolbar/toolbarIcon-controller.js"></script>
+    <script src="toolbar/toolbarIcon-directive.js"></script>
     <script src="showcase/showcase-controller.js"></script>
     <script src="showcase/showcase-directive.js"></script>
     <script src="sidebars/sidebar-controller.js"></script>
