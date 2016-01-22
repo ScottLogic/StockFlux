@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('openfin.favourites', ['openfin.store', 'openfin.quandl', 'openfin.selection'])
-        .controller('FavouritesCtrl', ['storeService', 'quandlService', 'selectionService', '$scope',
-            function(storeService, quandlService, selectionService, $scope) {
+        .controller('FavouritesCtrl', ['storeService', 'quandlService', 'selectionService', '$scope', '$timeout',
+            function(storeService, quandlService, selectionService, $scope, $timeout) {
                 var self = this;
                 self.stocks = [];
                 var icons = {
@@ -25,9 +25,16 @@
 
                 self.update = function() {
                     self.favourites = storeService.get();
+
                     var i,
                         max,
                         min;
+
+                    // Update indices
+                    for (i = 0, max = self.stocks.length; i < max; i++) {
+                        var thisStock = self.stocks[i];
+                        thisStock.index = self.stockSortFunction(thisStock);
+                    }
 
                     // Remove the stocks no longer in the favourites
                     var removedStocksIndices = [];
@@ -63,7 +70,8 @@
                                         price: price,
                                         delta: delta,
                                         percentage: Math.abs(percentage),
-                                        favourite: true
+                                        favourite: true,
+                                        index: self.stockSortFunction(stock)
                                     });
                                 }
                             });
@@ -71,10 +79,16 @@
                     });
                 };
 
+                self.stockSortFunction = function(stock) {
+                    return self.favourites.indexOf(stock.code);
+                };
+
                 self.update();
 
                 $scope.$on('updateFavourites', function(event, data) {
-                    self.update();
+                    $timeout(function() {
+                        self.update();
+                    });
                 });
             }]);
 }());

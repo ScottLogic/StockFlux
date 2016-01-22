@@ -8191,7 +8191,7 @@ fieldset[disabled] .btn-danger.active {
 }
 .head-row .head-sub-row #period-selector li {
   display: inline-block;
-  border: 1px solid #42D8BD;
+  border: 1px solid #307A71;
   border-bottom: 0;
   margin-left: -1px;
   width: 56px;
@@ -8233,7 +8233,7 @@ fieldset[disabled] .btn-danger.active {
   stroke-width: 1px;
 }
 #primary-container path.line.movingAverage {
-  stroke: #FFFF33;
+  stroke: #FFFB6B;
 }
 #primary-container path.down {
   stroke: #42D8BD;
@@ -8246,18 +8246,18 @@ fieldset[disabled] .btn-danger.active {
   fill: #42D8BD;
 }
 #primary-container .upper > path.line {
-  stroke: #A6CEE3;
+  stroke: #42D8BD;
   stroke-width: 1px;
 }
 #primary-container .lower > path.line {
-  stroke: #A6CEE3;
+  stroke: #42D8BD;
   stroke-width: 1px;
 }
 #primary-container .area > path.area {
-  fill: rgba(255, 255, 255, 0.2);
+  fill: rgba(48, 122, 113, 0.2);
 }
 #primary-container .average > path.line {
-  stroke: #F781BF;
+  stroke: #FFFB6B;
   stroke-dasharray: 5;
 }
 #primary-container .area {
@@ -8268,10 +8268,10 @@ fieldset[disabled] .btn-danger.active {
   fill: #42D8BD;
 }
 #primary-container .gridline {
-  stroke: #42D8BD;
+  stroke: #307A71;
 }
 #primary-container .background {
-  stroke: #42D8BD;
+  stroke: #307A71;
   stroke-width: 1px;
 }
 #primary-container .ohlc {
@@ -8279,12 +8279,12 @@ fieldset[disabled] .btn-danger.active {
   stroke-width: 1px;
 }
 #primary-container .crosshair .point {
-  fill: #A6CEE3;
+  fill: #42D8BD;
   fill-opacity: 0.75;
-  stroke: #58a3cb;
+  stroke: #1f9580;
 }
 #primary-container .crosshair .annotation > line {
-  stroke: #A6CEE3;
+  stroke: #42D8BD;
   stroke-dasharray: 3, 10;
 }
 #primary-container .crosshair.band .point {
@@ -8339,20 +8339,20 @@ fieldset[disabled] .btn-danger.active {
   width: 100%;
 }
 .secondary-container .background {
-  stroke: #42D8BD;
+  stroke: #307A71;
 }
 .secondary-container .annotations .annotation line {
-  stroke: #42D8BD;
+  stroke: #307A71;
   stroke-dasharray: 20px;
 }
 .secondary-container .x-axis path {
-  stroke: #42D8BD;
+  stroke: #307A71;
 }
 .secondary-container.secondary-rsi .right-handle text {
   display: none;
 }
 .secondary-container .rsi {
-  stroke: #984EA3;
+  stroke: #9D97E5;
   stroke-width: 1px;
 }
 .secondary-container .macd-divergence .bar {
@@ -8360,11 +8360,11 @@ fieldset[disabled] .btn-danger.active {
   fill: #42D8BD;
 }
 .secondary-container .macd-signal .line {
-  stroke: #E41A1C;
+  stroke: #FB4345;
   stroke-width: 1px;
 }
 .secondary-container .macd .line {
-  stroke: #4DAF4A;
+  stroke: #5DE559;
   stroke-width: 1px;
 }
 .secondary-container .zero .annotation line {
@@ -8384,11 +8384,11 @@ fieldset[disabled] .btn-danger.active {
 }
 #navbar-row #navbar-container .background {
   fill: #1C2629;
-  stroke: #42D8BD;
+  stroke: #307A71;
   stroke-width: 2px;
 }
 #navbar-row #navbar-container .plot-area .multi .area {
-  fill: #42D8BD;
+  fill: #307A71;
 }
 #navbar-row #navbar-container .plot-area .multi path {
   stroke: #42D8BD;
@@ -8432,7 +8432,7 @@ fieldset[disabled] .btn-danger.active {
   stop-color: #42D8BD;
 }
 #navbar-row #navbar-container #brush-gradient .brush-gradient-bottom {
-  stop-color: #c1f2e9;
+  stop-color: #000000;
 }
 #navbar-row #navbar-reset {
   flex: 0 0 24px;
@@ -8464,19 +8464,19 @@ fieldset[disabled] .btn-danger.active {
 }
 #x-axis-container .tick path,
 #x-axis-container line {
-  stroke: #42D8BD;
+  stroke: #307A71;
 }
 #x-axis-container .domain {
-  stroke: #42D8BD;
+  stroke: #307A71;
 }
 #x-axis-container .axis-adapter .tick text {
   font-size: 14px;
 }
 .axis-adapter .domain {
-  stroke: #42D8BD;
+  stroke: #307A71;
 }
 .axis-adapter path {
-  stroke: #42D8BD;
+  stroke: #307A71;
 }
 .y-axis .tick text {
   font-size: 16px;
@@ -8485,10 +8485,10 @@ fieldset[disabled] .btn-danger.active {
   fill: #FFFFFF;
 }
 .y-axis .tick path {
-  stroke: #42D8BD;
+  stroke: #307A71;
 }
 .y-axis .domain {
-  stroke: #42D8BD;
+  stroke: #307A71;
 }
 .dropdown .dropdown-toggle {
   background-image: none;
@@ -8728,21 +8728,21 @@ fieldset[disabled] .btn-danger.active {
   height: 100%;
 }
 #logo,
-#min-button,
+#minimise-button,
 #close-button {
   position: fixed;
   top: 15px;
 }
 #logo {
-  right: 74px;
+  padding-left: 35px;
   width: 350px;
 }
-#min-button,
+#minimise-button,
 #close-button {
   cursor: pointer;
   width: 14px;
 }
-#min-button {
+#minimise-button {
   right: 45px;
 }
 #close-button {
@@ -8786,6 +8786,12 @@ fieldset[disabled] .btn-danger.active {
   width: 20px;
   margin-right: 15px;
   margin-top: 15px;
+}
+#stockName {
+  white-space: nowrap;
+  width: 155px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .search {
   float: left;
@@ -8851,68 +8857,74 @@ fieldset[disabled] .btn-danger.active {
   transition: all 0.2s linear 0.1s;
   cursor: pointer;
 }
-.favourites .favourite {
+.hover-area {
+  background-color: #323A48;
+  height: 1px;
+}
+.drop-target {
+  height: 100px;
+}
+.favourite {
   padding-top: 5px;
   padding-bottom: 10px;
   padding-right: 4px;
   padding-left: 0px;
   cursor: pointer;
-  height: 101px;
+  height: 100px;
   width: 230px;
-  border-bottom: 1px solid #323A48;
 }
-.favourites .favourite .top {
+.favourite .top {
   padding-left: 10px;
   transition: all 0.2s linear 0.1s;
 }
-.favourites .favourite .bottom {
+.favourite .bottom {
   padding-top: 1px;
 }
-.favourites .favourite .star,
-.favourites .favourite .tearable {
+.favourite .star,
+.favourite .tearable {
   float: right;
 }
-.favourites .favourite .tearable {
+.favourite .tearable {
   width: 16px;
   margin-left: 5px;
-  cursor: default;
+  cursor: move;
 }
-.favourites .favourite .name {
+.favourite .name {
   font-size: 12px;
   font-weight: 100;
   line-height: 1.4;
 }
-.favourites .favourite .details {
+.favourite .details {
   float: right;
   text-align: right;
   padding-top: 1px;
 }
-.favourites .favourite .details .price {
+.favourite .details .price {
   font-size: 18px;
   font-weight: 500;
   line-height: 1.0;
 }
-.favourites .favourite .details .delta {
+.favourite .details .delta {
   padding-top: 4px;
   line-height: 1.0;
   font-size: 14px;
 }
-.favourites .favourite .details .delta,
-.favourites .favourite .details .percentage {
+.favourite .details .delta,
+.favourite .details .percentage {
   font-weight: 300;
   padding-right: 1px;
 }
-.favourites .favourite .details .stock-arrow {
+.favourite .details .stock-arrow {
   height: 9px;
   padding-bottom: 1px;
   padding-right: 3px;
 }
-.favourites .favourite .details .percentage {
+.favourite .details .percentage {
   display: inherit;
   font-size: 12px;
   line-height: 1.2;
 }
-.favourites .favourite .code {
+.favourite .code {
   padding-top: 1px;
   font-size: 20px;
   font-weight: 500;
@@ -8929,7 +8941,7 @@ minichart {
   padding-top: 10px;
 }
 .minichart {
-  background-image: linear-gradient(to bottom, #427075, #28313D 92%);
+  background-image: linear-gradient(to bottom, #307A71, #28313D 92%);
   width: 155px;
   height: 40px;
 }
@@ -8942,7 +8954,7 @@ minichart {
 }
 .darkens:hover .minichart,
 .dark .minichart {
-  background-image: linear-gradient(to bottom, #427075, #1A1F25 92%);
+  background-image: linear-gradient(to bottom, #307A71, #1A1F25 92%);
 }
 .darkens:hover .minichart g,
 .dark .minichart g {
@@ -8955,31 +8967,94 @@ minichart {
 .star {
   width: 16px;
 }
+#legend {
+  background-color: default;
+}
+#selectors .dropdown-toggle {
+  height: 28px;
+}
+#selectors .selector-dropdown:nth-child(2) .dropdown-toggle {
+  font-size: 20px;
+  width: 135px;
+  line-height: 0px;
+  padding-top: 2px;
+}
 .y-axis .closeLine.tick > path {
   stroke: #42D8BD !important;
   fill: #42D8BD !important;
 }
+.container-fluid {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+#primary-container .average > path.line {
+  stroke-dasharray: 0;
+}
 .secondary-container .bar {
-  stroke: #427075 !important;
-  fill: #427075 !important;
-}
-#navbar-row #navbar-container .plot-area .multi .area {
-  fill: #427075 !important;
-}
-#navbar-row #navbar-container .plot-area .multi path {
-  stroke: #427075 !important;
-  stroke-width: #427075 !important;
+  stroke: #307A71 !important;
+  fill: #307A71 !important;
 }
 .secondary-container .macd-divergence .bar {
-  stroke: #427075 !important;
-  fill: #427075 !important;
+  stroke: #307A71 !important;
+  fill: #307A71 !important;
+}
+.secondary-container .macd-signal .line,
+.secondary-container .macd .line,
+.secondary-container .rsi {
+  stroke-width: 2px;
+}
+#navbar-row {
+  padding-top: 38px;
+}
+#navbar-row #navbar-container .plot-area .multi .area {
+  fill: #307A71 !important;
+}
+#navbar-row #navbar-container .plot-area .multi path {
+  stroke: #307A71 !important;
+  stroke-width: #307A71 !important;
+}
+#navbar-row #navbar-container .plot-area .w > rect,
+#navbar-row #navbar-container .plot-area .e > rect {
+  fill: #42D8BD;
+}
+#navbar-row #navbar-container .plot-area .w,
+#navbar-row #navbar-container .plot-area .e {
+  width: 1px;
+}
+#navbar-row #navbar-container .plot-area .w .outer-handle,
+#navbar-row #navbar-container .plot-area .e .outer-handle,
+#navbar-row #navbar-container .plot-area .w .inner-handle,
+#navbar-row #navbar-container .plot-area .e .inner-handle {
+  stroke: #42D8BD;
+}
+#navbar-row #navbar-container .plot-area .w .inner-handle,
+#navbar-row #navbar-container .plot-area .e .inner-handle {
+  fill: #42D8BD;
 }
 #navbar-row #navbar-reset {
-  stroke: none !important;
-  fill: #427075 !important;
+  opacity: 1.0;
+}
+#navbar-row #navbar-reset .reset-button {
+  fill: rgba(48, 122, 113, 0.2) !important;
+  stroke: rgba(48, 122, 113, 0.2) !important;
+}
+#navbar-row #navbar-reset .reset-button.active {
+  stroke: #42D8BD !important;
 }
 .y-axis .closeLine.tick > text {
   fill: black !important;
+}
+.y-axis .tick text,
+#x-axis-container .tick text,
+#navbar-row #navbar-container text {
+  font-size: 14px;
+  fill: #AEB1B5;
+}
+.multi.rsi.annotations .annotation.horizontal line {
+  stroke-dasharray: 8px;
+}
+.plot-area .annotation > line {
+  stroke: #42D8BD;
 }
 .dropdown-menu {
   background-color: #28313D !important;
@@ -8988,7 +9063,7 @@ minichart {
   display: none;
 }
 .primary-row {
-  margin-top: 54px !important;
+  margin-top: 19px;
 }
 #charts {
   padding-right: 0px !important;
@@ -8997,8 +9072,8 @@ minichart {
   padding-bottom: 3px;
 }
 #selectors {
-  top: -60px;
-  left: 0px;
+  top: -21px;
+  left: 15px;
 }
 #app-container {
   margin-left: 0px;
@@ -9045,19 +9120,10 @@ body {
   right: 0px;
 }
 .main-content {
-  bottom: 10px;
+  bottom: 20px;
   position: absolute;
   top: 50px;
-  left: 280px;
-  right: 15px;
-  height: auto;
-}
-.full-content {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-.right-content {
-  padding-left: 280px;
+  left: 300px;
+  right: -2px;
 }
 /*# sourceMappingURL=style.css.map */

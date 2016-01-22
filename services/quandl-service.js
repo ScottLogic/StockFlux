@@ -3,7 +3,8 @@
 
     angular.module('openfin.quandl', ['ngResource'])
         .factory('quandlService', ['$resource', function($resource) {
-            var API_KEY = 'api_key=kM9Z9aEULVDD7svZ4A8B',
+            var API_KEY = 'kM9Z9aEULVDD7svZ4A8B',
+                API_KEY_VALUE = 'api_key=' + API_KEY,
                 DATE_INDEX = 0,
                 OPEN_INDEX = 1,
                 HIGH_INDEX = 2,
@@ -19,7 +20,7 @@
 
             // Queries Quandl for all stocks matching the input query
             function stockSearch() {
-                return $resource(QUANDL_URL + 'datasets.json?' + API_KEY + '&query=:query&database_code=WIKI', {}, {
+                return $resource(QUANDL_URL + 'datasets.json?' + API_KEY_VALUE + '&query=:query&database_code=WIKI', {}, {
                     get: {
                         method: 'GET',
                         cache: true,
@@ -33,7 +34,7 @@
 
             // Queries Quandl for the specific stock code
             function stockMetadata() {
-                return $resource(QUANDL_URL + QUANDL_WIKI + ':stock_code/metadata.json?' + API_KEY, {}, {
+                return $resource(QUANDL_URL + QUANDL_WIKI + ':stock_code/metadata.json?' + API_KEY_VALUE, {}, {
                     get: { method: 'GET', cache: true }
                 });
             }
@@ -42,7 +43,7 @@
                 var startDate = period().format('YYYY-MM-DD'),
                     json;
 
-                return $resource(QUANDL_URL + QUANDL_WIKI + ':code.json?' + API_KEY + '&start_date=' + startDate, {}, {
+                return $resource(QUANDL_URL + QUANDL_WIKI + ':code.json?' + API_KEY_VALUE + '&start_date=' + startDate, {}, {
                     get: {
                         method: 'GET',
                         transformResponse: function(data, headers) {
@@ -144,7 +145,10 @@
             return {
                 getData: getData,
                 search: search,
-                getMeta: getMeta
+                getMeta: getMeta,
+                apiKey: function() {
+                    return API_KEY;
+                }
             };
         }]);
 }());

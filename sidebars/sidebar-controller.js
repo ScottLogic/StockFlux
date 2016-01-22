@@ -51,9 +51,5 @@
                     showFavourites = true;
                 }
             };
-
-            $scope.$on('favouriteChanged', function(event, data) {
-                $scope.$broadcast('updateFavourites', data);
-            });
         }]);
 }());

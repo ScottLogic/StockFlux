@@ -8,7 +8,9 @@
                 templateUrl: 'sidebars/star/star.html',
                 scope: {
                     starClick: '&',
-                    favouriteUrl: '&'
+                    favouriteUrl: '&',
+                    mouseLeave: '&',
+                    mouseEnter: '&'
                 }
             };
         }]);
