@@ -1,7 +1,8 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.showcase', ['openfin.selection'])
+    // The quandl service is used in the directive.
+    angular.module('openfin.showcase', ['openfin.selection', 'openfin.quandl'])
         .controller('ShowcaseCtrl', ['selectionService', function(selectionService) {
             var self = this;
 

@@ -2,7 +2,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500);
 
 @import "variables.less";
-@import "toolbar.less";
+@import "../../toolbar/toolbar.less";
 @import "../../sidebars/sidebar.less";
 @import "../../sidebars/search/search.less";
 @import "../../sidebars/favourites/favourites.less";
@@ -26,20 +26,9 @@ body {
 }
 
 .main-content {
-  bottom: 10px;
+  bottom: 20px;
   position: absolute;
   top: @toolbar-height;
-  left: @sidebar-width;
-  right: 15px;
-  height: auto;
-}
-
-.full-content {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-.right-content {
-  padding-left: @sidebar-width;
+  left: (@sidebar-width + 20);
+  right: -2px;
 }
