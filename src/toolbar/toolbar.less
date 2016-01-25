@@ -1,6 +1,6 @@
 ﻿#toolbar {
   height: @toolbar-height;
-  right: 65px;
+  right: 95px;
   left: @sidebar-width;
   position: absolute;
 }
@@ -10,7 +10,7 @@
   height: 100%;
 }
 
-#logo, #minimise-button, #close-button {
+#logo, #minimise-button, #maximise-button, #normal_size-button, #close-button {
   position: fixed;
   top: 15px;
 }
@@ -20,13 +20,17 @@
   width: 350px;
 }
 
-#minimise-button, #close-button {
+#minimise-button, #maximise-button, #normal_size-button, #close-button {
   cursor: pointer;
   width: 14px;
 }
 
-#minimise-button {
+#maximise-button, #normal_size-button {
   right: 45px;
+}
+
+#minimise-button {
+  right: 75px;
 }
 
 #close-button {
