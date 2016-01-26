@@ -6,8 +6,12 @@
         .controller('ShowcaseCtrl', ['selectionService', function(selectionService) {
             var self = this;
 
-            self.selection = function() {
-                return selectionService.getSelection();
+            self.selectionCode = function() {
+                return selectionService.selectedStock().code;
+            };
+
+            self.selectionName = function() {
+                return selectionService.selectedStock().name;
             };
         }]);
 }());
