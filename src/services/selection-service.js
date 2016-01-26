@@ -3,19 +3,19 @@
 
     angular.module('openfin.selection', [])
         .factory('selectionService', [function() {
-            var selected = '';
+            var selectedStock = '';
 
             function select(stock) {
-                selected = stock.code;
+                selectedStock = stock;
             }
 
-            function getSelection() {
-                return selected;
+            function getSelectedStock() {
+                return selectedStock;
             }
 
             return {
                 select: select,
-                getSelection: getSelection
+                selectedStock: getSelectedStock
             };
         }]);
 }());

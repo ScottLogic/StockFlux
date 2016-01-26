@@ -51,7 +51,10 @@
         <div class="right-content">
             <div class="main-content">
                 <div ng-controller="ShowcaseCtrl as showcaseCtrl">
-                    <showcase selection="showcaseCtrl.selection()"></showcase>
+                    <div id="showcase-title">
+                        <div class="code">{{showcaseCtrl.selectionCode()}}</div> <div class="name"> ({{showcaseCtrl.selectionName() | truncate}})</div>
+                    </div>
+                    <showcase selection="showcaseCtrl.selectionCode()"></showcase>
                 </div>
             </div>
             <div id="toolbar" ng-controller="ToolbarCtrl as toolbarCtrl">

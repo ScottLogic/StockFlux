@@ -10,7 +10,7 @@
                 self.stocks = [];
 
                 self.selection = function() {
-                    return selectionService.getSelection();
+                    return selectionService.selectedStock().code;
                 };
 
                 self.select = function(stock) {
