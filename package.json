@@ -27,7 +27,7 @@
     "angular-resource": "^1.4.8",
     "angular-storage": "0.0.13",
     "d3fc": "^5.2.0",
-    "d3fc-showcase": "ScottLogic/d3fc-showcase#2a659f6ae092c8cff85cfd956d271eb4f4e894c1",
+    "d3fc-showcase": "ScottLogic/BitFlux#56dc4387d334e105678e88c6941f492118485f6a",
     "jquery": "^1.11.1",
     "malihu-custom-scrollbar-plugin": "^3.1.3",
     "moment": "^2.10.6"
