@@ -144,8 +144,26 @@
   stroke: @chart-teal;
 }
 
-.dropdown-menu {
-  background-color: @middle-background !important;
+.dropdown .dropdown-menu {
+  background-color: @dark-background !important;
+  border-color: @chart-teal;
+
+  > li {
+    padding-top: 0px;
+    padding-bottom: 0px;
+
+    &:hover {
+      background-color: #224443;
+    }
+
+    &:first-of-type {
+      margin-top: 10px;
+    }
+
+    > a {
+      color: @chart-teal;
+    }
+  }
 }
 
 .head-row {
