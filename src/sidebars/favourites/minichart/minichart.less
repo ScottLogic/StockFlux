@@ -1,12 +1,19 @@
 ﻿minichart {
   position: absolute;
   padding-top: 10px;
+  width: 100%;
+  overflow: hidden;
 }
 
 .minichart {
   background-image: linear-gradient(to bottom, @chart-fade, @middle-background 92%);
   width: @chart-width;
   height: @chart-height;
+  overflow: visible !important;
+
+  svg {
+    overflow: visible;
+  }
 
   g {
     fill: @middle-background;
