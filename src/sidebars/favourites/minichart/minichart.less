@@ -27,12 +27,12 @@
 
 .darkens:hover .minichart, .dark .minichart {
   background-image: linear-gradient(to bottom, @chart-fade, @dark-background 92%);
-}
 
-.darkens:hover .minichart g, .dark .minichart g {
-  fill: @dark-background !important;
+  g {
+    fill: @dark-background !important;
 
-  .point {
-    fill: @chart-teal !important;
+    .point {
+      fill: @chart-teal !important;
+    }
   }
 }
