@@ -22,15 +22,29 @@
   background-color: default;
 }
 
-#selectors .dropdown-toggle {
-  height: 28px;
-}
+#selectors {
+  button:hover {
+    background: #214244;
+  }
 
-#selectors .selector-dropdown:nth-child(2) .dropdown-toggle {
-  font-size: 20px;
-  width: 135px;
-  line-height: 0px;
-  padding-top: 2px;
+  button {
+    cursor: default;
+  }
+
+  .dropdown.open button {
+    background: #296762;
+  }
+
+  .dropdown-toggle {
+    height: 28px;
+  }
+
+  .selector-dropdown:nth-child(2) .dropdown-toggle {
+    font-size: 20px;
+    width: 135px;
+    line-height: 0px;
+    padding-top: 2px;
+  }
 }
 
 .y-axis .closeLine.tick > path {

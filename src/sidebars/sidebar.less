@@ -1,9 +1,46 @@
-﻿.expanded {
+﻿@hover-colour: #455D63;
+@flash-colour: #447272;
+
+@-webkit-keyframes search {
+  0% {
+    background-color: @flash-colour;
+  }
+
+  100% {
+    background-color: @search-background;
+  }
+}
+
+@-webkit-keyframes favourites {
+  0% {
+    background-color: @flash-colour;
+  }
+
+  100% {
+    background-color: @favourites-background;
+  }
+}
+
+.expanded {
   width: @expanded-width;
+  -webkit-animation-duration: 0.4s;
+  -webkit-animation-timing-function: ease-in;
+}
+
+.search.expanded {
+  -webkit-animation-name: search;
+}
+
+.favourites.expanded {
+  -webkit-animation-name: favourites;
 }
 
 .contracted {
   width: (@sidebar-width - @expanded-width);
+}
+
+.favourites.contracted:hover, .search.contracted:hover {
+  background: @hover-colour;
 }
 
 .sidetab {
