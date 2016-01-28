@@ -13,7 +13,7 @@
 @bollinger-fill-colour: fade(@chart-fade, 20%);
 @bollinger-average-colour: @tertiary-yellow;
 
-@faded-colour: darken(@chart-fade, 92%);
+@faded-colour: fade(@chart-fade, 0%);
 
 @navigator-extent-colour-top: @secondary-orange;
 @navigator-extent-colour-bottom: @faded-colour;
@@ -69,7 +69,8 @@
   #navbar-container .plot-area {
     .multi {
       .area {
-        fill: @chart-fade !important;
+        fill: url(#brush-gradient) !important;
+        fill-opacity: 20%;
       }
 
       path {
