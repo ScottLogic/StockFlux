@@ -8,7 +8,6 @@
                 self.query = '';
                 self.noResults = false;
                 self.stocks = [];
-                self.stockSelectionPointer = 0;
 
                 self.selection = function() {
                     return selectionService.selectedStock().code;
@@ -18,7 +17,7 @@
                     selectionService.select(stock);
                 };
 
-                self.onSearchKeyUp = function(event) {
+                self.onSearchKeyDown = function(event) {
                     if (event.keyCode === 38) {
                         // Up
                         changePointer(-1);
@@ -29,9 +28,15 @@
                 };
 
                 function changePointer(delta) {
-                    var newPointer = self.stockSelectionPointer + delta;
+                    // Change the selection pointer to be the selected stock, if it exists in the list
+                    // (otherwise, set to -1, which is acceptable as there is no selection yet)
+                    var currentSelectionPointer = self.stocks.map(function(stockItem) {
+                        return stockItem.code;
+                    }).indexOf(self.selection());
 
-                    self.stockSelectionPointer = Math.max(
+                    var newPointer = currentSelectionPointer + delta;
+
+                    newPointer = Math.max(
                         0,
                         Math.min(
                             newPointer,
@@ -40,13 +45,12 @@
                     );
 
                     if (self.stocks.length > 0) {
-                        self.select(self.stocks[self.stockSelectionPointer]);
+                        self.select(self.stocks[newPointer]);
                     }
                 }
 
                 function submit() {
                     self.stocks = [];
-                    self.stockSelectionPointer = 0;
                     self.noResults = false;
                     var favourites = storeService.get();
                     if (self.query) {
@@ -84,12 +88,6 @@
                             if (!stockAdded) {
                                 self.stocks.push(stock);
                             }
-
-                            // Change the selection pointer to be the selected stock, if it exists in the list
-                            // (otherwise, set to -1, which is acceptable as there is no selection yet)
-                            self.stockSelectionPointer = self.stocks.map(function(stockItem) {
-                                return stockItem.code;
-                            }).indexOf(self.selection());
                         },
                         function() {
                             self.noResults = true;
