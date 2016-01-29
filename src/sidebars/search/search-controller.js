@@ -17,6 +17,38 @@
                     selectionService.select(stock);
                 };
 
+                self.onSearchKeyDown = function(event) {
+                    if (event.keyCode === 38) {
+                        // Up
+                        changePointer(-1);
+                    } else if (event.keyCode === 40) {
+                        // Down
+                        changePointer(1);
+                    }
+                };
+
+                function changePointer(delta) {
+                    // Change the selection pointer to be the selected stock, if it exists in the list
+                    // (otherwise, set to -1, which is acceptable as there is no selection yet)
+                    var currentSelectionPointer = self.stocks.map(function(stockItem) {
+                        return stockItem.code;
+                    }).indexOf(self.selection());
+
+                    var newPointer = currentSelectionPointer + delta;
+
+                    newPointer = Math.max(
+                        0,
+                        Math.min(
+                            newPointer,
+                            self.stocks.length - 1
+                        )
+                    );
+
+                    if (self.stocks.length > 0) {
+                        self.select(self.stocks[newPointer]);
+                    }
+                }
+
                 function submit() {
                     self.stocks = [];
                     self.noResults = false;
