@@ -30,8 +30,8 @@
             }
 
             function get() {
-                var window = getWindowStore();
-                return window ? window.stocks : [];
+                var windowStore = getWindowStore();
+                return windowStore ? windowStore.stocks : [];
             }
 
             // Move given item in an array to directly after the to-item
@@ -40,10 +40,10 @@
                     return;
                 }
 
-                var window = getWindowStore();
+                var windowStore = getWindowStore();
 
-                if (window) {
-                    var oldArray = window.stocks;
+                if (windowStore) {
+                    var oldArray = windowStore.stocks;
                     var fromIndex = oldArray.indexOf(fromItem);
                     var toIndex = oldArray.indexOf(toItem);
                     oldArray.splice(toIndex, 0, oldArray.splice(fromIndex, 1)[0]);
