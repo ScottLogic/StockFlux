@@ -1,43 +1,37 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.store', ['angular-storage'])
-        .factory('storeService', ['store', '$rootScope', function(store, $rootScope) {
-            var initialStocks = {
-                'AAPL': 0,
-                'MSFT': 1,
-                'TITN': 2,
-                'SNDK': 3,
-                'TSLA': 4
-            };
-
-            var favouriteStocks = store.get('stocks') || initialStocks;
-
-            function order(obj) {
-                var tuples = [];
-
-                for (var key in obj) {
-                    if (obj.hasOwnProperty(key)) {
-                        tuples.push([key, obj[key]]);
-                    }
+    angular.module('openfin.store', ['angular-storage', 'openfin.desktop'])
+        .factory('storeService', ['store', 'desktopService', '$rootScope', function(store, desktopService, $rootScope) {
+            var KEY_NAME = 'windows';
+            var initialStocks = [
+                {
+                    id: 'OpenFinD3FC',
+                    stocks: [
+                        'AAPL', 'MSFT', 'TITN', 'SNDK', 'TSLA'
+                    ],
+                    closed: false
                 }
+            ];
 
-                tuples = tuples.sort(function(a, b) {
-                    return a[1] - b[1];
-                });
+            var storage = JSON.parse(store.get(KEY_NAME)) || initialStocks;
 
-                return tuples.map(function(x) {
-                    return x[0];
-                });
+            function getWindowStore() {
+                var windowIndex = storage.map(function(window) {
+                    return window.id;
+                }).indexOf(desktopService.getCurrentWindow().name);
+
+                return windowIndex > -1 ? storage[windowIndex] : undefined; // TODO: undefined?
             }
 
             function save(stock) {
-                store.set('stocks', favouriteStocks);
+                store.set(KEY_NAME, JSON.stringify(storage));
                 $rootScope.$broadcast('updateFavourites', stock);
             }
 
             function get() {
-                return order(favouriteStocks);
+                var windowStore = getWindowStore();
+                return windowStore ? windowStore.stocks : [];
             }
 
             // Move given item in an array to directly after the to-item
@@ -46,41 +40,39 @@
                     return;
                 }
 
-                var oldArray = order(favouriteStocks);
-                var fromIndex = oldArray.indexOf(fromItem);
-                var toIndex = oldArray.indexOf(toItem);
-                oldArray.splice(toIndex, 0, oldArray.splice(fromIndex, 1)[0]);
+                var windowStore = getWindowStore();
 
-                for (var i = 0, max = oldArray.length; i < max; i++) {
-                    favouriteStocks[oldArray[i]] = i;
+                if (windowStore) {
+                    var oldArray = windowStore.stocks;
+                    var fromIndex = oldArray.indexOf(fromItem);
+                    var toIndex = oldArray.indexOf(toItem);
+                    oldArray.splice(toIndex, 0, oldArray.splice(fromIndex, 1)[0]);
+
+                    save();
                 }
-
-                save();
             }
 
             function add(stock) {
                 var stockName = stock.code;
-                if (!favouriteStocks[stockName]) {
-                    favouriteStocks[stockName] = Object.keys(favouriteStocks).length;
+
+                var window = getWindowStore();
+                if (window && window.stocks.indexOf(stockName) === -1) {
+                    window.stocks.push(stockName);
                     save(stock);
                 }
             }
 
             function remove(stock) {
                 var stockName = stock.code;
-                var stockOrder = favouriteStocks[stockName];
-                if (!isNaN(stockOrder)) {
-                    delete favouriteStocks[stockName];
-                    var keys = Object.keys(favouriteStocks),
-                        newLength = keys.length;
-
-                    for (var i = 0; i < newLength; i++) {
-                        if (favouriteStocks[keys[i]] > stockOrder) {
-                            favouriteStocks[keys[i]]--;
-                        }
+                var window = getWindowStore();
+                if (window) {
+                    var index = window.stocks.indexOf(stockName);
+                    if (index > -1) {
+                        window.stocks.splice(index, 1);
                     }
-                    save(stock);
                 }
+
+                save(stock);
             }
 
             return {
