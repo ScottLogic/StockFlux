@@ -19,7 +19,7 @@
                     return starUrls.on;
                 } else if (starHovered) {
                     return starUrls.onHover;
-                } else if (stock.isHovered || selectionService.getSelection() === stock.code) {
+                } else if (stock.isHovered || selectionService.selectedStock() === stock) {
                     return starUrls.offHover;
                 } else {
                     return starUrls.off;

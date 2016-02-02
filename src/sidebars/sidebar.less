@@ -1,25 +1,62 @@
-﻿.expanded {
+﻿@hover-colour: #455D63;
+@flash-colour: #447272;
+
+@-webkit-keyframes search {
+  0% {
+    background-color: @flash-colour;
+  }
+
+  100% {
+    background-color: @search-background;
+  }
+}
+
+@-webkit-keyframes favourites {
+  0% {
+    background-color: @flash-colour;
+  }
+
+  100% {
+    background-color: @favourites-background;
+  }
+}
+
+.expanded {
   width: @expanded-width;
+  -webkit-animation-duration: 0.4s;
+  -webkit-animation-timing-function: ease-in;
+}
+
+.search.expanded {
+  -webkit-animation-name: search;
+}
+
+.favourites.expanded {
+  -webkit-animation-name: favourites;
 }
 
 .contracted {
   width: (@sidebar-width - @expanded-width);
 }
 
+.favourites.contracted:hover, .search.contracted:hover {
+  background: @hover-colour;
+}
+
 .sidetab {
   opacity: 1;
-}
 
-.sidetab.ng-hide-remove {
-  transition: all 0.1s linear 0.3s;
-}
+  &.ng-hide-remove {
+    transition: all 0.1s linear 0.3s;
+  }
 
-.sidetab.ng-hide-add {
-  transition: all 0.1s linear;
-}
+  &.ng-hide-add {
+    transition: all 0.1s linear;
+  }
 
-.sidetab.ng-hide {
-  opacity: 0;
+  &.ng-hide {
+    opacity: 0;
+  }
 }
 
 .sidebars {

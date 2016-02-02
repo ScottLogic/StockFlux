@@ -4,9 +4,8 @@
 .search {
   float: left;
   height: 100%;
-  background-color: @light-background;
+  background-color: @search-background;
   transition: @transition;
-  cursor: pointer;
   position: absolute;
   box-shadow: 2px 0px 2px @dark-background;
 
@@ -19,10 +18,10 @@
     width: 184px;
     padding-left: 15px;
     padding-top: 16px;
-  }
 
-  input:focus {
-    outline: none;
+    &:focus {
+      outline: none;
+    }
   }
 
   .no-results {
@@ -39,7 +38,6 @@
   .search-result {
     height: @search-result-height;
     width: @expanded-width;
-    cursor: pointer;
     border-bottom: @search-splitter-style;
 
     .name {

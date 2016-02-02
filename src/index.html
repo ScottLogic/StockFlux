@@ -16,50 +16,17 @@
 </head>
 <body ng-cloak>
     <div class="main">
-        <div class="sidebars" ng-controller="SidebarCtrl as sidebarCtrl">
-            <div class="favourites {{sidebarCtrl.favouritesClass()}}" ng-controller="FavouritesCtrl as favouritesCtrl" ng-click="sidebarCtrl.favouritesClick()">
-                <div class="sidetab-top">
-                    <img src="assets/svg/favourite_TOP.svg" class="top-icon" />
-                </div>
-                <div id="favScroll" class="sideScroll">
-                    <div class="sidetab" ng-repeat="stock in favouritesCtrl.stocks | orderBy: 'index'" ng-show="sidebarCtrl.showFavourites()">
-                        <favourite selection="favouritesCtrl.selection()" select="favouritesCtrl.select(stock)"
-                                   stock="stock" icon="favouritesCtrl.icon(stock)" render-chart="favouritesCtrl.renderChart(stock)">
-                        </favourite>
-                    </div>
-                </div>
-            </div>
-            <div class="search {{sidebarCtrl.searchClass()}}" ng-controller="SearchCtrl as searchCtrl" ng-click="sidebarCtrl.searchClick()">
-                <div class="sidetab-top">
-                    <img src="assets/svg/search_tab.svg" class="top-icon" />
-                    <input class="sidetab" type="text" maxlength="20" placeholder="Enter stock name or symbol"
-                           ng-show="sidebarCtrl.showSearches()" ng-model="searchCtrl.query" />
-                </div>
-                <div id="searchScroll" class="sideScroll">
-                    <div class="sidetab" ng-show="sidebarCtrl.showSearches()">
-                        <div ng-repeat="stock in searchCtrl.stocks" ng-mouseenter="stock.isHovered = true;" ng-mouseleave="stock.isHovered = false;">
-                            <search stock="stock" selection="searchCtrl.selection()" select="searchCtrl.select(stock)"></search>
-                        </div>
-                        <div class="no-results" ng-show="searchCtrl.noResults">
-                            Oops!<br>
-                            Looks like no matches were found.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <side-bar></side-bar>
         <div class="right-content">
             <div class="main-content">
                 <div ng-controller="ShowcaseCtrl as showcaseCtrl">
-                    <showcase selection="showcaseCtrl.selection()"></showcase>
+                    <div id="showcase-title">
+                        <div class="code">{{showcaseCtrl.selectionCode()}}</div> <div class="name"> ({{showcaseCtrl.selectionName() | truncate}})</div>
+                    </div>
+                    <showcase selection="showcaseCtrl.selectionCode()"></showcase>
                 </div>
             </div>
-            <div id="toolbar" ng-controller="ToolbarCtrl as toolbarCtrl">
-                <img id="logo" src="assets/svg/scottlogic_logo.svg" />
-                <toolbar-icon name="minimise" icon-click="toolbarCtrl.minimiseClick()"></toolbar-icon>
-                <toolbar-icon name="close" icon-click="toolbarCtrl.closeClick()"></toolbar-icon>
-                <div class="drag"></div>
-            </div>
+            <toolbar></toolbar>
         </div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
@@ -75,11 +42,13 @@
     <script src="app.js"></script>
     <script src="sc.js"></script>
     <script src="toolbar/toolbar-controller.js"></script>
+    <script src="toolbar/toolbar-directive.js"></script>
     <script src="toolbar/toolbarIcon-controller.js"></script>
     <script src="toolbar/toolbarIcon-directive.js"></script>
     <script src="showcase/showcase-controller.js"></script>
     <script src="showcase/showcase-directive.js"></script>
     <script src="sidebars/sidebar-controller.js"></script>
+    <script src="sidebars/sidebar-directive.js"></script>
     <script src="sidebars/favourites/favourite-controller.js"></script>
     <script src="sidebars/favourites/favourite-directive.js"></script>
     <script src="sidebars/favourites/minichart/minichart-controller.js"></script>
@@ -95,5 +64,6 @@
     <script src="services/store-service.js"></script>
     <script src="services/quandl-service.js"></script>
     <script src="services/selection-service.js"></script>
+    <script src="services/desktop-service.js"></script>
 </body>
 </html>

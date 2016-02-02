@@ -13,7 +13,7 @@
 @bollinger-fill-colour: fade(@chart-fade, 20%);
 @bollinger-average-colour: @tertiary-yellow;
 
-@faded-colour: darken(@chart-fade, 92%);
+@faded-colour: fade(@chart-fade, 0%);
 
 @navigator-extent-colour-top: @secondary-orange;
 @navigator-extent-colour-bottom: @faded-colour;
@@ -22,20 +22,29 @@
   background-color: default;
 }
 
-#selectors .dropdown-toggle {
-  height: 28px;
-}
+#selectors {
+  button {
+    cursor: default;
 
-#selectors .selector-dropdown:nth-child(2) .dropdown-toggle {
-  font-size: 20px;
-  width: 135px;
-  line-height: 0px;
-  padding-top: 2px;
-}
+    &:hover {
+      background: #214244;
+    }
+  }
 
-.y-axis .closeLine.tick > path {
-  stroke: @chart-teal !important;
-  fill: @chart-teal !important;
+  .dropdown.open button {
+    background: #296762;
+  }
+
+  .dropdown-toggle {
+    height: 28px;
+  }
+
+  .selector-dropdown:nth-child(2) .dropdown-toggle {
+    font-size: 20px;
+    width: 135px;
+    line-height: 0px;
+    padding-top: 2px;
+  }
 }
 
 .container-fluid {
@@ -69,7 +78,8 @@
   #navbar-container .plot-area {
     .multi {
       .area {
-        fill: @chart-fade !important;
+        fill: url(#brush-gradient) !important;
+        fill-opacity: 20%;
       }
 
       path {
@@ -78,12 +88,12 @@
       }
     }
 
-    .w > rect, .e > rect {
-      fill: @chart-teal;
-    }
-
     .w, .e {
       width: 1px;
+
+      > rect {
+        fill: @chart-teal;
+      }
 
       .outer-handle, .inner-handle {
         stroke: @chart-teal;
@@ -101,21 +111,30 @@
     .reset-button {
       fill: fade(@chart-fade, 20%) !important;
       stroke: fade(@chart-fade, 20%) !important;
-    }
 
-    .reset-button.active {
-      stroke: @chart-teal !important;
+      &.active {
+        stroke: @chart-teal !important;
+      }
     }
   }
 }
 
-.y-axis .closeLine.tick > text {
-  fill: black !important;
-}
+.y-axis {
+  .closeLine.tick {
+    > path {
+      stroke: @chart-teal !important;
+      fill: @chart-teal !important;
+    }
 
-.y-axis .tick text, #x-axis-container .tick text, #navbar-row #navbar-container text {
-  font-size: 14px;
-  fill: @icon-colour;
+    > text {
+      fill: black !important;
+    }
+  }
+
+  .tick text, #x-axis-container .tick text, #navbar-row #navbar-container text {
+    font-size: 14px;
+    fill: @icon-colour;
+  }
 }
 
 .multi.rsi.annotations .annotation.horizontal line {
@@ -126,8 +145,26 @@
   stroke: @chart-teal;
 }
 
-.dropdown-menu {
-  background-color: @middle-background !important;
+.dropdown .dropdown-menu {
+  background-color: @dark-background !important;
+  border-color: @chart-teal;
+
+  > li {
+    padding-top: 0px;
+    padding-bottom: 0px;
+
+    &:hover {
+      background-color: #224443;
+    }
+
+    &:first-of-type {
+      margin-top: 10px;
+    }
+
+    > a {
+      color: @chart-teal;
+    }
+  }
 }
 
 .head-row {
