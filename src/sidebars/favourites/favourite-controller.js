@@ -1,9 +1,9 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.favourites', ['openfin.store', 'openfin.quandl', 'openfin.selection'])
-        .controller('FavouritesCtrl', ['storeService', 'quandlService', 'selectionService', '$scope', '$timeout',
-            function(storeService, quandlService, selectionService, $scope, $timeout) {
+    angular.module('openfin.favourites', ['openfin.store', 'openfin.quandl', 'openfin.selection', 'openfin.desktop'])
+        .controller('FavouritesCtrl', ['storeService', 'quandlService', 'selectionService', 'desktopService', '$scope', '$timeout',
+            function(storeService, quandlService, selectionService, desktopService, $scope, $timeout) {
                 var self = this;
                 self.stocks = [];
                 var icons = {
@@ -24,58 +24,60 @@
                 };
 
                 self.update = function() {
-                    self.favourites = storeService.get();
+                    desktopService.ready(function() {
+                        self.favourites = storeService.get();
 
-                    var i,
-                        max,
-                        min;
+                        var i,
+                            max,
+                            min;
 
-                    // Update indices
-                    for (i = 0, max = self.stocks.length; i < max; i++) {
-                        var thisStock = self.stocks[i];
-                        thisStock.index = self.stockSortFunction(thisStock);
-                    }
-
-                    // Remove the stocks no longer in the favourites
-                    var removedStocksIndices = [];
-                    for (i = 0, max = self.stocks.length; i < max; i++) {
-                        if (self.favourites.indexOf(self.stocks[i].code) === -1) {
-                            removedStocksIndices.push(i);
+                        // Update indices
+                        for (i = 0, max = self.stocks.length; i < max; i++) {
+                            var thisStock = self.stocks[i];
+                            thisStock.index = self.stockSortFunction(thisStock);
                         }
-                    }
 
-                    // Remove from the end of the array to not change the indices
-                    for (i = removedStocksIndices.length - 1, min = 0; i >= min; i--) {
-                        self.stocks.splice(removedStocksIndices[i], 1);
-                    }
-
-                    // Add new stocks from favourites
-                    self.favourites.map(function(favourite) {
-                        if (self.stocks.map(function(stock) { return stock.code; }).indexOf(favourite) === -1) {
-                            // This is a new stock
-                            quandlService.getData(favourite, function(stock) {
-                                var data = stock.data[0],
-                                    price,
-                                    delta,
-                                    percentage;
-
-                                if (data) {
-                                    price = data.close;
-                                    delta = data.close - data.open;
-                                    percentage = delta / data.open * 100;
-
-                                    self.stocks.push({
-                                        name: stock.name,
-                                        code: stock.code,
-                                        price: price,
-                                        delta: delta,
-                                        percentage: Math.abs(percentage),
-                                        favourite: true,
-                                        index: self.stockSortFunction(stock)
-                                    });
-                                }
-                            });
+                        // Remove the stocks no longer in the favourites
+                        var removedStocksIndices = [];
+                        for (i = 0, max = self.stocks.length; i < max; i++) {
+                            if (self.favourites.indexOf(self.stocks[i].code) === -1) {
+                                removedStocksIndices.push(i);
+                            }
                         }
+
+                        // Remove from the end of the array to not change the indices
+                        for (i = removedStocksIndices.length - 1, min = 0; i >= min; i--) {
+                            self.stocks.splice(removedStocksIndices[i], 1);
+                        }
+
+                        // Add new stocks from favourites
+                        self.favourites.map(function(favourite) {
+                            if (self.stocks.map(function(stock) { return stock.code; }).indexOf(favourite) === -1) {
+                                // This is a new stock
+                                quandlService.getData(favourite, function(stock) {
+                                    var data = stock.data[0],
+                                        price,
+                                        delta,
+                                        percentage;
+
+                                    if (data) {
+                                        price = data.close;
+                                        delta = data.close - data.open;
+                                        percentage = delta / data.open * 100;
+
+                                        self.stocks.push({
+                                            name: stock.name,
+                                            code: stock.code,
+                                            price: price,
+                                            delta: delta,
+                                            percentage: Math.abs(percentage),
+                                            favourite: true,
+                                            index: self.stockSortFunction(stock)
+                                        });
+                                    }
+                                });
+                            }
+                        });
                     });
                 };
 

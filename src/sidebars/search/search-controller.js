@@ -1,9 +1,9 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.search', ['openfin.quandl', 'openfin.store', 'openfin.selection'])
-        .controller('SearchCtrl', ['$scope', 'quandlService', 'storeService', 'selectionService',
-            function($scope, quandlService, storeService, selectionService) {
+    angular.module('openfin.search', ['openfin.quandl', 'openfin.store', 'openfin.selection', 'openfin.desktop'])
+        .controller('SearchCtrl', ['$scope', 'quandlService', 'storeService', 'selectionService', 'desktopService',
+            function($scope, quandlService, storeService, selectionService, desktopService) {
                 var self = this;
                 self.query = '';
                 self.noResults = false;
@@ -52,54 +52,57 @@
                 function submit() {
                     self.stocks = [];
                     self.noResults = false;
-                    var favourites = storeService.get();
-                    if (self.query) {
-                        var length = favourites.length;
-                        quandlService.search(self.query, function(stock) {
-                            var i;
 
-                            // removing stocks found with old query
-                            self.stocks = self.stocks.filter(function(result, j) {
-                                return result.query === self.query;
-                            });
+                    desktopService.ready(function() {
+                        var favourites = storeService.get();
+                        if (self.query) {
+                            var length = favourites.length;
+                            quandlService.search(self.query, function(stock) {
+                                var i;
 
-                            // not adding old stocks
-                            if (stock.query !== self.query) {
-                                return;
-                            }
+                                // removing stocks found with old query
+                                self.stocks = self.stocks.filter(function(result, j) {
+                                    return result.query === self.query;
+                                });
 
-                            // Due to the asynchronicity of the search, if multiple searches
-                            // are fired off in a small amount of time, with an intermediate one
-                            // returning no results it's possible to have both the noResults flag
-                            // set to true, while some stocks have been retrieved by a later search.
-                            //
-                            // Here we re-set the flag to keep it up-to-date.
-                            self.noResults = false;
-
-                            var stockAdded = false;
-                            for (i = 0; i < length; i++) {
-                                if (stock.code === favourites[i]) {
-                                    stock.favourite = true;
-                                    self.stocks.unshift(stock);
-                                    stockAdded = true;
+                                // not adding old stocks
+                                if (stock.query !== self.query) {
+                                    return;
                                 }
-                            }
 
-                            if (!stockAdded) {
-                                self.stocks.push(stock);
-                            }
-                        },
-                        function() {
-                            self.noResults = true;
-                        });
-                    } else {
-                        favourites.map(function(favourite) {
-                            quandlService.getMeta(favourite, function(stock) {
-                                stock.favourite = true;
-                                self.stocks.push(stock);
+                                // Due to the asynchronicity of the search, if multiple searches
+                                // are fired off in a small amount of time, with an intermediate one
+                                // returning no results it's possible to have both the noResults flag
+                                // set to true, while some stocks have been retrieved by a later search.
+                                //
+                                // Here we re-set the flag to keep it up-to-date.
+                                self.noResults = false;
+
+                                var stockAdded = false;
+                                for (i = 0; i < length; i++) {
+                                    if (stock.code === favourites[i]) {
+                                        stock.favourite = true;
+                                        self.stocks.unshift(stock);
+                                        stockAdded = true;
+                                    }
+                                }
+
+                                if (!stockAdded) {
+                                    self.stocks.push(stock);
+                                }
+                            },
+                            function() {
+                                self.noResults = true;
                             });
-                        });
-                    }
+                        } else {
+                            favourites.map(function(favourite) {
+                                quandlService.getMeta(favourite, function(stock) {
+                                    stock.favourite = true;
+                                    self.stocks.push(stock);
+                                });
+                            });
+                        }
+                    });
                 }
 
                 $scope.$watch(
