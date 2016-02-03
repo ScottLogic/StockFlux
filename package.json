@@ -6,8 +6,11 @@
     "postinstall": "cd node_modules/d3fc-showcase && npm i"
   },
   "devDependencies": {
+    "babel-eslint": "^4.1.8",
+    "babel-preset-es2015": "^6.3.13",
     "connect-livereload": "^0.4.0",
     "grunt": "^0.4.5",
+    "grunt-babel": "^6.0.0",
     "grunt-cli": "^0.1.13",
     "grunt-contrib-clean": "^0.7.0",
     "grunt-contrib-concat": "^0.5.1",
