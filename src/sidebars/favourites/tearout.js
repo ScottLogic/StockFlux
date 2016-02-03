@@ -33,17 +33,18 @@
                             };
                         }
 
-                        var desktopService = window.windowService;
-                        var tearoutWindow = desktopService.createTearoutWindow(createConfig(), window.name);
+                        var tearoutWindow = window.windowService.createTearoutWindow(createConfig(), window.name);
 
                         function initialiseTearout() {
                             var myDropTarget = tearElement.parentNode,
+                                parent = myDropTarget.parentNode,
+                                myHoverArea = parent.getElementsByClassName('hover-area')[0],
                                 offset = { x: 0, y: 0 },
                                 currentlyDragging = false;
 
                             var me = {};
 
-                            hoverService.add(myDropTarget.parentNode.getElementsByClassName('hover-area')[0], scope.stock.code);
+                            hoverService.add(myHoverArea, scope.stock.code);
 
                             // The distance from where the mouse click occurred from the origin of the element that will be torn out.
                             // This is to place the tearout window exactly over the tornout element
@@ -186,17 +187,13 @@
                                 }
                             };
 
-                            // On the `bounds-changing` event check to see if you are over a potential drop target.
-                            // If so update the drop target.
-                            tearoutWindow.addEventListener('bounds-changing', function() {
-                                // Check if you are over a drop target by seeing if the tearout rectangle intersects the drop target
+                            function reorderFavourites(tearoutRectangle) {
                                 var hoverTargets = hoverService.get();
-                                var nativeWindow = tearoutWindow.getNativeWindow();
+
                                 for (var i = 0, max = hoverTargets.length; i < max; i++) {
                                     var dropTargetRectangle = geometryService.rectangle(
-                                        elementScreenPosition(getWindowPosition(window), hoverTargets[i].hoverArea));
-                                    var overDropTarget = geometryService.rectangle(getWindowPosition(nativeWindow))
-                                            .intersects(dropTargetRectangle);
+                                        elementScreenPosition(getWindowPosition(window), hoverTargets[i].hoverArea)),
+                                        overDropTarget = tearoutRectangle.intersects(dropTargetRectangle);
 
                                     if (overDropTarget) {
                                         // TODO: This is where the pause will go, and the highlighting.
@@ -208,6 +205,17 @@
                                         break;
                                     }
                                 }
+                            }
+
+                            // On the `bounds-changing` event check to see if you are over a potential drop target.
+                            // If so update the drop target.
+                            tearoutWindow.addEventListener('bounds-changing', function() {
+                                // Check if you are over a drop target by seeing if the tearout rectangle intersects the drop target
+                                var nativeWindow = tearoutWindow.getNativeWindow(),
+                                    tearoutRectangle = geometryService.rectangle(getWindowPosition(nativeWindow));
+
+                                reorderFavourites(tearoutRectangle);
+
                             });
 
                             dragElement.addEventListener('mousedown', me.handleMouseDown);
@@ -215,8 +223,12 @@
                             document.addEventListener('mouseup', me.handleMouseUp, true);
                         }
 
-                        scope.$on('$destroy', function(e) {
+                        function dispose() {
                             hoverService.remove(scope.stock.code);
+                        }
+
+                        scope.$on('$destroy', function(e) {
+                            dispose();
                         });
 
                         initialiseTearout();
