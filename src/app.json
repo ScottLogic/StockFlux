@@ -3,11 +3,10 @@
     "startup_app": {
         "name": "OpenFinD3FC",
         "uuid": "OpenFinD3FC",
-        "maxWidth": 100,
-        "maxHeight": 100,
-        "defaultWidth": 100,
-        "defaultHeight": 100,
-        "autoShow":  true,
+        "maxWidth": 0,
+        "maxHeight": 0,
+        "defaultWidth": 0,
+        "defaultHeight": 0,
         "frame": false,
         "showTaskbarIcon": false
     },
