@@ -1,24 +1,22 @@
 (function() {
     'use strict';
 
+    class DesktopService {
+
+        createWindow(config) {
+            return new fin.desktop.Window(config);
+        }
+
+        ready(callback) {
+            fin.desktop.main(callback);
+        }
+
+        getCurrentWindow() {
+            return fin.desktop.Window.getCurrent();
+        }
+
+    }
+    DesktopService.$inject = [];
     angular.module('openfin.desktop', [])
-        .factory('desktopService', [function() {
-            function createWindow(config) {
-                return new fin.desktop.Window(config);
-            }
-
-            function ready(cb) {
-                fin.desktop.main(cb);
-            }
-
-            function getCurrentWindow() {
-                return fin.desktop.Window.getCurrent();
-            }
-
-            return {
-                createWindow: createWindow,
-                ready: ready,
-                getCurrentWindow: getCurrentWindow
-            };
-        }]);
+        .service('desktopService', DesktopService);
 }());
