@@ -4,7 +4,8 @@
     angular.module('openfin.favourites', ['openfin.store', 'openfin.quandl', 'openfin.selection', 'openfin.currentWindow'])
         .controller('FavouritesCtrl', ['storeService', 'quandlService', 'selectionService', 'currentWindowService', '$scope', '$timeout',
             function(storeService, quandlService, selectionService, currentWindowService, $scope, $timeout) {
-                var self = this;
+                var self = this,
+                    store;
                 self.stocks = [];
                 var icons = {
                     up: 'arrow_up',
@@ -25,7 +26,11 @@
 
                 self.update = function() {
                     currentWindowService.ready(function() {
-                        self.favourites = storeService.get();
+                        if (!store) {
+                            store = storeService.open(currentWindowService.getCurrentWindow().name);
+                        }
+
+                        self.favourites = store.get();
 
                         var i,
                             max,

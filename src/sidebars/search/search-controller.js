@@ -4,7 +4,8 @@
     angular.module('openfin.search', ['openfin.quandl', 'openfin.store', 'openfin.selection', 'openfin.currentWindow'])
         .controller('SearchCtrl', ['$scope', 'quandlService', 'storeService', 'selectionService', 'currentWindowService',
             function($scope, quandlService, storeService, selectionService, currentWindowService) {
-                var self = this;
+                var self = this,
+                    store;
                 self.query = '';
                 self.noResults = false;
                 self.stocks = [];
@@ -54,7 +55,11 @@
                     self.noResults = false;
 
                     currentWindowService.ready(function() {
-                        var favourites = storeService.get();
+                        if (!store) {
+                            store = storeService.open(currentWindowService.getCurrentWindow().name);
+                        }
+
+                        var favourites = store.get();
                         if (self.query) {
                             var length = favourites.length;
                             quandlService.search(self.query, function(stock) {

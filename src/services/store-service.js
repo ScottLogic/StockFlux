@@ -1,8 +1,8 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.store', ['angular-storage', 'openfin.currentWindow'])
-        .factory('storeService', ['store', 'currentWindowService', '$rootScope', function(store, currentWindowService, $rootScope) {
+    angular.module('openfin.store', ['angular-storage'])
+        .factory('storeService', ['store', '$rootScope', function(store, $rootScope) {
             var KEY_NAME = 'windows';
             var initialStocks = [
                 {
@@ -16,70 +16,76 @@
 
             var storage = JSON.parse(store.get(KEY_NAME)) || initialStocks;
 
-            function getWindowStore() {
-                var windowIndex = storage.map(function(window) {
-                    return window.id;
-                }).indexOf(currentWindowService.getCurrentWindow().name);
+            function open(windowName) {
+                function getWindowStore() {
+                    var windowIndex = storage.map(function(window) {
+                        return window.id;
+                    }).indexOf(windowName);
 
-                return windowIndex > -1 ? storage[windowIndex] : undefined; // TODO: undefined?
-            }
-
-            function save(stock) {
-                store.set(KEY_NAME, JSON.stringify(storage));
-                $rootScope.$broadcast('updateFavourites', stock);
-            }
-
-            function get() {
-                var windowStore = getWindowStore();
-                return windowStore ? windowStore.stocks : [];
-            }
-
-            // Move given item in an array to directly after the to-item
-            function reorder(fromItem, toItem) {
-                if (fromItem === toItem) {
-                    return;
+                    return windowIndex > -1 ? storage[windowIndex] : undefined; // TODO: undefined?
                 }
 
-                var windowStore = getWindowStore();
-
-                if (windowStore) {
-                    var oldArray = windowStore.stocks;
-                    var fromIndex = oldArray.indexOf(fromItem);
-                    var toIndex = oldArray.indexOf(toItem);
-                    oldArray.splice(toIndex, 0, oldArray.splice(fromIndex, 1)[0]);
-
-                    save();
+                function save(stock) {
+                    store.set(KEY_NAME, JSON.stringify(storage));
+                    $rootScope.$broadcast('updateFavourites', stock);
                 }
-            }
 
-            function add(stock) {
-                var stockName = stock.code;
-
-                var window = getWindowStore();
-                if (window && window.stocks.indexOf(stockName) === -1) {
-                    window.stocks.push(stockName);
-                    save(stock);
+                function get() {
+                    var windowStore = getWindowStore();
+                    return windowStore ? windowStore.stocks : [];
                 }
-            }
 
-            function remove(stock) {
-                var stockName = stock.code;
-                var window = getWindowStore();
-                if (window) {
-                    var index = window.stocks.indexOf(stockName);
-                    if (index > -1) {
-                        window.stocks.splice(index, 1);
+                // Move given item in an array to directly after the to-item
+                function reorder(fromItem, toItem) {
+                    if (fromItem === toItem) {
+                        return;
+                    }
+
+                    var windowStore = getWindowStore();
+
+                    if (windowStore) {
+                        var oldArray = windowStore.stocks;
+                        var fromIndex = oldArray.indexOf(fromItem);
+                        var toIndex = oldArray.indexOf(toItem);
+                        oldArray.splice(toIndex, 0, oldArray.splice(fromIndex, 1)[0]);
+
+                        save();
                     }
                 }
 
-                save(stock);
+                function add(stock) {
+                    var stockName = stock.code;
+
+                    var windowStore = getWindowStore();
+                    if (windowStore && windowStore.stocks.indexOf(stockName) === -1) {
+                        windowStore.stocks.push(stockName);
+                        save(stock);
+                    }
+                }
+
+                function remove(stock) {
+                    var stockName = stock.code;
+                    var windowStore = getWindowStore();
+                    if (windowStore) {
+                        var index = windowStore.stocks.indexOf(stockName);
+                        if (index > -1) {
+                            windowStore.stocks.splice(index, 1);
+                        }
+                    }
+
+                    save(stock);
+                }
+
+                return {
+                    get: get,
+                    add: add,
+                    remove: remove,
+                    reorder: reorder
+                };
             }
 
             return {
-                get: get,
-                reorder: reorder,
-                add: add,
-                remove: remove
+                open: open
             };
         }]);
 }());

@@ -1,9 +1,9 @@
 (function(window) {
     'use strict';
 
-    angular.module('openfin.tearout', ['openfin.geometry', 'openfin.hover', 'openfin.store'])
-        .directive('tearable', ['geometryService', 'hoverService', 'storeService',
-            function(geometryService, hoverService, storeService) {
+    angular.module('openfin.tearout', ['openfin.geometry', 'openfin.hover', 'openfin.store', 'openfin.currentWindow'])
+        .directive('tearable', ['geometryService', 'hoverService', 'storeService', 'currentWindowService',
+            function(geometryService, hoverService, storeService, currentWindowService) {
                 return {
                     restrict: 'C',
                     link: function(scope, element, attrs) {
@@ -11,7 +11,8 @@
                         var dragElement = element[0],
                             tearElement = dragElement.parentNode.parentNode,
                             tileWidth = tearElement.clientWidth,
-                            tileHeight = tearElement.clientHeight;
+                            tileHeight = tearElement.clientHeight,
+                            store;
 
                         function createConfig() {
                             return {
@@ -199,7 +200,11 @@
 
                                     if (overDropTarget) {
                                         // TODO: This is where the pause will go, and the highlighting.
-                                        storeService.reorder(scope.stock.code, hoverTargets[i].code);
+                                        if (!store) {
+                                            store = storeService.open(currentWindowService.getCurrentWindow().name);
+                                        }
+
+                                        store.reorder(scope.stock.code, hoverTargets[i].code);
                                         break;
                                     }
                                 }
