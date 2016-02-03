@@ -1,34 +1,31 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.parent', ['openfin.window', 'openfin.store'])
-        .controller('ParentCtrl', ['$scope', 'windowCreationService', 'storeService', function($scope, windowCreationService, storeService) {
+    angular.module('openfin.parent', ['openfin.window'])
+        .controller('ParentCtrl', ['$scope', 'windowCreationService', function($scope, windowCreationService) {
+            var config = {
+                'autoShow': true,
+                'minWidth': 918,
+                'minHeight': 510,
+                'defaultWidth': 1280,
+                'defaultHeight': 720,
+                'frame': false,
+                'url': 'index.html'
+            };
+
             windowCreationService.ready(function() {
-                var config = {
-                    'autoShow': true,
-                    'minWidth': 918,
-                    'minHeight': 510,
-                    'defaultWidth': 1280,
-                    'defaultHeight': 720,
-                    'frame': false,
-                    'name': 'main',
-                    'url': 'index.html'
-                };
-
-                var main;
-                main = windowCreationService.createWindow(config, function() {
-                    // Begin super hack
-                    main.getNativeWindow().windowService = windowCreationService;
-                    main.getNativeWindow().storeService = storeService;
-                    // End super hack
-
-                    main.show();
+                // TODO: Restore correct window(s)
+                windowCreationService.createWindow(config, function(newWindow) {
+                    newWindow.show();
                 });
 
                 $scope.$on('updateFavourites', function(event, data) {
                     var e = new Event('updateFavourites');
                     e.stock = data;
-                    main.getNativeWindow().dispatchEvent(e);
+                    var openWindows = windowCreationService.getWindows();
+                    for (var i = 0, max = openWindows.length; i < max; i++) {
+                        openWindows[i].getNativeWindow().dispatchEvent(e);
+                    }
                 });
             });
         }]);

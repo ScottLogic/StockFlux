@@ -31,7 +31,7 @@
                 self.click = function(stock) {
                     if (!self.check || confirm('Are you sure you wish to remove this stock (' + stock.code + ') from your favourites?')) {
                         if (!store) {
-                            store = window.storeService.open(currentWindowService.getCurrentWindow().name);
+                            store = window.storeService.open(window.name);
                         }
 
                         if (stock.favourite) {

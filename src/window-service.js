@@ -1,9 +1,12 @@
 (function(fin) {
     'use strict';
 
-    angular.module('openfin.window', [])
-        .factory('windowCreationService', [function() {
-            var openWindows = {};
+    angular.module('openfin.window', ['openfin.store'])
+        .factory('windowCreationService', ['storeService', function(storeService) {
+            var self = this;
+            var openWindows = {},
+                windowsCache = [],
+                firstName = true;
 
             function appManager() {
                 var windowsOpen = 0;
@@ -28,22 +31,28 @@
 
             var apps = appManager();
 
-            function createTearoutWindow(config, parentName) {
-                var tearoutWindow = createWindow(config);
-
-                if (!openWindows[parentName]) {
-                    openWindows[parentName] = [].concat(tearoutWindow);
-                } else {
-                    openWindows[parentName].push(tearoutWindow);
+            function getName() {
+                if (firstName) {
+                    firstName = false;
+                    return 'main';
                 }
 
-                return tearoutWindow;
+                return 'window' + Math.floor(Math.random() * 1000) + Math.ceil(Math.random() * 999);
             }
 
-            function createWindow(config, successCb) {
+            self.createWindow = function(config, successCb) {
+                config.name = getName();
                 var newWindow = new fin.desktop.Window(config, function() {
+                    windowsCache.push(newWindow);
+
+                    // TODO
+                    // Begin super hack
+                    newWindow.getNativeWindow().windowService = self;
+                    newWindow.getNativeWindow().storeService = storeService;
+                    // End super hack
+
                     if (successCb) {
-                        successCb();
+                        successCb(newWindow);
                     }
                 });
 
@@ -58,19 +67,41 @@
                     }
 
                     apps.decrement();
+
+                    var index = windowsCache.indexOf(newWindow);
+                    windowsCache.slice(index, 1);
+
+                    // TODO: Need to set window's closed state to true in the store.
                 });
 
                 return newWindow;
-            }
+            };
+
+            self.createTearoutWindow = function(config, parentName) {
+                var tearoutWindow = self.createWindow(config);
+
+                if (!openWindows[parentName]) {
+                    openWindows[parentName] = [].concat(tearoutWindow);
+                } else {
+                    openWindows[parentName].push(tearoutWindow);
+                }
+
+                return tearoutWindow;
+            };
 
             function ready(cb) {
                 fin.desktop.main(cb);
             }
 
+            function getWindows() {
+                return windowsCache;
+            }
+
             return {
-                createWindow: createWindow,
-                createTearoutWindow: createTearoutWindow,
-                ready: ready
+                createWindow: self.createWindow,
+                createTearoutWindow: self.createTearoutWindow,
+                ready: ready,
+                getWindows: getWindows
             };
         }]);
 }(fin));

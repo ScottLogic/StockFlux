@@ -14,33 +14,46 @@
                             tileHeight = tearElement.clientHeight,
                             store;
 
-                        function createConfig() {
+                        function createConfig(minWidth, minHeight, width, height, url, resizable, maximizable, showTaskbarIcon, saveWindowState) {
                             return {
-                                'name': scope.stock.code + ' window',
-                                'maxWidth': tileWidth,
-                                'minHeight': tileHeight,
+                                'minWidth': minWidth,
+                                'minHeight': minHeight,
                                 'defaultWidth': tileWidth,
                                 'defaultHeight': tileHeight,
-                                'width': tileWidth,
-                                'height': tileHeight,
+                                'width': width,
+                                'height': height,
                                 'autoShow': false,
-                                'url': 'sidebars/favourites/tearout.html',
+                                'url': url,
                                 'frame': false,
-                                'resizable': false,
-                                'maximizable': false,
-                                'showTaskbarIcon': false,
-                                'saveWindowState': false
+                                'resizable': resizable,
+                                'maximizable': maximizable,
+                                'showTaskbarIcon': showTaskbarIcon,
+                                'saveWindowState': saveWindowState
                             };
                         }
 
-                        var tearoutWindow = window.windowService.createTearoutWindow(createConfig(), window.name);
+                        var tearoutWindowConfig = createConfig(
+                            tileWidth,
+                            tileHeight,
+                            tileWidth,
+                            tileHeight,
+                            'sidebars/favourites/tearout.html',
+                            false,
+                            false,
+                            false,
+                            false
+                        );
+
+                        var windowService = window.windowService;
+                        var tearoutWindow = windowService.createTearoutWindow(tearoutWindowConfig, window.name);
 
                         function initialiseTearout() {
                             var myDropTarget = tearElement.parentNode,
                                 parent = myDropTarget.parentNode,
                                 myHoverArea = parent.getElementsByClassName('hover-area')[0],
                                 offset = { x: 0, y: 0 },
-                                currentlyDragging = false;
+                                currentlyDragging = false,
+                                outsideMainWindow = false;
 
                             var me = {};
 
@@ -182,8 +195,45 @@
                                 }
 
                                 if (currentlyDragging) {
-                                    me.setCurrentlyDragging(false)
-                                        .returnFromTearout();
+                                    me.setCurrentlyDragging(false);
+                                    if (!outsideMainWindow) {
+                                        me.returnFromTearout();
+                                    } else {
+                                        if (!store) {
+                                            store = window.storeService.open(window.name);
+                                        }
+
+                                        // Remove the stock from the old window
+                                        store.remove(scope.stock);
+
+                                        // Create new window instance
+                                        var mainApplicationWindowPosition = getWindowPosition(window);
+
+                                        // TODO: Remove duplication of minimum sizes
+                                        var config = createConfig(
+                                            918,
+                                            510,
+                                            mainApplicationWindowPosition.width,
+                                            mainApplicationWindowPosition.height,
+                                            'index.html',
+                                            true,
+                                            true,
+                                            true);
+
+                                        windowService.createWindow(config, function(newWindow) {
+                                            newWindow.moveTo(e.screenX, e.screenY);
+                                            window.storeService.open(newWindow.name).add(scope.stock);
+                                            newWindow.show();
+                                        });
+
+                                        // Remove drop-target from original instance
+                                        parent.removeChild(myHoverArea);
+                                        parent.removeChild(myDropTarget);
+                                        dispose();
+
+                                        // Destroy myself.
+                                        tearoutWindow.close();
+                                    }
                                 }
                             };
 
@@ -198,7 +248,7 @@
                                     if (overDropTarget) {
                                         // TODO: This is where the pause will go, and the highlighting.
                                         if (!store) {
-                                            store = window.storeService.open(currentWindowService.getCurrentWindow().name);
+                                            store = window.storeService.open(window.name);
                                         }
 
                                         store.reorder(scope.stock.code, hoverTargets[i].code);
@@ -212,10 +262,15 @@
                             tearoutWindow.addEventListener('bounds-changing', function() {
                                 // Check if you are over a drop target by seeing if the tearout rectangle intersects the drop target
                                 var nativeWindow = tearoutWindow.getNativeWindow(),
-                                    tearoutRectangle = geometryService.rectangle(getWindowPosition(nativeWindow));
+                                    tearoutRectangle = geometryService.rectangle(getWindowPosition(nativeWindow)),
+                                    mainApplicationWindowPosition = getWindowPosition(window),
+                                    mainApplicationRectangle = geometryService.rectangle(mainApplicationWindowPosition);
 
-                                reorderFavourites(tearoutRectangle);
+                                outsideMainWindow = !tearoutRectangle.intersects(mainApplicationRectangle);
 
+                                if (!outsideMainWindow) {
+                                    reorderFavourites(tearoutRectangle);
+                                }
                             });
 
                             dragElement.addEventListener('mousedown', me.handleMouseDown);

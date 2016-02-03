@@ -27,7 +27,7 @@
                 self.update = function() {
                     currentWindowService.ready(function() {
                         if (!store) {
-                            store = window.storeService.open(currentWindowService.getCurrentWindow().name);
+                            store = window.storeService.open(window.name);
                         }
 
                         self.favourites = store.get();
