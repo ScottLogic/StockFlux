@@ -9,6 +9,7 @@
         "d3": true,
         "fc": true,
         "document": true,
-        "confirm": true
+        "confirm": true,
+        "Event":  true
     }
 }

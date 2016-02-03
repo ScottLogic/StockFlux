@@ -1,9 +1,9 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.search', ['openfin.quandl', 'openfin.store', 'openfin.selection', 'openfin.currentWindow'])
-        .controller('SearchCtrl', ['$scope', 'quandlService', 'storeService', 'selectionService', 'currentWindowService',
-            function($scope, quandlService, storeService, selectionService, currentWindowService) {
+    angular.module('openfin.search', ['openfin.quandl', 'openfin.selection', 'openfin.currentWindow'])
+        .controller('SearchCtrl', ['$scope', 'quandlService', 'selectionService', 'currentWindowService',
+            function($scope, quandlService, selectionService, currentWindowService) {
                 var self = this,
                     store;
                 self.query = '';
@@ -56,7 +56,7 @@
 
                     currentWindowService.ready(function() {
                         if (!store) {
-                            store = storeService.open(currentWindowService.getCurrentWindow().name);
+                            store = window.storeService.open(currentWindowService.getCurrentWindow().name);
                         }
 
                         var favourites = store.get();
@@ -121,19 +121,19 @@
                         submit();
                     });
 
-                $scope.$on('updateFavourites', function(event, data) {
-                    if (!data) {
+                window.addEventListener('updateFavourites', function(event) {
+                    if (!event.stock) {
                         return;
                     }
 
-                    var index = self.stocks.map(function(stock) { return stock.code; }).indexOf(data.code);
+                    var index = self.stocks.map(function(stock) { return stock.code; }).indexOf(event.stock.code);
                     if (index > -1) {
                         if (!self.query) {
                             // There are no search results, so remove the favourite.
                             self.stocks.splice(index, 1);
                         } else {
                             // Update the stock's favourite
-                            self.stocks[index].favourite = data.favourite;
+                            self.stocks[index].favourite = event.stock.favourite;
                         }
                     }
                 });

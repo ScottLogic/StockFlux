@@ -1,9 +1,9 @@
 (function(window) {
     'use strict';
 
-    angular.module('openfin.tearout', ['openfin.geometry', 'openfin.hover', 'openfin.store', 'openfin.currentWindow'])
-        .directive('tearable', ['geometryService', 'hoverService', 'storeService', 'currentWindowService',
-            function(geometryService, hoverService, storeService, currentWindowService) {
+    angular.module('openfin.tearout', ['openfin.geometry', 'openfin.hover', 'openfin.currentWindow'])
+        .directive('tearable', ['geometryService', 'hoverService', 'currentWindowService',
+            function(geometryService, hoverService, currentWindowService) {
                 return {
                     restrict: 'C',
                     link: function(scope, element, attrs) {
@@ -201,7 +201,7 @@
                                     if (overDropTarget) {
                                         // TODO: This is where the pause will go, and the highlighting.
                                         if (!store) {
-                                            store = storeService.open(currentWindowService.getCurrentWindow().name);
+                                            store = window.storeService.open(currentWindowService.getCurrentWindow().name);
                                         }
 
                                         store.reorder(scope.stock.code, hoverTargets[i].code);

@@ -1,9 +1,9 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.favourites', ['openfin.store', 'openfin.quandl', 'openfin.selection', 'openfin.currentWindow'])
-        .controller('FavouritesCtrl', ['storeService', 'quandlService', 'selectionService', 'currentWindowService', '$scope', '$timeout',
-            function(storeService, quandlService, selectionService, currentWindowService, $scope, $timeout) {
+    angular.module('openfin.favourites', ['openfin.quandl', 'openfin.selection', 'openfin.currentWindow'])
+        .controller('FavouritesCtrl', ['quandlService', 'selectionService', 'currentWindowService', '$scope', '$timeout',
+            function(quandlService, selectionService, currentWindowService, $scope, $timeout) {
                 var self = this,
                     store;
                 self.stocks = [];
@@ -27,7 +27,7 @@
                 self.update = function() {
                     currentWindowService.ready(function() {
                         if (!store) {
-                            store = storeService.open(currentWindowService.getCurrentWindow().name);
+                            store = window.storeService.open(currentWindowService.getCurrentWindow().name);
                         }
 
                         self.favourites = store.get();
@@ -92,7 +92,7 @@
 
                 self.update();
 
-                $scope.$on('updateFavourites', function(event, data) {
+                window.addEventListener('updateFavourites', function(event) {
                     $timeout(function() {
                         self.update();
                     });

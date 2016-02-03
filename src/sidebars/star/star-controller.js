@@ -1,9 +1,9 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.star', ['openfin.store', 'openfin.selection', 'openfin.currentWindow'])
-        .controller('StarCtrl', ['$scope', 'storeService', 'selectionService', 'currentWindowService',
-            function($scope, storeService, selectionService, currentWindowService) {
+    angular.module('openfin.star', ['openfin.selection', 'openfin.currentWindow'])
+        .controller('StarCtrl', ['$scope', 'selectionService', 'currentWindowService',
+            function($scope, selectionService, currentWindowService) {
                 var self = this,
                     store,
                     starHovered = false;
@@ -31,7 +31,7 @@
                 self.click = function(stock) {
                     if (!self.check || confirm('Are you sure you wish to remove this stock (' + stock.code + ') from your favourites?')) {
                         if (!store) {
-                            store = storeService.open(currentWindowService.getCurrentWindow().name);
+                            store = window.storeService.open(currentWindowService.getCurrentWindow().name);
                         }
 
                         if (stock.favourite) {
