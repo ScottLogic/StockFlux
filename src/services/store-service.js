@@ -1,12 +1,12 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.store', ['angular-storage', 'openfin.desktop'])
-        .factory('storeService', ['store', 'desktopService', '$rootScope', function(store, desktopService, $rootScope) {
+    angular.module('openfin.store', ['angular-storage', 'openfin.currentWindow'])
+        .factory('storeService', ['store', 'currentWindowService', '$rootScope', function(store, currentWindowService, $rootScope) {
             var KEY_NAME = 'windows';
             var initialStocks = [
                 {
-                    id: 'OpenFinD3FC',
+                    id: 'main',
                     stocks: [
                         'AAPL', 'MSFT', 'TITN', 'SNDK', 'TSLA'
                     ],
@@ -19,7 +19,7 @@
             function getWindowStore() {
                 var windowIndex = storage.map(function(window) {
                     return window.id;
-                }).indexOf(desktopService.getCurrentWindow().name);
+                }).indexOf(currentWindowService.getCurrentWindow().name);
 
                 return windowIndex > -1 ? storage[windowIndex] : undefined; // TODO: undefined?
             }

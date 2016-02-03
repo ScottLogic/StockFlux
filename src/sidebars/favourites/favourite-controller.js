@@ -1,9 +1,9 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.favourites', ['openfin.store', 'openfin.quandl', 'openfin.selection', 'openfin.desktop'])
-        .controller('FavouritesCtrl', ['storeService', 'quandlService', 'selectionService', 'desktopService', '$scope', '$timeout',
-            function(storeService, quandlService, selectionService, desktopService, $scope, $timeout) {
+    angular.module('openfin.favourites', ['openfin.store', 'openfin.quandl', 'openfin.selection', 'openfin.currentWindow'])
+        .controller('FavouritesCtrl', ['storeService', 'quandlService', 'selectionService', 'currentWindowService', '$scope', '$timeout',
+            function(storeService, quandlService, selectionService, currentWindowService, $scope, $timeout) {
                 var self = this;
                 self.stocks = [];
                 var icons = {
@@ -24,7 +24,7 @@
                 };
 
                 self.update = function() {
-                    desktopService.ready(function() {
+                    currentWindowService.ready(function() {
                         self.favourites = storeService.get();
 
                         var i,

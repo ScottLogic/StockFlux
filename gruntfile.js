@@ -64,7 +64,7 @@ module.exports = function(grunt) {
                     filePath: 'public/app.json',
                     options: {
                         startup_app: {
-                            url: target + '/index.html',
+                            url: target + '/parent.html',
                             applicationIcon: target + '/favicon.ico'
                         },
                         shortcut: {

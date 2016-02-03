@@ -1,19 +1,19 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.toolbar', ['openfin.desktop'])
-        .controller('ToolbarCtrl', ['$timeout', 'desktopService', function($timeout, desktopService) {
+    angular.module('openfin.toolbar', ['openfin.currentWindow'])
+        .controller('ToolbarCtrl', ['$timeout', 'currentWindowService', function($timeout, currentWindowService) {
             var self = this;
             var maximised = false;
 
-            desktopService.ready(function() {
-                var window = desktopService.getCurrentWindow();
-                window.addEventListener('maximized', function(e) {
+            currentWindowService.ready(function() {
+                var currentWindow = currentWindowService.getCurrentWindow();
+                currentWindow.addEventListener('maximized', function(e) {
                     $timeout(function() {
                         maximised = true;
                     });
                 });
-                window.addEventListener('restored', function(e) {
+                currentWindow.addEventListener('restored', function(e) {
                     $timeout(function() {
                         maximised = false;
                     });
@@ -24,19 +24,19 @@
                 };
 
                 self.minimiseClick = function() {
-                    window.minimize();
+                    currentWindow.minimize();
                 };
 
                 self.maximiseClick = function() {
-                    window.maximize();
+                    currentWindow.maximize();
                 };
 
                 self.normalSizeClick = function() {
-                    window.restore();
+                    currentWindow.restore();
                 };
 
                 self.closeClick = function() {
-                    window.close();
+                    currentWindow.close();
                 };
             });
         }]);

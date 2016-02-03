@@ -1,9 +1,9 @@
 (function(window) {
     'use strict';
 
-    angular.module('openfin.tearout', ['openfin.geometry', 'openfin.hover', 'openfin.store', 'openfin.desktop'])
-        .directive('tearable', ['geometryService', 'hoverService', 'storeService', 'desktopService',
-            function(geometryService, hoverService, storeService, desktopService) {
+    angular.module('openfin.tearout', ['openfin.geometry', 'openfin.hover', 'openfin.store'])
+        .directive('tearable', ['geometryService', 'hoverService', 'storeService',
+            function(geometryService, hoverService, storeService) {
                 return {
                     restrict: 'C',
                     link: function(scope, element, attrs) {
@@ -32,7 +32,8 @@
                             };
                         }
 
-                        var tearoutWindow = desktopService.createWindow(createConfig());
+                        var desktopService = window.windowService;
+                        var tearoutWindow = desktopService.createTearoutWindow(createConfig(), window.name);
 
                         function initialiseTearout() {
                             var myDropTarget = tearElement.parentNode,

@@ -1,9 +1,9 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.search', ['openfin.quandl', 'openfin.store', 'openfin.selection', 'openfin.desktop'])
-        .controller('SearchCtrl', ['$scope', 'quandlService', 'storeService', 'selectionService', 'desktopService',
-            function($scope, quandlService, storeService, selectionService, desktopService) {
+    angular.module('openfin.search', ['openfin.quandl', 'openfin.store', 'openfin.selection', 'openfin.currentWindow'])
+        .controller('SearchCtrl', ['$scope', 'quandlService', 'storeService', 'selectionService', 'currentWindowService',
+            function($scope, quandlService, storeService, selectionService, currentWindowService) {
                 var self = this;
                 self.query = '';
                 self.noResults = false;
@@ -53,7 +53,7 @@
                     self.stocks = [];
                     self.noResults = false;
 
-                    desktopService.ready(function() {
+                    currentWindowService.ready(function() {
                         var favourites = storeService.get();
                         if (self.query) {
                             var length = favourites.length;
