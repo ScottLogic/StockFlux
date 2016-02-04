@@ -121,7 +121,7 @@
                         submit();
                     });
 
-                window.addEventListener('updateFavourites', function(event) {
+                $scope.$on('updateFavourites', function(event) {
                     if (!event.stock) {
                         return;
                     }

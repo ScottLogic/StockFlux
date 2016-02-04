@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('openfin.currentWindow', [])
-        .factory('currentWindowService', [function() {
+        .factory('currentWindowService', ['$rootScope', function($rootScope) {
             function getCurrentWindow() {
                 return fin.desktop.Window.getCurrent();
             }
@@ -10,6 +10,10 @@
             function ready(cb) {
                 fin.desktop.main(cb);
             }
+
+            window.addEventListener('updateFavourites', function(event) {
+                $rootScope.$broadcast('updateFavourites', event);
+            });
 
             return {
                 getCurrentWindow: getCurrentWindow,

@@ -92,7 +92,7 @@
 
                 self.update();
 
-                window.addEventListener('updateFavourites', function(event) {
+                $scope.$on('updateFavourites', function(event) {
                     $timeout(function() {
                         self.update();
                     });
