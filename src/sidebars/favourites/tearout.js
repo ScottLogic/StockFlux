@@ -14,35 +14,36 @@
                             tileHeight = tearElement.clientHeight,
                             store;
 
-                        function createConfig(minWidth, minHeight, width, height, url, resizable, maximizable, showTaskbarIcon, saveWindowState) {
-                            return {
-                                'minWidth': minWidth,
-                                'minHeight': minHeight,
+                        function createConfig(tearout, width, height) {
+                            var config = {
                                 'defaultWidth': tileWidth,
                                 'defaultHeight': tileHeight,
                                 'width': width,
                                 'height': height,
                                 'autoShow': false,
-                                'url': url,
-                                'frame': false,
-                                'resizable': resizable,
-                                'maximizable': maximizable,
-                                'showTaskbarIcon': showTaskbarIcon,
-                                'saveWindowState': saveWindowState
+                                'frame': false
                             };
+
+                            if (tearout) {
+                                config.minWidth = tileWidth;
+                                config.minHeight = tileHeight;
+                                config.url = 'sidebars/favourites/tearout.html';
+                            } else {
+                                // TODO: Remove duplication of minimum sizes
+                                config.minWidth = 918;
+                                config.minHeight = 510;
+                                config.url = 'index.html';
+                            }
+
+                            config.resizable =
+                                config.maximizable =
+                                config.showTaskbarIcon =
+                                config.saveWindowState = !tearout;
+
+                            return config;
                         }
 
-                        var tearoutWindowConfig = createConfig(
-                            tileWidth,
-                            tileHeight,
-                            tileWidth,
-                            tileHeight,
-                            'sidebars/favourites/tearout.html',
-                            false,
-                            false,
-                            false,
-                            false
-                        );
+                        var tearoutWindowConfig = createConfig(true, tileWidth, tileHeight);
 
                         var windowService = window.windowService;
                         var tearoutWindow = windowService.createTearoutWindow(tearoutWindowConfig, window.name);
@@ -209,16 +210,7 @@
                                         // Create new window instance
                                         var mainApplicationWindowPosition = getWindowPosition(window);
 
-                                        // TODO: Remove duplication of minimum sizes
-                                        var config = createConfig(
-                                            918,
-                                            510,
-                                            mainApplicationWindowPosition.width,
-                                            mainApplicationWindowPosition.height,
-                                            'index.html',
-                                            true,
-                                            true,
-                                            true);
+                                        var config = createConfig(false, mainApplicationWindowPosition.width, mainApplicationWindowPosition.height);
 
                                         windowService.createWindow(config, function(newWindow) {
                                             newWindow.moveTo(e.screenX, e.screenY);
