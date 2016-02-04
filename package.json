@@ -25,7 +25,6 @@
     "angular": "^1.4.8",
     "angular-animate": "^1.4.8",
     "angular-resource": "^1.4.8",
-    "angular-storage": "0.0.13",
     "d3fc": "^5.2.0",
     "d3fc-showcase": "ScottLogic/BitFlux#56dc4387d334e105678e88c6941f492118485f6a",
     "jquery": "^1.11.1",

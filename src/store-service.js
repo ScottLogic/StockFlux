@@ -1,8 +1,8 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.store', ['angular-storage'])
-        .factory('storeService', ['store', '$rootScope', function(store, $rootScope) {
+    angular.module('openfin.store', [])
+        .factory('storeService', ['$rootScope', function($rootScope) {
             var KEY_NAME = 'windows';
             var initialStocks = [
                 {
@@ -14,7 +14,7 @@
                 }
             ];
 
-            var storage = JSON.parse(store.get(KEY_NAME)) || initialStocks;
+            var storage = JSON.parse(localStorage.getItem(KEY_NAME)) || initialStocks;
 
             function open(windowName) {
                 function getWindowStore() {
@@ -39,7 +39,7 @@
                 }
 
                 function save(stock) {
-                    store.set(KEY_NAME, JSON.stringify(storage));
+                    localStorage.setItem(KEY_NAME, JSON.stringify(storage));
                     $rootScope.$broadcast('updateFavourites', stock);
                 }
 

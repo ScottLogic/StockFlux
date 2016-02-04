@@ -10,6 +10,7 @@
         "fc": true,
         "document": true,
         "confirm": true,
-        "Event":  true
+        "Event": true,
+        "localStorage":  true
     }
 }
