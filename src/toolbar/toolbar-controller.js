@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.toolbar', ['openfin.desktop'])
+    angular.module('openfin.toolbar')
         .controller('ToolbarCtrl', ['$timeout', 'desktopService', function($timeout, desktopService) {
             var self = this;
             var maximised = false;

@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.star', ['openfin.store', 'openfin.selection'])
+    angular.module('openfin.star')
         .controller('StarCtrl', ['$scope', 'storeService', 'selectionService', function($scope, storeService, selectionService) {
             var self = this;
             var starHovered = false;

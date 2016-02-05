@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.favourites', ['openfin.store', 'openfin.quandl', 'openfin.selection', 'openfin.desktop'])
+    angular.module('openfin.favourites')
         .controller('FavouritesCtrl', ['storeService', 'quandlService', 'selectionService', 'desktopService', '$scope', '$timeout',
             function(storeService, quandlService, selectionService, desktopService, $scope, $timeout) {
                 var self = this;

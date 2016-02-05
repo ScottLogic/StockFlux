@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.search', ['openfin.quandl', 'openfin.store', 'openfin.selection', 'openfin.desktop'])
+    angular.module('openfin.search')
         .controller('SearchCtrl', ['$scope', 'quandlService', 'storeService', 'selectionService', 'desktopService',
             function($scope, quandlService, storeService, selectionService, desktopService) {
                 var self = this;
