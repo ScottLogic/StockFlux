@@ -15,12 +15,12 @@
     ]);
 
     angular.module('openfin.showcase', ['openfin.selection', 'openfin.quandl']);
-    angular.module('openfin.toolbar', ['openfin.desktop']);
-    angular.module('openfin.search', ['openfin.quandl', 'openfin.store', 'openfin.selection', 'openfin.desktop']);
-    angular.module('openfin.favourites', ['openfin.store', 'openfin.quandl', 'openfin.selection', 'openfin.desktop']);
+    angular.module('openfin.toolbar', ['openfin.currentWindow']);
+    angular.module('openfin.search', ['openfin.quandl', 'openfin.selection', 'openfin.currentWindow']);
+    angular.module('openfin.favourites', ['openfin.quandl', 'openfin.selection', 'openfin.currentWindow']);
     angular.module('openfin.sidebar', []);
     angular.module('openfin.filters', []);
-    angular.module('openfin.star', ['openfin.store', 'openfin.selection']);
-    angular.module('openfin.tearout', ['openfin.geometry', 'openfin.hover', 'openfin.store', 'openfin.desktop']);
+    angular.module('openfin.star', ['openfin.selection']);
+    angular.module('openfin.tearout', ['openfin.geometry', 'openfin.hover', 'openfin.currentWindow']);
     angular.module('openfin.minichart', ['openfin.quandl']);
 }());

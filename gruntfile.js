@@ -2,25 +2,7 @@
 'use strict';
 module.exports = function(grunt) {
     var target = grunt.option('target') || 'http://owennw.github.io/OpenFinD3FC',
-        port = process.env.PORT || 5000,
-        files = {
-            js: [
-                'gruntfile.js',
-                'src/**/*.js',
-                'src/**/*.json',
-                '*.json'
-            ],
-            html: [
-                'src/**/*.html'
-            ],
-            css: [
-                'src/**/*.css',
-                'src/**/*.less'
-            ],
-            showcase: [
-                'node_modules/d3fc-showcase/dist/'
-            ]
-        };
+        port = process.env.PORT || 5000;
 
     grunt.initConfig({
         'gh-pages': {
@@ -64,7 +46,7 @@ module.exports = function(grunt) {
                     filePath: 'public/app.json',
                     options: {
                         startup_app: {
-                            url: target + '/index.html',
+                            url: target + '/parent.html',
                             applicationIcon: target + '/favicon.ico'
                         },
                         shortcut: {

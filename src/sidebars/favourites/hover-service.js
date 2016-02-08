@@ -2,8 +2,7 @@
     'use strict';
 
     class HoverService {
-        constructor(storeService, $rootScope) {
-            this.storeService = storeService;
+        constructor($rootScope) {
             this.$rootScope = $rootScope;
 
             this.hoverTargets = [];
@@ -30,7 +29,7 @@
             }
         }
     }
-    HoverService.$inject = ['storeService', '$rootScope'];
+    HoverService.$inject = ['$rootScope'];
     angular.module('openfin.hover', [])
         .service('hoverService', HoverService);
 }());

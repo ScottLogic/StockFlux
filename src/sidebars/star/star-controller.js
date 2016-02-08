@@ -9,9 +9,9 @@
     };
 
     class StarCtrl {
-        constructor($scope, storeService, selectionService) {
+        constructor($scope, selectionService) {
             this.$scope = $scope;
-            this.storeService = storeService;
+            this.store = null;
             this.selectionService = selectionService;
 
             this.starHovered = false;
@@ -32,12 +32,16 @@
 
         click(stock) {
             if (!this.check || confirm('Are you sure you wish to remove this stock (' + stock.code + ') from your favourites?')) {
+                if (!this.store) {
+                    this.store = window.storeService.open(window.name);
+                }
+
                 if (stock.favourite) {
                     stock.favourite = false;
-                    this.storeService.remove(stock);
+                    this.store.remove(stock);
                 } else {
                     stock.favourite = true;
-                    this.storeService.add(stock);
+                    this.store.add(stock);
                 }
             }
         }
@@ -50,8 +54,8 @@
             this.starHovered = false;
         }
     }
-    StarCtrl.$inject = ['$scope', 'storeService', 'selectionService'];
+    StarCtrl.$inject = ['$scope', 'selectionService'];
 
-    angular.module('openfin.star', ['openfin.store', 'openfin.selection'])
+    angular.module('openfin.star')
         .controller('StarCtrl', StarCtrl);
 }());
