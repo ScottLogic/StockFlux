@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.filters', [])
+    angular.module('openfin.filters')
         .filter('truncate', function() {
             return function(input) {
                 if (input) {

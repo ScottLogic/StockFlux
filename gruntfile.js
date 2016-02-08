@@ -166,10 +166,10 @@ module.exports = function(grunt) {
                 src: ['**/*.html'],
                 dest: 'public'
             },
-            js: {
+            json: {
                 expand: true,
                 cwd: 'src/',
-                src: ['**/*.js', '**/*.json'],
+                src: ['**/*.json'],
                 dest: 'public'
             },
             icons: {
@@ -186,6 +186,20 @@ module.exports = function(grunt) {
                     dest: 'public/assets/fonts'
                 }]
             }
+        },
+        concat: {
+            dist: {
+                src: ['src/**/*.js'],
+                dest: 'public/app.js'
+            }
+        },
+
+        uglify: {
+            dist: {
+                files: {
+                    'public/app.js': ['public/app.js']
+                }
+            }
         }
     });
 
@@ -200,6 +214,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-eslint');
     grunt.loadNpmTasks('grunt-http-download');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-gh-pages');
 
     grunt.registerTask('showcase', function() {
@@ -216,10 +232,11 @@ module.exports = function(grunt) {
         });
     });
 
-    grunt.registerTask('build', ['eslint', 'clean', 'showcase', 'copy', 'less:development', 'connect:livereload']);
+    grunt.registerTask('build', ['eslint', 'clean', 'showcase', 'copy', 'concat:dist', 'less:development', 'connect:livereload']);
+    grunt.registerTask('build:uglify', ['build', 'uglify']);
     grunt.registerTask('serve', ['build', 'openfin:serve']);
-    grunt.registerTask('createZip', ['build', 'download']);
-    grunt.registerTask('ci', ['build', 'download']);
+    grunt.registerTask('createZip', ['build:uglify', 'download']);
+    grunt.registerTask('ci', ['build:uglify', 'download']);
     grunt.registerTask('deploy', ['ci', 'gh-pages:origin']);
     grunt.registerTask('deploy:upstream', ['ci', 'gh-pages:upstream']);
     grunt.registerTask('default', ['serve']);

@@ -1,7 +1,7 @@
 (function(window) {
     'use strict';
 
-    angular.module('openfin.tearout', ['openfin.geometry', 'openfin.hover', 'openfin.store', 'openfin.desktop'])
+    angular.module('openfin.tearout')
         .directive('tearable', ['geometryService', 'hoverService', 'storeService', 'desktopService',
             function(geometryService, hoverService, storeService, desktopService) {
                 return {

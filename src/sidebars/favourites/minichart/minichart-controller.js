@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.minichart', ['openfin.quandl'])
+    angular.module('openfin.minichart')
         .controller('MinichartCtrl', ['quandlService', '$timeout', function(quandlService, $timeout) {
             var self = this;
 
