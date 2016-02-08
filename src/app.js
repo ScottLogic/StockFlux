@@ -14,6 +14,10 @@
         'openfin.minichart'
     ]);
 
+    angular.module('openfin.store', []);
+    angular.module('openfin.parent', ['openfin.window']);
+    angular.module('openfin.window', []);
+    angular.module('openfin.currentWindow', []);
     angular.module('openfin.showcase', ['openfin.selection', 'openfin.quandl']);
     angular.module('openfin.toolbar', ['openfin.currentWindow']);
     angular.module('openfin.search', ['openfin.quandl', 'openfin.selection', 'openfin.currentWindow']);

@@ -151,7 +151,7 @@ module.exports = function(grunt) {
             json: {
                 expand: true,
                 cwd: 'src/',
-                src: ['**/*.json'],
+                src: ['parent-controller.js', 'parentApp.js', 'store-service.js', 'window-service.js', '**/*.json'],
                 dest: 'public'
             },
             icons: {
@@ -171,7 +171,7 @@ module.exports = function(grunt) {
         },
         concat: {
             dist: {
-                src: ['src/**/*.js'],
+                src: ['src/**/*.js', '!parent-controller.js', '!parentApp.js', '!store-service.js', '!window-service.js'],
                 dest: 'public/app.js'
             }
         },
