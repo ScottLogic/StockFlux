@@ -1,43 +1,47 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.toolbar')
-        .controller('ToolbarCtrl', ['$timeout', 'desktopService', function($timeout, desktopService) {
-            var self = this;
-            var maximised = false;
+    class ToolbarCtrl {
 
-            desktopService.ready(function() {
-                var window = desktopService.getCurrentWindow();
-                window.addEventListener('maximized', function(e) {
-                    $timeout(function() {
-                        maximised = true;
-                    });
+        constructor($timeout, desktopService) {
+            this.$timeout = $timeout;
+            this.desktopService = desktopService;
+            this.maximised = false;
+            desktopService.ready(this.onReady.bind(this));
+        }
+
+        onReady() {
+            this.window = this.desktopService.getCurrentWindow();
+            this.window.addEventListener('maximized', () => {
+                this.$timeout(() => {
+                    this.maximised = true;
                 });
-                window.addEventListener('restored', function(e) {
-                    $timeout(function() {
-                        maximised = false;
-                    });
-                });
-
-                self.maximised = function() {
-                    return maximised;
-                };
-
-                self.minimiseClick = function() {
-                    window.minimize();
-                };
-
-                self.maximiseClick = function() {
-                    window.maximize();
-                };
-
-                self.normalSizeClick = function() {
-                    window.restore();
-                };
-
-                self.closeClick = function() {
-                    window.close();
-                };
             });
-        }]);
+            this.window.addEventListener('restored', () => {
+                this.$timeout(() => {
+                    this.maximised = false;
+                });
+            });
+        }
+
+        minimiseClick() {
+            this.window.minimize();
+        }
+
+        maximiseClick() {
+            this.window.maximize();
+        }
+
+        normalSizeClick() {
+            this.window.restore();
+        }
+
+        closeClick() {
+            this.window.close();
+        }
+    }
+    ToolbarCtrl.$inject = ['$timeout', 'desktopService'];
+
+    angular.module('openfin.toolbar')
+        .controller('ToolbarCtrl', ToolbarCtrl);
 }());
