@@ -166,7 +166,7 @@ module.exports = function(grunt) {
                 src: ['**/*.html'],
                 dest: 'public'
             },
-            js: {
+            json: {
                 expand: true,
                 cwd: 'src/',
                 src: ['**/*.json'],
@@ -197,7 +197,7 @@ module.exports = function(grunt) {
         uglify: {
             dist: {
                 files: {
-                    'public/app.js': ['src/**/*.js']
+                    'public/app.js': ['public/app.js']
                 }
             }
         }
@@ -233,7 +233,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('build', ['eslint', 'clean', 'showcase', 'copy', 'concat:dist', 'less:development', 'connect:livereload']);
-    grunt.registerTask('build:uglify', ['eslint', 'clean', 'showcase', 'copy', 'uglify', 'less:development', 'connect:livereload']);
+    grunt.registerTask('build:uglify', ['build', 'uglify']);
     grunt.registerTask('serve', ['build', 'openfin:serve']);
     grunt.registerTask('createZip', ['build:uglify', 'download']);
     grunt.registerTask('ci', ['build:uglify', 'download']);
