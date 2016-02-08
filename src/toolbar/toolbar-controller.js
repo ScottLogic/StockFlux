@@ -2,24 +2,24 @@
     'use strict';
 
     class ToolbarCtrl {
-
-        constructor($timeout, desktopService) {
+        constructor($timeout, currentWindowService) {
             this.$timeout = $timeout;
-            this.desktopService = desktopService;
+            this.currentWindowService = currentWindowService;
             this.maximised = false;
-            desktopService.ready(this.onReady.bind(this));
+            currentWindowService.ready(this.onReady.bind(this));
         }
 
         onReady() {
-            this.window = this.desktopService.getCurrentWindow();
+            this.window = this.currentWindowService.getCurrentWindow();
             this.window.addEventListener('maximized', () => {
                 this.$timeout(() => {
                     this.maximised = true;
                 });
-            });
-            this.window.addEventListener('restored', () => {
-                this.$timeout(() => {
-                    this.maximised = false;
+
+                this.window.addEventListener('restored', function(e) {
+                    this.$timeout(function() {
+                        this.maximised = false;
+                    });
                 });
             });
         }
@@ -40,7 +40,7 @@
             this.window.close();
         }
     }
-    ToolbarCtrl.$inject = ['$timeout', 'desktopService'];
+    ToolbarCtrl.$inject = ['$timeout', 'currentWindowService'];
 
     angular.module('openfin.toolbar')
         .controller('ToolbarCtrl', ToolbarCtrl);
