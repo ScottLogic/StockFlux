@@ -2,13 +2,13 @@
     'use strict';
 
     class SearchCtrl {
-        constructor($scope, quandlService, storeService, selectionService, desktopService) {
+        constructor($scope, quandlService, selectionService, currentWindowService) {
             this.$scope = $scope;
             this.quandlService = quandlService;
-            this.storeService = storeService;
             this.selectionService = selectionService;
-            this.desktopService = desktopService;
+            this.currentWindowService = currentWindowService;
 
+            this.store = null;
             this.query = '';
             this.noResults = false;
             this.stocks = [];
@@ -61,8 +61,12 @@
             this.stocks = [];
             this.noResults = false;
 
-            this.desktopService.ready(() => {
-                var favourites = this.storeService.get();
+            this.currentWindowService.ready(() => {
+                if (!this.store) {
+                    this.store = window.storeService.open(window.name);
+                }
+
+                var favourites = this.store.get();
                 if (this.query) {
                     var length = favourites.length;
                     this.quandlService.search(this.query, (stock) => {
@@ -141,8 +145,8 @@
             });
         }
     }
-    SearchCtrl.$inject = ['$scope', 'quandlService', 'storeService', 'selectionService', 'desktopService'];
+    SearchCtrl.$inject = ['$scope', 'quandlService', 'selectionService', 'currentWindowService'];
 
-    angular.module('openfin.search', ['openfin.quandl', 'openfin.store', 'openfin.selection', 'openfin.desktop'])
+    angular.module('openfin.search', ['openfin.quandl', 'openfin.selection', 'openfin.currentWindow'])
         .controller('SearchCtrl', SearchCtrl);
 }());

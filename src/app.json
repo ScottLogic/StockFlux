@@ -2,15 +2,14 @@
     "devtools_port": 9090,
     "startup_app": {
         "name": "OpenFinD3FC",
-        "url": "http://owennw.github.io/OpenFinD3FC/index.html",
         "uuid": "OpenFinD3FC",
-        "applicationIcon": "http://owennw.github.io/OpenFinD3FC/favicon.ico",
+        "maxWidth": 100,
+        "maxHeight": 100,
+        "defaultWidth": 100,
+        "defaultHeight": 100,
         "autoShow": true,
-        "minWidth": 918,
-        "minHeight": 510,
-        "defaultWidth": 1280,
-        "defaultHeight": 720,
-        "frame": false
+        "frame": false,
+        "showTaskbarIcon": true
     },
     "runtime": {
         "arguments": "",
@@ -18,8 +17,7 @@
     },
     "shortcut": {
         "company": "OpenFin",
-        "description": "Hosts the d3fc-showcase as an OpenFin application.",
-        "icon": "http://owennw.github.io/OpenFinD3FC/favicon.ico",
+        "description": "Hosts BitFlux as an OpenFin application.",
         "name": "OpenFinD3FC"
     }
 }
