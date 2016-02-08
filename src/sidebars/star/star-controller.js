@@ -9,11 +9,10 @@
     };
 
     class StarCtrl {
-        constructor($scope, storeService, selectionService, desktopService) {
+        constructor($scope, storeService, selectionService) {
             this.$scope = $scope;
             this.storeService = storeService;
             this.selectionService = selectionService;
-            this.desktopService = desktopService;
 
             this.starHovered = false;
             this.check = false;
@@ -24,7 +23,7 @@
                 return starUrls.on;
             } else if (this.starHovered) {
                 return starUrls.onHover;
-            } else if (stock.isHovered || this.selectionService.selectedStock() === stock.code) {
+            } else if (stock.isHovered || this.selectionService.selectedStock() === stock) {
                 return starUrls.offHover;
             } else {
                 return starUrls.off;
@@ -51,8 +50,8 @@
             this.starHovered = false;
         }
     }
-    StarCtrl.$inject = ['$scope', 'storeService', 'selectionService', 'desktopService'];
+    StarCtrl.$inject = ['$scope', 'storeService', 'selectionService'];
 
-    angular.module('openfin.star', ['openfin.store', 'openfin.selection', 'openfin.desktop'])
+    angular.module('openfin.star', ['openfin.store', 'openfin.selection'])
         .controller('StarCtrl', StarCtrl);
 }());

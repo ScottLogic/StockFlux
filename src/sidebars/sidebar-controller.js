@@ -7,8 +7,7 @@
     };
 
     class SidebarCtrl {
-        constructor($scope) {
-            this.$scope = $scope;
+        constructor() {
             this._favouritesClass = classes.expanded;
             this._searchClass = classes.contracted;
 
@@ -53,6 +52,7 @@
             }
         }
     }
+    SidebarCtrl.$inject = [];
 
     angular.module('openfin.sidebar', [])
         .controller('SidebarCtrl', SidebarCtrl);

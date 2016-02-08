@@ -7,11 +7,6 @@
             this.$rootScope = $rootScope;
 
             this.hoverTargets = [];
-            this.bindEvents();
-        }
-
-        bindEvents() {
-            this.$rootScope.$on('updateFavourites', () => { this.sort(); });
         }
 
         get() {
@@ -24,7 +19,6 @@
                 // This target is new
                 this.hoverTargets.push(newHoverTarget);
             }
-            this.sort();
         }
 
         remove(stockCode) {
