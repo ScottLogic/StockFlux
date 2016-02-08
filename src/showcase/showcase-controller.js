@@ -1,16 +1,22 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.showcase')
-        .controller('ShowcaseCtrl', ['selectionService', function(selectionService) {
-            var self = this;
+    class ShowcaseCtrl {
+        constructor(selectionService) {
+            this.selectionService = selectionService;
+        }
 
-            self.selectionCode = function() {
-                return selectionService.selectedStock().code;
-            };
+        selectionCode() {
+            return this.selectionService.selectedStock().code;
+        }
 
-            self.selectionName = function() {
-                return selectionService.selectedStock().name;
-            };
-        }]);
+        selectionName() {
+            return this.selectionService.selectedStock().name;
+        }
+    }
+    ShowcaseCtrl.$inject = ['selectionService'];
+
+    // The quandl service is used in the directive.
+    angular.module('openfin.showcase', ['openfin.selection', 'openfin.quandl'])
+        .controller('ShowcaseCtrl', ShowcaseCtrl);
 }());

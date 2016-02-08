@@ -1,96 +1,108 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.favourites')
-        .controller('FavouritesCtrl', ['storeService', 'quandlService', 'selectionService', 'desktopService', '$scope', '$timeout',
-            function(storeService, quandlService, selectionService, desktopService, $scope, $timeout) {
-                var self = this;
-                self.stocks = [];
-                var icons = {
-                    up: 'arrow_up',
-                    down: 'arrow_down'
-                };
+    const icons = {
+        up: 'arrow_up',
+        down: 'arrow_down'
+    };
+    class FavouritesCtrl {
+        constructor(desktopService, storeService, quandlService, selectionService, $scope, $timeout) {
+            this.desktopService = desktopService;
+            this.storeService = storeService;
+            this.quandlService = quandlService;
+            this.selectionService = selectionService;
+            this.$scope = $scope;
+            this.$timeout = $timeout;
 
-                self.icon = function(stock) {
-                    return stock.delta < 0 ? icons.down : icons.up;
-                };
+            this.stocks = [];
+            this.update();
+            this._watch();
+        }
 
-                self.selection = function() {
-                    return selectionService.selectedStock().code;
-                };
+        icon(stock) {
+            return stock.delta < 0 ? icons.down : icons.up;
+        }
 
-                self.select = function(stock) {
-                    selectionService.select(stock);
-                };
+        selection() {
+            return this.selectionService.selectedStock().code;
+        }
 
-                self.update = function() {
-                    desktopService.ready(function() {
-                        self.favourites = storeService.get();
+        select(stock) {
+            this.selectionService.select(stock);
+        }
 
-                        var i,
-                            max,
-                            min;
+        update() {
+            this.desktopService.ready(() => {
+                this.favourites = this.storeService.get();
 
-                        // Update indices
-                        for (i = 0, max = self.stocks.length; i < max; i++) {
-                            var thisStock = self.stocks[i];
-                            thisStock.index = self.stockSortFunction(thisStock);
-                        }
+                var i,
+                    max,
+                    min;
 
-                        // Remove the stocks no longer in the favourites
-                        var removedStocksIndices = [];
-                        for (i = 0, max = self.stocks.length; i < max; i++) {
-                            if (self.favourites.indexOf(self.stocks[i].code) === -1) {
-                                removedStocksIndices.push(i);
-                            }
-                        }
+                // Update indices
+                for (i = 0, max = this.stocks.length; i < max; i++) {
+                    var thisStock = this.stocks[i];
+                    thisStock.index = this.stockSortFunction(thisStock);
+                }
 
-                        // Remove from the end of the array to not change the indices
-                        for (i = removedStocksIndices.length - 1, min = 0; i >= min; i--) {
-                            self.stocks.splice(removedStocksIndices[i], 1);
-                        }
+                // Remove the stocks no longer in the favourites
+                var removedStocksIndices = [];
+                for (i = 0, max = this.stocks.length; i < max; i++) {
+                    if (this.favourites.indexOf(this.stocks[i].code) === -1) {
+                        removedStocksIndices.push(i);
+                    }
+                }
 
-                        // Add new stocks from favourites
-                        self.favourites.map(function(favourite) {
-                            if (self.stocks.map(function(stock) { return stock.code; }).indexOf(favourite) === -1) {
-                                // This is a new stock
-                                quandlService.getData(favourite, function(stock) {
-                                    var data = stock.data[0],
-                                        price,
-                                        delta,
-                                        percentage;
+                // Remove from the end of the array to not change the indices
+                for (i = removedStocksIndices.length - 1, min = 0; i >= min; i--) {
+                    this.stocks.splice(removedStocksIndices[i], 1);
+                }
 
-                                    if (data) {
-                                        price = data.close;
-                                        delta = data.close - data.open;
-                                        percentage = delta / data.open * 100;
+                // Add new stocks from favourites
+                this.favourites.map((favourite) => {
+                    if (this.stocks.map(function(stock) { return stock.code; }).indexOf(favourite) === -1) {
+                        // This is a new stock
+                        this.quandlService.getData(favourite, (stock) => {
+                            var data = stock.data[0],
+                                price,
+                                delta,
+                                percentage;
 
-                                        self.stocks.push({
-                                            name: stock.name,
-                                            code: stock.code,
-                                            price: price,
-                                            delta: delta,
-                                            percentage: Math.abs(percentage),
-                                            favourite: true,
-                                            index: self.stockSortFunction(stock)
-                                        });
-                                    }
+                            if (data) {
+                                price = data.close;
+                                delta = data.close - data.open;
+                                percentage = delta / data.open * 100;
+
+                                this.stocks.push({
+                                    name: stock.name,
+                                    code: stock.code,
+                                    price: price,
+                                    delta: delta,
+                                    percentage: Math.abs(percentage),
+                                    favourite: true,
+                                    index: this.stockSortFunction(stock)
                                 });
                             }
                         });
-                    });
-                };
-
-                self.stockSortFunction = function(stock) {
-                    return self.favourites.indexOf(stock.code);
-                };
-
-                self.update();
-
-                $scope.$on('updateFavourites', function(event, data) {
-                    $timeout(function() {
-                        self.update();
-                    });
+                    }
                 });
-            }]);
+            });
+        }
+
+        stockSortFunction(stock) {
+            return this.favourites.indexOf(stock.code);
+        }
+
+        _watch() {
+            this.$scope.$on('updateFavourites', (event, data) => {
+                this.$timeout(() => {
+                    this.update();
+                });
+            });
+        }
+    }
+    FavouritesCtrl.$inject = ['desktopService', 'storeService', 'quandlService', 'selectionService', '$scope', '$timeout'];
+
+    angular.module('openfin.favourites', ['openfin.desktop', 'openfin.store', 'openfin.quandl', 'openfin.selection'])
+        .controller('FavouritesCtrl', FavouritesCtrl);
 }());

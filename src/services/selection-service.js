@@ -1,21 +1,21 @@
 (function() {
     'use strict';
 
+    class SelectionService {
+        constructor() {
+            this._stock = '';
+        }
+
+        select(stock) {
+            this._stock = stock;
+        }
+
+        selectedStock() {
+            return this._stock;
+        }
+    }
+    SelectionService.$inject = [];
+
     angular.module('openfin.selection', [])
-        .factory('selectionService', [function() {
-            var selectedStock = '';
-
-            function select(stock) {
-                selectedStock = stock;
-            }
-
-            function getSelectedStock() {
-                return selectedStock;
-            }
-
-            return {
-                select: select,
-                selectedStock: getSelectedStock
-            };
-        }]);
+        .service('selectionService', SelectionService);
 }());

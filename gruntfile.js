@@ -200,6 +200,16 @@ module.exports = function(grunt) {
                     'public/app.js': ['public/app.js']
                 }
             }
+        },
+        babel: {
+            options: {
+                sourceMap: false
+            },
+            dist: {
+                files: {
+                    'public/app.js': 'public/app.js'
+                }
+            }
         }
     });
 
@@ -217,6 +227,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-gh-pages');
+    grunt.loadNpmTasks('grunt-babel');
 
     grunt.registerTask('showcase', function() {
         var callback = this.async();
@@ -232,7 +243,7 @@ module.exports = function(grunt) {
         });
     });
 
-    grunt.registerTask('build', ['eslint', 'clean', 'showcase', 'copy', 'concat:dist', 'less:development', 'connect:livereload']);
+    grunt.registerTask('build', ['eslint', 'clean', 'showcase', 'copy', 'concat:dist', 'babel', 'less:development', 'connect:livereload']);
     grunt.registerTask('build:uglify', ['build', 'uglify']);
     grunt.registerTask('serve', ['build', 'openfin:serve']);
     grunt.registerTask('createZip', ['build:uglify', 'download']);
