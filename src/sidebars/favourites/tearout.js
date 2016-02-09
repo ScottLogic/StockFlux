@@ -27,7 +27,7 @@
                             if (tearout) {
                                 config.minWidth = tileWidth;
                                 config.minHeight = tileHeight;
-                                config.url = 'sidebars/favourites/tearout.html';
+                                config.url = 'tearout.html';
                             } else {
                                 // TODO: Remove duplication of minimum sizes
                                 config.minWidth = 918;
