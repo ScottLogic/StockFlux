@@ -32,6 +32,10 @@
             this.selectionService.select(stock);
         }
 
+        single() {
+            return this.stocks.length === 1 ? 'single' : '';
+        }
+
         update() {
             this.currentWindowService.ready(() => {
                 if (!this.store) {

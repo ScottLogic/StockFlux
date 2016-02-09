@@ -11,7 +11,8 @@
                     selection: '&',
                     select: '&',
                     icon: '&',
-                    renderChart: '&'
+                    renderChart: '&',
+                    single: '&'
                 }
             };
         }]);
