@@ -103,9 +103,7 @@
                             this.stocks.push(stock);
                         }
                     },
-                    function() {
-                        this.noResults = true;
-                    });
+                    () => this.noResults = true);
                 } else {
                     favourites.map((favourite) => {
                         this.quandlService.getMeta(favourite, (stock) => {
