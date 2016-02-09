@@ -5,15 +5,16 @@
         up: 'arrow_up',
         down: 'arrow_down'
     };
+
     class FavouritesCtrl {
-        constructor(desktopService, storeService, quandlService, selectionService, $scope, $timeout) {
-            this.desktopService = desktopService;
-            this.storeService = storeService;
+        constructor(currentWindowService, quandlService, selectionService, $scope, $timeout) {
+            this.currentWindowService = currentWindowService;
             this.quandlService = quandlService;
             this.selectionService = selectionService;
             this.$scope = $scope;
             this.$timeout = $timeout;
 
+            this.store = null;
             this.stocks = [];
             this.update();
             this._watch();
@@ -32,8 +33,12 @@
         }
 
         update() {
-            this.desktopService.ready(() => {
-                this.favourites = this.storeService.get();
+            this.currentWindowService.ready(() => {
+                if (!this.store) {
+                    this.store = window.storeService.open(window.name);
+                }
+
+                this.favourites = this.store.get();
 
                 var i,
                     max,
@@ -101,8 +106,8 @@
             });
         }
     }
-    FavouritesCtrl.$inject = ['desktopService', 'storeService', 'quandlService', 'selectionService', '$scope', '$timeout'];
+    FavouritesCtrl.$inject = ['currentWindowService', 'quandlService', 'selectionService', '$scope', '$timeout'];
 
-    angular.module('openfin.favourites', ['openfin.desktop', 'openfin.store', 'openfin.quandl', 'openfin.selection'])
+    angular.module('openfin.favourites')
         .controller('FavouritesCtrl', FavouritesCtrl);
 }());

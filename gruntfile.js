@@ -2,25 +2,7 @@
 'use strict';
 module.exports = function(grunt) {
     var target = grunt.option('target') || 'http://owennw.github.io/OpenFinD3FC',
-        port = process.env.PORT || 5000,
-        files = {
-            js: [
-                'gruntfile.js',
-                'src/**/*.js',
-                'src/**/*.json',
-                '*.json'
-            ],
-            html: [
-                'src/**/*.html'
-            ],
-            css: [
-                'src/**/*.css',
-                'src/**/*.less'
-            ],
-            showcase: [
-                'node_modules/d3fc-showcase/dist/'
-            ]
-        };
+        port = process.env.PORT || 5000;
 
     grunt.initConfig({
         'gh-pages': {
@@ -64,7 +46,7 @@ module.exports = function(grunt) {
                     filePath: 'public/app.json',
                     options: {
                         startup_app: {
-                            url: target + '/index.html',
+                            url: target + '/parent.html',
                             applicationIcon: target + '/favicon.ico'
                         },
                         shortcut: {
@@ -191,6 +173,10 @@ module.exports = function(grunt) {
             dist: {
                 src: ['src/**/*.js'],
                 dest: 'public/app.js'
+            },
+            parent: {
+                src: ['src/parentApp.js', 'src/parent-controller.js', 'src/store-service.js', 'src/window-service.js'],
+                dest: 'public/app-parent.js'
             }
         },
 
@@ -207,7 +193,8 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                    'public/app.js': 'public/app.js'
+                    'public/app.js': 'public/app.js',
+                    'public/app-parent.js': 'public/app-parent.js'
                 }
             }
         }
@@ -243,7 +230,7 @@ module.exports = function(grunt) {
         });
     });
 
-    grunt.registerTask('build', ['eslint', 'clean', 'showcase', 'copy', 'concat:dist', 'babel', 'less:development', 'connect:livereload']);
+    grunt.registerTask('build', ['eslint', 'clean', 'showcase', 'copy', 'concat', 'babel', 'less:development', 'connect:livereload']);
     grunt.registerTask('build:uglify', ['build', 'uglify']);
     grunt.registerTask('serve', ['build', 'openfin:serve']);
     grunt.registerTask('createZip', ['build:uglify', 'download']);
