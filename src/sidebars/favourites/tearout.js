@@ -167,6 +167,11 @@
                                     return false;
                                 }
 
+                                if (dragElement.classList.contains('single')) {
+                                    // There is only one favourite card so don't allow tearing out
+                                    return false;
+                                }
+
                                 me.setCurrentlyDragging(true)
                                     .setOffset(e.offsetX, e.offsetY)
                                     .moveTearoutWindow(e.screenX, e.screenY)

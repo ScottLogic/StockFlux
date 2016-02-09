@@ -12,7 +12,7 @@
             }
 
             window.addEventListener('updateFavourites', function(event) {
-                $rootScope.$broadcast('updateFavourites', event);
+                $rootScope.$broadcast('updateFavourites', event.stock);
             });
 
             return {
