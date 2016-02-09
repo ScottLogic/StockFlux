@@ -1,7 +1,7 @@
 (function(fin) {
     'use strict';
 
-    angular.module('openfin.currentWindow', [])
+    angular.module('openfin.currentWindow')
         .factory('currentWindowService', ['$rootScope', function($rootScope) {
             function getCurrentWindow() {
                 return fin.desktop.Window.getCurrent();

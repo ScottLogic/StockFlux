@@ -12,6 +12,56 @@
         }
     ];
 
+    class StoreWrapper {
+        constructor($rootScope, storage, store) {
+            this.$rootScope = $rootScope;
+            this.storage = storage;
+            this.store = store;
+        }
+
+        save(stock) {
+            localStorage.setItem(KEY_NAME, JSON.stringify(this.storage));
+            this.$rootScope.$broadcast('updateFavourites', stock);
+        }
+
+        get() {
+            return this.store.stocks;
+        }
+
+        // Move given item in an array to directly after the to-item
+        reorder(fromItem, toItem) {
+            if (fromItem === toItem) {
+                return;
+            }
+
+            var oldArray = this.store.stocks;
+            var fromIndex = oldArray.indexOf(fromItem);
+            var toIndex = oldArray.indexOf(toItem);
+            oldArray.splice(toIndex, 0, oldArray.splice(fromIndex, 1)[0]);
+
+            this.save();
+        }
+
+        add(stock) {
+            var stockName = stock.code;
+
+            if (this.store.stocks.indexOf(stockName) === -1) {
+                this.store.stocks.push(stockName);
+                this.save(stock);
+            }
+        }
+
+        remove(stock) {
+            var stockName = stock.code;
+            var index = this.store.stocks.indexOf(stockName);
+            if (index > -1) {
+                this.store.stocks.splice(index, 1);
+            }
+
+            this.save(stock);
+        }
+    }
+
     class StoreService {
         constructor($rootScope) {
             this.$rootScope = $rootScope;
@@ -21,81 +71,26 @@
         }
 
         open(windowName) {
-            var self = this;
-            function getWindowStore() {
-                var windowIndex = self.storage.map((window) => window.id)
-                    .indexOf(windowName);
+            var windowIndex = this.storage.map((window) => window.id)
+                    .indexOf(windowName),
+                store;
 
-                if (windowIndex > -1) {
-                    return self.storage[windowIndex];
-                } else {
-                    var newStore = {
-                        id: windowName,
-                        stocks: [],
-                        closed: false
-                    };
+            if (windowIndex > -1) {
+                store = this.storage[windowIndex];
+            } else {
+                var newStore = {
+                    id: windowName,
+                    stocks: [],
+                    closed: false
+                };
 
-                    // TODO: limit number of saved windows?
-                    self.storage.push(newStore);
+                // TODO: limit number of saved windows?
+                this.storage.push(newStore);
 
-                    return newStore;
-                }
-
+                store = newStore;
             }
 
-            function save(stock) {
-                localStorage.setItem(KEY_NAME, JSON.stringify(self.storage));
-                self.$rootScope.$broadcast('updateFavourites', stock);
-            }
-
-            function get() {
-                var windowStore = getWindowStore();
-                return windowStore.stocks;
-            }
-
-            // Move given item in an array to directly after the to-item
-            function reorder(fromItem, toItem) {
-                if (fromItem === toItem) {
-                    return;
-                }
-
-                var windowStore = getWindowStore();
-
-                var oldArray = windowStore.stocks;
-                var fromIndex = oldArray.indexOf(fromItem);
-                var toIndex = oldArray.indexOf(toItem);
-                oldArray.splice(toIndex, 0, oldArray.splice(fromIndex, 1)[0]);
-
-                save();
-            }
-
-            function add(stock) {
-                var stockName = stock.code;
-
-                var windowStore = getWindowStore();
-                if (windowStore.stocks.indexOf(stockName) === -1) {
-                    windowStore.stocks.push(stockName);
-                    save(stock);
-                }
-            }
-
-            function remove(stock) {
-                var stockName = stock.code;
-                var windowStore = getWindowStore();
-                var index = windowStore.stocks.indexOf(stockName);
-                if (index > -1) {
-                    windowStore.stocks.splice(index, 1);
-                }
-
-                save(stock);
-            }
-
-            return {
-                add: add,
-                get: get,
-                reorder: reorder,
-                remove: remove
-            };
+            return new StoreWrapper(this.$rootScope, this.storage, store);
         }
     }
     StoreService.$inject = ['$rootScope'];

@@ -147,6 +147,6 @@
     }
     SearchCtrl.$inject = ['$scope', 'quandlService', 'selectionService', 'currentWindowService'];
 
-    angular.module('openfin.search', ['openfin.quandl', 'openfin.selection', 'openfin.currentWindow'])
+    angular.module('openfin.search')
         .controller('SearchCtrl', SearchCtrl);
 }());

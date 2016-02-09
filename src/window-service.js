@@ -37,6 +37,7 @@
                     return 'main';
                 }
 
+                // TODO: Should probably change this...
                 return 'window' + Math.floor(Math.random() * 1000) + Math.ceil(Math.random() * 999);
             }
 
