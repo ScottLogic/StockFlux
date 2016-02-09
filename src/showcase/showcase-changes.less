@@ -37,6 +37,7 @@
 
   .dropdown-toggle {
     height: 28px;
+    border-radius: 0;
   }
 
   .selector-dropdown:nth-child(2) .dropdown-toggle {
@@ -48,9 +49,22 @@
     padding-right: 8px;
   }
 
-  li {
-    .icon {
-      margin-right: 5px;
+
+  .selector-dropdown {
+    &.open {
+      .dropdown-toggle {
+          border-bottom: none;
+          position: relative;
+          z-index: 2;
+      }
+
+      .dropdown-menu {
+          z-index: 1;
+      }
+    }
+    .dropdown-menu {
+      top: 31px;
+      border-radius: 0;
     }
   }
 }
