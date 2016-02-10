@@ -44,7 +44,10 @@
         }
 
         _createWindow(config, successCb, closedCb) {
-            config.name = getName();
+            if (!config.name) {
+                config.name = getName();
+            }
+
             var newWindow = new fin.desktop.Window(config, () => {
                 this.windowsCache.push(newWindow);
 

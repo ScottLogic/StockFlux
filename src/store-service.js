@@ -78,6 +78,12 @@
             this.storage = JSON.parse(localStorage.getItem(KEY_NAME)) || initialStocks;
         }
 
+        getPreviousOpenWindowNames() {
+            return this.storage
+                .filter((store) => !store.closed)
+                .map((store) => store.id);
+        }
+
         open(windowName) {
             var windowIndex = this.storage.map((window) => window.id)
                     .indexOf(windowName),
