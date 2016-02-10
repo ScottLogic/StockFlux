@@ -1,16 +1,17 @@
 (function() {
     'use strict';
 
-    const KEY_NAME = 'windows';
-    const initialStocks = [
-        {
-            id: 'main',
-            stocks: [
-                'AAPL', 'MSFT', 'TITN', 'SNDK', 'TSLA'
-            ],
-            closed: false
-        }
-    ];
+    const KEY_NAME = 'windows',
+        initialStocks = [
+            {
+                id: 'main',
+                stocks: [
+                    'AAPL', 'MSFT', 'TITN', 'SNDK', 'TSLA'
+                ],
+                closed: 0
+            }
+        ],
+        closedCacheSize = 5;
 
     class StoreWrapper {
         constructor($rootScope, storage, store) {
@@ -19,8 +20,12 @@
             this.store = store;
         }
 
-        save(stock) {
+        save() {
             localStorage.setItem(KEY_NAME, JSON.stringify(this.storage));
+        }
+
+        update(stock) {
+            this.save();
             this.$rootScope.$broadcast('updateFavourites', stock);
         }
 
@@ -39,7 +44,7 @@
             var toIndex = oldArray.indexOf(toItem);
             oldArray.splice(toIndex, 0, oldArray.splice(fromIndex, 1)[0]);
 
-            this.save();
+            this.update();
         }
 
         add(stock) {
@@ -47,7 +52,7 @@
 
             if (this.store.stocks.indexOf(stockName) === -1) {
                 this.store.stocks.push(stockName);
-                this.save(stock);
+                this.update(stock);
             }
         }
 
@@ -58,7 +63,30 @@
                 this.store.stocks.splice(index, 1);
             }
 
-            this.save(stock);
+            this.update(stock);
+        }
+
+        closeWindow() {
+            this.store.closed = Date.now();
+            this.save();
+
+            // Trim the oldest closed store
+            //
+            // TODO: This doesn't really belong here -- modifying the global storage object in a wrapper for
+            // a specific store doesn't seem correct
+            var closedArray = this.storage.filter((store) => store.closed !== 0);
+            if (closedArray.length > closedCacheSize) {
+                closedArray.sort((a, b) => {
+                    return b.closed - a.closed;
+                });
+
+                for (var i = closedCacheSize, max = closedArray.length; i < max; i++) {
+                    var storageIndex = this.storage.indexOf(closedArray[i]);
+                    this.storage.splice(storageIndex, 1);
+                }
+            }
+
+            this.save();
         }
     }
 
@@ -67,7 +95,12 @@
             this.$rootScope = $rootScope;
 
             this.storage = JSON.parse(localStorage.getItem(KEY_NAME)) || initialStocks;
-            this.open.bind(this);
+        }
+
+        getPreviousOpenWindowNames() {
+            return this.storage
+                .filter((store) => store.closed === 0)
+                .map((store) => store.id);
         }
 
         open(windowName) {
@@ -81,7 +114,7 @@
                 var newStore = {
                     id: windowName,
                     stocks: [],
-                    closed: false
+                    closed: 0
                 };
 
                 // TODO: limit number of saved windows?

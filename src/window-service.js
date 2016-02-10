@@ -1,108 +1,130 @@
 (function(fin) {
     'use strict';
+    var firstName = true;
 
-    angular.module('openfin.window')
-        .factory('windowCreationService', ['storeService', function(storeService) {
-            var self = this;
-            var openWindows = {},
-                windowsCache = [],
-                firstName = true;
+    function getName() {
+        if (firstName) {
+            firstName = false;
+            return 'main';
+        }
 
-            function appManager() {
-                var windowsOpen = 0;
+        // TODO: Should probably change this...
+        return 'window' + Math.floor(Math.random() * 1000) + Math.ceil(Math.random() * 999);
+    }
 
-                function increment() {
-                    windowsOpen++;
+    class AppManager {
+        constructor() {
+            this.windowsOpen = 0;
+        }
+
+        increment() {
+            this.windowsOpen++;
+        }
+
+        decrement() {
+            this.windowsOpen--;
+
+            if (this.windowsOpen === 0) {
+                window.close();
+            }
+        }
+
+        count() {
+            return this.windowsOpen;
+        }
+    }
+
+    class WindowCreationService {
+        constructor(storeService) {
+            this.storeService = storeService;
+            this.openWindows = {};
+            this.windowsCache = [];
+            this.firstName = true;
+            this.apps = new AppManager();
+        }
+
+        _createWindow(config, successCb, closedCb) {
+            if (!config.name) {
+                config.name = getName();
+            }
+
+            var newWindow = new fin.desktop.Window(config, () => {
+                this.windowsCache.push(newWindow);
+
+                if (successCb) {
+                    successCb(newWindow);
                 }
+            });
 
-                function decrement() {
-                    windowsOpen--;
+            this.apps.increment();
 
-                    if (windowsOpen === 0) {
-                        window.close();
+            newWindow.addEventListener('closed', (e) => {
+                var parent = this.openWindows[newWindow.name];
+                if (parent) {
+                    for (var i = 0, max = parent.length; i < max; i++) {
+                        parent[i].close();
                     }
                 }
 
-                return {
-                    increment: increment,
-                    decrement: decrement
-                };
-            }
+                var index = this.windowsCache.indexOf(newWindow);
+                this.windowsCache.slice(index, 1);
 
-            var apps = appManager();
-
-            function getName() {
-                if (firstName) {
-                    firstName = false;
-                    return 'main';
+                if (closedCb) {
+                    closedCb();
                 }
 
-                // TODO: Should probably change this...
-                return 'window' + Math.floor(Math.random() * 1000) + Math.ceil(Math.random() * 999);
-            }
+                this.apps.decrement();
+            });
 
-            self.createWindow = function(config, successCb) {
-                config.name = getName();
-                var newWindow = new fin.desktop.Window(config, function() {
-                    windowsCache.push(newWindow);
+            return newWindow;
+        }
 
+        createMainWindow(config, successCb) {
+            this._createWindow(
+                config,
+                (newWindow) => {
                     // TODO
                     // Begin super hack
-                    newWindow.getNativeWindow().windowService = self;
-                    newWindow.getNativeWindow().storeService = storeService;
+                    newWindow.getNativeWindow().windowService = this;
+                    newWindow.getNativeWindow().storeService = this.storeService;
                     // End super hack
 
                     if (successCb) {
                         successCb(newWindow);
                     }
-                });
 
-                apps.increment();
-
-                newWindow.addEventListener('closed', function(e) {
-                    var parent = openWindows[newWindow.name];
-                    if (parent) {
-                        for (var i = 0, max = parent.length; i < max; i++) {
-                            parent[i].close();
-                        }
+                    newWindow.show();
+                },
+                () => {
+                    if (this.apps.count() !== 1) {
+                        this.storeService.open(config.name).closeWindow();
                     }
-
-                    apps.decrement();
-
-                    var index = windowsCache.indexOf(newWindow);
-                    windowsCache.slice(index, 1);
-
-                    // TODO: Need to set window's closed state to true in the store.
-                });
-
-                return newWindow;
-            };
-
-            self.createTearoutWindow = function(config, parentName) {
-                var tearoutWindow = self.createWindow(config);
-
-                if (!openWindows[parentName]) {
-                    openWindows[parentName] = [].concat(tearoutWindow);
-                } else {
-                    openWindows[parentName].push(tearoutWindow);
                 }
+            );
+        }
 
-                return tearoutWindow;
-            };
+        createTearoutWindow(config, parentName) {
+            var tearoutWindow = this._createWindow(config);
 
-            function ready(cb) {
-                fin.desktop.main(cb);
+            if (!this.openWindows[parentName]) {
+                this.openWindows[parentName] = [].concat(tearoutWindow);
+            } else {
+                this.openWindows[parentName].push(tearoutWindow);
             }
 
-            function getWindows() {
-                return windowsCache;
-            }
+            return tearoutWindow;
+        }
 
-            return {
-                createWindow: self.createWindow,
-                createTearoutWindow: self.createTearoutWindow,
-                ready: ready,
-                getWindows: getWindows
-            };
-        }]);
+        ready(cb) {
+            fin.desktop.main(cb);
+        }
+
+        getWindows() {
+            return this.windowsCache;
+        }
+    }
+    WindowCreationService.$inject = ['storeService'];
+
+    angular.module('openfin.window')
+        .service('windowCreationService', WindowCreationService);
 }(fin));
