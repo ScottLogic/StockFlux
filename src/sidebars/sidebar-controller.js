@@ -7,13 +7,24 @@
     };
 
     class SidebarCtrl {
-        constructor() {
+        constructor($timeout, currentWindowService) {
+            this.$timeout = $timeout;
+            this.currentWindowService = currentWindowService;
             this._favouritesClass = classes.expanded;
             this._searchClass = classes.contracted;
 
             this._showSearches = false;
             this._showFavourites = true;
             this._searchSmall = true;
+            currentWindowService.ready(this.onReady.bind(this));
+        }
+
+        onReady() {
+            this.window = this.currentWindowService.getCurrentWindow();
+        }
+
+        isSummarised() {
+            return this.window.summarised;
         }
 
         searchClass() {
@@ -52,8 +63,8 @@
             }
         }
     }
-    SidebarCtrl.$inject = [];
+    SidebarCtrl.$inject = ['$timeout', 'currentWindowService'];
 
-    angular.module('openfin.sidebar', [])
+    angular.module('openfin.sidebar')
         .controller('SidebarCtrl', SidebarCtrl);
 }());
