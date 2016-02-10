@@ -1,16 +1,17 @@
 (function() {
     'use strict';
 
-    const KEY_NAME = 'windows';
-    const initialStocks = [
-        {
-            id: 'main',
-            stocks: [
-                'AAPL', 'MSFT', 'TITN', 'SNDK', 'TSLA'
-            ],
-            closed: 0
-        }
-    ];
+    const KEY_NAME = 'windows',
+        initialStocks = [
+            {
+                id: 'main',
+                stocks: [
+                    'AAPL', 'MSFT', 'TITN', 'SNDK', 'TSLA'
+                ],
+                closed: 0
+            }
+        ],
+        closedCacheSize = 5;
 
     class StoreWrapper {
         constructor($rootScope, storage, store) {
@@ -67,6 +68,24 @@
 
         closeWindow() {
             this.store.closed = Date.now();
+            this.save();
+
+            // Trim the oldest closed store
+            //
+            // TODO: This doesn't really belong here -- modifying the global storage object in a wrapper for
+            // a specific store doesn't seem correct
+            var closedArray = this.storage.filter((store) => store.closed !== 0);
+            if (closedArray.length > closedCacheSize) {
+                closedArray.sort((a, b) => {
+                    return b.closed - a.closed;
+                });
+
+                for (var i = closedCacheSize, max = closedArray.length; i < max; i++) {
+                    var storageIndex = this.storage.indexOf(closedArray[i]);
+                    this.storage.splice(storageIndex, 1);
+                }
+            }
+
             this.save();
         }
     }
