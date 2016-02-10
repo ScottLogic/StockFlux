@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    const DESELECTION_OBJECT = {code: '', name: ''};
+    const DESELECTION_OBJECT = { code: '', name: '' };
 
     class SelectionService {
         constructor() {
