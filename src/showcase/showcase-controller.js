@@ -14,9 +14,8 @@
             return this.selectionService.selectedStock().name;
         }
 
-        noSelection() {
-            return this.selectionService.selectedStock() === undefined ||
-                this.selectionService.selectedStock() === '';
+        hasSelection() {
+            return this.selectionService.hasSelection();
         }
     }
     ShowcaseCtrl.$inject = ['selectionService'];
