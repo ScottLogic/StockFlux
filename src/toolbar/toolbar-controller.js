@@ -12,6 +12,15 @@
 
         onReady() {
             this.window = this.currentWindowService.getCurrentWindow();
+            this.window.getBounds(function(bounds) {
+                if (bounds.width === 230) {
+                    this.summarised = true;
+                    this.window.summarised = true;
+                }
+                else {
+                    this.window.summarised = false;
+                }
+            });
             this.window.addEventListener('maximized', () => {
                 this.$timeout(() => {
                     this.maximised = true;
@@ -25,7 +34,8 @@
             });
             this.window.addEventListener('bounds-changed', (e) => {
                 this.window.getBounds(function(bounds) {
-                    if (bounds.width === 280) {
+                    if (bounds.width === 230) {
+                        console.log('reached');
                         this.window.summarised = true;
                     }
                     else {
@@ -51,7 +61,7 @@
             this.summarised = !this.summarised;
             this.window.summarised = this.summarised;
             if (this.summarised) {
-                this.window.resizeTo(280, 500, 'top-right');
+                this.window.resizeTo(230, 500, 'top-right');
             }
             else if (this.maximised) {
                 this.window.maximize();
