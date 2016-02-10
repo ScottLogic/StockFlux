@@ -36,3 +36,17 @@
     }
   }
 }
+
+.summary {
+  .darkens:hover .minichart, .dark .minichart {
+    background-image: linear-gradient(to bottom, @chart-fade, @middle-background 92%);
+
+    g {
+      fill: @middle-background !important;
+
+      .point {
+        fill: @chart-teal !important;
+      }
+    }
+  }
+}
