@@ -28,6 +28,10 @@
                 window.close();
             }
         }
+
+        count() {
+            return this.windowsOpen;
+        }
     }
 
     class WindowCreationService {
@@ -39,16 +43,18 @@
             this.apps = new AppManager();
         }
 
-        createWindow(config, successCb) {
+        createWindow(config, successCb, tearout) {
             config.name = getName();
             var newWindow = new fin.desktop.Window(config, () => {
                 this.windowsCache.push(newWindow);
 
-                // TODO
-                // Begin super hack
-                newWindow.getNativeWindow().windowService = this;
-                newWindow.getNativeWindow().storeService = this.storeService;
-                // End super hack
+                if (!tearout) {
+                    // TODO
+                    // Begin super hack
+                    newWindow.getNativeWindow().windowService = this;
+                    newWindow.getNativeWindow().storeService = this.storeService;
+                    // End super hack
+                }
 
                 if (successCb) {
                     successCb(newWindow);
@@ -68,6 +74,10 @@
                 var index = this.windowsCache.indexOf(newWindow);
                 this.windowsCache.slice(index, 1);
 
+                if (!tearout && this.apps.count() !== 1) {
+                    this.storeService.open(config.name).closeWindow();
+                }
+
                 this.apps.decrement();
             });
 
@@ -75,7 +85,7 @@
         }
 
         createTearoutWindow(config, parentName) {
-            var tearoutWindow = this.createWindow(config);
+            var tearoutWindow = this.createWindow(config, null, true);
 
             if (!this.openWindows[parentName]) {
                 this.openWindows[parentName] = [].concat(tearoutWindow);

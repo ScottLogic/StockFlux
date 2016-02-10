@@ -19,8 +19,12 @@
             this.store = store;
         }
 
-        save(stock) {
+        save() {
             localStorage.setItem(KEY_NAME, JSON.stringify(this.storage));
+        }
+
+        update(stock) {
+            this.save();
             this.$rootScope.$broadcast('updateFavourites', stock);
         }
 
@@ -39,7 +43,7 @@
             var toIndex = oldArray.indexOf(toItem);
             oldArray.splice(toIndex, 0, oldArray.splice(fromIndex, 1)[0]);
 
-            this.save();
+            this.update();
         }
 
         add(stock) {
@@ -47,7 +51,7 @@
 
             if (this.store.stocks.indexOf(stockName) === -1) {
                 this.store.stocks.push(stockName);
-                this.save(stock);
+                this.update(stock);
             }
         }
 
@@ -58,7 +62,12 @@
                 this.store.stocks.splice(index, 1);
             }
 
-            this.save(stock);
+            this.update(stock);
+        }
+
+        closeWindow() {
+            this.store.closed = true;
+            this.save();
         }
     }
 
@@ -67,7 +76,6 @@
             this.$rootScope = $rootScope;
 
             this.storage = JSON.parse(localStorage.getItem(KEY_NAME)) || initialStocks;
-            this.open.bind(this);
         }
 
         open(windowName) {
