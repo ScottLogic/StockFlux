@@ -11,8 +11,26 @@
             </div>
         </div>
     </div>
-    <div class="search {{sidebarCtrl.searchClass()}}" ng-controller="SearchCtrl as searchCtrl" ng-click="sidebarCtrl.searchClick()">
+    <div class="search main-search {{sidebarCtrl.searchClass()}}" ng-controller="SearchCtrl as searchCtrl" ng-click="sidebarCtrl.searchClick()">
         <div>
+            <img src="assets/svg/search_tab.svg" class="top-icon" />
+            <input class="sidetab" type="text" maxlength="20" placeholder="Enter stock name or symbol"
+                   ng-show="sidebarCtrl.showSearches()" ng-model="searchCtrl.query" ng-keydown="searchCtrl.onSearchKeyDown($event)"/>
+        </div>
+        <div id="searchScroll" class="sideScroll">
+            <div class="sidetab" ng-show="sidebarCtrl.showSearches()">
+                <div ng-repeat="stock in searchCtrl.stocks" ng-mouseenter="stock.isHovered = true;" ng-mouseleave="stock.isHovered = false;">
+                    <search stock="stock" selection="searchCtrl.selection()" select="searchCtrl.select(stock)"></search>
+                </div>
+                <div class="no-results" ng-show="searchCtrl.noResults">
+                    Oops!<br>
+                    Looks like no matches were found.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="search summary-search {{sidebarCtrl.searchClass()}}" ng-controller="SearchCtrl as searchCtrl" ng-click="sidebarCtrl.searchClick()">
+         <div>
             <img src="assets/svg/search_tab.svg" class="top-icon" />
             <input class="sidetab" type="text" maxlength="20" placeholder="Enter stock name or symbol"
                    ng-show="sidebarCtrl.showSearches()" ng-model="searchCtrl.query" ng-keydown="searchCtrl.onSearchKeyDown($event)"/>
