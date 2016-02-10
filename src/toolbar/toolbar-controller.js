@@ -75,7 +75,7 @@
             this.summarised = !this.summarised;
             this.window.summarised = this.summarised;
             if (this.summarised) {
-                this.window.resizeTo(280, 500, 'top-right');
+                this.window.resizeTo(230, 500, 'top-right');
             }
             else if (this.maximised) {
                 this.window.maximize();
