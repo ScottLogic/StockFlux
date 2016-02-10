@@ -13,6 +13,11 @@
         selectionName() {
             return this.selectionService.selectedStock().name;
         }
+
+        noSelection() {
+            return this.selectionService.selectedStock() === undefined ||
+                this.selectionService.selectedStock() === '';
+        }
     }
     ShowcaseCtrl.$inject = ['selectionService'];
 
