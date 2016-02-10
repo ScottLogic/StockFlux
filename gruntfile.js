@@ -1,7 +1,7 @@
 /* jshint node: true*/
 'use strict';
 module.exports = function(grunt) {
-    var target = grunt.option('target') || 'http://owennw.github.io/OpenFinD3FC',
+    var target = grunt.option('target') || 'http://scottlogic.github.io/bitflux-openfin',
         port = process.env.PORT || 5000;
 
     grunt.initConfig({
@@ -17,7 +17,7 @@ module.exports = function(grunt) {
                 options: {
                     base: 'public',
                     message: 'Deploy to GitHub Pages',
-                    repo: 'https://github.com/owennw/OpenFinD3FC.git'
+                    repo: 'https://github.com/ScottLogic/bitflux-openfin.git'
                 },
                 src: ['**/*']
             }
@@ -88,8 +88,8 @@ module.exports = function(grunt) {
 
         download: {
             openfinZip: {
-                src: ['https://dl.openfin.co/services/download?fileName=OpenFinD3FC&config=http://owennw.github.io/OpenFinD3FC/app.json'],
-                dest: './public/OpenFinD3FC.zip'
+                src: ['https://dl.openfin.co/services/download?fileName=bitflux-openfin&config=http://scottlogic.github.io/bitflux-openfin/app.json'],
+                dest: './public/bitflux-openfin.zip'
             }
         },
 
