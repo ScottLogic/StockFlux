@@ -43,18 +43,10 @@
             this.apps = new AppManager();
         }
 
-        createWindow(config, successCb, tearout) {
+        _createWindow(config, successCb, closedCb) {
             config.name = getName();
             var newWindow = new fin.desktop.Window(config, () => {
                 this.windowsCache.push(newWindow);
-
-                if (!tearout) {
-                    // TODO
-                    // Begin super hack
-                    newWindow.getNativeWindow().windowService = this;
-                    newWindow.getNativeWindow().storeService = this.storeService;
-                    // End super hack
-                }
 
                 if (successCb) {
                     successCb(newWindow);
@@ -74,8 +66,8 @@
                 var index = this.windowsCache.indexOf(newWindow);
                 this.windowsCache.slice(index, 1);
 
-                if (!tearout && this.apps.count() !== 1) {
-                    this.storeService.open(config.name).closeWindow();
+                if (closedCb) {
+                    closedCb();
                 }
 
                 this.apps.decrement();
@@ -84,8 +76,32 @@
             return newWindow;
         }
 
+        createMainWindow(config, successCb) {
+            this._createWindow(
+                config,
+                (newWindow) => {
+                    // TODO
+                    // Begin super hack
+                    newWindow.getNativeWindow().windowService = this;
+                    newWindow.getNativeWindow().storeService = this.storeService;
+                    // End super hack
+
+                    if (successCb) {
+                        successCb(newWindow);
+                    }
+
+                    newWindow.show();
+                },
+                () => {
+                    if (this.apps.count() !== 1) {
+                        this.storeService.open(config.name).closeWindow();
+                    }
+                }
+            );
+        }
+
         createTearoutWindow(config, parentName) {
-            var tearoutWindow = this.createWindow(config, null, true);
+            var tearoutWindow = this._createWindow(config);
 
             if (!this.openWindows[parentName]) {
                 this.openWindows[parentName] = [].concat(tearoutWindow);

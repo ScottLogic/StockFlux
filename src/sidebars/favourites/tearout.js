@@ -217,10 +217,9 @@
 
                                         var config = createConfig(false, mainApplicationWindowPosition.width, mainApplicationWindowPosition.height);
 
-                                        windowService.createWindow(config, function(newWindow) {
+                                        windowService.createMainWindow(config, (newWindow) => {
                                             newWindow.moveTo(e.screenX, e.screenY);
                                             window.storeService.open(newWindow.name).add(scope.stock);
-                                            newWindow.show();
                                         });
 
                                         // Remove drop-target from original instance

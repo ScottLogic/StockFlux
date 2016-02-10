@@ -14,9 +14,7 @@
         constructor($scope, windowCreationService) {
             windowCreationService.ready(function() {
                 // TODO: Restore correct window(s)
-                windowCreationService.createWindow(config, function(newWindow) {
-                    newWindow.show();
-                });
+                windowCreationService.createMainWindow(config);
 
                 $scope.$on('updateFavourites', function(event, data) {
                     var e = new Event('updateFavourites');
