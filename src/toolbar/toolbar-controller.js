@@ -23,6 +23,16 @@
                     });
                 });
             });
+            this.window.addEventListener('bounds-changed', (e) => {
+                this.window.getBounds(function(bounds) {
+                    if (bounds.width === 280) {
+                        this.window.summarised = true;
+                    }
+                    else {
+                        this.window.summarised = false;
+                    }
+                });
+            });
         }
 
         minimiseClick() {
