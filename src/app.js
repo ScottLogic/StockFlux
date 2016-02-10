@@ -4,6 +4,7 @@
     angular.module('OpenFinD3FC', [
         'ngAnimate',
         'openfin.parent',
+        'openfin.main',
         'openfin.showcase',
         'openfin.toolbar',
         'openfin.search',
@@ -15,6 +16,7 @@
         'openfin.minichart'
     ]);
 
+    angular.module('openfin.main', ['openfin.currentWindow']);
     angular.module('openfin.showcase', ['openfin.selection', 'openfin.quandl']);
     angular.module('openfin.toolbar', ['openfin.currentWindow']);
     angular.module('openfin.search', ['openfin.quandl', 'openfin.selection', 'openfin.currentWindow']);
