@@ -36,7 +36,7 @@
             return this.stocks.length === 1 ? 'single' : '';
         }
 
-        update() {
+        update(updatedStock) {
             this.currentWindowService.ready(() => {
                 if (!this.store) {
                     this.store = window.storeService.open(window.name);
@@ -65,6 +65,26 @@
                 // Remove from the end of the array to not change the indices
                 for (i = removedStocksIndices.length - 1, min = 0; i >= min; i--) {
                     this.stocks.splice(removedStocksIndices[i], 1);
+                }
+
+                if (updatedStock) {
+                    if (this.stocks.length === 0 && updatedStock.favourite) {
+                        // If there aren't any stocks, we could be adding one...
+                        this.selectionService.select(updatedStock);
+                    } else {
+                        var oldSelectedStock = this.selectionService.selectedStock();
+                        if (oldSelectedStock.code === updatedStock.code &&
+                            (!updatedStock.favourite || this.favourites.indexOf(oldSelectedStock.code) === -1) &&
+                            this.stocks.length > 0) {
+                            // The changed favourite was also the selected one!
+                            // It was removed, or torn out
+                            //
+                            // Need to change the selection to the top most
+                            var topStock = this.stocks.filter((stock) => stock.code === this.favourites[0])[0];
+
+                            this.selectionService.select(topStock);
+                        }
+                    }
                 }
 
                 // Add new stocks from favourites
@@ -105,7 +125,7 @@
         _watch() {
             this.$scope.$on('updateFavourites', (event, data) => {
                 this.$timeout(() => {
-                    this.update();
+                    this.update(data);
                 });
             });
         }
