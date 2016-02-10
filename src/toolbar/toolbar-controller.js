@@ -35,7 +35,6 @@
             this.window.addEventListener('bounds-changed', (e) => {
                 this.window.getBounds(function(bounds) {
                     if (bounds.width === 230) {
-                        console.log('reached');
                         this.window.summarised = true;
                     }
                     else {
