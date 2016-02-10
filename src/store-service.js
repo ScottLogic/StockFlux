@@ -8,7 +8,7 @@
             stocks: [
                 'AAPL', 'MSFT', 'TITN', 'SNDK', 'TSLA'
             ],
-            closed: false
+            closed: 0
         }
     ];
 
@@ -66,7 +66,7 @@
         }
 
         closeWindow() {
-            this.store.closed = true;
+            this.store.closed = Date.now();
             this.save();
         }
     }
@@ -80,7 +80,7 @@
 
         getPreviousOpenWindowNames() {
             return this.storage
-                .filter((store) => !store.closed)
+                .filter((store) => store.closed === 0)
                 .map((store) => store.id);
         }
 
@@ -95,7 +95,7 @@
                 var newStore = {
                     id: windowName,
                     stocks: [],
-                    closed: false
+                    closed: 0
                 };
 
                 // TODO: limit number of saved windows?
