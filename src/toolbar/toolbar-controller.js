@@ -55,6 +55,7 @@
 
         normalSizeClick() {
             this.window.restore();
+            this.window.resizeTo(1280, 720, 'top-right');
         }
 
         summariseClick() {
