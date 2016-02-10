@@ -32,6 +32,10 @@
             this.selectionService.select(stock);
         }
 
+        noFavourites() {
+            return this.stocks.length === 0;
+        }
+
         single() {
             return this.stocks.length === 1 ? 'single' : '';
         }
