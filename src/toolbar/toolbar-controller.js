@@ -71,20 +71,6 @@
             }
         }
 
-        summariseClick() {
-            this.summarised = !this.summarised;
-            this.window.summarised = this.summarised;
-            if (this.summarised) {
-                this.window.resizeTo(230, 500, 'top-right');
-            }
-            else if (this.maximised) {
-                this.window.maximize();
-            }
-            else {
-                this.window.resizeTo(1280, 720, 'top-right');
-            }
-        }
-
         closeClick() {
             this.window.close();
         }
