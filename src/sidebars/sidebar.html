@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="search {{sidebarCtrl.searchClass()}}" ng-controller="SearchCtrl as searchCtrl" ng-click="sidebarCtrl.searchClick()">
-        <div class="sidetab-top">
+        <div>
             <img src="assets/svg/search_tab.svg" class="top-icon" />
             <input class="sidetab" type="text" maxlength="20" placeholder="Enter stock name or symbol"
                    ng-show="sidebarCtrl.showSearches()" ng-model="searchCtrl.query" ng-keydown="searchCtrl.onSearchKeyDown($event)"/>

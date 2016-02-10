@@ -102,19 +102,28 @@
     position: absolute;
     -webkit-app-region: drag;
   }
+  #searchScroll, #favScroll{
+     top: 34px;
+     bottom: 52px;
+  }
   .favourites, #favScroll, .favourite {
     width: 100%;
   }
   .search {
     bottom: 0px;
     width: 100%;
-    height: 50px;
+    height: 34px;
+    .top-icon {
+      margin-top: 7px;
+    }
+    input {
+      padding-top: 7px;
+    }
   }
   .top-icon {
-    color: @icon-colour;
     float: left;
-    width: 20px;
     margin-left: 15px;
-    margin-top: 15px;
+    margin-top: 7px;
+    margin-right: 0px;
   }
 }
