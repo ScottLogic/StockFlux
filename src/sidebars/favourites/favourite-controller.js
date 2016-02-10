@@ -80,9 +80,9 @@
                             // It was removed, or torn out
                             //
                             // Need to change the selection to the top most
-                            var topStockIndex = this.stocks.map((stock) => stock.code).indexOf(this.favourites[0]);
+                            var topStock = this.stocks.filter((stock) => stock.code === this.favourites[0])[0];
 
-                            this.selectionService.select(this.stocks[topStockIndex]);
+                            this.selectionService.select(topStock);
                         }
                     }
                 }
