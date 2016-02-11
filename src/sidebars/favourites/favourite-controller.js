@@ -32,6 +32,10 @@
             this.selectionService.select(stock);
         }
 
+        noFavourites() {
+            return this.stocks.length === 0;
+        }
+
         single() {
             return this.stocks.length === 1 ? 'single' : '';
         }
@@ -67,23 +71,26 @@
                     this.stocks.splice(removedStocksIndices[i], 1);
                 }
 
+                var oldSelectedStock = this.selectionService.selectedStock();
                 if (updatedStock) {
-                    if (this.stocks.length === 0 && updatedStock.favourite) {
+                    if (this.stocks.length === 0) {
                         // If there aren't any stocks, we could be adding one...
-                        this.selectionService.select(updatedStock);
-                    } else {
-                        var oldSelectedStock = this.selectionService.selectedStock();
-                        if (oldSelectedStock.code === updatedStock.code &&
+                        if (updatedStock.favourite) {
+                            this.selectionService.select(updatedStock);
+                        } else if (oldSelectedStock.code === updatedStock.code) {
+                            // If there's no stocks and it's not a favourite any more, but also
+                            // if the selection is on the updated stock, deselect.
+                            this.selectionService.deselect();
+                        }
+                    } else if (oldSelectedStock.code === updatedStock.code &&
                             (!updatedStock.favourite || this.favourites.indexOf(oldSelectedStock.code) === -1) &&
                             this.stocks.length > 0) {
-                            // The changed favourite was also the selected one!
-                            // It was removed, or torn out
-                            //
-                            // Need to change the selection to the top most
-                            var topStock = this.stocks.filter((stock) => stock.code === this.favourites[0])[0];
-
-                            this.selectionService.select(topStock);
-                        }
+                        // The changed favourite was also the selected one!
+                        // It was removed, or torn out
+                        //
+                        // Need to change the selection to the top most
+                        var topStock = this.stocks.filter((stock) => stock.code === this.favourites[0])[0];
+                        this.selectionService.select(topStock);
                     }
                 }
 

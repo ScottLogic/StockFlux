@@ -13,6 +13,10 @@
         selectionName() {
             return this.selectionService.selectedStock().name;
         }
+
+        hasSelection() {
+            return this.selectionService.hasSelection();
+        }
     }
     ShowcaseCtrl.$inject = ['selectionService'];
 

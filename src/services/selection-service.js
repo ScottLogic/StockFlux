@@ -1,9 +1,11 @@
 (function() {
     'use strict';
 
+    const DESELECTION_OBJECT = { code: '', name: '' };
+
     class SelectionService {
         constructor() {
-            this._stock = '';
+            this._stock = DESELECTION_OBJECT;
         }
 
         select(stock) {
@@ -12,6 +14,14 @@
 
         selectedStock() {
             return this._stock;
+        }
+
+        deselect() {
+            this._stock = DESELECTION_OBJECT;
+        }
+
+        hasSelection() {
+            return this._stock !== DESELECTION_OBJECT;
         }
     }
     SelectionService.$inject = [];
