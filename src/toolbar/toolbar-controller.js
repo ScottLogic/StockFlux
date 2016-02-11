@@ -13,7 +13,7 @@
         onReady() {
             this.window = this.currentWindowService.getCurrentWindow();
             this.window.getBounds((bounds) => {
-                this.compact = this.window.compact = bounds.width === 230;
+                this.compact = this.currentWindowService.compact = bounds.width === 230;
             });
             this.window.addEventListener('maximized', () => {
                 this.$timeout(() => {
@@ -28,7 +28,7 @@
             });
             this.window.addEventListener('bounds-changed', (e) => {
                 this.window.getBounds((bounds) => {
-                    this.window.compact = bounds.width === 230;
+                    this.currentWindowService.compact = bounds.width === 230;
                 });
             });
         }
@@ -48,7 +48,7 @@
 
         compactClick() {
             this.compact = !this.compact;
-            this.window.compact = this.compact;
+            this.currentWindowService.compact = this.compact;
             if (this.compact) {
                 this.window.resizeTo(230, 500, 'top-right');
             }
