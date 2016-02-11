@@ -6,14 +6,14 @@
             this.$timeout = $timeout;
             this.currentWindowService = currentWindowService;
             this.maximised = false;
-            this.summarised = false;
+            this.compact = false;
             currentWindowService.ready(this.onReady.bind(this));
         }
 
         onReady() {
             this.window = this.currentWindowService.getCurrentWindow();
             this.window.getBounds((bounds) => {
-                this.summarised = this.window.summarised = bounds.width === 230;
+                this.compact = this.window.compact = bounds.width === 230;
             });
             this.window.addEventListener('maximized', () => {
                 this.$timeout(() => {
@@ -28,7 +28,7 @@
             });
             this.window.addEventListener('bounds-changed', (e) => {
                 this.window.getBounds((bounds) => {
-                    this.window.summarised = bounds.width === 230;
+                    this.window.compact = bounds.width === 230;
                 });
             });
         }
@@ -46,10 +46,10 @@
             this.window.resizeTo(1280, 720, 'top-right');
         }
 
-        summariseClick() {
-            this.summarised = !this.summarised;
-            this.window.summarised = this.summarised;
-            if (this.summarised) {
+        compactClick() {
+            this.compact = !this.compact;
+            this.window.compact = this.compact;
+            if (this.compact) {
                 this.window.resizeTo(230, 500, 'top-right');
             }
             else if (this.maximised) {

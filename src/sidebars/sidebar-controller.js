@@ -23,8 +23,8 @@
             this.window = this.currentWindowService.getCurrentWindow();
         }
 
-        isSummarised() {
-            return this.window.summarised;
+        isCompact() {
+            return this.window.compact;
         }
 
         searchClass() {

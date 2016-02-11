@@ -1,4 +1,4 @@
-<div class="sidebars" ng-class="{summary: sidebarCtrl.isSummarised()}">
+<div class="sidebars" ng-class="{compact: sidebarCtrl.isCompact()}">
     <div class="favourites {{sidebarCtrl.favouritesClass()}}" ng-controller="FavouritesCtrl as favouritesCtrl" ng-click="sidebarCtrl.favouritesClick()">
         <div class="sidetab-top">
             <img src="assets/svg/favourite_TOP.svg" class="top-icon" />
@@ -35,7 +35,7 @@
             </div>
         </div>
     </div>
-    <div class="search summary-search {{sidebarCtrl.searchClass()}}" ng-controller="SearchCtrl as searchCtrl" ng-click="sidebarCtrl.searchClick()">
+    <div class="search compact-search {{sidebarCtrl.searchClass()}}" ng-controller="SearchCtrl as searchCtrl" ng-click="sidebarCtrl.searchClick()">
          <div>
             <img src="assets/svg/search_tab.svg" class="top-icon" />
             <input class="sidetab" type="text" maxlength="20" placeholder="Enter stock name or symbol"
