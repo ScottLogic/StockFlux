@@ -12,14 +12,8 @@
 
         onReady() {
             this.window = this.currentWindowService.getCurrentWindow();
-            this.window.getBounds(function(bounds) {
-                if (bounds.width === 230) {
-                    this.summarised = true;
-                    this.window.summarised = true;
-                }
-                else {
-                    this.window.summarised = false;
-                }
+            this.window.getBounds((bounds) => {
+                this.summarised = this.window.summarised = bounds.width === 230;
             });
             this.window.addEventListener('maximized', () => {
                 this.$timeout(() => {
@@ -33,13 +27,8 @@
                 });
             });
             this.window.addEventListener('bounds-changed', (e) => {
-                this.window.getBounds(function(bounds) {
-                    if (bounds.width === 230) {
-                        this.window.summarised = true;
-                    }
-                    else {
-                        this.window.summarised = false;
-                    }
+                this.window.getBounds((bounds) => {
+                    this.window.summarised = bounds.width === 230;
                 });
             });
         }
