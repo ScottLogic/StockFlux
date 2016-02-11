@@ -1,5 +1,5 @@
 {
-  "name": "OpenFinD3FC",
+  "name": "bitflux-openfin",
   "version": "0.0.0",
   "scripts": {
     "test": "grunt ci",
