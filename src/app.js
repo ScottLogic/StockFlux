@@ -21,7 +21,7 @@
     angular.module('openfin.toolbar', ['openfin.currentWindow']);
     angular.module('openfin.search', ['openfin.quandl', 'openfin.selection', 'openfin.currentWindow']);
     angular.module('openfin.favourites', ['openfin.quandl', 'openfin.selection', 'openfin.currentWindow']);
-    angular.module('openfin.sidebar', ['openfin.currentWindow']);
+    angular.module('openfin.sidebar', []);
     angular.module('openfin.filters', []);
     angular.module('openfin.star', ['openfin.selection']);
     angular.module('openfin.tearout', ['openfin.geometry', 'openfin.hover', 'openfin.currentWindow']);
