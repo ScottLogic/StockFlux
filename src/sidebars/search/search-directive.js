@@ -6,11 +6,8 @@
             return {
                 restrict: 'E',
                 templateUrl: 'sidebars/search/search.html',
-                scope: {
-                    stock: '=',
-                    selection: '&',
-                    select: '&'
-                }
+                controller: 'SearchCtrl',
+                controllerAs: 'searchCtrl'
             };
         }]);
 }());
