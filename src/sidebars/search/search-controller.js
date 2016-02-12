@@ -1,134 +1,150 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.search', ['openfin.quandl', 'openfin.store', 'openfin.selection'])
-        .controller('SearchCtrl', ['$scope', 'quandlService', 'storeService', 'selectionService',
-            function($scope, quandlService, storeService, selectionService) {
-                var self = this;
-                self.query = '';
-                self.noResults = false;
-                self.stocks = [];
+    class SearchCtrl {
+        constructor($scope, quandlService, selectionService, currentWindowService) {
+            this.$scope = $scope;
+            this.quandlService = quandlService;
+            this.selectionService = selectionService;
+            this.currentWindowService = currentWindowService;
 
-                self.selection = function() {
-                    return selectionService.selectedStock().code;
-                };
+            this.store = null;
+            this.query = '';
+            this.noResults = false;
+            this.stocks = [];
 
-                self.select = function(stock) {
-                    selectionService.select(stock);
-                };
+            this._watch();
+        }
 
-                self.onSearchKeyDown = function(event) {
-                    if (event.keyCode === 38) {
-                        // Up
-                        changePointer(-1);
-                    } else if (event.keyCode === 40) {
-                        // Down
-                        changePointer(1);
-                    }
-                };
+        selection() {
+            return this.selectionService.selectedStock().code;
+        }
 
-                function changePointer(delta) {
-                    // Change the selection pointer to be the selected stock, if it exists in the list
-                    // (otherwise, set to -1, which is acceptable as there is no selection yet)
-                    var currentSelectionPointer = self.stocks.map(function(stockItem) {
-                        return stockItem.code;
-                    }).indexOf(self.selection());
+        select(stock) {
+            this.selectionService.select(stock);
+        }
 
-                    var newPointer = currentSelectionPointer + delta;
-
-                    newPointer = Math.max(
-                        0,
-                        Math.min(
-                            newPointer,
-                            self.stocks.length - 1
-                        )
-                    );
-
-                    if (self.stocks.length > 0) {
-                        self.select(self.stocks[newPointer]);
-                    }
-                }
-
-                function submit() {
-                    self.stocks = [];
-                    self.noResults = false;
-                    var favourites = storeService.get();
-                    if (self.query) {
-                        var length = favourites.length;
-                        quandlService.search(self.query, function(stock) {
-                            var i;
-
-                            // removing stocks found with old query
-                            self.stocks = self.stocks.filter(function(result, j) {
-                                return result.query === self.query;
-                            });
-
-                            // not adding old stocks
-                            if (stock.query !== self.query) {
-                                return;
-                            }
-
-                            // Due to the asynchronicity of the search, if multiple searches
-                            // are fired off in a small amount of time, with an intermediate one
-                            // returning no results it's possible to have both the noResults flag
-                            // set to true, while some stocks have been retrieved by a later search.
-                            //
-                            // Here we re-set the flag to keep it up-to-date.
-                            self.noResults = false;
-
-                            var stockAdded = false;
-                            for (i = 0; i < length; i++) {
-                                if (stock.code === favourites[i]) {
-                                    stock.favourite = true;
-                                    self.stocks.unshift(stock);
-                                    stockAdded = true;
-                                }
-                            }
-
-                            if (!stockAdded) {
-                                self.stocks.push(stock);
-                            }
-                        },
-                        function() {
-                            self.noResults = true;
-                        });
-                    } else {
-                        favourites.map(function(favourite) {
-                            quandlService.getMeta(favourite, function(stock) {
-                                stock.favourite = true;
-                                self.stocks.push(stock);
-                            });
-                        });
-                    }
-                }
-
-                $scope.$watch(
-                    // Can't watch `self.query` as the subscribers to this controller
-                    // may alias it (e.g. `searchCtrl.query`), so instead define a
-                    // function to decouple scoping.
-                    function watchQuery() {
-                        return self.query;
-                    },
-                    function() {
-                        submit();
-                    });
-
-                $scope.$on('updateFavourites', function(event, data) {
-                    if (!data) {
-                        return;
-                    }
-
-                    var index = self.stocks.map(function(stock) { return stock.code; }).indexOf(data.code);
-                    if (index > -1) {
-                        if (!self.query) {
-                            // There are no search results, so remove the favourite.
-                            self.stocks.splice(index, 1);
-                        } else {
-                            // Update the stock's favourite
-                            self.stocks[index].favourite = data.favourite;
-                        }
-                    }
-                });
+        onSearchKeyDown(event) {
+            if (event.keyCode === 38) {
+                // Up
+                this.changePointer(-1);
+            } else if (event.keyCode === 40) {
+                // Down
+                this.changePointer(1);
             }
-        ]);
+        }
+
+        changePointer(delta) {
+            // Change the selection pointer to be the selected stock, if it exists in the list
+            // (otherwise, set to -1, which is acceptable as there is no selection yet)
+            var currentSelectionPointer = this.stocks.map(function(stockItem) {
+                return stockItem.code;
+            }).indexOf(this.selection());
+
+            var newPointer = currentSelectionPointer + delta;
+
+            newPointer = Math.max(
+                0,
+                Math.min(
+                    newPointer,
+                    this.stocks.length - 1
+                )
+            );
+
+            if (this.stocks.length > 0) {
+                this.select(this.stocks[newPointer]);
+            }
+        }
+
+
+        submit() {
+            this.stocks = [];
+            this.noResults = false;
+
+            this.currentWindowService.ready(() => {
+                if (!this.store) {
+                    this.store = window.storeService.open(window.name);
+                }
+
+                var favourites = this.store.get();
+                if (this.query) {
+                    var length = favourites.length;
+                    this.quandlService.search(this.query, (stock) => {
+                        var i;
+
+                        // removing stocks found with old query
+                        this.stocks = this.stocks.filter((result, j) => {
+                            return result.query === this.query;
+                        });
+
+                        // not adding old stocks
+                        if (stock.query !== this.query) {
+                            return;
+                        }
+
+                        // Due to the asynchronicity of the search, if multiple searches
+                        // are fired off in a small amount of time, with an intermediate one
+                        // returning no results it's possible to have both the noResults flag
+                        // set to true, while some stocks have been retrieved by a later search.
+                        //
+                        // Here we re-set the flag to keep it up-to-date.
+                        this.noResults = false;
+
+                        var stockAdded = false;
+                        for (i = 0; i < length; i++) {
+                            if (stock.code === favourites[i]) {
+                                stock.favourite = true;
+                                this.stocks.unshift(stock);
+                                stockAdded = true;
+                            }
+                        }
+
+                        if (!stockAdded) {
+                            this.stocks.push(stock);
+                        }
+                    },
+                    () => this.noResults = true);
+                } else {
+                    favourites.map((favourite) => {
+                        this.quandlService.getMeta(favourite, (stock) => {
+                            stock.favourite = true;
+                            this.stocks.push(stock);
+                        });
+                    });
+                }
+            });
+        }
+
+        _watch() {
+            this.$scope.$watch(
+                // Can't watch `this.query` as the subscribers to this controller
+                // may alias it (e.g. `searchCtrl.query`), so instead define a
+                // function to decouple scoping.
+                () => this.query,
+                () => {
+                    this.submit();
+                });
+
+            this.$scope.$on('updateFavourites', (event, data) => {
+                if (!data) {
+                    return;
+                }
+
+                var index = this.stocks.map(function(stock) { return stock.code; }).indexOf(data.code);
+                if (index > -1) {
+                    if (!this.query) {
+                        // There are no search results, so remove the favourite.
+                        this.stocks.splice(index, 1);
+                    } else {
+                        // Update the stock's favourite
+                        this.stocks[index].favourite = data.favourite;
+                    }
+                }
+            });
+        }
+    }
+    SearchCtrl.$inject = ['$scope', 'quandlService', 'selectionService', 'currentWindowService'];
+
+    angular.module('openfin.search')
+        .controller('SearchCtrl', SearchCtrl);
 }());

@@ -1,19 +1,24 @@
 {
-  "name": "OpenFinD3FC",
+  "name": "bitflux-openfin",
   "version": "0.0.0",
   "scripts": {
     "test": "grunt ci",
     "postinstall": "cd node_modules/d3fc-showcase && npm i"
   },
   "devDependencies": {
+    "babel-eslint": "^4.1.8",
+    "babel-preset-es2015": "^6.3.13",
     "connect-livereload": "^0.4.0",
     "grunt": "^0.4.5",
+    "grunt-babel": "^6.0.0",
     "grunt-cli": "^0.1.13",
     "grunt-contrib-clean": "^0.7.0",
+    "grunt-contrib-concat": "^0.5.1",
     "grunt-contrib-connect": "^0.8.0",
     "grunt-contrib-copy": "^0.8.2",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-less": "^1.1.0",
+    "grunt-contrib-uglify": "^0.11.1",
     "grunt-eslint": "^17.3.1",
     "grunt-gh-pages": "^1.0.0",
     "grunt-http-download": "^0.1.0",
@@ -25,7 +30,6 @@
     "angular": "^1.4.8",
     "angular-animate": "^1.4.8",
     "angular-resource": "^1.4.8",
-    "angular-storage": "0.0.13",
     "d3fc": "^5.2.0",
     "d3fc-showcase": "ScottLogic/BitFlux#56dc4387d334e105678e88c6941f492118485f6a",
     "jquery": "^1.11.1",

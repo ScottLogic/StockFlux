@@ -1,9 +1,9 @@
 (function(window) {
     'use strict';
 
-    angular.module('openfin.tearout', ['openfin.geometry', 'openfin.hover', 'openfin.store', 'openfin.desktop'])
-        .directive('tearable', ['geometryService', 'hoverService', 'storeService', 'desktopService',
-            function(geometryService, hoverService, storeService, desktopService) {
+    angular.module('openfin.tearout')
+        .directive('tearable', ['geometryService', 'hoverService', 'currentWindowService',
+            function(geometryService, hoverService, currentWindowService) {
                 return {
                     restrict: 'C',
                     link: function(scope, element, attrs) {
@@ -11,37 +11,54 @@
                         var dragElement = element[0],
                             tearElement = dragElement.parentNode.parentNode,
                             tileWidth = tearElement.clientWidth,
-                            tileHeight = tearElement.clientHeight;
+                            tileHeight = tearElement.clientHeight,
+                            store;
 
-                        function createConfig() {
-                            return {
-                                'name': scope.stock.code + ' window',
-                                'maxWidth': tileWidth,
-                                'minHeight': tileHeight,
+                        function createConfig(tearout, width, height) {
+                            var config = {
                                 'defaultWidth': tileWidth,
                                 'defaultHeight': tileHeight,
-                                'width': tileWidth,
-                                'height': tileHeight,
+                                'width': width,
+                                'height': height,
                                 'autoShow': false,
-                                'url': 'sidebars/favourites/tearout.html',
-                                'frame': false,
-                                'resizable': false,
-                                'maximizable': false,
-                                'showTaskbarIcon': false,
-                                'saveWindowState': false
+                                'frame': false
                             };
+
+                            if (tearout) {
+                                config.minWidth = tileWidth;
+                                config.minHeight = tileHeight;
+                                config.url = 'tearout.html';
+                            } else {
+                                // TODO: Remove duplication of minimum sizes
+                                config.minWidth = 918;
+                                config.minHeight = 510;
+                                config.url = 'index.html';
+                            }
+
+                            config.resizable =
+                                config.maximizable =
+                                config.showTaskbarIcon =
+                                config.saveWindowState = !tearout;
+
+                            return config;
                         }
 
-                        var tearoutWindow = desktopService.createWindow(createConfig());
+                        var tearoutWindowConfig = createConfig(true, tileWidth, tileHeight);
+
+                        var windowService = window.windowService;
+                        var tearoutWindow = windowService.createTearoutWindow(tearoutWindowConfig, window.name);
 
                         function initialiseTearout() {
                             var myDropTarget = tearElement.parentNode,
+                                parent = myDropTarget.parentNode,
+                                myHoverArea = parent.getElementsByClassName('hover-area')[0],
                                 offset = { x: 0, y: 0 },
-                                currentlyDragging = false;
+                                currentlyDragging = false,
+                                outsideMainWindow = false;
 
                             var me = {};
 
-                            hoverService.add(myDropTarget.parentNode.getElementsByClassName('hover-area')[0], scope.stock.code);
+                            hoverService.add(myHoverArea, scope.stock.code);
 
                             // The distance from where the mouse click occurred from the origin of the element that will be torn out.
                             // This is to place the tearout window exactly over the tornout element
@@ -150,6 +167,11 @@
                                     return false;
                                 }
 
+                                if (dragElement.classList.contains('single')) {
+                                    // There is only one favourite card so don't allow tearing out
+                                    return false;
+                                }
+
                                 me.setCurrentlyDragging(true)
                                     .setOffset(e.offsetX, e.offsetY)
                                     .moveTearoutWindow(e.screenX, e.screenY)
@@ -179,28 +201,71 @@
                                 }
 
                                 if (currentlyDragging) {
-                                    me.setCurrentlyDragging(false)
-                                        .returnFromTearout();
+                                    me.setCurrentlyDragging(false);
+                                    if (!outsideMainWindow) {
+                                        me.returnFromTearout();
+                                    } else {
+                                        if (!store) {
+                                            store = window.storeService.open(window.name);
+                                        }
+
+                                        // Remove the stock from the old window
+                                        store.remove(scope.stock);
+
+                                        // Create new window instance
+                                        var mainApplicationWindowPosition = getWindowPosition(window);
+
+                                        var config = createConfig(false, mainApplicationWindowPosition.width, mainApplicationWindowPosition.height);
+
+                                        windowService.createMainWindow(config, (newWindow) => {
+                                            newWindow.moveTo(e.screenX, e.screenY);
+                                            window.storeService.open(newWindow.name).add(scope.stock);
+                                        });
+
+                                        // Remove drop-target from original instance
+                                        parent.removeChild(myHoverArea);
+                                        parent.removeChild(myDropTarget);
+                                        dispose();
+
+                                        // Destroy myself.
+                                        tearoutWindow.close();
+                                    }
                                 }
                             };
+
+                            function reorderFavourites(tearoutRectangle) {
+                                var hoverTargets = hoverService.get();
+
+                                for (var i = 0, max = hoverTargets.length; i < max; i++) {
+                                    var dropTargetRectangle = geometryService.rectangle(
+                                        elementScreenPosition(getWindowPosition(window), hoverTargets[i].hoverArea)),
+                                        overDropTarget = tearoutRectangle.intersects(dropTargetRectangle);
+
+                                    if (overDropTarget) {
+                                        // TODO: This is where the pause will go, and the highlighting.
+                                        if (!store) {
+                                            store = window.storeService.open(window.name);
+                                        }
+
+                                        store.reorder(scope.stock.code, hoverTargets[i].code);
+                                        break;
+                                    }
+                                }
+                            }
 
                             // On the `bounds-changing` event check to see if you are over a potential drop target.
                             // If so update the drop target.
                             tearoutWindow.addEventListener('bounds-changing', function() {
                                 // Check if you are over a drop target by seeing if the tearout rectangle intersects the drop target
-                                var hoverTargets = hoverService.get();
-                                var nativeWindow = tearoutWindow.getNativeWindow();
-                                for (var i = 0, max = hoverTargets.length; i < max; i++) {
-                                    var dropTargetRectangle = geometryService.rectangle(
-                                        elementScreenPosition(getWindowPosition(window), hoverTargets[i].hoverArea));
-                                    var overDropTarget = geometryService.rectangle(getWindowPosition(nativeWindow))
-                                            .intersects(dropTargetRectangle);
+                                var nativeWindow = tearoutWindow.getNativeWindow(),
+                                    tearoutRectangle = geometryService.rectangle(getWindowPosition(nativeWindow)),
+                                    mainApplicationWindowPosition = getWindowPosition(window),
+                                    mainApplicationRectangle = geometryService.rectangle(mainApplicationWindowPosition);
 
-                                    if (overDropTarget) {
-                                        // TODO: This is where the pause will go, and the highlighting.
-                                        storeService.reorder(scope.stock.code, hoverTargets[i].code);
-                                        break;
-                                    }
+                                outsideMainWindow = !tearoutRectangle.intersects(mainApplicationRectangle);
+
+                                if (!outsideMainWindow) {
+                                    reorderFavourites(tearoutRectangle);
                                 }
                             });
 
@@ -209,8 +274,12 @@
                             document.addEventListener('mouseup', me.handleMouseUp, true);
                         }
 
-                        scope.$on('$destroy', function(e) {
+                        function dispose() {
                             hoverService.remove(scope.stock.code);
+                        }
+
+                        scope.$on('$destroy', function(e) {
+                            dispose();
                         });
 
                         initialiseTearout();

@@ -1,16 +1,16 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.toolbar')
-        .directive('toolbarIcon', [function() {
+    angular.module('openfin.icon')
+        .directive('icon', [function() {
             return {
                 restrict: 'E',
-                templateUrl: 'toolbar/toolbarIcon.html',
+                templateUrl: 'icon/icon.html',
                 scope: {
                     name: '@',
                     iconClick: '&'
                 },
-                controller: 'ToolbarIconCtrl',
+                controller: 'IconCtrl',
                 controllerAs: 'iconCtrl'
             };
         }]);

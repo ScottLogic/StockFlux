@@ -1,49 +1,61 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.star', ['openfin.store', 'openfin.selection'])
-        .controller('StarCtrl', ['$scope', 'storeService', 'selectionService', function($scope, storeService, selectionService) {
-            var self = this;
-            var starHovered = false;
-            self.check = false;
+    const starUrls = {
+        off: 'favourite_OFF',
+        on: 'favourite_ON',
+        offHover: 'favourite_OFF_hover',
+        onHover: 'favourite_hover'
+    };
 
-            var starUrls = {
-                off: 'favourite_OFF',
-                on: 'favourite_ON',
-                offHover: 'favourite_OFF_hover',
-                onHover: 'favourite_hover'
-            };
+    class StarCtrl {
+        constructor($scope, selectionService) {
+            this.$scope = $scope;
+            this.store = null;
+            this.selectionService = selectionService;
 
-            self.favouriteUrl = function(stock) {
+            this.starHovered = false;
+            this.check = false;
+        }
+
+        favouriteUrl(stock) {
+            if (stock.favourite) {
+                return starUrls.on;
+            } else if (this.starHovered) {
+                return starUrls.onHover;
+            } else if (stock.isHovered || this.selectionService.selectedStock() === stock) {
+                return starUrls.offHover;
+            } else {
+                return starUrls.off;
+            }
+        }
+
+        click(stock) {
+            if (!this.check || confirm('Are you sure you wish to remove this stock (' + stock.code + ') from your favourites?')) {
+                if (!this.store) {
+                    this.store = window.storeService.open(window.name);
+                }
+
                 if (stock.favourite) {
-                    return starUrls.on;
-                } else if (starHovered) {
-                    return starUrls.onHover;
-                } else if (stock.isHovered || selectionService.selectedStock() === stock) {
-                    return starUrls.offHover;
+                    stock.favourite = false;
+                    this.store.remove(stock);
                 } else {
-                    return starUrls.off;
+                    stock.favourite = true;
+                    this.store.add(stock);
                 }
-            };
+            }
+        }
 
-            self.click = function(stock) {
-                if (!self.check || confirm('Are you sure you wish to remove this stock (' + stock.code + ') from your favourites?')) {
-                    if (stock.favourite) {
-                        stock.favourite = false;
-                        storeService.remove(stock);
-                    } else {
-                        stock.favourite = true;
-                        storeService.add(stock);
-                    }
-                }
-            };
+        mouseEnter() {
+            this.starHovered = true;
+        }
 
-            self.mouseEnter = function() {
-                starHovered = true;
-            };
+        mouseLeave() {
+            this.starHovered = false;
+        }
+    }
+    StarCtrl.$inject = ['$scope', 'selectionService'];
 
-            self.mouseLeave = function() {
-                starHovered = false;
-            };
-        }]);
+    angular.module('openfin.star')
+        .controller('StarCtrl', StarCtrl);
 }());

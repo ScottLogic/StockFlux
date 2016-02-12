@@ -37,13 +37,35 @@
 
   .dropdown-toggle {
     height: 28px;
+    border-radius: 0;
   }
 
   .selector-dropdown:nth-child(2) .dropdown-toggle {
-    font-size: 20px;
-    width: 135px;
+    width: inherit;
+    font-size: 14px;
     line-height: 0px;
     padding-top: 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+
+  .selector-dropdown {
+    &.open {
+      .dropdown-toggle {
+          border-bottom: none;
+          position: relative;
+          z-index: 2;
+      }
+
+      .dropdown-menu {
+          z-index: 1;
+      }
+    }
+    .dropdown-menu {
+      top: 31px;
+      border-radius: 0;
+    }
   }
 }
 
@@ -70,6 +92,14 @@
   .macd-signal .line, .macd .line, .rsi {
     stroke-width: 2px;
   }
+
+  .y-axis {
+      .tick {
+          &.orient-right text {
+            font-size: 10px;
+          }
+      }
+  }
 }
 
 #navbar-row {
@@ -84,7 +114,7 @@
 
       path {
         stroke: @chart-fade !important;
-        stroke-width: @chart-fade !important;
+        stroke-width: 2px;
       }
     }
 
@@ -135,6 +165,13 @@
     font-size: 14px;
     fill: @icon-colour;
   }
+}
+
+#x-axis-container .tick, #navbar-row #navbar-container {
+    text {
+      font-size: 14px;
+      fill: @icon-colour;
+    }
 }
 
 .multi.rsi.annotations .annotation.horizontal line {

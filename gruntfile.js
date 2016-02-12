@@ -1,26 +1,8 @@
 /* jshint node: true*/
 'use strict';
 module.exports = function(grunt) {
-    var target = grunt.option('target') || 'http://owennw.github.io/OpenFinD3FC',
-        port = process.env.PORT || 5000,
-        files = {
-            js: [
-                'gruntfile.js',
-                'src/**/*.js',
-                'src/**/*.json',
-                '*.json'
-            ],
-            html: [
-                'src/**/*.html'
-            ],
-            css: [
-                'src/**/*.css',
-                'src/**/*.less'
-            ],
-            showcase: [
-                'node_modules/d3fc-showcase/dist/'
-            ]
-        };
+    var target = grunt.option('target') || 'http://scottlogic.github.io/bitflux-openfin',
+        port = process.env.PORT || 5000;
 
     grunt.initConfig({
         'gh-pages': {
@@ -35,7 +17,7 @@ module.exports = function(grunt) {
                 options: {
                     base: 'public',
                     message: 'Deploy to GitHub Pages',
-                    repo: 'https://github.com/owennw/OpenFinD3FC.git'
+                    repo: 'https://github.com/ScottLogic/bitflux-openfin.git'
                 },
                 src: ['**/*']
             }
@@ -64,7 +46,7 @@ module.exports = function(grunt) {
                     filePath: 'public/app.json',
                     options: {
                         startup_app: {
-                            url: target + '/index.html',
+                            url: target + '/parent.html',
                             applicationIcon: target + '/favicon.ico'
                         },
                         shortcut: {
@@ -106,8 +88,8 @@ module.exports = function(grunt) {
 
         download: {
             openfinZip: {
-                src: ['https://dl.openfin.co/services/download?fileName=OpenFinD3FC&config=http://owennw.github.io/OpenFinD3FC/app.json'],
-                dest: './public/OpenFinD3FC.zip'
+                src: ['https://dl.openfin.co/services/download?fileName=bitflux-openfin&config=http://scottlogic.github.io/bitflux-openfin/app.json'],
+                dest: './public/bitflux-openfin.zip'
             }
         },
 
@@ -166,10 +148,10 @@ module.exports = function(grunt) {
                 src: ['**/*.html'],
                 dest: 'public'
             },
-            js: {
+            json: {
                 expand: true,
                 cwd: 'src/',
-                src: ['**/*.js', '**/*.json'],
+                src: ['**/*.json'],
                 dest: 'public'
             },
             icons: {
@@ -186,6 +168,35 @@ module.exports = function(grunt) {
                     dest: 'public/assets/fonts'
                 }]
             }
+        },
+        concat: {
+            dist: {
+                src: ['src/**/*.js'],
+                dest: 'public/app.js'
+            },
+            parent: {
+                src: ['src/parentApp.js', 'src/parent-controller.js', 'src/store-service.js', 'src/window-service.js'],
+                dest: 'public/app-parent.js'
+            }
+        },
+
+        uglify: {
+            dist: {
+                files: {
+                    'public/app.js': ['public/app.js']
+                }
+            }
+        },
+        babel: {
+            options: {
+                sourceMap: false
+            },
+            dist: {
+                files: {
+                    'public/app.js': 'public/app.js',
+                    'public/app-parent.js': 'public/app-parent.js'
+                }
+            }
         }
     });
 
@@ -200,7 +211,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-eslint');
     grunt.loadNpmTasks('grunt-http-download');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-gh-pages');
+    grunt.loadNpmTasks('grunt-babel');
 
     grunt.registerTask('showcase', function() {
         var callback = this.async();
@@ -216,10 +230,11 @@ module.exports = function(grunt) {
         });
     });
 
-    grunt.registerTask('build', ['eslint', 'clean', 'showcase', 'copy', 'less:development', 'connect:livereload']);
+    grunt.registerTask('build', ['eslint', 'clean', 'showcase', 'copy', 'concat', 'babel', 'less:development', 'connect:livereload']);
+    grunt.registerTask('build:uglify', ['build', 'uglify']);
     grunt.registerTask('serve', ['build', 'openfin:serve']);
-    grunt.registerTask('createZip', ['build', 'download']);
-    grunt.registerTask('ci', ['build', 'download']);
+    grunt.registerTask('createZip', ['build:uglify', 'download']);
+    grunt.registerTask('ci', ['build:uglify', 'download']);
     grunt.registerTask('deploy', ['ci', 'gh-pages:origin']);
     grunt.registerTask('deploy:upstream', ['ci', 'gh-pages:upstream']);
     grunt.registerTask('default', ['serve']);

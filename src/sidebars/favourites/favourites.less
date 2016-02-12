@@ -28,6 +28,7 @@
   padding-bottom: @favourite-padding-bottom;
   padding-right: @favourite-padding-right;
   padding-left: @favourite-padding-left;
+  background-color: @middle-background;
   height: @favourite-height;
   width: @expanded-width;
 
@@ -48,6 +49,10 @@
     width: 16px;
     margin-left: 5px;
     cursor: move;
+  }
+
+  .single {
+    cursor: default;
   }
 
   .name {
@@ -105,4 +110,13 @@
 
 .dark {
   background: @dark-background;
+}
+
+.compact {
+  .dark {
+    background: transparent;
+  }
+  .favourites, .favourite .top {
+    transition: none;
+  }
 }
