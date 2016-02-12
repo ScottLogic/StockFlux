@@ -2,15 +2,7 @@
     'use strict';
 
     const KEY_NAME = 'windows',
-        initialStocks = [
-            {
-                id: 'main',
-                stocks: [
-                    'AAPL', 'MSFT', 'TITN', 'SNDK', 'TSLA'
-                ],
-                closed: 0
-            }
-        ],
+        defaultStocks = ['AAPL', 'MSFT', 'TITN', 'SNDK', 'TSLA'],
         closedCacheSize = 5;
 
     class StoreWrapper {
@@ -94,30 +86,35 @@
         constructor($rootScope) {
             this.$rootScope = $rootScope;
 
-            this.storage = JSON.parse(localStorage.getItem(KEY_NAME)) || initialStocks;
+            this.storage = JSON.parse(localStorage.getItem(KEY_NAME));
         }
 
         getPreviousOpenWindowNames() {
-            return this.storage
+            return (this.storage || [])
                 .filter((store) => store.closed === 0)
                 .map((store) => store.id);
         }
 
         open(windowName) {
-            var windowIndex = this.storage.map((window) => window.id)
+            var windowIndex = (this.storage || []).map((window) => window.id)
                     .indexOf(windowName),
                 store;
 
             if (windowIndex > -1) {
                 store = this.storage[windowIndex];
             } else {
+                var stocks = [];
+                if (!this.storage) {
+                    stocks = defaultStocks;
+                    this.storage = [];
+                }
+
                 var newStore = {
                     id: windowName,
-                    stocks: [],
+                    stocks: stocks,
                     closed: 0
                 };
 
-                // TODO: limit number of saved windows?
                 this.storage.push(newStore);
 
                 store = newStore;
