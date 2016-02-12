@@ -13,7 +13,8 @@
         'openfin.filters',
         'openfin.star',
         'openfin.tearout',
-        'openfin.minichart'
+        'openfin.minichart',
+        'openfin.scroll'
     ]);
 
     angular.module('openfin.main', ['openfin.currentWindow']);
@@ -30,4 +31,5 @@
     angular.module('openfin.parent', ['openfin.window']);
     angular.module('openfin.currentWindow', []);
     angular.module('openfin.window', []);
+    angular.module('openfin.scroll', []);
 }());
