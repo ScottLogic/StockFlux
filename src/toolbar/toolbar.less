@@ -10,7 +10,7 @@
   height: 100%;
 }
 
-#logo, #minimise-button, #maximise-button, #normal_size-button, #close-button {
+#logo, #minimise-button, #maximise-button, #compact-button, #normal_size-button, #close-button {
   position: fixed;
   top: 15px;
 }
@@ -20,7 +20,7 @@
   width: 350px;
 }
 
-#minimise-button, #maximise-button, #normal_size-button, #close-button {
+#minimise-button, #maximise-button, #compact-button, #normal_size-button, #close-button {
   width: 14px;
 }
 
@@ -28,8 +28,12 @@
   right: 45px;
 }
 
-#minimise-button {
+#compact-button {
   right: 75px;
+}
+
+#minimise-button {
+  right: 105px;
 }
 
 #close-button {
@@ -38,4 +42,18 @@
 
 #toolbar img {
   vertical-align: initial;
+}
+
+.compact {
+  #compact-button {
+    right: 45px;
+  }
+
+  #minimise-button {
+    right: 75px;
+  }
+
+  #minimise-button, #compact-button, #close-button {
+    top: 7px;
+  }
 }

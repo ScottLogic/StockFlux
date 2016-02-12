@@ -54,6 +54,6 @@
     }
     SidebarCtrl.$inject = [];
 
-    angular.module('openfin.sidebar', [])
+    angular.module('openfin.sidebar')
         .controller('SidebarCtrl', SidebarCtrl);
 }());
