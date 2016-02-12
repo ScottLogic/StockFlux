@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    class ToolbarIconCtrl {
+    class IconCtrl {
 
         constructor($scope) {
             this.$scope = $scope;
@@ -85,8 +85,8 @@
             this.icon.hovered(false);
         }
     }
-    ToolbarIconCtrl.$inject = ['$scope'];
+    IconCtrl.$inject = ['$scope'];
 
-    angular.module('openfin.toolbar')
-        .controller('ToolbarIconCtrl', ToolbarIconCtrl);
+    angular.module('openfin.icon')
+        .controller('IconCtrl', IconCtrl);
 }());

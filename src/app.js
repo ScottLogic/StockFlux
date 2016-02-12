@@ -7,6 +7,7 @@
         'openfin.main',
         'openfin.showcase',
         'openfin.toolbar',
+        'openfin.icon',
         'openfin.search',
         'openfin.favourites',
         'openfin.sidebar',
@@ -19,6 +20,7 @@
     angular.module('openfin.main', ['openfin.currentWindow']);
     angular.module('openfin.showcase', ['openfin.selection', 'openfin.quandl']);
     angular.module('openfin.toolbar', ['openfin.currentWindow']);
+    angular.module('openfin.icon', []);
     angular.module('openfin.search', ['openfin.quandl', 'openfin.selection', 'openfin.currentWindow']);
     angular.module('openfin.favourites', ['openfin.quandl', 'openfin.selection', 'openfin.currentWindow']);
     angular.module('openfin.sidebar', []);
