@@ -11,6 +11,7 @@
         "document": true,
         "confirm": true,
         "Event": true,
-        "localStorage":  true
+        "localStorage": true,
+        "$q": true
     }
 }

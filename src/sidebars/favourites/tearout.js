@@ -14,12 +14,8 @@
                             tileHeight = tearElement.clientHeight,
                             store;
 
-                        function createConfig(tearout, width, height) {
+                        function createConfig(tearout) {
                             var config = {
-                                'defaultWidth': tileWidth,
-                                'defaultHeight': tileHeight,
-                                'width': width,
-                                'height': height,
                                 'autoShow': false,
                                 'frame': false
                             };
@@ -43,7 +39,9 @@
                             return config;
                         }
 
-                        var tearoutWindowConfig = createConfig(true, tileWidth, tileHeight);
+                        var tearoutWindowConfig = createConfig(true);
+                        tearoutWindowConfig.height = tileHeight;
+                        tearoutWindowConfig.width = tileWidth;
 
                         var windowService = window.windowService;
                         var tearoutWindow = windowService.createTearoutWindow(tearoutWindowConfig, window.name);
@@ -215,9 +213,10 @@
                                         // Create new window instance
                                         var mainApplicationWindowPosition = getWindowPosition(window);
 
-                                        var config = createConfig(false, mainApplicationWindowPosition.width, mainApplicationWindowPosition.height);
+                                        var config = createConfig(false);
 
                                         windowService.createMainWindow(config, (newWindow) => {
+                                            newWindow.resizeTo(mainApplicationWindowPosition.width, mainApplicationWindowPosition.height, 'top-left');
                                             newWindow.moveTo(e.screenX, e.screenY);
                                             window.storeService.open(newWindow.name).add(scope.stock);
                                         });
