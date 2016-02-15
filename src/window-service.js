@@ -46,25 +46,52 @@
         }
     }
 
-    class AppManager {
+    class WindowTracker {
         constructor() {
+            this.openWindows = {};
+            this.mainWindowsCache = [];
             this.windowsOpen = 0;
         }
 
-        increment() {
+        add(_window) {
+            this.mainWindowsCache.push(_window);
             this.windowsOpen++;
         }
 
-        decrement() {
+        addTearout(name, _window) {
+            if (!this.openWindows[name]) {
+                this.openWindows[name] = [].concat(_window);
+            } else {
+                this.openWindows[name].push(_window);
+            }
+        }
+
+        dispose(_window, closedCb) {
+            var parent = this.openWindows[_window.name];
+            if (parent) {
+                // Close all the OpenFin tearout windows associated with the closing parent.
+                for (var i = 0, max = parent.length; i < max; i++) {
+                    parent[i].close();
+                }
+            }
+
+            if (this.windowsOpen !== 1) {
+                closedCb();
+            }
+
+            var index = this.mainWindowsCache.indexOf(_window);
+            this.mainWindowsCache.slice(index, 1);
+
             this.windowsOpen--;
 
             if (this.windowsOpen === 0) {
+                // This was the last open window; close the application.
                 window.close();
             }
         }
 
-        count() {
-            return this.windowsOpen;
+        getMainWindows() {
+            return this.mainWindowsCache;
         }
     }
 
@@ -72,49 +99,11 @@
         constructor(storeService, geometryService, $q) {
             this.storeService = storeService;
             this.geometryService = geometryService;
-            this.openWindows = {};
-            this.windowsCache = [];
+            this.windowTracker = new WindowTracker();
             this.firstName = true;
-            this.apps = new AppManager();
             this.pool = null;
 
             this.ready(() => { this.pool = new FreeWindowPool($q); });
-        }
-
-        _addWindowClosedListener(_window, closedCb) {
-            _window.addEventListener('closed', (e) => {
-                var parent = this.openWindows[_window.name];
-                if (parent) {
-                    for (var i = 0, max = parent.length; i < max; i++) {
-                        parent[i].close();
-                    }
-                }
-
-                var index = this.windowsCache.indexOf(_window);
-                this.windowsCache.slice(index, 1);
-
-                if (closedCb) {
-                    closedCb();
-                }
-
-                this.apps.decrement();
-            });
-        }
-
-        _createWindow(config, successCb, closedCb) {
-            var newWindow = new fin.desktop.Window(config, () => {
-                this.windowsCache.push(newWindow);
-
-                if (successCb) {
-                    successCb(newWindow);
-                }
-            });
-
-            this.apps.increment();
-
-            this._addWindowClosedListener(newWindow, closedCb);
-
-            return newWindow;
         }
 
         createMainWindow(config, successCb) {
@@ -125,6 +114,8 @@
                 newWindow.getNativeWindow().storeService = this.storeService;
                 // End super hack
 
+                this.windowTracker.add(newWindow);
+
                 if (successCb) {
                     successCb(newWindow);
                 }
@@ -132,27 +123,24 @@
                 newWindow.show();
             };
 
-            var windowClosedCb = () => {
-                if (this.apps.count() !== 1) {
-                    this.storeService.open(config.name).closeWindow();
-                }
-            };
-
+            var mainWindow;
             if (config.name) {
-                this._createWindow(config, windowCreatedCb, windowClosedCb);
+                mainWindow = new fin.desktop.Window(config, () => {
+                    windowCreatedCb(mainWindow);
+                });
             } else {
-                this.ready(() => {
-                    var poolWindow = this.pool.fetch();
-                    this.windowsCache.push(poolWindow.window);
-                    poolWindow.promise.then(() => {
-                        windowCreatedCb(poolWindow.window);
-                    });
-
-                    this.apps.increment();
-
-                    this._addWindowClosedListener(poolWindow.window, windowClosedCb);
+                var poolWindow = this.pool.fetch();
+                mainWindow = poolWindow.window;
+                poolWindow.promise.then(() => {
+                    windowCreatedCb(mainWindow);
                 });
             }
+
+            mainWindow.addEventListener('closed', (e) => {
+                this.windowTracker.dispose(mainWindow, () => {
+                    this.storeService.open(mainWindow.name).closeWindow();
+                });
+            });
         }
 
         createTearoutWindow(config, parentName) {
@@ -160,13 +148,9 @@
                 config.name = getName();
             }
 
-            var tearoutWindow = this._createWindow(config);
+            var tearoutWindow = new fin.desktop.Window(config);
 
-            if (!this.openWindows[parentName]) {
-                this.openWindows[parentName] = [].concat(tearoutWindow);
-            } else {
-                this.openWindows[parentName].push(tearoutWindow);
-            }
+            this.windowTracker.addTearout(parentName, tearoutWindow);
 
             return tearoutWindow;
         }
@@ -176,7 +160,7 @@
         }
 
         getWindows() {
-            return this.windowsCache;
+            return this.windowTracker.getMainWindows();
         }
     }
     WindowCreationService.$inject = ['storeService', 'geometryService', '$q'];
