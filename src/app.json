@@ -19,6 +19,7 @@
     "shortcut": {
         "company": "OpenFin",
         "description": "Hosts BitFlux as an OpenFin application.",
+        "icon": "http://scottlogic.github.io/bitflux-openfin/favicon.ico",
         "name": "OpenFinD3FC"
     }
 }
