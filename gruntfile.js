@@ -175,7 +175,7 @@ module.exports = function(grunt) {
                 dest: 'public/app.js'
             },
             parent: {
-                src: ['src/parentApp.js', 'src/parent-controller.js', 'src/store-service.js', 'src/window-service.js'],
+                src: ['src/parentApp.js', 'src/parent-controller.js', 'src/store-service.js', 'src/window-service.js', 'src/sidebars/favourites/geometry-service.js'],
                 dest: 'public/app-parent.js'
             }
         },

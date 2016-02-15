@@ -69,8 +69,9 @@
     }
 
     class WindowCreationService {
-        constructor(storeService, $q) {
+        constructor(storeService, geometryService, $q) {
             this.storeService = storeService;
+            this.geometryService = geometryService;
             this.openWindows = {};
             this.windowsCache = [];
             this.firstName = true;
@@ -178,7 +179,7 @@
             return this.windowsCache;
         }
     }
-    WindowCreationService.$inject = ['storeService', '$q'];
+    WindowCreationService.$inject = ['storeService', 'geometryService', '$q'];
 
     angular.module('openfin.window')
         .service('windowCreationService', WindowCreationService);
