@@ -52,7 +52,8 @@
                                 myHoverArea = parent.getElementsByClassName('hover-area')[0],
                                 offset = { x: 0, y: 0 },
                                 currentlyDragging = false,
-                                outsideMainWindow = false;
+                                insideMainWindow = true,
+                                dragService;
 
                             var me = {};
 
@@ -126,28 +127,6 @@
                                 return me;
                             };
 
-                            // Helper function to retrieve the height, width, top, and left from a window object
-                            function getWindowPosition(windowElement) {
-                                return {
-                                    height: windowElement.outerHeight,
-                                    width: windowElement.outerWidth,
-                                    top: windowElement.screenY,
-                                    left: windowElement.screenX
-                                };
-                            }
-
-                            // Calculate the screen position of an element
-                            function elementScreenPosition(windowElement, element1) {
-                                var relativeElementPosition = element1.getBoundingClientRect();
-
-                                return {
-                                    height: relativeElementPosition.height,
-                                    width: relativeElementPosition.width,
-                                    top: windowElement.top + relativeElementPosition.top,
-                                    left: windowElement.left + relativeElementPosition.left
-                                };
-                            }
-
                             // On a mousedown event, we grab our destination tearout window and inject
                             // the DOM element to be torn out.
                             //
@@ -169,6 +148,8 @@
                                     // There is only one favourite card so don't allow tearing out
                                     return false;
                                 }
+
+                                dragService = windowService.registerDrag(tearoutWindow);
 
                                 me.setCurrentlyDragging(true)
                                     .setOffset(e.offsetX, e.offsetY)
@@ -200,7 +181,7 @@
 
                                 if (currentlyDragging) {
                                     me.setCurrentlyDragging(false);
-                                    if (!outsideMainWindow) {
+                                    if (insideMainWindow) {
                                         me.returnFromTearout();
                                     } else {
                                         if (!store) {
@@ -210,16 +191,22 @@
                                         // Remove the stock from the old window
                                         store.remove(scope.stock);
 
-                                        // Create new window instance
-                                        var mainApplicationWindowPosition = getWindowPosition(window);
+                                        var overAnotherInstance = dragService && dragService.overAnotherInstance();
+                                        if (overAnotherInstance) {
+                                            dragService.moveToOtherInstance(scope.stock);
+                                            dragService = null;
+                                        } else {
+                                            // Create new window instance
+                                            var mainApplicationWindowPosition = geometryService.getWindowPosition(window);
 
-                                        var config = createConfig(false);
+                                            var config = createConfig(false);
 
-                                        windowService.createMainWindow(config, (newWindow) => {
-                                            newWindow.resizeTo(mainApplicationWindowPosition.width, mainApplicationWindowPosition.height, 'top-left');
-                                            newWindow.moveTo(e.screenX, e.screenY);
-                                            window.storeService.open(newWindow.name).add(scope.stock);
-                                        });
+                                            windowService.createMainWindow(config, (newWindow) => {
+                                                newWindow.resizeTo(mainApplicationWindowPosition.width, mainApplicationWindowPosition.height, 'top-left');
+                                                newWindow.moveTo(e.screenX, e.screenY);
+                                                window.storeService.open(newWindow.name).add(scope.stock);
+                                            });
+                                        }
 
                                         // Remove drop-target from original instance
                                         parent.removeChild(myHoverArea);
@@ -237,7 +224,7 @@
 
                                 for (var i = 0, max = hoverTargets.length; i < max; i++) {
                                     var dropTargetRectangle = geometryService.rectangle(
-                                        elementScreenPosition(getWindowPosition(window), hoverTargets[i].hoverArea)),
+                                        geometryService.elementScreenPosition(geometryService.getWindowPosition(window), hoverTargets[i].hoverArea)),
                                         overDropTarget = tearoutRectangle.intersects(dropTargetRectangle);
 
                                     if (overDropTarget) {
@@ -257,13 +244,10 @@
                             tearoutWindow.addEventListener('bounds-changing', function() {
                                 // Check if you are over a drop target by seeing if the tearout rectangle intersects the drop target
                                 var nativeWindow = tearoutWindow.getNativeWindow(),
-                                    tearoutRectangle = geometryService.rectangle(getWindowPosition(nativeWindow)),
-                                    mainApplicationWindowPosition = getWindowPosition(window),
-                                    mainApplicationRectangle = geometryService.rectangle(mainApplicationWindowPosition);
+                                    tearoutRectangle = geometryService.rectangle(geometryService.getWindowPosition(nativeWindow));
+                                insideMainWindow = geometryService.windowsIntersect(tearoutWindow, window);
 
-                                outsideMainWindow = !tearoutRectangle.intersects(mainApplicationRectangle);
-
-                                if (!outsideMainWindow) {
+                                if (insideMainWindow) {
                                     reorderFavourites(tearoutRectangle);
                                 }
                             });

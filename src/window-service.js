@@ -95,6 +95,34 @@
         }
     }
 
+    class DragService {
+        constructor(storeService, geometryService, windowTracker, tearoutWindow) {
+            this.storeService = storeService;
+            this.geometryService = geometryService;
+            this.windowTracker = windowTracker;
+            this.tearoutWindow = tearoutWindow;
+            this.otherInstance = null;
+        }
+
+        overAnotherInstance() {
+            var mainWindows = this.windowTracker.getMainWindows();
+
+            for (var i = 0, max = mainWindows.length; i < max; i++) {
+                var mainWindow = mainWindows[i];
+                if (this.geometryService.windowsIntersect(this.tearoutWindow, mainWindow.getNativeWindow())) {
+                    this.otherInstance = mainWindow;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        moveToOtherInstance(stock) {
+            this.storeService.open(this.otherInstance.name).add(stock);
+        }
+    }
+
     class WindowCreationService {
         constructor(storeService, geometryService, $q) {
             this.storeService = storeService;
@@ -161,6 +189,10 @@
 
         getWindows() {
             return this.windowTracker.getMainWindows();
+        }
+
+        registerDrag(tearoutWindow) {
+            return new DragService(this.storeService, this.geometryService, this.windowTracker, tearoutWindow);
         }
     }
     WindowCreationService.$inject = ['storeService', 'geometryService', '$q'];
