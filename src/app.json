@@ -8,7 +8,9 @@
         "defaultWidth": 0,
         "defaultHeight": 0,
         "frame": false,
-        "showTaskbarIcon": false
+        "showTaskbarIcon": false,
+        "url": "http://scottlogic.github.io/bitflux-openfin/parent.html",
+        "applicationIcon": "http://scottlogic.github.io/bitflux-openfin/favicon.ico"
     },
     "runtime": {
         "arguments": "",
@@ -17,6 +19,7 @@
     "shortcut": {
         "company": "OpenFin",
         "description": "Hosts BitFlux as an OpenFin application.",
+        "icon": "http://scottlogic.github.io/bitflux-openfin/favicon.ico",
         "name": "OpenFinD3FC"
     }
 }
