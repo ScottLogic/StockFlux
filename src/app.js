@@ -15,7 +15,9 @@
         'openfin.star',
         'openfin.tearout',
         'openfin.minichart',
-        'openfin.scroll'
+        'openfin.scroll',
+        'openfin.closedwindows',
+        'openfin.closedcard'
     ]);
 
     angular.module('openfin.main', []);
@@ -34,4 +36,6 @@
     angular.module('openfin.currentWindow', []);
     angular.module('openfin.window', []);
     angular.module('openfin.scroll', []);
+    angular.module('openfin.closedwindows', []);
+    angular.module('openfin.closedcard', []);
 }());

@@ -16,8 +16,19 @@
                 </div>
             </div>
         </div>
-        <div class="favClosed">
-            <icon name="closed_tabs" ng-show="true" icon-click=""></icon>
+        <div ng-controller="ClosedWindowsCtrl as closedWindowsCtrl">
+            <div class="favClosed">
+                <icon name="closed_tabs" ng-show="true" icon-click="closedTabsShow = true"
+                      ng-click="$event.stopPropagation(); closedWindowsCtrl.refreshClosedWindows()"></icon>
+            </div>
+            <div ng-show="closedTabsShow" class="favClosedCover" ng-click="closedTabsShow = false">
+                <div class="closedSelection" ng-click="$event.stopPropagation()">
+                    <div ng-repeat="closedwindow in closedWindowsCtrl.closedWindows">
+                      <closedcard cwindow="closedwindow">
+                      </closedcard>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <search class="search main-search {{sidebarCtrl.searchClass()}}" ng-click="sidebarCtrl.searchClick()"></search>
