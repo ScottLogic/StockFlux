@@ -191,30 +191,31 @@
                                         // Remove the stock from the old window
                                         store.remove(scope.stock);
 
-                                        var overAnotherInstance = dragService && dragService.overAnotherInstance();
-                                        if (overAnotherInstance) {
-                                            dragService.moveToOtherInstance(scope.stock);
-                                            dragService = null;
-                                        } else {
-                                            // Create new window instance
-                                            var mainApplicationWindowPosition = geometryService.getWindowPosition(window);
+                                        dragService.overAnotherInstance((overAnotherInstance) => {
+                                            if (overAnotherInstance) {
+                                                dragService.moveToOtherInstance(scope.stock);
+                                                dragService = null;
+                                            } else {
+                                                // Create new window instance
+                                                var mainApplicationWindowPosition = geometryService.getWindowPosition(window);
 
-                                            var config = createConfig(false);
+                                                var config = createConfig(false);
 
-                                            windowService.createMainWindow(config, (newWindow) => {
-                                                newWindow.resizeTo(mainApplicationWindowPosition.width, mainApplicationWindowPosition.height, 'top-left');
-                                                newWindow.moveTo(e.screenX, e.screenY);
-                                                window.storeService.open(newWindow.name).add(scope.stock);
-                                            });
-                                        }
+                                                windowService.createMainWindow(config, (newWindow) => {
+                                                    newWindow.resizeTo(mainApplicationWindowPosition.width, mainApplicationWindowPosition.height, 'top-left');
+                                                    newWindow.moveTo(e.screenX, e.screenY);
+                                                    window.storeService.open(newWindow.name).add(scope.stock);
+                                                });
+                                            }
 
-                                        // Remove drop-target from original instance
-                                        parent.removeChild(myHoverArea);
-                                        parent.removeChild(myDropTarget);
-                                        dispose();
+                                            // Remove drop-target from original instance
+                                            parent.removeChild(myHoverArea);
+                                            parent.removeChild(myDropTarget);
+                                            dispose();
 
-                                        // Destroy myself.
-                                        tearoutWindow.close();
+                                            // Destroy myself.
+                                            tearoutWindow.close();
+                                        });
                                     }
                                 }
                             };
