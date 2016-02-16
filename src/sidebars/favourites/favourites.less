@@ -20,6 +20,7 @@
 
 .drop-target {
   height: @favourite-height;
+  background-color: #2E5356;
 }
 
 // Don't nest this as it is the root element of the injected HTML for tearout windows
@@ -114,13 +115,16 @@
 
 .compact {
   .dark {
-    background: transparent;
+    background: @favourites-background;
   }
+
   .favourites, .favourite .top {
     transition: none;
   }
+
   .favourite {
     pointer-events: none;
+
     .tearable {
       pointer-events: all;
     }
