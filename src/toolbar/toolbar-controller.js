@@ -51,12 +51,21 @@
             this.currentWindowService.compact = this.compact;
             if (this.compact) {
                 this.window.resizeTo(230, 500, 'top-right');
+                this.window.updateOptions({
+                    resizable: false
+                });
             }
             else if (this.maximised) {
                 this.window.maximize();
+                this.window.updateOptions({
+                    resizable: true
+                });
             }
             else {
                 this.window.resizeTo(1280, 720, 'top-right');
+                this.window.updateOptions({
+                    resizable: true
+                });
             }
         }
 
