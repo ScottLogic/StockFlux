@@ -70,9 +70,7 @@
             var parent = this.openWindows[_window.name];
             if (parent) {
                 // Close all the OpenFin tearout windows associated with the closing parent.
-                for (var i = 0, max = parent.length; i < max; i++) {
-                    parent[i].close();
-                }
+                parent.forEach((child) => child.close());
             }
 
             if (this.windowsOpen !== 1) {
