@@ -35,6 +35,33 @@
   -webkit-animation-name: favourites;
 }
 
+.favClosed {
+  bottom: 15px;
+  left: 246px;
+  position: absolute;
+  height: 20px;
+  width: 20px;
+}
+
+.favClosedCover {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 9;
+}
+
+.closedSelection {
+  background: @light-background;
+  position: fixed;
+  bottom: 40px;
+  left: 240px;
+  width: 180px;
+  height: 300px;
+  box-shadow: 2px 2px 2px 2px @dark-background;
+}
+
 .contracted {
   width: (@sidebar-width - @expanded-width);
 }

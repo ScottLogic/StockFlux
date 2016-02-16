@@ -1,0 +1,7 @@
+<div class="closed-card">
+    <div class="closed-time">{{cwindow.closed | date:'dd MMM yyyy HH:mm:ss'}}
+    </div>
+    <span class="closed-stock" ng-repeat="stock in cwindow.stocks">
+        {{stock}}{{$last ? '' : ', '}}
+    </span>
+</div>
