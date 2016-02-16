@@ -94,26 +94,34 @@
     }
 
     class DragService {
-        constructor(storeService, geometryService, windowTracker, tearoutWindow) {
+        constructor(storeService, geometryService, windowTracker, tearoutWindow, $q) {
             this.storeService = storeService;
             this.geometryService = geometryService;
             this.windowTracker = windowTracker;
             this.tearoutWindow = tearoutWindow;
+            this.$q = $q;
             this.otherInstance = null;
         }
 
-        overAnotherInstance() {
-            var mainWindows = this.windowTracker.getMainWindows();
+        overAnotherInstance(cb) {
+            var mainWindows = this.windowTracker.getMainWindows(),
+                result = false,
+                promises = [];
 
-            for (var i = 0, max = mainWindows.length; i < max; i++) {
-                var mainWindow = mainWindows[i];
-                if (this.geometryService.windowsIntersect(this.tearoutWindow, mainWindow.getNativeWindow())) {
-                    this.otherInstance = mainWindow;
-                    return true;
-                }
-            }
+            mainWindows.forEach(mainWindow => {
+                var deferred = this.$q.defer();
+                promises.push(deferred.promise);
+                mainWindow.getState(state => {
+                    if (state !== 'minimized' && this.geometryService.windowsIntersect(this.tearoutWindow, mainWindow.getNativeWindow())) {
+                        this.otherInstance = mainWindow;
+                        result = true;
+                    }
 
-            return false;
+                    deferred.resolve();
+                });
+            });
+
+            this.$q.all(promises).then(() => cb(result));
         }
 
         moveToOtherInstance(stock) {
@@ -125,6 +133,7 @@
         constructor(storeService, geometryService, $q) {
             this.storeService = storeService;
             this.geometryService = geometryService;
+            this.$q = $q;
             this.windowTracker = new WindowTracker();
             this.firstName = true;
             this.pool = null;
@@ -190,7 +199,7 @@
         }
 
         registerDrag(tearoutWindow) {
-            return new DragService(this.storeService, this.geometryService, this.windowTracker, tearoutWindow);
+            return new DragService(this.storeService, this.geometryService, this.windowTracker, tearoutWindow, this.$q);
         }
     }
     WindowCreationService.$inject = ['storeService', 'geometryService', '$q'];
