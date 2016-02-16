@@ -10,8 +10,8 @@
                         // TODO: Improve this. Search for first class element upwards?
                         var dragElement = element[0],
                             tearElement = dragElement.parentNode.parentNode,
-                            tileWidth = tearElement.clientWidth,
-                            tileHeight = tearElement.clientHeight,
+                            tileWidth = tearElement.clientWidth || 230,
+                            tileHeight = tearElement.clientHeight || 100,
                             store;
 
                         function createConfig(tearout) {
@@ -21,8 +21,8 @@
                             };
 
                             if (tearout) {
-                                config.minWidth = tileWidth;
-                                config.minHeight = tileHeight;
+                                config.maxWidth = tileWidth;
+                                config.maxHeight = tileHeight;
                                 config.url = 'tearout.html';
                             } else {
                                 // TODO: Remove duplication of minimum sizes
