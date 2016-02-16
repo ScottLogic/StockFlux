@@ -11,7 +11,7 @@
                 </div>
                 <div ng-repeat="stock in favouritesCtrl.stocks | orderBy: 'index'">
                     <favourite selection="favouritesCtrl.selection()" select="favouritesCtrl.select(stock)" single="favouritesCtrl.single()"
-                               stock="stock" icon="favouritesCtrl.icon(stock)" render-chart="favouritesCtrl.renderChart(stock)">
+                               stock="stock" icon="favouritesCtrl.icon(stock)">
                     </favourite>
                 </div>
             </div>
