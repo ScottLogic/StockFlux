@@ -10,7 +10,7 @@
   height: 100%;
 }
 
-#logo, #minimise-button, #maximise-button, #compact-button, #normal_size-button, #close-button {
+#logo, #minimise-button, #maximise-button, #compact-button, #full_view-button, #normal_size-button, #close-button {
   position: fixed;
   top: 15px;
 }
@@ -20,7 +20,7 @@
   width: 350px;
 }
 
-#minimise-button, #maximise-button, #compact-button, #normal_size-button, #close-button {
+#minimise-button, #maximise-button, #compact-button, #full_view-button, #normal_size-button, #close-button {
   width: 14px;
 }
 
@@ -28,7 +28,7 @@
   right: 45px;
 }
 
-#compact-button {
+#compact-button, #full_view-button {
   right: 75px;
 }
 
@@ -45,7 +45,7 @@
 }
 
 .compact {
-  #compact-button {
+  #full_view-button {
     right: 45px;
   }
 
@@ -53,7 +53,7 @@
     right: 75px;
   }
 
-  #minimise-button, #compact-button, #close-button {
+  #minimise-button, #full_view-button, #close-button {
     top: 7px;
   }
 }
