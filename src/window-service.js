@@ -126,6 +126,7 @@
 
         moveToOtherInstance(stock) {
             this.storeService.open(this.otherInstance.name).add(stock);
+            this.otherInstance.bringToFront();
         }
     }
 
@@ -156,6 +157,7 @@
                 }
 
                 newWindow.show();
+                newWindow.bringToFront();
             };
 
             var mainWindow;
