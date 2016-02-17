@@ -14,37 +14,8 @@
                             tileHeight = tearElement.clientHeight || 100,
                             store;
 
-                        function createConfig(tearout) {
-                            var config = {
-                                'autoShow': false,
-                                'frame': false
-                            };
-
-                            if (tearout) {
-                                config.maxWidth = tileWidth;
-                                config.maxHeight = tileHeight;
-                                config.url = 'tearout.html';
-                            } else {
-                                // TODO: Remove duplication of minimum sizes
-                                config.minWidth = 918;
-                                config.minHeight = 510;
-                                config.url = 'index.html';
-                            }
-
-                            config.resizable =
-                                config.maximizable =
-                                config.showTaskbarIcon =
-                                config.saveWindowState = !tearout;
-
-                            return config;
-                        }
-
-                        var tearoutWindowConfig = createConfig(true);
-                        tearoutWindowConfig.height = tileHeight;
-                        tearoutWindowConfig.width = tileWidth;
-
                         var windowService = window.windowService;
-                        var tearoutWindow = windowService.createTearoutWindow(tearoutWindowConfig, window.name);
+                        var tearoutWindow = windowService.createTearoutWindow(window.name);
 
                         function initialiseTearout() {
                             var myDropTarget = tearElement.parentNode,
@@ -199,9 +170,7 @@
                                                 // Create new window instance
                                                 var mainApplicationWindowPosition = geometryService.getWindowPosition(window);
 
-                                                var config = createConfig(false);
-
-                                                windowService.createMainWindow(config, (newWindow) => {
+                                                windowService.createMainWindow(null, (newWindow) => {
                                                     newWindow.resizeTo(mainApplicationWindowPosition.width, mainApplicationWindowPosition.height, 'top-left');
                                                     newWindow.moveTo(e.screenX, e.screenY);
                                                     window.storeService.open(newWindow.name).add(scope.stock);

@@ -6,18 +6,39 @@
         return 'window' + Math.floor(Math.random() * 1000) + Math.ceil(Math.random() * 999);
     }
 
-    function createConfig() {
+    function createConfig(name) {
+        var config = {};
+
+        config.name = name || getName();
+        config.autoShow = false;
+        config.frame = false;
+        config.showTaskbarIcon = true;
+        config.saveWindowState = true;
+        config.url = 'index.html';
+        config.resizable = true;
+        config.maximizable = true;
+        config.minWidth = 918;
+        config.minHeight = 510;
+        config.maxWidth = 50000;
+        config.maxHeight = 50000;
+        config.defaultWidth = 1280;
+        config.defaultHeight = 720;
+
+        return config;
+    }
+
+    function createTearoutConfig() {
         return {
             'name': getName(),
             'autoShow': false,
             'frame': false,
-            'resizable': true,
-            'maximizable': true,
-            'showTaskbarIcon': true,
-            'saveWindowState': true,
-            'minWidth': 918,
-            'minHeight': 510,
-            'url': 'index.html'
+            'maximizable': false,
+            'resizable': false,
+            'showTaskbarIcon': false,
+            'saveWindowState': false,
+            'maxWidth': 230,
+            'maxHeight': 100,
+            'url': 'tearout.html'
         };
     }
 
@@ -142,7 +163,7 @@
             this.ready(() => { this.pool = new FreeWindowPool($q); });
         }
 
-        createMainWindow(config, successCb) {
+        createMainWindow(name, successCb) {
             var windowCreatedCb = (newWindow) => {
                 // TODO
                 // Begin super hack
@@ -161,8 +182,8 @@
             };
 
             var mainWindow;
-            if (config.name) {
-                mainWindow = new fin.desktop.Window(config, () => {
+            if (name) {
+                mainWindow = new fin.desktop.Window(createConfig(name), () => {
                     windowCreatedCb(mainWindow);
                 });
             } else {
@@ -180,12 +201,8 @@
             });
         }
 
-        createTearoutWindow(config, parentName) {
-            if (!config.name) {
-                config.name = getName();
-            }
-
-            var tearoutWindow = new fin.desktop.Window(config);
+        createTearoutWindow(parentName) {
+            var tearoutWindow = new fin.desktop.Window(createTearoutConfig());
 
             this.windowTracker.addTearout(parentName, tearoutWindow);
 
