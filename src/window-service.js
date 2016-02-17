@@ -209,6 +209,24 @@
             return tearoutWindow;
         }
 
+        updateOptions(_window, isCompact) {
+            if (isCompact) {
+                _window.updateOptions({
+                    resizable: false,
+                    minHeight: 500,
+                    minWidth: 230,
+                    maximizable: false
+                });
+            } else {
+                _window.updateOptions({
+                    resizable: true,
+                    minHeight: 510,
+                    minWidth: 918,
+                    maximizable: true
+                });
+            }
+        }
+
         ready(cb) {
             fin.desktop.main(cb);
         }

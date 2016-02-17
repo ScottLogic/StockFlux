@@ -5,6 +5,8 @@
         constructor($timeout, currentWindowService) {
             this.$timeout = $timeout;
             this.currentWindowService = currentWindowService;
+            this.store = null;
+            this.window = null;
             this.maximised = false;
             this.compact = false;
             currentWindowService.ready(this.onReady.bind(this));
@@ -47,25 +49,22 @@
         }
 
         compactClick() {
+            if (!this.store) {
+                this.store = window.storeService.open(window.name);
+            }
+
             this.compact = !this.compact;
             this.currentWindowService.compact = this.compact;
+            this.store.toggleCompact(this.compact);
+            window.windowService.updateOptions(this.window, this.compact);
             if (this.compact) {
                 this.window.resizeTo(230, 500, 'top-right');
-                this.window.updateOptions({
-                    resizable: false
-                });
             }
             else if (this.maximised) {
                 this.window.maximize();
-                this.window.updateOptions({
-                    resizable: true
-                });
             }
             else {
                 this.window.resizeTo(1280, 720, 'top-right');
-                this.window.updateOptions({
-                    resizable: true
-                });
             }
         }
 
