@@ -3,7 +3,7 @@
 	<side-bar></side-bar>
 	<div class="right-content">
 		<div class="main-content">
-			<div ng-controller="ShowcaseCtrl as showcaseCtrl" ng-show="showcaseCtrl.hasSelection()">
+			<div ng-controller="ShowcaseCtrl as showcaseCtrl" ng-show="showcaseCtrl.hasSelection()" ng-if="!mainCtrl.isCompact()">
 				<div id="showcase-title">
 					<div class="code">{{showcaseCtrl.selectionCode()}}</div> <div class="name"> ({{showcaseCtrl.selectionName() | truncate}})</div>
 				</div>
