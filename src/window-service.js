@@ -6,7 +6,7 @@
         return 'window' + Math.floor(Math.random() * 1000) + Math.ceil(Math.random() * 999);
     }
 
-    function createConfig(name) {
+    function createConfig(name, isCompact) {
         var config = {};
 
         config.name = name || getName();
@@ -15,14 +15,26 @@
         config.showTaskbarIcon = true;
         config.saveWindowState = true;
         config.url = 'index.html';
-        config.resizable = true;
-        config.maximizable = true;
-        config.minWidth = 918;
-        config.minHeight = 510;
-        config.maxWidth = 50000;
-        config.maxHeight = 50000;
-        config.defaultWidth = 1280;
-        config.defaultHeight = 720;
+
+        if (isCompact) {
+            config.resizable = false;
+            config.maximizable = false;
+            config.minWidth = 230;
+            config.minHeight = 500;
+            config.maxWidth = 230;
+            config.maxHeight = 500;
+            config.defaultWidth = 230;
+            config.defaultHeight = 500;
+        } else {
+            config.resizable = true;
+            config.maximizable = true;
+            config.minWidth = 918;
+            config.minHeight = 510;
+            config.maxWidth = 50000;
+            config.maxHeight = 50000;
+            config.defaultWidth = 1280;
+            config.defaultHeight = 720;
+        }
 
         return config;
     }
@@ -163,7 +175,7 @@
             this.ready(() => { this.pool = new FreeWindowPool($q); });
         }
 
-        createMainWindow(name, successCb) {
+        createMainWindow(name, isCompact, successCb) {
             var windowCreatedCb = (newWindow) => {
                 // TODO
                 // Begin super hack
@@ -183,12 +195,17 @@
 
             var mainWindow;
             if (name) {
-                mainWindow = new fin.desktop.Window(createConfig(name), () => {
+                mainWindow = new fin.desktop.Window(createConfig(name, isCompact), () => {
                     windowCreatedCb(mainWindow);
                 });
             } else {
                 var poolWindow = this.pool.fetch();
                 mainWindow = poolWindow.window;
+                if (isCompact) {
+                    this.updateOptions(poolWindow.window, true);
+                    this.window.resizeTo(230, 500, 'top-right');
+                }
+
                 poolWindow.promise.then(() => {
                     windowCreatedCb(mainWindow);
                 });
@@ -207,6 +224,24 @@
             this.windowTracker.addTearout(parentName, tearoutWindow);
 
             return tearoutWindow;
+        }
+
+        updateOptions(_window, isCompact) {
+            if (isCompact) {
+                _window.updateOptions({
+                    resizable: false,
+                    minHeight: 500,
+                    minWidth: 230,
+                    maximizable: false
+                });
+            } else {
+                _window.updateOptions({
+                    resizable: true,
+                    minHeight: 510,
+                    minWidth: 918,
+                    maximizable: true
+                });
+            }
         }
 
         updateOptions(_window, isCompact) {
