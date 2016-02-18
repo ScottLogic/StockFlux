@@ -18,7 +18,7 @@
         'openfin.scroll'
     ]);
 
-    angular.module('openfin.main', ['openfin.currentWindow']);
+    angular.module('openfin.main', []);
     angular.module('openfin.showcase', ['openfin.selection', 'openfin.quandl']);
     angular.module('openfin.toolbar', ['openfin.currentWindow']);
     angular.module('openfin.icon', []);

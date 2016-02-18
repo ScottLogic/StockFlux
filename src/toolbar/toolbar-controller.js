@@ -13,24 +13,21 @@
         }
 
         onReady() {
+            if (!this.store && window.storeService) {
+                this.store = window.storeService.open(window.name);
+            }
+
+            this.compact = this.store && this.store.isCompact();
             this.window = this.currentWindowService.getCurrentWindow();
-            this.window.getBounds((bounds) => {
-                this.compact = this.currentWindowService.compact = bounds.width === 230;
-            });
             this.window.addEventListener('maximized', () => {
                 this.$timeout(() => {
                     this.maximised = true;
                 });
-
-                this.window.addEventListener('restored', function(e) {
-                    this.$timeout(function() {
-                        this.maximised = false;
-                    });
-                });
             });
-            this.window.addEventListener('bounds-changed', (e) => {
-                this.window.getBounds((bounds) => {
-                    this.currentWindowService.compact = bounds.width === 230;
+
+            this.window.addEventListener('restored', () => {
+                this.$timeout(() => {
+                    this.maximised = false;
                 });
             });
         }
@@ -54,9 +51,9 @@
             }
 
             this.compact = !this.compact;
-            this.currentWindowService.compact = this.compact;
             this.store.toggleCompact(this.compact);
             window.windowService.updateOptions(this.window, this.compact);
+
             if (this.compact) {
                 this.window.resizeTo(230, 500, 'top-right');
             }

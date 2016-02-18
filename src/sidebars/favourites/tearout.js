@@ -170,7 +170,7 @@
                                                 // Create new window instance
                                                 var mainApplicationWindowPosition = geometryService.getWindowPosition(window);
 
-                                                windowService.createMainWindow(null, (newWindow) => {
+                                                windowService.createMainWindow(null, store.isCompact(), (newWindow) => {
                                                     newWindow.resizeTo(mainApplicationWindowPosition.width, mainApplicationWindowPosition.height, 'top-left');
                                                     newWindow.moveTo(e.screenX, e.screenY);
                                                     window.storeService.open(newWindow.name).add(scope.stock);

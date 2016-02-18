@@ -13,7 +13,7 @@
                     // Restoring previously open windows
                     for (i = 0; i < length; i++) {
                         var name = previousWindows[i];
-                        windowCreationService.createMainWindow(name);
+                        windowCreationService.createMainWindow(name, storeService.open(name).isCompact());
                     }
                 } else {
                     // Creating new window

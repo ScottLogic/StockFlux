@@ -63,6 +63,10 @@
             this.save();
         }
 
+        isCompact() {
+            return this.store.compact;
+        }
+
         closeWindow() {
             this.store.closed = Date.now();
             this.save();
