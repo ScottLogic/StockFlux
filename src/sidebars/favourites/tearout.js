@@ -3,10 +3,10 @@
 
     angular.module('openfin.tearout')
         .directive('tearable', ['geometryService', 'hoverService', 'currentWindowService',
-            function(geometryService, hoverService, currentWindowService) {
+            (geometryService, hoverService, currentWindowService) => {
                 return {
                     restrict: 'C',
-                    link: function(scope, element, attrs) {
+                    link: (scope, element, attrs) => {
                         // TODO: Improve this. Search for first class element upwards?
                         var dragElement = element[0],
                             tearElement = dragElement.parentNode.parentNode,
@@ -32,7 +32,7 @@
 
                             // The distance from where the mouse click occurred from the origin of the element that will be torn out.
                             // This is to place the tearout window exactly over the tornout element
-                            me.setOffset = function(x, y) {
+                            me.setOffset = (x, y) => {
                                 offset.x = x;
                                 offset.y = y;
 
@@ -41,14 +41,14 @@
 
                             // Sets whether the tearout window is being dragged.
                             // Used to determine whether `mousemove` events should programmatically move the tearout window
-                            me.setCurrentlyDragging = function(dragging) {
+                            me.setCurrentlyDragging = dragging => {
                                 currentlyDragging = dragging;
 
                                 return me;
                             };
 
                             // A call to the OpenFin API to move the tearout window
-                            me.moveTearoutWindow = function(x, y) {
+                            me.moveTearoutWindow = (x, y) => {
                                 var tileTopPadding = 5,
                                     tileRightPadding = 5,
                                     tearElementWidth = 16;
@@ -62,7 +62,7 @@
 
                             // A call to the OpenFin API to both show the tearout window and ensure that
                             // it is displayed in the foreground
-                            me.displayTearoutWindow = function() {
+                            me.displayTearoutWindow = () => {
                                 tearoutWindow.show();
                                 tearoutWindow.setAsForeground();
 
@@ -70,7 +70,7 @@
                             };
 
                             // Inject the element being tornout into the new, tearout, window
-                            me.appendToOpenfinWindow = function(injection, openfinWindow) {
+                            me.appendToOpenfinWindow = (injection, openfinWindow) => {
                                 openfinWindow
                                     .contentWindow
                                     .document
@@ -81,13 +81,13 @@
                             };
 
                             // Grab the DOM element back from the tearout window and append the given container
-                            me.returnFromTearout = function() {
+                            me.returnFromTearout = () => {
                                 myDropTarget.appendChild(tearElement);
                                 tearoutWindow.hide();
                             };
 
                             // Clear out all the elements but keep the js context ;)
-                            me.clearIncomingTearoutWindow = function() {
+                            me.clearIncomingTearoutWindow = () => {
                                 tearoutWindow
                                     .getNativeWindow()
                                     .document
@@ -109,7 +109,7 @@
                             // * Clear out any DOM elements that may already be in the tearout window
                             // * Move the DOM element to be torn out into the tearout
                             // * Display the tearout window in the foreground
-                            me.handleMouseDown = function(e) {
+                            me.handleMouseDown = e => {
                                 if (e.button !== 0) {
                                     // Only process left clicks
                                     return false;
@@ -135,7 +135,7 @@
                             // `handleMouseMove` is the function assigned to the `mousemove` event on the `document`.
                             // The param `e` is the native event passed in by the event listener.
                             // If the `currentlyDragging` flag is true move the tearout window.
-                            me.handleMouseMove = function(e) {
+                            me.handleMouseMove = e => {
                                 if (currentlyDragging) {
                                     me.moveTearoutWindow(e.screenX, e.screenY);
                                 }
@@ -144,7 +144,7 @@
                             // On a mouseup event we reset the internal state to be ready for the next dragging event
                             //
                             // `handleMouseUp` is the function assigned to the `mouseup` event on the `document`.
-                            me.handleMouseUp = function(e) {
+                            me.handleMouseUp = e => {
                                 if (e.button !== 0) {
                                     // Only process left clicks
                                     return false;
@@ -211,7 +211,7 @@
 
                             // On the `bounds-changing` event check to see if you are over a potential drop target.
                             // If so update the drop target.
-                            tearoutWindow.addEventListener('bounds-changing', function() {
+                            tearoutWindow.addEventListener('bounds-changing', () => {
                                 // Check if you are over a drop target by seeing if the tearout rectangle intersects the drop target
                                 var nativeWindow = tearoutWindow.getNativeWindow(),
                                     tearoutRectangle = geometryService.rectangle(geometryService.getWindowPosition(nativeWindow));
@@ -231,7 +231,7 @@
                             hoverService.remove(scope.stock.code);
                         }
 
-                        scope.$on('$destroy', function(e) {
+                        scope.$on('$destroy', () => {
                             dispose();
                         });
 

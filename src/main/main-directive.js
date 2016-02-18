@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('openfin.main')
-        .directive('main', [function() {
+        .directive('main', [() => {
             return {
                 restrict: 'E',
                 templateUrl: 'main/main.html',

@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('openfin.search')
-        .directive('search', [function() {
+        .directive('search', [() => {
             return {
                 restrict: 'E',
                 templateUrl: 'sidebars/search/search.html',

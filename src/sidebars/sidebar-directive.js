@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('openfin.sidebar')
-        .directive('sideBar', [function() {
+        .directive('sideBar', [() => {
             return {
                 restrict: 'E',
                 templateUrl: 'sidebars/sidebar.html',

@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('openfin.favourites')
-        .directive('favourite', [function() {
+        .directive('favourite', [() => {
             return {
                 restrict: 'E',
                 templateUrl: 'sidebars/favourites/favourite.html',
