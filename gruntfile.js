@@ -99,7 +99,7 @@ module.exports = function(grunt) {
 
         clean: {
             dist: {
-                src: ['public', 'node_modules/d3fc-showcase/dist']
+                src: ['public', 'node_modules/BitFlux/dist']
             }
         },
 
@@ -123,7 +123,7 @@ module.exports = function(grunt) {
                     'angular-animate/angular-animate.min.js',
                     'angular-storage/dist/angular-storage.min.js',
                     'd3fc/dist/d3fc.bundle.min.js',
-                    'd3fc-showcase/node_modules/bootstrap/js/dropdown.js',
+                    'BitFlux/node_modules/bootstrap/js/dropdown.js',
                     'malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js'
                 ],
                 dest: 'public/assets/js/',
@@ -131,12 +131,12 @@ module.exports = function(grunt) {
             },
             showcase: {
                 expand: true,
-                cwd: 'node_modules/d3fc-showcase/dist/',
+                cwd: 'node_modules/BitFlux/dist/',
                 src: ['**'],
                 dest: 'public/',
                 rename: function(dest, src) {
                     if (src.split('.').pop() === 'html') {
-                        return dest + 'd3fc-showcase.html';
+                        return dest + 'BitFlux.html';
                     }
 
                     return dest + src;
@@ -163,7 +163,7 @@ module.exports = function(grunt) {
             fonts: {
                 files: [{
                     expand: true,
-                    cwd: 'node_modules/d3fc-showcase/node_modules/bootstrap/dist/fonts/',
+                    cwd: 'node_modules/BitFlux/node_modules/bootstrap/dist/fonts/',
                     src: ['**'],
                     dest: 'public/assets/fonts'
                 }]
@@ -222,7 +222,7 @@ module.exports = function(grunt) {
             grunt: true,
             args: ['build:module'],
             opts: {
-                cwd: 'node_modules/d3fc-showcase/'
+                cwd: 'node_modules/BitFlux/'
             }
         }, function(error, result, code) {
             console.log(result.stdout);
