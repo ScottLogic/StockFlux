@@ -1,6 +1,6 @@
 # BitFlux-OpenFin
 
-Using OpenFin this will be a locally hosted financial charting application, pulling data from [Quandl](https://www.quandl.com/) and viewing it using the [d3fc-showcase](http://scottlogic.github.io/d3fc-showcase/).
+Using OpenFin this will be a locally hosted financial charting application, pulling data from [Quandl](https://www.quandl.com/) and viewing it using the [BitFlux](http://scottlogic.github.io/BitFlux/).
 
 You can download the OpenFin demo from [here](http://scottlogic.github.io/bitflux-openfin/bitflux-openfin.zip).
 

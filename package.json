@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "test": "grunt ci",
-    "postinstall": "cd node_modules/d3fc-showcase && npm i"
+    "postinstall": "cd node_modules/BitFlux && npm i"
   },
   "devDependencies": {
     "babel-eslint": "^4.1.8",
@@ -31,10 +31,10 @@
     "angular-animate": "^1.4.8",
     "angular-resource": "^1.4.8",
     "d3fc": "^5.2.0",
-    "d3fc-showcase": "ScottLogic/BitFlux#56dc4387d334e105678e88c6941f492118485f6a",
+    "BitFlux": "ScottLogic/BitFlux#cf81eab098cf6c6f4a4bd36269d9cfe21d4b449b",
     "jquery": "^1.11.1",
     "malihu-custom-scrollbar-plugin": "^3.1.3",
     "moment": "^2.10.6"
   },
-  "description": "Hosts the d3fc-showcase as an OpenFin application."
+  "description": "Hosts the BitFlux as an OpenFin application."
 }

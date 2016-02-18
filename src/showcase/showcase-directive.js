@@ -1,4 +1,4 @@
-(function(sc) {
+(function(bitflux) {
     'use strict';
 
     angular.module('openfin.showcase')
@@ -10,7 +10,7 @@
                     selection: '&'
                 },
                 link: function(scope, element) {
-                    var chart = sc.app().quandlApiKey(quandlService.apiKey()),
+                    var chart = bitflux.app().quandlApiKey(quandlService.apiKey()),
                         firstRun = true;
 
                     scope.$watch('selection()', function(newSelection, previousSelection) {
@@ -28,4 +28,4 @@
                 }
             };
         }]);
-}(sc));
+}(bitflux));
