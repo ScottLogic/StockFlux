@@ -2,18 +2,18 @@
     'use strict';
 
     angular.module('openfin.showcase')
-        .directive('showcase', ['quandlService', function(quandlService) {
+        .directive('showcase', ['quandlService', (quandlService) => {
             return {
                 restrict: 'E',
                 templateUrl: 'showcase/showcase.html',
                 scope: {
                     selection: '&'
                 },
-                link: function(scope, element) {
+                link: (scope, element) => {
                     var chart = bitflux.app().quandlApiKey(quandlService.apiKey()),
                         firstRun = true;
 
-                    scope.$watch('selection()', function(newSelection, previousSelection) {
+                    scope.$watch('selection()', (newSelection, previousSelection) => {
                         if (newSelection !== '') {
                             if (firstRun) {
                                 firstRun = false;

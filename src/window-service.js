@@ -141,10 +141,10 @@
                 result = false,
                 promises = [];
 
-            mainWindows.forEach(mainWindow => {
+            mainWindows.forEach((mainWindow) => {
                 var deferred = this.$q.defer();
                 promises.push(deferred.promise);
-                mainWindow.getState(state => {
+                mainWindow.getState((state) => {
                     if (state !== 'minimized' && this.geometryService.windowsIntersect(this.tearoutWindow, mainWindow.getNativeWindow())) {
                         this.otherInstance = mainWindow;
                         result = true;

@@ -5,7 +5,7 @@
         .directive('customScrollbar', [() => {
             return {
                 restrict: 'C',
-                link: function(scope, element) {
+                link: (scope, element) => {
                     var scrollPadding = 'scrollPadding';
                     element.mCustomScrollbar(
                         {
