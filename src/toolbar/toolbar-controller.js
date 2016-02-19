@@ -9,6 +9,7 @@
             this.window = null;
             this.maximised = false;
             this.compact = false;
+            this.oldSize = null;
             currentWindowService.ready(this.onReady.bind(this));
         }
 
@@ -51,6 +52,12 @@
             }
 
             this.compact = !this.compact;
+            if (this.compact) {
+                this.window.getBounds(bounds => {
+                    this.oldSize = [bounds.width, bounds.height];
+                });
+            }
+
             this.store.toggleCompact(this.compact);
             window.windowService.updateOptions(this.window, this.compact);
 
@@ -61,7 +68,14 @@
                 this.window.maximize();
             }
             else {
-                this.window.resizeTo(1280, 720, 'top-right');
+                var width = 1280,
+                    height = 720;
+                if (this.oldSize) {
+                    width = this.oldSize[0];
+                    height = this.oldSize[1];
+                }
+
+                this.window.resizeTo(width, height, 'top-right');
             }
         }
 
