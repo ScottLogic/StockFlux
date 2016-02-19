@@ -33,7 +33,6 @@
     angular.module('openfin.store', []);
     angular.module('openfin.parent', ['openfin.window']);
     angular.module('openfin.currentWindow', []);
-    angular.module('openfin.window', []);
     angular.module('openfin.scroll', []);
     angular.module('openfin.config', []);
 }());

@@ -3,17 +3,14 @@
     const RESIZE_NO_LIMIT = 50000;
 
     class ConfigService {
-        constructor() {
-        }
-
-        nameCreator() {
+        createName() {
             // TODO: Should probably change this...
             return 'window' + Math.floor(Math.random() * 1000) + Math.ceil(Math.random() * 999);
         }
 
         getWindowConfig(name) {
             return {
-                name: name || this.nameCreator(),
+                name: name || this.createName(),
                 autoShow: false,
                 frame: false,
                 showTaskbarIcon: true,
@@ -32,7 +29,7 @@
 
         getCompactConfig(name) {
             return {
-                name: name || this.nameCreator(),
+                name: name || this.createName(),
                 autoShow: false,
                 frame: false,
                 showTaskbarIcon: true,
@@ -51,7 +48,7 @@
 
         getTearoutConfig(name) {
             return {
-                name: name || this.nameCreator(),
+                name: name || this.createName(),
                 autoShow: false,
                 frame: false,
                 maximizable: false,
