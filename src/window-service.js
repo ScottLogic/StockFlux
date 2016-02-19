@@ -1,65 +1,12 @@
 (function(fin) {
     'use strict';
-
-    function getName() {
-        // TODO: Should probably change this...
-        return 'window' + Math.floor(Math.random() * 1000) + Math.ceil(Math.random() * 999);
-    }
-
-    function createConfig(name, isCompact) {
-        var config = {};
-
-        config.name = name || getName();
-        config.autoShow = false;
-        config.frame = false;
-        config.showTaskbarIcon = true;
-        config.saveWindowState = true;
-        config.url = 'index.html';
-
-        if (isCompact) {
-            config.resizable = false;
-            config.maximizable = false;
-            config.minWidth = 230;
-            config.minHeight = 500;
-            config.maxWidth = 230;
-            config.maxHeight = 500;
-            config.defaultWidth = 230;
-            config.defaultHeight = 500;
-        } else {
-            config.resizable = true;
-            config.maximizable = true;
-            config.minWidth = 918;
-            config.minHeight = 510;
-            config.maxWidth = 50000;
-            config.maxHeight = 50000;
-            config.defaultWidth = 1280;
-            config.defaultHeight = 720;
-        }
-
-        return config;
-    }
-
-    function createTearoutConfig() {
-        return {
-            'name': getName(),
-            'autoShow': false,
-            'frame': false,
-            'maximizable': false,
-            'resizable': false,
-            'showTaskbarIcon': false,
-            'saveWindowState': false,
-            'maxWidth': 230,
-            'maxHeight': 100,
-            'url': 'tearout.html'
-        };
-    }
-
     const poolSize = 3;
 
     class FreeWindowPool {
-        constructor($q) {
+        constructor($q, configService) {
             this.pool = [];
             this.$q = $q;
+            this.configService = configService;
 
             for (var i = 0; i < poolSize; i++) {
                 this._fillPool();
@@ -68,7 +15,11 @@
 
         _fillPool() {
             var deferred = this.$q.defer();
-            this.pool.push({ promise: deferred.promise, window: new fin.desktop.Window(createConfig(), () => { deferred.resolve(); }) });
+            this.pool.push({ promise: deferred.promise, window: new fin.desktop.Window(
+                    this.configService.getWindowConfig(),
+                    () => { deferred.resolve(); }
+                )
+            });
         }
 
         fetch() {
@@ -164,15 +115,16 @@
     }
 
     class WindowCreationService {
-        constructor(storeService, geometryService, $q) {
+        constructor(storeService, geometryService, $q, configService) {
             this.storeService = storeService;
             this.geometryService = geometryService;
             this.$q = $q;
+            this.configService = configService;
             this.windowTracker = new WindowTracker();
             this.firstName = true;
             this.pool = null;
 
-            this.ready(() => { this.pool = new FreeWindowPool($q); });
+            this.ready(() => { this.pool = new FreeWindowPool($q, configService); });
         }
 
         createMainWindow(name, isCompact, successCb) {
@@ -195,7 +147,13 @@
 
             var mainWindow;
             if (name) {
-                mainWindow = new fin.desktop.Window(createConfig(name, isCompact), () => {
+                var config;
+                if (isCompact) {
+                    config = this.configService.getCompactConfig(name);
+                } else {
+                    config = this.configService.getWindowConfig(name);
+                }
+                mainWindow = new fin.desktop.Window(config, () => {
                     windowCreatedCb(mainWindow);
                 });
             } else {
@@ -219,7 +177,7 @@
         }
 
         createTearoutWindow(parentName) {
-            var tearoutWindow = new fin.desktop.Window(createTearoutConfig());
+            var tearoutWindow = new fin.desktop.Window(this.configService.getTearoutConfig());
 
             this.windowTracker.addTearout(parentName, tearoutWindow);
 
@@ -274,7 +232,7 @@
             return new DragService(this.storeService, this.geometryService, this.windowTracker, tearoutWindow, this.$q);
         }
     }
-    WindowCreationService.$inject = ['storeService', 'geometryService', '$q'];
+    WindowCreationService.$inject = ['storeService', 'geometryService', '$q', 'configService'];
 
     angular.module('openfin.window')
         .service('windowCreationService', WindowCreationService);
