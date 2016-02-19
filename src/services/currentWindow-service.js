@@ -11,7 +11,7 @@
                 fin.desktop.main(cb);
             }
 
-            window.addEventListener('updateFavourites', event => {
+            window.addEventListener('updateFavourites', (event) => {
                 $rootScope.$broadcast('updateFavourites', event.stock);
             });
 

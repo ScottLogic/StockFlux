@@ -10,13 +10,13 @@
         renderChart(stock) {
             this.$timeout(
                 () => {
-                    this.quandlService.getData(stock.code, result => {
+                    this.quandlService.getData(stock.code, (result) => {
 
                         var extent = fc.util.innerDimensions(document.getElementById(result.code + 'chart'));
                         var width = extent.width,
                             height = extent.height;
                         var data = result.data;
-                        data = data.map(d => {
+                        data = data.map((d) => {
                             var date = moment(d.date);
                             d.date = date.toDate();
                             return d;
@@ -56,7 +56,7 @@
                             .series([area, line, point])
                             .xScale(xScale)
                             .yScale(yScale)
-                            .mapping(series => {
+                            .mapping((series) => {
                                 switch (series) {
                                 case point:
                                     return pointData;

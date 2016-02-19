@@ -41,7 +41,7 @@
 
                             // Sets whether the tearout window is being dragged.
                             // Used to determine whether `mousemove` events should programmatically move the tearout window
-                            me.setCurrentlyDragging = dragging => {
+                            me.setCurrentlyDragging = (dragging) => {
                                 currentlyDragging = dragging;
 
                                 return me;
@@ -109,7 +109,7 @@
                             // * Clear out any DOM elements that may already be in the tearout window
                             // * Move the DOM element to be torn out into the tearout
                             // * Display the tearout window in the foreground
-                            me.handleMouseDown = e => {
+                            me.handleMouseDown = (e) => {
                                 if (e.button !== 0) {
                                     // Only process left clicks
                                     return false;
@@ -135,7 +135,7 @@
                             // `handleMouseMove` is the function assigned to the `mousemove` event on the `document`.
                             // The param `e` is the native event passed in by the event listener.
                             // If the `currentlyDragging` flag is true move the tearout window.
-                            me.handleMouseMove = e => {
+                            me.handleMouseMove = (e) => {
                                 if (currentlyDragging) {
                                     me.moveTearoutWindow(e.screenX, e.screenY);
                                 }
@@ -144,7 +144,7 @@
                             // On a mouseup event we reset the internal state to be ready for the next dragging event
                             //
                             // `handleMouseUp` is the function assigned to the `mouseup` event on the `document`.
-                            me.handleMouseUp = e => {
+                            me.handleMouseUp = (e) => {
                                 if (e.button !== 0) {
                                     // Only process left clicks
                                     return false;

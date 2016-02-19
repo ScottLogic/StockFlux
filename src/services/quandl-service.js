@@ -80,7 +80,7 @@
 
         search(query, cb, noResultsCb) {
             this.stockSearch().get({ query: query }, (result) => {
-                result.datasets.map(dataset => {
+                result.datasets.map((dataset) => {
                     processDataset(dataset, query, cb);
                 });
 
@@ -91,7 +91,7 @@
         }
 
         getMeta(stockCode, cb) {
-            this.stockMetadata().get({ 'stock_code': stockCode }, result => {
+            this.stockMetadata().get({ 'stock_code': stockCode }, (result) => {
                 processDataset(result.dataset, stockCode, cb);
             });
         }
@@ -114,7 +114,7 @@
         }
 
         getData(stockCode, cb) {
-            return this.stockData().get({ code: stockCode }, result => {
+            return this.stockData().get({ code: stockCode }, (result) => {
                 var stock = {
                     name: result.dataset.name,
                     code: stockCode,
