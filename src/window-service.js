@@ -147,15 +147,14 @@
 
             var mainWindow;
             if (name) {
-                var config;
-                if (isCompact) {
-                    config = this.configService.getCompactConfig(name);
-                } else {
-                    config = this.configService.getWindowConfig(name);
-                }
-                mainWindow = new fin.desktop.Window(config, () => {
-                    windowCreatedCb(mainWindow);
-                });
+                mainWindow = new fin.desktop.Window(
+                    isCompact ?
+                        this.configService.getCompactConfig(name) :
+                        this.configService.getWindowConfig(name),
+                    () => {
+                        windowCreatedCb(mainWindow);
+                    }
+                );
             } else {
                 var poolWindow = this.pool.fetch();
                 mainWindow = poolWindow.window;
