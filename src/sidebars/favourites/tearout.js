@@ -3,50 +3,19 @@
 
     angular.module('openfin.tearout')
         .directive('tearable', ['geometryService', 'hoverService', 'currentWindowService',
-            function(geometryService, hoverService, currentWindowService) {
+            (geometryService, hoverService, currentWindowService) => {
                 return {
                     restrict: 'C',
-                    link: function(scope, element, attrs) {
+                    link: (scope, element, attrs) => {
                         // TODO: Improve this. Search for first class element upwards?
                         var dragElement = element[0],
                             tearElement = dragElement.parentNode.parentNode,
-                            tileWidth = tearElement.clientWidth,
-                            tileHeight = tearElement.clientHeight,
+                            tileWidth = tearElement.clientWidth || 230,
+                            tileHeight = tearElement.clientHeight || 100,
                             store;
 
-                        function createConfig(tearout, width, height) {
-                            var config = {
-                                'defaultWidth': tileWidth,
-                                'defaultHeight': tileHeight,
-                                'width': width,
-                                'height': height,
-                                'autoShow': false,
-                                'frame': false
-                            };
-
-                            if (tearout) {
-                                config.minWidth = tileWidth;
-                                config.minHeight = tileHeight;
-                                config.url = 'tearout.html';
-                            } else {
-                                // TODO: Remove duplication of minimum sizes
-                                config.minWidth = 918;
-                                config.minHeight = 510;
-                                config.url = 'index.html';
-                            }
-
-                            config.resizable =
-                                config.maximizable =
-                                config.showTaskbarIcon =
-                                config.saveWindowState = !tearout;
-
-                            return config;
-                        }
-
-                        var tearoutWindowConfig = createConfig(true, tileWidth, tileHeight);
-
                         var windowService = window.windowService;
-                        var tearoutWindow = windowService.createTearoutWindow(tearoutWindowConfig, window.name);
+                        var tearoutWindow = windowService.createTearoutWindow(window.name);
 
                         function initialiseTearout() {
                             var myDropTarget = tearElement.parentNode,
@@ -54,7 +23,8 @@
                                 myHoverArea = parent.getElementsByClassName('hover-area')[0],
                                 offset = { x: 0, y: 0 },
                                 currentlyDragging = false,
-                                outsideMainWindow = false;
+                                insideMainWindow = true,
+                                dragService;
 
                             var me = {};
 
@@ -62,7 +32,7 @@
 
                             // The distance from where the mouse click occurred from the origin of the element that will be torn out.
                             // This is to place the tearout window exactly over the tornout element
-                            me.setOffset = function(x, y) {
+                            me.setOffset = (x, y) => {
                                 offset.x = x;
                                 offset.y = y;
 
@@ -71,14 +41,14 @@
 
                             // Sets whether the tearout window is being dragged.
                             // Used to determine whether `mousemove` events should programmatically move the tearout window
-                            me.setCurrentlyDragging = function(dragging) {
+                            me.setCurrentlyDragging = (dragging) => {
                                 currentlyDragging = dragging;
 
                                 return me;
                             };
 
                             // A call to the OpenFin API to move the tearout window
-                            me.moveTearoutWindow = function(x, y) {
+                            me.moveTearoutWindow = (x, y) => {
                                 var tileTopPadding = 5,
                                     tileRightPadding = 5,
                                     tearElementWidth = 16;
@@ -92,7 +62,7 @@
 
                             // A call to the OpenFin API to both show the tearout window and ensure that
                             // it is displayed in the foreground
-                            me.displayTearoutWindow = function() {
+                            me.displayTearoutWindow = () => {
                                 tearoutWindow.show();
                                 tearoutWindow.setAsForeground();
 
@@ -100,7 +70,7 @@
                             };
 
                             // Inject the element being tornout into the new, tearout, window
-                            me.appendToOpenfinWindow = function(injection, openfinWindow) {
+                            me.appendToOpenfinWindow = (injection, openfinWindow) => {
                                 openfinWindow
                                     .contentWindow
                                     .document
@@ -111,13 +81,13 @@
                             };
 
                             // Grab the DOM element back from the tearout window and append the given container
-                            me.returnFromTearout = function() {
+                            me.returnFromTearout = () => {
                                 myDropTarget.appendChild(tearElement);
                                 tearoutWindow.hide();
                             };
 
                             // Clear out all the elements but keep the js context ;)
-                            me.clearIncomingTearoutWindow = function() {
+                            me.clearIncomingTearoutWindow = () => {
                                 tearoutWindow
                                     .getNativeWindow()
                                     .document
@@ -127,28 +97,6 @@
 
                                 return me;
                             };
-
-                            // Helper function to retrieve the height, width, top, and left from a window object
-                            function getWindowPosition(windowElement) {
-                                return {
-                                    height: windowElement.outerHeight,
-                                    width: windowElement.outerWidth,
-                                    top: windowElement.screenY,
-                                    left: windowElement.screenX
-                                };
-                            }
-
-                            // Calculate the screen position of an element
-                            function elementScreenPosition(windowElement, element1) {
-                                var relativeElementPosition = element1.getBoundingClientRect();
-
-                                return {
-                                    height: relativeElementPosition.height,
-                                    width: relativeElementPosition.width,
-                                    top: windowElement.top + relativeElementPosition.top,
-                                    left: windowElement.left + relativeElementPosition.left
-                                };
-                            }
 
                             // On a mousedown event, we grab our destination tearout window and inject
                             // the DOM element to be torn out.
@@ -161,7 +109,7 @@
                             // * Clear out any DOM elements that may already be in the tearout window
                             // * Move the DOM element to be torn out into the tearout
                             // * Display the tearout window in the foreground
-                            me.handleMouseDown = function(e) {
+                            me.handleMouseDown = (e) => {
                                 if (e.button !== 0) {
                                     // Only process left clicks
                                     return false;
@@ -171,6 +119,8 @@
                                     // There is only one favourite card so don't allow tearing out
                                     return false;
                                 }
+
+                                dragService = windowService.registerDrag(tearoutWindow);
 
                                 me.setCurrentlyDragging(true)
                                     .setOffset(e.offsetX, e.offsetY)
@@ -185,7 +135,7 @@
                             // `handleMouseMove` is the function assigned to the `mousemove` event on the `document`.
                             // The param `e` is the native event passed in by the event listener.
                             // If the `currentlyDragging` flag is true move the tearout window.
-                            me.handleMouseMove = function(e) {
+                            me.handleMouseMove = (e) => {
                                 if (currentlyDragging) {
                                     me.moveTearoutWindow(e.screenX, e.screenY);
                                 }
@@ -194,7 +144,7 @@
                             // On a mouseup event we reset the internal state to be ready for the next dragging event
                             //
                             // `handleMouseUp` is the function assigned to the `mouseup` event on the `document`.
-                            me.handleMouseUp = function(e) {
+                            me.handleMouseUp = (e) => {
                                 if (e.button !== 0) {
                                     // Only process left clicks
                                     return false;
@@ -202,7 +152,7 @@
 
                                 if (currentlyDragging) {
                                     me.setCurrentlyDragging(false);
-                                    if (!outsideMainWindow) {
+                                    if (insideMainWindow) {
                                         me.returnFromTearout();
                                     } else {
                                         if (!store) {
@@ -212,23 +162,29 @@
                                         // Remove the stock from the old window
                                         store.remove(scope.stock);
 
-                                        // Create new window instance
-                                        var mainApplicationWindowPosition = getWindowPosition(window);
+                                        dragService.overAnotherInstance((overAnotherInstance) => {
+                                            if (overAnotherInstance) {
+                                                dragService.moveToOtherInstance(scope.stock);
+                                                dragService = null;
+                                            } else {
+                                                // Create new window instance
+                                                var mainApplicationWindowPosition = geometryService.getWindowPosition(window);
 
-                                        var config = createConfig(false, mainApplicationWindowPosition.width, mainApplicationWindowPosition.height);
+                                                windowService.createMainWindow(null, store.isCompact(), (newWindow) => {
+                                                    newWindow.resizeTo(mainApplicationWindowPosition.width, mainApplicationWindowPosition.height, 'top-left');
+                                                    newWindow.moveTo(e.screenX, e.screenY);
+                                                    window.storeService.open(newWindow.name).add(scope.stock);
+                                                });
+                                            }
 
-                                        windowService.createMainWindow(config, (newWindow) => {
-                                            newWindow.moveTo(e.screenX, e.screenY);
-                                            window.storeService.open(newWindow.name).add(scope.stock);
+                                            // Remove drop-target from original instance
+                                            parent.removeChild(myHoverArea);
+                                            parent.removeChild(myDropTarget);
+                                            dispose();
+
+                                            // Destroy myself.
+                                            tearoutWindow.close();
                                         });
-
-                                        // Remove drop-target from original instance
-                                        parent.removeChild(myHoverArea);
-                                        parent.removeChild(myDropTarget);
-                                        dispose();
-
-                                        // Destroy myself.
-                                        tearoutWindow.close();
                                     }
                                 }
                             };
@@ -238,7 +194,7 @@
 
                                 for (var i = 0, max = hoverTargets.length; i < max; i++) {
                                     var dropTargetRectangle = geometryService.rectangle(
-                                        elementScreenPosition(getWindowPosition(window), hoverTargets[i].hoverArea)),
+                                        geometryService.elementScreenPosition(geometryService.getWindowPosition(window), hoverTargets[i].hoverArea)),
                                         overDropTarget = tearoutRectangle.intersects(dropTargetRectangle);
 
                                     if (overDropTarget) {
@@ -255,16 +211,13 @@
 
                             // On the `bounds-changing` event check to see if you are over a potential drop target.
                             // If so update the drop target.
-                            tearoutWindow.addEventListener('bounds-changing', function() {
+                            tearoutWindow.addEventListener('bounds-changing', () => {
                                 // Check if you are over a drop target by seeing if the tearout rectangle intersects the drop target
                                 var nativeWindow = tearoutWindow.getNativeWindow(),
-                                    tearoutRectangle = geometryService.rectangle(getWindowPosition(nativeWindow)),
-                                    mainApplicationWindowPosition = getWindowPosition(window),
-                                    mainApplicationRectangle = geometryService.rectangle(mainApplicationWindowPosition);
+                                    tearoutRectangle = geometryService.rectangle(geometryService.getWindowPosition(nativeWindow));
+                                insideMainWindow = geometryService.windowsIntersect(tearoutWindow, window);
 
-                                outsideMainWindow = !tearoutRectangle.intersects(mainApplicationRectangle);
-
-                                if (!outsideMainWindow) {
+                                if (insideMainWindow) {
                                     reorderFavourites(tearoutRectangle);
                                 }
                             });
@@ -278,7 +231,7 @@
                             hoverService.remove(scope.stock.code);
                         }
 
-                        scope.$on('$destroy', function(e) {
+                        scope.$on('$destroy', () => {
                             dispose();
                         });
 

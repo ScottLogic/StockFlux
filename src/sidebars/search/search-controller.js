@@ -32,12 +32,16 @@
                 // Down
                 this.changePointer(1);
             }
+            else if (event.keyCode === 27) {
+                // Escape
+                this.$scope.sidebarCtrl.favouritesClick();
+            }
         }
 
         changePointer(delta) {
             // Change the selection pointer to be the selected stock, if it exists in the list
             // (otherwise, set to -1, which is acceptable as there is no selection yet)
-            var currentSelectionPointer = this.stocks.map(function(stockItem) {
+            var currentSelectionPointer = this.stocks.map((stockItem) => {
                 return stockItem.code;
             }).indexOf(this.selection());
 
@@ -130,7 +134,7 @@
                     return;
                 }
 
-                var index = this.stocks.map(function(stock) { return stock.code; }).indexOf(data.code);
+                var index = this.stocks.map((stock) => { return stock.code; }).indexOf(data.code);
                 if (index > -1) {
                     if (!this.query) {
                         // There are no search results, so remove the favourite.

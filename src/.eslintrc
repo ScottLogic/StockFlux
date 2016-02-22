@@ -5,12 +5,13 @@
         "fin": true,
         "window": true,
         "jQuery": true,
-        "sc": true,
+        "bitflux": true,
         "d3": true,
         "fc": true,
         "document": true,
         "confirm": true,
         "Event": true,
-        "localStorage":  true
+        "localStorage": true,
+        "$q": true
     }
 }

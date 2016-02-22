@@ -58,6 +58,15 @@
             this.update(stock);
         }
 
+        toggleCompact(isCompact) {
+            this.store.compact = isCompact;
+            this.save();
+        }
+
+        isCompact() {
+            return this.store.compact;
+        }
+
         closeWindow() {
             this.store.closed = Date.now();
             this.save();
@@ -112,7 +121,8 @@
                 var newStore = {
                     id: windowName,
                     stocks: stocks,
-                    closed: 0
+                    closed: 0,
+                    compact: false
                 };
 
                 this.storage.push(newStore);

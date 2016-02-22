@@ -5,30 +5,30 @@
         constructor($timeout, currentWindowService) {
             this.$timeout = $timeout;
             this.currentWindowService = currentWindowService;
+            this.store = null;
+            this.window = null;
             this.maximised = false;
             this.compact = false;
+            this.oldSize = null;
             currentWindowService.ready(this.onReady.bind(this));
         }
 
         onReady() {
+            if (!this.store && window.storeService) {
+                this.store = window.storeService.open(window.name);
+            }
+
+            this.compact = this.store && this.store.isCompact();
             this.window = this.currentWindowService.getCurrentWindow();
-            this.window.getBounds((bounds) => {
-                this.compact = this.currentWindowService.compact = bounds.width === 230;
-            });
             this.window.addEventListener('maximized', () => {
                 this.$timeout(() => {
                     this.maximised = true;
                 });
-
-                this.window.addEventListener('restored', function(e) {
-                    this.$timeout(function() {
-                        this.maximised = false;
-                    });
-                });
             });
-            this.window.addEventListener('bounds-changed', (e) => {
-                this.window.getBounds((bounds) => {
-                    this.currentWindowService.compact = bounds.width === 230;
+
+            this.window.addEventListener('restored', () => {
+                this.$timeout(() => {
+                    this.maximised = false;
                 });
             });
         }
@@ -47,8 +47,20 @@
         }
 
         compactClick() {
+            if (!this.store) {
+                this.store = window.storeService.open(window.name);
+            }
+
             this.compact = !this.compact;
-            this.currentWindowService.compact = this.compact;
+            if (this.compact) {
+                this.window.getBounds(bounds => {
+                    this.oldSize = [bounds.width, bounds.height];
+                });
+            }
+
+            this.store.toggleCompact(this.compact);
+            window.windowService.updateOptions(this.window, this.compact);
+
             if (this.compact) {
                 this.window.resizeTo(230, 500, 'top-right');
             }
@@ -56,7 +68,14 @@
                 this.window.maximize();
             }
             else {
-                this.window.resizeTo(1280, 720, 'top-right');
+                var width = 1280,
+                    height = 720;
+                if (this.oldSize) {
+                    width = this.oldSize[0];
+                    height = this.oldSize[1];
+                }
+
+                this.window.resizeTo(width, height, 'top-right');
             }
         }
 

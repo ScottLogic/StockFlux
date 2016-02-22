@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('openfin.icon')
-        .directive('icon', [function() {
+        .directive('icon', [() => {
             return {
                 restrict: 'E',
                 templateUrl: 'icon/icon.html',

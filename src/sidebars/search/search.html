@@ -1,25 +1,27 @@
-<div>
-    <img src="assets/svg/search_tab.svg" class="top-icon" />
-    <input class="sidetab" type="text" maxlength="20" placeholder="Enter stock name or symbol"
-           ng-show="sidebarCtrl.showSearches()" ng-model="searchCtrl.query" ng-keydown="searchCtrl.onSearchKeyDown($event)"/>
-</div>
-<div id="searchScroll" class="sideScroll custom-scrollbar">
-    <div class="sidetab" ng-show="sidebarCtrl.showSearches()">
-        <div ng-repeat="stock in searchCtrl.stocks" ng-mouseenter="stock.isHovered = true;" ng-mouseleave="stock.isHovered = false;">
-            <div class="search-result darkens {{searchCtrl.selection() !== stock.code ? '' : 'dark'}}" ng-click="searchCtrl.select(stock)">
-                <div class="details">
-                    <div id="stockName" class="name">{{stock.name | truncate}}</div>
-                    <div class="code">{{stock.code | uppercase}}</div>
-                </div>
-                <div class="star-icon" ng-controller="StarCtrl as starCtrl">
-                    <star ng-init="starCtrl.check = false" favourite-url="starCtrl.favouriteUrl(stock)" star-click="starCtrl.click(stock)"
-                          mouse-enter="starCtrl.mouseEnter()" mouse-leave="starCtrl.mouseLeave()"></star>
-                </div>
-            </div>
-        </div>
-        <div class="no-results" ng-show="searchCtrl.noResults">
-            Oops!<br>
-            Looks like no matches were found.
-        </div>
-    </div>
+<div ng-keydown="searchCtrl.onSearchKeyDown($event)">
+  <div>
+      <img src="assets/svg/search_tab.svg" class="top-icon" />
+      <input class="sidetab" type="text" maxlength="20" placeholder="Enter stock name or symbol"
+             ng-show="sidebarCtrl.showSearches()" ng-model="searchCtrl.query"/>
+  </div>
+  <div id="searchScroll" class="sideScroll custom-scrollbar">
+      <div class="sidetab" ng-show="sidebarCtrl.showSearches()">
+          <div ng-repeat="stock in searchCtrl.stocks" ng-mouseenter="stock.isHovered = true;" ng-mouseleave="stock.isHovered = false;">
+              <div class="search-result darkens {{searchCtrl.selection() !== stock.code ? '' : 'dark'}}" ng-click="searchCtrl.select(stock)">
+                  <div class="details">
+                      <div id="stockName" class="name">{{stock.name | truncate}}</div>
+                      <div class="code">{{stock.code | uppercase}}</div>
+                  </div>
+                  <div class="star-icon" ng-controller="StarCtrl as starCtrl">
+                      <star ng-init="starCtrl.check = false" favourite-url="starCtrl.favouriteUrl(stock)" star-click="starCtrl.click(stock)"
+                            mouse-enter="starCtrl.mouseEnter()" mouse-leave="starCtrl.mouseLeave()"></star>
+                  </div>
+              </div>
+          </div>
+          <div class="no-results" ng-show="searchCtrl.noResults">
+              Oops!<br>
+              Looks like no matches were found.
+          </div>
+      </div>
+  </div>
 </div>

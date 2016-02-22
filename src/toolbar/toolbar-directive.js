@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('openfin.toolbar')
-        .directive('toolbar', [function() {
+        .directive('toolbar', [() => {
             return {
                 restrict: 'E',
                 templateUrl: 'toolbar/toolbar.html',

@@ -79,8 +79,8 @@
         }
 
         search(query, cb, noResultsCb) {
-            this.stockSearch().get({ query: query }, function(result) {
-                result.datasets.map(function(dataset) {
+            this.stockSearch().get({ query: query }, (result) => {
+                result.datasets.map((dataset) => {
                     processDataset(dataset, query, cb);
                 });
 
@@ -91,7 +91,7 @@
         }
 
         getMeta(stockCode, cb) {
-            this.stockMetadata().get({ 'stock_code': stockCode }, function(result) {
+            this.stockMetadata().get({ 'stock_code': stockCode }, (result) => {
                 processDataset(result.dataset, stockCode, cb);
             });
         }
@@ -103,7 +103,7 @@
             return this.$resource(QUANDL_URL + QUANDL_WIKI + ':code.json?' + API_KEY_VALUE + '&start_date=' + startDate, {}, {
                 get: {
                     method: 'GET',
-                    transformResponse: function(data, headers) {
+                    transformResponse: (data, headers) => {
                         json = angular.fromJson(data);
                         processResponse(json);
                         return json;
@@ -114,7 +114,7 @@
         }
 
         getData(stockCode, cb) {
-            return this.stockData().get({ code: stockCode }, function(result) {
+            return this.stockData().get({ code: stockCode }, (result) => {
                 var stock = {
                     name: result.dataset.name,
                     code: stockCode,
@@ -138,7 +138,7 @@
                 get: {
                     method: 'GET',
                     cache: true,
-                    transformResponse: function(data, headers) {
+                    transformResponse: (data, headers) => {
                         var json = angular.fromJson(data);
                         return filterByDate(json);
                     }

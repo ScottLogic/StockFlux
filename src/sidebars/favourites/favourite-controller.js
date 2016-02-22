@@ -96,28 +96,31 @@
 
                 // Add new stocks from favourites
                 this.favourites.map((favourite) => {
-                    if (this.stocks.map(function(stock) { return stock.code; }).indexOf(favourite) === -1) {
+                    if (this.stocks.map((stock) => { return stock.code; }).indexOf(favourite) === -1) {
                         // This is a new stock
                         this.quandlService.getData(favourite, (stock) => {
-                            var data = stock.data[0],
-                                price,
-                                delta,
-                                percentage;
+                            // Repeat the check as in the mean time a stock for this favourite could have been added.
+                            if (this.stocks.map((stock1) => { return stock1.code; }).indexOf(favourite) === -1) {
+                                var data = stock.data[0],
+                                    price,
+                                    delta,
+                                    percentage;
 
-                            if (data) {
-                                price = data.close;
-                                delta = data.close - data.open;
-                                percentage = delta / data.open * 100;
+                                if (data) {
+                                    price = data.close;
+                                    delta = data.close - data.open;
+                                    percentage = delta / data.open * 100;
 
-                                this.stocks.push({
-                                    name: stock.name,
-                                    code: stock.code,
-                                    price: price,
-                                    delta: delta,
-                                    percentage: Math.abs(percentage),
-                                    favourite: true,
-                                    index: this.stockSortFunction(stock)
-                                });
+                                    this.stocks.push({
+                                        name: stock.name,
+                                        code: stock.code,
+                                        price: price,
+                                        delta: delta,
+                                        percentage: Math.abs(percentage),
+                                        favourite: true,
+                                        index: this.stockSortFunction(stock)
+                                    });
+                                }
                             }
                         });
                     }

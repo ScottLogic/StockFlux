@@ -1,4 +1,4 @@
-<div class="sidebars" ng-class="{compact: sidebarCtrl.isCompact()}">
+<div class="sidebars">
     <div class="favourites {{sidebarCtrl.favouritesClass()}}" ng-controller="FavouritesCtrl as favouritesCtrl" ng-click="sidebarCtrl.favouritesClick()">
         <div class="sidetab-top">
             <img src="assets/svg/favourite_TOP.svg" class="top-icon" />
@@ -11,7 +11,7 @@
                 </div>
                 <div ng-repeat="stock in favouritesCtrl.stocks | orderBy: 'index'">
                     <favourite selection="favouritesCtrl.selection()" select="favouritesCtrl.select(stock)" single="favouritesCtrl.single()"
-                               stock="stock" icon="favouritesCtrl.icon(stock)" render-chart="favouritesCtrl.renderChart(stock)">
+                               stock="stock" icon="favouritesCtrl.icon(stock)">
                     </favourite>
                 </div>
             </div>

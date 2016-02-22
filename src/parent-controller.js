@@ -1,18 +1,6 @@
 (function() {
     'use strict';
 
-    function getConfig() {
-        return {
-            'autoShow': true,
-            'minWidth': 918,
-            'minHeight': 510,
-            'defaultWidth': 1280,
-            'defaultHeight': 720,
-            'frame': false,
-            'url': 'index.html'
-        };
-    }
-
     class ParentCtrl {
         constructor($scope, storeService, windowCreationService) {
             windowCreationService.ready(() => {
@@ -24,13 +12,12 @@
                 if (length !== 0) {
                     // Restoring previously open windows
                     for (i = 0; i < length; i++) {
-                        var config = getConfig();
-                        config.name = previousWindows[i];
-                        windowCreationService.createMainWindow(config);
+                        var name = previousWindows[i];
+                        windowCreationService.createMainWindow(name, storeService.open(name).isCompact());
                     }
                 } else {
                     // Creating new window
-                    windowCreationService.createMainWindow(getConfig());
+                    windowCreationService.createMainWindow();
                 }
 
                 $scope.$on('updateFavourites', (event, data) => {

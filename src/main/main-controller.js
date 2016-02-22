@@ -2,16 +2,19 @@
     'use strict';
 
     class MainCtrl {
-      constructor($timeout, currentWindowService) {
-          this.$timeout = $timeout;
-          this.currentWindowService = currentWindowService;
-      }
+        constructor() {
+            this.store = null;
+        }
 
-      isCompact() {
-          return this.currentWindowService.compact;
-      }
+        isCompact() {
+            if (!this.store && window.storeService) {
+                this.store = window.storeService.open(window.name);
+            }
+
+            return this.store && this.store.isCompact();
+        }
     }
-    MainCtrl.$inject = ['$timeout', 'currentWindowService'];
+    MainCtrl.$inject = [];
 
     angular.module('openfin.main')
         .controller('MainCtrl', MainCtrl);
