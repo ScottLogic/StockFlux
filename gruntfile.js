@@ -171,11 +171,14 @@ module.exports = function(grunt) {
         },
         concat: {
             dist: {
-                src: ['src/**/*.js'],
+                src: ['src/**/*.js', '!src/config-service.js', '!src/parent-controller.js',
+                      '!src/parentApp.js', '!src/window-service.js'],
                 dest: 'public/app.js'
             },
             parent: {
-                src: ['src/parentApp.js', 'src/parent-controller.js', 'src/store-service.js', 'src/window-service.js', 'src/sidebars/favourites/geometry-service.js'],
+                src: ['src/parentApp.js', 'src/parent-controller.js', 'src/store-service.js',
+                    'src/window-service.js', 'src/sidebars/favourites/geometry-service.js',
+                    'src/config-service.js'],
                 dest: 'public/app-parent.js'
             }
         },
