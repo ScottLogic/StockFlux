@@ -94,14 +94,22 @@
     class StoreService {
         constructor($rootScope) {
             this.$rootScope = $rootScope;
+            this.refreshStore();
+        }
 
+        refreshStore() {
             this.storage = JSON.parse(localStorage.getItem(KEY_NAME));
         }
 
         getPreviousOpenWindowNames() {
             return (this.storage || [])
                 .filter((store) => store.closed === 0)
-                .map((store) => store.id);
+                .map((store) => store);
+        }
+
+        getPreviousClosedWindows() {
+            return (this.storage || [])
+                .filter((store) => store.closed > 0);
         }
 
         open(windowName) {
