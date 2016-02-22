@@ -2,8 +2,8 @@
     'use strict';
 
     class ClosedCardCtrl {
-        constructor() {
-
+        openClosedWindow(name) {
+            window.windowService.createMainWindow(name, false);
         }
     }
     ClosedCardCtrl.$inject = [];

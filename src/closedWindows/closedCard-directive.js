@@ -8,7 +8,9 @@
                 templateUrl: 'closedWindows/closedCard.html',
                 scope: {
                     cwindow: '='
-                }
+                },
+                controller: 'ClosedCardCtrl',
+                controllerAs: 'closedCardCtrl'
             };
         }]);
 }());
