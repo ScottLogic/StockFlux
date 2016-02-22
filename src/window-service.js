@@ -160,7 +160,7 @@
                 mainWindow = poolWindow.window;
                 if (isCompact) {
                     this.updateOptions(poolWindow.window, true);
-                    this.window.resizeTo(230, 500, 'top-right');
+                    poolWindow.window.resizeTo(230, 500, 'top-right');
                 }
 
                 poolWindow.promise.then(() => {

@@ -1,10 +1,10 @@
 <div id="toolbar">
     <img id="logo" src="assets/svg/scottlogic_logo.svg" />
     <icon name="minimise" icon-click="toolbarCtrl.minimiseClick()"></icon>
-    <icon name="compact" icon-click="toolbarCtrl.compactClick()" ng-show="!toolbarCtrl.compact"></icon>
-    <icon name="full_view" icon-click="toolbarCtrl.compactClick()" ng-show="toolbarCtrl.compact"></icon>
-    <icon name="maximise" ng-show="!toolbarCtrl.maximised && !toolbarCtrl.compact" icon-click="toolbarCtrl.maximiseClick()"></icon>
-    <icon name="normal_size" ng-show="toolbarCtrl.maximised && !toolbarCtrl.compact" icon-click="toolbarCtrl.normalSizeClick()"></icon>
+    <icon name="compact" icon-click="toolbarCtrl.compactClick()" ng-show="!toolbarCtrl.isCompact()"></icon>
+    <icon name="full_view" icon-click="toolbarCtrl.compactClick()" ng-show="toolbarCtrl.isCompact()"></icon>
+    <icon name="maximise" ng-show="!toolbarCtrl.maximised && !toolbarCtrl.isCompact()" icon-click="toolbarCtrl.maximiseClick()"></icon>
+    <icon name="normal_size" ng-show="toolbarCtrl.maximised && !toolbarCtrl.isCompact()" icon-click="toolbarCtrl.normalSizeClick()"></icon>
     <icon name="close" icon-click="toolbarCtrl.closeClick()"></icon>
     <div class="drag"></div>
 </div>
