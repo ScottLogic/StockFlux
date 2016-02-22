@@ -2,10 +2,9 @@
     'use strict';
 
     class ToolbarCtrl {
-        constructor($timeout, currentWindowService, storeService) {
+        constructor($timeout, currentWindowService) {
             this.$timeout = $timeout;
             this.currentWindowService = currentWindowService;
-            this.storeService = storeService;
             this.store = null;
             this.window = null;
             this.maximised = false;
@@ -81,11 +80,10 @@
         }
 
         closeClick() {
-            this.storeService.refreshStore();
             this.window.close();
         }
     }
-    ToolbarCtrl.$inject = ['$timeout', 'currentWindowService', 'storeService'];
+    ToolbarCtrl.$inject = ['$timeout', 'currentWindowService'];
 
     angular.module('openfin.toolbar')
         .controller('ToolbarCtrl', ToolbarCtrl);

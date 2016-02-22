@@ -2,16 +2,11 @@
     'use strict';
 
     class ClosedWindowsCtrl {
-        constructor(storeService) {
-            this.storeService = storeService;
-            this.refreshClosedWindows();
-        }
         refreshClosedWindows() {
-            this.storeService.refreshStore();
-            this.closedWindows = this.storeService.getPreviousClosedWindows();
+            this.closedWindows = window.storeService.getPreviousClosedWindows();
         }
     }
-    ClosedWindowsCtrl.$inject = ['storeService'];
+    ClosedWindowsCtrl.$inject = [];
 
     angular.module('openfin.closedWindows')
         .controller('ClosedWindowsCtrl', ClosedWindowsCtrl);
