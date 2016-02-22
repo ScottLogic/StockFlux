@@ -104,17 +104,12 @@
         getPreviousOpenWindowNames() {
             return (this.storage || [])
                 .filter((store) => store.closed === 0)
-                .map((store) => store.id);
-        }
-
-        getPreviousClosedWindowNames() {
-            return (this.storage || [])
-                .filter((store) => store.closed > 0)
-                .map((store) => store.id);
+                .map((store) => store);
         }
 
         getPreviousClosedWindows() {
-            return this.getPreviousClosedWindowNames().map((name) => this.open(name).store);
+            return (this.storage || [])
+                .filter((store) => store.closed > 0);
         }
 
         open(windowName) {
