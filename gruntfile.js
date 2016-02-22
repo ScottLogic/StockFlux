@@ -172,7 +172,7 @@ module.exports = function(grunt) {
         concat: {
             dist: {
                 src: ['src/**/*.js', '!src/config-service.js', '!src/parent-controller.js',
-                      '!src/parentApp.js'],
+                      '!src/parentApp.js', '!src/window-service.js'],
                 dest: 'public/app.js'
             },
             parent: {
