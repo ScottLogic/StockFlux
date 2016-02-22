@@ -8,17 +8,19 @@
             this.store = null;
             this.window = null;
             this.maximised = false;
-            this.compact = false;
             this.oldSize = null;
             currentWindowService.ready(this.onReady.bind(this));
         }
 
-        onReady() {
+        isCompact() {
             if (!this.store && window.storeService) {
                 this.store = window.storeService.open(window.name);
             }
 
-            this.compact = this.store && this.store.isCompact();
+            return this.store && this.store.isCompact();
+        }
+
+        onReady() {
             this.window = this.currentWindowService.getCurrentWindow();
             this.window.addEventListener('maximized', () => {
                 this.$timeout(() => {
@@ -51,17 +53,17 @@
                 this.store = window.storeService.open(window.name);
             }
 
-            this.compact = !this.compact;
-            if (this.compact) {
+            this.store.toggleCompact();
+            var compact = this.isCompact();
+            if (compact) {
                 this.window.getBounds(bounds => {
                     this.oldSize = [bounds.width, bounds.height];
                 });
             }
 
-            this.store.toggleCompact(this.compact);
-            window.windowService.updateOptions(this.window, this.compact);
+            window.windowService.updateOptions(this.window, compact);
 
-            if (this.compact) {
+            if (compact) {
                 this.window.resizeTo(230, 500, 'top-right');
             }
             else if (this.maximised) {
