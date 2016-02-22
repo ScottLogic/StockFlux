@@ -173,7 +173,9 @@
                                                 windowService.createMainWindow(null, store.isCompact(), (newWindow) => {
                                                     newWindow.resizeTo(mainApplicationWindowPosition.width, mainApplicationWindowPosition.height, 'top-left');
                                                     newWindow.moveTo(e.screenX, e.screenY);
-                                                    window.storeService.open(newWindow.name).add(scope.stock);
+                                                    var newStore = window.storeService.open(newWindow.name);
+                                                    newStore.add(scope.stock);
+                                                    newStore.toggleCompact();
                                                 });
                                             }
 
