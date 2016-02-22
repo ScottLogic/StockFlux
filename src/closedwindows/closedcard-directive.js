@@ -1,11 +1,11 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.closedcard')
-        .directive('closedcard', [function() {
+    angular.module('openfin.closedCard')
+        .directive('closedCard', [() => {
             return {
                 restrict: 'E',
-                templateUrl: 'closedwindows/closedcard.html',
+                templateUrl: 'closedWindows/closedCard.html',
                 scope: {
                     cwindow: '='
                 }

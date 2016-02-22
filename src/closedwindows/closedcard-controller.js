@@ -1,13 +1,13 @@
 (function() {
     'use strict';
 
-    class ClosedcardCtrl {
+    class ClosedCardCtrl {
         constructor() {
 
         }
     }
-    ClosedcardCtrl.$inject = [];
+    ClosedCardCtrl.$inject = [];
 
-    angular.module('openfin.closedcard', [])
-        .controller('ClosedcardCtrl', ClosedcardCtrl);
+    angular.module('openfin.closedCard')
+        .controller('ClosedCardCtrl', ClosedCardCtrl);
 }());
