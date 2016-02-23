@@ -11,6 +11,19 @@
             this.maximised = false;
             this.oldSize = null;
             currentWindowService.ready(this.onReady.bind(this));
+
+            this.maximisedEvent = () => {
+                this.$timeout(() => {
+                    this.maximised = true;
+                });
+            };
+
+            this.restoredEvent = () => {
+                this.$timeout(() => {
+                    this.maximised = false;
+                });
+            };
+
             this._watch();
         }
 
@@ -24,17 +37,8 @@
 
         onReady() {
             this.window = this.currentWindowService.getCurrentWindow();
-            this.window.addEventListener('maximized', () => {
-                this.$timeout(() => {
-                    this.maximised = true;
-                });
-            });
-
-            this.window.addEventListener('restored', () => {
-                this.$timeout(() => {
-                    this.maximised = false;
-                });
-            });
+            this.window.addEventListener('maximized', this.maximisedEvent);
+            this.window.addEventListener('restored', this.restoredEvent);
         }
 
         minimiseClick() {
@@ -85,6 +89,8 @@
         }
 
         closeClick() {
+            this.window.removeEventListener('maximized', this.maximisedEvent);
+            this.window.removeEventListener('restored', this.restoredEvent);
             this.window.close();
         }
 

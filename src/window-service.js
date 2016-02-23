@@ -168,11 +168,14 @@
                 });
             }
 
-            mainWindow.addEventListener('closed', (e) => {
+            var closedEvent = (e) => {
                 this.windowTracker.dispose(mainWindow, () => {
                     this.storeService.open(mainWindow.name).closeWindow();
+                    mainWindow.removeEventListener('closed', closedEvent);
                 });
-            });
+            };
+
+            mainWindow.addEventListener('closed', closedEvent);
         }
 
         createTearoutWindow(parentName) {
