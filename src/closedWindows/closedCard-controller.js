@@ -3,8 +3,9 @@
 
     class ClosedCardCtrl {
         openClosedWindow(name) {
-            window.windowService.createMainWindow(name, false);
-            window.storeService.open(name).openWindow();
+            var store = window.storeService.open(name);
+            window.windowService.createMainWindow(name, store.isCompact());
+            store.openWindow();
         }
     }
     ClosedCardCtrl.$inject = [];
