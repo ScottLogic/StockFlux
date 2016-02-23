@@ -25,7 +25,7 @@
             <div ng-show="closedTabsShow" class="favClosedCover" ng-click="closedTabsShow = false">
                 <div class="closedSelection">
                     <div ng-repeat="closedWindow in closedWindowsCtrl.closedWindows | orderBy:'-closed'">
-                      <closed-card cwindow="closedWindow">
+                      <closed-card cardWindow="closedWindow">
                       </closed-card>
                     </div>
                 </div>

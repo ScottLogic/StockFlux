@@ -7,7 +7,7 @@
                 restrict: 'E',
                 templateUrl: 'closedWindows/closedCard.html',
                 scope: {
-                    cwindow: '='
+                    cardWindow: '='
                 },
                 controller: 'ClosedCardCtrl',
                 controllerAs: 'closedCardCtrl'
