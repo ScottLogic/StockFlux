@@ -10,6 +10,8 @@
                     stock: '=',
                     selection: '&',
                     select: '&',
+                    singleClick: '&',
+                    doubleClick: '&',
                     icon: '&',
                     single: '&'
                 }

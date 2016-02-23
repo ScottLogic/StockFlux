@@ -32,6 +32,20 @@
             this.selectionService.select(stock);
         }
 
+        singleClick(stock) {
+            if (!window.storeService.open(window.name).isCompact()) {
+                this.select(stock);
+            }
+        }
+
+        doubleClick(stock) {
+            var store = window.storeService.open(window.name);
+            if (store.isCompact()) {
+                this.select(stock);
+                store.toggleCompact();
+            }
+        }
+
         noFavourites() {
             return this.stocks.length === 0;
         }
