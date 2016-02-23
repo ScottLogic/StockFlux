@@ -16,6 +16,7 @@
 
                         var windowService = window.windowService;
                         var tearoutWindow = windowService.createTearoutWindow(window.name);
+                        var me = {};
 
                         function initialiseTearout() {
                             var myDropTarget = tearElement.parentNode,
@@ -25,8 +26,6 @@
                                 currentlyDragging = false,
                                 insideMainWindow = true,
                                 dragService;
-
-                            var me = {};
 
                             hoverService.add(myHoverArea, scope.stock.code);
 
@@ -212,9 +211,7 @@
                                 }
                             }
 
-                            // On the `bounds-changing` event check to see if you are over a potential drop target.
-                            // If so update the drop target.
-                            tearoutWindow.addEventListener('bounds-changing', () => {
+                            me.boundsChangingEvent = () => {
                                 // Check if you are over a drop target by seeing if the tearout rectangle intersects the drop target
                                 var nativeWindow = tearoutWindow.getNativeWindow(),
                                     tearoutRectangle = geometryService.rectangle(geometryService.getWindowPosition(nativeWindow));
@@ -223,7 +220,11 @@
                                 if (insideMainWindow) {
                                     reorderFavourites(tearoutRectangle);
                                 }
-                            });
+                            };
+
+                            // On the `bounds-changing` event check to see if you are over a potential drop target.
+                            // If so update the drop target.
+                            tearoutWindow.addEventListener('bounds-changing', me.boundsChangingEvent);
 
                             dragElement.addEventListener('mousedown', me.handleMouseDown);
                             document.addEventListener('mousemove', me.handleMouseMove, true);
@@ -232,6 +233,10 @@
 
                         function dispose() {
                             hoverService.remove(scope.stock.code);
+                            tearoutWindow.removeEventListener('bounds-changing', me.boundsChangingEvent);
+                            dragElement.removeEventListener('mousedown', me.handleMouseDown);
+                            document.removeEventListener('mousemove', me.handleMouseMove);
+                            document.removeEventListener('mouseup', me.handleMouseUp);
                         }
 
                         scope.$on('$destroy', () => {
