@@ -10,8 +10,8 @@
                     <p>Use the search tab to add new stocks to the list.</p>
                 </div>
                 <div ng-repeat="stock in favouritesCtrl.stocks | orderBy: 'index'">
-                    <favourite selection="favouritesCtrl.selection()" select="favouritesCtrl.select(stock)" 
-                               single-click="favouritesCtrl.singleClick(stock)" double-click="favouritesCtrl.doubleClick(stock)" 
+                    <favourite selection="favouritesCtrl.selection()" select="favouritesCtrl.select(stock)"
+                               single-click="favouritesCtrl.singleClick(stock)" double-click="favouritesCtrl.doubleClick(stock)"
                                single="favouritesCtrl.single()" stock="stock" icon="favouritesCtrl.icon(stock)">
                     </favourite>
                 </div>
@@ -25,8 +25,7 @@
             <div ng-show="closedTabsShow" class="favClosedCover" ng-click="closedTabsShow = false">
                 <div class="closedSelection">
                     <div ng-repeat="closedWindow in closedWindowsCtrl.closedWindows | orderBy:'-closed'">
-                      <closed-card card-window="closedWindow">
-                      </closed-card>
+                        <closed-card card-window="closedWindow"></closed-card>
                     </div>
                 </div>
             </div>
