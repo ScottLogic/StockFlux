@@ -5,15 +5,16 @@
         defaultStocks = ['AAPL', 'MSFT', 'TITN', 'SNDK', 'TSLA'],
         closedCacheSize = 5;
 
+    var storage;
+
     class StoreWrapper {
-        constructor($rootScope, storage, store) {
+        constructor($rootScope, store) {
             this.$rootScope = $rootScope;
-            this.storage = storage;
             this.store = store;
         }
 
         save() {
-            localStorage.setItem(KEY_NAME, JSON.stringify(this.storage));
+            localStorage.setItem(KEY_NAME, JSON.stringify(storage));
         }
 
         update(stock) {
@@ -76,15 +77,15 @@
             //
             // TODO: This doesn't really belong here -- modifying the global storage object in a wrapper for
             // a specific store doesn't seem correct
-            var closedArray = this.storage.filter((store) => store.closed !== 0);
+            var closedArray = storage.filter((store) => store.closed !== 0);
             if (closedArray.length > closedCacheSize) {
                 closedArray.sort((a, b) => {
                     return b.closed - a.closed;
                 });
 
                 for (var i = closedCacheSize, max = closedArray.length; i < max; i++) {
-                    var storageIndex = this.storage.indexOf(closedArray[i]);
-                    this.storage.splice(storageIndex, 1);
+                    var storageIndex = storage.indexOf(closedArray[i]);
+                    storage.splice(storageIndex, 1);
                 }
             }
 
@@ -95,28 +96,32 @@
     class StoreService {
         constructor($rootScope) {
             this.$rootScope = $rootScope;
-
-            this.storage = JSON.parse(localStorage.getItem(KEY_NAME));
+            storage = JSON.parse(localStorage.getItem(KEY_NAME));
         }
 
         getPreviousOpenWindowNames() {
-            return (this.storage || [])
+            return (storage || [])
                 .filter((store) => store.closed === 0)
                 .map((store) => store.id);
         }
 
+        getPreviousClosedWindows() {
+            return (storage || [])
+                .filter((store) => store.closed > 0);
+        }
+
         open(windowName) {
-            var windowIndex = (this.storage || []).map((window) => window.id)
+            var windowIndex = (storage || []).map((window) => window.id)
                     .indexOf(windowName),
                 store;
 
             if (windowIndex > -1) {
-                store = this.storage[windowIndex];
+                store = storage[windowIndex];
             } else {
                 var stocks = [];
-                if (!this.storage) {
+                if (!storage) {
                     stocks = defaultStocks;
-                    this.storage = [];
+                    storage = [];
                 }
 
                 var newStore = {
@@ -126,12 +131,12 @@
                     compact: false
                 };
 
-                this.storage.push(newStore);
+                storage.push(newStore);
 
                 store = newStore;
             }
 
-            return new StoreWrapper(this.$rootScope, this.storage, store);
+            return new StoreWrapper(this.$rootScope, store);
         }
     }
     StoreService.$inject = ['$rootScope'];

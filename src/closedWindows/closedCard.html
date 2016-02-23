@@ -1,0 +1,7 @@
+<div class="closed-card" ng-click="closedCardCtrl.openClosedWindow(cardWindow.id)">
+    <div class="closed-time">{{cardWindow.closed | date:'dd MMM yyyy HH:mm:ss'}}
+    </div>
+    <span class="closed-stock" ng-repeat="stock in cardWindow.stocks">
+        {{stock}}{{$last ? '' : ', '}}
+    </span>
+</div>
