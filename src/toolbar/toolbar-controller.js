@@ -2,7 +2,8 @@
     'use strict';
 
     class ToolbarCtrl {
-        constructor($timeout, currentWindowService) {
+        constructor($scope, $timeout, currentWindowService) {
+            this.$scope = $scope;
             this.$timeout = $timeout;
             this.currentWindowService = currentWindowService;
             this.store = null;
@@ -10,6 +11,7 @@
             this.maximised = false;
             this.oldSize = null;
             currentWindowService.ready(this.onReady.bind(this));
+            this._watch();
         }
 
         isCompact() {
@@ -48,17 +50,10 @@
             this.window.resizeTo(1280, 720, 'top-right');
         }
 
-        compactClick() {
-            if (!this.store) {
-                this.store = window.storeService.open(window.name);
-            }
-
-            this.store.toggleCompact();
+        _compactChanged() {
             var compact = this.isCompact();
             if (compact) {
-                this.window.getBounds(bounds => {
-                    this.oldSize = [bounds.width, bounds.height];
-                });
+                this.oldSize = [window.outerWidth, window.outerHeight];
             }
 
             window.windowService.updateOptions(this.window, compact);
@@ -81,11 +76,25 @@
             }
         }
 
+        compactClick() {
+            if (!this.store) {
+                this.store = window.storeService.open(window.name);
+            }
+
+            this.store.toggleCompact();
+        }
+
         closeClick() {
             this.window.close();
         }
+
+        _watch() {
+            this.$scope.$watch(
+                () => this.isCompact(),
+                () => this._compactChanged());
+        }
     }
-    ToolbarCtrl.$inject = ['$timeout', 'currentWindowService'];
+    ToolbarCtrl.$inject = ['$scope', '$timeout', 'currentWindowService'];
 
     angular.module('openfin.toolbar')
         .controller('ToolbarCtrl', ToolbarCtrl);

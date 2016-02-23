@@ -59,8 +59,9 @@
             this.update(stock);
         }
 
-        toggleCompact() {
-            this.store.compact = !this.store.compact;
+        toggleCompact(isCompact) {
+            this.store.compact = arguments.length ? isCompact : !this.store.compact;
+
             this.save();
         }
 
