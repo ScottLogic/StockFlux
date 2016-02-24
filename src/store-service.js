@@ -79,9 +79,6 @@
             this.save();
 
             // Trim the oldest closed store
-            //
-            // TODO: This doesn't really belong here -- modifying the global storage object in a wrapper for
-            // a specific store doesn't seem correct
             var closedArray = storage.filter((store) => store.closed !== 0);
             if (closedArray.length > closedCacheSize) {
                 closedArray.sort((a, b) => {
