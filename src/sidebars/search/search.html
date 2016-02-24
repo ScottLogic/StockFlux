@@ -1,7 +1,7 @@
 <div ng-keydown="searchCtrl.onSearchKeyDown($event)">
   <div>
       <img src="assets/svg/search_tab.svg" class="top-icon" />
-      <input class="sidetab" type="text" maxlength="20" placeholder="Enter stock name or symbol"
+      <input class="sidetab" id="searchInput" type="text" maxlength="20" placeholder="Enter stock name or symbol"
              ng-show="sidebarCtrl.showSearches()" ng-model="searchCtrl.query"/>
   </div>
   <div id="searchScroll" class="sideScroll custom-scrollbar">

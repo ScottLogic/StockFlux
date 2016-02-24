@@ -7,13 +7,16 @@
     };
 
     class SidebarCtrl {
-        constructor() {
+        constructor($scope) {
             this._favouritesClass = classes.expanded;
             this._searchClass = classes.contracted;
 
             this._showSearches = false;
             this._showFavourites = true;
             this._searchSmall = true;
+            this.$scope = $scope;
+
+            this._watch();
         }
 
         searchClass() {
@@ -51,8 +54,25 @@
                 this._showFavourites = true;
             }
         }
+
+        _showSearchesChanged() {
+            var showSearches = this.showSearches();
+            if (showSearches) {
+                //Couldn't get it to work reliable in a synchronous/promise fashion
+                setTimeout(function() {
+                    document.getElementById('searchInput').focus();
+                }, 100);
+            }
+
+        }
+
+        _watch() {
+            this.$scope.$watch(
+                () => this.showSearches(),
+                () => this._showSearchesChanged());
+        }
     }
-    SidebarCtrl.$inject = [];
+    SidebarCtrl.$inject = ['$scope'];
 
     angular.module('openfin.sidebar')
         .controller('SidebarCtrl', SidebarCtrl);
