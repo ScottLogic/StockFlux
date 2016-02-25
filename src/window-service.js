@@ -141,7 +141,7 @@
                     successCb(newWindow);
                 }
 
-                this.storeService.open(name).openWindow();
+                this.storeService.open(newWindow.name).openWindow();
 
                 newWindow.show();
                 newWindow.bringToFront();
