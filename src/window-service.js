@@ -78,12 +78,13 @@
     }
 
     class DragService {
-        constructor(storeService, geometryService, windowTracker, tearoutWindow, $q) {
+        constructor(storeService, geometryService, windowTracker, tearoutWindow, $q, openFinWindow) {
             this.storeService = storeService;
             this.geometryService = geometryService;
             this.windowTracker = windowTracker;
             this.tearoutWindow = tearoutWindow;
             this.$q = $q;
+            this.openFinWindow = openFinWindow;
             this.otherInstance = null;
         }
 
@@ -92,7 +93,8 @@
                 result = false,
                 promises = [];
 
-            mainWindows.forEach((mainWindow) => {
+            var filteredWindows = mainWindows.filter((mw) => mw.name !== this.openFinWindow.name);
+            filteredWindows.forEach((mainWindow) => {
                 var deferred = this.$q.defer();
                 promises.push(deferred.promise);
                 mainWindow.getState((state) => {
@@ -229,8 +231,8 @@
             return this.windowTracker.getMainWindows().filter((w) => w.name === name)[0];
         }
 
-        registerDrag(tearoutWindow) {
-            return new DragService(this.storeService, this.geometryService, this.windowTracker, tearoutWindow, this.$q);
+        registerDrag(tearoutWindow, openFinWindow) {
+            return new DragService(this.storeService, this.geometryService, this.windowTracker, tearoutWindow, this.$q, openFinWindow);
         }
     }
     WindowCreationService.$inject = ['storeService', 'geometryService', '$q', 'configService'];

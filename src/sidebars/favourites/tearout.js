@@ -24,7 +24,7 @@
                                 myHoverArea = parent.getElementsByClassName('hover-area')[0],
                                 offset = { x: 0, y: 0 },
                                 currentlyDragging = false,
-                                insideMainWindow = true,
+                                insideFavouritesPane = true,
                                 dragService;
 
                             hoverService.add(myHoverArea, scope.stock.code);
@@ -119,7 +119,7 @@
                                     return false;
                                 }
 
-                                dragService = windowService.registerDrag(tearoutWindow);
+                                dragService = windowService.registerDrag(tearoutWindow, currentWindowService.getCurrentWindow());
 
                                 me.setCurrentlyDragging(true)
                                     .setOffset(e.offsetX, e.offsetY)
@@ -151,7 +151,7 @@
 
                                 if (currentlyDragging) {
                                     me.setCurrentlyDragging(false);
-                                    if (insideMainWindow) {
+                                    if (insideFavouritesPane) {
                                         me.returnFromTearout();
                                     } else {
                                         if (!store) {
@@ -167,11 +167,9 @@
                                                 dragService = null;
                                             } else {
                                                 // Create new window instance
-                                                var mainApplicationWindowPosition = geometryService.getWindowPosition(window);
-
                                                 var compact = store.isCompact();
                                                 windowService.createMainWindow(null, compact, (newWindow) => {
-                                                    newWindow.resizeTo(mainApplicationWindowPosition.width, mainApplicationWindowPosition.height, 'top-left');
+                                                    newWindow.resizeTo(window.outerWidth, window.outerHeight, 'top-left');
                                                     newWindow.moveTo(e.screenX, e.screenY);
                                                     var newStore = window.storeService.open(newWindow.name);
                                                     newStore.add(scope.stock);
@@ -191,13 +189,11 @@
                                 }
                             };
 
-                            function reorderFavourites(tearoutRectangle) {
+                            function reorderFavourites() {
                                 var hoverTargets = hoverService.get();
 
                                 for (var i = 0, max = hoverTargets.length; i < max; i++) {
-                                    var dropTargetRectangle = geometryService.rectangle(
-                                        geometryService.elementScreenPosition(geometryService.getWindowPosition(window), hoverTargets[i].hoverArea)),
-                                        overDropTarget = tearoutRectangle.intersects(dropTargetRectangle);
+                                    var overDropTarget = geometryService.elementIntersect(tearoutWindow, window, hoverTargets[i].hoverArea);
 
                                     if (overDropTarget) {
                                         if (!store) {
@@ -212,12 +208,10 @@
 
                             me.boundsChangingEvent = () => {
                                 // Check if you are over a drop target by seeing if the tearout rectangle intersects the drop target
-                                var nativeWindow = tearoutWindow.getNativeWindow(),
-                                    tearoutRectangle = geometryService.rectangle(geometryService.getWindowPosition(nativeWindow));
-                                insideMainWindow = geometryService.windowsIntersect(tearoutWindow, window);
+                                insideFavouritesPane = geometryService.elementIntersect(tearoutWindow, window, document.getElementsByClassName('favourites')[0]);
 
-                                if (insideMainWindow) {
-                                    reorderFavourites(tearoutRectangle);
+                                if (insideFavouritesPane) {
+                                    reorderFavourites();
                                 }
                             };
 
