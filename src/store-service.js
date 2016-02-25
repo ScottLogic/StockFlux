@@ -8,9 +8,10 @@
     var storage;
 
     class StoreWrapper {
-        constructor($rootScope, store) {
+        constructor($rootScope, store, windowName) {
             this.$rootScope = $rootScope;
             this.store = store;
+            this.windowName = windowName;
         }
 
         save() {
@@ -19,7 +20,7 @@
 
         update(stock) {
             this.save();
-            this.$rootScope.$broadcast('updateFavourites', stock);
+            this.$rootScope.$broadcast('updateFavourites', stock, this.windowName);
         }
 
         get() {
@@ -138,7 +139,7 @@
                 store = newStore;
             }
 
-            return new StoreWrapper(this.$rootScope, store);
+            return new StoreWrapper(this.$rootScope, store, windowName);
         }
     }
     StoreService.$inject = ['$rootScope'];
