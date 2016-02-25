@@ -129,11 +129,8 @@
 
         createMainWindow(name, isCompact, successCb) {
             var windowCreatedCb = (newWindow) => {
-                // TODO
-                // Begin super hack
                 newWindow.getNativeWindow().windowService = this;
                 newWindow.getNativeWindow().storeService = this.storeService;
-                // End super hack
 
                 this.windowTracker.add(newWindow);
 
