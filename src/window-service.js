@@ -225,8 +225,8 @@
             fin.desktop.main(cb);
         }
 
-        getWindows() {
-            return this.windowTracker.getMainWindows();
+        getWindow(name) {
+            return this.windowTracker.getMainWindows().filter((w) => w.name === name)[0];
         }
 
         registerDrag(tearoutWindow) {

@@ -20,13 +20,11 @@
                     windowCreationService.createMainWindow();
                 }
 
-                $scope.$on('updateFavourites', (event, data) => {
+                $scope.$on('updateFavourites', (event, stock, windowName) => {
                     var e = new Event('updateFavourites');
-                    e.stock = data;
-                    var openWindows = windowCreationService.getWindows();
-                    for (i = 0, max = openWindows.length; i < max; i++) {
-                        openWindows[i].getNativeWindow().dispatchEvent(e);
-                    }
+                    e.stock = stock;
+                    var openWindow = windowCreationService.getWindow(windowName);
+                    openWindow.getNativeWindow().dispatchEvent(e);
                 });
             });
         }
