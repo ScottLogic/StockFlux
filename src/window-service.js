@@ -144,6 +144,7 @@
 
                 newWindow.show();
                 newWindow.bringToFront();
+                this.snapToScreenBounds(newWindow);
             };
 
             var mainWindow;
@@ -179,30 +180,45 @@
             mainWindow.addEventListener('closed', closedEvent);
         }
 
+        snapToScreenBounds(targetWindow) {
+            fin.desktop.System.getMonitorInfo((info) => {
+                targetWindow.getBounds((bounds) => {
+
+                    var workingArea = info.virtualScreen;
+
+                    var opposites = {
+                        'top': 'bottom',
+                        'bottom': 'top',
+                        'left': 'right',
+                        'right': 'left'
+                    };
+
+                    let targetDelta = opposites[info.taskbar.edge];
+                    workingArea[info.taskbar.edge] = info.taskbar.rect[targetDelta];
+
+                    if (bounds.left < workingArea.left) {
+                        bounds.left = workingArea.left;
+                    } else if (bounds.left + bounds.width > workingArea.right) {
+                        bounds.left = workingArea.right - bounds.width;
+                    }
+
+                    if (bounds.top < workingArea.top) {
+                        bounds.top = workingArea.top;
+                    } else if (bounds.top + bounds.height > workingArea.bottom) {
+                        bounds.top = workingArea.bottom - bounds.height;
+                    }
+
+                    targetWindow.setBounds(bounds.left, bounds.top, bounds.width, bounds.height);
+                });
+            });
+        }
+
         createTearoutWindow(parentName) {
             var tearoutWindow = new fin.desktop.Window(this.configService.getTearoutConfig());
 
             this.windowTracker.addTearout(parentName, tearoutWindow);
 
             return tearoutWindow;
-        }
-
-        updateOptions(_window, isCompact) {
-            if (isCompact) {
-                _window.updateOptions({
-                    resizable: false,
-                    minHeight: 500,
-                    minWidth: 230,
-                    maximizable: false
-                });
-            } else {
-                _window.updateOptions({
-                    resizable: true,
-                    minHeight: 510,
-                    minWidth: 918,
-                    maximizable: true
-                });
-            }
         }
 
         updateOptions(_window, isCompact) {
