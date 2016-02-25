@@ -1,6 +1,11 @@
 (function() {
     'use strict';
 
+    const defaultWidth = 1280,
+        defaultHeight = 720,
+        compactWidth = 230,
+        compactHeight = 500;
+
     class ToolbarCtrl {
         constructor($scope, $timeout, currentWindowService) {
             this.$scope = $scope;
@@ -10,7 +15,11 @@
             this.window = null;
             this.maximised = false;
             this.oldSize = null;
-            currentWindowService.ready(this.onReady.bind(this));
+            currentWindowService.ready(() => {
+                var boundReady = this.onReady.bind(this);
+                boundReady();
+                this._watch();
+            });
 
             this.maximisedEvent = () => {
                 this.$timeout(() => {
@@ -23,8 +32,6 @@
                     this.maximised = false;
                 });
             };
-
-            this._watch();
         }
 
         isCompact() {
@@ -51,26 +58,26 @@
 
         normalSizeClick() {
             this.window.restore();
-            this.window.resizeTo(1280, 720, 'top-right');
+            this.window.resizeTo(defaultWidth, defaultHeight, 'top-right');
         }
 
         _compactChanged() {
-            var compact = this.isCompact();
-            if (compact) {
+            var becomingCompact = this.isCompact();
+            if (becomingCompact && window.outerWidth !== compactWidth) {
                 this.oldSize = [window.outerWidth, window.outerHeight];
             }
 
-            window.windowService.updateOptions(this.window, compact);
+            window.windowService.updateOptions(this.window, becomingCompact);
 
-            if (compact) {
-                this.window.resizeTo(230, 500, 'top-right');
+            if (becomingCompact) {
+                this.window.resizeTo(compactWidth, compactHeight, 'top-right');
             }
             else if (this.maximised) {
                 this.window.maximize();
             }
             else {
-                var width = 1280,
-                    height = 720;
+                var width = defaultWidth,
+                    height = defaultHeight;
                 if (this.oldSize) {
                     width = this.oldSize[0];
                     height = this.oldSize[1];

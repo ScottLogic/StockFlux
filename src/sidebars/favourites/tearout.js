@@ -7,7 +7,7 @@
                 return {
                     restrict: 'C',
                     link: (scope, element, attrs) => {
-                        // TODO: Improve this. Search for first class element upwards?
+                        // Finding the tear element is tightly coupled to the HTML layout.
                         var dragElement = element[0],
                             tearElement = dragElement.parentNode.parentNode,
                             tileWidth = tearElement.clientWidth || 230,
@@ -200,7 +200,6 @@
                                         overDropTarget = tearoutRectangle.intersects(dropTargetRectangle);
 
                                     if (overDropTarget) {
-                                        // TODO: This is where the pause will go, and the highlighting.
                                         if (!store) {
                                             store = window.storeService.open(window.name);
                                         }
