@@ -27,20 +27,15 @@
 
                         hoverService.add(myHoverArea, scope.stock.code);
 
-                        // The distance from where the mouse click occurred from the origin of the element that will be torn out.
-                        // This is to place the tearout window exactly over the tornout element
                         function setOffset(x, y) {
                             offset.x = x;
                             offset.y = y;
                         }
 
-                        // Sets whether the tearout window is being dragged.
-                        // Used to determine whether `mousemove` events should programmatically move the tearout window
                         function setCurrentlyDragging(dragging) {
                             currentlyDragging = dragging;
                         }
 
-                        // A call to the OpenFin API to move the tearout window
                         function moveTearoutWindow(x, y) {
                             var tileTopPadding = 5,
                                 tileRightPadding = 5,
@@ -51,49 +46,25 @@
                                 y - (tileTopPadding + offset.y));
                         }
 
-                        // A call to the OpenFin API to both show the tearout window and ensure that
-                        // it is displayed in the foreground
                         function displayTearoutWindow() {
                             tearoutWindow.show();
                             tearoutWindow.setAsForeground();
                         }
 
-                        // Inject the element being tornout into the new, tearout, window
                         function appendToOpenfinWindow(injection, openfinWindow) {
-                            openfinWindow
-                                .contentWindow
-                                .document
-                                .body
-                                .appendChild(injection);
+                            openfinWindow.contentWindow.document.body.appendChild(injection);
                         }
 
-                        // Grab the DOM element back from the tearout window and append the given container
                         function returnFromTearout() {
                             myDropTarget.appendChild(tearElement);
                             tearoutWindow.hide();
                         }
 
-                        // Clear out all the elements but keep the js context ;)
                         function clearIncomingTearoutWindow() {
-                            tearoutWindow
-                                .getNativeWindow()
-                                .document
-                                .body = tearoutWindow
-                                .getNativeWindow()
-                                .document.createElement('body');
+                            var document = tearoutWindow.getNativeWindow().document;
+                            document.body = document.createElement('body');
                         }
 
-                        // On a mousedown event, we grab our destination tearout window and inject
-                        // the DOM element to be torn out.
-                        //
-                        // `handleMouseDown` is the function assigned to the native `mousedown`
-                        // event on the element to be torn out. The param `e` is the native event
-                        // passed in by the event listener. The steps taken are as follows:
-                        // * Set the X and Y offsets to better position the tearout window
-                        // * Move the tearout window into position
-                        // * Clear out any DOM elements that may already be in the tearout window
-                        // * Move the DOM element to be torn out into the tearout
-                        // * Display the tearout window in the foreground
                         function handleMouseDown(e) {
                             if (e.button !== 0) {
                                 // Only process left clicks
@@ -115,20 +86,12 @@
                             displayTearoutWindow();
                         }
 
-                        // On a mousemove event, if we are in a dragging state, move the torn out window programmatically.
-                        //
-                        // `handleMouseMove` is the function assigned to the `mousemove` event on the `document`.
-                        // The param `e` is the native event passed in by the event listener.
-                        // If the `currentlyDragging` flag is true move the tearout window.
                         function handleMouseMove(e) {
                             if (currentlyDragging) {
                                 moveTearoutWindow(e.screenX, e.screenY);
                             }
                         }
 
-                        // On a mouseup event we reset the internal state to be ready for the next dragging event
-                        //
-                        // `handleMouseUp` is the function assigned to the `mouseup` event on the `document`.
                         function handleMouseUp(e) {
                             if (e.button !== 0) {
                                 // Only process left clicks
@@ -207,8 +170,6 @@
                             }
                         }
 
-                        // On the `bounds-changing` event check to see if you are over a potential drop target.
-                        // If so update the drop target.
                         tearoutWindow.addEventListener('bounds-changing', boundsChangingEvent);
 
                         dragElement.addEventListener('mousedown', handleMouseDown);
