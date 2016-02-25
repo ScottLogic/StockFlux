@@ -248,7 +248,13 @@
         }
 
         registerDrag(tearoutWindow, openFinWindow) {
-            return new DragService(this.storeService, this.geometryService, this.windowTracker, tearoutWindow, this.$q, openFinWindow);
+            return new DragService(
+                this.storeService,
+                this.geometryService,
+                this.windowTracker,
+                tearoutWindow,
+                this.$q,
+                openFinWindow);
         }
     }
     WindowCreationService.$inject = ['storeService', 'geometryService', '$q', 'configService'];

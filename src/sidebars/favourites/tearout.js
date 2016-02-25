@@ -193,7 +193,8 @@
                                 var hoverTargets = hoverService.get();
 
                                 for (var i = 0, max = hoverTargets.length; i < max; i++) {
-                                    var overDropTarget = geometryService.elementIntersect(tearoutWindow, window, hoverTargets[i].hoverArea);
+                                    var overDropTarget = geometryService.elementIntersect(
+                                        tearoutWindow, window, hoverTargets[i].hoverArea);
 
                                     if (overDropTarget) {
                                         if (!store) {
@@ -208,7 +209,8 @@
 
                             me.boundsChangingEvent = () => {
                                 // Check if you are over a drop target by seeing if the tearout rectangle intersects the drop target
-                                insideFavouritesPane = geometryService.elementIntersect(tearoutWindow, window, document.getElementsByClassName('favourites')[0]);
+                                insideFavouritesPane = geometryService.elementIntersect(
+                                    tearoutWindow, window, document.getElementsByClassName('favourites')[0]);
 
                                 if (insideFavouritesPane) {
                                     reorderFavourites();
