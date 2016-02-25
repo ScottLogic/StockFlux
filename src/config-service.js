@@ -59,6 +59,10 @@
                 url: 'tearout.html'
             };
         }
+
+        getTopCardOffset() {
+            return [268, 65];
+        }
     }
     ConfigService.$inject = [];
 
