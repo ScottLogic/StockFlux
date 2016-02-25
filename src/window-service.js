@@ -142,6 +142,7 @@
 
                 newWindow.show();
                 newWindow.bringToFront();
+                this.snapToScreenBounds(newWindow);
             };
 
             var mainWindow;
@@ -177,30 +178,33 @@
             mainWindow.addEventListener('closed', closedEvent);
         }
 
+        snapToScreenBounds(targetWindow) {
+            fin.desktop.System.getMonitorInfo((info) => {
+                targetWindow.getBounds((bounds) => {
+
+                    if (bounds.left < info.virtualScreen.left) {
+                        bounds.left = info.virtualScreen.left;
+                    } else if (bounds.left + bounds.width > info.virtualScreen.right) {
+                        bounds.left = info.virtualScreen.right - bounds.width;
+                    }
+
+                    if (bounds.top < info.virtualScreen.top) {
+                        bounds.top = info.virtualScreen.top;
+                    } else if (bounds.top + bounds.height > info.virtualScreen.bottom) {
+                        bounds.top = info.virtualScreen.bottom - bounds.height;
+                    }
+
+                    targetWindow.setBounds(bounds.left, bounds.top, bounds.width, bounds.height);
+                });
+            });
+        }
+
         createTearoutWindow(parentName) {
             var tearoutWindow = new fin.desktop.Window(this.configService.getTearoutConfig());
 
             this.windowTracker.addTearout(parentName, tearoutWindow);
 
             return tearoutWindow;
-        }
-
-        updateOptions(_window, isCompact) {
-            if (isCompact) {
-                _window.updateOptions({
-                    resizable: false,
-                    minHeight: 500,
-                    minWidth: 230,
-                    maximizable: false
-                });
-            } else {
-                _window.updateOptions({
-                    resizable: true,
-                    minHeight: 510,
-                    minWidth: 918,
-                    maximizable: true
-                });
-            }
         }
 
         updateOptions(_window, isCompact) {
