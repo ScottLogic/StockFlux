@@ -184,28 +184,16 @@
             fin.desktop.System.getMonitorInfo((info) => {
                 targetWindow.getBounds((bounds) => {
 
-                    var workingArea = info.virtualScreen;
-
-                    var opposites = {
-                        'top': 'bottom',
-                        'bottom': 'top',
-                        'left': 'right',
-                        'right': 'left'
-                    };
-
-                    let targetDelta = opposites[info.taskbar.edge];
-                    workingArea[info.taskbar.edge] = info.taskbar.rect[targetDelta];
-
-                    if (bounds.left < workingArea.left) {
-                        bounds.left = workingArea.left;
-                    } else if (bounds.left + bounds.width > workingArea.right) {
-                        bounds.left = workingArea.right - bounds.width;
+                    if (bounds.left < info.virtualScreen.left) {
+                        bounds.left = info.virtualScreen.left;
+                    } else if (bounds.left + bounds.width > info.virtualScreen.right) {
+                        bounds.left = info.virtualScreen.right - bounds.width;
                     }
 
-                    if (bounds.top < workingArea.top) {
-                        bounds.top = workingArea.top;
-                    } else if (bounds.top + bounds.height > workingArea.bottom) {
-                        bounds.top = workingArea.bottom - bounds.height;
+                    if (bounds.top < info.virtualScreen.top) {
+                        bounds.top = info.virtualScreen.top;
+                    } else if (bounds.top + bounds.height > info.virtualScreen.bottom) {
+                        bounds.top = info.virtualScreen.bottom - bounds.height;
                     }
 
                     targetWindow.setBounds(bounds.left, bounds.top, bounds.width, bounds.height);
