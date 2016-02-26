@@ -196,20 +196,53 @@
             mainWindow.addEventListener('closed', closedEvent);
         }
 
-        snapToScreenBounds(targetWindow) {
+        getTargetMonitor(x, y, callback) {
             fin.desktop.System.getMonitorInfo((info) => {
-                targetWindow.getBounds((bounds) => {
+                var monitors = info.nonPrimaryMonitors.concat(info.primaryMonitor);
+                let closestMonitor = monitors[0];
+                let closestDistance = Number.MAX_VALUE;
 
-                    if (bounds.left < info.virtualScreen.left) {
-                        bounds.left = info.virtualScreen.left;
-                    } else if (bounds.left + bounds.width > info.virtualScreen.right) {
-                        bounds.left = info.virtualScreen.right - bounds.width;
+                for (var monitor of monitors) {
+
+                    // If the window's top-left is within the monitor's bounds, use that + stop
+                    if (x >= monitor.monitorRect.left && x <= monitor.monitorRect.right &&
+                            y >= monitor.monitorRect.top && y <= monitor.monitorRect.bottom) {
+
+                        callback(monitor);
+                        return;
+
+                    } else {
+
+                        // Otherwise, keep track of the closest, and if the window is not
+                        // within any monitor bounds, use the closest.
+                        var midX = monitor.monitorRect.left + monitor.monitorRect.right / 2;
+                        var midY = monitor.monitorRect.top + monitor.monitorRect.bottom / 2;
+                        var distance = Math.pow(midX - x, 2) + Math.pow(midY - y, 2);
+                        if (distance < closestDistance) {
+                            closestDistance = distance;
+                            closestMonitor = monitor;
+                        }
+
+                    }
+                }
+                callback(closestMonitor);
+            });
+        }
+
+        snapToScreenBounds(targetWindow) {
+            targetWindow.getBounds((bounds) => {
+                this.getTargetMonitor(bounds.left, bounds.top, (monitor) => {
+
+                    if (bounds.left < monitor.availableRect.left) {
+                        bounds.left = monitor.availableRect.left;
+                    } else if (bounds.left + bounds.width > monitor.availableRect.right) {
+                        bounds.left = monitor.availableRect.right - bounds.width;
                     }
 
-                    if (bounds.top < info.virtualScreen.top) {
-                        bounds.top = info.virtualScreen.top;
-                    } else if (bounds.top + bounds.height > info.virtualScreen.bottom) {
-                        bounds.top = info.virtualScreen.bottom - bounds.height;
+                    if (bounds.top < monitor.availableRect.top) {
+                        bounds.top = monitor.availableRect.top;
+                    } else if (bounds.top + bounds.height > monitor.availableRect.bottom) {
+                        bounds.top = monitor.availableRect.bottom - bounds.height;
                     }
 
                     targetWindow.setBounds(bounds.left, bounds.top, bounds.width, bounds.height);
