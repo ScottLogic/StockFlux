@@ -51,6 +51,10 @@
                 this._showFavourites = true;
             }
         }
+
+        openGithub() {
+            fin.desktop.System.openUrlWithBrowser('https://github.com/ScottLogic/bitflux-openfin');
+        }
     }
     SidebarCtrl.$inject = [];
 
