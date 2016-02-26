@@ -16,7 +16,8 @@
         'openfin.minichart',
         'openfin.scroll',
         'openfin.closedWindows',
-        'openfin.closedCard'
+        'openfin.closedCard',
+        'openfin.version'
     ]);
 
     angular.module('openfin.main', []);
@@ -35,4 +36,5 @@
     angular.module('openfin.scroll', []);
     angular.module('openfin.closedWindows', []);
     angular.module('openfin.closedCard', []);
+    angular.module('openfin.version', []);
 }());
