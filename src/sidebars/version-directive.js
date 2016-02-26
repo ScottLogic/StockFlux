@@ -7,7 +7,7 @@
         .directive('insertVersion', ['version', (version) => {
             return {
                 restrict: 'A',
-                template: version.version
+                template: 'Github ' + version.version
             };
         }]);
 }());
