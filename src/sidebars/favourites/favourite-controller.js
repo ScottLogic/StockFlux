@@ -56,6 +56,10 @@
 
         update(updatedStock) {
             this.currentWindowService.ready(() => {
+                if (!window.storeService) {
+                    return;
+                }
+
                 if (!this.store) {
                     this.store = window.storeService.open(window.name);
                 }
