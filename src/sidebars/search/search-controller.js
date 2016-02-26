@@ -21,7 +21,12 @@
         }
 
         select(stock) {
-            this.selectionService.select(stock);
+            if (!this.store) {
+                this.store = window.storeService.open(window.name);
+            }
+            if (stock.favourite) {
+                this.selectionService.select(stock);
+            }
         }
 
         onSearchKeyDown(event) {
