@@ -17,6 +17,7 @@
         'openfin.scroll',
         'openfin.closedWindows',
         'openfin.closedCard',
+        'openfin.config',
         'openfin.version'
     ]);
 
@@ -29,12 +30,13 @@
     angular.module('openfin.sidebar', []);
     angular.module('openfin.filters', []);
     angular.module('openfin.star', ['openfin.selection']);
-    angular.module('openfin.tearout', ['openfin.geometry', 'openfin.hover', 'openfin.currentWindow']);
+    angular.module('openfin.tearout', ['openfin.geometry', 'openfin.hover', 'openfin.currentWindow', 'openfin.config']);
     angular.module('openfin.minichart', ['openfin.quandl']);
     angular.module('openfin.store', []);
     angular.module('openfin.currentWindow', []);
     angular.module('openfin.scroll', []);
     angular.module('openfin.closedWindows', []);
     angular.module('openfin.closedCard', []);
+    angular.module('openfin.config', []);
     angular.module('openfin.version', []);
 }());

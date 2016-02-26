@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('openfin.tearout')
-        .directive('tearable', ['geometryService', 'hoverService', 'currentWindowService',
-            (geometryService, hoverService, currentWindowService) => {
+        .directive('tearable', ['geometryService', 'hoverService', 'currentWindowService', 'configService',
+            (geometryService, hoverService, currentWindowService, configService) => {
                 return {
                     restrict: 'C',
                     link: (scope, element, attrs) => {
@@ -116,7 +116,8 @@
                                             var compact = store.isCompact();
                                             windowService.createMainWindow(null, compact, (newWindow) => {
                                                 newWindow.resizeTo(window.outerWidth, window.outerHeight, 'top-left');
-                                                newWindow.moveTo(e.screenX, e.screenY);
+                                                var newCardOffset = configService.getTopCardOffset();
+                                                newWindow.moveTo(e.screenX - newCardOffset[0], e.screenY - newCardOffset[1]);
                                                 var newStore = window.storeService.open(newWindow.name);
                                                 newStore.add(scope.stock);
                                                 newStore.toggleCompact(compact);
