@@ -1,6 +1,9 @@
 (function() {
     'use strict';
 
+    /**
+     * Responsible for starting the application, and sending events to the child windows.
+     */
     class ParentCtrl {
         constructor($scope, storeService, windowCreationService) {
             windowCreationService.ready(() => {

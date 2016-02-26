@@ -2,6 +2,11 @@
     'use strict';
     const poolSize = 3;
 
+    /**
+     * Manages a pool of OpenFin windows. The pool is used for performance improvements,
+     * as there is an overhead to creating new windows.
+     * When a window is taken from the pool a new one is created and added.
+     */
     class FreeWindowPool {
         constructor($q, configService) {
             this.pool = [];
@@ -30,6 +35,10 @@
         }
     }
 
+    /**
+     * Keeps an internal count and cache of the number of main application windows open.
+     * The count is used to know when the last window has been closed, to close the application.
+     */
     class WindowTracker {
         constructor() {
             this.openWindows = {};
@@ -77,6 +86,10 @@
         }
     }
 
+    /**
+     * Class to determine whether a stored tearout window is overlapping
+     * a different main window, and allow moving stocks between windows.
+     */
     class DragService {
         constructor(storeService, geometryService, windowTracker, tearoutWindow, $q, openFinWindow) {
             this.storeService = storeService;
@@ -116,6 +129,9 @@
         }
     }
 
+    /**
+     * Class that creates and governs OpenFin windows.
+     */
     class WindowCreationService {
         constructor(storeService, geometryService, $q, configService) {
             this.storeService = storeService;
