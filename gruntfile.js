@@ -200,6 +200,18 @@ module.exports = function(grunt) {
                     'public/app-parent.js': 'public/app-parent.js'
                 }
             }
+        },
+        bump: {
+            options: {
+                files: ['package.json', 'src/sidebars/version-directive.js'],
+                commit: true,
+                commitMessage: 'Release v%VERSION%',
+                commitFiles: ['package.json', 'src/sidebars/version-directive.js'],
+                createTag: true,
+                tagName: 'v%VERSION%',
+                tagMessage: 'Version %VERSION%',
+                push: false
+            }
         }
     });
 
@@ -218,6 +230,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-gh-pages');
     grunt.loadNpmTasks('grunt-babel');
+    grunt.loadNpmTasks('grunt-bump');
 
     grunt.registerTask('showcase', function() {
         var callback = this.async();
@@ -238,6 +251,7 @@ module.exports = function(grunt) {
     grunt.registerTask('serve', ['build', 'openfin:serve']);
     grunt.registerTask('createZip', ['build:uglify', 'download']);
     grunt.registerTask('ci', ['build:uglify', 'download']);
+    grunt.registerTask('release', ['bump:major']);
     grunt.registerTask('deploy', ['ci', 'gh-pages:origin']);
     grunt.registerTask('deploy:upstream', ['ci', 'gh-pages:upstream']);
     grunt.registerTask('default', ['serve']);
