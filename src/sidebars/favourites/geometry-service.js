@@ -45,42 +45,50 @@
                 otherOrigin.x < this.corner().x &&
                 otherOrigin.y < this.corner().y;
         }
+    }
 
+    // Helper function to retrieve the height, width, top, and left from a window object
+    function getWindowPosition(windowElement) {
+        return {
+            height: windowElement.outerHeight,
+            width: windowElement.outerWidth,
+            top: windowElement.screenY,
+            left: windowElement.screenX
+        };
+    }
+
+    // Calculate the screen position of an element
+    function elementScreenPosition(windowElement, element) {
+        var relativeElementPosition = element.getBoundingClientRect();
+
+        return {
+            height: relativeElementPosition.height,
+            width: relativeElementPosition.width,
+            top: windowElement.top + relativeElementPosition.top,
+            left: windowElement.left + relativeElementPosition.left
+        };
+    }
+
+    function intersectHelper(bounds1, bounds2) {
+        var rectangle1 = new Rectangle(bounds1),
+            rectangle2 = new Rectangle(bounds2);
+
+        return rectangle1.intersects(rectangle2);
     }
 
     class GeometryService {
-        rectangle(arg) {
-            return new Rectangle(arg);
-        }
-
-        // Helper function to retrieve the height, width, top, and left from a window object
-        getWindowPosition(windowElement) {
-            return {
-                height: windowElement.outerHeight,
-                width: windowElement.outerWidth,
-                top: windowElement.screenY,
-                left: windowElement.screenX
-            };
-        }
-
-        // Calculate the screen position of an element
-        elementScreenPosition(windowElement, element) {
-            var relativeElementPosition = element.getBoundingClientRect();
-
-            return {
-                height: relativeElementPosition.height,
-                width: relativeElementPosition.width,
-                top: windowElement.top + relativeElementPosition.top,
-                left: windowElement.left + relativeElementPosition.left
-            };
-        }
-
         windowsIntersect(openFinWindow, _window) {
-            var nativeWindow1 = openFinWindow.getNativeWindow(),
-                rectangle1 = this.rectangle(this.getWindowPosition(nativeWindow1)),
-                rectangle2 = this.rectangle(this.getWindowPosition(_window));
+            var nativeWindow = openFinWindow.getNativeWindow();
 
-            return rectangle1.intersects(rectangle2);
+            return intersectHelper(getWindowPosition(nativeWindow), getWindowPosition(_window));
+        }
+
+        elementIntersect(openFinWindow, _window, element) {
+            var nativeWindow = openFinWindow.getNativeWindow();
+
+            return intersectHelper(
+                getWindowPosition(nativeWindow),
+                elementScreenPosition(getWindowPosition(_window), element));
         }
     }
 

@@ -1,6 +1,6 @@
 {
   "name": "bitflux-openfin",
-  "version": "0.0.0",
+  "version": "8.0.0",
   "scripts": {
     "test": "grunt ci",
     "postinstall": "cd node_modules/BitFlux && npm i"
@@ -11,6 +11,7 @@
     "connect-livereload": "^0.4.0",
     "grunt": "^0.4.5",
     "grunt-babel": "^6.0.0",
+    "grunt-bump": "^0.7.0",
     "grunt-cli": "^0.1.13",
     "grunt-contrib-clean": "^0.7.0",
     "grunt-contrib-concat": "^0.5.1",
