@@ -2,6 +2,9 @@
 
     const RESIZE_NO_LIMIT = 50000;
 
+    /**
+     * Stores common configuration for the application.
+     */
     class ConfigService {
         createName() {
             return 'window' + Math.floor(Math.random() * 1000) + Math.ceil(Math.random() * 999);

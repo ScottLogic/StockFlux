@@ -7,6 +7,9 @@
 
     var storage;
 
+    /**
+     * Class for editing the contents of local storage.
+     */
     class StoreWrapper {
         constructor($rootScope, store, windowName) {
             this.$rootScope = $rootScope;
@@ -96,6 +99,9 @@
         }
     }
 
+    /**
+     * Class for querying and managing the local storage.
+     */
     class StoreService {
         constructor($rootScope) {
             this.$rootScope = $rootScope;
