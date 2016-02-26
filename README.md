@@ -1,8 +1,14 @@
 # BitFlux-OpenFin
 
-Using OpenFin this will be a locally hosted financial charting application, pulling data from [Quandl](https://www.quandl.com/) and viewing it using the [BitFlux](http://scottlogic.github.io/BitFlux/).
+Bitflux Openfin is an implementation of a desktop app using Openfin, written using [AngularJS](https://angularjs.org/). It pulls data from [Quandl](https://www.quandl.com/), and displays it using [BitFlux](http://scottlogic.github.io/BitFlux/). You can search for new stocks, add stocks to favourites, and tear out stocks (similar to browser tabs). You can also collapse the window into a compact view.
 
-You can download the OpenFin demo from [here](http://scottlogic.github.io/bitflux-openfin/bitflux-openfin.zip).
+![Image of Bitflux Openfin](https://cloud.githubusercontent.com/assets/7962948/13354652/5a48e678-dc94-11e5-9e29-51a076cd3b28.PNG)
+
+## Installing
+
+You can download Bitflux Openfin from [here](http://scottlogic.github.io/bitflux-openfin/bitflux-openfin.zip). If you haven't already installed an OpenFin application, this will install the OpenFin runtime. It'll also add shortcuts to Bitflux Openfin to your desktop and start menu.
+
+Each application start up, it downloads the application from Github Pages, meaning that it will automatically update and that it cannot be used offline.
 
 ## Developing
 
@@ -30,9 +36,7 @@ npm install
 grunt build
 ```
 
-### Running
-
-#### Local OpenFin
+#### Running locally
 
 To run in an OpenFin shell run the grunt task
 
@@ -41,14 +45,6 @@ grunt serve
 ```
 
 The project is also accessible at http://localhost:5000
- 
-To package the application into an OpenFin exe run the task
-
-```
-grunt createZip
-```
-
-This will create a zip file for the OpenFinD3FC.exe, which can then be run locally in production.
 
 
 ## License
