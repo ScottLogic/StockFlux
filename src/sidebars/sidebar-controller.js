@@ -7,7 +7,8 @@
     };
 
     class SidebarCtrl {
-        constructor() {
+        constructor(currentWindowService) {
+            this.currentWindowService = currentWindowService;
             this._favouritesClass = classes.expanded;
             this._searchClass = classes.contracted;
 
@@ -51,8 +52,12 @@
                 this._showFavourites = true;
             }
         }
+
+        openGithub() {
+            this.currentWindowService.openUrlWithBrowser('https://github.com/ScottLogic/bitflux-openfin');
+        }
     }
-    SidebarCtrl.$inject = [];
+    SidebarCtrl.$inject = ['currentWindowService'];
 
     angular.module('openfin.sidebar')
         .controller('SidebarCtrl', SidebarCtrl);
