@@ -10,7 +10,7 @@
                     selection: '&'
                 },
                 link: (scope, element) => {
-                    var chart = bitflux.app().quandlApiKey(quandlService.apiKey()),
+                    var chart = bitflux.app().periodsOfDataToFetch(1200).quandlApiKey(quandlService.apiKey()),
                         firstRun = true;
 
                     scope.$watch('selection()', (newSelection, previousSelection) => {
