@@ -203,10 +203,10 @@ module.exports = function(grunt) {
         },
         bump: {
             options: {
-                files: ['package.json', 'src/sidebars/version-directive.js'],
+                files: ['package.json', 'src/main/version/version-controller.js'],
                 commit: true,
                 commitMessage: 'Release v%VERSION%',
-                commitFiles: ['package.json', 'src/sidebars/version-directive.js'],
+                commitFiles: ['package.json', 'src/main/version/version-controller.js'],
                 createTag: true,
                 tagName: 'v%VERSION%',
                 tagMessage: 'Version %VERSION%',
