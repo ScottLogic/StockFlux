@@ -9,7 +9,7 @@
           <div ng-repeat="stock in searchCtrl.stocks" ng-mouseenter="stock.isHovered = true;" ng-mouseleave="stock.isHovered = false;">
               <div class="search-result darkens {{searchCtrl.selection() !== stock.code ? '' : 'dark'}}" ng-click="searchCtrl.select(stock)">
                   <div class="details">
-                      <div id="stockName" class="name">{{stock.name | truncate}}</div>
+                      <div class="stock-name name">{{stock.name | truncate}}</div>
                       <div class="code">{{stock.code | uppercase}}</div>
                   </div>
                   <div class="star-icon" ng-controller="StarCtrl as starCtrl">
