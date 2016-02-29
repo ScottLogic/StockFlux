@@ -1,6 +1,7 @@
 (function() {
 
     const RESIZE_NO_LIMIT = 50000;
+    const BITFLUX_INITIAL_PROPORTION = 0.6;
 
     /**
      * Stores common configuration for the application.
@@ -65,6 +66,10 @@
 
         getTopCardOffset() {
             return [268, 65];
+        }
+
+        getInitialBitfluxProportion() {
+            return BITFLUX_INITIAL_PROPORTION;
         }
     }
     ConfigService.$inject = [];
