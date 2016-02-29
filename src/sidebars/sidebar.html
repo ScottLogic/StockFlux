@@ -17,13 +17,14 @@
                 </div>
             </div>
         </div>
-        <div ng-controller="ClosedWindowsCtrl as closedWindowsCtrl">
+        <div class="closed-window-selection" ng-controller="ClosedWindowsCtrl as closedWindowsCtrl">
             <div class="favClosed">
                 <icon name="closed_tabs" icon-click="closedWindowsCtrl.click(); $event.stopPropagation();"></icon>
             </div>
             <div ng-show="closedWindowsCtrl.closedTabsShow" class="favClosedCover" ng-click="closedWindowsCtrl.closedTabsShow = false">
+                <div class="bubble-head"></div>
                 <div class="closedSelection">
-                    <div ng-repeat="closedWindow in closedWindowsCtrl.closedWindows | orderBy:'-closed'">
+                    <div class="closed-card-container" ng-repeat="closedWindow in closedWindowsCtrl.closedWindows | orderBy:'-closed'">
                         <closed-card card-window="closedWindow"></closed-card>
                     </div>
                 </div>

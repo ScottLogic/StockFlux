@@ -35,9 +35,18 @@
   -webkit-animation-name: favourites;
 }
 
+.closed-window-selection {
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+    height: 40px;
+    width: @expanded-width;
+    border-top: 1px solid @dark-background;
+}
+
 .favClosed {
-  bottom: 15px;
-  left: 246px;
+  bottom: 10px;
+  right: 15px;
   position: absolute;
   height: 20px;
   width: 20px;
@@ -55,11 +64,20 @@
 .closedSelection {
   background: @light-background;
   position: fixed;
-  bottom: 40px;
-  left: 240px;
+  bottom: 45px;
+  left: 235px;
   width: 180px;
-  height: 350px;
-  box-shadow: 2px 2px 2px 2px @dark-background;
+  height: 353px;
+}
+
+.bubble-head {
+  position: absolute;
+  left: 250px;
+  bottom: 40px;
+  transform: rotate(45deg);
+  background-color: @light-background;
+  width: 10px;
+  height: 10px;
 }
 
 .contracted {
