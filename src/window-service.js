@@ -204,9 +204,11 @@
 
                 for (var monitor of monitors) {
 
+                    let monitorRect = monitor.monitorRect;
+
                     // If the window's top-left is within the monitor's bounds, use that + stop
-                    if (x >= monitor.monitorRect.left && x <= monitor.monitorRect.right &&
-                            y >= monitor.monitorRect.top && y <= monitor.monitorRect.bottom) {
+                    if (x >= monitorRect.left && x <= monitorRect.right &&
+                            y >= monitorRect.top && y <= monitorRect.bottom) {
 
                         callback(monitor);
                         return;
@@ -215,8 +217,8 @@
 
                         // Otherwise, keep track of the closest, and if the window is not
                         // within any monitor bounds, use the closest.
-                        var midX = monitor.monitorRect.left + monitor.monitorRect.right / 2;
-                        var midY = monitor.monitorRect.top + monitor.monitorRect.bottom / 2;
+                        var midX = monitorRect.left + monitorRect.right / 2;
+                        var midY = monitorRect.top + monitorRect.bottom / 2;
                         var distance = Math.pow(midX - x, 2) + Math.pow(midY - y, 2);
                         if (distance < closestDistance) {
                             closestDistance = distance;
@@ -233,16 +235,18 @@
             targetWindow.getBounds((bounds) => {
                 this.getTargetMonitor(bounds.left, bounds.top, (monitor) => {
 
-                    if (bounds.left < monitor.availableRect.left) {
-                        bounds.left = monitor.availableRect.left;
-                    } else if (bounds.left + bounds.width > monitor.availableRect.right) {
-                        bounds.left = monitor.availableRect.right - bounds.width;
+                    let availableRect = monitor.availableRect;
+
+                    if (bounds.left < availableRect.left) {
+                        bounds.left = availableRect.left;
+                    } else if (bounds.left + bounds.width > availableRect.right) {
+                        bounds.left = availableRect.right - bounds.width;
                     }
 
-                    if (bounds.top < monitor.availableRect.top) {
-                        bounds.top = monitor.availableRect.top;
-                    } else if (bounds.top + bounds.height > monitor.availableRect.bottom) {
-                        bounds.top = monitor.availableRect.bottom - bounds.height;
+                    if (bounds.top < availableRect.top) {
+                        bounds.top = availableRect.top;
+                    } else if (bounds.top + bounds.height > availableRect.bottom) {
+                        bounds.top = availableRect.bottom - bounds.height;
                     }
 
                     targetWindow.setBounds(bounds.left, bounds.top, bounds.width, bounds.height);
