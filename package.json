@@ -32,7 +32,7 @@
     "angular-animate": "^1.4.8",
     "angular-resource": "^1.4.8",
     "d3fc": "^5.2.0",
-    "BitFlux": "ScottLogic/BitFlux#cf81eab098cf6c6f4a4bd36269d9cfe21d4b449b",
+    "BitFlux": "bjedrzejewski/BitFlux#dddca873ab952c7d9f792c54155b4b73594e7ab3",
     "jquery": "^1.11.1",
     "malihu-custom-scrollbar-plugin": "^3.1.3",
     "moment": "^2.10.6"
