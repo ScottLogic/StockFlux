@@ -110,6 +110,7 @@
                                     dragService.overAnotherInstance((overAnotherInstance) => {
                                         if (overAnotherInstance) {
                                             dragService.moveToOtherInstance(scope.stock);
+                                            store.remove(scope.stock);
                                             dragService = null;
                                         } else {
                                             // Create new window instance
