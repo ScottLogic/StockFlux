@@ -27,7 +27,7 @@
     angular.module('openfin.icon', []);
     angular.module('openfin.search', ['openfin.quandl', 'openfin.selection', 'openfin.currentWindow']);
     angular.module('openfin.favourites', ['openfin.quandl', 'openfin.selection', 'openfin.currentWindow']);
-    angular.module('openfin.sidebar', ['openfin.currentWindow']);
+    angular.module('openfin.sidebar', []);
     angular.module('openfin.filters', []);
     angular.module('openfin.star', ['openfin.selection']);
     angular.module('openfin.tearout', ['openfin.geometry', 'openfin.hover', 'openfin.currentWindow', 'openfin.config']);
@@ -38,5 +38,5 @@
     angular.module('openfin.closedWindows', []);
     angular.module('openfin.closedCard', []);
     angular.module('openfin.config', []);
-    angular.module('openfin.version', []);
+    angular.module('openfin.version', ['openfin.currentWindow']);
 }());
