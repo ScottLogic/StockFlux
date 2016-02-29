@@ -3,7 +3,7 @@
         <div class="sidetab-top">
             <img src="assets/svg/favourite_TOP.svg" class="top-icon" />
         </div>
-        <div id="favScroll" class="sideScroll custom-scrollbar">
+        <div id="favourite-scroll" class="side-scroll custom-scrollbar">
             <div class="sidetab" ng-show="sidebarCtrl.showFavourites()">
                 <div class="no-favourites" ng-show="favouritesCtrl.noFavourites()">
                     <p>You have no favourites to display.</p>
@@ -18,12 +18,12 @@
             </div>
         </div>
         <div class="closed-window-selection" ng-controller="ClosedWindowsCtrl as closedWindowsCtrl">
-            <div class="favClosed">
+            <div class="favourite-closed">
                 <icon name="closed_tabs" icon-click="closedWindowsCtrl.click(); $event.stopPropagation();"></icon>
             </div>
-            <div ng-show="closedWindowsCtrl.closedTabsShow" class="favClosedCover" ng-click="closedWindowsCtrl.closedTabsShow = false">
+            <div ng-show="closedWindowsCtrl.closedTabsShow" class="favourite-closed-cover" ng-click="closedWindowsCtrl.closedTabsShow = false">
                 <div class="bubble-head"></div>
-                <div class="closedSelection">
+                <div class="closed-selection">
                     <div class="closed-card-container" ng-repeat="closedWindow in closedWindowsCtrl.closedWindows | orderBy:'-closed'">
                         <closed-card card-window="closedWindow"></closed-card>
                     </div>
