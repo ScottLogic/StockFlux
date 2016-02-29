@@ -4,6 +4,10 @@
     const BITFLUX_INITIAL_PROPORTION = 0.6;
     const BITFLUX_STOCK_AMOUNT = 1200;
 
+    // Be very careful changing the line below. It is replaced with a string.replace in the grunt build
+    // to disable the right click menu in release.
+    const allowContextMenu = true;
+
     /**
      * Stores common configuration for the application.
      */
@@ -15,6 +19,7 @@
         getWindowConfig(name) {
             return {
                 name: name || this.createName(),
+                contextMenu: allowContextMenu,
                 autoShow: false,
                 frame: false,
                 showTaskbarIcon: true,
@@ -34,6 +39,7 @@
         getCompactConfig(name) {
             return {
                 name: name || this.createName(),
+                contextMenu: allowContextMenu,
                 autoShow: false,
                 frame: false,
                 showTaskbarIcon: true,
@@ -53,6 +59,7 @@
         getTearoutConfig(name) {
             return {
                 name: name || this.createName(),
+                contextMenu: allowContextMenu,
                 autoShow: false,
                 frame: false,
                 maximizable: false,

@@ -25,6 +25,7 @@
     "grunt-http-download": "^0.1.0",
     "grunt-jsbeautifier": "^0.2.7",
     "grunt-openfin": ">=1.0.2",
+    "grunt-string-replace": "^1.2.1",
     "less": "^2.5.3"
   },
   "dependencies": {
