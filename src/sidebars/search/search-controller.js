@@ -21,7 +21,10 @@
         }
 
         select(stock) {
-            if (stock.favourite) {
+            if (!this.store) {
+                this.store = window.storeService.open(window.name);
+            }
+            if (!this.store.isCompact() && stock.favourite) {
                 this.selectionService.select(stock);
             }
         }
