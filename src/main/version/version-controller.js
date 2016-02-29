@@ -13,7 +13,7 @@
         }
 
         openGithub() {
-            this.currentWindowService.openUrlWithBrowser('https://github.com/ScottLogic/bitflux-openfin');
+            this.currentWindowService.openUrlWithBrowser('https://github.com/ScottLogic/stockflux');
         }
     }
     VersionCtrl.$inject = ['currentWindowService'];
