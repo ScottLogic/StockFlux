@@ -89,7 +89,7 @@ module.exports = function(grunt) {
         download: {
             openfinZip: {
                 src: ['https://dl.openfin.co/services/download?fileName=stockflux&config=http://scottlogic.github.io/stockflux/app.json'],
-                dest: './public/bitflux-openfin.zip'
+                dest: './public/stockflux.zip'
             }
         },
 
