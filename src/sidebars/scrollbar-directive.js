@@ -6,7 +6,7 @@
             return {
                 restrict: 'C',
                 link: (scope, element) => {
-                    var scrollPadding = 'scrollPadding';
+                    var scrollPadding = 'scroll-padding';
                     element.mCustomScrollbar(
                         {
                             scrollInertia: 0,
