@@ -9,6 +9,10 @@
   position: absolute;
   box-shadow: 2px 0px 2px @dark-background;
 
+  icon {
+    display: none;
+  }
+
   input {
     border: none;
     background: transparent;
@@ -73,6 +77,17 @@
 .compact {
   .compact-search {
     display: block;
+  }
+  .compact-search.expanded {
+    icon {
+      display: block;
+      #close-button {
+        position: relative;
+        float: right;
+        top: -17px;
+        right: 7px;
+      }
+    }
   }
   .main-search {
     display: none;
