@@ -277,4 +277,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('release', ['bump:major']);
 
+    grunt.registerTask('ci', ['build:release', 'download']);
+
 };
