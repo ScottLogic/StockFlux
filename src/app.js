@@ -35,7 +35,7 @@
     angular.module('openfin.store', []);
     angular.module('openfin.currentWindow', []);
     angular.module('openfin.scroll', []);
-    angular.module('openfin.closedWindows', []);
+    angular.module('openfin.closedWindows', ['openfin.closedCard']);
     angular.module('openfin.closedCard', []);
     angular.module('openfin.config', []);
     angular.module('openfin.version', ['openfin.currentWindow']);

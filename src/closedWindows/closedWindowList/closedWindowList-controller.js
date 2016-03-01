@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    class ClosedWindowsCtrl {
+    class ClosedWindowListCtrl {
         constructor() {
             this.closedWindows = [];
             this.closedTabsShow = false;
@@ -16,8 +16,8 @@
             this.closedTabsShow = this.closedWindows.length > 0;
         }
     }
-    ClosedWindowsCtrl.$inject = [];
+    ClosedWindowListCtrl.$inject = [];
 
     angular.module('openfin.closedWindows')
-        .controller('ClosedWindowsCtrl', ClosedWindowsCtrl);
+        .controller('ClosedWindowListCtrl', ClosedWindowListCtrl);
 }());
