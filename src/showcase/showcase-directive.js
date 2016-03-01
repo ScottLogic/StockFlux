@@ -33,9 +33,20 @@
 
                     scope.$watch('selection()', (newSelection, previousSelection) => {
                         if (newSelection !== '') {
+                            // The store service may not have been passed through yet.
+                            // If it hasn't been, get it for later, where we set the
+                            // indicators
+                            if (!store && window.storeService) {
+                                store = window.storeService.open(window.name);
+                            }
+
                             if (firstRun) {
                                 firstRun = false;
                                 chart.run(element[0].children[0]);
+                            }
+
+                            if (store) {
+                                chart.indicators(store.indicators());
                             }
 
                             if (newSelection !== previousSelection) {

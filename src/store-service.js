@@ -137,10 +137,10 @@
                 store = storage[windowIndex];
             } else {
                 var stocks = [];
-                var indicators = [];
+                // Shallow copy the default indicators
+                var indicators = defaultIndicators.slice();
                 if (!storage) {
                     stocks = defaultStocks;
-                    indicators = defaultIndicators;
                     storage = [];
                 }
 
