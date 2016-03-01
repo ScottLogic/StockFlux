@@ -24,7 +24,7 @@
             if (!this.store) {
                 this.store = window.storeService.open(window.name);
             }
-            if (!this.store.isCompact() && stock.favourite) {
+            if (!this.store.isCompact()) {
                 this.selectionService.select(stock);
             }
         }
