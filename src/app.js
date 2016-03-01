@@ -23,7 +23,7 @@
 
     angular.module('openfin.main', []);
     angular.module('openfin.showcase', ['openfin.selection', 'openfin.quandl', 'openfin.config']);
-    angular.module('openfin.toolbar', ['openfin.currentWindow']);
+    angular.module('openfin.toolbar', ['openfin.currentWindow', 'openfin.closedWindows']);
     angular.module('openfin.icon', []);
     angular.module('openfin.search', ['openfin.quandl', 'openfin.selection', 'openfin.currentWindow']);
     angular.module('openfin.favourites', ['openfin.quandl', 'openfin.selection', 'openfin.currentWindow']);
