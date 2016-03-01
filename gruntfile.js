@@ -217,7 +217,8 @@ module.exports = function(grunt) {
         'string-replace': {
             inline: {
                 files: {
-                    'public/app.js': 'public/app.js'
+                    'public/app.js': 'public/app.js',
+                    'public/app-parent.js': 'public/app-parent.js'
                 },
                 options: {
                     replacements: [{
