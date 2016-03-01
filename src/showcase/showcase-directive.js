@@ -11,7 +11,13 @@
                 },
                 link: (scope, element) => {
                     var chart = bitflux.app().quandlApiKey(quandlService.apiKey()),
-                        firstRun = true;
+                        firstRun = true,
+                        store;
+
+                    if (window.storeService) {
+                        store = window.storeService.open(window.name);
+                        chart.indicators(store.indicators());
+                    }
 
                     chart.periodsOfDataToFetch(configService.getBitfluxStockAmount());
                     chart.proportionOfDataToDisplayByDefault(configService.getInitialBitfluxProportion());
@@ -37,6 +43,15 @@
                             }
                         }
                     });
+
+                    scope.save = () => {
+                        if (!store && window.storeService) {
+                            store = window.storeService.open(window.name);
+                        }
+                        if (store) {
+                            store.indicators(chart.indicators());
+                        }
+                    };
                 }
             };
         }]);
