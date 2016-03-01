@@ -3,6 +3,7 @@
       <img src="assets/svg/search_tab.svg" class="top-icon" />
       <input class="sidetab" type="text" maxlength="20" placeholder="Enter stock name or symbol"
              ng-show="sidebarCtrl.showSearches()" ng-model="searchCtrl.query"/>
+      <icon name="close" icon-click="sidebarCtrl.favouritesClick()"></icon>
   </div>
   <div id="search-scroll" class="side-scroll custom-scrollbar">
       <div class="sidetab" ng-show="sidebarCtrl.showSearches()">
