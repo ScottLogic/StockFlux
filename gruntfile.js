@@ -212,6 +212,21 @@ module.exports = function(grunt) {
                 tagMessage: 'Version %VERSION%',
                 push: false
             }
+        },
+
+        'string-replace': {
+            inline: {
+                files: {
+                    'public/app.js': 'public/app.js',
+                    'public/app-parent.js': 'public/app-parent.js'
+                },
+                options: {
+                    replacements: [{
+                        pattern: 'const allowContextMenu = true;',
+                        replacement: 'const allowContextMenu = false;'
+                    }]
+                }
+            }
         }
     });
 
@@ -231,6 +246,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-gh-pages');
     grunt.loadNpmTasks('grunt-babel');
     grunt.loadNpmTasks('grunt-bump');
+    grunt.loadNpmTasks('grunt-string-replace');
 
     grunt.registerTask('showcase', function() {
         var callback = this.async();
@@ -246,13 +262,21 @@ module.exports = function(grunt) {
         });
     });
 
-    grunt.registerTask('build', ['eslint', 'clean', 'showcase', 'copy', 'concat', 'babel', 'less:development', 'connect:livereload']);
-    grunt.registerTask('build:uglify', ['build', 'uglify']);
-    grunt.registerTask('serve', ['build', 'openfin:serve']);
-    grunt.registerTask('createZip', ['build:uglify', 'download']);
-    grunt.registerTask('ci', ['build:uglify', 'download']);
-    grunt.registerTask('release', ['bump:major']);
-    grunt.registerTask('deploy', ['ci', 'gh-pages:origin']);
-    grunt.registerTask('deploy:upstream', ['ci', 'gh-pages:upstream']);
+    grunt.registerTask('concatenate', ['eslint', 'clean', 'showcase', 'copy', 'concat'])
+    grunt.registerTask('transpile', ['babel', 'less:development']);
+
+    grunt.registerTask('build:dev', ['concatenate', 'transpile', 'connect:livereload']);
+    grunt.registerTask('build:release', ['concatenate', 'string-replace', 'transpile', 'uglify', 'connect:livereload']);
+
+    grunt.registerTask('serve', ['build:dev', 'openfin:serve']);
     grunt.registerTask('default', ['serve']);
+
+    grunt.registerTask('createZip', ['build:release', 'download']);
+    grunt.registerTask('deploy', ['createZip', 'gh-pages:origin']);
+    grunt.registerTask('deploy:upstream', ['ci', 'gh-pages:upstream']);
+
+    grunt.registerTask('release', ['bump:major']);
+
+    grunt.registerTask('ci', ['build:release', 'download']);
+
 };
