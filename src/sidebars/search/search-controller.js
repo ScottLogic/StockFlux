@@ -148,6 +148,9 @@
                         // Update the stock's favourite
                         this.stocks[index].favourite = data.favourite;
                     }
+                // The stock doesn't exist, push it on if it's a favourite.
+                } else if (data.favourite) {
+                    this.stocks.push(data);
                 }
             });
         }

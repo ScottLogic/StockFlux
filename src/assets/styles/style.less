@@ -3,6 +3,7 @@
 
 @import "variables.less";
 @import "../../main/main.less";
+@import "../../main/version/version.less";
 @import "../../closedWindows/closedCard.less";
 @import "../../toolbar/toolbar.less";
 @import "../../sidebars/sidebar.less";
@@ -38,8 +39,10 @@ body {
 #showcase-title {
   color: @chart-teal;
   font-size: 20px;
-  float: right;
-  padding-right: 74px;
+  position: absolute;
+  right: 75px;
+  z-index: 10;
+  top: -12px;
 
   .code, .name {
     display: inline-block;

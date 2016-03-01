@@ -1,12 +1,12 @@
-# BitFlux-OpenFin
+# StockFlux
 
-Bitflux Openfin is an implementation of a desktop app using Openfin, written using [AngularJS](https://angularjs.org/). It pulls data from [Quandl](https://www.quandl.com/), and displays it using [BitFlux](http://scottlogic.github.io/BitFlux/). You can search for new stocks, add stocks to favourites, and tear out stocks (similar to browser tabs). You can also collapse the window into a compact view.
+StockFlux is an implementation of a desktop app using Openfin, written using [AngularJS](https://angularjs.org/). It pulls data from [Quandl](https://www.quandl.com/), and displays it using [BitFlux](http://scottlogic.github.io/BitFlux/). You can search for new stocks, add stocks to favourites, and tear out stocks (similar to browser tabs). You can also collapse the window into a compact view.
 
-![Image of Bitflux Openfin](https://cloud.githubusercontent.com/assets/7962948/13354652/5a48e678-dc94-11e5-9e29-51a076cd3b28.PNG)
+![Image of StockFlux](https://cloud.githubusercontent.com/assets/7962948/13354652/5a48e678-dc94-11e5-9e29-51a076cd3b28.PNG)
 
 ## Installing
 
-You can download Bitflux Openfin from [here](http://scottlogic.github.io/bitflux-openfin/bitflux-openfin.zip). If you haven't already installed an OpenFin application, this will install the OpenFin runtime. It'll also add shortcuts to Bitflux Openfin to your desktop and start menu.
+You can download StockFlux from [here](http://scottlogic.github.io/StockFlux/stockflux.zip). If you haven't already installed an OpenFin application, this will install the OpenFin runtime. It'll also add shortcuts to StockFlux to your desktop and start menu.
 
 Each application start up, it downloads the application from Github Pages, meaning that it will automatically update and that it cannot be used offline.
 

@@ -1,25 +1,25 @@
 {
     "devtools_port": 9090,
     "startup_app": {
-        "name": "OpenFinD3FC",
-        "uuid": "OpenFinD3FC",
+        "name": "StockFlux",
+        "uuid": "StockFlux",
         "maxWidth": 0,
         "maxHeight": 0,
         "defaultWidth": 0,
         "defaultHeight": 0,
         "frame": false,
         "showTaskbarIcon": false,
-        "url": "http://scottlogic.github.io/bitflux-openfin/parent.html",
-        "applicationIcon": "http://scottlogic.github.io/bitflux-openfin/favicon.ico"
+        "url": "http://scottlogic.github.io/stockflux/parent.html",
+        "applicationIcon": "http://scottlogic.github.io/stockflux/favicon.ico"
     },
     "runtime": {
         "arguments": "",
         "version": "stable"
     },
     "shortcut": {
-        "company": "OpenFin",
+        "company": "ScottLogic",
         "description": "Hosts BitFlux as an OpenFin application.",
-        "icon": "http://scottlogic.github.io/bitflux-openfin/favicon.ico",
-        "name": "OpenFinD3FC"
+        "icon": "http://scottlogic.github.io/stockflux/favicon.ico",
+        "name": "StockFlux"
     }
 }

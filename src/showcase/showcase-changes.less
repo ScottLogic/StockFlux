@@ -20,9 +20,14 @@
 
 #legend {
   background-color: default;
+  margin-top: 10px;
+
+  #tooltip {
+    padding-top: 10px;
+  }
 }
 
-#selectors {
+.selectors {
   button {
     cursor: default;
 
@@ -63,7 +68,7 @@
       }
     }
     .dropdown-menu {
-      top: 31px;
+      top: 25px;
       border-radius: 0;
     }
   }
@@ -220,7 +225,7 @@
   padding-bottom: 3px;
 }
 
-#selectors {
+.selectors {
   top: -21px;
   left: 15px;
 }
@@ -231,3 +236,45 @@
   padding-right: 0px;
   width: 100%;
 }
+
+#product-dropdown {
+    display: @hide;
+}
+
+#mobile-product-dropdown {
+    .dropdown-toggle {
+        display: none;
+    }
+}
+
+// OVERRIDES
+// Phone
+@phone-landscape-nav-display: @show;
+@phone-landscape-clear-all-display: @hide;
+@phone-landscape-period-tab-display: @hide;
+@phone-landscape-period-dropdown-display: @hide;
+
+@phone-portrait-nav-display: @show;
+@phone-portrait-clear-all-display: @hide;
+@phone-portrait-period-tab-display: @hide;
+@phone-portrait-period-dropdown-display: @hide;
+
+// Tablet
+@tablet-landscape-nav-display: @show;
+@tablet-landscape-clear-all-display: @hide;
+@tablet-landscape-period-tab-display: @hide;
+@tablet-landscape-period-dropdown-display: @hide;
+
+@tablet-portrait-nav-display: @show;
+@tablet-portrait-clear-all-display: @hide;
+@tablet-portrait-period-tab-display: @hide;
+@tablet-portrait-period-dropdown-display: @hide;
+
+
+// Tablet + phone
+@mobile-device-legend-display: @show;
+@mobile-device-crosshair-display: @show;
+@mobile-device-product-dropdown-display: @hide;
+@mobile-device-head-selectors-display: @show;
+@mobile-device-overlay-selectors-display: @show;
+@mobile-device-overlay-product-dropdown-display: @hide;
