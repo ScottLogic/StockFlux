@@ -3,6 +3,7 @@
 
     const KEY_NAME = 'windows',
         defaultStocks = ['AAPL', 'MSFT', 'TITN', 'SNDK', 'TSLA'],
+        defaultIndicators = ['rsi', 'movingAverage'],
         closedCacheSize = 5;
 
     var storage;
@@ -28,6 +29,14 @@
 
         get() {
             return this.store.stocks;
+        }
+
+        indicators(newIndicators) {
+            if (!arguments.length) {
+                return this.store.indicators;
+            }
+            this.store.indicators = newIndicators;
+            this.save();
         }
 
         // Move given item in an array to directly after the to-item
@@ -128,6 +137,8 @@
                 store = storage[windowIndex];
             } else {
                 var stocks = [];
+                // Shallow copy the default indicators
+                var indicators = defaultIndicators.slice();
                 if (!storage) {
                     stocks = defaultStocks;
                     storage = [];
@@ -136,6 +147,7 @@
                 var newStore = {
                     id: windowName,
                     stocks: stocks,
+                    indicators: indicators,
                     closed: 0,
                     compact: false
                 };

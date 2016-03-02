@@ -11,7 +11,18 @@
                 },
                 link: (scope, element) => {
                     var chart = bitflux.app().quandlApiKey(quandlService.apiKey()),
-                        firstRun = true;
+                        firstRun = true,
+                        store,
+                        initStore = () => {
+                            if (!store && window.storeService) {
+                                store = window.storeService.open(window.name);
+                            }
+                        };
+
+                    initStore();
+                    if (store) {
+                        chart.indicators(store.indicators());
+                    }
 
                     chart.periodsOfDataToFetch(configService.getBitfluxStockAmount());
                     chart.proportionOfDataToDisplayByDefault(configService.getInitialBitfluxProportion());
@@ -27,14 +38,30 @@
 
                     scope.$watch('selection()', (newSelection, previousSelection) => {
                         if (newSelection !== '') {
+                            // The store service may not have been passed through yet.
+                            // If it hasn't been, get it for later, where we set the
+                            // indicators
+                            initStore();
+
                             if (firstRun) {
                                 firstRun = false;
                                 chart.run(element[0].children[0]);
                             }
 
+                            if (store) {
+                                chart.indicators(store.indicators());
+                            }
+
                             if (newSelection !== previousSelection) {
                                 chart.changeQuandlProduct(newSelection);
                             }
+                        }
+                    });
+
+                    scope.$watchCollection(() => chart.indicators(), (newValues) => {
+                        initStore();
+                        if (store) {
+                            store.indicators(newValues);
                         }
                     });
                 }
