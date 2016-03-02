@@ -13,9 +13,8 @@
     vertical-align: initial;
   }
 
-  #logo, #minimise-button, #maximise-button, #compact-button, #full_view-button, #normal_size-button, #close-button, #closed_tabs-button {
-    position: fixed;
-    top: 15px;
+  #logo {
+    .svg-position;
   }
 
   #logo {
@@ -23,28 +22,24 @@
     width: 350px;
   }
 
-  #minimise-button, #maximise-button, #compact-button, #full_view-button, #normal_size-button, #close-button, #closed_tabs-button {
-    width: 14px;
+  #minimise-button, #maximise-button, #compact-button, #normal_size-button, #close-button, #closed_tabs-button {
+    width: @icon-width;
+    .svg-position;
+  }
+
+  #close-button {
+    .right-alignment(0);
   }
 
   #maximise-button, #normal_size-button {
     .right-alignment(1);
   }
 
-  #compact-button, #full_view-button {
+  #compact-button {
     .right-alignment(2);
-  }
-
-  #closed_tabs-button {
-    display: none;
-    right: 165px;
   }
 
   #minimise-button {
     .right-alignment(3);
-  }
-
-  #close-button {
-    .right-alignment(0);
   }
 }
