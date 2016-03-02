@@ -14,14 +14,19 @@
   }
 
   #logo {
-    .toolbar-offset-top;
+    .toolbar-offset-top();
     padding-left: 35px;
     width: 350px;
   }
 
-  .minimise-button, .maximise-button, .compact-button, .normal_size-button, .close-button, .closed_tabs-button {
+  .maximise-button, .compact-button, .normal_size-button, .close-button {
     width: @icon-width;
-    .toolbar-offset-top;
+    .toolbar-offset-top();
+  }
+
+  .minimise-button {
+    width: @icon-width;
+    .toolbar-offset-top(10px);
   }
 
   .close-button {

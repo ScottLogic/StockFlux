@@ -2,9 +2,9 @@
   right: (15 + (@icon-order * 30));
 }
 
-.toolbar-offset-top {
+.toolbar-offset-top(@additional-offset: 0px) {
   position: fixed;
-  top: 15px;
+  top: (15px + @additional-offset);
 }
 
 // 400 is 'normal'
