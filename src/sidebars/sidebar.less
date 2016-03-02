@@ -62,23 +62,16 @@
   z-index: 9;
 }
 
-.closed-selection {
-  background: @light-background;
-  position: fixed;
-  bottom: 45px;
-  left: 235px;
-  width: 180px;
-  height: 353px;
-}
+.closed-window-selection {
+  .closed-selection {
+    bottom: 45px;
+    left: 235px;
+  }
 
-.bubble-head {
-  position: absolute;
-  left: 250px;
-  bottom: 40px;
-  transform: rotate(45deg);
-  background-color: @light-background;
-  width: 10px;
-  height: 10px;
+  .bubble-head {
+    left: 250px;
+    bottom: 40px;
+  }
 }
 
 .contracted {
@@ -144,7 +137,7 @@
 
 .compact {
   .sidetab-top {
-    right: 95px;
+    right: 125px;
     left: 0px;
     top: 0px;
     position: absolute;
