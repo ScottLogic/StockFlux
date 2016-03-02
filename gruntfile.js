@@ -157,7 +157,7 @@ module.exports = function(grunt) {
             icons: {
                 expand: true,
                 cwd: 'src/',
-                src: ['**/*.svg', '**/*.ico'],
+                src: ['assets/png/*.png', 'favicon.ico'],
                 dest: 'public'
             },
             fonts: {
