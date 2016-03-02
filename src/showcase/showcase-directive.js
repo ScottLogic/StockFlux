@@ -16,6 +16,15 @@
                     chart.periodsOfDataToFetch(configService.getBitfluxStockAmount());
                     chart.proportionOfDataToDisplayByDefault(configService.getInitialBitfluxProportion());
 
+                    // If there's already a selection, run the chart and use that.
+                    // This occurs when the user selects a stock in compact view
+                    // and it expands.
+                    if (scope.selection && scope.selection()) {
+                        firstRun = false;
+                        chart.run(element[0].children[0]);
+                        chart.changeQuandlProduct(scope.selection());
+                    }
+
                     scope.$watch('selection()', (newSelection, previousSelection) => {
                         if (newSelection !== '') {
                             if (firstRun) {
