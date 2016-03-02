@@ -17,7 +17,7 @@ module.exports = function(grunt) {
                 options: {
                     base: 'public',
                     message: 'Deploy to GitHub Pages',
-                    repo: 'https://github.com/ScottLogic/stockflux.git'
+                    repo: 'https://github.com/ScottLogic/StockFlux.git'
                 },
                 src: ['**/*']
             }
@@ -88,8 +88,8 @@ module.exports = function(grunt) {
 
         download: {
             openfinZip: {
-                src: ['https://dl.openfin.co/services/download?fileName=stockflux&config=http://scottlogic.github.io/stockflux/app.json'],
-                dest: './public/stockflux.zip'
+                src: ['https://dl.openfin.co/services/download?fileName=StockFlux&config=http://scottlogic.github.io/StockFlux/app.json'],
+                dest: './public/StockFlux.zip'
             }
         },
 
