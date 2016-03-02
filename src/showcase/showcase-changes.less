@@ -47,11 +47,11 @@
 
   .selector-dropdown:nth-child(2) .dropdown-toggle {
     width: inherit;
-    font-size: 14px;
-    line-height: 0px;
     padding-top: 2px;
     padding-left: 8px;
     padding-right: 8px;
+
+    .font(@size: 14px, @line-height: 0);
   }
 
 
@@ -101,7 +101,7 @@
   .y-axis {
       .tick {
           &.orient-right text {
-            font-size: 10px;
+            .font(10px);
           }
       }
   }
@@ -167,14 +167,14 @@
   }
 
   .tick text, #x-axis-container .tick text, #navbar-row #navbar-container text {
-    font-size: 14px;
+    .font(14px);
     fill: @icon-colour;
   }
 }
 
 #x-axis-container .tick, #navbar-row #navbar-container {
     text {
-      font-size: 14px;
+      .font(14px);
       fill: @icon-colour;
     }
 }

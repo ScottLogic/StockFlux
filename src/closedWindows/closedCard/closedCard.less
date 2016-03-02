@@ -1,30 +1,27 @@
 .closed-time {
-  font-size: 12px;
-  font-weight: @font-light;
+  .font(12px, @font-light);
 }
 
 .closed-stock {
-  font-size: 14px;
-  font-weight: 400;
+  .font(14px);
 }
 
 .closed-card {
   height: 70px;
-  overflow: hidden;
-  text-overflow: ellipsis;
   padding-left: 12px;
   padding-right: 12px;
   padding-top: 10px;
   padding-bottom: 10px;
   cursor: default;
+  .no-overflow;
+
+  &:hover {
+    background: @dark-background;
+  }
 }
 
 .closed-selection {
   .closed-card-container:not(:last-child) {
     border-bottom: 1px solid @dark-background;
   }
-}
-
-.closed-card:hover {
-  background: @dark-background;
 }

@@ -1,0 +1,27 @@
+﻿.compact-search {
+  display: none;
+}
+
+.compact {
+  .compact-search {
+    display: block;
+
+    &.expanded {
+      icon {
+        display: block;
+
+        .close-button {
+          position: relative;
+          float: right;
+          top: -16px;
+          right: 7px;
+          width: @icon-width;
+        }
+      }
+    }
+  }
+
+  .main-search {
+    display: none;
+  }
+}

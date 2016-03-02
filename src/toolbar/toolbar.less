@@ -13,67 +13,30 @@
     vertical-align: initial;
   }
 
-  #logo, #minimise-button, #maximise-button, #compact-button, #full_view-button, #normal_size-button, #close-button, #closed_tabs-button {
-    position: fixed;
-    top: 15px;
-  }
-
   #logo {
+    .toolbar-offset-top;
     padding-left: 35px;
     width: 350px;
   }
 
-  #minimise-button, #maximise-button, #compact-button, #full_view-button, #normal_size-button, #close-button, #closed_tabs-button {
-    width: 14px;
+  .minimise-button, .maximise-button, .compact-button, .normal_size-button, .close-button, .closed_tabs-button {
+    width: @icon-width;
+    .toolbar-offset-top;
   }
 
-  #maximise-button, #normal_size-button {
-    right: 45px;
+  .close-button {
+    .right-alignment(0);
   }
 
-  #compact-button, #full_view-button {
-    right: 75px;
+  .maximise-button, .normal_size-button {
+    .right-alignment(1);
   }
 
-  #closed_tabs-button {
-    display: none;
-    right: 165px;
+  .compact-button {
+    .right-alignment(2);
   }
 
-  #minimise-button {
-    right: 105px;
-  }
-
-  #close-button {
-    right: 15px;
-  }
-}
-
-.compact #toolbar {
-  #full_view-button {
-    right: 45px;
-  }
-
-  #minimise-button {
-    right: 75px;
-  }
-
-  #minimise-button, #full_view-button, #close-button, #closed_tabs-button {
-    top: 7px;
-  }
-
-  #closed_tabs-button {
-    display: inline-block;
-    right: 105px;
-  }
-
-  .bubble-head {
-    top: 30px;
-    right: 107px;
-  }
-
-  .closed-selection {
-    top: 35px;
-    right: 25px;
+  .minimise-button {
+    .right-alignment(3);
   }
 }

@@ -1,0 +1,64 @@
+﻿.compact {
+  .sidetab-top {
+    right: 125px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    -webkit-app-region: drag;
+  }
+
+  #search-scroll, #favourite-scroll {
+    bottom: 34px;
+  }
+
+  #favourite-scroll {
+    top: 34px;
+
+    .dark, .darkens:hover {
+      background: @middle-background;
+    }
+  }
+
+  #search-scroll {
+    top: 68px;
+  }
+
+  .favourites, #favourite-scroll, .favourite {
+    width: 100%;
+  }
+
+  .search {
+    transition: @transition;
+    bottom: 0px;
+    width: 100%;
+    height: 34px;
+
+    .top-icon {
+      margin-top: 7px;
+    }
+
+    input {
+      padding-top: 7px;
+    }
+  }
+
+  .search.expanded {
+    height: calc(100% - 34px);
+
+    #searchScroll {
+      top: 68px;
+      bottom: 0px;
+    }
+  }
+
+  .top-icon {
+    float: left;
+    margin-left: 15px;
+    margin-top: 7px;
+    margin-right: 0px;
+  }
+
+  .closed-window-selection {
+    display: none;
+  }
+}
