@@ -5,7 +5,7 @@
         .directive('closedCard', [() => {
             return {
                 restrict: 'E',
-                templateUrl: 'closedWindows/closedCard.html',
+                templateUrl: 'closedWindows/closedCard/closedCard.html',
                 scope: {
                     cardWindow: '='
                 },
