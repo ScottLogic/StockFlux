@@ -1,14 +1,9 @@
-.bubble-head {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  transform: rotate(45deg);
-  background-color: @light-background;
-}
+.closed-window-selection {
+  .bubble-head {
+    .bubble-head(@left: 250px, @bottom: 40px);
+  }
 
-.closed-selection {
-  background: @light-background;
-  position: fixed;
-  width: 180px;
-  max-height: 353px;
+  .closed-selection {
+    .closed-window(@bottom: 45px, @left: 235px);
+  }
 }

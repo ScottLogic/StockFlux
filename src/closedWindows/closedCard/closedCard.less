@@ -14,14 +14,14 @@
   padding-bottom: 10px;
   cursor: default;
   .no-overflow;
+
+  &:hover {
+    background: @dark-background;
+  }
 }
 
 .closed-selection {
   .closed-card-container:not(:last-child) {
     border-bottom: 1px solid @dark-background;
   }
-}
-
-.closed-card:hover {
-  background: @dark-background;
 }

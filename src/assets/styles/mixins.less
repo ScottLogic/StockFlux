@@ -18,3 +18,27 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.bubble-head(@top: auto, @bottom: auto, @left: auto, @right: auto) {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+  background-color: @light-background;
+  top: @top;
+  bottom: @bottom;
+  left: @left;
+  right: @right;
+}
+
+.closed-window(@top: auto, @bottom: auto, @left: auto, @right: auto) {
+  box-shadow: -2px -2px 2px 0px @dark-background;
+  background: @light-background;
+  position: fixed;
+  width: 180px;
+  max-height: 353px;
+  top: @top;
+  bottom: @bottom;
+  left: @left;
+  right: @right;
+}
