@@ -12,10 +12,15 @@
                 link: (scope, element) => {
                     var chart = bitflux.app().quandlApiKey(quandlService.apiKey()),
                         firstRun = true,
-                        store;
+                        store,
+                        initStore = () => {
+                            if (!store && window.storeService) {
+                                store = window.storeService.open(window.name);
+                            }
+                        };
 
-                    if (window.storeService) {
-                        store = window.storeService.open(window.name);
+                    initStore();
+                    if (store) {
                         chart.indicators(store.indicators());
                     }
 
@@ -36,9 +41,7 @@
                             // The store service may not have been passed through yet.
                             // If it hasn't been, get it for later, where we set the
                             // indicators
-                            if (!store && window.storeService) {
-                                store = window.storeService.open(window.name);
-                            }
+                            initStore();
 
                             if (firstRun) {
                                 firstRun = false;
@@ -56,9 +59,7 @@
                     });
 
                     scope.$watchCollection(() => chart.indicators(), (newValues) => {
-                        if (!store && window.storeService) {
-                            store = window.storeService.open(window.name);
-                        }
+                        initStore();
                         if (store) {
                             store.indicators(newValues);
                         }
