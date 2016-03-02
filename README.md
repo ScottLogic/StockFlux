@@ -6,7 +6,7 @@ StockFlux is an implementation of a desktop app using Openfin, written using [An
 
 ## Installing
 
-You can download StockFlux from [here](http://scottlogic.github.io/StockFlux/stockflux.zip). If you haven't already installed an OpenFin application, this will install the OpenFin runtime. It'll also add shortcuts to StockFlux to your desktop and start menu.
+You can download StockFlux from [here](http://scottlogic.github.io/StockFlux/StockFlux.zip). If you haven't already installed an OpenFin application, this will install the OpenFin runtime. It'll also add shortcuts to StockFlux to your desktop and start menu.
 
 Each application start up, it downloads the application from Github Pages, meaning that it will automatically update and that it cannot be used offline.
 
