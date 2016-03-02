@@ -17,7 +17,7 @@ module.exports = function(grunt) {
                 options: {
                     base: 'public',
                     message: 'Deploy to GitHub Pages',
-                    repo: 'https://github.com/ScottLogic/StockFlux.git'
+                    repo: 'git@github.com:ScottLogic/StockFlux.git'
                 },
                 src: ['**/*']
             }
