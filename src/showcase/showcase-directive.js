@@ -55,14 +55,14 @@
                         }
                     });
 
-                    scope.save = () => {
+                    scope.$watchCollection(() => chart.indicators(), (newValues) => {
                         if (!store && window.storeService) {
                             store = window.storeService.open(window.name);
                         }
                         if (store) {
-                            store.indicators(chart.indicators());
+                            store.indicators(newValues);
                         }
-                    };
+                    });
                 }
             };
         }]);
