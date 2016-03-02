@@ -31,8 +31,8 @@
   right: @right;
 }
 
-.closed-window(@top: auto, @bottom: auto, @left: auto, @right: auto) {
-  box-shadow: -2px -2px 2px 0px @dark-background;
+.closed-window(@shadow-position, @top: auto, @bottom: auto, @left: auto, @right: auto) {
+  box-shadow: @shadow-position 2px 0px @dark-background;
   background: @light-background;
   position: fixed;
   width: 180px;
