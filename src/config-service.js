@@ -32,7 +32,8 @@
                 maxWidth: RESIZE_NO_LIMIT,
                 maxHeight: RESIZE_NO_LIMIT,
                 defaultWidth: 1280,
-                defaultHeight: 720
+                defaultHeight: 720,
+                shadow: true
             };
         }
 
@@ -52,7 +53,8 @@
                 maxWidth: 230,
                 maxHeight: 500,
                 defaultWidth: 230,
-                defaultHeight: 500
+                defaultHeight: 500,
+                shadow: true
             };
         }
 
@@ -68,7 +70,8 @@
                 saveWindowState: false,
                 maxWidth: 230,
                 maxHeight: 100,
-                url: 'tearout.html'
+                url: 'tearout.html',
+                shadow: true
             };
         }
 
