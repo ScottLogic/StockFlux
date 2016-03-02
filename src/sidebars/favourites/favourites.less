@@ -57,9 +57,7 @@
   }
 
   .name {
-    font-size: 12px;
-    font-weight: @font-thin;
-    line-height: 1.4;
+    .font(12px, @font-thin, 1.4);
   }
 
   .details {
@@ -68,19 +66,15 @@
     padding-top: 1px;
 
     .price {
-      font-size: 18px;
-      font-weight: @font-medium;
-      line-height: 1.0;
+      .font(18px, @font-medium, 1.0);
     }
 
     .delta {
       padding-top: 4px;
-      line-height: 1.0;
-      font-size: 14px;
+      .font(14px, @font-light, 1.0);
     }
 
     .delta, .percentage {
-      font-weight: @font-light;
       padding-right: 1px;
     }
 
@@ -92,16 +86,13 @@
 
     .percentage {
       display: inherit;
-      font-size: 12px;
-      line-height: 1.2;
+      .font(12px, @font-light, 1.2);
     }
   }
 
   .code {
     padding-top: 1px;
-    font-size: 20px;
-    font-weight: @font-medium;
-    line-height: 1.0;
+    .font(20px, @font-medium, 1.0);
   }
 }
 
@@ -111,14 +102,4 @@
 
 .dark {
   background: @dark-background;
-}
-
-.compact {
-  .dark {
-    background: @favourites-background;
-  }
-
-  .favourites, .favourite .top {
-    transition: none;
-  }
 }

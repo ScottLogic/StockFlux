@@ -17,7 +17,7 @@
     border: none;
     background: transparent;
     transition: @transition;
-    font-size: 12px;
+    .font(12px);
     color: @icon-colour;
     width: 184px;
     padding-left: 15px;
@@ -30,9 +30,8 @@
 
   .no-results {
     color: @icon-colour;
-    font-size: 14px;
-    font-weight: 400;
     padding-left: 12px;
+    .font(14px);
   }
 
   .sidetab > div:first-of-type search .search-result {
@@ -45,14 +44,11 @@
     border-bottom: @search-splitter-style;
 
     .name {
-      font-size: 12px;
-      font-weight: @font-thin;
+      .font(12px, @font-thin);
     }
 
     .code {
-      font-size: 20px;
-      font-weight: @font-medium;
-      line-height: 1.4;
+      .font(20px, @font-medium, 1.4);
     }
 
     .details {
