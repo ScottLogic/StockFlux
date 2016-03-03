@@ -1,2 +1,16 @@
 ﻿<img class="star" ng-src="assets/png/{{starCtrl.favouriteUrl()}}.png" ng-click="starCtrl.click(); $event.stopPropagation();"
      ng-mouseenter="starCtrl.mouseEnter()" ng-mouseleave="starCtrl.mouseLeave()" draggable="false" />
+
+<div class="modal" ng-show="starCtrl.confirmationShow" ng-click="starCtrl.hideModal()">
+  <div class="confirmation">
+    <div class=modal-content>
+      <div class="message">
+        <span ng-bind="starCtrl.confirmationMessage"></span>
+      </div>
+      <div class="buttons">
+        <button class="btn btn-primary ng-binding" ng-click="starCtrl.deselect(); $event.stopPropagation();">OK</button>
+        <button class="btn btn-default ng-binding" ng-click="starCtrl.hideModal(); $event.stopPropagation();">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
