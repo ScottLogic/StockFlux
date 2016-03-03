@@ -168,14 +168,14 @@
 
   .tick text, #x-axis-container .tick text, #navbar-row #navbar-container text {
     .font(14px);
-    fill: @icon-colour;
+    fill: @text-grey;
   }
 }
 
 #x-axis-container .tick, #navbar-row #navbar-container {
     text {
       .font(14px);
-      fill: @icon-colour;
+      fill: @text-grey;
     }
 }
 
@@ -248,6 +248,19 @@
 #mobile-product-dropdown {
     .dropdown-toggle {
         display: none;
+    }
+}
+
+#overlay {
+
+    .edit-indicator {
+      .icon {
+        border-radius: 0;
+
+        &.bf-icon-delete {
+          background-image: url('../png/close_indicator.png');
+        }
+      }
     }
 }
 

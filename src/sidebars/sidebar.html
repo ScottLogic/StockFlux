@@ -1,7 +1,7 @@
 <div class="sidebars">
     <div class="favourites {{sidebarCtrl.favouritesClass()}}" ng-controller="FavouritesCtrl as favouritesCtrl" ng-click="sidebarCtrl.favouritesClick()">
         <div class="sidetab-top">
-            <img src="assets/svg/favourite_TOP.svg" class="top-icon" />
+            <img src="assets/png/favourites_tab.png" class="top-icon" />
         </div>
         <div id="favourite-scroll" class="side-scroll custom-scrollbar">
             <div class="sidetab" ng-show="sidebarCtrl.showFavourites()">
@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="closed-window-selection">
-            <closed-window-list></closed-window-list>
+            <closed-window-list icon="'closed_tabs'"></closed-window-list>
         </div>
     </div>
     <search class="search main-search {{sidebarCtrl.searchClass()}}" ng-click="sidebarCtrl.searchClick()"></search>

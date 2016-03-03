@@ -2,9 +2,9 @@
     'use strict';
 
     const starUrls = {
-        off: 'favourite_OFF',
-        on: 'favourite_ON',
-        offHover: 'favourite_OFF_hover',
+        off: 'favourite_off',
+        on: 'favourite_on',
+        offHover: 'favourite_off_hover',
         onHover: 'favourite_hover'
     };
 

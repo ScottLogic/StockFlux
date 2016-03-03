@@ -1,19 +1,23 @@
 ﻿.compact #toolbar {
   .full_view-button {
     .right-alignment(1);
-    width: @icon-width;
-    .toolbar-offset-top;
+    .toolbar-offset-top();
   }
 
   .minimise-button {
     .right-alignment(2);
   }
 
-  .minimise-button, .full_view-button, .close-button, .closed_tabs-button {
-    top: 7px;
+  .full_view-button, .close-button {
+    .toolbar-offset-top-compact();
   }
 
-  .closed_tabs-button {
+  .minimise-button {
+    .toolbar-offset-top(2px);
+  }
+
+  .closed_tabs_small-button {
+    .toolbar-offset-top-compact(1px);
     display: inline-block;
     .right-alignment(3);
   }
