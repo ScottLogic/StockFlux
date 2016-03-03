@@ -4,11 +4,11 @@
     const API_KEY = 'kM9Z9aEULVDD7svZ4A8B',
         API_KEY_VALUE = 'api_key=' + API_KEY,
         DATE_INDEX = 0,
-        OPEN_INDEX = 1,
-        HIGH_INDEX = 2,
-        LOW_INDEX = 3,
-        CLOSE_INDEX = 4,
-        VOLUME_INDEX = 5,
+        OPEN_INDEX = 8,
+        HIGH_INDEX = 9,
+        LOW_INDEX = 10,
+        CLOSE_INDEX = 11,
+        VOLUME_INDEX = 12,
         QUANDL_URL = 'https://www.quandl.com/api/v3/',
         QUANDL_WIKI = 'datasets/WIKI/';
 
