@@ -16,7 +16,12 @@
 
 .no-overflow {
   overflow: hidden;
+}
+
+.wrap-ellipsis {
+  .no-overflow;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .bubble-head(@top: auto, @bottom: auto, @left: auto, @right: auto) {

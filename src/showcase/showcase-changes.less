@@ -108,7 +108,7 @@
 }
 
 #navbar-row {
-  padding-top: 38px;
+  padding-top: 20px;
 
   #navbar-container .plot-area {
     .multi {
@@ -119,7 +119,7 @@
 
       path {
         stroke: @chart-fade !important;
-        stroke-width: 2px;
+        stroke-width: 1.5px;
       }
     }
 
@@ -155,7 +155,7 @@
 }
 
 .y-axis {
-  .closeLine.tick {
+  .close-line.tick {
     > path {
       stroke: @chart-teal !important;
       fill: @chart-teal !important;
@@ -179,11 +179,15 @@
     }
 }
 
+.multi.rsi.indicator {
+    stroke: @tertiary-purple;
+}
+
 .multi.rsi.annotations .annotation.horizontal line {
   stroke-dasharray: 8px;
 }
 
-.plot-area .annotation > line {
+.plot-area .annotation.close-line > line {
   stroke: @chart-teal;
 }
 
