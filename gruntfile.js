@@ -1,7 +1,7 @@
 /* jshint node: true*/
 'use strict';
 module.exports = function(grunt) {
-    var target = grunt.option('target') || 'http://scottlogic.github.io/bitflux-openfin',
+    var target = grunt.option('target') || 'http://localhost:5000',
         port = process.env.PORT || 5000;
 
     grunt.initConfig({
@@ -17,7 +17,7 @@ module.exports = function(grunt) {
                 options: {
                     base: 'public',
                     message: 'Deploy to GitHub Pages',
-                    repo: 'https://github.com/ScottLogic/bitflux-openfin.git'
+                    repo: 'git@github.com:ScottLogic/StockFlux.git'
                 },
                 src: ['**/*']
             }
@@ -88,8 +88,8 @@ module.exports = function(grunt) {
 
         download: {
             openfinZip: {
-                src: ['https://dl.openfin.co/services/download?fileName=bitflux-openfin&config=http://scottlogic.github.io/bitflux-openfin/app.json'],
-                dest: './public/bitflux-openfin.zip'
+                src: ['https://dl.openfin.co/services/download?fileName=StockFlux&config=http://scottlogic.github.io/StockFlux/app.json'],
+                dest: './public/StockFlux.zip'
             }
         },
 
@@ -157,7 +157,7 @@ module.exports = function(grunt) {
             icons: {
                 expand: true,
                 cwd: 'src/',
-                src: ['**/*.svg', '**/*.ico'],
+                src: ['assets/png/*.png', 'favicon.ico'],
                 dest: 'public'
             },
             fonts: {
@@ -171,8 +171,8 @@ module.exports = function(grunt) {
         },
         concat: {
             dist: {
-                src: ['src/**/*.js', '!src/config-service.js', '!src/parent-controller.js',
-                      '!src/parentApp.js'],
+                src: ['src/**/*.js', '!src/parent-controller.js',
+                      '!src/parentApp.js', '!src/window-service.js'],
                 dest: 'public/app.js'
             },
             parent: {
@@ -200,6 +200,33 @@ module.exports = function(grunt) {
                     'public/app-parent.js': 'public/app-parent.js'
                 }
             }
+        },
+        bump: {
+            options: {
+                files: ['package.json', 'src/main/version/version-controller.js'],
+                commit: true,
+                commitMessage: 'Release v%VERSION%',
+                commitFiles: ['package.json', 'src/main/version/version-controller.js'],
+                createTag: true,
+                tagName: 'v%VERSION%',
+                tagMessage: 'Version %VERSION%',
+                push: false
+            }
+        },
+
+        'string-replace': {
+            inline: {
+                files: {
+                    'public/app.js': 'public/app.js',
+                    'public/app-parent.js': 'public/app-parent.js'
+                },
+                options: {
+                    replacements: [{
+                        pattern: 'const allowContextMenu = true;',
+                        replacement: 'const allowContextMenu = false;'
+                    }]
+                }
+            }
         }
     });
 
@@ -218,6 +245,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-gh-pages');
     grunt.loadNpmTasks('grunt-babel');
+    grunt.loadNpmTasks('grunt-bump');
+    grunt.loadNpmTasks('grunt-string-replace');
 
     grunt.registerTask('showcase', function() {
         var callback = this.async();
@@ -233,12 +262,21 @@ module.exports = function(grunt) {
         });
     });
 
-    grunt.registerTask('build', ['eslint', 'clean', 'showcase', 'copy', 'concat', 'babel', 'less:development', 'connect:livereload']);
-    grunt.registerTask('build:uglify', ['build', 'uglify']);
-    grunt.registerTask('serve', ['build', 'openfin:serve']);
-    grunt.registerTask('createZip', ['build:uglify', 'download']);
-    grunt.registerTask('ci', ['build:uglify', 'download']);
-    grunt.registerTask('deploy', ['ci', 'gh-pages:origin']);
-    grunt.registerTask('deploy:upstream', ['ci', 'gh-pages:upstream']);
+    grunt.registerTask('concatenate', ['eslint', 'clean', 'showcase', 'copy', 'concat'])
+    grunt.registerTask('transpile', ['babel', 'less:development']);
+
+    grunt.registerTask('build:dev', ['concatenate', 'transpile', 'connect:livereload']);
+    grunt.registerTask('build:release', ['concatenate', 'string-replace', 'transpile', 'uglify', 'connect:livereload']);
+
+    grunt.registerTask('serve', ['build:dev', 'openfin:serve']);
     grunt.registerTask('default', ['serve']);
+
+    grunt.registerTask('createZip', ['build:release', 'download']);
+    grunt.registerTask('deploy', ['createZip', 'gh-pages:origin']);
+    grunt.registerTask('deploy:upstream', ['ci', 'gh-pages:upstream']);
+
+    grunt.registerTask('release', ['bump:major']);
+
+    grunt.registerTask('ci', ['build:release', 'download']);
+
 };

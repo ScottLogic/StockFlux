@@ -6,9 +6,13 @@
             return {
                 restrict: 'C',
                 link: (scope, element) => {
-                    var scrollPadding = 'scrollPadding';
+                    var scrollPadding = 'scroll-padding';
                     element.mCustomScrollbar(
                         {
+                            scrollInertia: 0,
+                            mouseWheel: {
+                                scrollAmount: 80
+                            },
                             callbacks: {
                                 onOverflowY: () => {
                                     element.addClass(scrollPadding);

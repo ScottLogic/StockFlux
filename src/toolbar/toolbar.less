@@ -1,59 +1,44 @@
 ﻿#toolbar {
   height: @toolbar-height;
-  right: 125px;
+  right: 165px;
   left: @sidebar-width;
   position: absolute;
-}
 
-#toolbar .drag {
-  -webkit-app-region: drag;
-  height: 100%;
-}
-
-#logo, #minimise-button, #maximise-button, #compact-button, #full_view-button, #normal_size-button, #close-button {
-  position: fixed;
-  top: 15px;
-}
-
-#logo {
-  padding-left: 35px;
-  width: 350px;
-}
-
-#minimise-button, #maximise-button, #compact-button, #full_view-button, #normal_size-button, #close-button {
-  width: 14px;
-}
-
-#maximise-button, #normal_size-button {
-  right: 45px;
-}
-
-#compact-button, #full_view-button {
-  right: 75px;
-}
-
-#minimise-button {
-  right: 105px;
-}
-
-#close-button {
-  right: 15px;
-}
-
-#toolbar img {
-  vertical-align: initial;
-}
-
-.compact {
-  #full_view-button {
-    right: 45px;
+  .drag {
+    -webkit-app-region: drag;
+    height: 100%;
   }
 
-  #minimise-button {
-    right: 75px;
+  img {
+    vertical-align: initial;
   }
 
-  #minimise-button, #full_view-button, #close-button {
-    top: 7px;
+  #logo {
+    .toolbar-offset-top();
+    padding-left: 35px;
+  }
+
+  .maximise-button, .compact-button, .normal_size-button, .close-button {
+    .toolbar-offset-top();
+  }
+
+  .minimise-button {
+    .toolbar-offset-top(10px);
+  }
+
+  .close-button {
+    .right-alignment(0);
+  }
+
+  .maximise-button, .normal_size-button {
+    .right-alignment(1);
+  }
+
+  .compact-button {
+    .right-alignment(2);
+  }
+
+  .minimise-button {
+    .right-alignment(3);
   }
 }

@@ -3,6 +3,9 @@
 
     const DESELECTION_OBJECT = { code: '', name: '' };
 
+    /**
+     * Holds the currently selected stock.
+     */
     class SelectionService {
         constructor() {
             this._stock = DESELECTION_OBJECT;

@@ -1,0 +1,54 @@
+﻿.right-alignment(@icon-order) {
+  right: (15 + (@icon-order * 30));
+}
+
+.toolbar-offset-top(@additional-offset: 0px) {
+  position: fixed;
+  top: (15px + @additional-offset);
+}
+
+.toolbar-offset-top-compact(@additional-offset: 0px) {
+  position: fixed;
+  top: (7px + @additional-offset);
+}
+
+// 400 is 'normal'
+.font(@size, @weight: 400, @line-height: 1.5) {
+  font-size: @size;
+  font-weight: @weight;
+  line-height: @line-height;
+}
+
+.no-overflow {
+  overflow: hidden;
+}
+
+.wrap-ellipsis {
+  .no-overflow;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bubble-head(@top: auto, @bottom: auto, @left: auto, @right: auto) {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+  background-color: @light-background;
+  top: @top;
+  bottom: @bottom;
+  left: @left;
+  right: @right;
+}
+
+.closed-window(@shadow-position, @top: auto, @bottom: auto, @left: auto, @right: auto) {
+  box-shadow: @shadow-position 2px 0px @dark-background;
+  background: @light-background;
+  position: fixed;
+  width: 180px;
+  max-height: 353px;
+  top: @top;
+  bottom: @bottom;
+  left: @left;
+  right: @right;
+}

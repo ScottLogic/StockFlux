@@ -2,6 +2,11 @@
     'use strict';
     const poolSize = 3;
 
+    /**
+     * Manages a pool of OpenFin windows. The pool is used for performance improvements,
+     * as there is an overhead to creating new windows.
+     * When a window is taken from the pool a new one is created and added.
+     */
     class FreeWindowPool {
         constructor($q, configService) {
             this.pool = [];
@@ -30,6 +35,10 @@
         }
     }
 
+    /**
+     * Keeps an internal count and cache of the number of main application windows open.
+     * The count is used to know when the last window has been closed, to close the application.
+     */
     class WindowTracker {
         constructor() {
             this.openWindows = {};
@@ -77,13 +86,18 @@
         }
     }
 
+    /**
+     * Class to determine whether a stored tearout window is overlapping
+     * a different main window, and allow moving stocks between windows.
+     */
     class DragService {
-        constructor(storeService, geometryService, windowTracker, tearoutWindow, $q) {
+        constructor(storeService, geometryService, windowTracker, tearoutWindow, $q, openFinWindow) {
             this.storeService = storeService;
             this.geometryService = geometryService;
             this.windowTracker = windowTracker;
             this.tearoutWindow = tearoutWindow;
             this.$q = $q;
+            this.openFinWindow = openFinWindow;
             this.otherInstance = null;
         }
 
@@ -92,7 +106,8 @@
                 result = false,
                 promises = [];
 
-            mainWindows.forEach((mainWindow) => {
+            var filteredWindows = mainWindows.filter((mw) => mw.name !== this.openFinWindow.name);
+            filteredWindows.forEach((mainWindow) => {
                 var deferred = this.$q.defer();
                 promises.push(deferred.promise);
                 mainWindow.getState((state) => {
@@ -114,6 +129,9 @@
         }
     }
 
+    /**
+     * Class that creates and governs OpenFin windows.
+     */
     class WindowCreationService {
         constructor(storeService, geometryService, $q, configService) {
             this.storeService = storeService;
@@ -129,11 +147,8 @@
 
         createMainWindow(name, isCompact, successCb) {
             var windowCreatedCb = (newWindow) => {
-                // TODO
-                // Begin super hack
                 newWindow.getNativeWindow().windowService = this;
                 newWindow.getNativeWindow().storeService = this.storeService;
-                // End super hack
 
                 this.windowTracker.add(newWindow);
 
@@ -141,8 +156,11 @@
                     successCb(newWindow);
                 }
 
+                this.storeService.open(newWindow.name).openWindow();
+
                 newWindow.show();
                 newWindow.bringToFront();
+                this.snapToScreenBounds(newWindow);
             };
 
             var mainWindow;
@@ -160,7 +178,7 @@
                 mainWindow = poolWindow.window;
                 if (isCompact) {
                     this.updateOptions(poolWindow.window, true);
-                    this.window.resizeTo(230, 500, 'top-right');
+                    poolWindow.window.resizeTo(230, 500, 'top-right');
                 }
 
                 poolWindow.promise.then(() => {
@@ -168,9 +186,70 @@
                 });
             }
 
-            mainWindow.addEventListener('closed', (e) => {
+            var closedEvent = (e) => {
                 this.windowTracker.dispose(mainWindow, () => {
                     this.storeService.open(mainWindow.name).closeWindow();
+                    mainWindow.removeEventListener('closed', closedEvent);
+                });
+            };
+
+            mainWindow.addEventListener('closed', closedEvent);
+        }
+
+        getTargetMonitor(x, y, callback) {
+            fin.desktop.System.getMonitorInfo((info) => {
+                var monitors = info.nonPrimaryMonitors.concat(info.primaryMonitor);
+                let closestMonitor = monitors[0];
+                let closestDistance = Number.MAX_VALUE;
+
+                for (var monitor of monitors) {
+
+                    let monitorRect = monitor.monitorRect;
+
+                    // If the window's top-left is within the monitor's bounds, use that + stop
+                    if (x >= monitorRect.left && x <= monitorRect.right &&
+                            y >= monitorRect.top && y <= monitorRect.bottom) {
+
+                        callback(monitor);
+                        return;
+
+                    } else {
+
+                        // Otherwise, keep track of the closest, and if the window is not
+                        // within any monitor bounds, use the closest.
+                        var midX = monitorRect.left + monitorRect.right / 2;
+                        var midY = monitorRect.top + monitorRect.bottom / 2;
+                        var distance = Math.pow(midX - x, 2) + Math.pow(midY - y, 2);
+                        if (distance < closestDistance) {
+                            closestDistance = distance;
+                            closestMonitor = monitor;
+                        }
+
+                    }
+                }
+                callback(closestMonitor);
+            });
+        }
+
+        snapToScreenBounds(targetWindow) {
+            targetWindow.getBounds((bounds) => {
+                this.getTargetMonitor(bounds.left, bounds.top, (monitor) => {
+
+                    let availableRect = monitor.availableRect;
+
+                    if (bounds.left < availableRect.left) {
+                        bounds.left = availableRect.left;
+                    } else if (bounds.left + bounds.width > availableRect.right) {
+                        bounds.left = availableRect.right - bounds.width;
+                    }
+
+                    if (bounds.top < availableRect.top) {
+                        bounds.top = availableRect.top;
+                    } else if (bounds.top + bounds.height > availableRect.bottom) {
+                        bounds.top = availableRect.bottom - bounds.height;
+                    }
+
+                    targetWindow.setBounds(bounds.left, bounds.top, bounds.width, bounds.height);
                 });
             });
         }
@@ -201,34 +280,22 @@
             }
         }
 
-        updateOptions(_window, isCompact) {
-            if (isCompact) {
-                _window.updateOptions({
-                    resizable: false,
-                    minHeight: 500,
-                    minWidth: 230,
-                    maximizable: false
-                });
-            } else {
-                _window.updateOptions({
-                    resizable: true,
-                    minHeight: 510,
-                    minWidth: 918,
-                    maximizable: true
-                });
-            }
-        }
-
         ready(cb) {
             fin.desktop.main(cb);
         }
 
-        getWindows() {
-            return this.windowTracker.getMainWindows();
+        getWindow(name) {
+            return this.windowTracker.getMainWindows().filter((w) => w.name === name)[0];
         }
 
-        registerDrag(tearoutWindow) {
-            return new DragService(this.storeService, this.geometryService, this.windowTracker, tearoutWindow, this.$q);
+        registerDrag(tearoutWindow, openFinWindow) {
+            return new DragService(
+                this.storeService,
+                this.geometryService,
+                this.windowTracker,
+                tearoutWindow,
+                this.$q,
+                openFinWindow);
         }
     }
     WindowCreationService.$inject = ['storeService', 'geometryService', '$q', 'configService'];

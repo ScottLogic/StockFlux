@@ -1,16 +1,25 @@
 (function() {
 
     const RESIZE_NO_LIMIT = 50000;
+    const BITFLUX_STOCK_AMOUNT = 1200;
+    const BITFLUX_INITIAL_PROPORTION = 31 / BITFLUX_STOCK_AMOUNT;
 
+    // Be very careful changing the line below. It is replaced with a string.replace in the grunt build
+    // to disable the right click menu in release.
+    const allowContextMenu = true;
+
+    /**
+     * Stores common configuration for the application.
+     */
     class ConfigService {
         createName() {
-            // TODO: Should probably change this...
             return 'window' + Math.floor(Math.random() * 1000) + Math.ceil(Math.random() * 999);
         }
 
         getWindowConfig(name) {
             return {
                 name: name || this.createName(),
+                contextMenu: allowContextMenu,
                 autoShow: false,
                 frame: false,
                 showTaskbarIcon: true,
@@ -23,13 +32,15 @@
                 maxWidth: RESIZE_NO_LIMIT,
                 maxHeight: RESIZE_NO_LIMIT,
                 defaultWidth: 1280,
-                defaultHeight: 720
+                defaultHeight: 720,
+                shadow: true
             };
         }
 
         getCompactConfig(name) {
             return {
                 name: name || this.createName(),
+                contextMenu: allowContextMenu,
                 autoShow: false,
                 frame: false,
                 showTaskbarIcon: true,
@@ -42,13 +53,15 @@
                 maxWidth: 230,
                 maxHeight: 500,
                 defaultWidth: 230,
-                defaultHeight: 500
+                defaultHeight: 500,
+                shadow: true
             };
         }
 
         getTearoutConfig(name) {
             return {
                 name: name || this.createName(),
+                contextMenu: allowContextMenu,
                 autoShow: false,
                 frame: false,
                 maximizable: false,
@@ -57,8 +70,21 @@
                 saveWindowState: false,
                 maxWidth: 230,
                 maxHeight: 100,
-                url: 'tearout.html'
+                url: 'tearout.html',
+                shadow: true
             };
+        }
+
+        getTopCardOffset() {
+            return [268, 65];
+        }
+
+        getInitialBitfluxProportion() {
+            return BITFLUX_INITIAL_PROPORTION;
+        }
+
+        getBitfluxStockAmount() {
+            return BITFLUX_STOCK_AMOUNT;
         }
     }
     ConfigService.$inject = [];

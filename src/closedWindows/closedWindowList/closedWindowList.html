@@ -1,0 +1,12 @@
+<div class="favourite-closed">
+    <icon name="{{icon}}" icon-click="closedWindowListCtrl.click(); $event.stopPropagation();"></icon>
+</div>
+<div ng-show="closedWindowListCtrl.closedTabsShow" class="favourite-closed-cover" ng-click="closedWindowListCtrl.closedTabsShow = false">
+    <div class="bubble-head"></div>
+    <div class="closed-selection">
+        <div class="closed-card-container"
+            ng-repeat="closedWindow in closedWindowListCtrl.closedWindows | orderBy:'-closed'">
+            <closed-card card-window="closedWindow"></closed-card>
+        </div>
+    </div>
+</div>

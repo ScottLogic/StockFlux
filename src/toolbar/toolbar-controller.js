@@ -1,36 +1,51 @@
 (function() {
     'use strict';
 
+    const defaultWidth = 1280,
+        defaultHeight = 720,
+        compactWidth = 230,
+        compactHeight = 500;
+
     class ToolbarCtrl {
-        constructor($timeout, currentWindowService) {
+        constructor($scope, $timeout, currentWindowService) {
+            this.$scope = $scope;
             this.$timeout = $timeout;
             this.currentWindowService = currentWindowService;
             this.store = null;
             this.window = null;
             this.maximised = false;
-            this.compact = false;
             this.oldSize = null;
-            currentWindowService.ready(this.onReady.bind(this));
+            currentWindowService.ready(() => {
+                var boundReady = this.onReady.bind(this);
+                boundReady();
+                this._watch();
+            });
+
+            this.maximisedEvent = () => {
+                this.$timeout(() => {
+                    this.maximised = true;
+                });
+            };
+
+            this.restoredEvent = () => {
+                this.$timeout(() => {
+                    this.maximised = false;
+                });
+            };
         }
 
-        onReady() {
+        isCompact() {
             if (!this.store && window.storeService) {
                 this.store = window.storeService.open(window.name);
             }
 
-            this.compact = this.store && this.store.isCompact();
-            this.window = this.currentWindowService.getCurrentWindow();
-            this.window.addEventListener('maximized', () => {
-                this.$timeout(() => {
-                    this.maximised = true;
-                });
-            });
+            return this.store && this.store.isCompact();
+        }
 
-            this.window.addEventListener('restored', () => {
-                this.$timeout(() => {
-                    this.maximised = false;
-                });
-            });
+        onReady() {
+            this.window = this.currentWindowService.getCurrentWindow();
+            this.window.addEventListener('maximized', this.maximisedEvent);
+            this.window.addEventListener('restored', this.restoredEvent);
         }
 
         minimiseClick() {
@@ -43,33 +58,26 @@
 
         normalSizeClick() {
             this.window.restore();
-            this.window.resizeTo(1280, 720, 'top-right');
+            this.window.resizeTo(defaultWidth, defaultHeight, 'top-right');
         }
 
-        compactClick() {
-            if (!this.store) {
-                this.store = window.storeService.open(window.name);
+        _compactChanged() {
+            var becomingCompact = this.isCompact();
+            if (becomingCompact && window.outerWidth !== compactWidth) {
+                this.oldSize = [window.outerWidth, window.outerHeight];
             }
 
-            this.compact = !this.compact;
-            if (this.compact) {
-                this.window.getBounds(bounds => {
-                    this.oldSize = [bounds.width, bounds.height];
-                });
-            }
+            window.windowService.updateOptions(this.window, becomingCompact);
 
-            this.store.toggleCompact(this.compact);
-            window.windowService.updateOptions(this.window, this.compact);
-
-            if (this.compact) {
-                this.window.resizeTo(230, 500, 'top-right');
+            if (becomingCompact) {
+                this.window.resizeTo(compactWidth, compactHeight, 'top-right');
             }
             else if (this.maximised) {
                 this.window.maximize();
             }
             else {
-                var width = 1280,
-                    height = 720;
+                var width = defaultWidth,
+                    height = defaultHeight;
                 if (this.oldSize) {
                     width = this.oldSize[0];
                     height = this.oldSize[1];
@@ -79,11 +87,27 @@
             }
         }
 
+        compactClick() {
+            if (!this.store) {
+                this.store = window.storeService.open(window.name);
+            }
+
+            this.store.toggleCompact();
+        }
+
         closeClick() {
+            this.window.removeEventListener('maximized', this.maximisedEvent);
+            this.window.removeEventListener('restored', this.restoredEvent);
             this.window.close();
         }
+
+        _watch() {
+            this.$scope.$watch(
+                () => this.isCompact(),
+                () => this._compactChanged());
+        }
     }
-    ToolbarCtrl.$inject = ['$timeout', 'currentWindowService'];
+    ToolbarCtrl.$inject = ['$scope', '$timeout', 'currentWindowService'];
 
     angular.module('openfin.toolbar')
         .controller('ToolbarCtrl', ToolbarCtrl);

@@ -21,7 +21,12 @@
         }
 
         select(stock) {
-            this.selectionService.select(stock);
+            if (!this.store) {
+                this.store = window.storeService.open(window.name);
+            }
+            if (!this.store.isCompact()) {
+                this.selectionService.select(stock);
+            }
         }
 
         onSearchKeyDown(event) {
@@ -143,6 +148,9 @@
                         // Update the stock's favourite
                         this.stocks[index].favourite = data.favourite;
                     }
+                // The stock doesn't exist, push it on if it's a favourite.
+                } else if (data.favourite) {
+                    this.stocks.push(data);
                 }
             });
         }

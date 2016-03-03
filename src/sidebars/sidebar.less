@@ -35,6 +35,33 @@
   -webkit-animation-name: favourites;
 }
 
+.closed-window-selection {
+  position: absolute;
+  bottom: 0;
+  left: 50px;
+  height: 40px;
+  background-color: @middle-background;
+  width: @expanded-width;
+  border-top: 1px solid @dark-background;
+}
+
+.favourite-closed {
+  bottom: 10px;
+  right: 15px;
+  position: absolute;
+  height: 20px;
+  width: 20px;
+}
+
+.favourite-closed-cover {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 9;
+}
+
 .contracted {
   width: (@sidebar-width - @expanded-width);
 }
@@ -74,72 +101,23 @@
 }
 
 .top-icon {
-  color: @icon-colour;
   float: right;
-  width: 20px;
   margin-right: 15px;
   margin-top: 15px;
 }
 
-#stockName {
-  white-space: nowrap;
+.stock-name {
   width: 155px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  .wrap-ellipsis;
 }
 
 .no-favourites {
-    width: 230px;
-    padding: 12px 15px 12px 20px;
-    font-size: 12px;
-    color: @icon-colour;
-    font-weight: @font-medium;
+  width: 230px;
+  padding: 12px 15px 12px 20px;
+  color: @text-grey;
+  .font(14px, @font-medium);
 }
 
-.compact {
-  .sidetab-top {
-    right: 95px;
-    left: 0px;
-    top: 0px;
-    position: absolute;
-    -webkit-app-region: drag;
-  }
-  #searchScroll, #favScroll{
-     top: 34px;
-     bottom: 34px;
-  }
-  .dark, .darkens:hover {
-    background: transparent;
-  }
-  .favourites {
-    margin-top: 34px;
-  }
-  .favourites, #favScroll, .favourite {
-    width: 100%;
-  }
-  .search {
-    transition: @transition;
-    bottom: 0px;
-    width: 100%;
-    height: 34px;
-    .top-icon {
-      margin-top: 7px;
-    }
-    input {
-      padding-top: 7px;
-    }
-  }
-  .search.expanded {
-    height: calc(100% - 34px);
-    #searchScroll {
-      top: 68px;
-      bottom: 0px;
-    }
-  }
-  .top-icon {
-    float: left;
-    margin-left: 15px;
-    margin-top: 7px;
-    margin-right: 0px;
-  }
+.sidebars .closed_tabs-button {
+  width: 21px;
 }

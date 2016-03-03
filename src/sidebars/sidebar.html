@@ -1,20 +1,24 @@
 <div class="sidebars">
     <div class="favourites {{sidebarCtrl.favouritesClass()}}" ng-controller="FavouritesCtrl as favouritesCtrl" ng-click="sidebarCtrl.favouritesClick()">
         <div class="sidetab-top">
-            <img src="assets/svg/favourite_TOP.svg" class="top-icon" />
+            <img src="assets/png/favourites_tab.png" class="top-icon" />
         </div>
-        <div id="favScroll" class="sideScroll custom-scrollbar">
+        <div id="favourite-scroll" class="side-scroll custom-scrollbar">
             <div class="sidetab" ng-show="sidebarCtrl.showFavourites()">
                 <div class="no-favourites" ng-show="favouritesCtrl.noFavourites()">
                     <p>You have no favourites to display.</p>
                     <p>Use the search tab to add new stocks to the list.</p>
                 </div>
                 <div ng-repeat="stock in favouritesCtrl.stocks | orderBy: 'index'">
-                    <favourite selection="favouritesCtrl.selection()" select="favouritesCtrl.select(stock)" single="favouritesCtrl.single()"
-                               stock="stock" icon="favouritesCtrl.icon(stock)">
+                    <favourite selection="favouritesCtrl.selection()" select="favouritesCtrl.select(stock)"
+                               single-click="favouritesCtrl.singleClick(stock)" double-click="favouritesCtrl.doubleClick(stock)"
+                               single="favouritesCtrl.single()" stock="stock" icon="favouritesCtrl.icon(stock)">
                     </favourite>
                 </div>
             </div>
+        </div>
+        <div class="closed-window-selection">
+            <closed-window-list icon="'closed_tabs'"></closed-window-list>
         </div>
     </div>
     <search class="search main-search {{sidebarCtrl.searchClass()}}" ng-click="sidebarCtrl.searchClick()"></search>
