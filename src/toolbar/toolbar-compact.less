@@ -9,8 +9,8 @@
     .right-alignment(2);
   }
 
-  .full_view-button, .close-button, .closed_tabs-button {
-    top: 7px;
+  .full_view-button, .close-button {
+    .toolbar-offset-top-compact();
   }
 
   .minimise-button {
@@ -18,6 +18,8 @@
   }
 
   .closed_tabs-button {
+    width: @icon-width;
+    .toolbar-offset-top-compact(1px);
     display: inline-block;
     .right-alignment(3);
   }
