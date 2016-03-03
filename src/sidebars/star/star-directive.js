@@ -10,7 +10,8 @@
                     starClick: '&',
                     favouriteUrl: '&',
                     mouseLeave: '&',
-                    mouseEnter: '&'
+                    mouseEnter: '&',
+                    stock: '&'
                 }
             };
         }]);

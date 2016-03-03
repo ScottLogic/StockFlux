@@ -14,7 +14,7 @@
                       <div class="code">{{stock.code | uppercase}}</div>
                   </div>
                   <div class="star-icon" ng-controller="StarCtrl as starCtrl">
-                      <star ng-init="starCtrl.check = false" favourite-url="starCtrl.favouriteUrl(stock)" star-click="starCtrl.click(stock)"
+                      <star stock="stock" favourite-url="starCtrl.favouriteUrl()" star-click="starCtrl.click()"
                             mouse-enter="starCtrl.mouseEnter()" mouse-leave="starCtrl.mouseLeave()"></star>
                   </div>
               </div>

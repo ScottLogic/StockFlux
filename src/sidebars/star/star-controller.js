@@ -15,33 +15,36 @@
             this.selectionService = selectionService;
 
             this.starHovered = false;
-            this.check = false;
+
+            console.log(this.$scope);
+            this.stock = $scope.stock;
+            this.check = this.stock.favourite;
         }
 
-        favouriteUrl(stock) {
-            if (stock.favourite) {
+        favouriteUrl() {
+            if (this.stock.favourite) {
                 return starUrls.on;
             } else if (this.starHovered) {
                 return starUrls.onHover;
-            } else if (stock.isHovered || this.selectionService.selectedStock() === stock) {
+            } else if (this.stock.isHovered || this.selectionService.selectedStock() === this.stock) {
                 return starUrls.offHover;
             } else {
                 return starUrls.off;
             }
         }
 
-        click(stock) {
-            if (!this.check || confirm('Are you sure you wish to remove this stock (' + stock.code + ') from your favourites?')) {
+        click() {
+            if (!this.check || confirm('Are you sure you wish to remove this stock (' + this.stock.code + ') from your favourites?')) {
                 if (!this.store) {
                     this.store = window.storeService.open(window.name);
                 }
 
-                if (stock.favourite) {
-                    stock.favourite = false;
-                    this.store.remove(stock);
+                if (this.stock.favourite) {
+                    this.stock.favourite = false;
+                    this.store.remove(this.stock);
                 } else {
-                    stock.favourite = true;
-                    this.store.add(stock);
+                    this.stock.favourite = true;
+                    this.store.add(this.stock);
                 }
             }
         }

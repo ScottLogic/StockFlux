@@ -4,7 +4,7 @@
         <div class="top">
             <img class="tearable {{single()}}" src="assets/png/drag_handle.png" draggable="false" />
             <div class="star" ng-controller="StarCtrl as starCtrl">
-                <star ng-init="starCtrl.check = true" favourite-url="starCtrl.favouriteUrl(stock)" star-click="starCtrl.click(stock)"></star>
+                <star stock="stock" favourite-url="starCtrl.favouriteUrl()" star-click="starCtrl.click()"></star>
             </div>
             <div class="stock-name name">{{stock.name | truncate}}</div>
             <div class="code">{{stock.code | uppercase}}</div>
