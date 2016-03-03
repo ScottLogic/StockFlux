@@ -13,9 +13,8 @@
                       <div class="stock-name name">{{stock.name | truncate}}</div>
                       <div class="code">{{stock.code | uppercase}}</div>
                   </div>
-                  <div class="star-icon" ng-controller="StarCtrl as starCtrl">
-                      <star stock="stock" favourite-url="starCtrl.favouriteUrl()" star-click="starCtrl.click()"
-                            mouse-enter="starCtrl.mouseEnter()" mouse-leave="starCtrl.mouseLeave()"></star>
+                  <div class="star-icon">
+                      <star stock="stock"></star>
                   </div>
               </div>
           </div>

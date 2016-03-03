@@ -16,7 +16,6 @@
 
             this.starHovered = false;
 
-            console.log(this.$scope);
             this.stock = $scope.stock;
             this.check = this.stock.favourite;
         }

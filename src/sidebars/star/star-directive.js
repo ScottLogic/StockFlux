@@ -7,12 +7,10 @@
                 restrict: 'E',
                 templateUrl: 'sidebars/star/star.html',
                 scope: {
-                    starClick: '&',
-                    favouriteUrl: '&',
-                    mouseLeave: '&',
-                    mouseEnter: '&',
-                    stock: '&'
-                }
+                    stock: '='
+                },
+                controller: 'StarCtrl',
+                controllerAs: 'starCtrl'
             };
         }]);
 }());
