@@ -7,7 +7,10 @@
                 restrict: 'E',
                 templateUrl: 'closedWindows/closedWindowList/closedWindowList.html',
                 controller: 'ClosedWindowListCtrl',
-                controllerAs: 'closedWindowListCtrl'
+                controllerAs: 'closedWindowListCtrl',
+                scope: {
+                    icon: '='
+                }
             };
         }]);
 }());
