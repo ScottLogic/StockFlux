@@ -1,11 +1,15 @@
 ﻿<img class="star" ng-src="assets/png/{{starCtrl.favouriteUrl()}}.png" ng-click="starCtrl.click(); $event.stopPropagation();"
      ng-mouseenter="starCtrl.mouseEnter()" ng-mouseleave="starCtrl.mouseLeave()" draggable="false" />
 
-<div class="modal" ng-show="starCtrl.confirmationShow" ng-click="starCtrl.hideModal()">
-  <div class="confirmation">
+<div class="confirmation-backdrop " ng-show="starCtrl.confirmationShow" ng-click="starCtrl.hideModal()">
+  <div class="confirmation-modal">
     <div class=modal-content>
+      <div class="header">
+        <span class="title">StockFlux</span>
+        <icon name="close" icon-click="starCtrl.hideModal()"></icon>
+      </div>
       <div class="message">
-        <span ng-bind="starCtrl.confirmationMessage"></span>
+        <p ng-bind="starCtrl.confirmationMessage"></p>
       </div>
       <div class="buttons">
         <button class="btn btn-primary ng-binding" ng-click="starCtrl.deselect(); $event.stopPropagation();">OK</button>

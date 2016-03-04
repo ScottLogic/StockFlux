@@ -2,7 +2,7 @@
   cursor: pointer;
 }
 
-.modal {
+.confirmation-backdrop {
   position: fixed;
   top: 0;
   right: 0;
@@ -16,7 +16,7 @@
   overflow-x: hidden;
   overflow-y: hidden;
   display: block;
-  .confirmation {
+  .confirmation-modal {
     -webkit-transform: translate(0,0);
     -ms-transform: translate(0,0);
     -o-transform: translate(0,0);
@@ -32,10 +32,34 @@
     -o-transform: translate(0,-25%);
     transform: translate(0,-25%);
     .modal-content {
+      .header{
+        padding: 15px;
+        border-bottom: 1px solid #e5e5e5;
+        .title {
+          padding-top: 1px;
+          font-size: 20px;
+          font-weight: 500;
+          line-height: 1;
+        }
+        icon {
+          float: right;
+        }
+      }
+      .message {
+        text-align: center;
+        padding: 12px;
+      }
+      .buttons {
+        margin-bottom: 12px;
+        text-align: center;
+        button {
+          width: 60px;
+        }
+      }
       -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
       box-shadow: 0 5px 15px rgba(0,0,0,.5);
       position: relative;
-      background-color: @dark-background;
+      background-color: @middle-background;
       -webkit-background-clip: padding-box;
       background-clip: padding-box;
       border: 1px solid @chart-teal;
