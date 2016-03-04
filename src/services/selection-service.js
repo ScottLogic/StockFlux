@@ -29,6 +29,6 @@
     }
     SelectionService.$inject = [];
 
-    angular.module('openfin.selection', [])
+    angular.module('stockflux.selection', [])
         .service('selectionService', SelectionService);
 }());

@@ -2,7 +2,9 @@
 
     const RESIZE_NO_LIMIT = 50000;
     const BITFLUX_STOCK_AMOUNT = 1200;
-    const BITFLUX_INITIAL_PROPORTION = 31 / BITFLUX_STOCK_AMOUNT;
+    const BITFLUX_INITIAL_PROPORTION = 16 * 7 / BITFLUX_STOCK_AMOUNT; // ~4 months
+    const TEAROUT_WINDOW_OFFSET = [268, 65];
+    const TEAROUT_WINDOW_OFFSET_COMPACT = [218, 47];
 
     // Be very careful changing the line below. It is replaced with a string.replace in the grunt build
     // to disable the right click menu in release.
@@ -75,8 +77,8 @@
             };
         }
 
-        getTopCardOffset() {
-            return [268, 65];
+        getTopCardOffset(compact) {
+            return compact ? TEAROUT_WINDOW_OFFSET_COMPACT : TEAROUT_WINDOW_OFFSET;
         }
 
         getInitialBitfluxProportion() {
@@ -89,7 +91,7 @@
     }
     ConfigService.$inject = [];
 
-    angular.module('openfin.config')
+    angular.module('stockflux.config')
         .service('configService', ConfigService);
 
 }());

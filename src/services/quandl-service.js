@@ -152,6 +152,6 @@
     }
     QuandlService.$inject = ['$resource'];
 
-    angular.module('openfin.quandl', ['ngResource'])
+    angular.module('stockflux.quandl', ['ngResource'])
         .service('quandlService', QuandlService);
 }());

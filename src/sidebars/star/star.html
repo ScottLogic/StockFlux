@@ -1,2 +1,2 @@
-﻿<img class="star" ng-src="assets/png/{{favouriteUrl(stock)}}.png" ng-click="starClick(stock); $event.stopPropagation();" 
-     ng-mouseenter="mouseEnter()" ng-mouseleave="mouseLeave()" draggable="false" />
+﻿<img class="star" ng-src="assets/png/{{starCtrl.favouriteUrl()}}.png" ng-click="starCtrl.click(); $event.stopPropagation();"
+     ng-mouseenter="starCtrl.mouseEnter()" ng-mouseleave="starCtrl.mouseLeave()" draggable="false" />

@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.version')
+    angular.module('stockflux.version')
         .directive('version', [() => {
             return {
                 restrict: 'E',

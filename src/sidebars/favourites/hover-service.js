@@ -30,6 +30,6 @@
         }
     }
     HoverService.$inject = ['$rootScope'];
-    angular.module('openfin.hover', [])
+    angular.module('stockflux.hover', [])
         .service('hoverService', HoverService);
 }());

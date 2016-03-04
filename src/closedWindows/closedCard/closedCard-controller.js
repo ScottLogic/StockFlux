@@ -9,6 +9,6 @@
     }
     ClosedCardCtrl.$inject = [];
 
-    angular.module('openfin.closedCard')
+    angular.module('stockflux.closedCard')
         .controller('ClosedCardCtrl', ClosedCardCtrl);
 }());

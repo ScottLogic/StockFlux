@@ -5,7 +5,7 @@
      * Abstraction layer for the OpenFin API.
      * Also catches events dispatched from the parent window.
      */
-    angular.module('openfin.currentWindow')
+    angular.module('stockflux.currentWindow')
         .factory('currentWindowService', ['$rootScope', ($rootScope) => {
             function getCurrentWindow() {
                 return fin.desktop.Window.getCurrent();
