@@ -36,7 +36,6 @@
         click() {
             if (this.check) {
                 this.confirmationShow = true;
-                console.log(this.confirmationShow);
             }
             if (!this.check) {
                 if (!this.store) {
