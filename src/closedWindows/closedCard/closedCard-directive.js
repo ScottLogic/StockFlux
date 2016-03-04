@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.closedCard')
+    angular.module('stockflux.closedCard')
         .directive('closedCard', [() => {
             return {
                 restrict: 'E',

@@ -92,6 +92,6 @@
         }
     }
 
-    angular.module('openfin.geometry', [])
+    angular.module('stockflux.geometry', [])
         .service('geometryService', GeometryService);
 })();

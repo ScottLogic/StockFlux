@@ -162,6 +162,6 @@
     }
     StoreService.$inject = ['$rootScope'];
 
-    angular.module('openfin.store')
+    angular.module('stockflux.store')
         .service('storeService', StoreService);
 }());

@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.scroll')
+    angular.module('stockflux.scroll')
         .directive('customScrollbar', [() => {
             return {
                 restrict: 'C',

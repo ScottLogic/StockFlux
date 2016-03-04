@@ -57,6 +57,6 @@
     }
     StarCtrl.$inject = ['$scope', 'selectionService'];
 
-    angular.module('openfin.star')
+    angular.module('stockflux.star')
         .controller('StarCtrl', StarCtrl);
 }());

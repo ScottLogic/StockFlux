@@ -34,6 +34,6 @@
     }
     ParentCtrl.$inject = ['$scope', 'storeService', 'windowCreationService'];
 
-    angular.module('openfin.parent')
+    angular.module('stockflux.parent')
         .controller('ParentCtrl', ParentCtrl);
 }());

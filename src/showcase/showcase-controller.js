@@ -21,6 +21,6 @@
     ShowcaseCtrl.$inject = ['selectionService'];
 
     // The quandl service is used in the directive.
-    angular.module('openfin.showcase', ['openfin.selection', 'openfin.quandl'])
+    angular.module('stockflux.showcase', ['stockflux.selection', 'stockflux.quandl'])
         .controller('ShowcaseCtrl', ShowcaseCtrl);
 }());

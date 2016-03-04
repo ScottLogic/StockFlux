@@ -157,6 +157,6 @@
     }
     SearchCtrl.$inject = ['$scope', 'quandlService', 'selectionService', 'currentWindowService'];
 
-    angular.module('openfin.search')
+    angular.module('stockflux.search')
         .controller('SearchCtrl', SearchCtrl);
 }());

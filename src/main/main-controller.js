@@ -16,6 +16,6 @@
     }
     MainCtrl.$inject = [];
 
-    angular.module('openfin.main')
+    angular.module('stockflux.main')
         .controller('MainCtrl', MainCtrl);
 }());

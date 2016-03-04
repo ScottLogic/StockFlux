@@ -1,7 +1,7 @@
 (function(window) {
     'use strict';
 
-    angular.module('openfin.tearout')
+    angular.module('stockflux.tearout')
         .directive('tearable', ['geometryService', 'hoverService', 'currentWindowService', 'configService',
             (geometryService, hoverService, currentWindowService, configService) => {
                 return {

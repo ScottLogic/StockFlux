@@ -1,7 +1,7 @@
 (function(bitflux) {
     'use strict';
 
-    angular.module('openfin.showcase')
+    angular.module('stockflux.showcase')
         .directive('showcase', ['quandlService', 'configService', (quandlService, configService) => {
             return {
                 restrict: 'E',

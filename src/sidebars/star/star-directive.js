@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.star')
+    angular.module('stockflux.star')
         .directive('star', [() => {
             return {
                 restrict: 'E',

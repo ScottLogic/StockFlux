@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.main')
+    angular.module('stockflux.main')
         .directive('main', [() => {
             return {
                 restrict: 'E',

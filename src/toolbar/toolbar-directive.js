@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.toolbar')
+    angular.module('stockflux.toolbar')
         .directive('toolbar', [() => {
             return {
                 restrict: 'E',

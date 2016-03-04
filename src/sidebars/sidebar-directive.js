@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.sidebar')
+    angular.module('stockflux.sidebar')
         .directive('sideBar', [() => {
             return {
                 restrict: 'E',

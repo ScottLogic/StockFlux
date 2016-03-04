@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.minichart')
+    angular.module('stockflux.minichart')
         .directive('minichart', [() => {
             return {
                 restrict: 'E',

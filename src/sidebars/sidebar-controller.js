@@ -54,6 +54,6 @@
     }
     SidebarCtrl.$inject = [];
 
-    angular.module('openfin.sidebar')
+    angular.module('stockflux.sidebar')
         .controller('SidebarCtrl', SidebarCtrl);
 }());

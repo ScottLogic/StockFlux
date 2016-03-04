@@ -160,6 +160,6 @@
     }
     FavouritesCtrl.$inject = ['currentWindowService', 'quandlService', 'selectionService', '$scope', '$timeout'];
 
-    angular.module('openfin.favourites')
+    angular.module('stockflux.favourites')
         .controller('FavouritesCtrl', FavouritesCtrl);
 }());
