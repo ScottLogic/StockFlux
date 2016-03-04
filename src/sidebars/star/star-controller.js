@@ -37,7 +37,7 @@
             if (this.check) {
                 this.confirmationShow = true;
             }
-            if (!this.check) {
+            else {
                 if (!this.store) {
                     this.store = window.storeService.open(window.name);
                 }
