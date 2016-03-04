@@ -8,7 +8,7 @@
   <div id="search-scroll" class="side-scroll custom-scrollbar">
       <div class="sidetab" ng-show="sidebarCtrl.showSearches()">
           <div ng-repeat="stock in searchCtrl.stocks" ng-mouseenter="stock.isHovered = true;" ng-mouseleave="stock.isHovered = false;">
-              <div class="search-result darkens {{searchCtrl.selection() !== stock.code ? '' : 'dark'}}" ng-click="searchCtrl.select(stock)">
+              <div class="search-result darkens {{searchCtrl.darkenClass(stock)}}" ng-click="searchCtrl.select(stock)">
                   <div class="details">
                       <div class="stock-name name">{{stock.name | truncate}}</div>
                       <div class="code">{{stock.code | uppercase}}</div>
