@@ -1,7 +1,7 @@
 ﻿<img class="star" ng-src="assets/png/{{starCtrl.favouriteUrl()}}.png" ng-click="starCtrl.click(); $event.stopPropagation();"
      ng-mouseenter="starCtrl.mouseEnter()" ng-mouseleave="starCtrl.mouseLeave()" draggable="false" />
 
-<div class="confirmation-backdrop " ng-show="starCtrl.confirmationShow" ng-click="starCtrl.hideModal()">
+<div class="confirmation-backdrop " ng-if="starCtrl.confirmationShow" ng-click="starCtrl.hideModal()">
   <div class="confirmation-modal">
     <div class=modal-content>
       <div class="header">
