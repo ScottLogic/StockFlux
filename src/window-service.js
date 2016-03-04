@@ -237,12 +237,6 @@
 
                     let availableRect = monitor.availableRect;
 
-                    if (bounds.left < availableRect.left) {
-                        bounds.left = availableRect.left;
-                    } else if (bounds.left + bounds.width > availableRect.right) {
-                        bounds.left = availableRect.right - bounds.width;
-                    }
-
                     if (bounds.top < availableRect.top) {
                         bounds.top = availableRect.top;
                     } else if (bounds.top + bounds.height > availableRect.bottom) {
