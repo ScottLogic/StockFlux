@@ -15,11 +15,6 @@
             this.window = null;
             this.maximised = false;
             this.oldSize = null;
-            currentWindowService.ready(() => {
-                var boundReady = this.onReady.bind(this);
-                boundReady();
-                this._watch();
-            });
 
             this.maximisedEvent = () => {
                 this.$timeout(() => {
@@ -32,6 +27,12 @@
                     this.maximised = false;
                 });
             };
+
+            currentWindowService.ready(() => {
+                var boundReady = this.onReady.bind(this);
+                boundReady();
+                this._watch();
+            });
         }
 
         isCompact() {
