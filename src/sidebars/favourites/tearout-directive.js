@@ -117,7 +117,7 @@
                                             var compact = store.isCompact();
                                             windowService.createMainWindow(null, compact, (newWindow) => {
                                                 newWindow.resizeTo(window.outerWidth, window.outerHeight, 'top-left');
-                                                var newCardOffset = configService.getTopCardOffset();
+                                                var newCardOffset = configService.getTopCardOffset(compact);
                                                 newWindow.moveTo(e.screenX - newCardOffset[0], e.screenY - newCardOffset[1]);
                                                 var newStore = window.storeService.open(newWindow.name);
                                                 newStore.add(scope.stock);
