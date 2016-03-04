@@ -88,7 +88,7 @@ module.exports = function(grunt) {
 
         download: {
             openfinZip: {
-                src: ['https://dl.openfin.co/services/download?fileName=StockFlux&config=http://scottlogic.github.io/StockFlux/app.json'],
+                src: ['https://dl.openfin.co/services/download?fileName=WPFerg-Stockflux&config=http://wpferg.github.io/OpenFinD3FC/app.json'],
                 dest: './public/StockFlux.zip'
             }
         },
@@ -271,7 +271,7 @@ module.exports = function(grunt) {
     grunt.registerTask('serve', ['build:dev', 'openfin:serve']);
     grunt.registerTask('default', ['serve']);
 
-    grunt.registerTask('createZip', ['build:release', 'download']);
+    grunt.registerTask('createZip', ['build:dev', 'download']);
     grunt.registerTask('deploy', ['createZip', 'gh-pages:origin']);
     grunt.registerTask('deploy:upstream', ['ci', 'gh-pages:upstream']);
 
