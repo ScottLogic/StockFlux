@@ -35,7 +35,14 @@
                 maxHeight: RESIZE_NO_LIMIT,
                 defaultWidth: 1280,
                 defaultHeight: 720,
-                shadow: true
+                shadow: true,
+                resizeRegion: {
+                    size: 7,
+                    topLeftCorner: 14,
+                    topRightCorner: 14,
+                    bottomRightCorner: 14,
+                    bottomLeftCorner: 14
+                }
             };
         }
 
