@@ -18,6 +18,6 @@
     }
     VersionCtrl.$inject = ['currentWindowService'];
 
-    angular.module('openfin.version')
+    angular.module('stockflux.version')
         .controller('VersionCtrl', VersionCtrl);
 }());

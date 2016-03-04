@@ -89,7 +89,7 @@
     }
     ConfigService.$inject = [];
 
-    angular.module('openfin.config')
+    angular.module('stockflux.config')
         .service('configService', ConfigService);
 
 }());

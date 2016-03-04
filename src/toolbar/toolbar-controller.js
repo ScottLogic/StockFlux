@@ -109,6 +109,6 @@
     }
     ToolbarCtrl.$inject = ['$scope', '$timeout', 'currentWindowService'];
 
-    angular.module('openfin.toolbar')
+    angular.module('stockflux.toolbar')
         .controller('ToolbarCtrl', ToolbarCtrl);
 }());

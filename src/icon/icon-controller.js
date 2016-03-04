@@ -87,6 +87,6 @@
     }
     IconCtrl.$inject = ['$scope'];
 
-    angular.module('openfin.icon')
+    angular.module('stockflux.icon')
         .controller('IconCtrl', IconCtrl);
 }());

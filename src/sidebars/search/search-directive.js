@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.search')
+    angular.module('stockflux.search')
         .directive('search', ['$timeout', ($timeout) => {
             return {
                 restrict: 'E',

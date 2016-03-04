@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.closedWindows')
+    angular.module('stockflux.closedWindows')
         .directive('closedWindowList', [() => {
             return {
                 restrict: 'E',

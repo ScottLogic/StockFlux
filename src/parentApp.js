@@ -1,13 +1,13 @@
 (function() {
     'use strict';
 
-    angular.module('OpenFinD3FCParent', [
-        'openfin.parent'
+    angular.module('StockFluxParent', [
+        'stockflux.parent'
     ]);
 
-    angular.module('openfin.parent', ['openfin.store', 'openfin.window']);
-    angular.module('openfin.store', []);
-    angular.module('openfin.currentWindow', []);
-    angular.module('openfin.window', ['openfin.store', 'openfin.geometry', 'openfin.config']);
-    angular.module('openfin.config', []);
+    angular.module('stockflux.parent', ['stockflux.store', 'stockflux.window']);
+    angular.module('stockflux.store', []);
+    angular.module('stockflux.currentWindow', []);
+    angular.module('stockflux.window', ['stockflux.store', 'stockflux.geometry', 'stockflux.config']);
+    angular.module('stockflux.config', []);
 }());

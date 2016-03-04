@@ -1,42 +1,42 @@
 (function() {
     'use strict';
 
-    angular.module('OpenFinD3FC', [
+    angular.module('StockFlux', [
         'ngAnimate',
-        'openfin.main',
-        'openfin.showcase',
-        'openfin.toolbar',
-        'openfin.icon',
-        'openfin.search',
-        'openfin.favourites',
-        'openfin.sidebar',
-        'openfin.filters',
-        'openfin.star',
-        'openfin.tearout',
-        'openfin.minichart',
-        'openfin.scroll',
-        'openfin.closedWindows',
-        'openfin.closedCard',
-        'openfin.config',
-        'openfin.version'
+        'stockflux.main',
+        'stockflux.showcase',
+        'stockflux.toolbar',
+        'stockflux.icon',
+        'stockflux.search',
+        'stockflux.favourites',
+        'stockflux.sidebar',
+        'stockflux.filters',
+        'stockflux.star',
+        'stockflux.tearout',
+        'stockflux.minichart',
+        'stockflux.scroll',
+        'stockflux.closedWindows',
+        'stockflux.closedCard',
+        'stockflux.config',
+        'stockflux.version'
     ]);
 
-    angular.module('openfin.main', []);
-    angular.module('openfin.showcase', ['openfin.selection', 'openfin.quandl', 'openfin.config']);
-    angular.module('openfin.toolbar', ['openfin.currentWindow', 'openfin.closedWindows']);
-    angular.module('openfin.icon', []);
-    angular.module('openfin.search', ['openfin.quandl', 'openfin.selection', 'openfin.currentWindow']);
-    angular.module('openfin.favourites', ['openfin.quandl', 'openfin.selection', 'openfin.currentWindow']);
-    angular.module('openfin.sidebar', []);
-    angular.module('openfin.filters', []);
-    angular.module('openfin.star', ['openfin.selection']);
-    angular.module('openfin.tearout', ['openfin.geometry', 'openfin.hover', 'openfin.currentWindow', 'openfin.config']);
-    angular.module('openfin.minichart', ['openfin.quandl']);
-    angular.module('openfin.store', []);
-    angular.module('openfin.currentWindow', []);
-    angular.module('openfin.scroll', []);
-    angular.module('openfin.closedWindows', ['openfin.closedCard']);
-    angular.module('openfin.closedCard', []);
-    angular.module('openfin.config', []);
-    angular.module('openfin.version', ['openfin.currentWindow']);
+    angular.module('stockflux.main', []);
+    angular.module('stockflux.showcase', ['stockflux.selection', 'stockflux.quandl', 'stockflux.config']);
+    angular.module('stockflux.toolbar', ['stockflux.currentWindow', 'stockflux.closedWindows']);
+    angular.module('stockflux.icon', []);
+    angular.module('stockflux.search', ['stockflux.quandl', 'stockflux.selection', 'stockflux.currentWindow']);
+    angular.module('stockflux.favourites', ['stockflux.quandl', 'stockflux.selection', 'stockflux.currentWindow']);
+    angular.module('stockflux.sidebar', []);
+    angular.module('stockflux.filters', []);
+    angular.module('stockflux.star', ['stockflux.selection']);
+    angular.module('stockflux.tearout', ['stockflux.geometry', 'stockflux.hover', 'stockflux.currentWindow', 'stockflux.config']);
+    angular.module('stockflux.minichart', ['stockflux.quandl']);
+    angular.module('stockflux.store', []);
+    angular.module('stockflux.currentWindow', []);
+    angular.module('stockflux.scroll', []);
+    angular.module('stockflux.closedWindows', ['stockflux.closedCard']);
+    angular.module('stockflux.closedCard', []);
+    angular.module('stockflux.config', []);
+    angular.module('stockflux.version', ['stockflux.currentWindow']);
 }());

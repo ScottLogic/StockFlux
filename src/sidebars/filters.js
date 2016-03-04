@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.filters')
+    angular.module('stockflux.filters')
         .filter('truncate', () => {
             return (input) => {
                 if (input) {

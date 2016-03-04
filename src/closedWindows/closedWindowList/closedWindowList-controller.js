@@ -18,6 +18,6 @@
     }
     ClosedWindowListCtrl.$inject = [];
 
-    angular.module('openfin.closedWindows')
+    angular.module('stockflux.closedWindows')
         .controller('ClosedWindowListCtrl', ClosedWindowListCtrl);
 }());

@@ -75,6 +75,6 @@
     }
     MinichartCtrl.$inject = ['quandlService', '$timeout'];
 
-    angular.module('openfin.minichart', ['openfin.quandl'])
+    angular.module('stockflux.minichart', ['stockflux.quandl'])
         .controller('MinichartCtrl', MinichartCtrl);
 }());

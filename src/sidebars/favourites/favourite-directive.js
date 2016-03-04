@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('openfin.favourites')
+    angular.module('stockflux.favourites')
         .directive('favourite', [() => {
             return {
                 restrict: 'E',

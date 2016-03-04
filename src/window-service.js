@@ -300,6 +300,6 @@
     }
     WindowCreationService.$inject = ['storeService', 'geometryService', '$q', 'configService'];
 
-    angular.module('openfin.window')
+    angular.module('stockflux.window')
         .service('windowCreationService', WindowCreationService);
 }(fin));
