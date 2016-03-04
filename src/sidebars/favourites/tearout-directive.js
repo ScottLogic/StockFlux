@@ -121,6 +121,7 @@
                                                 newWindow.moveTo(e.screenX - newCardOffset[0], e.screenY - newCardOffset[1]);
                                                 var newStore = window.storeService.open(newWindow.name);
                                                 newStore.add(scope.stock);
+                                                store.remove(scope.stock);
                                                 newStore.toggleCompact(compact);
                                             });
                                         }
