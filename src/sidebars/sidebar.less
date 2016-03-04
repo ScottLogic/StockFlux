@@ -64,6 +64,10 @@
 
 .contracted {
   width: (@sidebar-width - @expanded-width);
+
+  .sidetab-top {
+    -webkit-app-region: no-drag;
+  }
 }
 
 .favourites.contracted:hover, .search.contracted:hover {
@@ -94,6 +98,7 @@
 
 .sidetab-top {
   height: @toolbar-height;
+  -webkit-app-region: drag;
 }
 
 .darkens:hover {
