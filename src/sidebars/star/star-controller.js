@@ -43,8 +43,7 @@
                 }
 
                 if (this.stock.favourite) {
-                    this.stock.favourite = false;
-                    this.store.remove(this.stock);
+                    this.deselect();
                 } else {
                     this.stock.favourite = true;
                     this.store.add(this.stock);
@@ -60,6 +59,7 @@
             this.store.remove(this.stock);
             this.hideModal();
         }
+
         hideModal() {
             this.confirmationShow = false;
         }
