@@ -11,7 +11,7 @@
   left: 0;
   z-index: 1050;
   display: none;
-  overflow: hidden;
+  .no-overflow;
   outline: 0;
   display: block;
   .confirmation-modal {
@@ -24,9 +24,7 @@
         border-bottom: 1px solid #e5e5e5;
         .title {
           padding-top: 1px;
-          font-size: 20px;
-          font-weight: 500;
-          line-height: 1;
+          .font(20px, @font-medium, 1.0);
         }
         icon {
           float: right;
