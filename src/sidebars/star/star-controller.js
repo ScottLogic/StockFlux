@@ -10,7 +10,6 @@
 
     class StarCtrl {
         constructor($scope, selectionService) {
-            this.$scope = $scope;
             this.store = null;
             this.selectionService = selectionService;
 
