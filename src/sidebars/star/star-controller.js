@@ -16,7 +16,7 @@
             this.starHovered = false;
 
             this.stock = $scope.stock;
-            this.check = this.stock.favourite;
+            this.check = $scope.confirm;
         }
 
         favouriteUrl() {
@@ -29,6 +29,10 @@
             } else {
                 return starUrls.off;
             }
+        }
+
+        tooltip() {
+            return this.stock.favourite ? 'Unfavourite Stock' : 'Favourite Stock';
         }
 
         click() {

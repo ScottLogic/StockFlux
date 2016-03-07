@@ -1,20 +1,20 @@
 <div ng-keydown="searchCtrl.onSearchKeyDown($event)">
   <div>
-      <img src="assets/png/search_tab.png" class="top-icon" draggable="false" />
+      <img src="assets/png/search_tab.png" class="top-icon" title="Search Stocks" draggable="false" />
       <input class="sidetab" type="text" maxlength="20" placeholder="Enter stock name or symbol"
              ng-show="sidebarCtrl.showSearches()" ng-model="searchCtrl.query"/>
-      <icon name="close" icon-click="sidebarCtrl.favouritesClick()"></icon>
+      <icon name="close" icon-click="sidebarCtrl.favouritesClick()" tooltip="Close Search"></icon>
   </div>
   <div id="search-scroll" class="side-scroll custom-scrollbar">
       <div class="sidetab" ng-show="sidebarCtrl.showSearches()">
           <div ng-repeat="stock in searchCtrl.stocks" ng-mouseenter="stock.isHovered = true;" ng-mouseleave="stock.isHovered = false;">
-              <div class="search-result darkens {{searchCtrl.selection() !== stock.code ? '' : 'dark'}}" ng-click="searchCtrl.select(stock)">
+              <div class="search-result darkens {{searchCtrl.darkenClass(stock)}}" ng-click="searchCtrl.select(stock)">
                   <div class="details">
                       <div class="stock-name name">{{stock.name | truncate}}</div>
                       <div class="code">{{stock.code | uppercase}}</div>
                   </div>
                   <div class="star-icon">
-                      <star stock="stock"></star>
+                      <star stock="stock" confirm="false"></star>
                   </div>
               </div>
           </div>
