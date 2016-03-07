@@ -8,7 +8,8 @@
                 templateUrl: 'icon/icon.html',
                 scope: {
                     name: '@',
-                    iconClick: '&'
+                    iconClick: '&',
+                    tooltip: '@'
                 },
                 controller: 'IconCtrl',
                 controllerAs: 'iconCtrl'
