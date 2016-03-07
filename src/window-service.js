@@ -335,8 +335,6 @@
 
                     if (bounds.top < availableRect.top) {
                         bounds.top = availableRect.top;
-                    } else if (bounds.top + bounds.height > availableRect.bottom) {
-                        bounds.top = availableRect.bottom - bounds.height;
                     }
 
                     targetWindow.setBounds(bounds.left, bounds.top, bounds.width, bounds.height);
