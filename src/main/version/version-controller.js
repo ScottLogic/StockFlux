@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    const VERSION = { version: '9.1.0' };
+    const VERSION = { version: '9.2.0' };
 
     class VersionCtrl {
         constructor(currentWindowService) {
