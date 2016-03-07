@@ -154,6 +154,10 @@
                 }
             });
         }
+
+        darkenClass(stock) {
+            return (this.selection() === stock.code || stock.isHovered) ? 'dark' : '';
+        }
     }
     SearchCtrl.$inject = ['$scope', 'quandlService', 'selectionService', 'currentWindowService'];
 
