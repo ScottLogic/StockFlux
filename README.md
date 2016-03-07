@@ -1,20 +1,29 @@
 # StockFlux
 
-StockFlux is an implementation of a desktop app using Openfin, written using [AngularJS](https://angularjs.org/). It pulls data from [Quandl](https://www.quandl.com/), and displays it using [BitFlux](http://scottlogic.github.io/BitFlux/). You can search for new stocks, add stocks to favourites, and tear out stocks (similar to browser tabs). You can also collapse the window into a compact view.
+StockFlux is a desktop application developed by [Scott Logic](http://www.scottlogic.com/) that uses the OpenFin HTML5 container. 
 
-![Image of StockFlux](https://cloud.githubusercontent.com/assets/7962948/13354652/5a48e678-dc94-11e5-9e29-51a076cd3b28.PNG)
+![Image of StockFlux](https://cloud.githubusercontent.com/assets/1098110/13568013/a02e0fc8-e456-11e5-9543-4642a54c3e2a.png)
+
+Here are a few things to try:
+  - Add and remove stocks via the search pane
+  - Drag tiles within the favourites pane to re-order them
+  - Drag a tile outside of the favourites pane to create a new application window
+  - Re-open recent windows via the icon at the bottom right of the favourites pane
+  - Use the icon on the top right of the title bar to toggle 'collapsed' mode
 
 ## Installing
 
-You can download StockFlux from [here](http://scottlogic.github.io/StockFlux/StockFlux.zip). If you haven't already installed an OpenFin application, this will install the OpenFin runtime. It'll also add shortcuts to StockFlux to your desktop and start menu.
+In order to install the application, download [StockFlux installer zipfile](http://scottlogic.github.io/StockFlux/StockFlux.zip), unzip and run the executable. If you haven't already installed an OpenFin application, this will install the required runtime. It'll also add shortcuts to StockFlux to your desktop and start menu.
 
-Each application start up, it downloads the application from Github Pages, meaning that it will automatically update and that it cannot be used offline.
+This is an 'evergreen' application, each time it launches the application code is downloaded (from GitHub pages), ensuring that it is always up-to-date.
 
-## Developing
+# Development
 
-[npm](https://www.npmjs.com/), the package manager for [Node.js](https://nodejs.org/), is used to manage the project's dependencies. [Grunt](http://gruntjs.com/), a JavaScript task runner, is used to test and build the project.
+The application is built using AngularJS and ES2016, transpiled via Babel. The charts are rendered using [d3fc](https://d3fc.io/), a Scott Logic open source project which provides a number of components that allow the creation of bespoke interactive charts. The bulk of the charting code is adapted from [BitFlux](http://scottlogic.github.io/BitFlux/), which showcases the capabilities of d3fc.
 
 ### Initial Setup
+
+[npm](https://www.npmjs.com/), the package manager for [Node.js](https://nodejs.org/), is used to manage the project's dependencies. [Grunt](http://gruntjs.com/), a JavaScript task runner, is used to test and build the project.
 
 - Download or clone this repository locally
 - Ensure [Node.js](https://nodejs.org/), which includes npm, is installed
@@ -30,15 +39,9 @@ npm install -g grunt-cli
 npm install
 ```
 
-- Perform an initial build:
-
-```
-grunt build
-```
-
 #### Running locally
 
-To run in an OpenFin shell run the grunt task
+To run in an OpenFin shell run the `serve` grunt task:
 
 ```
 grunt serve
