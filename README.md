@@ -46,6 +46,12 @@ grunt serve
 
 The project is also accessible at http://localhost:5000
 
+#### Releasing
+
+To release, run the Grunt task: `grunt release` for a major release, or `grunt bump:minor`
+for a minor. This updates all the version references to a new version. Then, submit a PR
+with this new version in to `dev`, and then merge it to `master`. Finally, run
+`grunt deploy:upstream` or `grunt deploy`, depending on how your remotes are set up.
 
 ## License
 
