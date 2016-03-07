@@ -19,7 +19,7 @@
         }
 
         save() {
-            localStorage.setItem(KEY_NAME, JSON.stringify(storage));
+            localStorage.setItem(KEY_NAME, angular.toJson(storage));
         }
 
         update(stock) {
