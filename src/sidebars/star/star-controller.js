@@ -16,7 +16,7 @@
             this.starHovered = false;
 
             this.stock = $scope.stock;
-            this.check = this.stock.favourite;
+            this.check = $scope.confirm;
         }
 
         favouriteUrl() {

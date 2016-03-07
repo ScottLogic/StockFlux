@@ -7,7 +7,8 @@
                 restrict: 'E',
                 templateUrl: 'sidebars/star/star.html',
                 scope: {
-                    stock: '='
+                    stock: '=',
+                    confirm: '='
                 },
                 controller: 'StarCtrl',
                 controllerAs: 'starCtrl'
