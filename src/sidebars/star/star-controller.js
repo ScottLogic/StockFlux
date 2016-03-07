@@ -31,6 +31,10 @@
             }
         }
 
+        tooltip() {
+            return this.stock.favourite ? 'Unfavourite Stock' : 'Favourite Stock';
+        }
+
         click() {
             if (!this.check || confirm('Are you sure you wish to remove this stock (' + this.stock.code + ') from your favourites?')) {
                 if (!this.store) {
