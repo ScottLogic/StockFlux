@@ -2,7 +2,7 @@
      ng-mouseenter="starCtrl.mouseEnter()" ng-mouseleave="starCtrl.mouseLeave()" draggable="false" />
 
 <div class="confirmation-backdrop " ng-if="starCtrl.confirmationShow" ng-click="starCtrl.hideModal()">
-  <div class="confirmation-modal">
+  <div class="confirmation-modal" ng-click="$event.stopPropagation();">
     <div class=modal-content>
       <div class="header">
         <span class="title">StockFlux</span>
