@@ -15,6 +15,7 @@
             this.$timeout = $timeout;
 
             this.store = null;
+            this.receivedFirstQuandlResponse = false;
             this.stocks = [];
             this.update();
             this._watch();
@@ -65,6 +66,12 @@
                 }
 
                 this.favourites = this.store.get();
+
+                if (this.favourites.length === 0) {
+                    this.$timeout(() => {
+                        this.receivedFirstQuandlResponse = true;
+                    });
+                }
 
                 var i,
                     max,
@@ -117,6 +124,9 @@
                     if (this.stocks.map((stock) => { return stock.code; }).indexOf(favourite) === -1) {
                         // This is a new stock
                         this.quandlService.getData(favourite, (stock) => {
+
+                            this.receivedFirstQuandlResponse = true;
+
                             // Repeat the check as in the mean time a stock for this favourite could have been added.
                             if (this.stocks.map((stock1) => { return stock1.code; }).indexOf(favourite) === -1) {
                                 var data = stock.data[0],
