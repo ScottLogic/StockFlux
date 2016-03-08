@@ -37,11 +37,16 @@
         }
 
         modalTop() {
+            var base = 80;
+            var favouriteHeight = 100;
             if (!this.store) {
                 this.store = window.storeService.open(window.name);
             }
+            if (this.store.isCompact()) {
+                base = 65;
+            }
             var index = this.store.get().indexOf(this.stock.code);
-            return index * 100 + 80;
+            return index * favouriteHeight + base;
         }
 
         click() {
