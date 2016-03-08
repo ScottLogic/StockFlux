@@ -40,7 +40,7 @@
             if (!this.store) {
                 this.store = window.storeService.open(window.name);
             }
-            var index = this.store.store.stocks.indexOf(this.stock.code);
+            var index = this.store.get().indexOf(this.stock.code);
             return index * 100 + 80;
         }
 
