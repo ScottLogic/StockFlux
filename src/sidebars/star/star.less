@@ -20,23 +20,25 @@
   display: block;
   .confirmation-modal {
     position: relative;
-    width: 260px;
+    width: 204px;
     left: 200px;
     top: 80px;
     .confirmation-content {
       .message {
-        text-align: center;
-        padding: 12px;
+        .font(12px, @font-thin, 1.4);
+        text-align: left;
       }
       .buttons {
-        margin-bottom: 12px;
         text-align: center;
         button {
-          width: 60px;
+          margin: 10px 0 6px 0;
+          width: 90px;
+          border-radius: 0;
+          border: none;
         }
       }
       background-color: @light-background;
-      padding-bottom: 2px;
+      padding: 6px;
     }
   }
 }
