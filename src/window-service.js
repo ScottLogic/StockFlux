@@ -70,8 +70,9 @@
                 closedCb();
             }
 
+            delete this.openWindows[_window.name];
             var index = this.mainWindowsCache.indexOf(_window);
-            this.mainWindowsCache.slice(index, 1);
+            this.mainWindowsCache.splice(index, 1);
 
             this.windowsOpen--;
 

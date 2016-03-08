@@ -12,6 +12,7 @@
             this.query = '';
             this.noResults = false;
             this.stocks = [];
+            this.isLoading = false;
 
             this._watch();
         }
@@ -78,7 +79,9 @@
                 var favourites = this.store.get();
                 if (this.query) {
                     var length = favourites.length;
+                    this.isLoading = true;
                     this.quandlService.search(this.query, (stock) => {
+                        this.isLoading = false;
                         var i;
 
                         // removing stocks found with old query
