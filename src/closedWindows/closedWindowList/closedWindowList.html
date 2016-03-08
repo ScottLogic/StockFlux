@@ -1,12 +1,14 @@
-<div class="favourite-closed" ng-hide="closedWindowListCtrl.closedWindows.length === 0">
-    <icon name="{{icon}}" icon-click="closedWindowListCtrl.click(); $event.stopPropagation();" tooltip="Last Closed Windows"></icon>
-</div>
-<div ng-show="closedWindowListCtrl.closedTabsShow" class="favourite-closed-cover" ng-click="closedWindowListCtrl.closedTabsShow = false">
-    <div class="bubble-head"></div>
-    <div class="closed-selection">
-        <div class="closed-card-container"
-            ng-repeat="closedWindow in closedWindowListCtrl.closedWindows | orderBy:'-closed'">
-            <closed-card card-window="closedWindow"></closed-card>
+<div ng-if="closedWindowListCtrl.closedWindows.length !== 0">
+    <div class="favourite-closed">
+        <icon name="{{icon}}" icon-click="closedWindowListCtrl.click(); $event.stopPropagation();" tooltip="Last Closed Windows"></icon>
+    </div>
+    <div ng-show="closedWindowListCtrl.closedTabsShow" class="favourite-closed-cover" ng-click="closedWindowListCtrl.closedTabsShow = false">
+        <div class="bubble-head"></div>
+        <div class="closed-selection">
+            <div class="closed-card-container"
+                ng-repeat="closedWindow in closedWindowListCtrl.closedWindows | orderBy:'-closed'">
+                <closed-card card-window="closedWindow"></closed-card>
+            </div>
         </div>
     </div>
 </div>
