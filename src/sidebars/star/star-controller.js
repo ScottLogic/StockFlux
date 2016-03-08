@@ -38,7 +38,7 @@
 
         modalTop() {
             var base = 80;
-            var favouriteHeight = 100;
+            var favouriteHeight = 101;
             if (!this.store) {
                 this.store = window.storeService.open(window.name);
             }
