@@ -1,4 +1,4 @@
-<div ng-hide="closedWindowListCtrl.closedWindows.length === 0">
+<div ng-if="closedWindowListCtrl.closedWindows.length !== 0">
     <div class="favourite-closed">
         <icon name="{{icon}}" icon-click="closedWindowListCtrl.click(); $event.stopPropagation();" tooltip="Last Closed Windows"></icon>
     </div>
