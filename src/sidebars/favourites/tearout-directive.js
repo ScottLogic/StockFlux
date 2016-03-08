@@ -22,18 +22,19 @@
                             myHoverArea = parent.getElementsByClassName('hover-area')[0],
                             offset = { x: 0, y: 0 },
                             currentlyDragging = false,
-                            insideFavouritesPane = true,
                             dragService;
 
                         hoverService.add(myHoverArea, scope.stock.code);
 
+                        function insideFavouritesPane() {
+                            // Check if you are over a drop target by seeing if the tearout rectangle intersects the drop target
+                            return geometryService.elementIntersect(
+                                tearoutWindow, window, document.getElementsByClassName('favourites')[0]);
+                        }
+
                         function setOffset(x, y) {
                             offset.x = x;
                             offset.y = y;
-                        }
-
-                        function setCurrentlyDragging(dragging) {
-                            currentlyDragging = dragging;
                         }
 
                         function moveTearoutWindow(x, y) {
@@ -78,7 +79,7 @@
 
                             dragService = windowService.registerDrag(tearoutWindow, currentWindowService.getCurrentWindow());
 
-                            setCurrentlyDragging(true);
+                            currentlyDragging = true;
                             setOffset(e.offsetX, e.offsetY);
                             moveTearoutWindow(e.screenX, e.screenY);
                             clearIncomingTearoutWindow();
@@ -99,8 +100,8 @@
                             }
 
                             if (currentlyDragging) {
-                                setCurrentlyDragging(false);
-                                if (insideFavouritesPane) {
+                                currentlyDragging = false;
+                                if (insideFavouritesPane()) {
                                     returnFromTearout();
                                 } else {
                                     if (!store) {
@@ -157,11 +158,7 @@
                         }
 
                         function boundsChangingEvent() {
-                            // Check if you are over a drop target by seeing if the tearout rectangle intersects the drop target
-                            insideFavouritesPane = geometryService.elementIntersect(
-                                tearoutWindow, window, document.getElementsByClassName('favourites')[0]);
-
-                            if (insideFavouritesPane) {
+                            if (insideFavouritesPane()) {
                                 reorderFavourites();
                             }
                         }
