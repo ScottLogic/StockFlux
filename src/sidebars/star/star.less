@@ -2,6 +2,10 @@
   cursor: pointer;
 }
 
+.bubble-head {
+  .bubble-head(@left: 242px, @top: 75px);
+}
+
 .confirmation-backdrop {
   cursor: default;
   position: fixed;
@@ -16,20 +20,10 @@
   display: block;
   .confirmation-modal {
     position: relative;
-    width: 60%;
-    margin: 100px auto;
-    .modal-content {
-      .header{
-        padding: 15px;
-        border-bottom: 1px solid #e5e5e5;
-        .title {
-          padding-top: 1px;
-          .font(20px, @font-medium, 1.0);
-        }
-        icon {
-          float: right;
-        }
-      }
+    width: 260px;
+    left: 200px;
+    top: 80px;
+    .confirmation-content {
       .message {
         text-align: center;
         padding: 12px;
@@ -41,8 +35,8 @@
           width: 60px;
         }
       }
-      background-color: @middle-background;
-      border: 1px solid @chart-teal;
+      background-color: @light-background;
+      padding-bottom: 2px;
     }
   }
 }

@@ -18,7 +18,6 @@
             this.stock = $scope.stock;
             this.check = $scope.confirm;
             this.confirmationShow = false;
-            this.confirmationMessage = 'Are you sure you wish to remove this stock (' + this.stock.code + ') from your favourites?';
         }
 
         favouriteUrl() {
@@ -35,6 +34,14 @@
 
         tooltip() {
             return this.stock.favourite ? 'Unfavourite Stock' : 'Favourite Stock';
+        }
+
+        modalTop() {
+            if (!this.store) {
+                this.store = window.storeService.open(window.name);
+            }
+            var index = this.store.store.stocks.indexOf(this.stock.code);
+            return index * 100 + 80;
         }
 
         click() {
