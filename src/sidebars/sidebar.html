@@ -5,9 +5,12 @@
         </div>
         <div id="favourite-scroll" class="side-scroll custom-scrollbar">
             <div class="sidetab" ng-show="sidebarCtrl.showFavourites()">
-                <div class="no-favourites" ng-show="favouritesCtrl.noFavourites()">
+                <div class="no-favourites" ng-show="favouritesCtrl.noFavourites() && favouritesCtrl.receivedFirstQuandlResponse">
                     <p>You have no favourites to display.</p>
                     <p>Use the search tab to add new stocks to the list.</p>
+                </div>
+                <div class="no-favourites" ng-hide="favouritesCtrl.receivedFirstQuandlResponse">
+                    <p>Loading favourite stocks...</p>
                 </div>
                 <div ng-repeat="stock in favouritesCtrl.stocks | orderBy: 'index'">
                     <favourite selection="favouritesCtrl.selection()" select="favouritesCtrl.select(stock)"
