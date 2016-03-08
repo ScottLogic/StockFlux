@@ -17,6 +17,8 @@
 
             this.stock = $scope.stock;
             this.check = $scope.confirm;
+            this.confirmationShow = false;
+            this.confirmationMessage = 'Are you sure you wish to remove this stock (' + this.stock.code + ') from your favourites?';
         }
 
         favouriteUrl() {
@@ -36,20 +38,36 @@
         }
 
         click() {
-            if (!this.check || confirm('Are you sure you wish to remove this stock (' + this.stock.code + ') from your favourites?')) {
+            if (this.check) {
+                this.confirmationShow = true;
+            }
+            else {
                 if (!this.store) {
                     this.store = window.storeService.open(window.name);
                 }
 
                 if (this.stock.favourite) {
-                    this.stock.favourite = false;
-                    this.store.remove(this.stock);
+                    this.deselect();
                 } else {
                     this.stock.favourite = true;
                     this.store.add(this.stock);
                 }
             }
         }
+
+        deselect() {
+            if (!this.store) {
+                this.store = window.storeService.open(window.name);
+            }
+            this.stock.favourite = false;
+            this.store.remove(this.stock);
+            this.hideModal();
+        }
+
+        hideModal() {
+            this.confirmationShow = false;
+        }
+
 
         mouseEnter() {
             this.starHovered = true;
