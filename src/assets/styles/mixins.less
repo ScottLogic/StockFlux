@@ -12,6 +12,14 @@
   top: (7px + @additional-offset);
 }
 
+.drag {
+  -webkit-app-region: drag;
+}
+
+.no-drag {
+  -webkit-app-region: no-drag;
+}
+
 // 400 is 'normal'
 .font(@size, @weight: 400, @line-height: 1.5) {
   font-size: @size;
