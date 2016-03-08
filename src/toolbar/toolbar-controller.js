@@ -86,6 +86,7 @@
 
                 this.window.resizeTo(width, height, 'top-right');
             }
+            this.$scope.$broadcast('compactChanging');
         }
 
         compactClick() {
