@@ -14,7 +14,11 @@
   transition: @transition;
 
   &.active {
-    background-color: #447272;
+    background-color: @highlight-colour;
+
+    .favourite, .drop-target, .hover-area {
+      background-color: transparent;
+    }
   }
 }
 
