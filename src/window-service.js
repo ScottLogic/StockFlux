@@ -102,7 +102,7 @@
             this.otherInstance = null;
         }
 
-        overAnotherInstance(cb) {
+        overAnotherInstance(selector, cb) {
             var mainWindows = this.windowTracker.getMainWindows(),
                 result = false,
                 promises = [];
@@ -112,7 +112,10 @@
                 var deferred = this.$q.defer();
                 promises.push(deferred.promise);
                 mainWindow.getState((state) => {
-                    if (!result && state !== 'minimized' && this.geometryService.windowsIntersect(this.tearoutWindow, mainWindow.getNativeWindow())) {
+                    var nativeWindow = mainWindow.getNativeWindow();
+                    var element = nativeWindow.document.querySelector(selector || 'body');
+
+                    if (!result && state !== 'minimized' && this.geometryService.elementIntersect(this.tearoutWindow, nativeWindow, element)) {
                         this.setOtherInstance(mainWindow);
                         result = true;
                     }

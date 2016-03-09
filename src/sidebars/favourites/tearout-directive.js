@@ -110,7 +110,7 @@
                                         store = window.storeService.open(window.name);
                                     }
 
-                                    dragService.overAnotherInstance((overAnotherInstance) => {
+                                    dragService.overAnotherInstance('.favourites', (overAnotherInstance) => {
                                         if (overAnotherInstance) {
                                             dragService.moveToOtherInstance(scope.stock);
                                             dragService.clearOtherInstance();
@@ -166,7 +166,7 @@
                                 dragService.clearOtherInstance();
                             } else {
                                 // Check intersections to set the tear in indicator states.
-                                dragService.overAnotherInstance();
+                                dragService.overAnotherInstance('.favourites');
                             }
                         }
 
