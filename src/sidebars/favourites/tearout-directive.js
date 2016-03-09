@@ -113,7 +113,7 @@
                                     dragService.overAnotherInstance('.favourites', (overAnotherInstance) => {
                                         if (overAnotherInstance) {
                                             dragService.moveToOtherInstance(scope.stock);
-                                            dragService.clearOtherInstance();
+                                            dragService.destroy();
                                             store.remove(scope.stock);
                                             dragService = null;
                                         } else {
@@ -161,9 +161,8 @@
                         }
 
                         function boundsChangingEvent() {
-                            if (insideFavouritesPane()) {
+                            if (dragService.overThisInstance('.favourites')) {
                                 reorderFavourites();
-                                dragService.clearOtherInstance();
                             } else {
                                 // Check intersections to set the tear in indicator states.
                                 dragService.overAnotherInstance('.favourites');

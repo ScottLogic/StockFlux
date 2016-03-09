@@ -102,6 +102,17 @@
             this.otherInstance = null;
         }
 
+        overThisInstance(selector) {
+            var nativeWindow = this.openFinWindow.getNativeWindow();
+            var element = nativeWindow.document.querySelector(selector || 'body');
+            var over = this.geometryService.elementIntersect(this.tearoutWindow, nativeWindow, element);
+
+            if (over) {
+                this.clearOtherInstance();
+            }
+            return over;
+        }
+
         overAnotherInstance(selector, cb) {
             var mainWindows = this.windowTracker.getMainWindows(),
                 result = false,
@@ -145,6 +156,10 @@
 
         clearOtherInstance() {
             this.setOtherInstance(null);
+        }
+
+        destroy() {
+            this.clearOtherInstance();
         }
 
         messageOtherInstance(message) {
