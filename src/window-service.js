@@ -127,7 +127,7 @@
                 }
 
                 if (!result) {
-                    this.setOtherInstance(null);
+                    this.clearOtherInstance();
                 }
             });
         }
@@ -138,6 +138,10 @@
                 this.otherInstance = newInstance;
                 this.messageOtherInstance('dragin');
             }
+        }
+
+        clearOtherInstance() {
+            this.setOtherInstance(null);
         }
 
         messageOtherInstance(message) {
