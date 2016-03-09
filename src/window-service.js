@@ -112,8 +112,8 @@
                 var deferred = this.$q.defer();
                 promises.push(deferred.promise);
                 mainWindow.getState((state) => {
-                    if (state !== 'minimized' && this.geometryService.windowsIntersect(this.tearoutWindow, mainWindow.getNativeWindow())) {
-                        this.otherInstance = mainWindow;
+                    if (!result && state !== 'minimized' && this.geometryService.windowsIntersect(this.tearoutWindow, mainWindow.getNativeWindow())) {
+                        this.setOtherInstance(mainWindow);
                         result = true;
                     }
 
@@ -121,7 +121,30 @@
                 });
             });
 
-            this.$q.all(promises).then(() => cb(result));
+            this.$q.all(promises).then(() => {
+                if (cb) {
+                    cb(result);
+                }
+
+                if (!result) {
+                    this.setOtherInstance(null);
+                }
+            });
+        }
+
+        setOtherInstance(newInstance) {
+            if (this.otherInstance !== newInstance) {
+                this.messageOtherInstance('dragout');
+                this.otherInstance = newInstance;
+                this.messageOtherInstance('dragin');
+            }
+        }
+
+        messageOtherInstance(message) {
+            if (this.otherInstance) {
+                var event = new Event(message);
+                this.otherInstance.getNativeWindow().dispatchEvent(event);
+            }
         }
 
         moveToOtherInstance(stock) {
