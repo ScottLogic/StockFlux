@@ -23,21 +23,21 @@
         _watch() {
             var listener = () => this.$timeout(() => this.refreshClosedWindows());
             var addListener = () => {
-                window.storeService.addClosedWindowListener(listener);
+                window.windowService.addClosedWindowListener(listener);
                 this.refreshClosedWindows();
             };
 
-            // Can't guarantee that storeService exists, so if it doesn't, watch.
-            if (window.storeService) {
+            // Can't guarantee that windowService exists, so if it doesn't, watch.
+            if (window.windowService) {
                 addListener();
             } else {
-                this.$scope.$watch(() => window.storeService, () => {
+                this.$scope.$watch(() => window.windowService, () => {
                     addListener();
                 });
             }
 
             this.$scope.$on('$destroy', () => {
-                window.storeService.removeClosedWindowListener(listener);
+                window.windowService.removeClosedWindowListener(listener);
             });
         }
     }

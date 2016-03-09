@@ -117,9 +117,6 @@
         constructor($rootScope) {
             this.$rootScope = $rootScope;
             storage = JSON.parse(localStorage.getItem(KEY_NAME));
-
-            this.closedWindowsListeners = [];
-            this.$rootScope.$on('closedWindowChange', () => this.notifyClosedWindowListeners());
         }
 
         getPreviousOpenWindowNames() {
@@ -131,18 +128,6 @@
         getPreviousClosedWindows() {
             return (storage || [])
                 .filter((store) => store.closed > 0);
-        }
-
-        addClosedWindowListener(listener) {
-            this.closedWindowsListeners.push(listener);
-        }
-
-        removeClosedWindowListener(listener) {
-            this.closedWindowsListeners.splice(this.closedWindowsListeners.indexOf(listener), 1);
-        }
-
-        notifyClosedWindowListeners() {
-            this.closedWindowsListeners.forEach((listener) => listener());
         }
 
         open(windowName) {

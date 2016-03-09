@@ -134,7 +134,7 @@
      * Class that creates and governs OpenFin windows.
      */
     class WindowCreationService {
-        constructor(storeService, geometryService, $q, configService) {
+        constructor($rootScope, storeService, geometryService, $q, configService) {
             this.storeService = storeService;
             this.geometryService = geometryService;
             this.$q = $q;
@@ -142,6 +142,9 @@
             this.windowTracker = new WindowTracker();
             this.firstName = true;
             this.pool = null;
+            this.closedWindowsListeners = [];
+
+            $rootScope.$on('closedWindowChange', () => this.notifyClosedWindowListeners());
 
             this.ready(() => { this.pool = new FreeWindowPool($q, configService); });
         }
@@ -195,6 +198,18 @@
             };
 
             mainWindow.addEventListener('closed', closedEvent);
+        }
+
+        addClosedWindowListener(listener) {
+            this.closedWindowsListeners.push(listener);
+        }
+
+        removeClosedWindowListener(listener) {
+            this.closedWindowsListeners.splice(this.closedWindowsListeners.indexOf(listener), 1);
+        }
+
+        notifyClosedWindowListeners() {
+            this.closedWindowsListeners.forEach((listener) => listener());
         }
 
         getTargetMonitor(x, y, callback) {
@@ -293,7 +308,7 @@
                 openFinWindow);
         }
     }
-    WindowCreationService.$inject = ['storeService', 'geometryService', '$q', 'configService'];
+    WindowCreationService.$inject = ['$rootScope', 'storeService', 'geometryService', '$q', 'configService'];
 
     angular.module('stockflux.window')
         .service('windowCreationService', WindowCreationService);
