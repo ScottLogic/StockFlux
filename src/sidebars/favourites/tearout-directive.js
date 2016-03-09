@@ -165,7 +165,7 @@
                                 reorderFavourites();
                             } else {
                                 // Check intersections to set the tear in indicator states.
-                                dragService.overAnotherInstance(TEAR_IN_SELECTOR);
+                                dragService.updateIntersections(TEAR_IN_SELECTOR);
                             }
                         }
 

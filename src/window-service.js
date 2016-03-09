@@ -113,7 +113,7 @@
             return over;
         }
 
-        overAnotherInstance(selector, cb) {
+        updateIntersections(selector, cb) {
             var mainWindows = this.windowTracker.getMainWindows(),
                 result = false,
                 promises = [];
@@ -137,11 +137,19 @@
 
             this.$q.all(promises).then(() => {
                 if (cb) {
-                    cb(result);
+                    cb();
                 }
 
                 if (!result) {
                     this.clearOtherInstance();
+                }
+            });
+        }
+
+        overAnotherInstance(selector, cb) {
+            this.updateIntersections(selector, () => {
+                if (cb) {
+                    cb(this.otherInstance !== null);
                 }
             });
         }
