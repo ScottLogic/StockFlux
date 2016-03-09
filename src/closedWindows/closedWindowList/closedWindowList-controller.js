@@ -7,8 +7,13 @@
             this.$timeout = $timeout;
             this.closedWindows = [];
             this.closedTabsShow = false;
+            this.overriddenIcon = '';
 
             this._watch();
+        }
+
+        override() {
+            return this.overriddenIcon;
         }
 
         refreshClosedWindows() {
@@ -16,6 +21,7 @@
         }
 
         click() {
+            this.overriddenIcon = '';
             this.refreshClosedWindows();
             this.closedTabsShow = this.closedWindows.length > 0;
         }
@@ -38,6 +44,10 @@
 
             this.$scope.$on('$destroy', () => {
                 window.windowService.removeClosedWindowListener(listener);
+            });
+
+            this.$scope.$on('windowClosed', () => {
+                this.overriddenIcon = this.$scope.icon + '_active';
             });
         }
     }
