@@ -18,6 +18,7 @@
             this.stock = $scope.stock;
             this.check = $scope.confirm;
             this.confirmationShow = false;
+            this.mouseY = 0;
         }
 
         favouriteUrl() {
@@ -37,19 +38,11 @@
         }
 
         modalTop() {
-            var base = 80;
-            var favouriteHeight = 101;
-            if (!this.store) {
-                this.store = window.storeService.open(window.name);
-            }
-            if (this.store.isCompact()) {
-                base = 65;
-            }
-            var index = this.store.get().indexOf(this.stock.code);
-            return index * favouriteHeight + base;
+            return this.mouseY + 25;
         }
 
-        click() {
+        click(event) {
+            this.mouseY = event.currentTarget.y;
             if (this.check) {
                 this.confirmationShow = true;
             }

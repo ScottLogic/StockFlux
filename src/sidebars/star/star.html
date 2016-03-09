@@ -1,4 +1,4 @@
-﻿<img class="star" ng-src="assets/png/{{starCtrl.favouriteUrl()}}.png" ng-click="starCtrl.click(); $event.stopPropagation();"
+﻿<img class="star" ng-src="assets/png/{{starCtrl.favouriteUrl()}}.png" ng-click="starCtrl.click($event); $event.stopPropagation();"
      ng-mouseenter="starCtrl.mouseEnter()" ng-mouseleave="starCtrl.mouseLeave()" title="{{starCtrl.tooltip()}}" draggable="false" />
 <div class="confirmation-backdrop " ng-if="starCtrl.confirmationShow" ng-click="starCtrl.hideModal()">
   <div class="bubble-head" ng-style="{top:starCtrl.modalTop()-5+'px'}"></div>
