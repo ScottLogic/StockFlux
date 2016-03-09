@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('stockflux.tearout')
-        .directive('tearable', ['geometryService', 'hoverService', 'currentWindowService', 'configService',
-            (geometryService, hoverService, currentWindowService, configService) => {
+        .directive('tearable', ['geometryService', 'hoverService', 'currentWindowService', 'configService', '$rootScope',
+            (geometryService, hoverService, currentWindowService, configService, $rootScope) => {
                 return {
                     restrict: 'C',
                     link: (scope, element, attrs) => {
@@ -77,6 +77,7 @@
                                 return false;
                             }
 
+                            $rootScope.$broadcast('tearoutStart');
                             dragService = windowService.registerDrag(tearoutWindow, currentWindowService.getCurrentWindow());
 
                             currentlyDragging = true;
@@ -98,6 +99,7 @@
                                 // Only process left clicks
                                 return false;
                             }
+                            $rootScope.$broadcast('tearoutEnd');
 
                             if (currentlyDragging) {
                                 currentlyDragging = false;
