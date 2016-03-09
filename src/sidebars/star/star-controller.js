@@ -19,6 +19,7 @@
             this.check = $scope.confirm;
             this.confirmationShow = false;
             this.mouseY = 0;
+            this.viewHeight = 720;
         }
 
         favouriteUrl() {
@@ -37,12 +38,31 @@
             return this.stock.favourite ? 'Unfavourite Stock' : 'Favourite Stock';
         }
 
+        modalFlip() {
+            var modalHeight = 84;
+            var modalTop = this.mouseY + 25;
+            return this.viewHeight < modalTop + modalHeight;
+        }
+
         modalTop() {
-            return this.mouseY + 25;
+            var modalTop = this.mouseY + 25;
+            if (this.modalFlip()) {
+                modalTop = this.mouseY - 95;
+            }
+            return modalTop;
+        }
+
+        modalBubbleTop() {
+            var bubbleTop = this.modalTop() - 5;
+            if (this.modalFlip()) {
+                bubbleTop = this.modalTop() + 79;
+            }
+            return bubbleTop;
         }
 
         click(event) {
             this.mouseY = event.currentTarget.y;
+            this.viewHeight = event.view.innerHeight;
             if (this.check) {
                 this.confirmationShow = true;
             }
