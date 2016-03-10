@@ -12,6 +12,10 @@
   top: (7px + @additional-offset);
 }
 
+.transition(@duration: 0.2s, @delay: 0.1s) {
+  transition: all @duration linear @delay;
+}
+
 .drag {
   -webkit-app-region: drag;
 }
@@ -49,8 +53,12 @@
   right: @right;
 }
 
+.box-shadow(@shadow-position, @colour) {
+  box-shadow: @shadow-position 2px 0px @colour;
+}
+
 .closed-window(@shadow-position, @top: auto, @bottom: auto, @left: auto, @right: auto) {
-  box-shadow: @shadow-position 2px 0px @dark-background;
+  .box-shadow(@shadow-position, @dark-background);
   background: @light-background;
   position: fixed;
   width: 180px;

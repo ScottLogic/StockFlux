@@ -11,11 +11,11 @@
   float: right;
   height: 100%;
   background-color: @favourites-background;
-  transition: @transition;
+  .transition();
 
   &.active-add, &.active-remove {
     .favourite, .hover-area {
-      transition: @transition;
+      .transition();
     }
   }
 
@@ -50,7 +50,7 @@
 
   .top {
     padding-left: 10px;
-    transition: @transition;
+    .transition();
   }
 
   .bottom {

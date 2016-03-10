@@ -69,21 +69,21 @@
   .sidetab-top {
     .no-drag;
   }
-}
 
-.favourites.contracted:hover, .search.contracted:hover {
-  background: @hover-colour;
+  &:hover {
+    background: @hover-colour;
+  }
 }
 
 .sidetab {
   opacity: 1;
 
   &.ng-hide-remove {
-    transition: all 0.1s linear 0.3s;
+    .transition(@duration: 0.1s, @delay: 0.3s);
   }
 
   &.ng-hide-add {
-    transition: all 0.1s linear;
+    .transition(@duration: 0.1s, @delay: 0s);
   }
 
   &.ng-hide {
@@ -95,6 +95,10 @@
   width: @sidebar-width !important;
   height: 100%;
   float: left;
+
+  .closed_tabs-button {
+    width: 21px;
+  }
 }
 
 .sidetab-top {
@@ -118,12 +122,8 @@
 }
 
 .no-favourites {
-  width: 230px;
+  width: @expanded-width;
   padding: 12px 15px 12px 20px;
   color: @text-grey;
   .font(14px, @font-medium);
-}
-
-.sidebars .closed_tabs-button {
-  width: 21px;
 }
