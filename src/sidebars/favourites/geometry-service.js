@@ -77,12 +77,6 @@
     }
 
     class GeometryService {
-        windowsIntersect(openFinWindow, _window) {
-            var nativeWindow = openFinWindow.getNativeWindow();
-
-            return intersectHelper(getWindowPosition(nativeWindow), getWindowPosition(_window));
-        }
-
         elementIntersect(openFinWindow, _window, element) {
             var nativeWindow = openFinWindow.getNativeWindow();
 

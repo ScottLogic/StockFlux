@@ -5,12 +5,21 @@
 @favourite-padding-bottom: 10px;
 @top-height: 30px;
 @fav-split-color: #323A48;
+@highlight-colour: #447272;
 
 .favourites {
   float: right;
   height: 100%;
   background-color: @favourites-background;
   transition: @transition;
+
+  &.active {
+    background-color: @highlight-colour;
+
+    .favourite, .drop-target, .hover-area {
+      background-color: transparent;
+    }
+  }
 }
 
 .hover-area {
