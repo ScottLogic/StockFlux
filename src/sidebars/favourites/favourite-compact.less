@@ -1,6 +1,14 @@
 ﻿.compact {
-  .dark {
-    background: @favourites-background;
+  .favourites {
+    .dark, .darkens:hover {
+      background: @favourites-background;
+    }
+
+    &.active {
+      .dark {
+        background: transparent;
+      }
+    }
   }
 
   .favourites, .favourite .top {
