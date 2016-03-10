@@ -16,7 +16,6 @@
   input {
     border: none;
     background: transparent;
-    .transition();
     .font(12px);
     color: @text-grey;
     width: 184px;
@@ -66,10 +65,8 @@
   }
 }
 
-.search.expanded{
-  #search-scroll {
-    top: @toolbar-height;
-    bottom: 0px;
-    position: absolute;
-  }
+.search #search-scroll {
+  top: @toolbar-height;
+  bottom: 0px;
+  position: absolute;
 }
