@@ -12,6 +12,10 @@
   top: (7px + @additional-offset);
 }
 
+.transition(@duration: 0.2s, @delay: 0.1s) {
+  transition: all @duration linear @delay;
+}
+
 .drag {
   -webkit-app-region: drag;
 }
