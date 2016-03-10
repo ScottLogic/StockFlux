@@ -47,8 +47,35 @@
         }
 
         add(_window) {
-            this.mainWindowsCache.push(_window);
+            this.mainWindowsCache.unshift(_window);
+            this.addWindowStateWatchers(_window);
             this.windowsOpen++;
+        }
+
+        addWindowStateWatchers(_window) {
+            var focusEvent = this.onFocus(_window);
+            var minimiseEvent = this.onMinimise(_window);
+            _window.addEventListener('focused', focusEvent);
+            _window.addEventListener('minimized', minimiseEvent);
+
+            _window.addEventListener('closed', () => {
+                _window.removeEventListener('focused', focusEvent);
+                _window.removeEventListener('minimized', minimiseEvent);
+            });
+        }
+
+        onFocus(_window) {
+            return () => {
+                this.mainWindowsCache.splice(this.mainWindowsCache.indexOf(_window), 1);
+                this.mainWindowsCache.unshift(_window);
+            };
+        }
+
+        onMinimise(_window) {
+            return () => {
+                this.mainWindowsCache.splice(this.mainWindowsCache.indexOf(_window), 1);
+                this.mainWindowsCache.push(_window);
+            };
         }
 
         addTearout(name, _window) {
@@ -102,7 +129,18 @@
             this.otherInstance = null;
         }
 
-        overAnotherInstance(cb) {
+        overThisInstance(selector) {
+            var nativeWindow = this.openFinWindow.getNativeWindow();
+            var element = nativeWindow.document.querySelector(selector || 'body');
+            var over = this.geometryService.elementIntersect(this.tearoutWindow, nativeWindow, element);
+
+            if (over) {
+                this.clearOtherInstance();
+            }
+            return over;
+        }
+
+        updateIntersections(selector, cb) {
             var mainWindows = this.windowTracker.getMainWindows(),
                 result = false,
                 promises = [];
@@ -112,8 +150,11 @@
                 var deferred = this.$q.defer();
                 promises.push(deferred.promise);
                 mainWindow.getState((state) => {
-                    if (state !== 'minimized' && this.geometryService.windowsIntersect(this.tearoutWindow, mainWindow.getNativeWindow())) {
-                        this.otherInstance = mainWindow;
+                    var nativeWindow = mainWindow.getNativeWindow();
+                    var element = nativeWindow.document.querySelector(selector || 'body');
+
+                    if (!result && state !== 'minimized' && this.geometryService.elementIntersect(this.tearoutWindow, nativeWindow, element)) {
+                        this.setOtherInstance(mainWindow);
                         result = true;
                     }
 
@@ -121,7 +162,46 @@
                 });
             });
 
-            this.$q.all(promises).then(() => cb(result));
+            this.$q.all(promises).then(() => {
+                if (cb) {
+                    cb();
+                }
+
+                if (!result) {
+                    this.clearOtherInstance();
+                }
+            });
+        }
+
+        overAnotherInstance(selector, cb) {
+            this.updateIntersections(selector, () => {
+                if (cb) {
+                    cb(this.otherInstance !== null);
+                }
+            });
+        }
+
+        setOtherInstance(newInstance) {
+            if (this.otherInstance !== newInstance) {
+                this.messageOtherInstance('dragout');
+                this.otherInstance = newInstance;
+                this.messageOtherInstance('dragin');
+            }
+        }
+
+        clearOtherInstance() {
+            this.setOtherInstance(null);
+        }
+
+        destroy() {
+            this.clearOtherInstance();
+        }
+
+        messageOtherInstance(message) {
+            if (this.otherInstance) {
+                var event = new Event(message);
+                this.otherInstance.getNativeWindow().dispatchEvent(event);
+            }
         }
 
         moveToOtherInstance(stock) {

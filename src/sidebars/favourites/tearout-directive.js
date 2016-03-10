@@ -1,6 +1,7 @@
 (function(window) {
     'use strict';
 
+    const TEAR_IN_SELECTOR = '.favourites';
     angular.module('stockflux.tearout')
         .directive('tearable', ['geometryService', 'hoverService', 'currentWindowService', 'configService', '$rootScope',
             (geometryService, hoverService, currentWindowService, configService, $rootScope) => {
@@ -103,18 +104,18 @@
 
                             if (currentlyDragging) {
                                 currentlyDragging = false;
-                                if (insideFavouritesPane()) {
+                                if (dragService.overThisInstance(TEAR_IN_SELECTOR)) {
                                     returnFromTearout();
                                 } else {
                                     if (!store) {
                                         store = window.storeService.open(window.name);
                                     }
 
-                                    dragService.overAnotherInstance((overAnotherInstance) => {
+                                    dragService.overAnotherInstance(TEAR_IN_SELECTOR, (overAnotherInstance) => {
                                         if (overAnotherInstance) {
                                             dragService.moveToOtherInstance(scope.stock);
+                                            dragService.destroy();
                                             store.remove(scope.stock);
-                                            dragService = null;
                                         } else {
                                             // Create new window instance
                                             var compact = store.isCompact();
@@ -160,8 +161,11 @@
                         }
 
                         function boundsChangingEvent() {
-                            if (insideFavouritesPane()) {
+                            if (dragService.overThisInstance(TEAR_IN_SELECTOR)) {
                                 reorderFavourites();
+                            } else {
+                                // Check intersections to set the tear in indicator states.
+                                dragService.updateIntersections(TEAR_IN_SELECTOR);
                             }
                         }
 
