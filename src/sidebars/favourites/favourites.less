@@ -13,11 +13,17 @@
   background-color: @favourites-background;
   transition: @transition;
 
+  &.active-add, &.active-remove {
+    .favourite, .hover-area {
+      transition: @transition;
+    }
+  }
+
   &.active {
     background-color: @highlight-colour;
 
-    .favourite, .drop-target, .hover-area {
-      background-color: transparent;
+    .favourite, .hover-area {
+      background-color: @highlight-colour;
     }
   }
 }
