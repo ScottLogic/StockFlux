@@ -2,6 +2,10 @@
   cursor: pointer;
 }
 
+.bubble-head {
+  .bubble-head(@left: 242px, @top: 75px);
+}
+
 .confirmation-backdrop {
   cursor: default;
   position: fixed;
@@ -15,34 +19,40 @@
   outline: 0;
   display: block;
   .confirmation-modal {
+    &.flipped{
+      box-shadow: -2px -2px 2px 0px @dark-background;
+    }
+    box-shadow: -2px 2px 2px 0px @dark-background;
     position: relative;
-    width: 60%;
-    margin: 100px auto;
-    .modal-content {
-      .header{
-        padding: 15px;
-        border-bottom: 1px solid #e5e5e5;
-        .title {
-          padding-top: 1px;
-          .font(20px, @font-medium, 1.0);
-        }
-        icon {
-          float: right;
-        }
-      }
+    width: 204px;
+    left: 200px;
+    top: 80px;
+    .confirmation-content {
       .message {
-        text-align: center;
-        padding: 12px;
+        .font(12px, @font-thin, 1.4);
+        text-align: left;
       }
       .buttons {
-        margin-bottom: 12px;
         text-align: center;
         button {
-          width: 60px;
+          color: inherit;
+          margin: 10px 0 6px 0;
+          width: 90px;
+          border-radius: 0;
+          border: none;
         }
       }
-      background-color: @middle-background;
-      border: 1px solid @chart-teal;
+      background-color: @light-background;
+      padding: 6px;
     }
+  }
+}
+
+.compact {
+  .bubble-head {
+    .bubble-head(@left: 192px);
+  }
+  .confirmation-modal {
+    left: 13px;
   }
 }

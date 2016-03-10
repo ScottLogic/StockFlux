@@ -5,13 +5,13 @@
     }
 
     &.active {
-      .dark {
-        background: transparent;
+      .dark, .darkens, .hover-area {
+        background: @highlight-colour;
       }
     }
   }
 
-  .favourites, .favourite .top {
+  .favourite .top {
     transition: none;
   }
 }
