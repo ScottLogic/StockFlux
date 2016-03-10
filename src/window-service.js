@@ -48,7 +48,34 @@
 
         add(_window) {
             this.mainWindowsCache.push(_window);
+            this.addWindowStateWatchers(_window);
             this.windowsOpen++;
+        }
+
+        addWindowStateWatchers(_window) {
+            var focusEvent = this.onFocus(_window);
+            var minimiseEvent = this.onMinimise(_window);
+            _window.addEventListener('focused', focusEvent);
+            _window.addEventListener('minimized', minimiseEvent);
+
+            _window.addEventListener('closed', () => {
+                _window.removeEventListener('focused', focusEvent);
+                _window.removeEventListener('minimized', minimiseEvent);
+            });
+        }
+
+        onFocus(_window) {
+            return () => {
+                this.mainWindowsCache.splice(this.mainWindowsCache.indexOf(_window), 1);
+                this.mainWindowsCache.unshift(_window);
+            };
+        }
+
+        onMinimise(_window) {
+            return () => {
+                this.mainWindowsCache.splice(this.mainWindowsCache.indexOf(_window), 1);
+                this.mainWindowsCache.push(_window);
+            };
         }
 
         addTearout(name, _window) {
