@@ -47,7 +47,7 @@
         }
 
         add(_window) {
-            this.mainWindowsCache.push(_window);
+            this.mainWindowsCache.unshift(_window);
             this.addWindowStateWatchers(_window);
             this.windowsOpen++;
         }
