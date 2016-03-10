@@ -45,6 +45,16 @@
     }
 
     function processResponse(json) {
+        if (!json || json.quandl_error) {
+            return {
+                success: false,
+                error: {
+                    code: json.quandl_error.code,
+                    message: json.quandl_error.message
+                }
+            };
+        }
+
         var datasetData = json.dataset,
             financialData = datasetData.data,
             results = [],
@@ -56,6 +66,7 @@
         }
 
         json.stockData = {
+            success: true,
             startDate: datasetData.start_date,
             endDate: datasetData.end_date,
             data: results
@@ -96,11 +107,17 @@
             });
         }
 
-        stockData() {
+        /**
+        * @param useFailSafe {boolean=}
+        * @todo use alternative API key instead of defaulting anonymous requests
+        * anonymous requests have a limit of 50 /day whereas the limit for
+        * a registered acc is 50k
+        */
+        stockData(useFailSafe = false) {
             var startDate = period().format('YYYY-MM-DD'),
                 json;
 
-            return this.$resource(QUANDL_URL + QUANDL_WIKI + ':code.json?' + API_KEY_VALUE + '&start_date=' + startDate, {}, {
+            return this.$resource(QUANDL_URL + QUANDL_WIKI + ':code.json?' + (useFailSafe ? '' : API_KEY_VALUE) + '&start_date=' + startDate, {}, {
                 get: {
                     method: 'GET',
                     transformResponse: (data, headers) => {
@@ -113,16 +130,40 @@
             });
         }
 
-        getData(stockCode, cb) {
-            return this.stockData().get({ code: stockCode }, (result) => {
-                var stock = {
-                    name: result.dataset.name,
+        /**
+        * @param stockCode {String} Stock code to query
+        * @param cb {Function} callback to be called on success and error
+        * @param useFailSafe {boolean=} True to retry request anonymously - used by error callback
+        * @todo use alternative API key instead of defaulting to No key
+        * @todo should we show a warning to the user when we swap to anonymous?
+        */
+        getData(stockCode, cb, useFailSafe = false) {
+            var startDate = period().format('YYYY-MM-DD');
+            return this.stockData(useFailSafe).get({ code: stockCode }, (result) => {
+                cb({
+                    success: true,
                     code: stockCode,
+                    name: result.dataset.name,
                     data: result.stockData.data
-                };
-
-                cb(stock);
-            });
+                });
+            }, (request) => {
+                // only use the failsafe once per call
+                if (!useFailSafe) {
+                    this.getData(stockCode, cb, true);// eslint-disable-line
+                } else {
+                    // pass data on so an error message can be shown
+                    cb({
+                        success: false,
+                        code: request.status,
+                        message: request.statusText,
+                        details: {
+                            code: request.data.quandl_error.code,
+                            message: request.data.quandl_error.message
+                        }
+                    });
+                }
+            }
+            );
         }
 
         // Queries Quandl for the specific stock code
