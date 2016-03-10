@@ -10,6 +10,7 @@
 
     class StarCtrl {
         constructor($scope, selectionService) {
+            this.$scope = $scope;
             this.store = null;
             this.selectionService = selectionService;
 
@@ -65,6 +66,7 @@
             this.viewHeight = event.view.innerHeight;
             if (this.check) {
                 this.confirmationShow = true;
+                this.$scope.$emit('disableScrolling');
             }
             else {
                 if (!this.store) {
@@ -91,6 +93,7 @@
 
         hideModal() {
             this.confirmationShow = false;
+            this.$scope.$emit('enableScrolling');
         }
 
 
