@@ -7,10 +7,10 @@
                 restrict: 'C',
                 link: (scope, element) => {
                     var scrollPadding = 'scroll-padding';
-                    scope.$on('disableScrolling', function(event) {
+                    scope.$on('disableScrolling', () => {
                         element.mCustomScrollbar('disable');
                     });
-                    scope.$on('enableScrolling', function(event) {
+                    scope.$on('enableScrolling', () => {
                         element.mCustomScrollbar('update');
                     });
                     element.mCustomScrollbar(
