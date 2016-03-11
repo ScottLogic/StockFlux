@@ -214,7 +214,7 @@
      * Class that creates and governs OpenFin windows.
      */
     class WindowCreationService {
-        constructor($rootScope, storeService, geometryService, $q, configService) {
+        constructor($rootScope, storeService, geometryService, $q, configService, $timeout) {
             this.$rootScope = $rootScope;
             this.storeService = storeService;
             this.geometryService = geometryService;
@@ -225,6 +225,7 @@
             this.pool = null;
             this.closedWindowsListeners = [];
             this.closedWindowSeen = true;
+            this.$timeout = $timeout;
 
             $rootScope.$on('openWindow', () => this.notifyClosedWindowListeners());
             $rootScope.$on('closeWindow', () => {
@@ -242,15 +243,23 @@
 
                 this.windowTracker.add(newWindow);
 
+                var self = this;
+                var showFunction = function() {
+                    self.$timeout(() => {
+                        newWindow.show();
+                        newWindow.bringToFront();
+                    });
+                };
+
                 if (successCb) {
-                    successCb(newWindow);
+                    //Showing of the window happens after the callback is executed.
+                    successCb(newWindow, showFunction);
+                } else {
+                    showFunction();
                 }
 
-                this.storeService.open(newWindow.name).openWindow();
-
-                newWindow.show();
-                newWindow.bringToFront();
-                this.snapToScreenBounds(newWindow);
+                self.storeService.open(newWindow.name).openWindow();
+                self.snapToScreenBounds(newWindow);
             };
 
             var mainWindow;
@@ -406,7 +415,7 @@
                 openFinWindow);
         }
     }
-    WindowCreationService.$inject = ['$rootScope', 'storeService', 'geometryService', '$q', 'configService'];
+    WindowCreationService.$inject = ['$rootScope', 'storeService', 'geometryService', '$q', 'configService', '$timeout'];
 
     angular.module('stockflux.window')
         .service('windowCreationService', WindowCreationService);
