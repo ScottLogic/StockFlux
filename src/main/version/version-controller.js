@@ -19,5 +19,6 @@
     VersionCtrl.$inject = ['currentWindowService'];
 
     angular.module('stockflux.version')
+        .value('Version', VERSION.version)
         .controller('VersionCtrl', VersionCtrl);
 }());
