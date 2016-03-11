@@ -243,9 +243,8 @@
 
                 this.windowTracker.add(newWindow);
 
-                var self = this;
-                var showFunction = function() {
-                    self.$timeout(() => {
+                var showFunction = () => {
+                    this.$timeout(() => {
                         newWindow.show();
                         newWindow.bringToFront();
                     });
@@ -258,8 +257,8 @@
                     showFunction();
                 }
 
-                self.storeService.open(newWindow.name).openWindow();
-                self.snapToScreenBounds(newWindow);
+                this.storeService.open(newWindow.name).openWindow();
+                this.snapToScreenBounds(newWindow);
             };
 
             var mainWindow;
