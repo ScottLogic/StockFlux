@@ -1,24 +1,18 @@
 (function() {
     'use strict';
 
-    const VERSION = { version: '9.2.0' };
-
     class VersionCtrl {
-        constructor(currentWindowService) {
+        constructor(currentWindowService, version) {
             this.currentWindowService = currentWindowService;
-        }
-
-        version() {
-            return VERSION.version;
+            this.version = version;
         }
 
         openGithub() {
             this.currentWindowService.openUrlWithBrowser('https://github.com/ScottLogic/stockflux');
         }
     }
-    VersionCtrl.$inject = ['currentWindowService'];
+    VersionCtrl.$inject = ['currentWindowService', 'Version'];
 
     angular.module('stockflux.version')
-        .value('Version', VERSION.version)
         .controller('VersionCtrl', VersionCtrl);
 }());

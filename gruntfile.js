@@ -178,7 +178,7 @@ module.exports = function(grunt) {
             parent: {
                 src: ['src/parentApp.js', 'src/parent-controller.js', 'src/store-service.js',
                     'src/window-service.js', 'src/sidebars/favourites/geometry-service.js',
-                    'src/config-service.js', 'src/main/version/version-controller.js'],
+                    'src/config-service.js', 'src/version-value.js'],
                 dest: 'public/app-parent.js'
             }
         },
@@ -203,13 +203,11 @@ module.exports = function(grunt) {
         },
         bump: {
             options: {
-                files: ['package.json', 'src/main/version/version-controller.js'],
+                files: ['package.json', 'src/version-value.js'],
                 commit: true,
-                commitMessage: 'Release v%VERSION%',
-                commitFiles: ['package.json', 'src/main/version/version-controller.js'],
-                createTag: true,
-                tagName: 'v%VERSION%',
-                tagMessage: 'Version %VERSION%',
+                commitMessage: 'Release %VERSION%',
+                commitFiles: ['package.json', 'src/version-value.js'],
+                createTag: false,
                 push: false
             }
         },
