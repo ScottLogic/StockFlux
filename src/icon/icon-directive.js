@@ -9,7 +9,8 @@
                 scope: {
                     name: '@',
                     iconClick: '&',
-                    tooltip: '@'
+                    tooltip: '@',
+                    override: '@'
                 },
                 controller: 'IconCtrl',
                 controllerAs: 'iconCtrl'

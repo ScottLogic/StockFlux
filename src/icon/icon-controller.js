@@ -22,7 +22,12 @@
         }
 
         url() {
-            return this.active ? this.urls.active : this.urls.inactive;
+            var override = this.$scope.override;
+            if (override) {
+                return override;
+            } else {
+                return this.active ? this.urls.active : this.urls.inactive;
+            }
         }
 
         click(e) {

@@ -215,6 +215,7 @@
      */
     class WindowCreationService {
         constructor($rootScope, storeService, geometryService, $q, configService) {
+            this.$rootScope = $rootScope;
             this.storeService = storeService;
             this.geometryService = geometryService;
             this.$q = $q;
@@ -223,8 +224,13 @@
             this.firstName = true;
             this.pool = null;
             this.closedWindowsListeners = [];
+            this.closedWindowSeen = true;
 
-            $rootScope.$on('closedWindowChange', () => this.notifyClosedWindowListeners());
+            $rootScope.$on('openWindow', () => this.notifyClosedWindowListeners());
+            $rootScope.$on('closeWindow', () => {
+                this.closedWindowSeen = false;
+                this.notifyClosedWindowListeners();
+            });
 
             this.ready(() => { this.pool = new FreeWindowPool($q, configService); });
         }
@@ -290,6 +296,15 @@
 
         notifyClosedWindowListeners() {
             this.closedWindowsListeners.forEach((listener) => listener());
+        }
+
+        getClosedWindowSeen() {
+            return this.closedWindowSeen;
+        }
+
+        seenClosedWindows() {
+            this.closedWindowSeen = true;
+            this.notifyClosedWindowListeners();
         }
 
         getTargetMonitor(x, y, callback) {
@@ -372,9 +387,14 @@
             fin.desktop.main(cb);
         }
 
-        getWindow(name) {
-            return this.windowTracker.getMainWindows().filter((w) => w.name === name)[0];
+        getMainWindows() {
+            return this.windowTracker.getMainWindows();
         }
+
+        getWindow(name) {
+            return this.getMainWindows().filter((w) => w.name === name)[0];
+        }
+
 
         registerDrag(tearoutWindow, openFinWindow) {
             return new DragService(
