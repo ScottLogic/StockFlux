@@ -64,7 +64,7 @@
 
         _compactChanged() {
             var becomingCompact = this.isCompact();
-            if (becomingCompact && window.outerWidth !== compactWidth) {
+            if (window.outerWidth !== compactWidth) {
                 this.oldSize = [window.outerWidth, window.outerHeight];
             }
 
