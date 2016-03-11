@@ -85,13 +85,13 @@
         openWindow() {
             this.store.closed = 0;
             this.save();
-            this.$rootScope.$broadcast('closedWindowChange');
+            this.$rootScope.$broadcast('openWindow');
         }
 
         closeWindow() {
             this.store.closed = Date.now();
             this.save();
-            this.$rootScope.$broadcast('closedWindowChange');
+            this.$rootScope.$broadcast('closeWindow');
 
             // Trim the oldest closed store
             var closedArray = storage.filter((store) => store.closed !== 0);

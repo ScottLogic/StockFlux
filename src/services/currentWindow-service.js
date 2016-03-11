@@ -25,10 +25,6 @@
                 $rootScope.$broadcast('updateFavourites', event.stock);
             });
 
-            window.addEventListener('windowClosed', () => {
-                $rootScope.$broadcast('windowClosed');
-            });
-
             return {
                 getCurrentWindow: getCurrentWindow,
                 openUrlWithBrowser: openUrlWithBrowser,

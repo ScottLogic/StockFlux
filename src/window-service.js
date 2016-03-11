@@ -224,8 +224,13 @@
             this.firstName = true;
             this.pool = null;
             this.closedWindowsListeners = [];
+            this.closedWindowSeen = true;
 
-            $rootScope.$on('closedWindowChange', () => this.notifyClosedWindowListeners());
+            $rootScope.$on('openWindow', () => this.notifyClosedWindowListeners());
+            $rootScope.$on('closeWindow', () => {
+                this.closedWindowSeen = false;
+                this.notifyClosedWindowListeners();
+            });
 
             this.ready(() => { this.pool = new FreeWindowPool($q, configService); });
         }
@@ -274,7 +279,6 @@
             var closedEvent = (e) => {
                 this.windowTracker.dispose(mainWindow, () => {
                     this.storeService.open(mainWindow.name).closeWindow();
-                    this.$rootScope.$broadcast('windowClosed');
                     mainWindow.removeEventListener('closed', closedEvent);
                 });
             };
@@ -292,6 +296,15 @@
 
         notifyClosedWindowListeners() {
             this.closedWindowsListeners.forEach((listener) => listener());
+        }
+
+        getClosedWindowSeen() {
+            return this.closedWindowSeen;
+        }
+
+        seenClosedWindows() {
+            this.closedWindowSeen = true;
+            this.notifyClosedWindowListeners();
         }
 
         getTargetMonitor(x, y, callback) {
@@ -398,4 +411,3 @@
     angular.module('stockflux.window')
         .service('windowCreationService', WindowCreationService);
 }(fin));
-

@@ -18,12 +18,18 @@
 
         refreshClosedWindows() {
             this.closedWindows = window.storeService.getPreviousClosedWindows();
+            var seen = window.windowService.getClosedWindowSeen();
+            this.overriddenIcon = seen ? '' : (this.$scope.icon + '_active');
         }
 
         click() {
             this.overriddenIcon = '';
             this.refreshClosedWindows();
             this.closedTabsShow = this.closedWindows.length > 0;
+
+            if (window.windowService) {
+                window.windowService.seenClosedWindows();
+            }
         }
 
         _watch() {
@@ -44,10 +50,6 @@
 
             this.$scope.$on('$destroy', () => {
                 window.windowService.removeClosedWindowListener(listener);
-            });
-
-            this.$scope.$on('windowClosed', () => {
-                this.overriddenIcon = this.$scope.icon + '_active';
             });
         }
     }
