@@ -18,8 +18,16 @@
 
         refreshClosedWindows() {
             this.closedWindows = window.storeService.getPreviousClosedWindows();
+            this.updateSeen();
+        }
+
+        updateSeen() {
             var seen = window.windowService.getClosedWindowSeen();
             this.overriddenIcon = seen ? '' : (this.$scope.icon + '_active');
+
+            if (!seen && this.closedTabsShow && document.hasFocus()) {
+                window.windowService.seenClosedWindows();
+            }
         }
 
         click() {
