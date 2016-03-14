@@ -19,6 +19,7 @@
 // Compact styles
 @import "../../main/main-compact.less";
 @import "../../toolbar/toolbar-compact.less";
+@import "../../sidebars/favourites/favourite-compact.less";
 @import "../../sidebars/sidebar-compact.less";
 @import "../../sidebars/search/search-compact.less";
 @import "../../closedWindows/closedWindowList/closedWindowList-compact.less";
@@ -43,6 +44,18 @@ body {
   top: @toolbar-height;
   left: (@sidebar-width + 20);
   right: -2px;
+}
+
+.disable-transitions {
+  * {
+    transition: none !important;
+  }
+}
+
+.disable-pointer {
+  * {
+    pointer-events: none;
+  }
 }
 
 #showcase-title {

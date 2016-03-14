@@ -64,7 +64,7 @@
 
         _compactChanged() {
             var becomingCompact = this.isCompact();
-            if (becomingCompact && window.outerWidth !== compactWidth) {
+            if (window.outerWidth !== compactWidth) {
                 this.oldSize = [window.outerWidth, window.outerHeight];
             }
 
@@ -86,6 +86,7 @@
 
                 this.window.resizeTo(width, height, 'top-right');
             }
+            this.$scope.$broadcast('compactChanging');
         }
 
         compactClick() {

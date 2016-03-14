@@ -1,9 +1,17 @@
 ﻿.compact {
-  .dark {
-    background: @favourites-background;
+  .favourites {
+    .dark, .darkens:hover {
+      background: @favourites-background;
+    }
+
+    &.active {
+      .dark, .darkens, .hover-area {
+        background: @highlight-colour;
+      }
+    }
   }
 
-  .favourites, .favourite .top {
+  .favourite .top {
     transition: none;
   }
 }
