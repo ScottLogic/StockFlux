@@ -9,6 +9,9 @@
             this.selectionService = selectionService;
             this.currentWindowService = currentWindowService;
 
+            this.quandlService.on('CONNECTION_STATUS_CHAGED', this._setConnectionStatus, this);
+            this.isConnected = true;
+
             this.store = null;
             this.query = '';
             this.noResults = false;
@@ -16,6 +19,10 @@
             this.isLoading = false;
 
             this._watch();
+        }
+
+        _setConnectionStatus(status) {
+            this.isConnected = status;
         }
 
         selection() {

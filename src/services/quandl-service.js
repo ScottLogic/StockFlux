@@ -12,6 +12,31 @@
         QUANDL_URL = 'https://www.quandl.com/api/v3/',
         QUANDL_WIKI = 'datasets/WIKI/';
 
+    var useApiKey = true;
+
+    class Observable {
+        constructor() {
+            this.registry = {};
+        }
+
+        on(eventName, fn, scope) {
+            if (!this.registry[eventName]) {
+                this.registry[eventName] = [];
+            }
+
+            this.registry[eventName].push({
+                fn: fn,
+                scope: scope
+            });
+        }
+
+        notify(eventName, value) {
+            this.registry[eventName].forEach((entry) => {
+                entry.fn.call(entry.scope, value);
+            });
+        }
+    }
+
     // Helper functions outside of Class scope
     function period() {
         return moment().subtract(28, 'days');
@@ -45,6 +70,16 @@
     }
 
     function processResponse(json) {
+        if (!json || json.quandl_error) {
+            return {
+                success: false,
+                error: {
+                    code: json.quandl_error.code,
+                    message: json.quandl_error.message
+                }
+            };
+        }
+
         var datasetData = json.dataset,
             financialData = datasetData.data,
             results = [],
@@ -56,6 +91,7 @@
         }
 
         json.stockData = {
+            success: true,
             startDate: datasetData.start_date,
             endDate: datasetData.end_date,
             data: results
@@ -75,7 +111,16 @@
 
     class QuandlService {
         constructor($resource) {
+            this.observable = new Observable();
             this.$resource = $resource;
+        }
+
+        on() {
+            this.observable.on.apply(this.observable, arguments);
+        }
+
+        _notify() {
+            this.observable.notify.apply(this.observable, arguments);
         }
 
         search(query, cb, noResultsCb) {
@@ -96,11 +141,16 @@
             });
         }
 
+        /**
+        * @todo use alternative API key instead of defaulting anonymous requests
+        * anonymous requests have a limit of 50 /day whereas the limit for
+        * a registered acc is 50k
+        */
         stockData() {
             var startDate = period().format('YYYY-MM-DD'),
                 json;
 
-            return this.$resource(QUANDL_URL + QUANDL_WIKI + ':code.json?' + API_KEY_VALUE + '&start_date=' + startDate, {}, {
+            return this.$resource(QUANDL_URL + QUANDL_WIKI + ':code.json?' + (useApiKey ? API_KEY_VALUE : '') + '&start_date=' + startDate, {}, {
                 get: {
                     method: 'GET',
                     transformResponse: (data, headers) => {
@@ -113,16 +163,46 @@
             });
         }
 
-        getData(stockCode, cb) {
-            return this.stockData().get({ code: stockCode }, (result) => {
-                var stock = {
-                    name: result.dataset.name,
-                    code: stockCode,
-                    data: result.stockData.data
-                };
+        /**
+        * @param stockCode {String} Stock code to query
+        * @param cb {Function} callback to be called on success and error
+        * @todo use alternative API key instead of defaulting to No key
+        * @todo should we show a warning to the user when we swap to anonymous?
+        */
+        getData(stockCode, cb, isRetry = false) {
+            var self = this;
+            var startDate = period().format('YYYY-MM-DD');
+            var url = (QUANDL_URL + QUANDL_WIKI + stockCode + '.json?' + (useApiKey ? API_KEY_VALUE : '') + '&start_date=' + startDate);
 
-                cb(stock);
-            });
+            return this.stockData().get({ code: stockCode }, (result) => {
+                if (!useApiKey && !isRetry) {
+                    this._notify('CONNECTION_STATUS_CHAGED', (useApiKey = true));
+                }
+                cb({
+                    success: true,
+                    code: stockCode,
+                    name: result.dataset.name,
+                    data: result.stockData.data
+                });
+            }, (request) => {
+                // only use the failsafe once per call
+                if (!isRetry) {
+                    this._notify('CONNECTION_STATUS_CHAGED', (useApiKey = false));
+                    this.getData(stockCode, cb, true);
+                } else {
+                    // pass data on so an error message can be shown
+                    cb({
+                        success: false,
+                        code: request.status,
+                        message: request.statusText,
+                        details: {
+                            code: request.data.quandl_error.code,
+                            message: request.data.quandl_error.message
+                        }
+                    });
+                }
+            }
+            );
         }
 
         // Queries Quandl for the specific stock code
