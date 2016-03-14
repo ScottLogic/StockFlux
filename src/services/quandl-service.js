@@ -2,7 +2,7 @@
     'use strict';
 
     const API_KEY = 'kM9Z9aEULVDD7svZ4A8B',
-        API_KEY_VALUE = 'api_key=xpto' + API_KEY,
+        API_KEY_VALUE = 'api_key=' + API_KEY,
         DATE_INDEX = 0,
         OPEN_INDEX = 8,
         HIGH_INDEX = 9,
