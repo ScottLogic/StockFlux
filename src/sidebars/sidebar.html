@@ -6,6 +6,14 @@
         </div>
         <div id="favourite-scroll" class="side-scroll custom-scrollbar">
             <div class="sidetab" ng-show="sidebarCtrl.showFavourites()">
+                <div class="no-favourites connectionError" ng-show="favouritesCtrl.errors.length > 0">
+                    <p class="connectionError">An error occured while retrieving data, please try again later</p>
+                    <div ng-repeat="error in favouritesCtrl.errors">
+                        <div class="errorCode">Code: {{error.code}}</div>
+                        <div class="errorMessage">Message: {{error.message}}</div>
+                        <div class="errorMessage">Occurences: {{error.occurences}}</div>
+                    </div>
+                </div>
                 <div class="no-favourites" ng-show="favouritesCtrl.noFavourites() && favouritesCtrl.receivedFirstQuandlResponse">
                     <p>You have no favourites to display.</p>
                     <p>Use the search tab to add new stocks to the list.</p>

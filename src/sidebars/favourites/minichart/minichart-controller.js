@@ -16,6 +16,11 @@
                         var width = extent.width,
                             height = extent.height;
                         var data = result.data;
+
+                        if (!result.success) {
+                            return;
+                        }
+
                         data = data.map((d) => {
                             var date = moment(d.date);
                             d.date = date.toDate();
