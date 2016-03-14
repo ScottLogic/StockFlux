@@ -10,10 +10,6 @@
                     selection: '&'
                 },
                 link: (scope, element) => {
-                    quandlService.on('CONNECTION_STATUS_CHAGED', (isConnected) => {
-                        bitflux.app().quandlApiKey(null);
-                    }, this);
-
                     var chart = bitflux.app().quandlApiKey(quandlService.apiKey()),
                         firstRun = true,
                         store,
@@ -22,6 +18,7 @@
                                 store = window.storeService.open(window.name);
                             }
                         };
+
                     initStore();
                     if (store) {
                         chart.indicators(store.indicators());

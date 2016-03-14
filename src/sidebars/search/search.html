@@ -7,8 +7,8 @@
   </div>
   <div id="search-scroll" class="side-scroll custom-scrollbar">
       <div class="sidetab" ng-show="sidebarCtrl.showSearches()">
-          <div class="no-results connection-error" ng-show="!searchCtrl.isConnected">
-              Connection problems were detected.
+          <div class="results-message connection-error" ng-show="!searchCtrl.isConnected">
+              An error occured while retrieving data, please try again later.
           </div>
           <div ng-show="searchCtrl.isLoading && !searchCtrl.noResults" class="loading-message results-message">
               Loading search results...

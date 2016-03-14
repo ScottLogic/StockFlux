@@ -25,10 +25,6 @@
             this.isConnected = status;
         }
 
-        isConnected() {
-            return this.isConnected;
-        }
-
         selection() {
             return this.selectionService.selectedStock().code;
         }

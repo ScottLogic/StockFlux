@@ -6,8 +6,8 @@
         </div>
         <div id="favourite-scroll" class="side-scroll custom-scrollbar">
             <div class="sidetab" ng-show="sidebarCtrl.showFavourites()">
-                <div class="no-favourites connectionError" ng-show="favouritesCtrl.hasConnectionError()">
-                    <p class="connectionError">An error occured while retrieving data, please contact support</p>
+                <div class="no-favourites connectionError" ng-show="favouritesCtrl.errors.length > 0">
+                    <p class="connectionError">An error occured while retrieving data, please try again later</p>
                     <div ng-repeat="error in favouritesCtrl.errors">
                         <div class="errorCode">Code: {{error.code}}</div>
                         <div class="errorMessage">Message: {{error.message}}</div>

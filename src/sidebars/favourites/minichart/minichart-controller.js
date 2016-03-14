@@ -11,6 +11,7 @@
             this.$timeout(
                 () => {
                     this.quandlService.getData(stock.code, (result) => {
+
                         var extent = fc.util.innerDimensions(document.getElementById(result.code + 'chart'));
                         var width = extent.width,
                             height = extent.height;

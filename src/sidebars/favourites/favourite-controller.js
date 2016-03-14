@@ -48,10 +48,6 @@
             }
         }
 
-        hasConnectionError() {
-            return this.errors.length > 0;
-        }
-
         noFavourites() {
             return this.stocks.length === 0;
         }

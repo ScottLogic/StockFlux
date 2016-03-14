@@ -12,15 +12,14 @@
         QUANDL_URL = 'https://www.quandl.com/api/v3/',
         QUANDL_WIKI = 'datasets/WIKI/';
 
-    var isConnected = true;
+    var useApiKey = true;
 
-    var Observable = (function() {
-        var proto = Obs.prototype;
-        function Obs() {
+    class Observable {
+        constructor() {
             this.registry = {};
         }
 
-        proto.on = function(eventName, fn, scope) {
+        on(eventName, fn, scope) {
             if (!this.registry[eventName]) {
                 this.registry[eventName] = [];
             }
@@ -29,16 +28,14 @@
                 fn: fn,
                 scope: scope
             });
-        };
+        }
 
-        proto.notify = function(eventName, value) {
-            this.registry[eventName].forEach(function(entry) {
+        notify(eventName, value) {
+            this.registry[eventName].forEach((entry) => {
                 entry.fn.call(entry.scope, value);
             });
-        };
-
-        return Obs;
-    })();
+        }
+    }
 
     // Helper functions outside of Class scope
     function period() {
@@ -153,7 +150,7 @@
             var startDate = period().format('YYYY-MM-DD'),
                 json;
 
-            return this.$resource(QUANDL_URL + QUANDL_WIKI + ':code.json?' + (isConnected ? API_KEY_VALUE : '') + '&start_date=' + startDate, {}, {
+            return this.$resource(QUANDL_URL + QUANDL_WIKI + ':code.json?' + (useApiKey ? API_KEY_VALUE : '') + '&start_date=' + startDate, {}, {
                 get: {
                     method: 'GET',
                     transformResponse: (data, headers) => {
@@ -175,25 +172,23 @@
         getData(stockCode, cb, isRetry = false) {
             var self = this;
             var startDate = period().format('YYYY-MM-DD');
-            var url = (QUANDL_URL + QUANDL_WIKI + stockCode + '.json?' + (isConnected ? API_KEY_VALUE : '') + '&start_date=' + startDate);
+            var url = (QUANDL_URL + QUANDL_WIKI + stockCode + '.json?' + (useApiKey ? API_KEY_VALUE : '') + '&start_date=' + startDate);
 
             return this.stockData().get({ code: stockCode }, (result) => {
-                if (!isConnected && !isRetry) {
-                    this._notify('CONNECTION_STATUS_CHAGED', (isConnected = true));
-
+                if (!useApiKey && !isRetry) {
+                    this._notify('CONNECTION_STATUS_CHAGED', (useApiKey = true));
                 }
-
                 cb({
                     success: true,
                     code: stockCode,
                     name: result.dataset.name,
                     data: result.stockData.data
                 });
-            }, function(request) {
+            }, (request) => {
                 // only use the failsafe once per call
                 if (!isRetry) {
-                    self._notify('CONNECTION_STATUS_CHAGED', (isConnected = false));
-                    self.getData(stockCode, cb, true);// eslint-disable-line
+                    this._notify('CONNECTION_STATUS_CHAGED', (useApiKey = false));
+                    this.getData(stockCode, cb, true);
                 } else {
                     // pass data on so an error message can be shown
                     cb({
