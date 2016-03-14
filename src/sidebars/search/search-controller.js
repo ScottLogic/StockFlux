@@ -39,6 +39,10 @@
                 // Down
                 this.changePointer(1);
             }
+            else if (event.keyCode === 13) {
+                // Enter
+                this.changePointer(0);
+            }
             else if (event.keyCode === 27) {
                 // Escape
                 this.$scope.sidebarCtrl.favouritesClick();
