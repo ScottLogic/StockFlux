@@ -1,13 +1,45 @@
-﻿#toolbar {
+﻿@toolbar-icons-width: 125px;
+@toolbar-icons-margin: 15px;
+
+#toolbar {
   height: @toolbar-height;
-  right: 125px;
+  right: 0px;
   left: @sidebar-width;
   position: absolute;
 
-  .drag {
-    .drag;
-    height: 100%;
+  .drag-left {
+    position: fixed;
+    height: @toolbar-height;
+    right: @toolbar-icons-width;
+    height: @toolbar-height;
+    left: @sidebar-width;
   }
+
+  .drag-right {
+    position: fixed;
+    height: @toolbar-height;
+    right: 0;
+    height: @toolbar-height;
+    width: @toolbar-icons-margin;
+  }
+
+  .drag-top {
+    position: fixed;
+    height: @toolbar-icons-margin;
+    right: 0px;
+    height: @toolbar-icons-margin;
+    width: @sidebar-width;
+  }
+
+  .drag-bottom {
+    position: fixed;
+    height: @toolbar-icons-margin;
+    right: 0px;
+    top: (@toolbar-height - @toolbar-icons-margin);
+    height: @toolbar-icons-margin;
+    width: @sidebar-width;
+  }
+
 
   img {
     vertical-align: initial;
