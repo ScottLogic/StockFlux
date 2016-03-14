@@ -43,8 +43,10 @@
         _watch() {
             var listener = () => this.$timeout(() => this.refreshClosedWindows());
             var addListener = () => {
-                window.windowService.addClosedWindowListener(listener);
-                this.refreshClosedWindows();
+                if (window.windowService) {
+                    window.windowService.addClosedWindowListener(listener);
+                    this.refreshClosedWindows();
+                }
             };
 
             // Can't guarantee that windowService exists, so if it doesn't, watch.
