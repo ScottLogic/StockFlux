@@ -7,6 +7,9 @@
   </div>
   <div id="search-scroll" class="side-scroll custom-scrollbar">
       <div class="sidetab" ng-show="sidebarCtrl.showSearches()">
+          <div class="no-results connection-error" ng-show="!searchCtrl.isConnected">
+              Connection problems were detected.
+          </div>
           <div ng-repeat="stock in searchCtrl.stocks" ng-mouseenter="stock.isHovered = true;" ng-mouseleave="stock.isHovered = false;">
               <div class="search-result darkens {{searchCtrl.darkenClass(stock)}}" ng-click="searchCtrl.select(stock)">
                   <div class="details">

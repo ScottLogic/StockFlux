@@ -2,7 +2,7 @@
     'use strict';
 
     const API_KEY = 'kM9Z9aEULVDD7svZ4A8B',
-        API_KEY_VALUE = 'api_key=' + API_KEY,
+        API_KEY_VALUE = 'api_key=xpto' + API_KEY,
         DATE_INDEX = 0,
         OPEN_INDEX = 8,
         HIGH_INDEX = 9,
@@ -11,6 +11,34 @@
         VOLUME_INDEX = 12,
         QUANDL_URL = 'https://www.quandl.com/api/v3/',
         QUANDL_WIKI = 'datasets/WIKI/';
+
+    var isConnected = true;
+
+    var Observable = (function() {
+        var proto = Obs.prototype;
+        function Obs() {
+            this.registry = {};
+        }
+
+        proto.on = function(eventName, fn, scope) {
+            if (!this.registry[eventName]) {
+                this.registry[eventName] = [];
+            }
+
+            this.registry[eventName].push({
+                fn: fn,
+                scope: scope
+            });
+        };
+
+        proto.notify = function(eventName, value) {
+            this.registry[eventName].forEach(function(entry) {
+                entry.fn.call(entry.scope, value);
+            });
+        };
+
+        return Obs;
+    })();
 
     // Helper functions outside of Class scope
     function period() {
@@ -86,7 +114,16 @@
 
     class QuandlService {
         constructor($resource) {
+            this.observable = new Observable();
             this.$resource = $resource;
+        }
+
+        on() {
+            this.observable.on.apply(this.observable, arguments);
+        }
+
+        _notify() {
+            this.observable.notify.apply(this.observable, arguments);
         }
 
         search(query, cb, noResultsCb) {
@@ -108,16 +145,15 @@
         }
 
         /**
-        * @param useFailSafe {boolean=}
         * @todo use alternative API key instead of defaulting anonymous requests
         * anonymous requests have a limit of 50 /day whereas the limit for
         * a registered acc is 50k
         */
-        stockData(useFailSafe = false) {
+        stockData() {
             var startDate = period().format('YYYY-MM-DD'),
                 json;
 
-            return this.$resource(QUANDL_URL + QUANDL_WIKI + ':code.json?' + (useFailSafe ? '' : API_KEY_VALUE) + '&start_date=' + startDate, {}, {
+            return this.$resource(QUANDL_URL + QUANDL_WIKI + ':code.json?' + (isConnected ? API_KEY_VALUE : '') + '&start_date=' + startDate, {}, {
                 get: {
                     method: 'GET',
                     transformResponse: (data, headers) => {
@@ -133,23 +169,31 @@
         /**
         * @param stockCode {String} Stock code to query
         * @param cb {Function} callback to be called on success and error
-        * @param useFailSafe {boolean=} True to retry request anonymously - used by error callback
         * @todo use alternative API key instead of defaulting to No key
         * @todo should we show a warning to the user when we swap to anonymous?
         */
-        getData(stockCode, cb, useFailSafe = false) {
+        getData(stockCode, cb, isRetry = false) {
+            var self = this;
             var startDate = period().format('YYYY-MM-DD');
-            return this.stockData(useFailSafe).get({ code: stockCode }, (result) => {
+            var url = (QUANDL_URL + QUANDL_WIKI + stockCode + '.json?' + (isConnected ? API_KEY_VALUE : '') + '&start_date=' + startDate);
+
+            return this.stockData().get({ code: stockCode }, (result) => {
+                if (!isConnected && !isRetry) {
+                    this._notify('CONNECTION_STATUS_CHAGED', (isConnected = true));
+
+                }
+
                 cb({
                     success: true,
                     code: stockCode,
                     name: result.dataset.name,
                     data: result.stockData.data
                 });
-            }, (request) => {
+            }, function(request) {
                 // only use the failsafe once per call
-                if (!useFailSafe) {
-                    this.getData(stockCode, cb, true);// eslint-disable-line
+                if (!isRetry) {
+                    self._notify('CONNECTION_STATUS_CHAGED', (isConnected = false));
+                    self.getData(stockCode, cb, true);// eslint-disable-line
                 } else {
                     // pass data on so an error message can be shown
                     cb({

@@ -8,12 +8,23 @@
             this.selectionService = selectionService;
             this.currentWindowService = currentWindowService;
 
+            this.quandlService.on('CONNECTION_STATUS_CHAGED', this._setConnectionStatus, this);
+            this.isConnected = true;
+
             this.store = null;
             this.query = '';
             this.noResults = false;
             this.stocks = [];
 
             this._watch();
+        }
+
+        _setConnectionStatus(status) {
+            this.isConnected = status;
+        }
+
+        isConnected() {
+            return this.isConnected;
         }
 
         selection() {
