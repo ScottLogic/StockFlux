@@ -68,7 +68,9 @@
                 this.oldSize = [window.outerWidth, window.outerHeight];
             }
 
-            window.windowService.updateOptions(this.window, becomingCompact);
+            if (window.windowService) {
+                window.windowService.updateOptions(this.window, becomingCompact);
+            }
 
             if (becomingCompact) {
                 this.window.resizeTo(compactWidth, compactHeight, 'top-right');
