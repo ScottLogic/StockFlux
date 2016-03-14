@@ -12,7 +12,7 @@
     margin-bottom: 10px;
   }
 
-  &#favourite-scroll {
+  #favourite-scroll {
     top: @toolbar-height;
     bottom: @bottom-tab-height;
     position: absolute;
@@ -20,12 +20,19 @@
 }
 
 .side-scroll:hover .mCSB_dragger_bar {
-  opacity: 0.75;
+  opacity: 0.80;
 }
 
 .mCSB_dragger_bar {
   opacity: 0;
   width: 10px !important;
+}
+
+#favourite-scroll .mCSB_dragger_bar {
+  background-color: @light-background !important;
+}
+
+#search-scroll .mCSB_dragger_bar {
   background-color: @dark-background !important;
 }
 
