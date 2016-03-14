@@ -64,16 +64,24 @@
             });
         }
 
+        spliceFromCache(_window) {
+            var indices = this.mainWindowsCache.map((win) => win.name === _window.name);
+            var indexOfWindow = indices.indexOf(true);
+            if (indexOfWindow > -1) {
+                this.mainWindowsCache.splice(indexOfWindow, 1);
+            }
+        }
+
         onFocus(_window) {
             return () => {
-                this.mainWindowsCache.splice(this.mainWindowsCache.indexOf(_window), 1);
+                this.spliceFromCache(_window);
                 this.mainWindowsCache.unshift(_window);
             };
         }
 
         onMinimise(_window) {
             return () => {
-                this.mainWindowsCache.splice(this.mainWindowsCache.indexOf(_window), 1);
+                this.spliceFromCache(_window);
                 this.mainWindowsCache.push(_window);
             };
         }
