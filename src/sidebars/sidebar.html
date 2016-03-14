@@ -1,5 +1,6 @@
 <div class="sidebars">
-    <div class="favourites {{sidebarCtrl.favouritesClass()}}" ng-controller="FavouritesCtrl as favouritesCtrl" ng-click="sidebarCtrl.favouritesClick()">
+    <div class="favourites {{sidebarCtrl.favouritesClass()}}" ng-controller="FavouritesCtrl as favouritesCtrl"
+        ng-click="sidebarCtrl.favouritesClick()" ng-class="{active: sidebarCtrl.isTearoutTarget}">
         <div class="sidetab-top">
             <img src="assets/png/favourites_tab.png" class="top-icon" title="Favourites List" draggable="false" />
         </div>
@@ -28,9 +29,9 @@
                 </div>
             </div>
         </div>
-        <div class="closed-window-selection">
-            <closed-window-list icon="'closed_tabs'"></closed-window-list>
-        </div>
+    </div>
+    <div class="closed-window-selection">
+        <closed-window-list icon="'closed_tabs'"></closed-window-list>
     </div>
     <search class="search main-search {{sidebarCtrl.searchClass()}}" ng-click="sidebarCtrl.searchClick()"></search>
     <search class="search compact-search {{sidebarCtrl.searchClass()}}" ng-click="sidebarCtrl.searchClick()"></search>

@@ -2,8 +2,30 @@
     'use strict';
 
     class MainCtrl {
-        constructor() {
+        constructor($scope, $timeout) {
             this.store = null;
+            this.$scope = $scope;
+            this.$timeout = $timeout;
+
+            this.tearingOut = false;
+            this.watch();
+        }
+
+        watch() {
+            this.$scope.$on('tearoutStart', () => {
+                this.$timeout(() => {
+                    this.tearingOut = true;
+                });
+            });
+            this.$scope.$on('tearoutEnd', () => {
+                this.$timeout(() => {
+                    this.tearingOut = false;
+                });
+            });
+        }
+
+        disablePointer() {
+            return this.tearingOut;
         }
 
         isCompact() {
@@ -14,7 +36,7 @@
             return this.store && this.store.isCompact();
         }
     }
-    MainCtrl.$inject = [];
+    MainCtrl.$inject = ['$scope', '$timeout'];
 
     angular.module('stockflux.main')
         .controller('MainCtrl', MainCtrl);

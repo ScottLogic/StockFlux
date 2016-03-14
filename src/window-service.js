@@ -47,8 +47,43 @@
         }
 
         add(_window) {
-            this.mainWindowsCache.push(_window);
+            this.mainWindowsCache.unshift(_window);
+            this.addWindowStateWatchers(_window);
             this.windowsOpen++;
+        }
+
+        addWindowStateWatchers(_window) {
+            var focusEvent = this.onFocus(_window);
+            var minimiseEvent = this.onMinimise(_window);
+            _window.addEventListener('focused', focusEvent);
+            _window.addEventListener('minimized', minimiseEvent);
+
+            _window.addEventListener('closed', () => {
+                _window.removeEventListener('focused', focusEvent);
+                _window.removeEventListener('minimized', minimiseEvent);
+            });
+        }
+
+        spliceFromCache(_window) {
+            var indices = this.mainWindowsCache.map((win) => win.name === _window.name);
+            var indexOfWindow = indices.indexOf(true);
+            if (indexOfWindow > -1) {
+                this.mainWindowsCache.splice(indexOfWindow, 1);
+            }
+        }
+
+        onFocus(_window) {
+            return () => {
+                this.spliceFromCache(_window);
+                this.mainWindowsCache.unshift(_window);
+            };
+        }
+
+        onMinimise(_window) {
+            return () => {
+                this.spliceFromCache(_window);
+                this.mainWindowsCache.push(_window);
+            };
         }
 
         addTearout(name, _window) {
@@ -102,7 +137,18 @@
             this.otherInstance = null;
         }
 
-        overAnotherInstance(cb) {
+        overThisInstance(selector) {
+            var nativeWindow = this.openFinWindow.getNativeWindow();
+            var element = nativeWindow.document.querySelector(selector || 'body');
+            var over = this.geometryService.elementIntersect(this.tearoutWindow, nativeWindow, element);
+
+            if (over) {
+                this.clearOtherInstance();
+            }
+            return over;
+        }
+
+        updateIntersections(selector, cb) {
             var mainWindows = this.windowTracker.getMainWindows(),
                 result = false,
                 promises = [];
@@ -112,8 +158,11 @@
                 var deferred = this.$q.defer();
                 promises.push(deferred.promise);
                 mainWindow.getState((state) => {
-                    if (state !== 'minimized' && this.geometryService.windowsIntersect(this.tearoutWindow, mainWindow.getNativeWindow())) {
-                        this.otherInstance = mainWindow;
+                    var nativeWindow = mainWindow.getNativeWindow();
+                    var element = nativeWindow.document.querySelector(selector || 'body');
+
+                    if (!result && state !== 'minimized' && this.geometryService.elementIntersect(this.tearoutWindow, nativeWindow, element)) {
+                        this.setOtherInstance(mainWindow);
                         result = true;
                     }
 
@@ -121,7 +170,46 @@
                 });
             });
 
-            this.$q.all(promises).then(() => cb(result));
+            this.$q.all(promises).then(() => {
+                if (cb) {
+                    cb();
+                }
+
+                if (!result) {
+                    this.clearOtherInstance();
+                }
+            });
+        }
+
+        overAnotherInstance(selector, cb) {
+            this.updateIntersections(selector, () => {
+                if (cb) {
+                    cb(this.otherInstance !== null);
+                }
+            });
+        }
+
+        setOtherInstance(newInstance) {
+            if (this.otherInstance !== newInstance) {
+                this.messageOtherInstance('dragout');
+                this.otherInstance = newInstance;
+                this.messageOtherInstance('dragin');
+            }
+        }
+
+        clearOtherInstance() {
+            this.setOtherInstance(null);
+        }
+
+        destroy() {
+            this.clearOtherInstance();
+        }
+
+        messageOtherInstance(message) {
+            if (this.otherInstance) {
+                var event = new Event(message);
+                this.otherInstance.getNativeWindow().dispatchEvent(event);
+            }
         }
 
         moveToOtherInstance(stock) {
@@ -134,7 +222,8 @@
      * Class that creates and governs OpenFin windows.
      */
     class WindowCreationService {
-        constructor(storeService, geometryService, $q, configService) {
+        constructor($rootScope, storeService, geometryService, $q, configService, $timeout) {
+            this.$rootScope = $rootScope;
             this.storeService = storeService;
             this.geometryService = geometryService;
             this.$q = $q;
@@ -142,6 +231,15 @@
             this.windowTracker = new WindowTracker();
             this.firstName = true;
             this.pool = null;
+            this.closedWindowsListeners = [];
+            this.closedWindowSeen = true;
+            this.$timeout = $timeout;
+
+            $rootScope.$on('openWindow', () => this.notifyClosedWindowListeners());
+            $rootScope.$on('closeWindow', () => {
+                this.closedWindowSeen = false;
+                this.notifyClosedWindowListeners();
+            });
 
             this.ready(() => { this.pool = new FreeWindowPool($q, configService); });
         }
@@ -153,14 +251,21 @@
 
                 this.windowTracker.add(newWindow);
 
+                var showFunction = () => {
+                    this.$timeout(() => {
+                        newWindow.show();
+                        newWindow.bringToFront();
+                    });
+                };
+
                 if (successCb) {
-                    successCb(newWindow);
+                    //Showing of the window happens after the callback is executed.
+                    successCb(newWindow, showFunction);
+                } else {
+                    showFunction();
                 }
 
                 this.storeService.open(newWindow.name).openWindow();
-
-                newWindow.show();
-                newWindow.bringToFront();
                 this.snapToScreenBounds(newWindow);
             };
 
@@ -195,6 +300,27 @@
             };
 
             mainWindow.addEventListener('closed', closedEvent);
+        }
+
+        addClosedWindowListener(listener) {
+            this.closedWindowsListeners.push(listener);
+        }
+
+        removeClosedWindowListener(listener) {
+            this.closedWindowsListeners.splice(this.closedWindowsListeners.indexOf(listener), 1);
+        }
+
+        notifyClosedWindowListeners() {
+            this.closedWindowsListeners.forEach((listener) => listener());
+        }
+
+        getClosedWindowSeen() {
+            return this.closedWindowSeen;
+        }
+
+        seenClosedWindows() {
+            this.closedWindowSeen = true;
+            this.notifyClosedWindowListeners();
         }
 
         getTargetMonitor(x, y, callback) {
@@ -240,8 +366,6 @@
 
                     if (bounds.top < availableRect.top) {
                         bounds.top = availableRect.top;
-                    } else if (bounds.top + bounds.height > availableRect.bottom) {
-                        bounds.top = availableRect.bottom - bounds.height;
                     }
 
                     targetWindow.setBounds(bounds.left, bounds.top, bounds.width, bounds.height);
@@ -279,9 +403,14 @@
             fin.desktop.main(cb);
         }
 
-        getWindow(name) {
-            return this.windowTracker.getMainWindows().filter((w) => w.name === name)[0];
+        getMainWindows() {
+            return this.windowTracker.getMainWindows();
         }
+
+        getWindow(name) {
+            return this.getMainWindows().filter((w) => w.name === name)[0];
+        }
+
 
         registerDrag(tearoutWindow, openFinWindow) {
             return new DragService(
@@ -293,7 +422,7 @@
                 openFinWindow);
         }
     }
-    WindowCreationService.$inject = ['storeService', 'geometryService', '$q', 'configService'];
+    WindowCreationService.$inject = ['$rootScope', 'storeService', 'geometryService', '$q', 'configService', '$timeout'];
 
     angular.module('stockflux.window')
         .service('windowCreationService', WindowCreationService);

@@ -1,9 +1,10 @@
 (function(window) {
     'use strict';
 
+    const TEAR_IN_SELECTOR = '.favourites';
     angular.module('stockflux.tearout')
-        .directive('tearable', ['geometryService', 'hoverService', 'currentWindowService', 'configService',
-            (geometryService, hoverService, currentWindowService, configService) => {
+        .directive('tearable', ['geometryService', 'hoverService', 'currentWindowService', 'configService', '$rootScope',
+            (geometryService, hoverService, currentWindowService, configService, $rootScope) => {
                 return {
                     restrict: 'C',
                     link: (scope, element, attrs) => {
@@ -77,6 +78,7 @@
                                 return false;
                             }
 
+                            $rootScope.$broadcast('tearoutStart');
                             dragService = windowService.registerDrag(tearoutWindow, currentWindowService.getCurrentWindow());
 
                             currentlyDragging = true;
@@ -98,28 +100,29 @@
                                 // Only process left clicks
                                 return false;
                             }
+                            $rootScope.$broadcast('tearoutEnd');
 
                             if (currentlyDragging) {
                                 currentlyDragging = false;
-                                if (insideFavouritesPane()) {
+                                if (dragService.overThisInstance(TEAR_IN_SELECTOR)) {
                                     returnFromTearout();
                                 } else {
                                     if (!store) {
                                         store = window.storeService.open(window.name);
                                     }
 
-                                    dragService.overAnotherInstance((overAnotherInstance) => {
+                                    dragService.overAnotherInstance(TEAR_IN_SELECTOR, (overAnotherInstance) => {
                                         if (overAnotherInstance) {
                                             dragService.moveToOtherInstance(scope.stock);
+                                            dragService.destroy();
                                             store.remove(scope.stock);
-                                            dragService = null;
                                         } else {
                                             // Create new window instance
                                             var compact = store.isCompact();
-                                            windowService.createMainWindow(null, compact, (newWindow) => {
+                                            windowService.createMainWindow(null, compact, (newWindow, showFunction) => {
                                                 newWindow.resizeTo(window.outerWidth, window.outerHeight, 'top-left');
                                                 var newCardOffset = configService.getTopCardOffset(compact);
-                                                newWindow.moveTo(e.screenX - newCardOffset[0], e.screenY - newCardOffset[1]);
+                                                newWindow.moveTo(e.screenX - newCardOffset[0], e.screenY - newCardOffset[1], showFunction);
                                                 var newStore = window.storeService.open(newWindow.name);
                                                 newStore.add(scope.stock);
                                                 store.remove(scope.stock);
@@ -158,8 +161,11 @@
                         }
 
                         function boundsChangingEvent() {
-                            if (insideFavouritesPane()) {
+                            if (dragService.overThisInstance(TEAR_IN_SELECTOR)) {
                                 reorderFavourites();
+                            } else {
+                                // Check intersections to set the tear in indicator states.
+                                dragService.updateIntersections(TEAR_IN_SELECTOR);
                             }
                         }
 

@@ -6,6 +6,13 @@
      */
     class ParentCtrl {
         constructor($scope, storeService, windowCreationService) {
+
+            if (storeService.shouldUpgrade()) {
+                storeService.upgrade();
+                // .. Can put other upgrade code here ..
+                storeService.saveVersion();
+            }
+
             windowCreationService.ready(() => {
                 var previousWindows = storeService.getPreviousOpenWindowNames(),
                     length = previousWindows.length,

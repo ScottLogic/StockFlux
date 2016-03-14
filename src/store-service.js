@@ -1,7 +1,8 @@
 (function() {
     'use strict';
 
-    const KEY_NAME = 'windows',
+    const WINDOW_KEY = 'windows',
+        VERSION_KEY = 'version',
         defaultStocks = ['AAPL', 'MSFT', 'TITN', 'SNDK', 'TSLA'],
         defaultIndicators = ['rsi', 'movingAverage'],
         closedCacheSize = 5;
@@ -19,7 +20,7 @@
         }
 
         save() {
-            localStorage.setItem(KEY_NAME, angular.toJson(storage));
+            localStorage.setItem(WINDOW_KEY, angular.toJson(storage));
         }
 
         update(stock) {
@@ -85,13 +86,13 @@
         openWindow() {
             this.store.closed = 0;
             this.save();
-            this.$rootScope.$broadcast('closedWindowChange');
+            this.$rootScope.$broadcast('openWindow');
         }
 
         closeWindow() {
             this.store.closed = Date.now();
             this.save();
-            this.$rootScope.$broadcast('closedWindowChange');
+            this.$rootScope.$broadcast('closeWindow');
 
             // Trim the oldest closed store
             var closedArray = storage.filter((store) => store.closed !== 0);
@@ -114,12 +115,31 @@
      * Class for querying and managing the local storage.
      */
     class StoreService {
-        constructor($rootScope) {
+        constructor($rootScope, version) {
             this.$rootScope = $rootScope;
-            storage = JSON.parse(localStorage.getItem(KEY_NAME));
+            this.version = version;
 
-            this.closedWindowsListeners = [];
-            this.$rootScope.$on('closedWindowChange', () => this.notifyClosedWindowListeners());
+            storage = JSON.parse(localStorage.getItem(WINDOW_KEY));
+        }
+
+        shouldUpgrade() {
+            if (localStorage.getItem(VERSION_KEY) == null) {
+                return true;
+            }
+            var parseVersion = (version) => version.split('.').map((v) => Number(v));
+            var thisVersion = parseVersion(this.version);
+            var storedVersion = parseVersion(localStorage.getItem(VERSION_KEY));
+
+            return thisVersion[0] !== storedVersion[0];
+        }
+
+        upgrade() {
+            localStorage.removeItem(WINDOW_KEY);
+            storage = null;
+        }
+
+        saveVersion() {
+            localStorage.setItem(VERSION_KEY, this.version);
         }
 
         getPreviousOpenWindowNames() {
@@ -131,18 +151,6 @@
         getPreviousClosedWindows() {
             return (storage || [])
                 .filter((store) => store.closed > 0);
-        }
-
-        addClosedWindowListener(listener) {
-            this.closedWindowsListeners.push(listener);
-        }
-
-        removeClosedWindowListener(listener) {
-            this.closedWindowsListeners.splice(this.closedWindowsListeners.indexOf(listener), 1);
-        }
-
-        notifyClosedWindowListeners() {
-            this.closedWindowsListeners.forEach((listener) => listener());
         }
 
         open(windowName) {
@@ -177,7 +185,7 @@
             return new StoreWrapper(this.$rootScope, store, windowName);
         }
     }
-    StoreService.$inject = ['$rootScope'];
+    StoreService.$inject = ['$rootScope', 'Version'];
 
     angular.module('stockflux.store')
         .service('storeService', StoreService);

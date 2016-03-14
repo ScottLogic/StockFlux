@@ -64,11 +64,13 @@
 
         _compactChanged() {
             var becomingCompact = this.isCompact();
-            if (becomingCompact && window.outerWidth !== compactWidth) {
+            if (window.outerWidth !== compactWidth) {
                 this.oldSize = [window.outerWidth, window.outerHeight];
             }
 
-            window.windowService.updateOptions(this.window, becomingCompact);
+            if (window.windowService) {
+                window.windowService.updateOptions(this.window, becomingCompact);
+            }
 
             if (becomingCompact) {
                 this.window.resizeTo(compactWidth, compactHeight, 'top-right');
