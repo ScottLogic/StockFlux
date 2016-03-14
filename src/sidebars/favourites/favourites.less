@@ -5,12 +5,27 @@
 @favourite-padding-bottom: 10px;
 @top-height: 30px;
 @fav-split-color: #323A48;
+@highlight-colour: #447272;
 
 .favourites {
   float: right;
   height: 100%;
   background-color: @favourites-background;
-  transition: @transition;
+  .transition();
+
+  &.active-add, &.active-remove {
+    .favourite, .hover-area {
+      .transition();
+    }
+  }
+
+  &.active {
+    background-color: @highlight-colour;
+
+    .favourite, .hover-area {
+      background-color: @highlight-colour;
+    }
+  }
 }
 
 .hover-area {
@@ -35,7 +50,7 @@
 
   .top {
     padding-left: 10px;
-    transition: @transition;
+    .transition();
   }
 
   .bottom {

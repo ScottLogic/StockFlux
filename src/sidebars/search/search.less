@@ -5,9 +5,9 @@
   float: left;
   height: 100%;
   background-color: @search-background;
-  transition: @transition;
+  .transition();
   position: absolute;
-  box-shadow: 2px 0px 2px @dark-background;
+  .box-shadow(2px 0px, @dark-background);
 
   icon {
     display: none;
@@ -16,7 +16,6 @@
   input {
     border: none;
     background: transparent;
-    transition: @transition;
     .font(12px);
     color: @text-grey;
     width: 184px;
@@ -28,7 +27,7 @@
     }
   }
 
-  .no-results {
+  .results-message {
     color: @text-grey;
     padding-left: 12px;
     .font(14px);
@@ -69,4 +68,10 @@
       float: right;
     }
   }
+}
+
+.search #search-scroll {
+  top: @toolbar-height;
+  bottom: 0px;
+  position: absolute;
 }

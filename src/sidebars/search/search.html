@@ -10,6 +10,9 @@
           <div class="no-results connection-error" ng-show="!searchCtrl.isConnected">
               Connection problems were detected.
           </div>
+          <div ng-show="searchCtrl.isLoading && !searchCtrl.noResults" class="loading-message results-message">
+              Loading search results...
+          </div>
           <div ng-repeat="stock in searchCtrl.stocks" ng-mouseenter="stock.isHovered = true;" ng-mouseleave="stock.isHovered = false;">
               <div class="search-result darkens {{searchCtrl.darkenClass(stock)}}" ng-click="searchCtrl.select(stock)">
                   <div class="details">
@@ -21,7 +24,7 @@
                   </div>
               </div>
           </div>
-          <div class="no-results" ng-show="searchCtrl.noResults">
+          <div class="results-message no-results" ng-show="searchCtrl.noResults">
               Oops!<br>
               Looks like no matches were found.
           </div>

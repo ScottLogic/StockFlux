@@ -10,6 +10,18 @@
                 controllerAs: 'closedWindowListCtrl',
                 scope: {
                     icon: '='
+                },
+                link: (scope, element) => {
+                    let onFocus = () => {
+                        if (scope.closedWindowListCtrl.closedTabsShow) {
+                            window.windowService.seenClosedWindows();
+                        }
+                    };
+                    window.addEventListener('focus', onFocus);
+
+                    scope.$on('$destroy', () => {
+                        window.removeEventListener('focus', onFocus);
+                    });
                 }
             };
         }]);

@@ -2,8 +2,9 @@
     'use strict';
 
     class SearchCtrl {
-        constructor($scope, quandlService, selectionService, currentWindowService) {
+        constructor($scope, $timeout, quandlService, selectionService, currentWindowService) {
             this.$scope = $scope;
+            this.$timeout = $timeout;
             this.quandlService = quandlService;
             this.selectionService = selectionService;
             this.currentWindowService = currentWindowService;
@@ -15,6 +16,7 @@
             this.query = '';
             this.noResults = false;
             this.stocks = [];
+            this.isLoading = false;
 
             this._watch();
         }
@@ -89,7 +91,9 @@
                 var favourites = this.store.get();
                 if (this.query) {
                     var length = favourites.length;
+                    this.isLoading = true;
                     this.quandlService.search(this.query, (stock) => {
+                        this.isLoading = false;
                         var i;
 
                         // removing stocks found with old query
@@ -146,23 +150,24 @@
                 });
 
             this.$scope.$on('updateFavourites', (event, data) => {
-                if (!data) {
-                    return;
-                }
-
-                var index = this.stocks.map((stock) => { return stock.code; }).indexOf(data.code);
-                if (index > -1) {
-                    if (!this.query) {
-                        // There are no search results, so remove the favourite.
-                        this.stocks.splice(index, 1);
-                    } else {
-                        // Update the stock's favourite
-                        this.stocks[index].favourite = data.favourite;
+                this.$timeout(() => {
+                    if (!data) {
+                        return;
                     }
-                // The stock doesn't exist, push it on if it's a favourite.
-                } else if (data.favourite) {
-                    this.stocks.push(data);
-                }
+                    var index = this.stocks.map((stock) => { return stock.code; }).indexOf(data.code);
+                    if (index > -1) {
+                        if (!this.query) {
+                            // There are no search results, so remove the favourite.
+                            this.stocks.splice(index, 1);
+                        } else {
+                            // Update the stock's favourite
+                            this.stocks[index].favourite = data.favourite;
+                        }
+                    // The stock doesn't exist, push it on if it's a favourite.
+                    } else if (data.favourite) {
+                        this.stocks.push(data);
+                    }
+                });
             });
         }
 
@@ -170,7 +175,7 @@
             return (this.selection() === stock.code || stock.isHovered) ? 'dark' : '';
         }
     }
-    SearchCtrl.$inject = ['$scope', 'quandlService', 'selectionService', 'currentWindowService'];
+    SearchCtrl.$inject = ['$scope', '$timeout', 'quandlService', 'selectionService', 'currentWindowService'];
 
     angular.module('stockflux.search')
         .controller('SearchCtrl', SearchCtrl);

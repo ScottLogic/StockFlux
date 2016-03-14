@@ -7,6 +7,12 @@
                 restrict: 'C',
                 link: (scope, element) => {
                     var scrollPadding = 'scroll-padding';
+                    scope.$on('disableScrolling', () => {
+                        element.mCustomScrollbar('disable');
+                    });
+                    scope.$on('enableScrolling', () => {
+                        element.mCustomScrollbar('update');
+                    });
                     element.mCustomScrollbar(
                         {
                             scrollInertia: 0,

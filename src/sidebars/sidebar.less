@@ -1,5 +1,6 @@
 ﻿@hover-colour: #455D63;
 @flash-colour: #447272;
+@bottom-tab-height: 40px;
 
 @-webkit-keyframes search {
   0% {
@@ -39,7 +40,7 @@
   position: absolute;
   bottom: 0;
   left: 50px;
-  height: 40px;
+  height: @bottom-tab-height;
   background-color: @middle-background;
   width: @expanded-width;
   border-top: 1px solid @dark-background;
@@ -59,30 +60,30 @@
   bottom: 0px;
   left: 0px;
   right: 0px;
-  z-index: 9;
+  z-index: 1000;
 }
 
 .contracted {
   width: (@sidebar-width - @expanded-width);
 
   .sidetab-top {
-    -webkit-app-region: no-drag;
+    .no-drag;
   }
-}
 
-.favourites.contracted:hover, .search.contracted:hover {
-  background: @hover-colour;
+  &:hover {
+    background: @hover-colour;
+  }
 }
 
 .sidetab {
   opacity: 1;
 
   &.ng-hide-remove {
-    transition: all 0.1s linear 0.3s;
+    .transition(@duration: 0.1s, @delay: 0.3s);
   }
 
   &.ng-hide-add {
-    transition: all 0.1s linear;
+    .transition(@duration: 0.1s, @delay: 0s);
   }
 
   &.ng-hide {
@@ -94,11 +95,15 @@
   width: @sidebar-width !important;
   height: 100%;
   float: left;
+
+  .closed_tabs-button {
+    width: 21px;
+  }
 }
 
 .sidetab-top {
   height: @toolbar-height;
-  -webkit-app-region: drag;
+  .drag;
 }
 
 .darkens:hover {
@@ -117,12 +122,8 @@
 }
 
 .no-favourites {
-  width: 230px;
+  width: @expanded-width;
   padding: 12px 15px 12px 20px;
   color: @text-grey;
   .font(14px, @font-medium);
-}
-
-.sidebars .closed_tabs-button {
-  width: 21px;
 }
