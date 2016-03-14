@@ -208,7 +208,8 @@ module.exports = function(grunt) {
                 commitMessage: 'Release %VERSION%',
                 commitFiles: ['package.json', 'src/version-value.js'],
                 createTag: false,
-                push: false
+                push: false,
+                prereleaseName: 'rc'
             }
         },
 
