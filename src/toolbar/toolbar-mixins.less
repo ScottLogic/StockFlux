@@ -1,0 +1,18 @@
+.toolbar-offset-top(@additional-offset: 0px) {
+  position: fixed;
+  top: (15px + @additional-offset);
+}
+
+.toolbar-offset-top-compact(@additional-offset: 0px) {
+  position: fixed;
+  top: (@toolbar-compact-top-margin + @additional-offset);
+}
+
+.drag-position(@left: auto, @right: auto, @top: auto, @height: auto, @width: auto) {
+  position: fixed;
+  width: @width;
+  left: @left;
+  right: @right;
+  height: @height;
+  top: @top;
+}
