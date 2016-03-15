@@ -119,11 +119,14 @@
                                         } else {
                                             // Create new window instance
                                             var compact = store.isCompact();
+                                            var indicators = store.indicators();
+
                                             windowService.createMainWindow(null, compact, (newWindow, showFunction) => {
                                                 newWindow.resizeTo(window.outerWidth, window.outerHeight, 'top-left');
                                                 var newCardOffset = configService.getTopCardOffset(compact);
                                                 newWindow.moveTo(e.screenX - newCardOffset[0], e.screenY - newCardOffset[1], showFunction);
                                                 var newStore = window.storeService.open(newWindow.name);
+                                                newStore.indicators(indicators);
                                                 newStore.add(scope.stock);
                                                 store.remove(scope.stock);
                                                 newStore.toggleCompact(compact);
