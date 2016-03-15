@@ -14,7 +14,8 @@
               Loading search results...
           </div>
           <div ng-repeat="stock in searchCtrl.stocks" ng-mouseenter="stock.isHovered = true;" ng-mouseleave="stock.isHovered = false;">
-              <div class="search-result darkens {{searchCtrl.darkenClass(stock)}}" ng-click="searchCtrl.select(stock)">
+              <div class="search-result darkens" ng-class="{selected: searchCtrl.selectedClass(stock), dark: searchCtrl.darkenClass(stock)}"
+                  ng-click="searchCtrl.select(stock)">
                   <div class="details">
                       <div class="stock-name name">{{stock.name | truncate}}</div>
                       <div class="code">{{stock.code | uppercase}}</div>
