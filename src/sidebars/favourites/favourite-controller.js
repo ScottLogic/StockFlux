@@ -145,30 +145,32 @@
                                         percentage: delta / data.open * 100,
                                         index: this.stockSortFunction(stock)
                                     });
-                                } else {
-                                    this._addError({
-                                        code: stock.code,
-                                        message: stock.message
-                                    });
                                 }
                             }
+                        }, (error) => {
+                            this.receivedFirstQuandlResponse = true;
+                            this._addError({
+                                code: (error && error.code) || 'No code received',
+                                message: (error && error.message) || 'No message'
+                            });
                         });
                     }
                 });
             });
         }
 
-        // pseudo private
         _addError(newError) {
-            var err = this.errors, max = err.length;
+            var errors = this.errors, max = errors.length;
+            var newCode = newError.code;
+
             for (var i = 0; i < max; i++) {
-                if (err[i].code === newError.code) {  // assume message is the same for the same code
-                    return err[i].occurences++;
+                if (errors[i] && errors[i].code === newCode) {
+                    errors[i].occurences++;
+                    return;
                 }
             }
-            // if not found, start counter and push it in
             newError.occurences = 1;
-            err.push(newError);
+            this.errors.push(newError);
         }
 
         stockSortFunction(stock) {

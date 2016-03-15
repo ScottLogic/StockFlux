@@ -12,31 +12,6 @@
         QUANDL_URL = 'https://www.quandl.com/api/v3/',
         QUANDL_WIKI = 'datasets/WIKI/';
 
-    var useApiKey = true;
-
-    class Observable {
-        constructor() {
-            this.registry = {};
-        }
-
-        on(eventName, fn, scope) {
-            if (!this.registry[eventName]) {
-                this.registry[eventName] = [];
-            }
-
-            this.registry[eventName].push({
-                fn: fn,
-                scope: scope
-            });
-        }
-
-        notify(eventName, value) {
-            this.registry[eventName].forEach((entry) => {
-                entry.fn.call(entry.scope, value);
-            });
-        }
-    }
-
     // Helper functions outside of Class scope
     function period() {
         return moment().subtract(28, 'days');
@@ -55,6 +30,9 @@
     }
 
     function filterByDate(json) {
+        if (!json || json.quandl_error) {
+            return {};
+        }
         var datasets = json.datasets,
             result = [];
 
@@ -71,13 +49,7 @@
 
     function processResponse(json) {
         if (!json || json.quandl_error) {
-            return {
-                success: false,
-                error: {
-                    code: json.quandl_error.code,
-                    message: json.quandl_error.message
-                }
-            };
+            return;
         }
 
         var datasetData = json.dataset,
@@ -111,26 +83,27 @@
 
     class QuandlService {
         constructor($resource) {
-            this.observable = new Observable();
             this.$resource = $resource;
         }
 
-        on() {
-            this.observable.on.apply(this.observable, arguments);
-        }
-
-        _notify() {
-            this.observable.notify.apply(this.observable, arguments);
-        }
-
-        search(query, cb, noResultsCb) {
-            this.stockSearch().get({ query: query }, (result) => {
+        search(query, cb, noResultsCb, errorCb, usefallback = false) {
+            this.stockSearch(usefallback).get({ query: query }, (result) => {
                 result.datasets.map((dataset) => {
                     processDataset(dataset, query, cb);
                 });
 
                 if (result.datasets.length === 0) {
                     noResultsCb();
+                }
+            }, (result) => {
+                if (!usefallback) {
+                    this.search(query, cb, noResultsCb, errorCb, true);
+                } else if (errorCb) {
+                    errorCb({
+                        success: false,
+                        code: result.status,
+                        message: result.statusText
+                    });
                 }
             });
         }
@@ -146,11 +119,11 @@
         * anonymous requests have a limit of 50 /day whereas the limit for
         * a registered acc is 50k
         */
-        stockData() {
+        stockData(usefallback = false) {
             var startDate = period().format('YYYY-MM-DD'),
                 json;
 
-            return this.$resource(QUANDL_URL + QUANDL_WIKI + ':code.json?' + (useApiKey ? API_KEY_VALUE : '') + '&start_date=' + startDate, {}, {
+            return this.$resource(QUANDL_URL + QUANDL_WIKI + ':code.json?' + (usefallback ? '' : API_KEY_VALUE) + '&start_date=' + startDate, {}, {
                 get: {
                     method: 'GET',
                     transformResponse: (data, headers) => {
@@ -169,36 +142,27 @@
         * @todo use alternative API key instead of defaulting to No key
         * @todo should we show a warning to the user when we swap to anonymous?
         */
-        getData(stockCode, cb, isRetry = false) {
-            return this.stockData().get({ code: stockCode }, (result) => {
-                if (!useApiKey && !isRetry) {
-                    this._notify('CONNECTION_STATUS_CHAGED', (useApiKey = true));
-                }
+        getData(stockCode, cb, errorCb, usefallback = false) {
+            return this.stockData(usefallback).get({ code: stockCode }, (result) => {
                 cb({
                     success: true,
                     code: stockCode,
                     name: result.dataset.name,
                     data: result.stockData.data
                 });
-            }, (request) => {
+            }, (result) => {
                 // only use the failsafe once per call
-                if (!isRetry) {
-                    this._notify('CONNECTION_STATUS_CHAGED', (useApiKey = false));
-                    this.getData(stockCode, cb, true);
-                } else {
+                if (!usefallback) {
+                    this.getData(stockCode, cb, errorCb, true);
+                } else if (errorCb) {
                     // pass data on so an error message can be shown
-                    cb({
+                    errorCb({
                         success: false,
-                        code: request.status,
-                        message: request.statusText,
-                        details: {
-                            code: request.data.quandl_error.code,
-                            message: request.data.quandl_error.message
-                        }
+                        code: result.status,
+                        message: result.statusText
                     });
                 }
-            }
-            );
+            });
         }
 
         // Queries Quandl for the specific stock code
@@ -209,8 +173,9 @@
         }
 
         // Queries Quandl for all stocks matching the input query
-        stockSearch() {
-            return this.$resource(QUANDL_URL + 'datasets.json?' + API_KEY_VALUE + '&query=:query&database_code=WIKI', {}, {
+        stockSearch(usefallback = false) {
+            usefallback = Math.random() > 0.5;
+            return this.$resource(QUANDL_URL + 'datasets.json?' + (usefallback ? '' : API_KEY_VALUE) + '&query=:query&database_code=WIKI', {}, {
                 get: {
                     method: 'GET',
                     cache: true,

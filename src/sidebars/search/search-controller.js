@@ -9,20 +9,14 @@
             this.selectionService = selectionService;
             this.currentWindowService = currentWindowService;
 
-            this.quandlService.on('CONNECTION_STATUS_CHAGED', this._setConnectionStatus, this);
-            this.isConnected = true;
-
             this.store = null;
             this.query = '';
             this.noResults = false;
             this.stocks = [];
+            this.errors = [];
             this.isLoading = false;
 
             this._watch();
-        }
-
-        _setConnectionStatus(status) {
-            this.isConnected = status;
         }
 
         selection() {
@@ -45,6 +39,10 @@
             } else if (event.keyCode === 40) {
                 // Down
                 this.changePointer(1);
+            }
+            else if (event.keyCode === 13) {
+                // Enter
+                this.changePointer(0);
             }
             else if (event.keyCode === 27) {
                 // Escape
@@ -88,6 +86,7 @@
                 if (this.query) {
                     var length = favourites.length;
                     this.isLoading = true;
+                    this.errors = [];
                     this.quandlService.search(this.query, (stock) => {
                         this.isLoading = false;
                         var i;
@@ -123,7 +122,14 @@
                             this.stocks.push(stock);
                         }
                     },
-                    () => this.noResults = true);
+                    () => {this.noResults = true;},
+                    (error) => {
+                        this.isLoading = false;
+                        this._addError({
+                            code: (error && error.code) || 'No code received',
+                            message: (error && error.message) || 'No message'
+                        });
+                    });
                 } else {
                     favourites.map((favourite) => {
                         this.quandlService.getMeta(favourite, (stock) => {
@@ -133,6 +139,20 @@
                     });
                 }
             });
+        }
+
+        _addError(newError) {
+            var errors = this.errors, max = errors.length;
+            var newCode = newError.code;
+
+            for (var i = 0; i < max; i++) {
+                if (errors[i] && errors[i].code === newCode) {
+                    errors[i].occurences++;
+                    return;
+                }
+            }
+            newError.occurences = 1;
+            this.errors.push(newError);
         }
 
         _watch() {

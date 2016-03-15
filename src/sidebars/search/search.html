@@ -7,8 +7,13 @@
   </div>
   <div id="search-scroll" class="side-scroll custom-scrollbar">
       <div class="sidetab" ng-show="sidebarCtrl.showSearches()">
-          <div class="results-message connection-error" ng-show="!searchCtrl.isConnected">
-              An error occured while retrieving data, please try again later.
+          <div class="results-message" ng-show="searchCtrl.errors.length > 0">
+              An error occured while retrieving data.
+              <div class="errorDetailsWrapper" ng-repeat="error in searchCtrl.errors">
+                  <div class="errorCode">Code: {{error.code}}</div>
+                  <div class="errorMessage">Message: {{error.message}}</div>
+                  <div class="errorMessage">Occurences: {{error.occurences}}</div>
+              </div>
           </div>
           <div ng-show="searchCtrl.isLoading && !searchCtrl.noResults" class="loading-message results-message">
               Loading search results...
