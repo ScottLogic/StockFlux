@@ -28,7 +28,11 @@
     &.search {
       .search-result {
         &.selected.dark {
-          background-color: @light-background;
+          background-color: transparent;
+
+          &.darkens:hover {
+            background-color: @dark-background;
+          }
         }
       }
     }
