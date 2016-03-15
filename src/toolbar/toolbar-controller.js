@@ -59,7 +59,6 @@
 
         normalSizeClick() {
             this.window.restore();
-            this.window.resizeTo(defaultWidth, defaultHeight, 'top-right');
         }
 
         _compactChanged() {
