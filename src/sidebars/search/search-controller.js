@@ -165,7 +165,11 @@
         }
 
         darkenClass(stock) {
-            return (this.selection() === stock.code || stock.isHovered) ? 'dark' : '';
+            return (this.selection() === stock.code || stock.isHovered);
+        }
+
+        selectedClass(stock) {
+            return this.selection() === stock.code;
         }
     }
     SearchCtrl.$inject = ['$scope', '$timeout', 'quandlService', 'selectionService', 'currentWindowService'];
