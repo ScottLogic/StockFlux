@@ -3,6 +3,7 @@
 
     class MinichartCtrl {
         constructor(quandlService, $timeout) {
+            this.showMinichart = true;
             this.quandlService = quandlService;
             this.$timeout = $timeout;
         }
@@ -16,6 +17,14 @@
                         var width = extent.width,
                             height = extent.height;
                         var data = result.data;
+
+                        // There needs to be 2 data points to draw the minichart
+                        // if there's not enough, show an error.
+                        if (data.length < 2) {
+                            this.showMinichart = false;
+                            return;
+                        }
+
                         data = data.map((d) => {
                             var date = moment(d.date);
                             d.date = date.toDate();
