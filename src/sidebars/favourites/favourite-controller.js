@@ -101,7 +101,8 @@
                 if (updatedStock) {
                     if (this.stocks.length === 0) {
                         // If there aren't any stocks, we could be adding one...
-                        if (updatedStock.favourite) {
+                        // But only if there's no selection already
+                        if (updatedStock.favourite && this.selection() === '') {
                             this.selectionService.select(updatedStock);
                         } else if (oldSelectedStock.code === updatedStock.code) {
                             // If there's no stocks and it's not a favourite any more, but also
