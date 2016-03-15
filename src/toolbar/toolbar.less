@@ -1,5 +1,7 @@
 ﻿@toolbar-icons-width: 125px;
+@toolbar-compact-icon-width: 90px;
 @toolbar-icons-margin: 15px;
+@toolbar-compact-top-margin: 7px;
 
 #toolbar {
   height: @toolbar-height;
@@ -11,7 +13,6 @@
     position: fixed;
     height: @toolbar-height;
     right: @toolbar-icons-width;
-    height: @toolbar-height;
     left: @sidebar-width;
   }
 
@@ -19,7 +20,6 @@
     position: fixed;
     height: @toolbar-height;
     right: 0;
-    height: @toolbar-height;
     width: @toolbar-icons-margin;
   }
 
@@ -27,7 +27,6 @@
     position: fixed;
     height: @toolbar-icons-margin;
     right: 0px;
-    height: @toolbar-icons-margin;
     width: @sidebar-width;
   }
 
@@ -36,10 +35,8 @@
     height: @toolbar-icons-margin;
     right: 0px;
     top: (@toolbar-height - @toolbar-icons-margin);
-    height: @toolbar-icons-margin;
     width: @sidebar-width;
   }
-
 
   img {
     vertical-align: initial;
@@ -72,5 +69,36 @@
 
   .minimise-button {
     .right-alignment(3);
+  }
+}
+
+.compact #toolbar {
+  .drag-left {
+    position: fixed;
+    height: @compact-top-bottom-margin;
+    right: @toolbar-compact-icon-width;
+    left: 0px;
+  }
+
+  .drag-right {
+    position: fixed;
+    height: @compact-top-bottom-margin;
+    right: 0;
+    width: @toolbar-icons-margin;
+  }
+
+  .drag-top {
+    position: fixed;
+    height: @toolbar-compact-top-margin;
+    right: 0px;
+    width: 100%;
+  }
+
+  .drag-bottom {
+    position: fixed;
+    height: @toolbar-compact-top-margin;
+    right: 0px;
+    top: (@compact-top-bottom-margin - @toolbar-compact-top-margin);
+    width: 100%;
   }
 }
