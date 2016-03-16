@@ -4,6 +4,8 @@
 
 .side-scroll {
   padding-bottom: 0px;
+  border-top: 1px solid @dark-background;
+  transition: border 0.7s;
 
   .mCSB_scrollTools {
     left: 2px;
@@ -14,6 +16,10 @@
   &#favourite-scroll {
     .position(absolute, @top: @toolbar-height, @bottom: @bottom-tab-height);
   }
+}
+
+.contracted .side-scroll {
+    border-top: 1px solid transparent;
 }
 
 .side-scroll:hover .mCSB_dragger_bar {
