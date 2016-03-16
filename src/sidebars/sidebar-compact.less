@@ -1,4 +1,6 @@
-﻿.compact {
+﻿@compact-top-bottom-margin: 34px;
+
+.compact {
   .sidetab-top {
     right: 125px;
     left: 0px;
@@ -8,11 +10,11 @@
   }
 
   #search-scroll, #favourite-scroll {
-    bottom: 34px;
+    bottom: @compact-top-bottom-margin;
   }
 
   #favourite-scroll {
-    top: 34px;
+    top: @compact-top-bottom-margin;
   }
 
   #search-scroll {
@@ -27,7 +29,7 @@
     .transition();
     bottom: 0px;
     width: 100%;
-    height: 34px;
+    height: @compact-top-bottom-margin;
 
     .top-icon {
       margin-top: 7px;
@@ -39,7 +41,7 @@
   }
 
   .search.expanded {
-    height: calc(100% - 34px);
+    height: calc(100% - @compact-top-bottom-margin);
 
     #searchScroll {
       top: 68px;
