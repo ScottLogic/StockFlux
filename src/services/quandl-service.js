@@ -19,16 +19,14 @@
         return moment().subtract(28, 'days');
     }
 
-    function processDataset(dataset, query, cb) {
+    function processDataset(dataset, query) {
         var code = dataset.dataset_code;
-        var stock = {
+        return {
             name: dataset.name,
             code: code,
             favourite: false,
             query: query
         };
-
-        cb(stock);
     }
 
     function isValidResponse(json) {
@@ -87,11 +85,13 @@
 
         search(query, cb, noResultsCb, errorCb, usefallback = false) {
             this.stockSearch(usefallback).get({ query: query }, (result) => {
-                result.datasets.map((dataset) => {
-                    processDataset(dataset, query, cb);
+                var processedDataset = result.datasets.map((dataset) => {
+                    return processDataset(dataset, query);
                 });
 
-                if (result.datasets.length === 0) {
+                if (processedDataset.length > 0) {
+                    cb(processedDataset);
+                } else {
                     noResultsCb();
                 }
             }, (result) => {
@@ -109,7 +109,7 @@
 
         getMeta(stockCode, cb) {
             this.stockMetadata().get({ 'stock_code': stockCode }, (result) => {
-                processDataset(result.dataset, stockCode, cb);
+                cb(processDataset(result.dataset, stockCode));
             });
         }
 
