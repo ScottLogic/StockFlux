@@ -172,20 +172,33 @@
                     }
                     var index = this.stocks.map((stock) => { return stock.code; }).indexOf(data.code);
                     if (index > -1) {
-                        if (!this.query) {
-                            // There are no search results, so remove the favourite.
-                            this.stocks.splice(index, 1);
-                        } else {
-                            // Update the stock's favourite
-                            this.stocks[index].favourite = data.favourite;
-                        }
-                    // The stock doesn't exist, push it on if it's a favourite.
-                    // if there's no search results.
+                        this.updateFavouriteStates();
                     } else if (data.favourite && !this.query) {
                         this.stocks.push(data);
                     }
                 });
             });
+        }
+
+        /*
+        * Updates the favourite states depending on whether or not they're in
+        * the window's store (this is the best way to ensure that they are
+        * favourites, as the updateFavourites event is broadcast after the store
+        * has been updated).
+        */
+        updateFavouriteStates() {
+            if (!this.store) {
+                this.store = window.storeService.open(window.name);
+            }
+
+            var favs = this.store.get();
+            if (this.query) {
+                this.stocks.forEach((stock) => {
+                    stock.favourite = favs.indexOf(stock.code) > -1;
+                });
+            } else {
+                this.stocks = this.stocks.filter((stock) => favs.indexOf(stock.code) > -1);
+            }
         }
 
         darkenClass(stock) {
