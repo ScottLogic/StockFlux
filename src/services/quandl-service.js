@@ -174,7 +174,6 @@
 
         // Queries Quandl for all stocks matching the input query
         stockSearch(usefallback = false) {
-            usefallback = Math.random() > 0.5;
             return this.$resource(QUANDL_URL + 'datasets.json?' + (usefallback ? '' : API_KEY_VALUE) + '&query=:query&database_code=WIKI', {}, {
                 get: {
                     method: 'GET',
