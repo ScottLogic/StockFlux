@@ -180,7 +180,8 @@
                             this.stocks[index].favourite = data.favourite;
                         }
                     // The stock doesn't exist, push it on if it's a favourite.
-                    } else if (data.favourite) {
+                    // if there's no search results.
+                    } else if (data.favourite && !this.query) {
                         this.stocks.push(data);
                     }
                 });
