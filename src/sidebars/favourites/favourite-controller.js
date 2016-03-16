@@ -132,16 +132,14 @@
                             // Repeat the check as in the mean time a stock for this favourite could have been added.
                             if (this.stocks.map((stock1) => { return stock1.code; }).indexOf(favourite) === -1) {
                                 var data = stock && stock.data && stock.data[0],
-                                    price,
-                                    delta,
-                                    percentage;
+                                    delta = data.close - data.open;
                                 if (data) {
                                     this.stocks.push({
                                         favourite: true,
                                         name: stock.name,
                                         code: stock.code,
                                         price: data.close,
-                                        delta: data.close - data.open,
+                                        delta: delta,
                                         percentage: delta / data.open * 100,
                                         index: this.stockSortFunction(stock)
                                     });
