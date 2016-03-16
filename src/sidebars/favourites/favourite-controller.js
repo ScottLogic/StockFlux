@@ -17,6 +17,7 @@
             this.store = null;
             this.receivedFirstQuandlResponse = false;
             this.stocks = [];
+            this.errors = [];
             this.update();
             this._watch();
         }
@@ -119,6 +120,7 @@
                     }
                 }
 
+                this.errors = [];
                 // Add new stocks from favourites
                 this.favourites.map((favourite) => {
                     if (this.stocks.map((stock) => { return stock.code; }).indexOf(favourite) === -1) {
@@ -129,31 +131,46 @@
 
                             // Repeat the check as in the mean time a stock for this favourite could have been added.
                             if (this.stocks.map((stock1) => { return stock1.code; }).indexOf(favourite) === -1) {
-                                var data = stock.data[0],
+                                var data = stock && stock.data && stock.data[0],
                                     price,
                                     delta,
                                     percentage;
-
                                 if (data) {
-                                    price = data.close;
-                                    delta = data.close - data.open;
-                                    percentage = delta / data.open * 100;
-
                                     this.stocks.push({
+                                        favourite: true,
                                         name: stock.name,
                                         code: stock.code,
-                                        price: price,
-                                        delta: delta,
-                                        percentage: Math.abs(percentage),
-                                        favourite: true,
+                                        price: data.close,
+                                        delta: data.close - data.open,
+                                        percentage: delta / data.open * 100,
                                         index: this.stockSortFunction(stock)
                                     });
                                 }
                             }
+                        }, (error) => {
+                            this.receivedFirstQuandlResponse = true;
+                            this._addError({
+                                code: (error && error.code) || 'No code received',
+                                message: (error && error.message) || 'No message'
+                            });
                         });
                     }
                 });
             });
+        }
+
+        _addError(newError) {
+            var errors = this.errors, max = errors.length;
+            var newCode = newError.code;
+
+            for (var i = 0; i < max; i++) {
+                if (errors[i] && errors[i].code === newCode) {
+                    errors[i].occurences++;
+                    return;
+                }
+            }
+            newError.occurences = 1;
+            this.errors.push(newError);
         }
 
         stockSortFunction(stock) {

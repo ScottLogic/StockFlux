@@ -130,10 +130,6 @@
             var thisVersion = parseVersion(this.version);
             var storedVersion = parseVersion(localStorage.getItem(VERSION_KEY));
 
-            // If there's more than x.y.z, someone's probably tampered.
-            if (storedVersion.length > 3) {
-                return true;
-            }
             return thisVersion[0] !== storedVersion[0];
         }
 
