@@ -92,17 +92,17 @@
                         var length = favourites.length;
                         this.isLoading = true;
                         this.errors = [];
-                        this.quandlService.search(this.query, (stock) => {
+                        this.quandlService.search(this.query, (stocks) => {
                             this.isLoading = false;
-                            var i;
 
                             // removing stocks found with old query
-                            this.stocks = this.stocks.filter((result, j) => {
+                            this.stocks = this.stocks.filter((result) => {
                                 return result.query === this.query;
                             });
 
-                            // not adding old stocks
-                            if (stock.query !== this.query) {
+                            // Only show the favourites if the query is empty
+                            if (this.query.trim() === '') {
+                                this.displayFavourites();
                                 return;
                             }
 
@@ -114,18 +114,25 @@
                             // Here we re-set the flag to keep it up-to-date.
                             this.noResults = false;
 
-                            var stockAdded = false;
-                            for (i = 0; i < length; i++) {
-                                if (stock.code === favourites[i]) {
-                                    stock.favourite = true;
-                                    this.stocks.unshift(stock);
-                                    stockAdded = true;
+                            stocks.forEach((stock) => {
+                                // not adding old stocks
+                                if (stock.query !== this.query) {
+                                    return;
                                 }
-                            }
 
-                            if (!stockAdded) {
-                                this.stocks.push(stock);
-                            }
+                                var stockAdded = false;
+                                for (var i = 0; i < length; i++) {
+                                    if (stock.code === favourites[i]) {
+                                        stock.favourite = true;
+                                        this.stocks.unshift(stock);
+                                        stockAdded = true;
+                                    }
+                                }
+
+                                if (!stockAdded) {
+                                    this.stocks.push(stock);
+                                }
+                            });
                         },
                         () => {
                             this.noResults = true;
@@ -139,15 +146,21 @@
                             });
                         });
                     } else {
-                        favourites.map((favourite) => {
-                            this.quandlService.getMeta(favourite, (stock) => {
-                                stock.favourite = true;
-                                this.stocks.push(stock);
-                            });
-                        });
+                        this.displayFavourites();
                     }
                 }
             });
+        }
+
+        displayFavourites() {
+            if (this.hasStore()) {
+                this.store.get().map((favourite) => {
+                    this.quandlService.getMeta(favourite, (stock) => {
+                        stock.favourite = true;
+                        this.stocks.push(stock);
+                    });
+                });
+            }
         }
 
         _addError(newError) {
