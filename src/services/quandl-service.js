@@ -29,6 +29,10 @@
         cb(stock);
     }
 
+    function isValidResponse(json) {
+        return json && !json.quandl_error;
+    }
+
     function filterByDate(json) {
         var datasets = json.datasets,
             result = [];
@@ -56,6 +60,7 @@
         }
 
         json.stockData = {
+            success: true,
             startDate: datasetData.start_date,
             endDate: datasetData.end_date,
             data: results
@@ -78,14 +83,24 @@
             this.$resource = $resource;
         }
 
-        search(query, cb, noResultsCb) {
-            this.stockSearch().get({ query: query }, (result) => {
+        search(query, cb, noResultsCb, errorCb, usefallback = false) {
+            this.stockSearch(usefallback).get({ query: query }, (result) => {
                 result.datasets.map((dataset) => {
                     processDataset(dataset, query, cb);
                 });
 
                 if (result.datasets.length === 0) {
                     noResultsCb();
+                }
+            }, (result) => {
+                if (!usefallback) {
+                    this.search(query, cb, noResultsCb, errorCb, true);
+                } else if (errorCb) {
+                    errorCb({
+                        success: false,
+                        code: result.status,
+                        message: result.statusText
+                    });
                 }
             });
         }
@@ -96,16 +111,23 @@
             });
         }
 
-        stockData() {
+        /**
+        * @todo use alternative API key instead of defaulting anonymous requests
+        * anonymous requests have a limit of 50 /day whereas the limit for
+        * a registered acc is 50k
+        */
+        stockData(usefallback = false) {
             var startDate = period().format('YYYY-MM-DD'),
                 json;
 
-            return this.$resource(QUANDL_URL + QUANDL_WIKI + ':code.json?' + API_KEY_VALUE + '&start_date=' + startDate, {}, {
+            return this.$resource(QUANDL_URL + QUANDL_WIKI + ':code.json?' + (usefallback ? '' : API_KEY_VALUE) + '&start_date=' + startDate, {}, {
                 get: {
                     method: 'GET',
                     transformResponse: (data, headers) => {
                         json = angular.fromJson(data);
-                        processResponse(json);
+                        if (isValidResponse(json)) {
+                            processResponse(json);
+                        }
                         return json;
                     },
                     cache: true
@@ -113,15 +135,32 @@
             });
         }
 
-        getData(stockCode, cb) {
-            return this.stockData().get({ code: stockCode }, (result) => {
-                var stock = {
-                    name: result.dataset.name,
+        /**
+        * @param stockCode {String} Stock code to query
+        * @param cb {Function} callback to be called on success and error
+        * @todo use alternative API key instead of defaulting to No key
+        * @todo should we show a warning to the user when we swap to anonymous?
+        */
+        getData(stockCode, cb, errorCb, usefallback = false) {
+            return this.stockData(usefallback).get({ code: stockCode }, (result) => {
+                cb({
+                    success: true,
                     code: stockCode,
+                    name: result.dataset.name,
                     data: result.stockData.data
-                };
-
-                cb(stock);
+                });
+            }, (result) => {
+                // only use the failsafe once per call
+                if (!usefallback) {
+                    this.getData(stockCode, cb, errorCb, true);
+                } else if (errorCb) {
+                    // pass data on so an error message can be shown
+                    errorCb({
+                        success: false,
+                        code: result.status,
+                        message: result.statusText
+                    });
+                }
             });
         }
 
@@ -133,14 +172,14 @@
         }
 
         // Queries Quandl for all stocks matching the input query
-        stockSearch() {
-            return this.$resource(QUANDL_URL + 'datasets.json?' + API_KEY_VALUE + '&query=:query&database_code=WIKI', {}, {
+        stockSearch(usefallback = false) {
+            return this.$resource(QUANDL_URL + 'datasets.json?' + (usefallback ? '' : API_KEY_VALUE) + '&query=:query&database_code=WIKI', {}, {
                 get: {
                     method: 'GET',
                     cache: true,
                     transformResponse: (data, headers) => {
                         var json = angular.fromJson(data);
-                        return filterByDate(json);
+                        return isValidResponse(json) ? filterByDate(json) : {};
                     }
                 }
             });

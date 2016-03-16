@@ -7,6 +7,9 @@
   </div>
   <div id="search-scroll" class="side-scroll custom-scrollbar">
       <div class="sidetab" ng-show="sidebarCtrl.showSearches()">
+          <div class="results-message" ng-show="searchCtrl.errors.length > 0">
+              An error occurred while retrieving data. Please check your internet connection or wait for our data services to be re-established.
+          </div>
           <div ng-show="searchCtrl.isLoading && !searchCtrl.noResults" class="loading-message results-message">
               Loading search results...
           </div>
