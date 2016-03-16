@@ -122,7 +122,10 @@
                             this.stocks.push(stock);
                         }
                     },
-                    () => {this.noResults = true;},
+                    () => {
+                        this.noResults = true;
+                        this.isLoading = false;
+                    },
                     (error) => {
                         this.isLoading = false;
                         this._addError({
