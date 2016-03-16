@@ -87,6 +87,8 @@
                             clearIncomingTearoutWindow();
                             appendToOpenfinWindow(tearElement, tearoutWindow);
                             displayTearoutWindow();
+
+                            tearoutWindow.addEventListener('blurred', onBlur);
                         }
 
                         function handleMouseMove(e) {
@@ -101,6 +103,7 @@
                                 return false;
                             }
                             $rootScope.$broadcast('tearoutEnd');
+                            tearoutWindow.removeEventListener('blurred', onBlur);
 
                             if (currentlyDragging) {
                                 currentlyDragging = false;
@@ -172,6 +175,16 @@
                             }
                         }
 
+                        function onBlur() {
+                            if (currentlyDragging) {
+                                $rootScope.$broadcast('tearoutEnd');
+                                returnFromTearout();
+                                currentlyDragging = false;
+                                dragService.destroy();
+                                tearoutWindow.removeEventListener('blurred', onBlur);
+                            }
+                        }
+
                         tearoutWindow.addEventListener('bounds-changing', boundsChangingEvent);
 
                         dragElement.addEventListener('mousedown', handleMouseDown);
@@ -181,6 +194,7 @@
                         function dispose() {
                             hoverService.remove(scope.stock.code);
                             tearoutWindow.removeEventListener('bounds-changing', boundsChangingEvent);
+                            tearoutWindow.removeEventListener('blurred', onBlur);
                             dragElement.removeEventListener('mousedown', handleMouseDown);
                             document.removeEventListener('mousemove', handleMouseMove);
                             document.removeEventListener('mouseup', handleMouseUp);
