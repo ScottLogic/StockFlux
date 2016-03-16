@@ -29,10 +29,11 @@
         cb(stock);
     }
 
+    function isValidResponse(json) {
+        return json && !json.quandl_error;
+    }
+
     function filterByDate(json) {
-        if (!json || json.quandl_error) {
-            return {};
-        }
         var datasets = json.datasets,
             result = [];
 
@@ -48,10 +49,6 @@
     }
 
     function processResponse(json) {
-        if (!json || json.quandl_error) {
-            return;
-        }
-
         var datasetData = json.dataset,
             financialData = datasetData.data,
             results = [],
@@ -128,7 +125,9 @@
                     method: 'GET',
                     transformResponse: (data, headers) => {
                         json = angular.fromJson(data);
-                        processResponse(json);
+                        if (isValidResponse(json)) {
+                            processResponse(json);
+                        }
                         return json;
                     },
                     cache: true
@@ -180,7 +179,7 @@
                     cache: true,
                     transformResponse: (data, headers) => {
                         var json = angular.fromJson(data);
-                        return filterByDate(json);
+                        return isValidResponse(json) ? filterByDate(json) : {};
                     }
                 }
             });
