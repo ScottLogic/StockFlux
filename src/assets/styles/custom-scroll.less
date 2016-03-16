@@ -1,5 +1,5 @@
 .compact .side-scroll {
-  position: fixed;
+  .position(fixed);
 }
 
 .side-scroll {
@@ -12,9 +12,7 @@
   }
 
   #favourite-scroll {
-    top: @toolbar-height;
-    bottom: @bottom-tab-height;
-    position: absolute;
+    .position(absolute, @top: @toolbar-height, @bottom: @bottom-tab-height);
   }
 }
 

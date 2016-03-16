@@ -4,9 +4,7 @@
 
 .compact {
   #search-scroll {
-    top: 35px;
-    bottom: 0px;
-    position: absolute;
+    .position(absolute, @top: 35px, @bottom: 0px);
   }
 
   .compact-search {
@@ -16,10 +14,8 @@
       display: block;
 
       .close-button {
-        position: relative;
+        .position(relative, @top: -16px, @right: 7px);
         float: right;
-        top: -16px;
-        right: 7px;
       }
     }
 
