@@ -19,15 +19,23 @@
             this._watch();
         }
 
+        hasStore() {
+            if (!window.storeService) {
+                return false;
+            }
+
+            if (!this.store) {
+                this.store = window.storeService.open(window.name);
+            }
+            return true;
+        }
+
         selection() {
             return this.selectionService.selectedStock().code;
         }
 
         select(stock) {
-            if (!this.store) {
-                this.store = window.storeService.open(window.name);
-            }
-            if (!this.store.isCompact()) {
+            if (this.hasStore() && !this.store.isCompact()) {
                 this.selectionService.select(stock);
             }
         }
@@ -78,68 +86,66 @@
             this.noResults = false;
 
             this.currentWindowService.ready(() => {
-                if (!this.store) {
-                    this.store = window.storeService.open(window.name);
-                }
+                if (this.hasStore()) {
+                    var favourites = this.store.get();
+                    if (this.query) {
+                        var length = favourites.length;
+                        this.isLoading = true;
+                        this.errors = [];
+                        this.quandlService.search(this.query, (stock) => {
+                            this.isLoading = false;
+                            var i;
 
-                var favourites = this.store.get();
-                if (this.query) {
-                    var length = favourites.length;
-                    this.isLoading = true;
-                    this.errors = [];
-                    this.quandlService.search(this.query, (stock) => {
-                        this.isLoading = false;
-                        var i;
+                            // removing stocks found with old query
+                            this.stocks = this.stocks.filter((result, j) => {
+                                return result.query === this.query;
+                            });
 
-                        // removing stocks found with old query
-                        this.stocks = this.stocks.filter((result, j) => {
-                            return result.query === this.query;
-                        });
-
-                        // not adding old stocks
-                        if (stock.query !== this.query) {
-                            return;
-                        }
-
-                        // Due to the asynchronicity of the search, if multiple searches
-                        // are fired off in a small amount of time, with an intermediate one
-                        // returning no results it's possible to have both the noResults flag
-                        // set to true, while some stocks have been retrieved by a later search.
-                        //
-                        // Here we re-set the flag to keep it up-to-date.
-                        this.noResults = false;
-
-                        var stockAdded = false;
-                        for (i = 0; i < length; i++) {
-                            if (stock.code === favourites[i]) {
-                                stock.favourite = true;
-                                this.stocks.unshift(stock);
-                                stockAdded = true;
+                            // not adding old stocks
+                            if (stock.query !== this.query) {
+                                return;
                             }
-                        }
 
-                        if (!stockAdded) {
-                            this.stocks.push(stock);
-                        }
-                    },
-                    () => {
-                        this.noResults = true;
-                        this.isLoading = false;
-                    },
-                    (error) => {
-                        this.isLoading = false;
-                        this._addError({
-                            code: (error && error.code) || 'No code received',
-                            message: (error && error.message) || 'No message'
+                            // Due to the asynchronicity of the search, if multiple searches
+                            // are fired off in a small amount of time, with an intermediate one
+                            // returning no results it's possible to have both the noResults flag
+                            // set to true, while some stocks have been retrieved by a later search.
+                            //
+                            // Here we re-set the flag to keep it up-to-date.
+                            this.noResults = false;
+
+                            var stockAdded = false;
+                            for (i = 0; i < length; i++) {
+                                if (stock.code === favourites[i]) {
+                                    stock.favourite = true;
+                                    this.stocks.unshift(stock);
+                                    stockAdded = true;
+                                }
+                            }
+
+                            if (!stockAdded) {
+                                this.stocks.push(stock);
+                            }
+                        },
+                        () => {
+                            this.noResults = true;
+                            this.isLoading = false;
+                        },
+                        (error) => {
+                            this.isLoading = false;
+                            this._addError({
+                                code: (error && error.code) || 'No code received',
+                                message: (error && error.message) || 'No message'
+                            });
                         });
-                    });
-                } else {
-                    favourites.map((favourite) => {
-                        this.quandlService.getMeta(favourite, (stock) => {
-                            stock.favourite = true;
-                            this.stocks.push(stock);
+                    } else {
+                        favourites.map((favourite) => {
+                            this.quandlService.getMeta(favourite, (stock) => {
+                                stock.favourite = true;
+                                this.stocks.push(stock);
+                            });
                         });
-                    });
+                    }
                 }
             });
         }
@@ -190,17 +196,15 @@
         * has been updated).
         */
         updateFavouriteStates() {
-            if (!this.store) {
-                this.store = window.storeService.open(window.name);
-            }
-
-            var favs = this.store.get();
-            if (this.query) {
-                this.stocks.forEach((stock) => {
-                    stock.favourite = favs.indexOf(stock.code) > -1;
-                });
-            } else {
-                this.stocks = this.stocks.filter((stock) => favs.indexOf(stock.code) > -1);
+            if (this.hasStore()) {
+                var favs = this.store.get();
+                if (this.query) {
+                    this.stocks.forEach((stock) => {
+                        stock.favourite = favs.indexOf(stock.code) > -1;
+                    });
+                } else {
+                    this.stocks = this.stocks.filter((stock) => favs.indexOf(stock.code) > -1);
+                }
             }
         }
 
