@@ -5,9 +5,7 @@
 
 #toolbar {
   height: @toolbar-height;
-  right: 0px;
-  left: @sidebar-width;
-  position: absolute;
+  .position(absolute, @right: 0px, @left: @sidebar-width);
 
   .drag-left {
     .drag-position(@height: @toolbar-height, @right: @toolbar-icons-width, @left: @sidebar-width);
@@ -77,7 +75,6 @@
   }
 
   .drag-bottom {
-    .drag-position(@height: @toolbar-compact-top-margin, @right: 0px,
-      @top: (@compact-top-bottom-margin - @toolbar-compact-top-margin), @width: 100%);
+    .drag-position(@height: @toolbar-compact-top-margin, @right: 0px, @top: (@compact-top-bottom-margin - @toolbar-compact-top-margin), @width: 100%);
   }
 }

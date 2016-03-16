@@ -6,7 +6,7 @@
   height: 100%;
   background-color: @search-background;
   .transition();
-  position: absolute;
+  .position(absolute);
   .box-shadow(2px 0px, @dark-background);
 
   icon {
@@ -55,7 +55,7 @@
     }
 
     .details {
-      position: relative;
+      .position(relative);
       float: left;
       padding-left: 20px;
       padding-top: 8px;
@@ -70,7 +70,5 @@
 }
 
 .search #search-scroll {
-  top: @toolbar-height;
-  bottom: 0px;
-  position: absolute;
+  .position(absolute, @top: @toolbar-height, @bottom: 0px);
 }

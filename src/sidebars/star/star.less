@@ -8,13 +8,8 @@
 
 .confirmation-backdrop {
   cursor: default;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  .position(fixed, 0px, 0px, 0px, 0px);
   z-index: 1050;
-  display: none;
   .no-overflow;
   outline: 0;
   display: block;
@@ -25,10 +20,8 @@
     }
 
     .box-shadow(-2px 2px, @dark-background);
-    position: relative;
+    .position(relative, @top: 80px, @left: 200px);
     width: 204px;
-    left: 200px;
-    top: 80px;
 
     .confirmation-content {
       .message {
@@ -53,4 +46,3 @@
     }
   }
 }
-
