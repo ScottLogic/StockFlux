@@ -1,6 +1,8 @@
 (function() {
     'use strict';
 
+    // Be very careful changing the line below. It is replaced with a string.replace in the grunt build
+    // to swap out the API key for release.
     const API_KEY = 'kM9Z9aEULVDD7svZ4A8B',
         API_KEY_VALUE = 'api_key=' + API_KEY,
         DATE_INDEX = 0,
