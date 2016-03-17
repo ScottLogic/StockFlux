@@ -87,9 +87,7 @@
 
             this.currentWindowService.ready(() => {
                 if (this.hasStore()) {
-                    var favourites = this.store.get();
                     if (this.query) {
-                        var length = favourites.length;
                         this.isLoading = true;
                         this.errors = [];
                         this.quandlService.search(this.query, (stocks) => {
@@ -121,13 +119,14 @@
                                 }
 
                                 var stockAdded = false;
-                                for (var i = 0; i < length; i++) {
-                                    if (stock.code === favourites[i]) {
+                                var favourites = this.store.get();
+                                favourites.forEach((favourite) => {
+                                    if (stock.code === favourite) {
                                         stock.favourite = true;
                                         this.stocks.unshift(stock);
                                         stockAdded = true;
                                     }
-                                }
+                                });
 
                                 if (!stockAdded) {
                                     this.stocks.push(stock);
