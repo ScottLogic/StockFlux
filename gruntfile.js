@@ -223,6 +223,9 @@ module.exports = function(grunt) {
                     replacements: [{
                         pattern: 'const allowContextMenu = true;',
                         replacement: 'const allowContextMenu = false;'
+                    }, {
+                        pattern: 'API_KEY = \'kM9Z9aEULVDD7svZ4A8B\'',
+                        replacement: 'API_KEY = \'SmMCEZxMRoNizToppows\''
                     }]
                 }
             }

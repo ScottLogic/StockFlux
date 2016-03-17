@@ -6,8 +6,8 @@
   height: 100%;
   background-color: @search-background;
   .transition();
-  position: absolute;
-  .box-shadow(2px 0px, @dark-background);
+  .position(absolute);
+  .box-shadow(@shadow-depth 0px, @dark-background);
 
   icon {
     display: none;
@@ -38,14 +38,13 @@
   }
 
   .errorDetailsWrapper {
-      margin: 12px 0;
+    margin: 12px 0;
   }
 
   .search-result {
     height: @search-result-height;
     width: @expanded-width;
     border-bottom: @search-splitter-style;
-
 
     .name {
       .font(12px, @font-thin);
@@ -56,7 +55,7 @@
     }
 
     .details {
-      position: relative;
+      .position(relative);
       float: left;
       padding-left: 20px;
       padding-top: 8px;
@@ -71,7 +70,5 @@
 }
 
 .search #search-scroll {
-  top: @toolbar-height;
-  bottom: 0px;
-  position: absolute;
+  .position(absolute, @top: @toolbar-height, @bottom: 0px);
 }
