@@ -32,7 +32,7 @@
 }
 
 .bubble-head(@top: auto, @right: auto, @bottom: auto, @left: auto) {
-  .position(absolute, @top, @right, @bottom, @left);
+  .position(absolute, @top: @top, @right: @right, @bottom: @bottom, @left: @left);
   width: 10px;
   height: 10px;
   transform: rotate(45deg);
@@ -45,7 +45,7 @@
 
 .closed-window(@shadow-position, @top: auto, @right: auto, @bottom: auto, @left: auto) {
   .box-shadow(@shadow-position, @dark-background);
-  .position(fixed, @top, @right, @bottom, @left);
+  .position(fixed, @top: @top, @right: @right, @bottom: @bottom, @left: @left);
   background: @light-background;
   width: 180px;
   max-height: 353px;
