@@ -13,7 +13,7 @@
         "applicationIcon": "http://scottlogic.github.io/StockFlux/favicon.ico"
     },
     "runtime": {
-        "arguments": "",
+        "arguments": "--enable-aggressive-domstorage-flushing",
         "version": "stable"
     },
     "shortcut": {
