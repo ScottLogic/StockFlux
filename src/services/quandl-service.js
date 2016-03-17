@@ -20,10 +20,9 @@
     }
 
     function processDataset(dataset, query) {
-        var code = dataset.dataset_code;
         return {
             name: dataset.name,
-            code: code,
+            code: dataset.dataset_code,
             favourite: false,
             query: query
         };
