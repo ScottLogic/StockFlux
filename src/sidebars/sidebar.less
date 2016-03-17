@@ -1,6 +1,7 @@
 ﻿@hover-colour: #455D63;
 @flash-colour: #447272;
 @bottom-tab-height: 40px;
+@darkens-hover-colour: #24393D;
 
 @-webkit-keyframes search {
   0% {
@@ -107,7 +108,7 @@
 }
 
 .darkens:hover {
-  background: fade(@dark-background, 50%);
+  background: @darkens-hover-colour;
 }
 
 .top-icon {

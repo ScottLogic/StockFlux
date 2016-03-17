@@ -6,6 +6,7 @@
 @top-height: 30px;
 @fav-split-color: #323A48;
 @highlight-colour: #447272;
+@fav-drop-colour: #2E5356;
 
 .favourites {
   float: right;
@@ -26,10 +27,6 @@
       background-color: @highlight-colour;
     }
   }
-
-  .darkens:hover {
-    background: #1F262E;
-  }
 }
 
 .hover-area {
@@ -39,7 +36,7 @@
 
 .drop-target {
   height: @favourite-height;
-  background-color: #2E5356;
+  background-color: @fav-drop-colour;
 }
 
 // Don't nest this as it is the root element of the injected HTML for tearout windows
