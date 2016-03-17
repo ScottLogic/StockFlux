@@ -201,7 +201,7 @@
                     var index = this.stocks.map((stock) => { return stock.code; }).indexOf(data.code);
                     if (index > -1) {
                         // If the stock in question doesn't exist on the list, check
-                        // the favourites and upadte accordingly
+                        // the favourites and update accordingly
                         this.updateFavouriteStates();
                     } else if (data.favourite && !this.query) {
                         // If there's no query, and the new stock is a favourite,
