@@ -193,8 +193,12 @@
                     }
                     var index = this.stocks.map((stock) => { return stock.code; }).indexOf(data.code);
                     if (index > -1) {
+                        // If the stock in question doesn't exist on the list, check
+                        // the favourites and upadte accordingly
                         this.updateFavouriteStates();
                     } else if (data.favourite && !this.query) {
+                        // If there's no query, and the new stock is a favourite,
+                        // add it to the list.
                         this.stocks.push(data);
                     }
                 });
@@ -211,10 +215,13 @@
             if (this.hasStore()) {
                 var favs = this.store.get();
                 if (this.query) {
+                    // If there's a query, check to see if each stock in the query
+                    // is a favourite or not.
                     this.stocks.forEach((stock) => {
                         stock.favourite = favs.indexOf(stock.code) > -1;
                     });
                 } else {
+                    // If there's no query, remove any non-favourites.
                     this.stocks = this.stocks.filter((stock) => favs.indexOf(stock.code) > -1);
                 }
             }
