@@ -1,4 +1,6 @@
-﻿minichart {
+﻿@minichart-error-colour: white;
+
+minichart {
   .position(absolute);
   padding-top: 10px;
   width: 100%;
@@ -42,5 +44,5 @@
   padding: 0px 3px;
   text-align: center;
   .font(12px, @font-thin);
-  color: white;
+  color: @minichart-error-colour;
 }
