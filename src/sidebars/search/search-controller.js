@@ -19,15 +19,22 @@
             this._watch();
         }
 
-        hasStore() {
+        getStore() {
             if (!window.storeService) {
-                return false;
+                return null;
             }
 
             if (!this.store) {
                 this.store = window.storeService.open(window.name);
             }
-            return true;
+            return this.store;
+        }
+
+        getFavourites() {
+            if (this.getStore()) {
+                return this.store.get();
+            }
+            return null;
         }
 
         selection() {
@@ -35,7 +42,7 @@
         }
 
         select(stock) {
-            if (this.hasStore() && !this.store.isCompact()) {
+            if (this.getStore() && !this.store.isCompact()) {
                 this.selectionService.select(stock);
             }
         }
@@ -86,7 +93,7 @@
             this.noResults = false;
 
             this.currentWindowService.ready(() => {
-                if (this.hasStore()) {
+                if (this.getStore()) {
                     if (this.query) {
                         this.isLoading = true;
                         this.errors = [];
@@ -119,8 +126,7 @@
                                 }
 
                                 var stockAdded = false;
-                                var favourites = this.store.get();
-                                favourites.forEach((favourite) => {
+                                this.getFavourites().forEach((favourite) => {
                                     if (stock.code === favourite) {
                                         stock.favourite = true;
                                         this.stocks.unshift(stock);
@@ -152,8 +158,9 @@
         }
 
         displayFavourites() {
-            if (this.hasStore()) {
-                this.store.get().map((favourite) => {
+            var favourites = this.getFavourites();
+            if (favourites) {
+                favourites.map((favourite) => {
                     this.quandlService.getMeta(favourite, (stock) => {
                         stock.favourite = true;
                         this.stocks.push(stock);
@@ -212,17 +219,17 @@
         * has been updated).
         */
         updateFavouriteStates() {
-            if (this.hasStore()) {
-                var favs = this.store.get();
+            var favourites = this.getFavourites();
+            if (this.getFavourites()) {
                 if (this.query) {
                     // If there's a query, check to see if each stock in the query
                     // is a favourite or not.
                     this.stocks.forEach((stock) => {
-                        stock.favourite = favs.indexOf(stock.code) > -1;
+                        stock.favourite = favourites.indexOf(stock.code) > -1;
                     });
                 } else {
                     // If there's no query, remove any non-favourites.
-                    this.stocks = this.stocks.filter((stock) => favs.indexOf(stock.code) > -1);
+                    this.stocks = this.stocks.filter((stock) => favourites.indexOf(stock.code) > -1);
                 }
             }
         }
