@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -eo pipefail
-if ([ "${TRAVIS_REPO_SLUG}" != "ScottLogic/StockFlux" ] && ([ $TRAVIS_BRANCH == 'dev' ] || [ $TRAVIS_BRANCH == 'master' ]))
+if ([ $TRAVIS_PULL_REQUEST == "false" ]  && [ "${TRAVIS_REPO_SLUG}" == "ScottLogic/StockFlux" ] && ([ $TRAVIS_BRANCH == 'dev' ] || [ $TRAVIS_BRANCH == 'master' ]))
 then
     #Clone the latest gh-pages
     git clone https://github.com/ScottLogic/StockFlux.git --branch gh-pages gh-pages
