@@ -6,10 +6,12 @@ then
     git clone https://github.com/ScottLogic/StockFlux.git --branch gh-pages gh-pages
 
     #Get line with version from the file -> get the second word -> remove quotes around the value
-    VERSION=$(grep "version" package.json | awk -v N=$2 "{print $2}" | cut -d \" -f2)
+    VERSION=$(grep "version" package.json | awk -v N=$2 '{print $2}' | cut -d \" -f2)
+    echo "Version is: $VERSION"
 
     #Get line with the release type (develop/master) from the file -> get the second word -> remove quotes around the value
-    TYPE=$(grep "release-type" package.json | awk -v N=$2 "{print $2}" | cut -d \" -f2)
+    TYPE=$(grep "release-type" package.json | awk -v N=$2 '{print $2}' | cut -d \" -f2)
+    echo "Type is: $TYPE"
 
     if ([ -z "$TYPE" ] || [ -z "$VERSION" ])
     then
@@ -40,5 +42,6 @@ then
     # repo's gh-pages branch. (All previous history on the gh-pages branch
     # will be lost, since we are overwriting it.) We redirect any output to
     # /dev/null to hide any sensitive credential data that might otherwise be exposed.
+    echo "Pushing to: https://${GH_TOKEN}@${GH_REF}"
     git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1
 fi
