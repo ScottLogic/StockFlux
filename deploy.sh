@@ -10,7 +10,7 @@ then
     echo "Version is: $VERSION"
 
     #Get line with the release type (develop/master) from the file -> get the second word -> remove quotes around the value
-    TYPE=$(grep "release-type" package.json | awk -v N=$2 '{print $2}' | cut -d \" -f2)
+    TYPE=$(grep "type" package.json | awk -v N=$2 '{print $2}' | cut -d \" -f2)
     echo "Type is: $TYPE"
 
     if ([ -z "$TYPE" ] || [ -z "$VERSION" ])
