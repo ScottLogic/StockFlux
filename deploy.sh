@@ -1,26 +1,26 @@
 #!/usr/bin/env bash
 set -eo pipefail
-if ([ "${TRAVIS_REPO_SLUG}" != "ScottLogic/StockFlux" ] && ([ $TRAVIS_BRANCH == 'dev' ] || [ $TRAVIS_BRANCH == 'master' ]))
+if ([ $TRAVIS_PULL_REQUEST == "false" ]  && [ "${TRAVIS_REPO_SLUG}" == "ScottLogic/StockFlux" ] && ([ $TRAVIS_BRANCH == "dev" ] || [ $TRAVIS_BRANCH == "master" ]))
 then
     #Clone the latest gh-pages
     git clone https://github.com/ScottLogic/StockFlux.git --branch gh-pages gh-pages
 
     #Get line with version from the file -> get the second word -> remove quotes around the value
-    VERSION=$(grep "version" package.json | awk -v N=$2 '{print $2}' | cut -d \" -f2)
+    VERSION=$(grep "version" package.json | awk -v N=$2 "{print $2}" | cut -d \" -f2)
 
     #Get line with the release type (develop/master) from the file -> get the second word -> remove quotes around the value
-    TYPE=$(grep "release-type" package.json | awk -v N=$2 '{print $2}' | cut -d \" -f2)
+    TYPE=$(grep "release-type" package.json | awk -v N=$2 "{print $2}" | cut -d \" -f2)
 
-    if ([ -z '$TYPE' ] || [ -z '$VERSION' ])
+    if ([ -z "$TYPE" ] || [ -z "$VERSION" ])
     then
-        echo 'Version or Type not set in package.json'
+        echo "Version or Type not set in package.json"
         exit 1
     fi
 
-    rm -rf './gh-pages/$TYPE'
-    cp -r './public' './gh-pages/$TYPE'
-    rm -rf './gh-pages/$VERSION'
-    cp -r './public' './gh-pages/$VERSION'
+    rm -rf "./gh-pages/$TYPE"
+    cp -r "./public" "./gh-pages/$TYPE"
+    rm -rf "./gh-pages/$VERSION"
+    cp -r "./public" "./gh-pages/$VERSION"
     cd gh-pages
 
     #Removing git history
