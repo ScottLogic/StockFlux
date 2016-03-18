@@ -2,7 +2,9 @@
 'use strict';
 module.exports = function(grunt) {
     var target = grunt.option('target') || 'http://localhost:5000',
-        port = process.env.PORT || 5000;
+        port = process.env.PORT || 5000,
+        version = grunt.file.readJSON('package.json').version,
+        type = grunt.file.readJSON('package.json').type;
 
     grunt.initConfig({
         'gh-pages': {
@@ -87,9 +89,15 @@ module.exports = function(grunt) {
         },
 
         download: {
+            //One zip for release type (development/master) and one for the version are created here
             openfinZip: {
-                src: ['https://dl.openfin.co/services/download?fileName=StockFlux&config=http://scottlogic.github.io/StockFlux/app.json'],
-                dest: './public/StockFlux.zip'
+                src: ['https://dl.openfin.co/services/download?fileName=StockFlux-' + version +
+                '&config=http://scottlogic.github.io/StockFlux/' + version + '/app.json'],
+                dest: './public/StockFlux-' + version + '.zip'
+            },
+            openfinTypeZip: {
+                src: ['https://dl.openfin.co/services/download?fileName=StockFlux-' + type + '&config=http://scottlogic.github.io/StockFlux/' + type + '/app.json'],
+                dest: './public/StockFlux-' + type + '.zip'
             }
         },
 
