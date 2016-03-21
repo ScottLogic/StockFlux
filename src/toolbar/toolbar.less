@@ -4,7 +4,7 @@
 @toolbar-compact-top-margin: 7px;
 
 #toolbar {
-  height: @toolbar-height;
+  .size(@height: @toolbar-height);
   .position(absolute, @right: 0px, @left: @sidebar-width);
 
   .drag-left {

@@ -9,7 +9,7 @@
 
 .favourites {
   float: right;
-  height: 100%;
+  .size(@width: @expanded-width, @height: 100%);
   background-color: @favourites-background;
   .transition();
 
@@ -30,11 +30,11 @@
 
 .hover-area {
   background-color: @fav-split-color;
-  height: 1px;
+  .size(@width: @expanded-width, @height: 1px);
 }
 
 .drop-target {
-  height: @favourite-height;
+  .size(@width: @expanded-width, @height: @favourite-height);
   background-color: #2E5356;
 }
 
@@ -42,8 +42,7 @@
 .favourite {
   padding: @favourite-padding-top @favourite-padding-right @favourite-padding-bottom @favourite-padding-left;
   background-color: @middle-background;
-  height: @favourite-height;
-  width: @expanded-width;
+  .size(@width: @expanded-width, @height: @favourite-height);
 
   .top {
     padding-left: 10px;
@@ -90,7 +89,7 @@
     }
 
     .stock-arrow {
-      height: 9px;
+      .size(@height: 9px);
       padding-bottom: 1px;
       padding-right: 3px;
     }

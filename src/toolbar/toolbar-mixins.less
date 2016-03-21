@@ -12,6 +12,5 @@
 
 .drag-position(@left: auto, @right: auto, @top: auto, @height: auto, @width: auto) {
   .position(fixed, @top: @top, @right: @right, @left: @left);
-  width: @width;
-  height: @height;
+  .size(@width: @width, @height: @height);
 }

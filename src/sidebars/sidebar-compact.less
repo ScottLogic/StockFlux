@@ -19,14 +19,13 @@
   }
 
   .favourites, #favourite-scroll, .favourite {
-    width: 100%;
+    .size(@width: 100%, @height: inherit);
   }
 
   .search {
     .transition();
     bottom: 0px;
-    width: 100%;
-    height: @compact-top-bottom-margin;
+    .size(@width: 100%, @height: @compact-top-bottom-margin);
 
     .top-icon {
       margin-top: 7px;
@@ -35,14 +34,14 @@
     input {
       padding-top: 7px;
     }
-  }
 
-  .search.expanded {
-    height: calc(100% - @compact-top-bottom-margin);
+    &.expanded {
+      .size(@width: 100%, @height: calc(100% - @compact-top-bottom-margin));
 
-    #searchScroll {
-      top: 68px;
-      bottom: 0px;
+      #searchScroll {
+        top: 68px;
+        bottom: 0px;
+      }
     }
   }
 

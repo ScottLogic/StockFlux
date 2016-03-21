@@ -3,13 +3,12 @@
 minichart {
   .position(absolute);
   padding-top: 10px;
-  width: 100%;
+  .size(@width: 100%);
   overflow: visible;
 }
 
 .minichart {
-  width: @chart-width;
-  height: @chart-height;
+  .size(@width: @chart-width, @height: @chart-height);
   overflow: visible !important;
 
   svg {

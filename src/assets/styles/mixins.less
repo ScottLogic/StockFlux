@@ -10,6 +10,11 @@
   -webkit-app-region: no-drag;
 }
 
+.size(@width: auto, @height: auto) {
+  width: @width;
+  height: @height;
+}
+
 // 400 is 'normal'
 .font(@size, @weight: 400, @line-height: 1.5) {
   font-size: @size;
@@ -29,8 +34,7 @@
 
 .bubble-head(@top: auto, @right: auto, @bottom: auto, @left: auto) {
   .position(absolute, @top: @top, @right: @right, @bottom: @bottom, @left: @left);
-  width: 10px;
-  height: 10px;
+  .size(@width: 10px, @height: 10px);
   transform: rotate(45deg);
   background-color: @light-background;
 }
@@ -43,7 +47,7 @@
   .box-shadow(@shadow-position, @dark-background);
   .position(fixed, @top: @top, @right: @right, @bottom: @bottom, @left: @left);
   background: @light-background;
-  width: 180px;
+  .size(@width: 180px);
   max-height: 353px;
 }
 
