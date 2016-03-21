@@ -2,28 +2,26 @@
 @flash-colour: #447272;
 @bottom-tab-height: 40px;
 
-@-webkit-keyframes search {
+.click-flash(@final-colour) {
   0% {
     background-color: @flash-colour;
   }
 
   100% {
-    background-color: @search-background;
+    background-color: @final-colour;
   }
+}
+
+@-webkit-keyframes search {
+  .click-flash(@search-background);
 }
 
 @-webkit-keyframes favourites {
-  0% {
-    background-color: @flash-colour;
-  }
-
-  100% {
-    background-color: @favourites-background;
-  }
+  .click-flash(@favourites-background);
 }
 
 .expanded {
-  width: @expanded-width;
+  .size(@width: @expanded-width);
   -webkit-animation-duration: 0.4s;
   -webkit-animation-timing-function: ease-in;
 }
@@ -38,16 +36,14 @@
 
 .closed-window-selection {
   .position(absolute, @bottom: 0px, @left: 50px);
-  height: @bottom-tab-height;
   background-color: @middle-background;
-  width: @expanded-width;
+  .size(@width: @expanded-width, @height: @bottom-tab-height);
   border-top: 1px solid @dark-background;
 }
 
 .favourite-closed {
   .position(absolute, @right: 15px, @bottom: 10px);
-  height: 20px;
-  width: 20px;
+  .size(@width: 20px, @height: 20px);
 }
 
 .favourite-closed-cover {
@@ -56,7 +52,7 @@
 }
 
 .contracted {
-  width: (@sidebar-width - @expanded-width);
+  .size(@width: (@sidebar-width - @expanded-width));
 
   .sidetab-top {
     .no-drag;
@@ -84,13 +80,12 @@
 }
 
 .sidebars {
-  width: @sidebar-width !important;
-  height: 100%;
+  .size(@width: @sidebar-width, @height: 100%);
   float: left;
 }
 
 .sidetab-top {
-  height: @toolbar-height;
+  .size(@height: @toolbar-height);
   .drag;
 }
 
@@ -105,12 +100,12 @@
 }
 
 .stock-name {
-  width: 155px;
+  .size(@width: 155px);
   .wrap-ellipsis;
 }
 
 .no-favourites {
-  width: @expanded-width;
+  .size(@width: @expanded-width);
   padding: 12px 15px 12px 20px;
   color: @text-grey;
   .font(14px, @font-medium);

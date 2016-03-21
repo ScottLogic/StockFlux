@@ -1,19 +1,22 @@
 ﻿@minichart-error-colour: white;
 
-minichart {
-  .position(absolute);
-  padding-top: 10px;
-  width: 100%;
+.overflow {
   overflow: visible;
 }
 
+minichart {
+  .position(absolute);
+  padding-top: 10px;
+  .size(@width: 100%);
+  .overflow;
+}
+
 .minichart {
-  width: @chart-width;
-  height: @chart-height;
-  overflow: visible !important;
+  .size(@width: @chart-width, @height: @chart-height);
+  .overflow !important;
 
   svg {
-    overflow: visible;
+    .overflow;
   }
 
   g {

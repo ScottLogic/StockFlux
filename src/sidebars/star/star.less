@@ -21,7 +21,7 @@
 
     .box-shadow(-@shadow-depth @shadow-depth, @dark-background);
     .position(relative, @top: 80px, @left: 200px);
-    width: 204px;
+    .size(@width: 204px);
 
     .confirmation-content {
       .message {
@@ -35,7 +35,7 @@
         button {
           color: inherit;
           margin: 10px 0 6px 0;
-          width: 90px;
+          .size(@width: 90px);
           border-radius: 0;
           border: none;
         }
