@@ -238,8 +238,8 @@ module.exports = function(grunt) {
                 },
                 options: {
                     replacements: [{
-                        pattern: /\/develop\//g,
-                        replacement: '/' + buildTarget + '/'
+                        pattern: new RegExp('http://scottlogic.github.io/StockFlux/([A-z]+)/', 'g'),
+                        replacement: 'http://scottlogic.github.io/StockFlux/' + buildTarget + '/'
                     }]
                 }
             }
