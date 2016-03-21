@@ -8,32 +8,30 @@
 
 .confirmation-backdrop {
   cursor: default;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  .position(fixed, @top: 0px, @right: 0px, @bottom: 0px, @left: 0px);
   z-index: 1050;
-  display: none;
   .no-overflow;
   outline: 0;
   display: block;
+
   .confirmation-modal {
-    &.flipped{
-      .box-shadow(-2px -2px, @dark-background);
+    &.flipped {
+      .box-shadow(-@shadow-depth -@shadow-depth, @dark-background);
     }
-    .box-shadow(-2px 2px, @dark-background);
-    position: relative;
+
+    .box-shadow(-@shadow-depth @shadow-depth, @dark-background);
+    .position(relative, @top: 80px, @left: 200px);
     width: 204px;
-    left: 200px;
-    top: 80px;
+
     .confirmation-content {
       .message {
         .font(12px, @font-thin, 1.4);
         text-align: left;
       }
+
       .buttons {
         text-align: center;
+
         button {
           color: inherit;
           margin: 10px 0 6px 0;
@@ -42,17 +40,9 @@
           border: none;
         }
       }
+
       background-color: @light-background;
       padding: 6px;
     }
-  }
-}
-
-.compact {
-  .bubble-head {
-    .bubble-head(@left: 192px);
-  }
-  .confirmation-modal {
-    left: 13px;
   }
 }

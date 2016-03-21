@@ -1,9 +1,8 @@
 .compact .side-scroll {
-  position: fixed;
+  .position(fixed);
 }
 
 .side-scroll {
-  padding-bottom: 30px;
   padding-bottom: 0px;
 
   .mCSB_scrollTools {
@@ -13,9 +12,7 @@
   }
 
   &#favourite-scroll {
-    top: @toolbar-height;
-    bottom: @bottom-tab-height;
-    position: absolute;
+    .position(absolute, @top: @toolbar-height, @bottom: @bottom-tab-height);
   }
 }
 

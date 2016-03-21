@@ -265,12 +265,14 @@
                     showFunction();
                 }
 
-                this.storeService.open(newWindow.name).openWindow();
                 this.snapToScreenBounds(newWindow);
             };
 
             var mainWindow;
             if (name) {
+                // Notify the store service that the window has opened.
+                this.storeService.open(name).openWindow();
+
                 mainWindow = new fin.desktop.Window(
                     isCompact ?
                         this.configService.getCompactConfig(name) :
