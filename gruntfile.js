@@ -6,23 +6,6 @@ module.exports = function(grunt) {
         buildTarget = grunt.option('build-target') || 'dev';
 
     grunt.initConfig({
-        'gh-pages': {
-            origin: {
-                options: {
-                    base: 'public',
-                    message: 'Deploy to GitHub Pages'
-                },
-                src: ['**/*']
-            },
-            upstream: {
-                options: {
-                    base: 'public',
-                    message: 'Deploy to GitHub Pages',
-                    repo: 'git@github.com:ScottLogic/StockFlux.git'
-                },
-                src: ['**/*']
-            }
-        },
 
         connect: {
             options: {
@@ -259,7 +242,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-http-download');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-gh-pages');
     grunt.loadNpmTasks('grunt-babel');
     grunt.loadNpmTasks('grunt-bump');
     grunt.loadNpmTasks('grunt-string-replace');
@@ -286,10 +268,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('serve', ['build:dev', 'openfin:serve']);
     grunt.registerTask('default', ['serve']);
-
-    grunt.registerTask('createZip', ['build:release', 'download']);
-    grunt.registerTask('deploy', ['createZip', 'gh-pages:origin']);
-    grunt.registerTask('deploy:upstream', ['ci', 'gh-pages:upstream']);
 
     grunt.registerTask('release', ['bump:major']);
 
