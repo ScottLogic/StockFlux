@@ -3,8 +3,7 @@
 module.exports = function(grunt) {
     var target = grunt.option('target') || 'http://localhost:5000',
         port = process.env.PORT || 5000,
-        version = grunt.file.readJSON('package.json').version,
-        type = grunt.file.readJSON('package.json').type;
+        buildTarget = grunt.option('build-target') || 'dev';
 
     grunt.initConfig({
         'gh-pages': {
@@ -91,13 +90,9 @@ module.exports = function(grunt) {
         download: {
             //One zip for release type (development/master) and one for the version are created here
             openfinZip: {
-                src: ['https://dl.openfin.co/services/download?fileName=StockFlux-' + version +
-                '&config=http://scottlogic.github.io/StockFlux/' + version + '/app.json'],
-                dest: './public/StockFlux-' + version + '.zip'
-            },
-            openfinTypeZip: {
-                src: ['https://dl.openfin.co/services/download?fileName=StockFlux-' + type + '&config=http://scottlogic.github.io/StockFlux/' + type + '/app.json'],
-                dest: './public/StockFlux-' + type + '.zip'
+                src: ['https://dl.openfin.co/services/download?fileName=StockFlux-' + buildTarget +
+                '&config=http://scottlogic.github.io/StockFlux/' + buildTarget + '/app.json'],
+                dest: './public/StockFlux-' + buildTarget + '.zip'
             }
         },
 
@@ -234,6 +229,17 @@ module.exports = function(grunt) {
                     }, {
                         pattern: 'API_KEY = \'kM9Z9aEULVDD7svZ4A8B\'',
                         replacement: 'API_KEY = \'SmMCEZxMRoNizToppows\''
+                    }]
+                }
+            },
+            'gh-pages': {
+                files: {
+                    'public/app.json': 'public/app.json'
+                },
+                options: {
+                    replacements: [{
+                        pattern: /\/develop\//g,
+                        replacement: '/' + buildTarget + '/'
                     }]
                 }
             }

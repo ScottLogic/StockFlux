@@ -15,12 +15,20 @@ then
 
     if ([ -z "$TYPE" ] || [ -z "$VERSION" ])
     then
-        echo "Version or Type not set in package.json"
+        echo "Either version not set in package.json, or there's no type."
         exit 1
     fi
 
+    echo "Preparing to build version $TYPE"
+    grunt ci --build-target=$TYPE
+
     rm -rf "./gh-pages/$TYPE"
     cp -r "./public" "./gh-pages/$TYPE"
+
+    # Rebuild everything to do $VERSION
+    echo "Cleaning build. Targetting $VERSION"
+    grunt ci --build-target=$VERSION
+
     rm -rf "./gh-pages/$VERSION"
     cp -r "./public" "./gh-pages/$VERSION"
     cd gh-pages
@@ -42,6 +50,9 @@ then
     # repo's gh-pages branch. (All previous history on the gh-pages branch
     # will be lost, since we are overwriting it.) We redirect any output to
     # /dev/null to hide any sensitive credential data that might otherwise be exposed.
-    echo "Pushing to: https://${GH_TOKEN}@${GH_REF}"
+    echo "Pushing to Github..."
     git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1
+
+    echo "Cleaning residual gh-pages folder"
+    rm -rf ./gh-pages
 fi
