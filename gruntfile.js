@@ -6,25 +6,15 @@ module.exports = function(grunt) {
         version = grunt.file.readJSON('package.json').version,
         type = grunt.file.readJSON('package.json').type;
 
-    grunt.initConfig({
-        'gh-pages': {
-            origin: {
-                options: {
-                    base: 'public',
-                    message: 'Deploy to GitHub Pages'
-                },
-                src: ['**/*']
-            },
-            upstream: {
-                options: {
-                    base: 'public',
-                    message: 'Deploy to GitHub Pages',
-                    repo: 'git@github.com:ScottLogic/StockFlux.git'
-                },
-                src: ['**/*']
-            }
-        },
+    function download(name) {
+        return {
+            src: ['https://dl.openfin.co/services/download?fileName=StockFlux-' + name +
+                '&config=http://scottlogic.github.io/StockFlux/' + name + '/app.json'],
+            dest: './public/StockFlux-' + name + '.zip'
+        };
+    }
 
+    grunt.initConfig({
         connect: {
             options: {
                 port: port,
@@ -89,16 +79,9 @@ module.exports = function(grunt) {
         },
 
         download: {
-            //One zip for release type (development/master) and one for the version are created here
-            openfinZip: {
-                src: ['https://dl.openfin.co/services/download?fileName=StockFlux-' + version +
-                '&config=http://scottlogic.github.io/StockFlux/' + version + '/app.json'],
-                dest: './public/StockFlux-' + version + '.zip'
-            },
-            openfinTypeZip: {
-                src: ['https://dl.openfin.co/services/download?fileName=StockFlux-' + type + '&config=http://scottlogic.github.io/StockFlux/' + type + '/app.json'],
-                dest: './public/StockFlux-' + type + '.zip'
-            }
+            // One zip for release type (development/master) and one for the version are created here
+            openfinZip: download(version),
+            openfinTypeZip: download(type)
         },
 
         eslint: {
@@ -177,6 +160,7 @@ module.exports = function(grunt) {
                 }]
             }
         },
+
         concat: {
             dist: {
                 src: ['src/**/*.js', '!src/parent-controller.js',
@@ -198,6 +182,7 @@ module.exports = function(grunt) {
                 }
             }
         },
+
         babel: {
             options: {
                 sourceMap: false
@@ -209,6 +194,7 @@ module.exports = function(grunt) {
                 }
             }
         },
+
         bump: {
             options: {
                 files: ['package.json', 'src/version-value.js'],
@@ -253,7 +239,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-http-download');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-gh-pages');
     grunt.loadNpmTasks('grunt-babel');
     grunt.loadNpmTasks('grunt-bump');
     grunt.loadNpmTasks('grunt-string-replace');
@@ -281,12 +266,7 @@ module.exports = function(grunt) {
     grunt.registerTask('serve', ['build:dev', 'openfin:serve']);
     grunt.registerTask('default', ['serve']);
 
-    grunt.registerTask('createZip', ['build:release', 'download']);
-    grunt.registerTask('deploy', ['createZip', 'gh-pages:origin']);
-    grunt.registerTask('deploy:upstream', ['ci', 'gh-pages:upstream']);
-
     grunt.registerTask('release', ['bump:major']);
 
     grunt.registerTask('ci', ['build:release', 'download']);
-
 };
