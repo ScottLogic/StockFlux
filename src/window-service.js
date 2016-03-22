@@ -274,10 +274,12 @@
                 this.storeService.open(name).openWindow();
 
                 mainWindow = new fin.desktop.Window(
-                    isCompact ?
-                        this.configService.getCompactConfig(name) :
-                        this.configService.getWindowConfig(name),
+                    this.configService.getWindowConfig(name),
                     () => {
+                        if (isCompact) {
+                            this.updateOptions(mainWindow, true);
+                            mainWindow.resizeTo(230, 500, 'top-left');
+                        }
                         windowCreatedCb(mainWindow);
                     }
                 );

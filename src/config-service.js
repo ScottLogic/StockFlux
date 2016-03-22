@@ -65,22 +65,6 @@
             });
         }
 
-        getCompactConfig(name) {
-            return this._getConfig(name, {
-                showTaskbarIcon: true,
-                saveWindowState: true,
-                url: 'index.html',
-                resizable: false,
-                maximizable: false,
-                minWidth: COMPACT_WINDOW_DIMENSIONS[0],
-                minHeight: COMPACT_WINDOW_DIMENSIONS[1],
-                maxWidth: COMPACT_WINDOW_DIMENSIONS[0],
-                maxHeight: COMPACT_WINDOW_DIMENSIONS[1],
-                defaultWidth: COMPACT_WINDOW_DIMENSIONS[0],
-                defaultHeight: COMPACT_WINDOW_DIMENSIONS[1]
-            });
-        }
-
         getTearoutConfig(name) {
             return this._getConfig(name, {
                 maximizable: false,
