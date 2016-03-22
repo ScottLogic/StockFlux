@@ -3,8 +3,8 @@
 
     const TEAR_IN_SELECTOR = '.favourites';
     angular.module('stockflux.tearout')
-        .directive('tearable', ['geometryService', 'hoverService', 'currentWindowService', 'configService', '$rootScope',
-            (geometryService, hoverService, currentWindowService, configService, $rootScope) => {
+        .directive('tearable', ['geometryService', 'hoverService', 'currentWindowService', 'configService', '$rootScope', '$timeout',
+            (geometryService, hoverService, currentWindowService, configService, $rootScope, $timeout) => {
                 return {
                     restrict: 'C',
                     link: (scope, element, attrs) => {
@@ -15,7 +15,8 @@
                             tearElement = dragElement,
                             tileWidth = tearElement.clientWidth || tearoutCardDimensions[0],
                             tileHeight = tearElement.clientHeight || tearoutCardDimensions[1],
-                            store;
+                            store,
+                            mouseDown = false;
 
                         var windowService = window.windowService;
                         var tearoutWindow = windowService.createTearoutWindow(window.name);
@@ -86,16 +87,25 @@
                                 return false;
                             }
 
-                            $rootScope.$broadcast('tearoutStart');
-                            dragService = windowService.registerDrag(tearoutWindow, currentWindowService.getCurrentWindow());
-                            setOffset(e.pageX, e.pageY);
-                            currentlyDragging = true;
-                            moveTearoutWindow(e.screenX, e.screenY);
-                            clearIncomingTearoutWindow();
-                            appendToOpenfinWindow(tearElement, tearoutWindow);
-                            displayTearoutWindow();
+                            mouseDown = true;
 
-                            tearoutWindow.addEventListener('blurred', onBlur);
+                            $timeout(() => {
+                                if (mouseDown) {
+                                    $rootScope.$broadcast('tearoutStart');
+                                    dragService = windowService.registerDrag(tearoutWindow, currentWindowService.getCurrentWindow());
+                                    setOffset(e.pageX, e.pageY);
+                                    currentlyDragging = true;
+                                    moveTearoutWindow(e.screenX, e.screenY);
+                                    clearIncomingTearoutWindow();
+                                    appendToOpenfinWindow(tearElement, tearoutWindow);
+                                    displayTearoutWindow();
+
+                                    tearoutWindow.addEventListener('blurred', onBlur);
+                                } else {
+                                    return false;
+                                }
+                            },
+                            200);
                         }
 
                         function handleMouseMove(e) {
@@ -109,6 +119,8 @@
                                 // Only process left clicks
                                 return false;
                             }
+
+                            mouseDown = false;
                             $rootScope.$broadcast('tearoutEnd');
                             tearoutWindow.removeEventListener('blurred', onBlur);
 
