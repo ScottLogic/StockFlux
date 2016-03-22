@@ -34,10 +34,11 @@ body {
   background-color: @dark-background;
   padding: 0px;
   .position(fixed, @top: 0px, @right: 0px, @bottom: 0px, @left: 0px);
+  border: 1px solid @light-background;
 }
 
 .main-content {
-  .position(absolute, @top: @toolbar-height, @right: -2px, @bottom: -12px, @left: (@sidebar-width + 20));
+  .position(absolute, @top: @toolbar-height, @right: 0px, @bottom: 0px, @left: (@sidebar-width + 20));
 }
 
 .disable-transitions {
