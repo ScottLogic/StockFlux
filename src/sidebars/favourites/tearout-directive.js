@@ -8,11 +8,13 @@
                 return {
                     restrict: 'C',
                     link: (scope, element, attrs) => {
+                        var tearoutCardDimensions = configService.getTearoutCardDimensions();
+
                         // Finding the tear element is tightly coupled to the HTML layout.
                         var dragElement = element[0],
                             tearElement = dragElement.parentNode.parentNode,
-                            tileWidth = tearElement.clientWidth || 230,
-                            tileHeight = tearElement.clientHeight || 100,
+                            tileWidth = tearElement.clientWidth || tearoutCardDimensions[0],
+                            tileHeight = tearElement.clientHeight || tearoutCardDimensions[1],
                             store;
 
                         var windowService = window.windowService;

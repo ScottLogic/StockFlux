@@ -1,16 +1,12 @@
 (function() {
     'use strict';
 
-    const defaultWidth = 1280,
-        defaultHeight = 720,
-        compactWidth = 230,
-        compactHeight = 500;
-
     class ToolbarCtrl {
-        constructor($scope, $timeout, currentWindowService) {
+        constructor($scope, $timeout, currentWindowService, configService) {
             this.$scope = $scope;
             this.$timeout = $timeout;
             this.currentWindowService = currentWindowService;
+            this.configService = configService;
             this.store = null;
             this.window = null;
             this.maximised = false;
@@ -58,13 +54,16 @@
         }
 
         normalSizeClick() {
+            var defaultWindowDimensions = this.configService.getDefaultWindowDimensions();
+
             this.window.restore();
-            this.window.resizeTo(defaultWidth, defaultHeight, 'top-right');
+            this.window.resizeTo(defaultWindowDimensions[0], defaultWindowDimensions[1], 'top-right');
         }
 
         _compactChanged() {
-            var becomingCompact = this.isCompact();
-            if (window.outerWidth !== compactWidth) {
+            var becomingCompact = this.isCompact(),
+                compactWindowDimensions = this.configService.getCompactWindowDimensions();
+            if (window.outerWidth !== compactWindowDimensions[0]) {
                 this.oldSize = [window.outerWidth, window.outerHeight];
             }
 
@@ -73,14 +72,15 @@
             }
 
             if (becomingCompact) {
-                this.window.resizeTo(compactWidth, compactHeight, 'top-right');
+                this.window.resizeTo(compactWindowDimensions[0], compactWindowDimensions[1], 'top-right');
             }
             else if (this.maximised) {
                 this.window.maximize();
             }
             else {
-                var width = defaultWidth,
-                    height = defaultHeight;
+                var defaultWindowDimensions = this.configService.getDefaultWindowDimensions(),
+                    width = defaultWindowDimensions[0],
+                    height = defaultWindowDimensions[1];
                 if (this.oldSize) {
                     width = this.oldSize[0];
                     height = this.oldSize[1];
@@ -111,7 +111,7 @@
                 () => this._compactChanged());
         }
     }
-    ToolbarCtrl.$inject = ['$scope', '$timeout', 'currentWindowService'];
+    ToolbarCtrl.$inject = ['$scope', '$timeout', 'currentWindowService', 'configService'];
 
     angular.module('stockflux.toolbar')
         .controller('ToolbarCtrl', ToolbarCtrl);

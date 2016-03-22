@@ -1,10 +1,14 @@
 (function() {
 
-    const RESIZE_NO_LIMIT = 50000;
-    const BITFLUX_STOCK_AMOUNT = 1200;
-    const BITFLUX_INITIAL_PROPORTION = 16 * 7 / BITFLUX_STOCK_AMOUNT; // ~4 months
-    const TEAROUT_WINDOW_OFFSET = [268, 65];
-    const TEAROUT_WINDOW_OFFSET_COMPACT = [218, 47];
+    const RESIZE_NO_LIMIT = 50000,
+        BITFLUX_STOCK_AMOUNT = 1200,
+        BITFLUX_INITIAL_PROPORTION = 16 * 7 / BITFLUX_STOCK_AMOUNT, // ~4 months
+        TEAROUT_WINDOW_OFFSET = [268, 65],
+        TEAROUT_WINDOW_OFFSET_COMPACT = [218, 47],
+        TEAROUT_CARD_WIDTH = 230,
+        TEAROUT_CARD_DIMENSIONS = [TEAROUT_CARD_WIDTH, 100],
+        COMPACT_WINDOW_DIMENSIONS = [TEAROUT_CARD_WIDTH, 500],
+        DEFAULT_WINDOW_DIMENSIONS = [1280, 720];
 
     // Be very careful changing the line below. It is replaced with a string.replace in the grunt build
     // to disable the right click menu in release.
@@ -33,8 +37,8 @@
                 minHeight: 510,
                 maxWidth: RESIZE_NO_LIMIT,
                 maxHeight: RESIZE_NO_LIMIT,
-                defaultWidth: 1280,
-                defaultHeight: 720,
+                defaultWidth: DEFAULT_WINDOW_DIMENSIONS[0],
+                defaultHeight: DEFAULT_WINDOW_DIMENSIONS[1],
                 shadow: true,
                 resizeRegion: {
                     size: 7,
@@ -57,12 +61,12 @@
                 url: 'index.html',
                 resizable: false,
                 maximizable: false,
-                minWidth: 230,
-                minHeight: 500,
-                maxWidth: 230,
-                maxHeight: 500,
-                defaultWidth: 230,
-                defaultHeight: 500,
+                minWidth: COMPACT_WINDOW_DIMENSIONS[0],
+                minHeight: COMPACT_WINDOW_DIMENSIONS[1],
+                maxWidth: COMPACT_WINDOW_DIMENSIONS[0],
+                maxHeight: COMPACT_WINDOW_DIMENSIONS[1],
+                defaultWidth: COMPACT_WINDOW_DIMENSIONS[0],
+                defaultHeight: COMPACT_WINDOW_DIMENSIONS[1],
                 shadow: true
             };
         }
@@ -77,11 +81,23 @@
                 resizable: false,
                 showTaskbarIcon: false,
                 saveWindowState: false,
-                maxWidth: 230,
-                maxHeight: 100,
+                maxWidth: TEAROUT_CARD_DIMENSIONS[0],
+                maxHeight: TEAROUT_CARD_DIMENSIONS[1],
                 url: 'tearout.html',
                 shadow: true
             };
+        }
+
+        getTearoutCardDimensions() {
+            return TEAROUT_CARD_DIMENSIONS;
+        }
+
+        getCompactWindowDimensions() {
+            return COMPACT_WINDOW_DIMENSIONS;
+        }
+
+        getDefaultWindowDimensions() {
+            return DEFAULT_WINDOW_DIMENSIONS;
         }
 
         getTopCardOffset(compact) {
