@@ -86,7 +86,6 @@
 
                         function tearout(mouseEvent) {
                             $rootScope.$broadcast('tearoutStart');
-                            dragService = windowService.registerDrag(tearoutWindow, currentWindowService.getCurrentWindow());
                             currentlyDragging = true;
                             moveTearoutWindow(mouseEvent.screenX, mouseEvent.screenY);
                             clearIncomingTearoutWindow();
@@ -110,6 +109,7 @@
                             mouseDown = true;
                             setMouseOffset(e);
                             setElementOffset();
+                            dragService = windowService.registerDrag(tearoutWindow, currentWindowService.getCurrentWindow());
 
                             dragTimeout = $timeout(() => {
                                 dragTimeout = null;

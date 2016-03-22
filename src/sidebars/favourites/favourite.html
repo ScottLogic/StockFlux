@@ -3,7 +3,7 @@
          ng-init="(selection() == null || selection() === '') && select(stock);">
         <div class="top">
             <star stock="stock" confirm="true"></star>
-            <div class="stock-name name">{{stock.name | truncate}}</div>
+            <div class="name">{{stock.name | truncate}}</div>
             <div class="code">{{stock.code | uppercase}}</div>
         </div>
         <div class="bottom">
