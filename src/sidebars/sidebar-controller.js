@@ -8,20 +8,15 @@
 
     class SidebarCtrl {
         constructor() {
-            this._favouritesClass = classes.expanded;
-            this._searchClass = classes.contracted;
-
             this._showSearches = false;
-            this._showFavourites = true;
-            this._searchSmall = true;
         }
 
         searchClass() {
-            return this._searchClass;
+            return this.showSearches() ? classes.expanded : classes.contracted;
         }
 
         favouritesClass() {
-            return this._favouritesClass;
+            return this.showFavourites() ? classes.expanded : classes.contracted;
         }
 
         showSearches() {
@@ -29,27 +24,15 @@
         }
 
         showFavourites() {
-            return this._showFavourites;
+            return !this._showSearches;
         }
 
         searchClick() {
-            if (this._searchSmall) {
-                this._searchSmall = false;
-                this._showFavourites = false;
-                this._searchClass = classes.expanded;
-                this._favouritesClass = classes.contracted;
-                this._showSearches = true;
-            }
+            this._showSearches = true;
         }
 
         favouritesClick() {
-            if (!this._searchSmall) {
-                this._searchSmall = true;
-                this._searchClass = classes.contracted;
-                this._favouritesClass = classes.expanded;
-                this._showSearches = false;
-                this._showFavourites = true;
-            }
+            this._showSearches = false;
         }
     }
     SidebarCtrl.$inject = [];
