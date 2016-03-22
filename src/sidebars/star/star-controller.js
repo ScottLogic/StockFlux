@@ -62,6 +62,11 @@
         }
 
         click(event) {
+            if (event.button !== 0) {
+                // Only process left clicks
+                return false;
+            }
+
             this.mouseY = event.currentTarget.y;
             this.viewHeight = event.view.innerHeight;
             if (this.check) {
