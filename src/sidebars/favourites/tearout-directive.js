@@ -12,7 +12,7 @@
 
                         // Finding the tear element is tightly coupled to the HTML layout.
                         var dragElement = element[0],
-                            tearElement = dragElement.parentNode.parentNode,
+                            tearElement = dragElement,
                             tileWidth = tearElement.clientWidth || tearoutCardDimensions[0],
                             tileHeight = tearElement.clientHeight || tearoutCardDimensions[1],
                             store;
@@ -36,18 +36,24 @@
                         }
 
                         function setOffset(x, y) {
-                            offset.x = x;
-                            offset.y = y;
+                            var el = dragElement,
+                                currentLeft = 0,
+                                currentTop = 0;
+
+                            if (el.offsetParent) {
+                                do {
+                                    currentLeft += el.offsetLeft;
+                                    currentTop += el.offsetTop;
+                                    el = el.offsetParent;
+                                } while (el);
+                            }
+
+                            offset.x = currentLeft - x;
+                            offset.y = currentTop - y;
                         }
 
                         function moveTearoutWindow(x, y) {
-                            var tileTopPadding = 5,
-                                tileRightPadding = 5,
-                                tearElementWidth = 16;
-
-                            tearoutWindow.moveTo(
-                                x - tileWidth + (tearElementWidth - offset.x + tileRightPadding),
-                                y - (tileTopPadding + offset.y));
+                            tearoutWindow.moveTo(x + offset.x, y + offset.y);
                         }
 
                         function displayTearoutWindow() {
@@ -82,9 +88,8 @@
 
                             $rootScope.$broadcast('tearoutStart');
                             dragService = windowService.registerDrag(tearoutWindow, currentWindowService.getCurrentWindow());
-
+                            setOffset(e.pageX, e.pageY);
                             currentlyDragging = true;
-                            setOffset(e.offsetX, e.offsetY);
                             moveTearoutWindow(e.screenX, e.screenY);
                             clearIncomingTearoutWindow();
                             appendToOpenfinWindow(tearElement, tearoutWindow);
