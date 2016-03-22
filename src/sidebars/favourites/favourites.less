@@ -1,7 +1,7 @@
 ﻿@favourite-height: 110px;
 @favourite-padding-left: 0px;
 @favourite-padding-top: 10px;
-@favourite-padding-right: 15px;
+// Padding right is declared in the variables file.
 @favourite-padding-bottom: 5px;
 @top-height: 30px;
 @top-padding-left: 10px;
@@ -56,7 +56,7 @@
 
     .name {
       .font(12px, @font-light, 1.4);
-      .size(@width: (@expanded-width - @top-padding-left - @scrollbar-padding - 5 - 16 - @favourite-padding-right)); // padding and star width
+      .size(@width: (@expanded-width - @top-padding-left - @scrollbar-padding - 5 - @star-width - @favourite-padding-right)); // padding width
       .wrap-ellipsis;
     }
 
