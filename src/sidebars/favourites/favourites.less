@@ -7,6 +7,7 @@
 @top-padding-left: 10px;
 @fav-split-color: #323A48;
 @highlight-colour: #447272;
+@scrollbar-padding: 20px;
 
 .favourites {
   float: right;
@@ -55,7 +56,7 @@
 
     .name {
       .font(12px, @font-light, 1.4);
-      .size(@width: (@expanded-width - @top-padding-left - @favourite-padding-right - 16 - 5)); // star width and padding
+      .size(@width: (@expanded-width - @top-padding-left - @scrollbar-padding - 5 - 16 - @favourite-padding-right)); // padding and star width
       .wrap-ellipsis;
     }
 
@@ -99,7 +100,7 @@
 }
 
 .scroll-padding:hover .top {
-  padding-left: 20px !important;
+  padding-left: @scrollbar-padding !important;
 }
 
 .dark {
