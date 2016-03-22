@@ -11,8 +11,7 @@
                         var tearoutCardDimensions = configService.getTearoutCardDimensions();
 
                         // Finding the tear element is tightly coupled to the HTML layout.
-                        var dragElement = element[0],
-                            tearElement = dragElement,
+                        var tearElement = element[0],
                             tileWidth = tearElement.clientWidth || tearoutCardDimensions[0],
                             tileHeight = tearElement.clientHeight || tearoutCardDimensions[1],
                             store,
@@ -24,9 +23,11 @@
                         var myDropTarget = tearElement.parentNode,
                             parent = myDropTarget.parentNode,
                             myHoverArea = parent.getElementsByClassName('hover-area')[0],
-                            offset = { x: 0, y: 0 },
+                            mouseOffset = { x: 0, y: 0 },
+                            elementOffset = { x: 0, y: 0 },
                             currentlyDragging = false,
-                            dragService;
+                            dragService,
+                            dragTimeout;
 
                         hoverService.add(myHoverArea, scope.stock.code);
 
@@ -36,8 +37,13 @@
                                 tearoutWindow, window, document.getElementsByClassName('favourites')[0]);
                         }
 
-                        function setOffset(x, y) {
-                            var el = dragElement,
+                        function setMouseOffset(e) {
+                            mouseOffset.x = -e.pageX;
+                            mouseOffset.y = -e.pageY;
+                        }
+
+                        function setElementOffset() {
+                            var el = tearElement,
                                 currentLeft = 0,
                                 currentTop = 0;
 
@@ -49,12 +55,14 @@
                                 } while (el);
                             }
 
-                            offset.x = currentLeft - x;
-                            offset.y = currentTop - y;
+                            elementOffset.x = currentLeft;
+                            elementOffset.y = currentTop;
                         }
 
-                        function moveTearoutWindow(x, y) {
-                            tearoutWindow.moveTo(x + offset.x, y + offset.y);
+                        function moveTearoutWindow(screenX, screenY) {
+                            tearoutWindow.moveTo(
+                                screenX + mouseOffset.x + elementOffset.x,
+                                screenY + mouseOffset.y + elementOffset.y);
                         }
 
                         function displayTearoutWindow() {
@@ -76,31 +84,37 @@
                             document.body = document.createElement('body');
                         }
 
+                        function tearout(mouseEvent) {
+                            $rootScope.$broadcast('tearoutStart');
+                            dragService = windowService.registerDrag(tearoutWindow, currentWindowService.getCurrentWindow());
+                            currentlyDragging = true;
+                            moveTearoutWindow(mouseEvent.screenX, mouseEvent.screenY);
+                            clearIncomingTearoutWindow();
+                            appendToOpenfinWindow(tearElement, tearoutWindow);
+                            displayTearoutWindow();
+
+                            tearoutWindow.addEventListener('blurred', onBlur);
+                        }
+
                         function handleMouseDown(e) {
                             if (e.button !== 0) {
                                 // Only process left clicks
                                 return false;
                             }
 
-                            if (dragElement.classList.contains('single')) {
+                            if (tearElement.classList.contains('single')) {
                                 // There is only one favourite card so don't allow tearing out
                                 return false;
                             }
 
                             mouseDown = true;
+                            setMouseOffset(e);
+                            setElementOffset();
 
-                            $timeout(() => {
+                            dragTimeout = $timeout(() => {
+                                dragTimeout = null;
                                 if (mouseDown) {
-                                    $rootScope.$broadcast('tearoutStart');
-                                    dragService = windowService.registerDrag(tearoutWindow, currentWindowService.getCurrentWindow());
-                                    setOffset(e.pageX, e.pageY);
-                                    currentlyDragging = true;
-                                    moveTearoutWindow(e.screenX, e.screenY);
-                                    clearIncomingTearoutWindow();
-                                    appendToOpenfinWindow(tearElement, tearoutWindow);
-                                    displayTearoutWindow();
-
-                                    tearoutWindow.addEventListener('blurred', onBlur);
+                                    tearout(e);
                                 } else {
                                     return false;
                                 }
@@ -109,6 +123,13 @@
                         }
 
                         function handleMouseMove(e) {
+                            if (mouseDown && dragTimeout) {
+                                if (Math.abs(e.pageX + mouseOffset.x) > 50 || Math.abs(e.pageY + mouseOffset.y) > 50) {
+                                    $timeout.cancel(dragTimeout);
+                                    tearout(e);
+                                }
+                            }
+
                             if (currentlyDragging) {
                                 moveTearoutWindow(e.screenX, e.screenY);
                             }
@@ -206,7 +227,7 @@
 
                         tearoutWindow.addEventListener('bounds-changing', boundsChangingEvent);
 
-                        dragElement.addEventListener('mousedown', handleMouseDown);
+                        tearElement.addEventListener('mousedown', handleMouseDown);
                         document.addEventListener('mousemove', handleMouseMove, true);
                         document.addEventListener('mouseup', handleMouseUp, true);
 
@@ -214,7 +235,7 @@
                             hoverService.remove(scope.stock.code);
                             tearoutWindow.removeEventListener('bounds-changing', boundsChangingEvent);
                             tearoutWindow.removeEventListener('blurred', onBlur);
-                            dragElement.removeEventListener('mousedown', handleMouseDown);
+                            tearElement.removeEventListener('mousedown', handleMouseDown);
                             document.removeEventListener('mousemove', handleMouseMove);
                             document.removeEventListener('mouseup', handleMouseUp);
                         }
