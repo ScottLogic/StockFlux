@@ -35,12 +35,14 @@
         }
 
         singleClick(stock) {
+            reportAction('Select favourite', stock.code);
             if (!window.storeService.open(window.name).isCompact()) {
                 this.select(stock);
             }
         }
 
         doubleClick(stock) {
+            reportAction('Select favourite', stock.code);
             var store = window.storeService.open(window.name);
             if (store.isCompact()) {
                 this.select(stock);

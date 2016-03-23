@@ -42,6 +42,7 @@
         }
 
         select(stock) {
+            reportAction('Select search', stock.code);
             if (this.getStore() && !this.store.isCompact()) {
                 this.selectionService.select(stock);
             }
@@ -89,6 +90,10 @@
 
 
         submit() {
+            if (this.query !== '') {
+                reportAction('Search', this.query);
+            }
+
             this.stocks = [];
             this.noResults = false;
 

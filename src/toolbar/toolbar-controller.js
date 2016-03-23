@@ -46,10 +46,12 @@
         }
 
         minimiseClick() {
+            reportAction('Window change', 'Minimised');
             this.window.minimize();
         }
 
         maximiseClick() {
+            reportAction('Window change', 'Maximised');
             this.window.maximize();
         }
 
@@ -72,12 +74,15 @@
             }
 
             if (becomingCompact) {
+                reportAction('Window change', 'Compact');
                 this.window.resizeTo(compactWindowDimensions[0], compactWindowDimensions[1], 'top-right');
             }
             else if (this.maximised) {
+                reportAction('Window change', 'Maximised');
                 this.window.maximize();
             }
             else {
+                reportAction('Window change', 'Standard');
                 var defaultWindowDimensions = this.configService.getDefaultWindowDimensions(),
                     width = defaultWindowDimensions[0],
                     height = defaultWindowDimensions[1];

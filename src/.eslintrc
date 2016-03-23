@@ -12,6 +12,7 @@
         "confirm": true,
         "Event": true,
         "localStorage": true,
-        "$q": true
+        "$q": true,
+        "reportAction": true
     }
 }
