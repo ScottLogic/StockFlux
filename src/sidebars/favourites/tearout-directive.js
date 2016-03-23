@@ -119,7 +119,7 @@
                                     return false;
                                 }
                             },
-                            200);
+                            250);
                         }
 
                         function handleMouseMove(e) {
