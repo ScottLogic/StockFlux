@@ -1,4 +1,6 @@
 ﻿@minichart-error-colour: white;
+@minichart-width: 145px;
+@minichart-height: 40px;
 
 .overflow {
   overflow: visible;
@@ -6,13 +8,12 @@
 
 minichart {
   .position(absolute);
-  padding-top: 10px;
-  .size(@width: 100%);
+  padding-top: 19px;
   .overflow;
 }
 
 .minichart {
-  .size(@width: @chart-width, @height: @chart-height);
+  .size(@width: @minichart-width, @height: @minichart-height);
   .overflow !important;
 
   svg {

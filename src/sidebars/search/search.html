@@ -17,7 +17,7 @@
               <div class="search-result darkens" ng-class="{selected: searchCtrl.selectedClass(stock), dark: searchCtrl.darkenClass(stock)}"
                   ng-click="searchCtrl.select(stock)">
                   <div class="details">
-                      <div class="stock-name name">{{stock.name | truncate}}</div>
+                      <div class="name">{{stock.name | truncate}}</div>
                       <div class="code">{{stock.code | uppercase}}</div>
                   </div>
                   <div class="star-icon">

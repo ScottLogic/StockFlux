@@ -23,7 +23,7 @@
 
     angular.module('stockflux.main', []);
     angular.module('stockflux.showcase', ['stockflux.selection', 'stockflux.quandl', 'stockflux.config']);
-    angular.module('stockflux.toolbar', ['stockflux.currentWindow', 'stockflux.closedWindows']);
+    angular.module('stockflux.toolbar', ['stockflux.currentWindow', 'stockflux.closedWindows', 'stockflux.config']);
     angular.module('stockflux.icon', []);
     angular.module('stockflux.search', ['stockflux.quandl', 'stockflux.selection', 'stockflux.currentWindow']);
     angular.module('stockflux.favourites', ['stockflux.quandl', 'stockflux.selection', 'stockflux.currentWindow']);

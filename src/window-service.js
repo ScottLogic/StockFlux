@@ -285,8 +285,9 @@
                 var poolWindow = this.pool.fetch();
                 mainWindow = poolWindow.window;
                 if (isCompact) {
+                    var compactWindowDimensions = this.configService.getCompactWindowDimensions();
                     this.updateOptions(poolWindow.window, true);
-                    poolWindow.window.resizeTo(230, 500, 'top-right');
+                    poolWindow.window.resizeTo(compactWindowDimensions[0], compactWindowDimensions[1], 'top-right');
                 }
 
                 poolWindow.promise.then(() => {
@@ -385,10 +386,11 @@
 
         updateOptions(_window, isCompact) {
             if (isCompact) {
+                var compactWindowDimensions = this.configService.getCompactWindowDimensions();
                 _window.updateOptions({
                     resizable: false,
-                    minHeight: 500,
-                    minWidth: 230,
+                    minWidth: compactWindowDimensions[0],
+                    minHeight: compactWindowDimensions[1],
                     maximizable: false
                 });
             } else {

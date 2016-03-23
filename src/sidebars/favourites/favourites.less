@@ -1,11 +1,15 @@
-﻿@favourite-height: 100px;
+﻿@favourite-height: 110px;
+@favourite-padding-top: 10px;
+// Padding right is declared in the variables file:
+// it's used to determine the placement of other elements, while the other
+// padding variables are not.
+@favourite-padding-bottom: 5px;
 @favourite-padding-left: 0px;
-@favourite-padding-top: 5px;
-@favourite-padding-right: 4px;
-@favourite-padding-bottom: 10px;
 @top-height: 30px;
+@top-padding-left: 10px;
 @fav-split-color: #323A48;
 @highlight-colour: #447272;
+@scrollbar-padding: 20px;
 
 .favourites {
   float: right;
@@ -44,70 +48,61 @@
   background-color: @middle-background;
   .size(@width: @expanded-width, @height: @favourite-height);
 
-  .top {
-    padding-left: 10px;
-    .transition();
-  }
-
-  .bottom {
-    padding-top: 1px;
-  }
-
-  .star, .tearable {
-    float: right;
-  }
-
-  .tearable {
-    margin-left: 5px;
-    cursor: move;
-  }
-
   .single {
     cursor: default;
   }
 
-  .name {
-    .font(12px, @font-thin, 1.4);
-  }
+  .top {
+    padding-left: @top-padding-left;
+    .transition();
 
-  .details {
-    float: right;
-    text-align: right;
-    padding-top: 1px;
-
-    .price {
-      .font(18px, @font-medium, 1.0);
+    .name {
+      .font(12px, @font-light, 1.4);
+      .size(@width: (@expanded-width - @top-padding-left - @scrollbar-padding - 5 - @star-width - @favourite-padding-right)); // padding width
+      .wrap-ellipsis;
     }
 
-    .delta {
-      padding-top: 4px;
-      .font(14px, @font-light, 1.0);
-    }
-
-    .delta, .percentage {
-      padding-right: 1px;
-    }
-
-    .stock-arrow {
-      .size(@height: 9px);
-      padding-bottom: 1px;
-      padding-right: 3px;
-    }
-
-    .percentage {
-      display: inherit;
-      .font(12px, @font-light, 1.2);
+    .code {
+      padding-top: 1px;
+      .font(20px, @font-medium, 1.0);
     }
   }
 
-  .code {
-    padding-top: 1px;
-    .font(20px, @font-medium, 1.0);
+  .bottom {
+    .details {
+      float: right;
+      text-align: right;
+      padding-top: 5px;
+
+      .price {
+        .font(18px, @font-medium, 1.0);
+      }
+
+      .delta {
+        padding-top: 5px;
+        .font(14px, @font-light, 1.0);
+      }
+
+      .delta, .percentage {
+        padding-right: 1px;
+      }
+
+      .stock-arrow {
+        .size(@height: 9px);
+        padding-bottom: 1px;
+        padding-right: 3px;
+      }
+
+      .percentage {
+        padding-top: 1px;
+        .font(12px, @font-light, 1.0);
+      }
+    }
   }
 }
 
 .scroll-padding:hover .top {
-  padding-left: 20px !important;
+  padding-left: @scrollbar-padding !important;
 }
 
 .dark {
