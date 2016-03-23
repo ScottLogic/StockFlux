@@ -42,6 +42,8 @@
         }
 
         select(stock) {
+            //Reporting to GA
+            reportAction('searchSelect-' + stock.code);
             if (this.getStore() && !this.store.isCompact()) {
                 this.selectionService.select(stock);
             }
@@ -89,6 +91,11 @@
 
 
         submit() {
+            if (this.query !== '') {
+                //Reporting to GA
+                reportAction('search-' + this.query);
+            }
+
             this.stocks = [];
             this.noResults = false;
 

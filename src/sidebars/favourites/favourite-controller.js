@@ -35,12 +35,16 @@
         }
 
         singleClick(stock) {
+            //Reporting to GA
+            reportAction('favSelect-' + stock.code);
             if (!window.storeService.open(window.name).isCompact()) {
                 this.select(stock);
             }
         }
 
         doubleClick(stock) {
+            //Reporting to GA
+            reportAction(stock.code);
             var store = window.storeService.open(window.name);
             if (store.isCompact()) {
                 this.select(stock);

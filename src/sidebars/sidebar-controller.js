@@ -28,10 +28,20 @@
         }
 
         searchClick() {
+            if (this._showSearches) {
+                return;
+            }
+            //Reporting to GA
+            reportAction('showSearch');
             this._showSearches = true;
         }
 
         favouritesClick() {
+            if (!this._showSearches) {
+                return;
+            }
+            //Reporting to GA
+            reportAction('showFavourites');
             this._showSearches = false;
         }
     }

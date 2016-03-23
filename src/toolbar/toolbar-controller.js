@@ -72,12 +72,16 @@
             }
 
             if (becomingCompact) {
+                reportAction('becomingCompact');
                 this.window.resizeTo(compactWindowDimensions[0], compactWindowDimensions[1], 'top-right');
             }
             else if (this.maximised) {
+                //Reporting to GA
+                reportAction('becomingStandard');
                 this.window.maximize();
             }
             else {
+                reportAction('becomingStandard');
                 var defaultWindowDimensions = this.configService.getDefaultWindowDimensions(),
                     width = defaultWindowDimensions[0],
                     height = defaultWindowDimensions[1];
