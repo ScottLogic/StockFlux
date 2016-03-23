@@ -87,7 +87,6 @@
                         }
 
                         function tearout(mouseEvent) {
-                            reportAction('Tearout', 'Start');
                             $rootScope.$broadcast('tearoutStart');
                             currentlyDragging = true;
                             moveWindow(tearoutWindow, mouseEvent.screenX, mouseEvent.screenY);
