@@ -97,23 +97,33 @@
                 this.$rootScope.$broadcast('closeWindow');
             }
 
-            var closedArray = storage.filter((store) => store.closed !== 0);
+            var restorableWindows = [],
+                cleanableWindows = [];
+
+            storage
+                .filter((store) => store.closed !== 0)
+                .forEach((store) => {
+                    if (store.stocks.length > 0) {
+                        restorableWindows.push(store);
+                    } else {
+                        cleanableWindows.push(store);
+                    }
+                });
 
             // Trim any stores without stocks
-            var emptyStores = closedArray.filter((store) => store.stocks.length === 0);
-            emptyStores.forEach((emptyStore) => {
-                var index = storage.indexOf(emptyStore);
+            cleanableWindows.forEach((cleanableWindow) => {
+                var index = storage.indexOf(cleanableWindow);
                 storage.splice(index, 1);
             });
 
             // Trim the oldest closed store
-            if (closedArray.length > closedCacheSize) {
-                closedArray.sort((a, b) => {
+            if (restorableWindows.length > closedCacheSize) {
+                restorableWindows.sort((a, b) => {
                     return b.closed - a.closed;
                 });
 
-                for (var i = closedCacheSize, max = closedArray.length; i < max; i++) {
-                    var storageIndex = storage.indexOf(closedArray[i]);
+                for (var i = closedCacheSize, max = restorableWindows.length; i < max; i++) {
+                    var storageIndex = storage.indexOf(restorableWindows[i]);
                     storage.splice(storageIndex, 1);
                 }
             }
