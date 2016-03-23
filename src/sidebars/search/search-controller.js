@@ -42,7 +42,7 @@
         }
 
         select(stock) {
-            reportAction('searchSelect-' + stock.code);
+            reportAction('Select search', stock.code);
             if (this.getStore() && !this.store.isCompact()) {
                 this.selectionService.select(stock);
             }
