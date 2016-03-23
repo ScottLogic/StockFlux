@@ -76,6 +76,7 @@
                         }
 
                         function returnFromTearout() {
+                            reportAction('Tearout', 'Return to same');
                             myDropTarget.appendChild(tearElement);
                             tearoutWindow.hide();
                         }
@@ -86,6 +87,7 @@
                         }
 
                         function tearout(mouseEvent) {
+                            reportAction('Tearout', 'Start');
                             $rootScope.$broadcast('tearoutStart');
                             currentlyDragging = true;
                             moveWindow(tearoutWindow, mouseEvent.screenX, mouseEvent.screenY);
@@ -157,6 +159,7 @@
 
                                     dragService.overAnotherInstance(TEAR_IN_SELECTOR, (overAnotherInstance) => {
                                         if (overAnotherInstance) {
+                                            reportAction('Tearout', 'Moved ' + scope.stock.code);
                                             dragService.moveToOtherInstance(scope.stock);
                                             dragService.destroy();
                                             store.remove(scope.stock);
@@ -166,6 +169,7 @@
                                             var indicators = store.indicators();
 
                                             windowService.createMainWindow(null, compact, (newWindow, showFunction) => {
+                                                reportAction('Tearout', 'Created ' + scope.stock.code);
                                                 newWindow.resizeTo(window.outerWidth, window.outerHeight, 'top-left');
                                                 var newCardOffset = configService.getTopCardOffset(compact);
                                                 moveWindow(newWindow, e.screenX - newCardOffset[0], e.screenY - newCardOffset[1], showFunction);
