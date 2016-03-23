@@ -22,7 +22,7 @@
 
                         var myDropTarget = tearElement.parentNode,
                             parent = myDropTarget.parentNode,
-                            myHoverArea = parent.getElementsByClassName('hover-area')[0],
+                            myHoverArea = parent.getElementsByClassName('drop-target')[0],
                             mouseOffset = { x: 0, y: 0 },
                             elementOffset = { x: 0, y: 0 },
                             currentlyDragging = false,
@@ -181,7 +181,6 @@
                                         }
 
                                         // Remove drop-target from original instance
-                                        parent.removeChild(myHoverArea);
                                         parent.removeChild(myDropTarget);
                                         dispose();
 
@@ -194,19 +193,25 @@
 
                         function reorderFavourites() {
                             var hoverTargets = hoverService.get();
+                            var largestIntersectionArea = -1;
+                            var largestIntersector = hoverTargets[0];
 
                             for (var i = 0, max = hoverTargets.length; i < max; i++) {
-                                var overDropTarget = geometryService.elementIntersect(
+                                var areaOfIntersection = geometryService.elementIntersectArea(
                                     tearoutWindow, window, hoverTargets[i].hoverArea);
 
-                                if (overDropTarget) {
-                                    if (!store) {
-                                        store = window.storeService.open(window.name);
-                                    }
-
-                                    store.reorder(scope.stock.code, hoverTargets[i].code);
-                                    break;
+                                if (areaOfIntersection > largestIntersectionArea) {
+                                    largestIntersectionArea = areaOfIntersection;
+                                    largestIntersector = hoverTargets[i];
                                 }
+                            }
+
+                            if (largestIntersectionArea > 0 && largestIntersector) {
+                                if (!store) {
+                                    store = window.storeService.open(window.name);
+                                }
+
+                                store.reorder(scope.stock.code, largestIntersector.code);
                             }
                         }
 

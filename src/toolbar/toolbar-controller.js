@@ -67,6 +67,7 @@
                 compactWindowDimensions = this.configService.getCompactWindowDimensions();
             if (window.outerWidth !== compactWindowDimensions[0]) {
                 this.oldSize = [window.outerWidth, window.outerHeight];
+                this.wasMaximised = this.maximised;
             }
 
             if (window.windowService) {
@@ -77,7 +78,7 @@
                 reportAction('Window change', 'Compact');
                 this.window.resizeTo(compactWindowDimensions[0], compactWindowDimensions[1], 'top-right');
             }
-            else if (this.maximised) {
+            else if (this.wasMaximised) {
                 reportAction('Window change', 'Maximised');
                 this.window.maximize();
             }

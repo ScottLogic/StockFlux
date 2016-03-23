@@ -45,6 +45,18 @@
                 otherOrigin.x < this.corner().x &&
                 otherOrigin.y < this.corner().y;
         }
+
+        areaOfIntersection(otherRectangle) {
+            if (this.intersects(otherRectangle)) {
+                var left = Math.max(this.left(), otherRectangle.left());
+                var right = Math.min(this.right(), otherRectangle.right());
+                var top = Math.max(this.top(), otherRectangle.top());
+                var bottom = Math.min(this.bottom(), otherRectangle.bottom());
+                return (right - left) * (bottom - top);
+            } else {
+                return 0;
+            }
+        }
     }
 
     // Helper function to retrieve the height, width, top, and left from a window object
@@ -69,20 +81,27 @@
         };
     }
 
-    function intersectHelper(bounds1, bounds2) {
-        var rectangle1 = new Rectangle(bounds1),
-            rectangle2 = new Rectangle(bounds2);
-
-        return rectangle1.intersects(rectangle2);
+    function rectangles(bounds1, bounds2) {
+        return [new Rectangle(bounds1), new Rectangle(bounds2)];
     }
 
     class GeometryService {
         elementIntersect(openFinWindow, _window, element) {
             var nativeWindow = openFinWindow.getNativeWindow();
-
-            return intersectHelper(
+            var rects = rectangles(
                 getWindowPosition(nativeWindow),
                 elementScreenPosition(getWindowPosition(_window), element));
+
+            return rects[0].intersects(rects[1]);
+        }
+
+        elementIntersectArea(openFinWindow, _window, element) {
+            var nativeWindow = openFinWindow.getNativeWindow();
+            var rects = rectangles(
+                getWindowPosition(nativeWindow),
+                elementScreenPosition(getWindowPosition(_window), element));
+
+            return rects[0].areaOfIntersection(rects[1]);
         }
     }
 
