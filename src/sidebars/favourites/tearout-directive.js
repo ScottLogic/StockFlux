@@ -59,10 +59,11 @@
                             elementOffset.y = currentTop;
                         }
 
-                        function moveTearoutWindow(screenX, screenY) {
-                            tearoutWindow.moveTo(
-                                screenX + mouseOffset.x + elementOffset.x,
-                                screenY + mouseOffset.y + elementOffset.y);
+                        function moveWindow(_window, x, y, showFunction) {
+                            _window.moveTo(
+                                x + mouseOffset.x + elementOffset.x,
+                                y + mouseOffset.y + elementOffset.y,
+                                showFunction);
                         }
 
                         function displayTearoutWindow() {
@@ -87,7 +88,7 @@
                         function tearout(mouseEvent) {
                             $rootScope.$broadcast('tearoutStart');
                             currentlyDragging = true;
-                            moveTearoutWindow(mouseEvent.screenX, mouseEvent.screenY);
+                            moveWindow(tearoutWindow, mouseEvent.screenX, mouseEvent.screenY);
                             clearIncomingTearoutWindow();
                             appendToOpenfinWindow(tearElement, tearoutWindow);
                             displayTearoutWindow();
@@ -131,7 +132,7 @@
                             }
 
                             if (currentlyDragging) {
-                                moveTearoutWindow(e.screenX, e.screenY);
+                                moveWindow(tearoutWindow, e.screenX, e.screenY);
                             }
                         }
 
@@ -167,7 +168,7 @@
                                             windowService.createMainWindow(null, compact, (newWindow, showFunction) => {
                                                 newWindow.resizeTo(window.outerWidth, window.outerHeight, 'top-left');
                                                 var newCardOffset = configService.getTopCardOffset(compact);
-                                                newWindow.moveTo(e.screenX - newCardOffset[0], e.screenY - newCardOffset[1], showFunction);
+                                                moveWindow(newWindow, e.screenX - newCardOffset[0], e.screenY - newCardOffset[1], showFunction);
                                                 var newStore = window.storeService.open(newWindow.name);
                                                 newStore.indicators(indicators);
                                                 newStore.add(scope.stock);

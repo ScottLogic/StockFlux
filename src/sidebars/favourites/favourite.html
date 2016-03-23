@@ -11,7 +11,7 @@
             <div class="details">
                 <div class="price">{{stock.price | number:2 }}</div>
                 <div class="delta">{{stock.delta < 0 ? '' : '+'}}{{stock.delta | number:2 }}</div>
-                <div class="percentage"><img ng-src="assets/png/{{icon(stock)}}.png" class="stock-arrow" />{{stock.percentage | number:2 }}%</div>
+                <div class="percentage"><img ng-src="assets/png/{{icon(stock)}}.png" class="stock-arrow" draggable="false" />{{stock.percentage | number:2 }}%</div>
             </div>
         </div>
     </div>
