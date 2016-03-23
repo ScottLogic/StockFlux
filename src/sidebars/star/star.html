@@ -2,7 +2,8 @@
      ng-mouseenter="starCtrl.mouseEnter()" ng-mouseleave="starCtrl.mouseLeave()" title="{{starCtrl.tooltip()}}" draggable="false" />
 <div class="confirmation-backdrop" ng-if="starCtrl.confirmationShow" ng-mousedown="starCtrl.hideModal(); $event.stopPropagation();">
   <div class="bubble-head" ng-style="{top:starCtrl.modalBubbleTop()+'px'}"></div>
-  <div class="confirmation-modal" ng-class="{flipped: starCtrl.modalFlip()}"  ng-click="$event.stopPropagation();" ng-style="{top:starCtrl.modalTop()+'px'}">
+  <div class="confirmation-modal" ng-class="{flipped: starCtrl.modalFlip()}" ng-click="$event.stopPropagation();"
+    ng-mousedown="$event.stopPropagation();" ng-style="{top:starCtrl.modalTop()+'px'}">
     <div class=confirmation-content>
       <div class="message">
         <span>Are you sure you wish to remove this stock from your favourites?</span>
