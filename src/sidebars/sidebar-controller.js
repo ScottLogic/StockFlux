@@ -40,6 +40,10 @@
             }
             this._showSearches = false;
         }
+
+        toggleClick() {
+            this._showSearches = !this._showSearches;
+        }
     }
     SidebarCtrl.$inject = [];
 
