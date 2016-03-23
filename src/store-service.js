@@ -92,10 +92,21 @@
         closeWindow() {
             this.store.closed = Date.now();
             this.save();
-            this.$rootScope.$broadcast('closeWindow');
+
+            if (this.store.stocks.length > 0) {
+                this.$rootScope.$broadcast('closeWindow');
+            }
+
+            var closedArray = storage.filter((store) => store.closed !== 0);
+
+            // Trim any stores without stocks
+            var emptyStores = closedArray.filter((store) => store.stocks.length === 0);
+            emptyStores.forEach((emptyStore) => {
+                var index = storage.indexOf(emptyStore);
+                storage.splice(index, 1);
+            });
 
             // Trim the oldest closed store
-            var closedArray = storage.filter((store) => store.closed !== 0);
             if (closedArray.length > closedCacheSize) {
                 closedArray.sort((a, b) => {
                     return b.closed - a.closed;
