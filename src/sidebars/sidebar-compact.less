@@ -6,6 +6,10 @@
     .drag;
   }
 
+  .sidebars {
+    .size(@width: (@expanded-width - 2px), @height: 100%);
+  }
+
   #search-scroll, #favourite-scroll {
     bottom: @compact-top-bottom-margin;
   }
@@ -42,6 +46,9 @@
         top: 68px;
         bottom: 0px;
       }
+    }
+    &.contracted {
+      box-shadow: none;
     }
   }
 
