@@ -277,8 +277,9 @@
                     this.configService.getWindowConfig(name),
                     () => {
                         if (isCompact) {
+                            var compactSize = this.configService.getCompactWindowDimensions();
                             this.updateOptions(mainWindow, true);
-                            mainWindow.resizeTo(230, 500, 'top-left');
+                            mainWindow.resizeTo(compactSize[0], compactSize[1], 'top-left');
                         }
                         windowCreatedCb(mainWindow);
                     }
