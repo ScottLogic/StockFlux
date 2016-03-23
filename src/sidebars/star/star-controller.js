@@ -81,7 +81,6 @@
                 if (this.stock.favourite) {
                     this.deselect();
                 } else {
-                    //Reporting to GA
                     reportAction('Add Favourite', this.stock.code);
                     this.stock.favourite = true;
                     this.store.add(this.stock);
@@ -93,7 +92,6 @@
             if (!this.store) {
                 this.store = window.storeService.open(window.name);
             }
-            //Reporting to GA
             reportAction('Remove Favourite', + this.stock.code);
             this.stock.favourite = false;
             this.store.remove(this.stock);

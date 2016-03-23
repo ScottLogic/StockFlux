@@ -3,7 +3,6 @@
 
     class ClosedCardCtrl {
         openClosedWindow(name) {
-            //Reporting to GA
             reportAction('Restore window', name);
             var store = window.storeService.open(name);
             window.windowService.createMainWindow(name, store.isCompact());

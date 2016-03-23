@@ -29,7 +29,6 @@
 
         searchClick() {
             if (!this._showSearches) {
-                //Reporting to GA
                 reportAction('Show', 'Search');
             }
             this._showSearches = true;
@@ -37,7 +36,6 @@
 
         favouritesClick() {
             if (this._showSearches) {
-                //Reporting to GA
                 reportAction('Show', 'Favourites');
             }
             this._showSearches = false;

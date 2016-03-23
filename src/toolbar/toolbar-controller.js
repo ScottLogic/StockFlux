@@ -46,13 +46,11 @@
         }
 
         minimiseClick() {
-            //Reporting to GA
             reportAction('Window change', 'Minimised');
             this.window.minimize();
         }
 
         maximiseClick() {
-            //Reporting to GA
             reportAction('Window change', 'Maximised');
             this.window.maximize();
         }
@@ -80,8 +78,7 @@
                 this.window.resizeTo(compactWindowDimensions[0], compactWindowDimensions[1], 'top-right');
             }
             else if (this.maximised) {
-                //Reporting to GA
-                reportAction('becomingMaximised');
+                reportAction('Window change', 'Maximised');
                 this.window.maximize();
             }
             else {
