@@ -35,9 +35,11 @@
         ga('create', 'UA-75463920-1', 'auto');
         ga('send', 'pageview');
 
-        var reportAction = function(action) {
-            ga('set', 'page', '/index.html#'+action);
-            ga('send', 'pageview');
+        var reportAction = function(category, action) {
+            ga('send', 'event', {
+                'eventCategory': category,
+                'eventAction': action
+            });
         }
     </script>
 </body>

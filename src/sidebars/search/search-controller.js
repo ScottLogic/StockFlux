@@ -93,7 +93,7 @@
         submit() {
             if (this.query !== '') {
                 //Reporting to GA
-                reportAction('search-' + this.query);
+                reportAction('Search', this.query);
             }
 
             this.stocks = [];

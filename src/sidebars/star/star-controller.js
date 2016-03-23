@@ -82,7 +82,7 @@
                     this.deselect();
                 } else {
                     //Reporting to GA
-                    reportAction('fav-' + this.stock.code);
+                    reportAction('Add Favourite', this.stock.code);
                     this.stock.favourite = true;
                     this.store.add(this.stock);
                 }
@@ -94,7 +94,7 @@
                 this.store = window.storeService.open(window.name);
             }
             //Reporting to GA
-            reportAction('unfav-' + this.stock.code);
+            reportAction('Remove Favourite', + this.stock.code);
             this.stock.favourite = false;
             this.store.remove(this.stock);
             this.hideModal();

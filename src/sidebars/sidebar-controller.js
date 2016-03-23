@@ -30,7 +30,7 @@
         searchClick() {
             if (!this._showSearches) {
                 //Reporting to GA
-                reportAction('showSearch');
+                reportAction('Show', 'Search');
             }
             this._showSearches = true;
         }
@@ -38,7 +38,7 @@
         favouritesClick() {
             if (this._showSearches) {
                 //Reporting to GA
-                reportAction('showFavourites');
+                reportAction('Show', 'Favourites');
             }
             this._showSearches = false;
         }
