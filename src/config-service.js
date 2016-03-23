@@ -24,12 +24,33 @@
             return 'window' + Math.floor(Math.random() * 1000) + Math.ceil(Math.random() * 999);
         }
 
-        getWindowConfig(name) {
-            return {
+        _getConfig(name, overrides) {
+            var sharedConfig = {
                 name: name || this.createName(),
                 contextMenu: allowContextMenu,
                 autoShow: false,
                 frame: false,
+                shadow: true,
+                resizeRegion: {
+                    size: 7,
+                    topLeftCorner: 14,
+                    topRightCorner: 14,
+                    bottomRightCorner: 14,
+                    bottomLeftCorner: 14
+                }
+            };
+
+            Object.keys(sharedConfig).forEach((key) => {
+                if (overrides[key] === undefined) {
+                    overrides[key] = sharedConfig[key];
+                }
+            });
+
+            return overrides;
+        }
+
+        getWindowConfig(name) {
+            return this._getConfig(name, {
                 showTaskbarIcon: true,
                 saveWindowState: true,
                 url: 'index.html',
@@ -40,54 +61,20 @@
                 maxWidth: RESIZE_NO_LIMIT,
                 maxHeight: RESIZE_NO_LIMIT,
                 defaultWidth: DEFAULT_WINDOW_DIMENSIONS[0],
-                defaultHeight: DEFAULT_WINDOW_DIMENSIONS[1],
-                shadow: true,
-                resizeRegion: {
-                    size: 7,
-                    topLeftCorner: 14,
-                    topRightCorner: 14,
-                    bottomRightCorner: 14,
-                    bottomLeftCorner: 14
-                }
-            };
-        }
-
-        getCompactConfig(name) {
-            return {
-                name: name || this.createName(),
-                contextMenu: allowContextMenu,
-                autoShow: false,
-                frame: false,
-                showTaskbarIcon: true,
-                saveWindowState: true,
-                url: 'index.html',
-                resizable: false,
-                maximizable: false,
-                minWidth: COMPACT_WINDOW_DIMENSIONS[0],
-                minHeight: COMPACT_WINDOW_DIMENSIONS[1],
-                maxWidth: COMPACT_WINDOW_DIMENSIONS[0],
-                maxHeight: COMPACT_WINDOW_DIMENSIONS[1],
-                defaultWidth: COMPACT_WINDOW_DIMENSIONS[0],
-                defaultHeight: COMPACT_WINDOW_DIMENSIONS[1],
-                shadow: true
-            };
+                defaultHeight: DEFAULT_WINDOW_DIMENSIONS[1]
+            });
         }
 
         getTearoutConfig(name) {
-            return {
-                name: name || this.createName(),
-                contextMenu: allowContextMenu,
-                autoShow: false,
-                frame: false,
+            return this._getConfig(name, {
                 maximizable: false,
                 resizable: false,
                 showTaskbarIcon: false,
                 saveWindowState: false,
                 maxWidth: TEAROUT_CARD_DIMENSIONS[0],
                 maxHeight: TEAROUT_CARD_DIMENSIONS[1],
-                url: 'tearout.html',
-                shadow: true
-            };
+                url: 'tearout.html'
+            });
         }
 
         getTearoutCardDimensions() {
