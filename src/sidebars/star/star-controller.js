@@ -24,10 +24,10 @@
         }
 
         favouriteUrl() {
-            if (this.stock.favourite) {
-                return starUrls.on;
-            } else if (this.starHovered) {
+            if (this.starHovered) {
                 return starUrls.onHover;
+            } else if (this.stock.favourite) {
+                return starUrls.on;
             } else if (this.stock.isHovered || this.selectionService.selectedStock() === this.stock) {
                 return starUrls.offHover;
             } else {
