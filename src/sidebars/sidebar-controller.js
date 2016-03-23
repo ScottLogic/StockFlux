@@ -28,20 +28,18 @@
         }
 
         searchClick() {
-            if (this._showSearches) {
-                return;
+            if (!this._showSearches) {
+                //Reporting to GA
+                reportAction('showSearch');
             }
-            //Reporting to GA
-            reportAction('showSearch');
             this._showSearches = true;
         }
 
         favouritesClick() {
-            if (!this._showSearches) {
-                return;
+            if (this._showSearches) {
+                //Reporting to GA
+                reportAction('showFavourites');
             }
-            //Reporting to GA
-            reportAction('showFavourites');
             this._showSearches = false;
         }
     }

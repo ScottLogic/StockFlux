@@ -77,7 +77,7 @@
             }
             else if (this.maximised) {
                 //Reporting to GA
-                reportAction('becomingStandard');
+                reportAction('becomingMaximised');
                 this.window.maximize();
             }
             else {
