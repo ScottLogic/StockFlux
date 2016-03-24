@@ -1,0 +1,33 @@
+<div ng-keydown="searchCtrl.onSearchKeyDown($event)">
+  <div>
+      <img src="assets/png/search_tab.png" class="top-icon" title="Search Stocks" draggable="false" />
+      <input class="sidetab" type="text" maxlength="20" placeholder="Enter stock name or symbol"
+             ng-show="sidebarCtrl.showSearches()" ng-model="searchCtrl.query"/>
+      <icon name="close" icon-click="sidebarCtrl.favouritesClick()" tooltip="Close Search"></icon>
+  </div>
+  <div id="search-scroll" class="side-scroll custom-scrollbar">
+      <div class="sidetab" ng-show="sidebarCtrl.showSearches()">
+          <div class="results-message" ng-show="searchCtrl.errors.length > 0">
+              An error occurred while retrieving data. Please check your internet connection or wait for our data services to be re-established.
+          </div>
+          <div ng-show="searchCtrl.isLoading && !searchCtrl.noResults" class="loading-message results-message">
+              Loading search results...
+          </div>
+          <div ng-repeat="stock in searchCtrl.stocks" ng-mouseenter="stock.isHovered = true;" ng-mouseleave="stock.isHovered = false;">
+              <div class="search-result darkens {{searchCtrl.darkenClass(stock)}}" ng-click="searchCtrl.select(stock)">
+                  <div class="details">
+                      <div class="stock-name name">{{stock.name | truncate}}</div>
+                      <div class="code">{{stock.code | uppercase}}</div>
+                  </div>
+                  <div class="star-icon">
+                      <star stock="stock" confirm="false"></star>
+                  </div>
+              </div>
+          </div>
+          <div class="results-message no-results" ng-show="searchCtrl.noResults">
+              Oops!<br>
+              Looks like no matches were found.
+          </div>
+      </div>
+  </div>
+</div>

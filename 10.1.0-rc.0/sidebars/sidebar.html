@@ -1,0 +1,33 @@
+<div class="sidebars">
+    <div class="favourites {{sidebarCtrl.favouritesClass()}}" ng-controller="FavouritesCtrl as favouritesCtrl"
+        ng-click="sidebarCtrl.favouritesClick()" ng-class="{active: sidebarCtrl.isTearoutTarget}">
+        <div class="sidetab-top">
+            <img src="assets/png/favourites_tab.png" class="top-icon" title="Favourites List" draggable="false" />
+        </div>
+        <div id="favourite-scroll" class="side-scroll custom-scrollbar">
+            <div class="sidetab" ng-show="sidebarCtrl.showFavourites()">
+                <div class="no-favourites errorWrapper" ng-show="favouritesCtrl.errors.length > 0">
+                    An error occurred while retrieving data. Please check your internet connection or wait for our data services to be re-established.
+                </div>
+                <div class="no-favourites" ng-show="favouritesCtrl.errors.length <= 0 && favouritesCtrl.noFavourites() && favouritesCtrl.receivedFirstQuandlResponse">
+                    <p>You have no favourites to display.</p>
+                    <p>Use the search tab to add new stocks to the list.</p>
+                </div>
+                <div class="no-favourites" ng-hide="favouritesCtrl.receivedFirstQuandlResponse">
+                    <p>Loading favourite stocks...</p>
+                </div>
+                <div ng-repeat="stock in favouritesCtrl.stocks | orderBy: 'index'">
+                    <favourite selection="favouritesCtrl.selection()" select="favouritesCtrl.select(stock)"
+                               single-click="favouritesCtrl.singleClick(stock)" double-click="favouritesCtrl.doubleClick(stock)"
+                               single="favouritesCtrl.single()" stock="stock" icon="favouritesCtrl.icon(stock)">
+                    </favourite>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="closed-window-selection">
+        <closed-window-list icon="'closed_tabs'"></closed-window-list>
+    </div>
+    <search class="search main-search {{sidebarCtrl.searchClass()}}" ng-click="sidebarCtrl.searchClick()"></search>
+    <search class="search compact-search {{sidebarCtrl.searchClass()}}" ng-click="sidebarCtrl.searchClick()"></search>
+</div>
