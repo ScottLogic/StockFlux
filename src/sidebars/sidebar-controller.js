@@ -42,6 +42,7 @@
         }
 
         toggleClick() {
+            reportAction('Toggle', 'Sidebar');
             this._showSearches = !this._showSearches;
         }
     }
