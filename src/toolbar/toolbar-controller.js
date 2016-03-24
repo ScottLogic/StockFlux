@@ -9,8 +9,10 @@
             this.configService = configService;
             this.store = null;
             this.window = null;
+            this.compactWindowDimensions = null;
             this.maximised = false;
             this.oldSize = null;
+            this.oldBounds = null;
 
             this.maximisedEvent = () => {
                 this.$timeout(() => {
@@ -43,6 +45,7 @@
             this.window = this.currentWindowService.getCurrentWindow();
             this.window.addEventListener('maximized', this.maximisedEvent);
             this.window.addEventListener('restored', this.restoredEvent);
+            this.compactWindowDimensions = this.configService.getCompactWindowDimensions();
         }
 
         minimiseClick() {
@@ -51,21 +54,26 @@
         }
 
         maximiseClick() {
+            if (window.outerWidth !== this.compactWindowDimensions[0]) {
+                this.oldBounds = {
+                    height: window.outerHeight,
+                    left: window.screenLeft,
+                    top: window.screenTop,
+                    width: window.outerWidth
+                };
+            }
             reportAction('Window change', 'Maximised');
             this.window.maximize();
         }
 
         normalSizeClick() {
-            var defaultWindowDimensions = this.configService.getDefaultWindowDimensions();
-
             this.window.restore();
-            this.window.resizeTo(defaultWindowDimensions[0], defaultWindowDimensions[1], 'top-right');
+            this.window.setBounds(this.oldBounds.left, this.oldBounds.top, this.oldBounds.width, this.oldBounds.height);
         }
 
         _compactChanged() {
-            var becomingCompact = this.isCompact(),
-                compactWindowDimensions = this.configService.getCompactWindowDimensions();
-            if (window.outerWidth !== compactWindowDimensions[0]) {
+            var becomingCompact = this.isCompact();
+            if (window.outerWidth !== this.compactWindowDimensions[0]) {
                 this.oldSize = [window.outerWidth, window.outerHeight];
                 this.wasMaximised = this.maximised;
             }
@@ -76,7 +84,7 @@
 
             if (becomingCompact) {
                 reportAction('Window change', 'Compact');
-                this.window.resizeTo(compactWindowDimensions[0], compactWindowDimensions[1], 'top-right');
+                this.window.resizeTo(this.compactWindowDimensions[0], this.compactWindowDimensions[1], 'top-right');
             }
             else if (this.wasMaximised) {
                 reportAction('Window change', 'Maximised');
