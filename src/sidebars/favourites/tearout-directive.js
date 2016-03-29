@@ -101,10 +101,8 @@
 
                             tearoutWindow.addEventListener('blurred', onBlur);
 
-                            if (tearElement.classList.contains('single')) {
-                                // There is only one favourite card; flag the window for closing
-                                emptyWindow = true;
-                            }
+                            // If there's is only one favourite card; flag the window for closing
+                            emptyWindow = tearElement.classList.contains('single');
 
                             currentlyDragging = true;
                         }
@@ -240,6 +238,10 @@
                                 currentlyDragging = false;
                                 if (dragService.overThisInstance(TEAR_IN_SELECTOR)) {
                                     returnFromTearout();
+                                    if (emptyWindow) {
+                                        stopTimer();
+                                        undim();
+                                    }
                                 } else {
                                     if (!store) {
                                         store = window.storeService.open(window.name);
@@ -257,6 +259,7 @@
                                                 currentWindowService.getCurrentWindow().close();
                                                 return;
                                             }
+                                            tidy();
                                         } else if (emptyWindow) {
                                             returnFromTearout();
                                             stopTimer();
@@ -277,9 +280,9 @@
                                                 store.remove(scope.stock);
                                                 newStore.toggleCompact(compact);
                                             });
+                                            tidy();
                                         }
 
-                                        tidy();
                                     });
                                 }
                             }

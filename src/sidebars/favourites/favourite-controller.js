@@ -134,9 +134,9 @@
 
                             // Repeat the check as in the mean time a stock for this favourite could have been added.
                             if (this.stocks.map((stock1) => { return stock1.code; }).indexOf(favourite) === -1) {
-                                var data = stock && stock.data && stock.data[0],
-                                    delta = data.close - data.open;
+                                var data = stock && stock.data && stock.data[0];
                                 if (data) {
+                                    var delta = data.close - data.open;
                                     this.stocks.push({
                                         favourite: true,
                                         name: stock.name,
