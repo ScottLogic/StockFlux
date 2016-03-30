@@ -40,6 +40,11 @@
             }
             this._showSearches = false;
         }
+
+        toggleClick() {
+            reportAction('Toggle', 'Sidebar');
+            this._showSearches = !this._showSearches;
+        }
     }
     SidebarCtrl.$inject = [];
 

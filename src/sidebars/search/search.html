@@ -1,6 +1,6 @@
 <div ng-keydown="searchCtrl.onSearchKeyDown($event)">
   <div>
-      <img src="assets/png/search_tab.png" class="top-icon" title="Search Stocks" draggable="false" />
+      <img src="assets/png/search_tab.png" ng-click="sidebarCtrl.toggleClick(); $event.stopPropagation();" class="top-icon" title="Search Stocks" draggable="false" />
       <input class="sidetab" type="text" maxlength="20" placeholder="Enter stock name or symbol"
              ng-show="sidebarCtrl.showSearches()" ng-model="searchCtrl.query"/>
       <icon name="close" icon-click="sidebarCtrl.favouritesClick()" tooltip="Close Search"></icon>
