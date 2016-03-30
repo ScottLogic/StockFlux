@@ -11,8 +11,14 @@
             this.window = null;
             this.compactWindowDimensions = null;
             this.maximised = false;
+            this.defaultWindowDimensions = this.configService.getDefaultWindowDimensions();
             this.oldSize = null;
-            this.oldBounds = null;
+            this.oldBounds = {
+                width: this.defaultWindowDimensions[0],
+                height: this.defaultWindowDimensions[1],
+                top: 100,
+                left: 100
+            };
 
             this.maximisedEvent = () => {
                 this.$timeout(() => {
@@ -92,9 +98,8 @@
             }
             else {
                 reportAction('Window change', 'Standard');
-                var defaultWindowDimensions = this.configService.getDefaultWindowDimensions(),
-                    width = defaultWindowDimensions[0],
-                    height = defaultWindowDimensions[1];
+                var width = this.defaultWindowDimensions[0],
+                    height = this.defaultWindowDimensions[1];
                 if (this.oldSize) {
                     width = this.oldSize[0];
                     height = this.oldSize[1];
