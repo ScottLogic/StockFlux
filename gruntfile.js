@@ -255,7 +255,7 @@ module.exports = function(grunt) {
     grunt.registerTask('transpile', ['babel', 'less:development']);
 
     grunt.registerTask('build:dev', ['concatenate', 'transpile', 'connect:livereload']);
-    grunt.registerTask('build:release', ['concatenate', 'string-replace', 'transpile', 'uglify', 'connect:livereload']);
+    grunt.registerTask('build:release', ['concatenate', 'string-replace', 'transpile', 'uglify']);
 
     grunt.registerTask('serve', ['build:dev', 'openfin:serve']);
     grunt.registerTask('default', ['serve']);
