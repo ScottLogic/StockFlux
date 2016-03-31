@@ -30,7 +30,7 @@
                 contextMenu: allowContextMenu,
                 autoShow: false,
                 frame: false,
-                shadow: true,
+                shadow: false,
                 resizeRegion: {
                     size: 7,
                     topLeftCorner: 14,
