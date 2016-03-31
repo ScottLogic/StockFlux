@@ -206,6 +206,7 @@
                             if (mouseDown && dragTimeout) {
                                 if (Math.abs(e.pageX + mouseOffset.x) > 50 || Math.abs(e.pageY + mouseOffset.y) > 50) {
                                     $timeout.cancel(dragTimeout);
+                                    dragTimeout = null;
                                     tearout(e);
                                 }
                             }
