@@ -35,7 +35,8 @@ module.exports = function(grunt) {
                         },
                         shortcut: {
                             icon: target + '/favicon.ico'
-                        }
+                        },
+                        splashScreenImage: target + '/assets/png/splashscreen.png'
                     }
                 }
             },
