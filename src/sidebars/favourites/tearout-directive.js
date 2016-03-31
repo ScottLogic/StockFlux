@@ -30,6 +30,7 @@
                             myHoverArea = parent.getElementsByClassName('drop-target')[0],
                             mouseOffset = { x: 0, y: 0 },
                             elementOffset = { x: 0, y: 0 },
+                            previousOffset = { x: 0, y: 0 },
                             currentlyDragging = false,
                             dragService,
                             dragTimeout;
@@ -65,10 +66,20 @@
                         }
 
                         function moveWindow(_window, x, y, showFunction) {
-                            _window.moveTo(
-                                x + mouseOffset.x + elementOffset.x,
-                                y + mouseOffset.y + elementOffset.y,
-                                showFunction);
+                            var offset = {
+                                x: x + mouseOffset.x + elementOffset.x,
+                                y: y + mouseOffset.y + elementOffset.y
+                            };
+                            //hard sets the width and height to stop windows pixel ratio from triggering resize
+                            if (offset.x !== previousOffset.x || offset.y !== previousOffset.y) {
+                                _window.setBounds(
+                                    offset.x,
+                                    offset.y,
+                                    tearoutCardDimensions[0],
+                                    tearoutCardDimensions[1]
+                                );
+                                previousOffset = offset;
+                            }
                         }
 
                         function displayTearoutWindow() {
@@ -162,10 +173,12 @@
                             var _window = currentWindowService.getCurrentWindow();
 
                             var newCardOffset = configService.getTopCardOffset(store.isCompact());
-                            moveWindow(
-                                _window,
-                                currentMousePosition.x - newCardOffset[0] - 2,
-                                currentMousePosition.y - newCardOffset[1] - 1);
+                            _window.setBounds(
+                                 currentMousePosition.x - newCardOffset[0] - 2,
+                                 currentMousePosition.y - newCardOffset[1] - 1,
+                                 window.outerWidth,
+                                 window.outerHeight
+                            );
 
                             _window.animate({
                                 opacity: {
@@ -272,9 +285,14 @@
 
                                             windowService.createMainWindow(null, compact, (newWindow, showFunction) => {
                                                 reportAction('Tearout', 'Created ' + scope.stock.code);
-                                                newWindow.resizeTo(window.outerWidth, window.outerHeight, 'top-left');
                                                 var newCardOffset = configService.getTopCardOffset(compact);
-                                                moveWindow(newWindow, e.screenX - newCardOffset[0], e.screenY - newCardOffset[1], showFunction);
+                                                newWindow.setBounds(
+                                                     e.screenX - newCardOffset[0],
+                                                     e.screenY - newCardOffset[1],
+                                                     window.outerWidth,
+                                                     window.outerHeight,
+                                                     showFunction
+                                                );
                                                 var newStore = window.storeService.open(newWindow.name);
                                                 newStore.indicators(indicators);
                                                 newStore.add(scope.stock);
