@@ -6,10 +6,9 @@ node_js:
 sudo: false
 
 install:
-- npm install -g npm@'>=2.13.5'
-- npm install -g grunt-cli
-- npm install -g phantomjs-prebuilt --phantomjs_cdnurl=http://cnpmjs.org/downloads
 - npm install
+- npm install -g grunt-cli
+- npm install -g npm@'>=2.13.5'
 
 env:
   global:
