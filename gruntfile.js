@@ -71,15 +71,6 @@ module.exports = function(grunt) {
             }
         },
 
-        download: {
-            //One zip for release type (development/master) and one for the version are created here
-            openfinZip: {
-                src: ['https://dl.openfin.co/services/download?fileName=StockFlux-' + buildTarget +
-                '&config=http://scottlogic.github.io/StockFlux/' + buildTarget + '/app.json'],
-                dest: './public/StockFlux-' + buildTarget + '.zip'
-            }
-        },
-
         eslint: {
             target: ['src/**/*.js']
         },
@@ -240,7 +231,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-eslint');
-    grunt.loadNpmTasks('grunt-http-download');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-babel');
@@ -272,6 +262,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('release', ['bump:major']);
 
-    grunt.registerTask('ci', ['build:release', 'download']);
+    grunt.registerTask('ci', ['build:release']);
 
 };
