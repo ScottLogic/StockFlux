@@ -58,8 +58,6 @@
                 maximizable: true,
                 minWidth: 918,
                 minHeight: 510,
-                maxWidth: RESIZE_NO_LIMIT,
-                maxHeight: RESIZE_NO_LIMIT,
                 defaultWidth: DEFAULT_WINDOW_DIMENSIONS[0],
                 defaultHeight: DEFAULT_WINDOW_DIMENSIONS[1]
             });
