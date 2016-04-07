@@ -210,6 +210,9 @@
                             setElementOffset();
                             dragService = windowService.registerDrag(tearoutWindow, currentWindowService.getCurrentWindow());
 
+                            if (dragTimeout) {
+                                $timeout.cancel(dragTimeout);
+                            }
                             dragTimeout = $timeout(() => {
                                 dragTimeout = null;
                                 if (mouseDown) {
