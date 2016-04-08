@@ -61,6 +61,11 @@
         update(updatedStock) {
             this.currentWindowService.ready(() => {
                 if (!window.storeService) {
+                    var cb = ((e) => {
+                        this.update(updatedStock);
+                        window.removeEventListener('onStoreServiceReady', cb);
+                    });
+                    window.addEventListener('onStoreServiceReady', cb);
                     return;
                 }
 
