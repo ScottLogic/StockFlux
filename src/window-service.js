@@ -246,8 +246,10 @@
 
         createMainWindow(name, isCompact, successCb) {
             var windowCreatedCb = (newWindow) => {
-                newWindow.getNativeWindow().windowService = this;
-                newWindow.getNativeWindow().storeService = this.storeService;
+                var nativeWindow = newWindow.getNativeWindow();
+                nativeWindow.windowService = this;
+                nativeWindow.storeService = this.storeService;
+                nativeWindow.dispatchEvent(new Event('onStoreServiceReady'));
 
                 this.windowTracker.add(newWindow);
 
