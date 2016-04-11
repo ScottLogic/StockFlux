@@ -15,6 +15,9 @@ Hover off means to move mouse cursor off an element.
 | Minimize Button                       | Hover in        | Minimize button is highlighted                           | "" | "" | "" |
 |                                       | Hover out       | Minimize button highlight removed                        | "" | "" | "" |
 |                                       | Left click      | Application Minimizes                                    | "" | "" | "" |
+| Maximize Button                       | Hover in        | Maximize button is highlighted                           | "" | "" | "" |
+|                                       | Hover out       | Maximize button highlight removed                        | "" | "" | "" |
+|                                       | Left click      | Application maximizes                                    | "" | "" | "" |
 | History Button (No history)           | Observe         | Button should not be present                             | "" | "" | "" |
 | History Button (unviewed history)     | Observe         | Button should be present highlighted                     | "" | "" | "" |
 |                                       | Hover in        | History button is highlighted                            | "" | "" | "" |

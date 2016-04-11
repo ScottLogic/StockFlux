@@ -173,9 +173,15 @@
                             var _window = currentWindowService.getCurrentWindow();
 
                             var newCardOffset = configService.getTopCardOffset(store.isCompact());
+
+                            newCardOffset = [
+                                currentMousePosition.x - newCardOffset[0] + mouseOffset.x + elementOffset.x - 2,
+                                currentMousePosition.y - newCardOffset[1] + mouseOffset.y + elementOffset.y - 1
+                            ];
+
                             _window.setBounds(
-                                 currentMousePosition.x - newCardOffset[0] - 2,
-                                 currentMousePosition.y - newCardOffset[1] - 1,
+                                 newCardOffset[0],
+                                 newCardOffset[1],
                                  window.outerWidth,
                                  window.outerHeight
                             );
@@ -204,6 +210,9 @@
                             setElementOffset();
                             dragService = windowService.registerDrag(tearoutWindow, currentWindowService.getCurrentWindow());
 
+                            if (dragTimeout) {
+                                $timeout.cancel(dragTimeout);
+                            }
                             dragTimeout = $timeout(() => {
                                 dragTimeout = null;
                                 if (mouseDown) {
@@ -286,9 +295,13 @@
                                             windowService.createMainWindow(null, compact, (newWindow, showFunction) => {
                                                 reportAction('Tearout', 'Created ' + scope.stock.code);
                                                 var newCardOffset = configService.getTopCardOffset(compact);
+                                                newCardOffset = [
+                                                    e.screenX - newCardOffset[0] + mouseOffset.x + elementOffset.x - 2,
+                                                    e.screenY - newCardOffset[1] + mouseOffset.y + elementOffset.y - 1
+                                                ];
                                                 newWindow.setBounds(
-                                                     e.screenX - newCardOffset[0],
-                                                     e.screenY - newCardOffset[1],
+                                                     newCardOffset[0],
+                                                     newCardOffset[1],
                                                      window.outerWidth,
                                                      window.outerHeight,
                                                      showFunction
