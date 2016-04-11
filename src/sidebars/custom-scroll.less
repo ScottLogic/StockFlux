@@ -1,10 +1,11 @@
 .compact .side-scroll {
-  position: fixed;
+  .position(fixed);
 }
 
 .side-scroll {
-  padding-bottom: 30px;
   padding-bottom: 0px;
+  border-top: 1px solid @dark-background;
+  transition: border 0.7s;
 
   .mCSB_scrollTools {
     left: 2px;
@@ -13,10 +14,12 @@
   }
 
   &#favourite-scroll {
-    top: @toolbar-height;
-    bottom: @bottom-tab-height;
-    position: absolute;
+    .position(absolute, @top: @toolbar-height, @bottom: @bottom-tab-height);
   }
+}
+
+.contracted .side-scroll {
+    border-top: 1px solid transparent;
 }
 
 .side-scroll:hover .mCSB_dragger_bar {
@@ -25,7 +28,7 @@
 
 .mCSB_dragger_bar {
   opacity: 0;
-  width: 10px !important;
+  .size(@width: 10px, @height: 100%) !important;
 }
 
 #favourite-scroll .mCSB_dragger_bar {

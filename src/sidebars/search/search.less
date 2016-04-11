@@ -3,14 +3,18 @@
 
 .search {
   float: left;
-  height: 100%;
+  height: 100%; // Not using this mixin as this depends on contracted/expanded
   background-color: @search-background;
   .transition();
-  position: absolute;
-  .box-shadow(2px 0px, @dark-background);
+  .position(absolute);
+  .box-shadow(@shadow-depth 0px, @dark-background);
 
   icon {
     display: none;
+  }
+
+  .side-scroll {
+    border-top: 1px solid @middle-background;
   }
 
   input {
@@ -18,7 +22,7 @@
     background: transparent;
     .font(12px);
     color: @text-grey;
-    width: 184px;
+    .size(@width: 184px);
     padding-left: 15px;
     padding-top: 16px;
 
@@ -33,22 +37,18 @@
     .font(14px);
   }
 
-  .sidetab > div:first-of-type search .search-result {
-    border-top: @search-splitter-style;
-  }
-
   .errorDetailsWrapper {
-      margin: 12px 0;
+    margin: 12px 0;
   }
 
   .search-result {
-    height: @search-result-height;
-    width: @expanded-width;
+    .size(@width: @expanded-width, @height: @search-result-height);
     border-bottom: @search-splitter-style;
-
 
     .name {
       .font(12px, @font-thin);
+      .size(@width: 155px);
+      .wrap-ellipsis;
     }
 
     .code {
@@ -56,7 +56,7 @@
     }
 
     .details {
-      position: relative;
+      .position(relative);
       float: left;
       padding-left: 20px;
       padding-top: 8px;
@@ -65,13 +65,10 @@
     .star-icon {
       padding-right: 15px;
       padding-top: 21px;
-      float: right;
     }
   }
 }
 
 .search #search-scroll {
-  top: @toolbar-height;
-  bottom: 0px;
-  position: absolute;
+  .position(absolute, @top: @toolbar-height, @bottom: 0px);
 }

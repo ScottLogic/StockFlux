@@ -1,20 +1,24 @@
 (function() {
     'use strict';
 
-    const defaultWidth = 1280,
-        defaultHeight = 720,
-        compactWidth = 230,
-        compactHeight = 500;
-
     class ToolbarCtrl {
-        constructor($scope, $timeout, currentWindowService) {
+        constructor($scope, $timeout, currentWindowService, configService) {
             this.$scope = $scope;
             this.$timeout = $timeout;
             this.currentWindowService = currentWindowService;
+            this.configService = configService;
             this.store = null;
             this.window = null;
+            this.compactWindowDimensions = null;
             this.maximised = false;
+            this.defaultWindowDimensions = this.configService.getDefaultWindowDimensions();
             this.oldSize = null;
+            this.oldBounds = {
+                width: this.defaultWindowDimensions[0],
+                height: this.defaultWindowDimensions[1],
+                top: 100,
+                left: 100
+            };
 
             this.maximisedEvent = () => {
                 this.$timeout(() => {
@@ -47,25 +51,37 @@
             this.window = this.currentWindowService.getCurrentWindow();
             this.window.addEventListener('maximized', this.maximisedEvent);
             this.window.addEventListener('restored', this.restoredEvent);
+            this.compactWindowDimensions = this.configService.getCompactWindowDimensions();
         }
 
         minimiseClick() {
+            reportAction('Window change', 'Minimised');
             this.window.minimize();
         }
 
         maximiseClick() {
+            if (window.outerWidth !== this.compactWindowDimensions[0]) {
+                this.oldBounds = {
+                    height: window.outerHeight,
+                    left: window.screenLeft,
+                    top: window.screenTop,
+                    width: window.outerWidth
+                };
+            }
+            reportAction('Window change', 'Maximised');
             this.window.maximize();
         }
 
         normalSizeClick() {
             this.window.restore();
-            this.window.resizeTo(defaultWidth, defaultHeight, 'top-right');
+            this.window.setBounds(this.oldBounds.left, this.oldBounds.top, this.oldBounds.width, this.oldBounds.height);
         }
 
         _compactChanged() {
             var becomingCompact = this.isCompact();
-            if (window.outerWidth !== compactWidth) {
+            if (window.outerWidth !== this.compactWindowDimensions[0]) {
                 this.oldSize = [window.outerWidth, window.outerHeight];
+                this.wasMaximised = this.maximised;
             }
 
             if (window.windowService) {
@@ -73,14 +89,17 @@
             }
 
             if (becomingCompact) {
-                this.window.resizeTo(compactWidth, compactHeight, 'top-right');
+                reportAction('Window change', 'Compact');
+                this.window.resizeTo(this.compactWindowDimensions[0], this.compactWindowDimensions[1], 'top-right');
             }
-            else if (this.maximised) {
+            else if (this.wasMaximised) {
+                reportAction('Window change', 'Maximised');
                 this.window.maximize();
             }
             else {
-                var width = defaultWidth,
-                    height = defaultHeight;
+                reportAction('Window change', 'Standard');
+                var width = this.defaultWindowDimensions[0],
+                    height = this.defaultWindowDimensions[1];
                 if (this.oldSize) {
                     width = this.oldSize[0];
                     height = this.oldSize[1];
@@ -111,7 +130,7 @@
                 () => this._compactChanged());
         }
     }
-    ToolbarCtrl.$inject = ['$scope', '$timeout', 'currentWindowService'];
+    ToolbarCtrl.$inject = ['$scope', '$timeout', 'currentWindowService', 'configService'];
 
     angular.module('stockflux.toolbar')
         .controller('ToolbarCtrl', ToolbarCtrl);

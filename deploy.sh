@@ -1,28 +1,54 @@
 #!/usr/bin/env bash
 set -eo pipefail
-if ([ $TRAVIS_PULL_REQUEST == "false" ]  && [ "${TRAVIS_REPO_SLUG}" == "ScottLogic/StockFlux" ] && ([ $TRAVIS_BRANCH == "dev" ] || [ $TRAVIS_BRANCH == "master" ]))
+
+# Check for release branch - not using grep as set -e means it fails script
+RELEASE_BRANCH=$(echo "$TRAVIS_BRANCH" |  sed -n 's/^release\-/&/p')
+
+#Get the release type (dev/master) from the branch name
+TYPE="$TRAVIS_BRANCH"
+
+if ([ "$TRAVIS_PULL_REQUEST" == "false" ]  && [ "${TRAVIS_REPO_SLUG}" == "ScottLogic/StockFlux" ] && ([ "$TYPE" == "dev" ] || [ "$TYPE" == "master" ] || [ -n "$RELEASE_BRANCH" ]))
 then
     #Clone the latest gh-pages
     git clone https://github.com/ScottLogic/StockFlux.git --branch gh-pages gh-pages
 
     #Get line with version from the file -> get the second word -> remove quotes around the value
     VERSION=$(grep "version" package.json | awk -v N=$2 '{print $2}' | cut -d \" -f2)
+
+    echo "Type is: $TYPE"
     echo "Version is: $VERSION"
 
-    #Get line with the release type (develop/master) from the file -> get the second word -> remove quotes around the value
-    TYPE=$(grep "type" package.json | awk -v N=$2 '{print $2}' | cut -d \" -f2)
-    echo "Type is: $TYPE"
-
-    if ([ -z "$TYPE" ] || [ -z "$VERSION" ])
+    if ([ $TYPE == "master" ] || [ $TYPE == "dev" ])
     then
-        echo "Version or Type not set in package.json"
-        exit 1
+        echo "Preparing to build version $TYPE"
+        grunt ci --build-target=$TYPE
+
+        rm -rf "./gh-pages/$TYPE"
+        cp -r "./public" "./gh-pages/$TYPE"
     fi
 
-    rm -rf "./gh-pages/$TYPE"
-    cp -r "./public" "./gh-pages/$TYPE"
-    rm -rf "./gh-pages/$VERSION"
-    cp -r "./public" "./gh-pages/$VERSION"
+    if ([ $TYPE == "master" ] || [ -n "$RELEASE_BRANCH" ])
+    then
+        echo "On $TYPE - building versioned build"
+        if ([ -z "$VERSION" ])
+        then
+            echo "Unable to determine version from package.json."
+            exit 1
+        fi
+        if [ -n "$RELEASE_BRANCH" ]
+        then
+            #For release branches add rc postfix
+            VERSION="$VERSION-rc"
+            echo "Release branch - updating version to $VERSION"
+        fi
+        # Rebuild everything to do $VERSION
+        echo "Cleaning build. Targetting $VERSION"
+        grunt ci --build-target=$VERSION
+
+        rm -rf "./gh-pages/$VERSION"
+        cp -r "./public" "./gh-pages/$VERSION"
+    fi
+
     cd gh-pages
 
     #Removing git history
@@ -42,6 +68,11 @@ then
     # repo's gh-pages branch. (All previous history on the gh-pages branch
     # will be lost, since we are overwriting it.) We redirect any output to
     # /dev/null to hide any sensitive credential data that might otherwise be exposed.
-    echo "Pushing to: https://${GH_TOKEN}@${GH_REF}"
+    echo "Pushing to Github..."
     git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1
+
+    echo "Cleaning residual gh-pages folder"
+    rm -rf ./gh-pages
+else
+    echo "Nothing needs deploying"
 fi

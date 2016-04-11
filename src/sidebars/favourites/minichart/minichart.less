@@ -1,17 +1,23 @@
-﻿minichart {
-  position: absolute;
-  padding-top: 10px;
-  width: 100%;
+﻿@minichart-error-colour: white;
+@minichart-width: 145px;
+@minichart-height: 40px;
+
+.overflow {
   overflow: visible;
 }
 
+minichart {
+  .position(absolute);
+  padding-top: 19px;
+  .overflow;
+}
+
 .minichart {
-  width: @chart-width;
-  height: @chart-height;
-  overflow: visible !important;
+  .size(@width: @minichart-width, @height: @minichart-height);
+  .overflow !important;
 
   svg {
-    overflow: visible;
+    .overflow;
   }
 
   g {
@@ -31,8 +37,16 @@
     stop-color: @chart-teal;
     stop-opacity: 0.5;
   }
+
   &.bottom {
     stop-color: @chart-teal;
     stop-opacity: 0;
   }
+}
+
+.minichart-error {
+  padding: 0px 3px;
+  text-align: center;
+  .font(12px, @font-thin);
+  color: @minichart-error-colour;
 }

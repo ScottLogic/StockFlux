@@ -2,11 +2,12 @@
 
 .compact {
   .sidetab-top {
-    right: 125px;
-    left: 0px;
-    top: 0px;
-    position: absolute;
+    .position(absolute, @top: 0px, @right: 125px, @left: 0px);
     .drag;
+  }
+
+  .sidebars {
+    .size(@width: (@expanded-width - 2px), @height: 100%);
   }
 
   #search-scroll, #favourite-scroll {
@@ -28,8 +29,7 @@
   .search {
     .transition();
     bottom: 0px;
-    width: 100%;
-    height: @compact-top-bottom-margin;
+    .size(@width: 100%, @height: @compact-top-bottom-margin);
 
     .top-icon {
       margin-top: 7px;
@@ -38,14 +38,17 @@
     input {
       padding-top: 7px;
     }
-  }
 
-  .search.expanded {
-    height: calc(100% - @compact-top-bottom-margin);
+    &.expanded {
+      .size(@width: 100%, @height: calc(100% - @compact-top-bottom-margin));
 
-    #searchScroll {
-      top: 68px;
-      bottom: 0px;
+      #searchScroll {
+        top: 68px;
+        bottom: 0px;
+      }
+    }
+    &.contracted {
+      box-shadow: none;
     }
   }
 

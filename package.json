@@ -1,7 +1,7 @@
 {
   "name": "bitflux-openfin",
-  "version": "10.0.1",
-  "type": "master",
+  "version": "10.1.0",
+  "type": "develop",
   "scripts": {
     "test": "grunt ci",
     "postinstall": "cd node_modules/BitFlux && npm i"
@@ -22,8 +22,6 @@
     "grunt-contrib-less": "^1.1.0",
     "grunt-contrib-uglify": "^0.11.1",
     "grunt-eslint": "^17.3.1",
-    "grunt-gh-pages": "^1.0.0",
-    "grunt-http-download": "^0.1.0",
     "grunt-jsbeautifier": "^0.2.7",
     "grunt-openfin": ">=1.0.2",
     "grunt-string-replace": "^1.2.1",
@@ -34,7 +32,7 @@
     "angular-animate": "^1.4.8",
     "angular-resource": "^1.4.8",
     "d3fc": "^5.2.0",
-    "BitFlux": "ScottLogic/BitFlux#dc6c552014d6d578152967a2930b9b73d7b5a687",
+    "BitFlux": "ScottLogic/BitFlux#37e9a2d632a0ff06e5fc3932bcbd9400bcfabb5d",
     "jquery": "^1.11.1",
     "malihu-custom-scrollbar-plugin": "^3.1.3",
     "moment": "^2.10.6"

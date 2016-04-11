@@ -19,7 +19,9 @@ This is an 'evergreen' application, each time it launches the application code i
 
 # Development
 
-The application is built using AngularJS and ES2016, transpiled via Babel. The charts are rendered using [d3fc](https://d3fc.io/), a Scott Logic open source project which provides a number of components that allow the creation of bespoke interactive charts. The bulk of the charting code is adapted from [BitFlux](http://scottlogic.github.io/BitFlux/), which showcases the capabilities of d3fc.
+The application is built using AngularJS and ES2015, transpiled via Babel. The charts are rendered using [d3fc](https://d3fc.io/), a Scott Logic open source project which provides a number of components that allow the creation of bespoke interactive charts. The bulk of the charting code is adapted from [BitFlux](http://scottlogic.github.io/BitFlux/), which showcases the capabilities of d3fc.
+
+The displayed data is real and provided by [Quandl](https://www.quandl.com). The application uses separate Quandl API keys for development and release to mitigate chances of crossing Quandl's [rate limits](https://www.quandl.com/docs/api?json#rate-limits).
 
 ### Initial Setup
 
@@ -49,12 +51,16 @@ grunt serve
 
 The project is also accessible at http://localhost:5000
 
+#### Testing
+
+There is a [test plan](docs/TEST_PLAN.md) that covers the main features and behaviour. This should be used as a basis for testing before releasing and also the main features covered on testing PR changes.
+
 #### Releasing
 
 To release, run the Grunt task: `grunt release` for a major release, or `grunt bump:minor`
 for a minor. This updates all the version references to a new version. Then, submit a PR
-with this new version in to `dev`, and then merge it to `master`. Finally, run
-`grunt deploy:upstream` or `grunt deploy`, depending on how your remotes are set up.
+with this new version in to `dev`, and then merge it to `master`. Merging to master will
+trigger the update of the deployed gh-pages version.
 
 ## License
 

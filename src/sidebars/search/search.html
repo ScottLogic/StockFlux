@@ -1,6 +1,6 @@
 <div ng-keydown="searchCtrl.onSearchKeyDown($event)">
   <div>
-      <img src="assets/png/search_tab.png" class="top-icon" title="Search Stocks" draggable="false" />
+      <img src="assets/png/search_tab.png" ng-click="sidebarCtrl.toggleClick(); $event.stopPropagation();" class="top-icon" title="Search Stocks" draggable="false" />
       <input class="sidetab" type="text" maxlength="20" placeholder="Enter stock name or symbol"
              ng-show="sidebarCtrl.showSearches()" ng-model="searchCtrl.query"/>
       <icon name="close" icon-click="sidebarCtrl.favouritesClick()" tooltip="Close Search"></icon>
@@ -14,9 +14,10 @@
               Loading search results...
           </div>
           <div ng-repeat="stock in searchCtrl.stocks" ng-mouseenter="stock.isHovered = true;" ng-mouseleave="stock.isHovered = false;">
-              <div class="search-result darkens {{searchCtrl.darkenClass(stock)}}" ng-click="searchCtrl.select(stock)">
+              <div class="search-result darkens" ng-class="{selected: searchCtrl.selectedClass(stock), dark: searchCtrl.darkenClass(stock)}"
+                  ng-click="searchCtrl.select(stock)">
                   <div class="details">
-                      <div class="stock-name name">{{stock.name | truncate}}</div>
+                      <div class="name">{{stock.name | truncate}}</div>
                       <div class="code">{{stock.code | uppercase}}</div>
                   </div>
                   <div class="star-icon">

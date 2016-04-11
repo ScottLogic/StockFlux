@@ -2,28 +2,26 @@
 @flash-colour: #447272;
 @bottom-tab-height: 40px;
 
-@-webkit-keyframes search {
+.click-flash(@final-colour) {
   0% {
     background-color: @flash-colour;
   }
 
   100% {
-    background-color: @search-background;
+    background-color: @final-colour;
   }
+}
+
+@-webkit-keyframes search {
+  .click-flash(@search-background);
 }
 
 @-webkit-keyframes favourites {
-  0% {
-    background-color: @flash-colour;
-  }
-
-  100% {
-    background-color: @favourites-background;
-  }
+  .click-flash(@favourites-background);
 }
 
 .expanded {
-  width: @expanded-width;
+  .size(@width: @expanded-width);
   -webkit-animation-duration: 0.4s;
   -webkit-animation-timing-function: ease-in;
 }
@@ -37,34 +35,24 @@
 }
 
 .closed-window-selection {
-  position: absolute;
-  bottom: 0;
-  left: 50px;
-  height: @bottom-tab-height;
+  .position(absolute, @bottom: 0px, @left: 50px);
   background-color: @middle-background;
-  width: @expanded-width;
+  .size(@width: @expanded-width, @height: @bottom-tab-height);
   border-top: 1px solid @dark-background;
 }
 
 .favourite-closed {
-  bottom: 10px;
-  right: 15px;
-  position: absolute;
-  height: 20px;
-  width: 20px;
+  .position(absolute, @right: 15px, @bottom: 10px);
+  .size(@width: 20px, @height: 20px);
 }
 
 .favourite-closed-cover {
-  position: fixed;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
+  .position(fixed, @top: 0px, @right: 0px, @bottom: 0px, @left: 0px);
   z-index: 1000;
 }
 
 .contracted {
-  width: (@sidebar-width - @expanded-width);
+  .size(@width: (@sidebar-width - @expanded-width));
 
   .sidetab-top {
     .no-drag;
@@ -77,6 +65,7 @@
 
 .sidetab {
   opacity: 1;
+  width: @expanded-width;
 
   &.ng-hide-remove {
     .transition(@duration: 0.1s, @delay: 0.3s);
@@ -92,17 +81,12 @@
 }
 
 .sidebars {
-  width: @sidebar-width !important;
-  height: 100%;
+  .size(@width: @sidebar-width, @height: 100%);
   float: left;
-
-  .closed_tabs-button {
-    width: 21px;
-  }
 }
 
 .sidetab-top {
-  height: @toolbar-height;
+  .size(@height: @toolbar-height);
   .drag;
 }
 
@@ -116,18 +100,13 @@
   margin-top: 15px;
 }
 
-.stock-name {
-  width: 155px;
-  .wrap-ellipsis;
-}
-
 .no-favourites {
-  width: @expanded-width;
+  .size(@width: @expanded-width);
   padding: 12px 15px 12px 20px;
   color: @text-grey;
   .font(14px, @font-medium);
 }
 
-.errorWrapper{
-    padding-top: 0;
+.errorWrapper {
+  padding-top: 0;
 }

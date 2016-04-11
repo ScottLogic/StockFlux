@@ -3,27 +3,9 @@
 module.exports = function(grunt) {
     var target = grunt.option('target') || 'http://localhost:5000',
         port = process.env.PORT || 5000,
-        version = grunt.file.readJSON('package.json').version,
-        type = grunt.file.readJSON('package.json').type;
+        buildTarget = grunt.option('build-target') || 'dev';
 
     grunt.initConfig({
-        'gh-pages': {
-            origin: {
-                options: {
-                    base: 'public',
-                    message: 'Deploy to GitHub Pages'
-                },
-                src: ['**/*']
-            },
-            upstream: {
-                options: {
-                    base: 'public',
-                    message: 'Deploy to GitHub Pages',
-                    repo: 'git@github.com:ScottLogic/StockFlux.git'
-                },
-                src: ['**/*']
-            }
-        },
 
         connect: {
             options: {
@@ -53,7 +35,8 @@ module.exports = function(grunt) {
                         },
                         shortcut: {
                             icon: target + '/favicon.ico'
-                        }
+                        },
+                        splashScreenImage: target + '/assets/png/splashscreen.png'
                     }
                 }
             },
@@ -85,19 +68,6 @@ module.exports = function(grunt) {
                 files: {
                     'public/assets/css/style.css': 'src/assets/styles/style.less'
                 }
-            }
-        },
-
-        download: {
-            //One zip for release type (development/master) and one for the version are created here
-            openfinZip: {
-                src: ['https://dl.openfin.co/services/download?fileName=StockFlux-' + version +
-                '&config=http://scottlogic.github.io/StockFlux/' + version + '/app.json'],
-                dest: './public/StockFlux-' + version + '.zip'
-            },
-            openfinTypeZip: {
-                src: ['https://dl.openfin.co/services/download?fileName=StockFlux-' + type + '&config=http://scottlogic.github.io/StockFlux/' + type + '/app.json'],
-                dest: './public/StockFlux-' + type + '.zip'
             }
         },
 
@@ -231,6 +201,20 @@ module.exports = function(grunt) {
                     replacements: [{
                         pattern: 'const allowContextMenu = true;',
                         replacement: 'const allowContextMenu = false;'
+                    }, {
+                        pattern: 'API_KEY = \'kM9Z9aEULVDD7svZ4A8B\'',
+                        replacement: 'API_KEY = \'SmMCEZxMRoNizToppows\''
+                    }]
+                }
+            },
+            'gh-pages': {
+                files: {
+                    'public/app.json': 'public/app.json'
+                },
+                options: {
+                    replacements: [{
+                        pattern: new RegExp('http://scottlogic.github.io/StockFlux/([A-z]+)/', 'g'),
+                        replacement: 'http://scottlogic.github.io/StockFlux/' + buildTarget + '/'
                     }]
                 }
             }
@@ -247,10 +231,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-eslint');
-    grunt.loadNpmTasks('grunt-http-download');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-gh-pages');
     grunt.loadNpmTasks('grunt-babel');
     grunt.loadNpmTasks('grunt-bump');
     grunt.loadNpmTasks('grunt-string-replace');
@@ -273,17 +255,13 @@ module.exports = function(grunt) {
     grunt.registerTask('transpile', ['babel', 'less:development']);
 
     grunt.registerTask('build:dev', ['concatenate', 'transpile', 'connect:livereload']);
-    grunt.registerTask('build:release', ['concatenate', 'string-replace', 'transpile', 'uglify', 'connect:livereload']);
+    grunt.registerTask('build:release', ['concatenate', 'string-replace', 'transpile', 'uglify']);
 
     grunt.registerTask('serve', ['build:dev', 'openfin:serve']);
     grunt.registerTask('default', ['serve']);
 
-    grunt.registerTask('createZip', ['build:release', 'download']);
-    grunt.registerTask('deploy', ['createZip', 'gh-pages:origin']);
-    grunt.registerTask('deploy:upstream', ['ci', 'gh-pages:upstream']);
-
     grunt.registerTask('release', ['bump:major']);
 
-    grunt.registerTask('ci', ['build:release', 'download']);
+    grunt.registerTask('ci', ['build:release']);
 
 };

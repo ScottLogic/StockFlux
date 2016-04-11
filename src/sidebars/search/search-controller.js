@@ -19,15 +19,31 @@
             this._watch();
         }
 
+        getStore() {
+            if (!window.storeService) {
+                return null;
+            }
+
+            if (!this.store) {
+                this.store = window.storeService.open(window.name);
+            }
+            return this.store;
+        }
+
+        getFavourites() {
+            if (this.getStore()) {
+                return this.store.get();
+            }
+            return null;
+        }
+
         selection() {
             return this.selectionService.selectedStock().code;
         }
 
         select(stock) {
-            if (!this.store) {
-                this.store = window.storeService.open(window.name);
-            }
-            if (!this.store.isCompact()) {
+            reportAction('Select search', stock.code);
+            if (this.getStore() && !this.store.isCompact()) {
                 this.selectionService.select(stock);
             }
         }
@@ -74,71 +90,88 @@
 
 
         submit() {
+            if (this.query !== '') {
+                reportAction('Search', this.query);
+            }
+
             this.stocks = [];
             this.noResults = false;
 
             this.currentWindowService.ready(() => {
-                if (!this.store) {
-                    this.store = window.storeService.open(window.name);
-                }
+                if (this.getStore()) {
+                    if (this.query) {
+                        this.isLoading = true;
+                        this.errors = [];
+                        this.quandlService.search(this.query, (stocks) => {
+                            this.isLoading = false;
 
-                var favourites = this.store.get();
-                if (this.query) {
-                    var length = favourites.length;
-                    this.isLoading = true;
-                    this.errors = [];
-                    this.quandlService.search(this.query, (stock) => {
-                        this.isLoading = false;
-                        var i;
+                            // removing stocks found with old query
+                            this.stocks = this.stocks.filter((result) => {
+                                return result.query === this.query;
+                            });
 
-                        // removing stocks found with old query
-                        this.stocks = this.stocks.filter((result, j) => {
-                            return result.query === this.query;
-                        });
-
-                        // not adding old stocks
-                        if (stock.query !== this.query) {
-                            return;
-                        }
-
-                        // Due to the asynchronicity of the search, if multiple searches
-                        // are fired off in a small amount of time, with an intermediate one
-                        // returning no results it's possible to have both the noResults flag
-                        // set to true, while some stocks have been retrieved by a later search.
-                        //
-                        // Here we re-set the flag to keep it up-to-date.
-                        this.noResults = false;
-
-                        var stockAdded = false;
-                        for (i = 0; i < length; i++) {
-                            if (stock.code === favourites[i]) {
-                                stock.favourite = true;
-                                this.stocks.unshift(stock);
-                                stockAdded = true;
+                            // Only show the favourites if the query is empty
+                            if (this.query.trim() === '') {
+                                this.displayFavourites();
+                                return;
                             }
-                        }
 
-                        if (!stockAdded) {
-                            this.stocks.push(stock);
-                        }
-                    },
-                    () => {this.noResults = true;},
-                    (error) => {
-                        this.isLoading = false;
-                        this._addError({
-                            code: (error && error.code) || 'No code received',
-                            message: (error && error.message) || 'No message'
+                            // Due to the asynchronicity of the search, if multiple searches
+                            // are fired off in a small amount of time, with an intermediate one
+                            // returning no results it's possible to have both the noResults flag
+                            // set to true, while some stocks have been retrieved by a later search.
+                            //
+                            // Here we re-set the flag to keep it up-to-date.
+                            this.noResults = false;
+
+                            stocks.forEach((stock) => {
+                                // not adding old stocks
+                                if (stock.query !== this.query) {
+                                    return;
+                                }
+
+                                var stockAdded = false;
+                                this.getFavourites().forEach((favourite) => {
+                                    if (stock.code === favourite) {
+                                        stock.favourite = true;
+                                        this.stocks.unshift(stock);
+                                        stockAdded = true;
+                                    }
+                                });
+
+                                if (!stockAdded) {
+                                    this.stocks.push(stock);
+                                }
+                            });
+                        },
+                        () => {
+                            this.noResults = true;
+                            this.isLoading = false;
+                        },
+                        (error) => {
+                            this.isLoading = false;
+                            this._addError({
+                                code: (error && error.code) || 'No code received',
+                                message: (error && error.message) || 'No message'
+                            });
                         });
-                    });
-                } else {
-                    favourites.map((favourite) => {
-                        this.quandlService.getMeta(favourite, (stock) => {
-                            stock.favourite = true;
-                            this.stocks.push(stock);
-                        });
-                    });
+                    } else {
+                        this.displayFavourites();
+                    }
                 }
             });
+        }
+
+        displayFavourites() {
+            var favourites = this.getFavourites();
+            if (favourites) {
+                favourites.map((favourite) => {
+                    this.quandlService.getMeta(favourite, (stock) => {
+                        stock.favourite = true;
+                        this.stocks.push(stock);
+                    });
+                });
+            }
         }
 
         _addError(newError) {
@@ -172,23 +205,46 @@
                     }
                     var index = this.stocks.map((stock) => { return stock.code; }).indexOf(data.code);
                     if (index > -1) {
-                        if (!this.query) {
-                            // There are no search results, so remove the favourite.
-                            this.stocks.splice(index, 1);
-                        } else {
-                            // Update the stock's favourite
-                            this.stocks[index].favourite = data.favourite;
-                        }
-                    // The stock doesn't exist, push it on if it's a favourite.
-                    } else if (data.favourite) {
+                        // If the stock in question doesn't exist on the list, check
+                        // the favourites and update accordingly
+                        this.updateFavouriteStates();
+                    } else if (data.favourite && !this.query) {
+                        // If there's no query, and the new stock is a favourite,
+                        // add it to the list.
                         this.stocks.push(data);
                     }
                 });
             });
         }
 
+        /*
+        * Updates the favourite states depending on whether or not they're in
+        * the window's store (this is the best way to ensure that they are
+        * favourites, as the updateFavourites event is broadcast after the store
+        * has been updated).
+        */
+        updateFavouriteStates() {
+            var favourites = this.getFavourites();
+            if (this.getFavourites()) {
+                if (this.query) {
+                    // If there's a query, check to see if each stock in the query
+                    // is a favourite or not.
+                    this.stocks.forEach((stock) => {
+                        stock.favourite = favourites.indexOf(stock.code) > -1;
+                    });
+                } else {
+                    // If there's no query, remove any non-favourites.
+                    this.stocks = this.stocks.filter((stock) => favourites.indexOf(stock.code) > -1);
+                }
+            }
+        }
+
         darkenClass(stock) {
-            return (this.selection() === stock.code || stock.isHovered) ? 'dark' : '';
+            return (this.selection() === stock.code || stock.isHovered);
+        }
+
+        selectedClass(stock) {
+            return this.selection() === stock.code;
         }
     }
     SearchCtrl.$inject = ['$scope', '$timeout', 'quandlService', 'selectionService', 'currentWindowService'];

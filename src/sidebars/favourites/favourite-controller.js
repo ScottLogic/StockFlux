@@ -35,12 +35,14 @@
         }
 
         singleClick(stock) {
+            reportAction('Select favourite', stock.code);
             if (!window.storeService.open(window.name).isCompact()) {
                 this.select(stock);
             }
         }
 
         doubleClick(stock) {
+            reportAction('Select favourite', stock.code);
             var store = window.storeService.open(window.name);
             if (store.isCompact()) {
                 this.select(stock);
@@ -59,6 +61,11 @@
         update(updatedStock) {
             this.currentWindowService.ready(() => {
                 if (!window.storeService) {
+                    var cb = ((e) => {
+                        this.update(updatedStock);
+                        window.removeEventListener('onStoreServiceReady', cb);
+                    });
+                    window.addEventListener('onStoreServiceReady', cb);
                     return;
                 }
 
@@ -101,7 +108,8 @@
                 if (updatedStock) {
                     if (this.stocks.length === 0) {
                         // If there aren't any stocks, we could be adding one...
-                        if (updatedStock.favourite) {
+                        // But only if there's no selection already
+                        if (updatedStock.favourite && this.selection() === '') {
                             this.selectionService.select(updatedStock);
                         } else if (oldSelectedStock.code === updatedStock.code) {
                             // If there's no stocks and it's not a favourite any more, but also
@@ -131,9 +139,9 @@
 
                             // Repeat the check as in the mean time a stock for this favourite could have been added.
                             if (this.stocks.map((stock1) => { return stock1.code; }).indexOf(favourite) === -1) {
-                                var data = stock && stock.data && stock.data[0],
-                                    delta = data.close - data.open;
+                                var data = stock && stock.data && stock.data[0];
                                 if (data) {
+                                    var delta = data.close - data.open;
                                     this.stocks.push({
                                         favourite: true,
                                         name: stock.name,

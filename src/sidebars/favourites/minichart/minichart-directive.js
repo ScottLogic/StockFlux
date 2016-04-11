@@ -7,9 +7,10 @@
                 restrict: 'E',
                 templateUrl: 'sidebars/favourites/minichart/minichart.html',
                 scope: {
-                    renderChart: '&',
                     stock: '='
-                }
+                },
+                controller: 'MinichartCtrl',
+                controllerAs: 'minichartCtrl'
             };
         }]);
 }());

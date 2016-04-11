@@ -246,8 +246,10 @@
 
         createMainWindow(name, isCompact, successCb) {
             var windowCreatedCb = (newWindow) => {
-                newWindow.getNativeWindow().windowService = this;
-                newWindow.getNativeWindow().storeService = this.storeService;
+                var nativeWindow = newWindow.getNativeWindow();
+                nativeWindow.windowService = this;
+                nativeWindow.storeService = this.storeService;
+                nativeWindow.dispatchEvent(new Event('onStoreServiceReady'));
 
                 this.windowTracker.add(newWindow);
 
@@ -265,17 +267,22 @@
                     showFunction();
                 }
 
-                this.storeService.open(newWindow.name).openWindow();
                 this.snapToScreenBounds(newWindow);
             };
 
             var mainWindow;
             if (name) {
+                // Notify the store service that the window has opened.
+                this.storeService.open(name).openWindow();
+
                 mainWindow = new fin.desktop.Window(
-                    isCompact ?
-                        this.configService.getCompactConfig(name) :
-                        this.configService.getWindowConfig(name),
+                    this.configService.getWindowConfig(name),
                     () => {
+                        if (isCompact) {
+                            var compactSize = this.configService.getCompactWindowDimensions();
+                            this.updateOptions(mainWindow, true);
+                            mainWindow.resizeTo(compactSize[0], compactSize[1], 'top-left');
+                        }
                         windowCreatedCb(mainWindow);
                     }
                 );
@@ -283,8 +290,9 @@
                 var poolWindow = this.pool.fetch();
                 mainWindow = poolWindow.window;
                 if (isCompact) {
+                    var compactWindowDimensions = this.configService.getCompactWindowDimensions();
                     this.updateOptions(poolWindow.window, true);
-                    poolWindow.window.resizeTo(230, 500, 'top-right');
+                    poolWindow.window.resizeTo(compactWindowDimensions[0], compactWindowDimensions[1], 'top-right');
                 }
 
                 poolWindow.promise.then(() => {
@@ -383,10 +391,11 @@
 
         updateOptions(_window, isCompact) {
             if (isCompact) {
+                var compactWindowDimensions = this.configService.getCompactWindowDimensions();
                 _window.updateOptions({
                     resizable: false,
-                    minHeight: 500,
-                    minWidth: 230,
+                    minWidth: compactWindowDimensions[0],
+                    minHeight: compactWindowDimensions[1],
                     maximizable: false
                 });
             } else {

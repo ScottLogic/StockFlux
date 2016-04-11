@@ -21,5 +21,6 @@
         "description": "Hosts BitFlux as an OpenFin application.",
         "icon": "http://scottlogic.github.io/StockFlux/master/favicon.ico",
         "name": "StockFlux"
-    }
+    },
+    "splashScreenImage": "http://scottlogic.github.io/StockFlux/master/assets/png/splashscreen.png"
 }
