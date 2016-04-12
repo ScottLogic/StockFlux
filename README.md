@@ -51,6 +51,10 @@ grunt serve
 
 The project is also accessible at http://localhost:5000
 
+#### Contributing
+
+Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details of how to contribute.
+
 #### Testing
 
 There is a [test plan](docs/TEST_PLAN.md) that covers the main features and behaviour. This should be used as a basis for testing before releasing and also the main features covered on testing PR changes.
