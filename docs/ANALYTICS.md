@@ -4,7 +4,7 @@ StockFlux uses Google Analytics. This documents describes what's tracked and how
 ## Tracking events
 Use the global ```function reportAction(category, action) ``` to add tracking to a user action.
 
-These will show in [google analytics](analytics.google.com) under Behavour -> Events
+These will show in [google analytics](analytics.google.com) under Behaviour -> Events
 
 Existing events include:
 - Window change
