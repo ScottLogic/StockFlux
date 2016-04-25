@@ -1,0 +1,12 @@
+{
+    "globals": {
+        "moment":  true,
+        "fin": true,
+        "jQuery": true,
+        "bitflux": true,
+        "d3": true,
+        "fc": true,
+        "confirm": true,
+        "reportAction": true
+    }
+}
