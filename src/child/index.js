@@ -1,14 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-// import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { render } from 'react-dom';
+import App from './containers/App';
+import 'babel-polyfill';
+import configureStore from './store/configureStore';
 
-const rootEl = document.getElementById('app');
+import './assets/styles/style.less';
 
-function render() {
-    ReactDOM.render(
-        <div>test</div>,
-        rootEl
-    );
-}
+const store = configureStore();
 
-render();
+render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('app')
+);
