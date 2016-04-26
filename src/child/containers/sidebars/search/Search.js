@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { search, clearSearch, toggleFavourite } from '../../../actions/sidebar';
+import { search, clearSearch, toggleFavourite, selectStock } from '../../../actions/sidebar';
 import searchTabImage from '../../../assets/png/search_tab.png';
 import Stock from '../../../components/Stock.js';
 
@@ -23,8 +23,8 @@ class Search extends Component {
         this.props.dispatch(toggleFavourite(stock.code, stock));
     }
 
-    onClick() {
-        // TODO: render BitFlux graph
+    onClick(stock) {
+        this.props.dispatch(selectStock(stock.code, stock.name));
     }
 
     onDrag() {
@@ -72,9 +72,9 @@ class Search extends Component {
     }
 }
 Search.propTypes = {
-    isSearching: PropTypes.bool.isRequired,
-    hasErrors: PropTypes.bool.isRequired,
-    results: PropTypes.array.isRequired,
+    isSearching: PropTypes.bool,
+    hasErrors: PropTypes.bool,
+    results: PropTypes.array,
     term: PropTypes.string.isRequired,
     dispatch: PropTypes.func.isRequired
 };
