@@ -1,0 +1,60 @@
+﻿.transition(@duration: 0.2s, @delay: 0.1s) {
+  transition: all @duration linear @delay;
+}
+
+.drag {
+  -webkit-app-region: drag;
+}
+
+.no-drag {
+  -webkit-app-region: no-drag;
+}
+
+.size(@width: auto, @height: auto) {
+  width: @width;
+  height: @height;
+}
+
+// 400 is 'normal'
+.font(@size, @weight: 400, @line-height: 1.5) {
+  font-size: @size;
+  font-weight: @weight;
+  line-height: @line-height;
+}
+
+.no-overflow {
+  overflow: hidden;
+}
+
+.wrap-ellipsis {
+  .no-overflow;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bubble-head(@top: auto, @right: auto, @bottom: auto, @left: auto) {
+  .position(absolute, @top: @top, @right: @right, @bottom: @bottom, @left: @left);
+  .size(@width: 10px, @height: 10px);
+  transform: rotate(45deg);
+  background-color: @light-background;
+}
+
+.box-shadow(@shadow-position, @colour) {
+  box-shadow: @shadow-position 2px 0px @colour;
+}
+
+.closed-window(@shadow-position, @top: auto, @right: auto, @bottom: auto, @left: auto) {
+  .box-shadow(@shadow-position, @dark-background);
+  .position(fixed, @top: @top, @right: @right, @bottom: @bottom, @left: @left);
+  background: @light-background;
+  .size(@width: 180px);
+  max-height: 353px;
+}
+
+.position(@position, @top: auto, @right: auto, @bottom: auto, @left: auto) {
+  position: @position;
+  top: @top;
+  right: @right;
+  bottom: @bottom;
+  left: @left;
+}
