@@ -38,7 +38,7 @@ class Favourites extends Component {
                 <div className="sidetab-top">
                     <img src={favTabImage} className="top-icon" title="Favourites List" draggable="false" />
                 </div>
-                <div id="favourite-scroll" className="side-scroll custom-scrollbar">
+                <div id="favourite-scroll" className="side-scroll custom-scrollbar hiddenOnContracted">
                     <div className="sidetab">
 
                         {isStarting && <div className="no-favourites">
