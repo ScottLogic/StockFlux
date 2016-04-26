@@ -9,9 +9,22 @@ import {
     SEARCH_FINISHED,
     SEARCH_ERROR,
     TOGGLE_FAVOURITE,
-    FAV_CLICKED
+    FAV_CLICKED,
+    SELECTION
 } from '../actions/sidebar.js';
 
+
+function selection(state = {}, action) {
+    switch (action.type) {
+    case SELECTION:
+        return Object.assign({}, state, {
+            code: action.code,
+            name: action.name,
+        });
+    default:
+        return state;
+    }
+}
 
 function sidebar(state = { showSeach: true }, action) {
     switch (action.type) {
@@ -32,7 +45,7 @@ function getIndexOfValue(code, arr = []) {
     return arr.findIndex(res => res.code === code);
 }
 
-function search(state = {}, action) {
+function search(state = { term: '' }, action) {
     switch (action.type) {
     case SEARCH_STARTED:
         return Object.assign({}, state, {
@@ -54,7 +67,7 @@ function search(state = {}, action) {
         return {};
     case TOGGLE_FAVOURITE: {
         const results = [...state.results];
-        const indexOfValue = getIndexOfValue(action.id, state.results);
+        const indexOfValue = getIndexOfValue(action.code, state.results);
         if (indexOfValue >= 0) {
             results[indexOfValue] = Object.assign({}, results[indexOfValue], {
                 favourite: !results[indexOfValue].favourite
@@ -75,7 +88,7 @@ function favourites(state = [], action) {
         // TODO update state
         return state;
     case TOGGLE_FAVOURITE: // eslint-disable-line no-case-declarations
-        const found = getIndexOfValue(action.id, state);
+        const found = getIndexOfValue(action.code, state);
         let newState;
         if (found < 0) {
             newState = [...state, Object.assign({}, action.data, {
@@ -111,6 +124,7 @@ function windowState(state = {
 }
 
 const rootReducer = combineReducers({
+    selection,
     sidebar,
     favourites,
     search,

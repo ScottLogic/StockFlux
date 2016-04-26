@@ -2,21 +2,17 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import { truncate } from '../services/formatters';
 
-const Favourite = ({ stock, selected }) => {
-
+const Favourite = ({ stock, selected, bindings }) => {
     const cls = classNames({
-        'search-result': true,
-        darkens: true,
-        selected: selected,
+        selected,
         dark: selected
     });
 
-        // <div class="favourite darkens selection() !== stock.code ? '' : ' dark'}} tearable {{single()}}" ng-click="singleClick(stock)" ng-dblclick="doubleClick(stock)" draggable="false"
+    // <div class="favourite darkens selection() !== stock.code ? '' : ' dark'}} tearable {{single()}}" ng-click="singleClick(stock)" ng-dblclick="doubleClick(stock)" draggable="false"
     return (
         <div>
             <div className="drop-target">
-
-                <div className="favourite darkens tearable" ng-click="singleClick(stock)" ng-dblclick="doubleClick(stock)" draggable="false">
+                <div className={`darkens favourite tearable ${cls}`} onClick={() => bindings.onClick(stock)} ng-click="singleClick(stock)" ng-dblclick="doubleClick(stock)" draggable="false">
                     <div className="top">
                         <star stock="stock" confirm="true"></star>
                         <div className="name">{truncate(stock.name)}</div>
@@ -41,7 +37,8 @@ const Favourite = ({ stock, selected }) => {
 // onClick: PropTypes.func.isRequired,
 Favourite.propTypes = {
     stock: PropTypes.object.isRequired,
-    selected: PropTypes.bool.isRequired
+    selected: PropTypes.bool.isRequired,
+    bindings: PropTypes.object.isRequired
 };
 
 export default Favourite;
