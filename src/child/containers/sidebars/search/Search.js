@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { search, clearSearch, toggleFavourite, selectStock } from '../../../actions/sidebar';
 import searchTabImage from '../../../assets/png/search_tab.png';
-import Stock from '../../../components/Stock.js';
+import SearchResult from '../../../components/SearchResult.js';
 
 class Search extends Component {
     constructor(props) {
@@ -59,7 +59,7 @@ class Search extends Component {
 }
                         {isSearching && <div className="loading-message results-message">Loading search results...</div>}
 
-                        {(results || []).map(stock => <Stock key={stock.code} stock={stock} bindings={bindings} />)}
+                        {(results || []).map(stock => <SearchResult key={stock.code} stock={stock} bindings={bindings} />)}
                         {results && results.length === 0 && !hasErrors && !isSearching && <div className="results-message no-results">
                             Oops!<br />
                             Looks like no matches were found.
