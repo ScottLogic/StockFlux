@@ -48,11 +48,11 @@ class Search extends Component {
             <div>
                 <div>
                     <img className="top-icon" src={searchTabImage} title="Search Stocks" draggable="false" />
-                    <input value={term} className="sidetab" type="text" maxLength="20" placeholder="Enter stock name or symbol" onChange={this.onChange} />
-                    <div className="icon close" title="Close Search" onClick={this.clear}>&nbsp;</div>
+                    <input value={term} className="sidetab hiddenOnContracted" type="text" maxLength="20" placeholder="Enter stock name or symbol" onChange={this.onChange} />
+                    <div className="icon close hiddenOnContracted" title="Close Search" onClick={this.clear}>&nbsp;</div>
                 </div>
                 <div id="search-scroll" className="side-scroll custom-scrollbar">
-                    <div className="sidetab">
+                    <div className="sidetab hiddenOnContracted">
                         {hasErrors && <div className="results-message">
                             An error occurred while retrieving data. Please check your internet connection or wait for our data services to be re-established.
                         </div>
