@@ -1,0 +1,96 @@
+@import './toolbar-mixins.less';
+@toolbar-icons-width: 125px;
+@toolbar-icons-margin: 15px;
+@icons-size: 30px;
+@baseImgDir: '../../assets/png';
+.toolbarWrapper {
+    -webkit-user-select: none;
+    position: relative;
+    .drag {
+        border-bottom: 1px solid #28313D;
+        height: 3.15rem;
+    }
+    .wrapper {
+        height: 1.5rem;
+        margin: 0.75rem;
+        -webkit-app-region: no-drag;
+        position: absolute;
+        top: 0;
+    }
+    .wrapper.left {
+        img {
+            vertical-align: -webkit-baseline-middle;
+        }
+    }
+    .wrapper.action {
+        right: 0;
+    }
+}
+#toolbar {
+    padding: @toolbar-icons-margin / 2;
+    color: white;
+    font-family: Helvetica;
+    .actionWrapper {
+        display: inline-block;
+        text-align: right;
+        width: 50%;
+    }
+}
+.icon {
+    display: inline-block;
+    width: @icons-size;
+    height: 100%;
+    background-position: 50% 80%;
+    background-repeat: no-repeat;
+    transition: 0.5s all;
+    cursor: pointer;
+}
+.icon.closed_tabs_small {
+    background-image: url('@{baseImgDir}/closed_tabs_small.png');
+}
+.icon.closed_tabs_small:hover {
+    background-image: url('@{baseImgDir}/closed_tabs_small_active.png');
+}
+.icon.minimise {
+    background-image: url('@{baseImgDir}/minimise.png');
+}
+.icon.minimise:hover {
+    background-image: url('@{baseImgDir}/minimise_active.png');
+}
+.icon.compact {
+    background-image: url('@{baseImgDir}/compact.png');
+}
+.icon.compact:hover {
+    background-image: url('@{baseImgDir}/compact_active.png');
+}
+.icon.full_view {
+    background-image: url('@{baseImgDir}/full_view.png');
+}
+.icon.full_view:hover {
+    background-image: url('@{baseImgDir}/full_view_active.png');
+}
+.icon.maximise {
+    background-image: url('@{baseImgDir}/maximise.png');
+}
+.icon.maximise:hover {
+    background-image: url('@{baseImgDir}/maximise_active.png');
+}
+.icon.normal_size {
+    background-image: url('@{baseImgDir}/normal_size.png');
+}
+.icon.normal_size:hover {
+    background-image: url('@{baseImgDir}/normal_size_active.png');
+}
+.icon.close {
+    background-image: url('@{baseImgDir}/close.png');
+}
+.icon.close:hover {
+    background-image: url('@{baseImgDir}/close_active.png');
+}
+.icon.star {
+    background-image: url('@{baseImgDir}/favourite_off.png');
+}
+.icon.star.active,
+.icon.star:hover {
+    background-image: url('@{baseImgDir}/favourite_on.png');
+}

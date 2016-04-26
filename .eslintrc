@@ -20,7 +20,9 @@
     "indent": ["error", 4],
     "comma-dangle" : 0,
     "prefer-template": 1,
-    "padded-blocks": 0
+    "padded-blocks": 0,
+    "max-len": 0,
+    "jsx-a11y/img-has-alt": 0
   },
   "plugins": [
     "react"
