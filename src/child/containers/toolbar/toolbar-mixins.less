@@ -1,0 +1,16 @@
+.right-alignment(@icon-order) {
+  right: (15 + (@icon-order * 30));
+}
+
+.toolbar-offset-top(@additional-offset: 0px) {
+  .position(fixed, @top: (15px + @additional-offset));
+}
+
+.toolbar-offset-top-compact(@additional-offset: 0px) {
+  .position(fixed, @top: (@toolbar-compact-top-margin + @additional-offset));
+}
+
+.drag-position(@left: auto, @right: auto, @top: auto, @height: auto, @width: auto) {
+  .position(fixed, @top: @top, @right: @right, @left: @left);
+  .size(@width: @width, @height: @height);
+}

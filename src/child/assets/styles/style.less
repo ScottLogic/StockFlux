@@ -1,0 +1,89 @@
+// @import "../../../node_modules/BitFlux/src/assets/styles/style.less";
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500);
+
+@import "variables.less";
+@import "mixins.less";
+
+// @import "../../components/version.less";
+/*
+@import "../../closedWindows/closedCard/closedCard.less";
+@import "../../closedWindows/closedWindowList/closedWindowList.less";
+*/
+@import "../../containers/toolbar/toolbar.less";
+@import "../../containers/toolbar/toolbar-mixins.less";
+@import "../../containers/sidebars/sidebar.less";
+@import "../../containers/sidebars/search/search.less";
+@import "../../containers/sidebars/favourites/favourites.less";
+/*@import "../../sidebars/favourites/minichart/minichart.less";*/
+// @import "../../components/sidebars/star/star.less";
+// @import "../../components/showcase/showcase-changes.less";
+// @import "../../containers/sidebars/custom-scroll.less";
+/*
+// Compact styles
+@import "../../main/main-compact.less";
+@import "../../toolbar/toolbar-compact.less";
+*/
+// @import "../../components/sidebars/star/star-compact.less";
+
+// @import "../../containers/sidebars/favourites/favourite-compact.less";
+// @import "../../containers/sidebars/sidebar-compact.less";
+// @import "../../containers/sidebars/search/search-compact.less";
+/*
+@import "../../closedWindows/closedWindowList/closedWindowList-compact.less";
+*/
+body {
+  -webkit-user-select: none;
+}
+
+#app, .main, body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.main-content {
+    margin-left: @sidebar-width;
+}
+.main {
+    background-color: @dark-background;
+    padding: 0;
+}
+/*.main {
+  background-color: @dark-background;
+  padding: 0px;
+  .position(fixed, @top: 0px, @right: 0px, @bottom: 0px, @left: 0px);
+  border: 1px solid @light-background;
+}
+
+.main-content {
+  .position(absolute, @top: @toolbar-height, @right: 0px, @bottom: 0px, @left: (@sidebar-width + 20));
+}*/
+
+.disable-transitions {
+  * {
+    transition: none !important;
+  }
+}
+
+.disable-pointer {
+  * {
+    pointer-events: none;
+  }
+}
+
+#showcase-title {
+  color: @chart-teal;
+  .position(absolute, @top: -10px, @right: 75px);
+  z-index: 10;
+
+  .code, .name {
+    display: inline-block;
+  }
+
+  .code {
+    .font(18px, @font-medium);
+  }
+
+  .name {
+    .font(14px, @font-light);
+  }
+}
