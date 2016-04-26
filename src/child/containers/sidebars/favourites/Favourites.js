@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { selectFavourites, toggleFavourite } from '../../../actions/sidebar';
+import { toggleFavourite, selectStock } from '../../../actions/sidebar';
 import favTabImage from '../../../assets/png/favourites_tab.png';
 import Favourite from '../../../components/Favourite.js';
 
@@ -13,8 +13,8 @@ class Favourites extends Component {
         this.toggleFavourite = this.toggleFavourite.bind(this);
     }
 
-    onClick() {
-        // TODO: render BitFlux graph
+    onClick(stock) {
+        this.props.dispatch(selectStock(stock.code, stock.name));
     }
 
     onDrag() {
@@ -27,7 +27,7 @@ class Favourites extends Component {
 
     render() {
 
-        const { favourites, hasErrors, isStarting } = this.props;
+        const { favourites, hasErrors, isStarting, selection } = this.props;
         let bindings = {
             onClick: this.onClick,
             onIconClick: this.toggleFavourite,
@@ -55,7 +55,7 @@ class Favourites extends Component {
                         </div>
                         }
                         {favourites && favourites.length > 0 && (favourites || []).map(stock =>
-                            <Favourite key={stock.code} stock={stock} bindings={bindings} />)}
+                            <Favourite key={stock.code} stock={stock} bindings={bindings} selected={stock.code === selection.code} />)}
                     </div>
                 </div>
             </div>
@@ -63,15 +63,16 @@ class Favourites extends Component {
     }
 }
 Favourites.propTypes = {
-    favourites: PropTypes.object.isRequired,
-    hasErrors: PropTypes.bool.isRequired,
-    isStarting: PropTypes.bool.isRequired,
+    selection: PropTypes.object,
+    favourites: PropTypes.array,
+    hasErrors: PropTypes.bool,
+    isStarting: PropTypes.bool,
     dispatch: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
-    const { favourites } = state;
+    const { favourites, selection } = state;
     // TODO: create logic for 'isStarting
-    return { favourites, isStarting: false, hasErrors: false };
+    return { favourites, selection, isStarting: false, hasErrors: false };
 }
 export default connect(mapStateToProps)(Favourites);
