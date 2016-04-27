@@ -6,7 +6,7 @@ const Stock = ({ stock, bindings }) => (
             <div className="name">{stock.name}</div>
             <div className="code">{stock.code}</div>
         </div>
-        <div className={'icon star' + (stock.favourite ? ' active' : '')} onClick={() => bindings.onIconClick(stock)}>
+        <div className={'button-icon star' + (stock.favourite ? ' active' : '')} onClick={() => bindings.onIconClick(stock)}>
             &nbsp;
         </div>
     </div>

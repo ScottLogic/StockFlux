@@ -1,6 +1,9 @@
 {
   "name": "bitflux-openfin",
   "version": "10.1.0",
+  "scripts": {
+    "postinstall": "cd node_modules/BitFlux && npm i && grunt build:module"
+  },
   "devDependencies": {
     "babel-core": "^6.7.6",
     "babel-eslint": "^6.0.3",
@@ -20,15 +23,17 @@
     "redux-devtools": "^3.2.0",
     "redux-devtools-dock-monitor": "^1.1.1",
     "redux-devtools-log-monitor": "^1.0.11",
+    "script-loader": "^0.7.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.15",
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "BitFlux": "github:scottlogic/BitFlux#1.5.2",
     "babel-polyfill": "^6.3.14",
     "classnames": "^2.2.3",
-    "d3fc": "^5.2.0",
+    "d3fc": "^5.3.0",
     "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.1.1",
     "jquery": "^1.11.1",
