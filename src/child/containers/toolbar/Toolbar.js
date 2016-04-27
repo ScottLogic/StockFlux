@@ -62,16 +62,16 @@ class Toolbar extends Component {
             <div className="toolbarWrapper drag">
                 <img id="logo" src={icon} className="logo" alt="Scott Logic" />
                 <div className="wrapper action">
-                    <div className="icon minimise" onClick={this.onMinimize} title="Minimize">&nbsp;</div>
+                    <div className="button-icon minimise" onClick={this.onMinimize} title="Minimize">&nbsp;</div>
                     {windowState.isCompact
-                        ? <div className="icon full_view" onClick={this.onFullView} title="Full View">&nbsp;</div>
-                        : <div className="icon compact" onClick={this.onCompact} title="Compact View">&nbsp;</div>
+                        ? <div className="button-icon full_view" onClick={this.onFullView} title="Full View">&nbsp;</div>
+                        : <div className="button-icon compact" onClick={this.onCompact} title="Compact View">&nbsp;</div>
                     }
                     {!windowState.isCompact && (windowState.isMaximised
-                        ? <div className="icon normal_size" onClick={this.onUnMaximise} title="Restore" ng-show="toolbarCtrl.maximised && !toolbarCtrl.isCompact()">&nbsp;</div>
-                        : <div className="icon maximise" onClick={this.onMaximise} title="Maximise" ng-show="!toolbarCtrl.maximised && !toolbarCtrl.isCompact()">&nbsp;</div>
+                        ? <div className="button-icon normal_size" onClick={this.onUnMaximise} title="Restore" ng-show="toolbarCtrl.maximised && !toolbarCtrl.isCompact()">&nbsp;</div>
+                        : <div className="button-icon maximise" onClick={this.onMaximise} title="Maximise" ng-show="!toolbarCtrl.maximised && !toolbarCtrl.isCompact()">&nbsp;</div>
                     )}
-                    <div className="icon close" onClick={this.onClose} title="Close">&nbsp;</div>
+                    <div className="button-icon closeIcon" onClick={this.onClose} title="Close">&nbsp;</div>
                 </div>
             </div>
         );
