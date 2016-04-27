@@ -1,0 +1,48 @@
+.compact .side-scroll {
+  .position(fixed);
+}
+
+.side-scroll {
+  padding-bottom: 0px;
+  border-top: 1px solid @dark-background;
+  transition: border 0.7s;
+
+  .mCSB_scrollTools {
+    left: 2px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  &#favourite-scroll {
+    .position(absolute, @top: @toolbar-height, @bottom: @bottom-tab-height);
+  }
+}
+
+.contracted .side-scroll {
+    border-top: 1px solid transparent;
+}
+
+.side-scroll:hover .mCSB_dragger_bar {
+  opacity: 0.80;
+}
+
+.mCSB_dragger_bar {
+  opacity: 0;
+  .size(@width: 10px, @height: 100%) !important;
+}
+
+#favourite-scroll .mCSB_dragger_bar {
+  background-color: @light-background !important;
+}
+
+#search-scroll .mCSB_dragger_bar {
+  background-color: @dark-background !important;
+}
+
+.mCSB_draggerRail {
+  display: none !important;
+}
+
+.mCSB_container {
+  margin-right: 0px !important;
+}
