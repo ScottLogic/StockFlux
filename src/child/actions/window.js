@@ -1,13 +1,14 @@
-export const TOGGLE_MAXIMISE = 'TOGGLE_MAXIMISE';
+export const MINIMIZE = 'MINIMIZE';
+export const MAXIMIZE = 'MAXIMIZE';
+export const RESTORE = 'RESTORE';
+export const CLOSE = 'CLOSE';
 export const TOGGLE_COMPACT = 'TOGGLE_COMPACT';
-export const STATE_MINIMISE = 'STATE_MINIMISE';
 export const STATE_EXPANDED = 'STATE_EXPANDED';
-export const STATE_CLOSE = 'STATE_CLOSE';
 export const STATE_FULL_VIEW = 'STATE_FULL_VIEW';
 
 export function minimise() {
     return {
-        type: STATE_MINIMISE
+        type: MINIMIZE
     };
 }
 
@@ -31,22 +32,20 @@ export function fullView() {
     };
 }
 
-export function maximise() {
+export function maximize() {
     return {
-        type: TOGGLE_MAXIMISE,
-        state: true
+        type: MAXIMIZE
     };
 }
 
-export function unMaximise() {
+export function restore() {
     return {
-        type: TOGGLE_MAXIMISE,
-        state: false
+        type: RESTORE
     };
 }
 
 export function close() {
     return {
-        type: STATE_CLOSE
+        type: CLOSE
     };
 }

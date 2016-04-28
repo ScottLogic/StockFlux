@@ -2,8 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import {
     minimise,
-    maximise,
-    unMaximise,
+    maximize,
+    restore,
     compact,
     expand
 } from '../../actions/window.js';
@@ -13,40 +13,46 @@ import icon from '../../assets/png/scottlogic_logo.png';
 class Toolbar extends Component {
     constructor(props) {
         super(props);
-        this.onMinimize = this.onMinimize.bind(this);
-        this.onCompact = this.onCompact.bind(this);
-        this.onFullView = this.onFullView.bind(this);
-        this.onMaximise = this.onMaximise.bind(this);
-        this.onUnMaximise = this.onUnMaximise.bind(this);
-        this.onClose = this.onClose.bind(this);
-        // reset maximize state on window resize
-        // addEventListener('resize', onResize.bind(this), false);
-    }
+        this.onMinimizeClick = this.onMinimizeClick.bind(this);
+        this.onCompactClick = this.onCompactClick.bind(this);
+        this.onFullViewClick = this.onFullViewClick.bind(this);
+        this.onMaximizeClick = this.onMaximizeClick.bind(this);
+        this.onRestoreClick = this.onRestoreClick.bind(this);
+        this.onCloseClick = this.onCloseClick.bind(this);
 
-    onMinimize() {
-        this.props.dispatch(minimise());
+        this.onMinimize = this.onMinimize.bind(this);
+        this.onMaximize = this.onMaximize.bind(this);
+        this.onRestore = this.onRestore.bind(this);
+        // reset maximize state on window resize
+
+        fin.desktop.main(() => {
+            const win = fin.desktop.Window.getCurrent();
+            win.addEventListener('minimized', this.onMinimize);
+            win.addEventListener('maximized', this.onMaximize);
+            win.addEventListener('restored', this.onRestore);
+        });
+    }
+    onMinimizeClick() {
         fin.desktop.Window.getCurrent().minimize();
     }
 
-    onCompact() {
+    onCompactClick() {
         this.props.dispatch(compact());
     }
 
-    onFullView() {
+    onFullViewClick() {
         this.props.dispatch(expand());
     }
 
-    onMaximise() {
-        this.props.dispatch(maximise());
+    onMaximizeClick() {
         fin.desktop.Window.getCurrent().maximize();
     }
 
-    onUnMaximise() {
-        this.props.dispatch(unMaximise());
+    onRestoreClick() {
         fin.desktop.Window.getCurrent().restore();
     }
 
-    onClose() {
+    onCloseClick() {
         // notifyParent(WINDOW_CLOSE, {
         //     name: window.name,
         //     state: this.props.windowState
@@ -56,22 +62,34 @@ class Toolbar extends Component {
         window.close();
     }
 
+    onMinimize() {
+        this.props.dispatch(minimise());
+    }
+
+    onMaximize() {
+        this.props.dispatch(maximize());
+    }
+
+    onRestore() {
+        this.props.dispatch(restore());
+    }
+
     render() {
         const { windowState } = this.props;
         return (
             <div className="toolbarWrapper drag">
                 <img id="logo" src={icon} className="logo" alt="Scott Logic" />
                 <div className="wrapper action">
-                    <div className="button-icon minimise" onClick={this.onMinimize} title="Minimize">&nbsp;</div>
+                    <div className="button-icon minimise" onClick={this.onMinimizeClick} title="Minimize">&nbsp;</div>
                     {windowState.isCompact
-                        ? <div className="button-icon full_view" onClick={this.onFullView} title="Full View">&nbsp;</div>
-                        : <div className="button-icon compact" onClick={this.onCompact} title="Compact View">&nbsp;</div>
+                        ? <div className="button-icon full_view" onClick={this.onFullViewClick} title="Full View">&nbsp;</div>
+                        : <div className="button-icon compact" onClick={this.onCompactClick} title="Compact View">&nbsp;</div>
                     }
                     {!windowState.isCompact && (windowState.isMaximised
-                        ? <div className="button-icon normal_size" onClick={this.onUnMaximise} title="Restore" ng-show="toolbarCtrl.maximised && !toolbarCtrl.isCompact()">&nbsp;</div>
-                        : <div className="button-icon maximise" onClick={this.onMaximise} title="Maximise" ng-show="!toolbarCtrl.maximised && !toolbarCtrl.isCompact()">&nbsp;</div>
+                        ? <div className="button-icon normal_size" onClick={this.onRestoreClick} title="Restore">&nbsp;</div>
+                        : <div className="button-icon maximise" onClick={this.onMaximizeClick} title="Maximize">&nbsp;</div>
                     )}
-                    <div className="button-icon closeIcon" onClick={this.onClose} title="Close">&nbsp;</div>
+                    <div className="button-icon closeIcon" onClick={this.onCloseClick} title="Close">&nbsp;</div>
                 </div>
             </div>
         );
