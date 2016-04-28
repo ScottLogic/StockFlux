@@ -48,7 +48,7 @@ class Favourite extends Component {
 
         const price = !isNaN(+stockData.price) ? (+stockData.price).toFixed(2) : '';
         const delta = !isNaN(+stockData.delta) ? (+stockData.delta).toFixed(2) : '';
-        const percentage = !isNaN(+stockData.percentage) ? (+stockData.percentage).toFixed(2) : '';
+        const percentage = !isNaN(+stockData.percentage) ? Math.abs((+stockData.percentage)).toFixed(2) : '';
         const name = stockData.name ? truncate(stockData.name) : '';
 
         return (
