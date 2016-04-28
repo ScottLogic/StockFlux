@@ -1,5 +1,6 @@
 export const SEARCH_CLICKED = 'SEARCH_CLICKED';
 export const SEARCH_STARTED = 'SEARCH_STARTED';
+export const SEARCH_INPUT = 'SEARCH_INPUT';
 export const SEARCH_ERROR = 'SEARCH_ERROR';
 export const CLEAR_SEARCH = 'CLEAR_SEARCH';
 export const SEARCH_FINISHED = 'SEARCH_FINISHED';
@@ -10,6 +11,13 @@ export const UNSELECT = 'UNSELECT';
 
 import QuandlService from '../services/QuandlService.js';
 const quandlService = new QuandlService();
+
+export function searchInput(term) {
+    return {
+        type: SEARCH_INPUT,
+        term
+    };
+}
 
 export function selectStock(code, name) {
     return {
@@ -73,7 +81,7 @@ export function selectFavourites() {
 export function search(term) {
     return dispatch => {
         if (term.trim() === '') {
-            dispatch(searchFinished(term, []));
+            dispatch(clearSearch());
         } else {
             dispatch(searchStarted(term));
             quandlService.search(term,
