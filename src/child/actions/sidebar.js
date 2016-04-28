@@ -6,11 +6,11 @@ export const SEARCH_FINISHED = 'SEARCH_FINISHED';
 export const FAV_CLICKED = 'FAV_CLICKED';
 export const TOGGLE_FAVOURITE = 'TOGGLE_FAVOURITE';
 export const SELECTION = 'SELECTION';
+export const UNSELECT = 'UNSELECT';
 
 import QuandlService from '../services/QuandlService.js';
 const quandlService = new QuandlService();
 
-// TODO:  pass id only && fire fetches to get all data
 export function selectStock(code, name) {
     return {
         code,
@@ -19,7 +19,12 @@ export function selectStock(code, name) {
     };
 }
 
-// TODO:  pass id only && fire fetches to get all data
+export function unselectStock() {
+    return {
+        type: UNSELECT
+    };
+}
+
 export function toggleFavourite(code) {
     return {
         code,

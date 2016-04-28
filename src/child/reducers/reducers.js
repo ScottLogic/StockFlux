@@ -10,6 +10,7 @@ import {
     SEARCH_ERROR,
     TOGGLE_FAVOURITE,
     FAV_CLICKED,
+    UNSELECT,
     SELECTION
 } from '../actions/sidebar.js';
 import deepFreeze from 'deep-freeze';
@@ -21,6 +22,8 @@ function selection(state = {}, action) {
             code: action.code,
             name: action.name,
         });
+    case UNSELECT:
+        return {};
     default:
         return state;
     }

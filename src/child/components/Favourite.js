@@ -5,7 +5,16 @@ import Minichart from './minichart/Minichart.js';
 import QuandlService from '../services/QuandlService.js';
 const quandlService = new QuandlService();
 
+import arrowUp from '../assets/png/arrow_up.png';
+import arrowDown from '../assets/png/arrow_down.png';
+
+
 class Favourite extends Component {
+
+    constructor(props) {
+        super(props);
+        this.onIconClick = this.onIconClick.bind(this);
+    }
 
     componentDidMount() {
         const stockCode = this.props.stockCode;
@@ -20,6 +29,11 @@ class Favourite extends Component {
             const chartData = response;
             this.setState({ stockData, chartData });
         });
+    }
+
+    onIconClick(e) {
+        e.stopPropagation();
+        this.props.bindings.onIconClick(this.props.stockCode);
     }
 
     render() {
@@ -37,13 +51,12 @@ class Favourite extends Component {
         const percentage = !isNaN(+stockData.percentage) ? (+stockData.percentage).toFixed(2) : '';
         const name = stockData.name ? truncate(stockData.name) : '';
 
-        // <div class="favourite darkens selection() !== stock.code ? '' : ' dark'}} tearable {{single()}}" ng-click="singleClick(stock)" ng-dblclick="doubleClick(stock)" draggable="false"
         return (
             <div>
                 <div className="drop-target">
                     <div className={`darkens favourite tearable ${cls}`} onClick={() => bindings.onClick(stockCode, name)} ng-dblclick="doubleClick(stock)" draggable="false">
                         <div className="top">
-                            <star stock="stock" confirm="true"></star>
+                            <div className="button-icon star active" onClick={this.onIconClick}>&nbsp;</div>
                             <div className="name">{name}</div>
                             <div className="code">{stockCode.toUpperCase()}</div>
                         </div>
@@ -53,7 +66,7 @@ class Favourite extends Component {
                                 <div className="price">{price}</div>
                                 <div className="delta">{delta}</div>
                                 <div className="percentage">
-                                    <img ng-src="assets/png/{{icon(stock)}}.png" className="stock-arrow" draggable="false" />
+                                    <img src={percentage > 0 ? arrowUp : arrowDown} className="stock-arrow" draggable="false" />
                                     {percentage}%
                                 </div>
                             </div>
