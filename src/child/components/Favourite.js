@@ -11,6 +11,11 @@ import arrowDown from '../assets/png/arrow_down.png';
 
 class Favourite extends Component {
 
+    constructor(props) {
+        super(props);
+        this.onIconClick = this.onIconClick.bind(this);
+    }
+
     componentDidMount() {
         const stockCode = this.props.stockCode;
         quandlService.getStockData(stockCode, response => {
@@ -24,6 +29,11 @@ class Favourite extends Component {
             const chartData = response;
             this.setState({ stockData, chartData });
         });
+    }
+
+    onIconClick(e) {
+        e.stopPropagation();
+        this.props.bindings.onIconClick(this.props.stockCode);
     }
 
     render() {
@@ -46,7 +56,7 @@ class Favourite extends Component {
                 <div className="drop-target">
                     <div className={`darkens favourite tearable ${cls}`} onClick={() => bindings.onClick(stockCode, name)} ng-dblclick="doubleClick(stock)" draggable="false">
                         <div className="top">
-                            <div className="button-icon star active" onClick={(e) => (e.stopPropagation() || bindings.onIconClick(stockCode))}>&nbsp;</div>
+                            <div className="button-icon star active" onClick={this.onIconClick}>&nbsp;</div>
                             <div className="name">{name}</div>
                             <div className="code">{stockCode.toUpperCase()}</div>
                         </div>
