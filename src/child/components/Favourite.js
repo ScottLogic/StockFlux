@@ -11,7 +11,6 @@ class Favourite extends Component {
         const stockCode = this.props.stockCode;
         quandlService.getStockData(stockCode, response => {
             const data = response.stockData.data[0];
-            console.log('getStockData response ::: ', response);
             const stockData = {
                 name: response.dataset.name,
                 price: data.close,
