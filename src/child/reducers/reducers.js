@@ -12,7 +12,7 @@ import {
     FAV_CLICKED,
     SELECTION
 } from '../actions/sidebar.js';
-
+import deepFreeze from 'deep-freeze';
 
 function selection(state = {}, action) {
     switch (action.type) {
@@ -131,4 +131,15 @@ const rootReducer = combineReducers({
     windowState
 });
 
-export default rootReducer;
+// Wrap the reducer in dev to freeze the state and action
+const checkImmutable = (reducer) => {
+
+    if (process.env.NODE_ENV === 'production') {
+        return reducer;
+    }
+    return (state, action) => reducer(state !== undefined ? deepFreeze(state) : state,
+                                        action !== undefined ? deepFreeze(action) : action);
+};
+
+
+export default checkImmutable(rootReducer);

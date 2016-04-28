@@ -21,10 +21,12 @@ const App = ({ code, name }) => (
         <SideBar />
         <div className="main-content">
             <Toolbar />
-            <div id="showcase-title">
-                <div className="code">{code}</div> <div className="name"> {truncate(name)}</div>
+            <div className={code ? '' : 'hidden'}>
+                <div id="showcase-title">
+                    <div className="code">{code}</div> <div className="name"> {truncate(name)}</div>
+                </div>
+                <Showcase code={code} />
             </div>
-            <Showcase code={code} />
         </div>
         <DevTools />
     </div>
