@@ -8,7 +8,6 @@ export const TOGGLE_FAVOURITE = 'TOGGLE_FAVOURITE';
 export const SELECTION = 'SELECTION';
 
 import QuandlService from '../services/QuandlService.js';
-
 const quandlService = new QuandlService();
 
 // TODO:  pass id only && fire fetches to get all data
@@ -21,10 +20,9 @@ export function selectStock(code, name) {
 }
 
 // TODO:  pass id only && fire fetches to get all data
-export function toggleFavourite(code, data) {
+export function toggleFavourite(code) {
     return {
         code,
-        data,
         type: TOGGLE_FAVOURITE
     };
 }

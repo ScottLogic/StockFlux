@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { toggleFavourite, selectStock } from '../../../actions/sidebar';
+import { selectStock, toggleFavourite } from '../../../actions/sidebar';
 import favTabImage from '../../../assets/png/favourites_tab.png';
 import Favourite from '../../../components/Favourite.js';
 
@@ -13,8 +13,8 @@ class Favourites extends Component {
         this.toggleFavourite = this.toggleFavourite.bind(this);
     }
 
-    onClick(stock) {
-        this.props.dispatch(selectStock(stock.code, stock.name));
+    onClick(stockCode, stockName) {
+        this.props.dispatch(selectStock(stockCode, stockName));
     }
 
     onDrag() {
@@ -22,11 +22,10 @@ class Favourites extends Component {
     }
 
     toggleFavourite(stock) {
-        this.props.dispatch(toggleFavourite(stock.code, stock));
+        this.props.dispatch(toggleFavourite(stock.code));
     }
 
     render() {
-
         const { favourites, hasErrors, isStarting, selection } = this.props;
         let bindings = {
             onClick: this.onClick,
@@ -54,8 +53,8 @@ class Favourites extends Component {
                             <p>Use the search tab to add new stocks to the list.</p>
                         </div>
                         }
-                        {favourites && favourites.length > 0 && (favourites || []).map(stock =>
-                            <Favourite key={stock.code} stock={stock} bindings={bindings} selected={stock.code === selection.code} />)}
+                        {favourites && favourites.length > 0 && (favourites || []).map(stockCode =>
+                            <Favourite key={stockCode} stockCode={stockCode} bindings={bindings} selected={stockCode === selection.code} isFavourite={favourites.indexOf(stockCode) >= 0} />)}
                     </div>
                 </div>
             </div>
