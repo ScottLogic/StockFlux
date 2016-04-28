@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Toolbar from './toolbar/Toolbar.js';
 import SideBar from './sidebars/Sidebar.js';
 import Showcase from './showcase/Showcase';
+import Version from '../components/version/Version';
 import { truncate } from '../services/formatters';
 
 
@@ -23,10 +24,11 @@ const App = ({ code, name }) => (
             <Toolbar />
             <div className={code ? '' : 'hidden'}>
                 <div id="showcase-title">
-                    <div className="code">{code}</div> <div className="name"> {truncate(name)}</div>
+                    <div className="code">{code}</div> <div className="name">({truncate(name)})</div>
                 </div>
                 <Showcase code={code} />
             </div>
+            <Version />
         </div>
         <DevTools />
     </div>
