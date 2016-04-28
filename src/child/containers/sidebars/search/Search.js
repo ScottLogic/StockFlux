@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { search, clearSearch, selectStock, toggleFavourite } from '../../../actions/sidebar';
+import { searchInput, search, clearSearch, selectStock, toggleFavourite } from '../../../actions/sidebar';
 import searchTabImage from '../../../assets/png/search_tab.png';
 import SearchResult from '../../../components/SearchResult.js';
+const SEARCH_TIMEOUT_INTERVAL = 250;
 
 class Search extends Component {
     constructor(props) {
@@ -24,7 +25,14 @@ class Search extends Component {
 
     onChange(e) {
         const query = e.target.value;
-        this.props.dispatch(search(query));
+        this.props.dispatch(searchInput(query));
+
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
+        this.timeout = setTimeout(() => {
+            this.props.dispatch(search(query));
+        }, SEARCH_TIMEOUT_INTERVAL);
     }
 
     onIconClick(stock) {

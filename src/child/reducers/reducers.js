@@ -4,8 +4,9 @@ import { TOGGLE_COMPACT, TOGGLE_MAXIMISE, STATE_CLOSE } from '../actions/window.
 
 import {
     CLEAR_SEARCH,
-    SEARCH_STARTED,
     SEARCH_CLICKED,
+    SEARCH_INPUT,
+    SEARCH_STARTED,
     SEARCH_FINISHED,
     SEARCH_ERROR,
     TOGGLE_FAVOURITE,
@@ -46,17 +47,20 @@ function sidebar(state = { showSeach: true }, action) {
 
 function search(state = { term: '' }, action) {
     switch (action.type) {
+    case SEARCH_INPUT:
+        return Object.assign({}, state, {
+            term: action.term
+        });
     case SEARCH_STARTED:
         return Object.assign({}, state, {
             isSearching: true,
             term: action.term
         });
     case SEARCH_FINISHED:
-        // TODO: go through favs and toggle "favourite" flag as needed
-        return Object.assign({}, state, {
+        return state.term === action.term ? Object.assign({}, state, {
             isSearching: false,
             results: action.results
-        });
+        }) : state;
     case SEARCH_ERROR:
         return Object.assign({}, state, {
             isSearching: false,
