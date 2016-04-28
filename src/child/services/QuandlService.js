@@ -18,12 +18,10 @@ function period() {
     return moment().subtract(28, 'days');
 }
 
-function processDataset(dataset, query) {
+function processDataset(dataset) {
     return {
         name: dataset.name,
-        code: dataset.dataset_code,
-        favourite: false,
-        query
+        code: dataset.dataset_code
     };
 }
 
@@ -81,12 +79,17 @@ function processResponse(json) {
 class QuandlService {
 
     search(query, cb, noResultsCb, errorCb, usefallback = false) {
-        this.stockSearch(query, usefallback).then(
-        (result) => {
+        const apiKeyParam = (usefallback ? '' : API_KEY_VALUE);
+        fetch(`${QUANDL_URL}datasets.json?${apiKeyParam}&query=${query}&database_code=WIKI`, {
+            method: 'GET',
+            cache: true,
+        })
+        .then(response => response.json())
+        .then(json => (isValidResponse(json) ? filterByDate(json) : {}))
+        .then(result => {
             const processedDataset = result.datasets.map(
                 (dataset) => processDataset(dataset, query)
             );
-
             cb(processedDataset);
         }).catch((result) => {
             if (!usefallback) {
@@ -101,22 +104,18 @@ class QuandlService {
         });
     }
 
-    getMeta(stockCode, cb) {
-        this.stockMetadata().get({ stock_code: stockCode }, (result) => {
-            cb(processDataset(result.dataset, stockCode));
-        });
+    // Queries Quandl for the specific stock code
+    getStockMetadata(code, callback) {
+        return fetch(`${QUANDL_URL}${QUANDL_WIKI}${code}/metadata.json?${API_KEY_VALUE}`)
+        .then(response => response.json())
+        .then(json => callback(json));
     }
 
-    /**
-    * @todo use alternative API key instead of defaulting anonymous requests
-    * anonymous requests have a limit of 50 /day whereas the limit for
-    * a registered acc is 50k
-    */
-    stockData(usefallback = false) {
+    getStockData(code, callback, errorCb, usefallback = false) {
         const startDate = period().format('YYYY-MM-DD');
         const apiKeyParam = (usefallback ? '' : API_KEY_VALUE);
 
-        return fetch(`${QUANDL_URL}${QUANDL_WIKI}:code.json?${apiKeyParam}&start_date=${startDate}`, {
+        return fetch(`${QUANDL_URL}${QUANDL_WIKI}${code}.json?${apiKeyParam}&start_date=${startDate}`, {
             method: 'GET',
             cache: true
         })
@@ -124,59 +123,11 @@ class QuandlService {
         .then(json => {
             if (isValidResponse(json)) {
                 processResponse(json);
-            }
-            return json;
-        });
-    }
-
-    /**
-    * @param stockCode {String} Stock code to query
-    * @param cb {Function} callback to be called on success and error
-    * @todo use alternative API key instead of defaulting to No key
-    * @todo should we show a warning to the user when we swap to anonymous?
-    */
-    getData(stockCode, cb, errorCb, usefallback = false) {
-        return this.stockData(usefallback).get({ code: stockCode }, (result) => {
-            cb({
-                success: true,
-                code: stockCode,
-                name: result.dataset.name,
-                data: result.stockData.data
-            });
-        }, (result) => {
-            // only use the failsafe once per call
-            if (!usefallback) {
-                this.getData(stockCode, cb, errorCb, true);
-            } else if (errorCb) {
-                // pass data on so an error message can be shown
-                errorCb({
-                    success: false,
-                    code: result.status,
-                    message: result.statusText
-                });
+                callback(json);
+            } else {
+                errorCb(json);
             }
         });
-    }
-
-    // Queries Quandl for the specific stock code
-    // stockMetadata() {
-    //     return this.$resource(QUANDL_URL + QUANDL_WIKI + ':stock_code/metadata.json?' + API_KEY_VALUE, {}, {
-    //         get: { method: 'GET', cache: true }
-    //     });
-    // }
-
-    // Queries Quandl for all stocks matching the input query
-    stockSearch(query, usefallback = false) {
-
-        const apiKeyParam = (usefallback ? '' : API_KEY_VALUE);
-        console.log(`${QUANDL_URL}datasets.json?${apiKeyParam}&query=${query}&database_code=WIKI`); // eslint-disable-line no-console
-
-        return fetch(`${QUANDL_URL}datasets.json?${apiKeyParam}&query=${query}&database_code=WIKI`, {
-            method: 'GET',
-            cache: true,
-        })
-        .then(response => response.json())
-        .then(json => (isValidResponse(json) ? filterByDate(json) : {}));
     }
 
     apiKey() {
