@@ -41,10 +41,6 @@ function sidebar(state = { showSeach: true }, action) {
     }
 }
 
-function getIndexOfValue(code, arr = []) {
-    return arr.findIndex(res => res.code === code);
-}
-
 function search(state = { term: '' }, action) {
     switch (action.type) {
     case SEARCH_STARTED:
@@ -65,38 +61,24 @@ function search(state = { term: '' }, action) {
         });
     case CLEAR_SEARCH:
         return {};
-    case TOGGLE_FAVOURITE: {
-        const results = [...state.results];
-        const indexOfValue = getIndexOfValue(action.code, state.results);
-        if (indexOfValue >= 0) {
-            results[indexOfValue] = Object.assign({}, results[indexOfValue], {
-                favourite: !results[indexOfValue].favourite
-            });
-        }
-        return Object.assign({}, state, {
-            results
-        });
-    }
     default:
         return state;
     }
 }
 
+// state is an array of codes
 function favourites(state = [], action) {
+    let newState;
+    let index;
+
     switch (action.type) {
-    case SEARCH_FINISHED:
-        // TODO update state
-        return state;
-    case TOGGLE_FAVOURITE: // eslint-disable-line no-case-declarations
-        const found = getIndexOfValue(action.code, state);
-        let newState;
-        if (found < 0) {
-            newState = [...state, Object.assign({}, action.data, {
-                favourite: true
-            })];
+    case TOGGLE_FAVOURITE:
+        index = state.indexOf(action.code);
+        newState = [...state];
+        if (index >= 0) {
+            newState.splice(index, 1);
         } else {
-            newState = [...state];
-            newState.splice(found, 1);
+            newState.push(action.code);
         }
         return newState;
     default:
