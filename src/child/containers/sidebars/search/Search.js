@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { search, clearSearch, toggleFavourite, selectStock } from '../../../actions/sidebar';
+import { search, clearSearch, selectStock, toggleFavourite } from '../../../actions/sidebar';
 import searchTabImage from '../../../assets/png/search_tab.png';
 import SearchResult from '../../../components/SearchResult.js';
 
@@ -15,13 +15,12 @@ class Search extends Component {
     }
 
     componentDidMount() {
-        $(this.refs.searchscroll).mCustomScrollbar(
-            {
-                scrollInertia: 0,
-                mouseWheel: {
-                    scrollAmount: 80
-                }
-            });
+        $(this.refs.searchscroll).mCustomScrollbar({
+            scrollInertia: 0,
+            mouseWheel: {
+                scrollAmount: 80
+            }
+        });
     }
 
     onChange(e) {
@@ -30,7 +29,7 @@ class Search extends Component {
     }
 
     onIconClick(stock) {
-        this.props.dispatch(toggleFavourite(stock.code, stock));
+        this.props.dispatch(toggleFavourite(stock.code));
     }
 
     onClick(stock) {
@@ -39,7 +38,6 @@ class Search extends Component {
 
     onDrag() {
         // TODO: send content to tearout
-        // Can we actually drag a search?
     }
 
     clear() {
@@ -47,7 +45,7 @@ class Search extends Component {
     }
 
     render() {
-        const { isSearching, hasErrors, results, term } = this.props;
+        const { favourites, isSearching, hasErrors, results, term } = this.props;
 
         let bindings = {
             onClick: this.onClick,
@@ -69,12 +67,11 @@ class Search extends Component {
 }
                         {isSearching && <div className="loading-message results-message">Loading search results...</div>}
 
-                        {(results || []).map(stock => <SearchResult key={stock.code} stock={stock} bindings={bindings} />)}
+                        {(results || []).map(stock => <SearchResult key={stock.code} stock={stock} bindings={bindings} isFavourite={favourites.indexOf(stock.code) >= 0} />)}
                         {results && results.length === 0 && !hasErrors && !isSearching && <div className="results-message no-results">
                             Oops!<br />
                             Looks like no matches were found.
-                        </div>
-}
+                        </div>}
                     </div>
                 </div>
             </div>
@@ -85,13 +82,15 @@ Search.propTypes = {
     isSearching: PropTypes.bool,
     hasErrors: PropTypes.bool,
     results: PropTypes.array,
+    favourites: PropTypes.array,
     term: PropTypes.string.isRequired,
     dispatch: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
+    const { favourites } = state;
     const { isSearching, hasErrors, results, term } = state && state.search;
-    return { isSearching, hasErrors, results, term };
+    return { favourites, isSearching, hasErrors, results, term };
 }
 
 export default connect(mapStateToProps)(Search);
