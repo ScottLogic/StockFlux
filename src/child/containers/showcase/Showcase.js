@@ -24,7 +24,7 @@ class Showcase extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (this.props.code !== nextProps.code) {
+        if (this.props.code !== nextProps.code && nextProps.code) {
             if (!this.firstRun) {
                 this.firstRun = true;
                 this.chart.run(this.refs.chart);
@@ -44,7 +44,6 @@ class Showcase extends Component {
     }
 }
 
-// onClick: PropTypes.func.isRequired,
 Showcase.propTypes = {
     code: PropTypes.string
 };
