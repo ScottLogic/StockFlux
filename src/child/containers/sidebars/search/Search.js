@@ -8,7 +8,6 @@ class Search extends Component {
     constructor(props) {
         super(props);
         this.onChange = this.onChange.bind(this);
-        this.onDrag = this.onDrag.bind(this);
         this.onClick = this.onClick.bind(this);
         this.onIconClick = this.onIconClick.bind(this);
         this.clear = this.clear.bind(this);
@@ -36,10 +35,6 @@ class Search extends Component {
         this.props.dispatch(selectStock(stock.code, stock.name));
     }
 
-    onDrag() {
-        // TODO: send content to tearout
-    }
-
     clear() {
         this.props.dispatch(clearSearch());
     }
@@ -49,8 +44,7 @@ class Search extends Component {
 
         let bindings = {
             onClick: this.onClick,
-            onIconClick: this.onIconClick,
-            onDrag: this.onDrag
+            onIconClick: this.onIconClick
         };
         return (
             <div>

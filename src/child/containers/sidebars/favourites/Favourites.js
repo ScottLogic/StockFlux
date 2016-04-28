@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { selectStock, toggleFavourite } from '../../../actions/sidebar';
+import { selectStock, unselectStock, toggleFavourite } from '../../../actions/sidebar';
 import favTabImage from '../../../assets/png/favourites_tab.png';
 import Favourite from '../../../components/Favourite.js';
 
@@ -21,8 +21,11 @@ class Favourites extends Component {
         // TODO: send content to tearout
     }
 
-    toggleFavourite(stock) {
-        this.props.dispatch(toggleFavourite(stock.code));
+    toggleFavourite(stockCode) {
+        this.props.dispatch(toggleFavourite(stockCode));
+        if (this.props.selection.code === stockCode) {
+            this.props.dispatch(unselectStock());
+        }
     }
 
     render() {
