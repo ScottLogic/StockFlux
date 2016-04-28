@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { searchInput, search, clearSearch, selectStock, toggleFavourite } from '../../../actions/sidebar';
 import searchTabImage from '../../../assets/png/search_tab.png';
 import SearchResult from '../../../components/SearchResult.js';
-const SEARCH_TIMEOUT_INTERVAL = 0;
+const SEARCH_TIMEOUT_INTERVAL = 250;
 
 class Search extends Component {
     constructor(props) {
