@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { TOGGLE_COMPACT, TOGGLE_MAXIMISE, STATE_CLOSE } from '../actions/window.js';
+import { TOGGLE_COMPACT, MAXIMIZE, RESTORE, CLOSE } from '../actions/window.js';
 
 import {
     CLEAR_SEARCH,
@@ -102,11 +102,15 @@ function windowState(state = {
         return Object.assign({}, state, {
             isCompact: action.state
         });
-    case TOGGLE_MAXIMISE:
+    case MAXIMIZE:
         return Object.assign({}, state, {
-            isMaximised: action.state
+            isMaximised: true
         });
-    case STATE_CLOSE:
+    case RESTORE:
+        return Object.assign({}, state, {
+            isMaximised: false
+        });
+    case CLOSE:
     default:
         return state;
     }
