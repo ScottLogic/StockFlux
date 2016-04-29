@@ -75,7 +75,23 @@
 .button-icon.star {
     background-image: url('@{baseImgDir}/favourite_off.png');
 }
-.button-icon.star.active,
+
+.search-result .button-icon.star {
+    transition: all 0s;
+}
+
+.search-result:hover .button-icon.star,
+.dark .button-icon.star {
+    background-image: url('@{baseImgDir}/favourite_off_hover.png');
+    transition: all 0s;
+    &:hover {
+        background-image: url('@{baseImgDir}/favourite_hover.png');
+        transition: all @icon-transition-duration;
+    }
+}
+.button-icon.star.active{
+    background-image: url('@{baseImgDir}/favourite_on.png') !important;
+}
 .button-icon.star:hover {
-    background-image: url('@{baseImgDir}/favourite_on.png');
+    background-image: url('@{baseImgDir}/favourite_hover.png') !important;
 }
