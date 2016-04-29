@@ -1,3 +1,4 @@
+/* global $ */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { searchInput, search, clearSearch, selectStock, toggleFavourite } from '../../../actions/sidebar';
@@ -48,7 +49,7 @@ class Search extends Component {
     }
 
     render() {
-        const { favourites, isSearching, hasErrors, results, term } = this.props;
+        const { favourites, isSearching, hasErrors, results, term, selection } = this.props;
 
         let bindings = {
             onClick: this.onClick,
@@ -69,7 +70,14 @@ class Search extends Component {
 }
                         {isSearching && <div className="loading-message results-message">Loading search results...</div>}
 
-                        {(results || []).map(stock => <SearchResult key={stock.code} stock={stock} bindings={bindings} isFavourite={favourites.indexOf(stock.code) >= 0} />)}
+                        {(results || []).map(stock =>
+                            <SearchResult
+                              key={stock.code}
+                              stock={stock}
+                              bindings={bindings}
+                              selected={stock.code === selection.code}
+                              isFavourite={favourites.indexOf(stock.code) >= 0}
+                            />)}
                         {results && results.length === 0 && !hasErrors && !isSearching && <div className="results-message no-results">
                             Oops!<br />
                             Looks like no matches were found.
@@ -85,14 +93,15 @@ Search.propTypes = {
     hasErrors: PropTypes.bool,
     results: PropTypes.array,
     favourites: PropTypes.array,
+    selection: PropTypes.object.isRequired,
     term: PropTypes.string.isRequired,
     dispatch: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
-    const { favourites } = state;
+    const { favourites, selection } = state;
     const { isSearching, hasErrors, results, term } = state && state.search;
-    return { favourites, isSearching, hasErrors, results, term };
+    return { favourites, isSearching, hasErrors, results, term, selection };
 }
 
 export default connect(mapStateToProps)(Search);
