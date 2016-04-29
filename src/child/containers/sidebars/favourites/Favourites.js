@@ -1,3 +1,4 @@
+/* global $ */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
@@ -11,6 +12,25 @@ class Favourites extends Component {
         this.onDrag = this.onDrag.bind(this);
         this.onClick = this.onClick.bind(this);
         this.toggleFavourite = this.toggleFavourite.bind(this);
+    }
+
+    componentDidMount() {
+        const scrollPadding = 'scroll-padding';
+        const el = this.refs.scrollarea;
+        $(this.refs.scrollarea).mCustomScrollbar({
+            scrollInertia: 0,
+            mouseWheel: {
+                scrollAmount: 80
+            },
+            callbacks: {
+                onOverflowY: () => {
+                    $(el).addClass(scrollPadding);
+                },
+                onOverflowYNone: () => {
+                    $(el).removeClass(scrollPadding);
+                }
+            }
+        });
     }
 
     onClick(stockCode, stockName) {
@@ -40,7 +60,7 @@ class Favourites extends Component {
                 <div className="sidetab-top">
                     <img src={favTabImage} className="top-icon" title="Favourites List" draggable="false" />
                 </div>
-                <div id="favourite-scroll" className="side-scroll custom-scrollbar hiddenOnContracted">
+                <div id="favourite-scroll" ref="scrollarea" className="side-scroll custom-scrollbar hiddenOnContracted">
                     <div className="sidetab">
 
                         {isStarting && <div className="no-favourites">
