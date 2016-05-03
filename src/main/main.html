@@ -3,11 +3,16 @@
     <side-bar></side-bar>
     <div class="right-content">
         <div class="main-content">
-            <div ng-controller="ShowcaseCtrl as showcaseCtrl" ng-show="showcaseCtrl.hasSelection()" ng-if="!mainCtrl.isCompact()">
-                <div id="showcase-title">
-                    <div class="code">{{showcaseCtrl.selectionCode()}}</div> <div class="name"> ({{showcaseCtrl.selectionName() | truncate}})</div>
+            <div ng-controller="ShowcaseCtrl as showcaseCtrl" ng-if="!mainCtrl.isCompact()">
+                <div ng-show="showcaseCtrl.hasSelection()">
+                    <div id="showcase-title">
+                        <div class="code">{{showcaseCtrl.selectionCode()}}</div> <div class="name"> ({{showcaseCtrl.selectionName() | truncate}})</div>
+                    </div>
+                    <showcase selection="showcaseCtrl.selectionCode()"></showcase>
                 </div>
-                <showcase selection="showcaseCtrl.selectionCode()"></showcase>
+                <div ng-hide="showcaseCtrl.hasSelection()">
+                    <img class="no-favourites-image" src="assets/png/no_favourites.png">
+                </div>
             </div>
         </div>
     </div>
