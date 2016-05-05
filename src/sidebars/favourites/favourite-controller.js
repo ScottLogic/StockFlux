@@ -111,7 +111,7 @@
                         // But only if there's no selection already
                         if (updatedStock.favourite && this.selection() === '') {
                             this.selectionService.select(updatedStock);
-                        } else if (oldSelectedStock.code === updatedStock.code) {
+                        } else if (oldSelectedStock.code === updatedStock.code && !updatedStock.favourite) {
                             // If there's no stocks and it's not a favourite any more, but also
                             // if the selection is on the updated stock, deselect.
                             this.selectionService.deselect();
