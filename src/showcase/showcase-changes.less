@@ -9,6 +9,7 @@
 @tertiary-red: #FB4345;
 @tertiary-yellow: #FFFB6B;
 @tertiary-blue: @chart-teal;
+@button-hover: #214244;
 
 @bollinger-fill-colour: fade(@chart-fade, 20%);
 @bollinger-average-colour: @tertiary-yellow;
@@ -36,7 +37,7 @@
     cursor: default;
 
     &:hover {
-      background: #214244;
+      background: @button-hover;
     }
   }
 
@@ -130,15 +131,15 @@
       width: 1px;
 
       > rect {
-        fill: @chart-teal;
+        fill: @chart-teal !important;
       }
 
       .outer-handle, .inner-handle {
-        stroke: @chart-teal;
+        stroke: @chart-teal !important;
       }
 
       .inner-handle {
-        fill: @chart-teal;
+        fill: @chart-teal !important;
       }
     }
   }
@@ -147,12 +148,17 @@
     opacity: 1.0;
 
     .reset-button {
-      fill: fade(@chart-fade, 20%) !important;
-      stroke: fade(@chart-fade, 20%) !important;
+      stroke: @chart-teal !important;
 
-      &.active {
-        stroke: @chart-teal !important;
+      &:hover {
+        fill: @button-hover !important;
       }
+    }
+  }
+
+  #navbar-container {
+    #brush-gradient .brush-gradient-top {
+      stop-color: @chart-teal;
     }
   }
 }
@@ -203,7 +209,7 @@
     padding-bottom: 0px;
 
     &:hover {
-      background-color: #224443;
+      background-color: @button-hover;
     }
 
     &:first-of-type {
