@@ -78,7 +78,7 @@ function processResponse(json) {
 
 class QuandlService {
 
-    search(query, cb, noResultsCb, errorCb, usefallback = false) {
+    search(query, cb, errorCb, usefallback = false) {
         const apiKeyParam = (usefallback ? '' : API_KEY_VALUE);
         fetch(`${QUANDL_URL}datasets.json?${apiKeyParam}&query=${query}&database_code=WIKI`, {
             method: 'GET',
@@ -93,7 +93,7 @@ class QuandlService {
             cb(processedDataset);
         }).catch((result) => {
             if (!usefallback) {
-                this.search(query, cb, noResultsCb, errorCb, true);
+                this.search(query, cb, errorCb, true);
             } else if (errorCb) {
                 errorCb({
                     success: false,
