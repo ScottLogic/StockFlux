@@ -30,7 +30,7 @@ function selection(state = {}, action) {
     }
 }
 
-function sidebar(state = { showSeach: true }, action) {
+function sidebar(state = { showSearch: true }, action) {
     switch (action.type) {
     case FAV_CLICKED:
         return {
@@ -38,7 +38,7 @@ function sidebar(state = { showSeach: true }, action) {
         };
     case SEARCH_CLICKED:
         return {
-            showSeach: true
+            showSearch: true
         };
     default:
         return state;
