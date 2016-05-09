@@ -1,6 +1,6 @@
 {
   "name": "bitflux-openfin",
-  "version": "10.1.0",
+  "version": "10.2.0",
   "type": "develop",
   "scripts": {
     "test": "grunt ci",
