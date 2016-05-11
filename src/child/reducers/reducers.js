@@ -1,29 +1,17 @@
 import { combineReducers } from 'redux';
 
-import { TOGGLE_COMPACT, MAXIMIZE, RESTORE, CLOSE } from '../actions/window.js';
+import ACTION_TYPES from '../constants/actionTypes.js';
 
-import {
-    CLEAR_SEARCH,
-    SEARCH_CLICKED,
-    SEARCH_INPUT,
-    SEARCH_STARTED,
-    SEARCH_FINISHED,
-    SEARCH_ERROR,
-    TOGGLE_FAVOURITE,
-    FAV_CLICKED,
-    UNSELECT,
-    SELECTION
-} from '../actions/sidebar.js';
 import deepFreeze from 'deep-freeze';
 
 function selection(state = {}, action) {
     switch (action.type) {
-    case SELECTION:
+    case ACTION_TYPES.SIDEBAR.SELECTION:
         return Object.assign({}, state, {
             code: action.code,
             name: action.name,
         });
-    case UNSELECT:
+    case ACTION_TYPES.SIDEBAR.UNSELECT:
         return {};
     default:
         return state;
@@ -32,11 +20,11 @@ function selection(state = {}, action) {
 
 function sidebar(state = { showSearch: true }, action) {
     switch (action.type) {
-    case FAV_CLICKED:
+    case ACTION_TYPES.SIDEBAR.FAV_CLICKED:
         return {
             showFavourites: true
         };
-    case SEARCH_CLICKED:
+    case ACTION_TYPES.SIDEBAR.SEARCH_CLICKED:
         return {
             showSearch: true
         };
@@ -47,26 +35,26 @@ function sidebar(state = { showSearch: true }, action) {
 
 function search(state = { term: '' }, action) {
     switch (action.type) {
-    case SEARCH_INPUT:
+    case ACTION_TYPES.SIDEBAR.SEARCH_INPUT:
         return Object.assign({}, state, {
             term: action.term
         });
-    case SEARCH_STARTED:
+    case ACTION_TYPES.SIDEBAR.SEARCH_STARTED:
         return Object.assign({}, state, {
             isSearching: true,
             term: action.term
         });
-    case SEARCH_FINISHED:
+    case ACTION_TYPES.SIDEBAR.SEARCH_FINISHED:
         return state.term === action.term ? Object.assign({}, state, {
             isSearching: false,
             results: action.results
         }) : state;
-    case SEARCH_ERROR:
+    case ACTION_TYPES.SIDEBAR.SEARCH_ERROR:
         return Object.assign({}, state, {
             isSearching: false,
             hasErrors: true
         });
-    case CLEAR_SEARCH:
+    case ACTION_TYPES.SIDEBAR.CLEAR_SEARCH:
         return {};
     default:
         return state;
@@ -79,7 +67,7 @@ function favourites(state = [], action) {
     let index;
 
     switch (action.type) {
-    case TOGGLE_FAVOURITE:
+    case ACTION_TYPES.SIDEBAR.TOGGLE_FAVOURITE:
         index = state.indexOf(action.code);
         newState = [...state];
         if (index >= 0) {
@@ -98,19 +86,19 @@ function windowState(state = {
     isMaximised: false
 }, action) {
     switch (action.type) {
-    case TOGGLE_COMPACT:
+    case ACTION_TYPES.WINDOW.TOGGLE_COMPACT:
         return Object.assign({}, state, {
             isCompact: action.state
         });
-    case MAXIMIZE:
+    case ACTION_TYPES.WINDOW.MAXIMIZE:
         return Object.assign({}, state, {
             isMaximised: true
         });
-    case RESTORE:
+    case ACTION_TYPES.WINDOW.RESTORE:
         return Object.assign({}, state, {
             isMaximised: false
         });
-    case CLOSE:
+    case ACTION_TYPES.WINDOW.CLOSE:
     default:
         return state;
     }
