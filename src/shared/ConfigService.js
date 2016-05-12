@@ -18,7 +18,7 @@ const allowContextMenu = true;
  */
 class ConfigService {
     createName() {
-        return 'window' + Math.floor(Math.random() * 1000) + Math.ceil(Math.random() * 999);
+        return `window${Math.floor(Math.random() * 1000) + Math.ceil(Math.random() * 999)}`;
     }
 
     getConfig(name, overrides) {
