@@ -17,7 +17,7 @@ const Stock = ({ isFavourite, stock, selected, bindings }) => {
                 <div className="name">{truncate(stock.name)}</div>
                 <div className="code">{stock.code}</div>
             </div>
-            <div className={'button-icon star' + (isFavourite ? ' active' : '')} onClick={() => bindings.onIconClick(stock)}>
+            <div className={`button-icon star${(isFavourite ? ' active' : '')}`} onClick={() => bindings.onIconClick(stock)}>
                 &nbsp;
             </div>
         </div>

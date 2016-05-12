@@ -9,7 +9,7 @@ class Minichart extends Component {
     componentDidUpdate() {
         const { stockCode, chartData } = this.props;
         let data = chartData.stockData.data;
-        const extent = fc.util.innerDimensions(document.getElementById(stockCode + 'chart'));
+        const extent = fc.util.innerDimensions(document.getElementById(`${stockCode}chart`));
         const width = extent.width;
         const height = extent.height;
 
@@ -21,11 +21,12 @@ class Minichart extends Component {
         }
 
         data = data.map(d => {
+            const datum = d;
             const date = moment(d.date);
-            d.date = date.toDate();
-            return d;
+            datum.date = date.toDate();
+            return datum;
         });
-        const container = d3.select('#' + stockCode + 'chart')
+        const container = d3.select(`#${stockCode}chart`)
                         .insert('svg', 'div')
                         .attr('width', width)
                         .attr('height', height);
@@ -44,10 +45,10 @@ class Minichart extends Component {
                         .range([height, 0])
                         .nice();
         const area = fc.series.area()
-                        .y0Value((d) => closeExtent[0])
+                        .y0Value(() => closeExtent[0])
                         .y1Value((d) => d.close)
                         .decorate((selection) => {
-                            selection.attr('fill', 'url(#' + stockCode + '-minichart-gradient)');
+                            selection.attr('fill', `url(#${stockCode}-minichart-gradient)`);
                         });
         const line = fc.series.line();
 
@@ -75,9 +76,9 @@ class Minichart extends Component {
         const { stockCode, chartData } = this.props;
         return (
             <div className="minichartWrapper">
-                <svg className="minichart" id={stockCode + 'chart'}>
+                <svg className="minichart" id={`${stockCode}chart`}>
                     <defs>
-                        <linearGradient id={stockCode + '-minichart-gradient'} x1="0" x2="0" y1="0" y2="1">
+                        <linearGradient id={`${stockCode}-minichart-gradient`} x1="0" x2="0" y1="0" y2="1">
                             <stop offset="0%" className="minichart-gradient top" />
                             <stop offset="100%" className="minichart-gradient bottom" />
                         </linearGradient>
