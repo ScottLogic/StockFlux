@@ -2,7 +2,8 @@
   "name": "bitflux-openfin",
   "version": "10.1.0",
   "scripts": {
-    "postinstall": "cd node_modules/BitFlux && npm i && grunt build:module"
+    "test": "eslint --plugin import jsx-ally react *.js src/",
+    "postinstall": "cd node_modules/BitFlux && npm i -g grunt-cli && npm i && grunt build:module"
   },
   "devDependencies": {
     "babel-core": "^6.7.6",
