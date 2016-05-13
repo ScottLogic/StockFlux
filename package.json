@@ -2,8 +2,10 @@
   "name": "bitflux-openfin",
   "version": "10.1.0",
   "scripts": {
-    "test": "eslint --plugin import jsx-ally react *.js src/",
-    "postinstall": "cd node_modules/BitFlux && npm i -g grunt-cli && npm i && grunt build:module"
+    "ci": "npm run lint && npm test",
+    "lint": "eslint --plugin import jsx-ally react *.js src/ test/",
+    "test": "mocha --compilers js:babel-register --recursive",
+    "postinstall": "cd node_modules/BitFlux && npm i && grunt build:module"
   },
   "devDependencies": {
     "babel-core": "^6.7.6",
@@ -11,6 +13,8 @@
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.6.0",
     "babel-preset-react": "^6.5.0",
+    "babel-register": "^6.8.0",
+    "chai": "^3.5.0",
     "css-loader": "^0.23.1",
     "deep-freeze": "0.0.1",
     "eslint": "^2.8.0",
@@ -21,11 +25,15 @@
     "file-loader": "^0.8.5",
     "less": "^2.6.1",
     "less-loader": "^2.2.3",
+    "mocha": "^2.4.5",
+    "nock": "^8.0.0",
     "react-hot-loader": "^1.3.0",
     "redux-devtools": "^3.2.0",
     "redux-devtools-dock-monitor": "^1.1.1",
     "redux-devtools-log-monitor": "^1.0.11",
+    "redux-mock-store": "^1.0.2",
     "script-loader": "^0.7.0",
+    "semver": "^5.1.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.15",
