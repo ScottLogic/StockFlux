@@ -2,7 +2,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { selectStock, unselectStock, toggleFavourite } from '../../../actions/sidebar';
+import { selectStock, unselectStock, toggleFavourite, quandlResponse } from '../../../actions/sidebar';
 import favTabImage from '../../../assets/png/favourites_tab.png';
 import Favourite from '../../../components/Favourite.js';
 
@@ -12,6 +12,7 @@ class Favourites extends Component {
         this.onDrag = this.onDrag.bind(this);
         this.onClick = this.onClick.bind(this);
         this.toggleFavourite = this.toggleFavourite.bind(this);
+        this.onQuandlResponse = this.onQuandlResponse.bind(this);
     }
 
     componentDidMount() {
@@ -41,6 +42,10 @@ class Favourites extends Component {
         // TODO: send content to tearout
     }
 
+    onQuandlResponse(stockCode, stockName) {
+        this.props.dispatch(quandlResponse(stockCode, stockName));
+    }
+
     toggleFavourite(stockCode) {
         this.props.dispatch(toggleFavourite(stockCode));
         if (this.props.selection.code === stockCode) {
@@ -53,7 +58,8 @@ class Favourites extends Component {
         let bindings = {
             onClick: this.onClick,
             onIconClick: this.toggleFavourite,
-            onDrag: this.onDrag
+            onDrag: this.onDrag,
+            onQuandlResponse: this.onQuandlResponse
         };
         return (
             <div>
@@ -71,13 +77,20 @@ class Favourites extends Component {
                             An error occurred while retrieving data. Please check your internet connection or wait for our data services to be re-established.
                         </div>
                         }
-                        {!hasErrors && favourites.length === 0 && <div className="no-favourites">
+                        {!hasErrors && favourites.codes.length === 0 && <div className="no-favourites">
                             <p>You have no favourites to display.</p>
                             <p>Use the search tab to add new stocks to the list.</p>
                         </div>
                         }
-                        {favourites && favourites.length > 0 && (favourites || []).map(stockCode =>
-                            <Favourite key={stockCode} stockCode={stockCode} bindings={bindings} selected={stockCode === selection.code} isFavourite={favourites.indexOf(stockCode) >= 0} />)}
+                        {favourites.codes.map(stockCode =>
+                            <Favourite
+                              key={stockCode}
+                              stockCode={stockCode}
+                              bindings={bindings}
+                              selected={stockCode === selection.code}
+                              isFavourite={favourites.codes.indexOf(stockCode) >= 0}
+                            />)
+                        }
                     </div>
                 </div>
             </div>
@@ -86,7 +99,7 @@ class Favourites extends Component {
 }
 Favourites.propTypes = {
     selection: PropTypes.object,
-    favourites: PropTypes.array,
+    favourites: PropTypes.object.isRequired,
     hasErrors: PropTypes.bool,
     isStarting: PropTypes.bool,
     dispatch: PropTypes.func.isRequired
