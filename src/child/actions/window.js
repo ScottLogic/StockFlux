@@ -1,51 +1,45 @@
-export const MINIMIZE = 'MINIMIZE';
-export const MAXIMIZE = 'MAXIMIZE';
-export const RESTORE = 'RESTORE';
-export const CLOSE = 'CLOSE';
-export const TOGGLE_COMPACT = 'TOGGLE_COMPACT';
-export const STATE_EXPANDED = 'STATE_EXPANDED';
-export const STATE_FULL_VIEW = 'STATE_FULL_VIEW';
+import { WINDOW as ACTION_TYPES } from '../constants/actionTypes.js';
 
 export function minimise() {
     return {
-        type: MINIMIZE
+        type: ACTION_TYPES.MINIMIZE
     };
 }
 
 export function compact() {
     return {
-        type: TOGGLE_COMPACT,
+        type: ACTION_TYPES.TOGGLE_COMPACT,
         state: true
     };
 }
 
 export function expand() {
     return {
-        type: TOGGLE_COMPACT,
+        type: ACTION_TYPES.TOGGLE_COMPACT,
         state: false
     };
 }
 
 export function fullView() {
     return {
-        type: STATE_FULL_VIEW
+        type: ACTION_TYPES.STATE_FULL_VIEW
     };
 }
 
 export function maximize() {
     return {
-        type: MAXIMIZE
+        type: ACTION_TYPES.MAXIMIZE
     };
 }
 
 export function restore() {
     return {
-        type: RESTORE
+        type: ACTION_TYPES.RESTORE
     };
 }
 
 export function close() {
     return {
-        type: CLOSE
+        type: ACTION_TYPES.CLOSE
     };
 }
