@@ -65,6 +65,15 @@
             padding-top: 21px;
         }
     }
+    .searchInput {
+        opacity: 1;
+        .transition(@duration: 0.1s, @delay: 0.3s);
+    }
+    &.contracted .searchInput {
+        opacity: 0;
+        .transition(@duration: 50ms, @delay: 0s);
+        cursor: default;
+    }
 }
 .search #search-scroll {
     .position(absolute, @top: @toolbar-height, @bottom: 0px);
