@@ -1,4 +1,5 @@
 import { SIDEBAR as ACTION_TYPES } from '../constants/actionTypes.js';
+
 import QuandlService from '../services/QuandlService.js';
 const quandlService = new QuandlService();
 

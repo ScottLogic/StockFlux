@@ -60,6 +60,7 @@ function search(state = { term: '' }, action) {
     }
 }
 
+
 function favourites(state = { codes: [], names: {} }, action) {
     let newState;
     let codes;

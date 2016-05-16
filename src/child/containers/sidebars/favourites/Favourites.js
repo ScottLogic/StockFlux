@@ -117,6 +117,10 @@ class Favourites extends Component {
         this.props.dispatch(quandlResponse(stockCode, stockName));
     }
 
+    onQuandlResponse(stockCode, stockName) {
+        this.props.dispatch(quandlResponse(stockCode, stockName));
+    }
+
     toggleFavourite(stockCode) {
         this.props.dispatch(toggleFavourite(stockCode));
         if (this.props.selection.code === stockCode) {
