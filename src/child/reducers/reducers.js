@@ -54,28 +54,32 @@ function search(state = { term: '' }, action) {
             hasErrors: true
         });
     case ACTION_TYPES.SIDEBAR.CLEAR_SEARCH:
-        return {};
+        return { term: '' };
     default:
         return state;
     }
 }
 
-// state is an array of codes
-function favourites(state = { codes: [], move: {} }, action) {
+function favourites(state = { codes: [], names: {} }, action) {
+    let newState;
     let codes;
     let index;
     let currentIndex;
 
     switch (action.type) {
     case ACTION_TYPES.SIDEBAR.TOGGLE_FAVOURITE:
-        codes = [...state.codes];
-        index = codes.indexOf(action.code);
+        index = state.codes.indexOf(action.code);
+        newState = Object.assign({}, state, {
+            codes: [...state.codes],
+            names: Object.assign({}, state.names)
+        });
         if (index >= 0) {
-            codes.splice(index, 1);
+            newState.codes.splice(index, 1);
+            delete newState.names[action.code];
         } else {
-            codes.push(action.code);
+            newState.codes.push(action.code);
         }
-        return Object.assign({}, state, { codes });
+        return newState;
     case ACTION_TYPES.SIDEBAR.INSERT_FAVOURITE_AT:
         codes = [...state.codes];
         currentIndex = codes.indexOf(action.code);
@@ -89,6 +93,13 @@ function favourites(state = { codes: [], move: {} }, action) {
             codes.push(action.code);
         }
         return Object.assign({}, state, { codes, move: {} });
+    case ACTION_TYPES.SIDEBAR.QUANDL_RESPONSE:
+        newState = Object.assign({}, state, {
+            names: Object.assign({}, state.names, {
+                [action.code]: action.name
+            })
+        });
+        return newState;
     default:
         return state;
     }

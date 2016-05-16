@@ -27,6 +27,7 @@ class Favourite extends Component {
                 percentage: (data.close - data.open) / data.open * 100
             };
             const chartData = response;
+            this.props.bindings.onQuandlResponse(stockCode, response.dataset.name);
             this.setState({ stockData, chartData });
         });
     }
@@ -70,6 +71,7 @@ class Favourite extends Component {
 
     render() {
         const { stockCode, selected, bindings } = this.props;
+
         let { stockData, chartData } = this.state || {};
         stockData = stockData || {};
 

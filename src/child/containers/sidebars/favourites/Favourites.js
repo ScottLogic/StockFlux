@@ -2,7 +2,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { selectStock, unselectStock, toggleFavourite, insertFavouriteAt } from '../../../actions/sidebar';
+import { selectStock, unselectStock, toggleFavourite, quandlResponse, insertFavouriteAt } from '../../../actions/sidebar';
 import favTabImage from '../../../assets/png/favourites_tab.png';
 import Favourite from '../../../components/Favourite.js';
 
@@ -29,9 +29,9 @@ class Favourites extends Component {
 
         this.onClick = this.onClick.bind(this);
         this.toggleFavourite = this.toggleFavourite.bind(this);
-
         this.onDragOverFavourite = this.onDragOverFavourite.bind(this);
         this.onDropOverFavourite = this.onDropOverFavourite.bind(this);
+        this.onQuandlResponse = this.onQuandlResponse.bind(this);
     }
 
     componentDidMount() {
@@ -113,6 +113,10 @@ class Favourites extends Component {
         }, false);
     }
 
+    onQuandlResponse(stockCode, stockName) {
+        this.props.dispatch(quandlResponse(stockCode, stockName));
+    }
+
     toggleFavourite(stockCode) {
         this.props.dispatch(toggleFavourite(stockCode));
         if (this.props.selection.code === stockCode) {
@@ -129,7 +133,8 @@ class Favourites extends Component {
                 onDrop: this.onDropOverFavourite
             },
             onClick: this.onClick,
-            onIconClick: this.toggleFavourite
+            onIconClick: this.toggleFavourite,
+            onQuandlResponse: this.onQuandlResponse
         };
         return (
             <div id="favDropTarget" className="favDropTarget" >
@@ -153,8 +158,14 @@ class Favourites extends Component {
                         </div>
                         }
                         {codes.map(stockCode =>
-                            <Favourite key={stockCode} stockCode={stockCode} bindings={bindings} selected={stockCode === selection.code} isFavourite={codes.indexOf(stockCode) >= 0} />
-                        )}
+                            <Favourite
+                              key={stockCode}
+                              stockCode={stockCode}
+                              bindings={bindings}
+                              selected={stockCode === selection.code}
+                              isFavourite={favourites.codes.indexOf(stockCode) >= 0}
+                            />)
+                        }
                     </div>
                 </div>
             </div>
@@ -163,7 +174,7 @@ class Favourites extends Component {
 }
 Favourites.propTypes = {
     selection: PropTypes.object,
-    favourites: PropTypes.object,
+    favourites: PropTypes.object.isRequired,
     hasErrors: PropTypes.bool,
     isStarting: PropTypes.bool,
     dispatch: PropTypes.func.isRequired

@@ -77,6 +77,14 @@ export function selectFavourites() {
     };
 }
 
+export function quandlResponse(code, name) {
+    return {
+        type: ACTION_TYPES.QUANDL_RESPONSE,
+        code,
+        name
+    };
+}
+
 export function search(term) {
     return dispatch => {
         if (term.trim() === '') {
