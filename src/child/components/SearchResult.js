@@ -13,11 +13,11 @@ const Stock = ({ isFavourite, stock, selected, bindings }) => {
 
     return (
         <div className={cls}>
-            <div className="details" onClick={() => bindings.onClick(stock)}>
+            <div className="details" onClick={() => bindings.onClick(stock.code, stock.name)}>
                 <div className="name">{truncate(stock.name)}</div>
                 <div className="code">{stock.code}</div>
             </div>
-            <div className={`button-icon star${(isFavourite ? ' active' : '')}`} onClick={() => bindings.onIconClick(stock)}>
+            <div className={`button-icon star${(isFavourite ? ' active' : '')}`} onClick={() => bindings.onIconClick(stock.code)}>
                 &nbsp;
             </div>
         </div>
