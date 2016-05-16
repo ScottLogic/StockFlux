@@ -7,7 +7,7 @@ module.exports = {
         parent: ['webpack-dev-server/client?http://localhost:5000', 'webpack/hot/only-dev-server', './src/parent/parent.js']
     },
     output: {
-        path: __dirname + '/public',
+        path: `${__dirname}/public`,
         filename: './[name]_bundle.js',
         publicPath: '/'
     },

@@ -2,19 +2,41 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { selectStock, unselectStock, toggleFavourite } from '../../../actions/sidebar';
+import { selectStock, unselectStock, toggleFavourite, insertFavouriteAt } from '../../../actions/sidebar';
 import favTabImage from '../../../assets/png/favourites_tab.png';
 import Favourite from '../../../components/Favourite.js';
+
+/*
+ *  dataTransfer.getData is only available in dragstart, drop and dragEnd
+ * This allows us to get around that by setting only 2 properties:
+ * -> The 'text/plain' key points to the stock code
+ * -> ${stockcode} is the key and points to empty string
+ * By accesing the set keys and ignoring 'text/plain'
+ * we get the key code of the stock being dragged
+ * */
+function getCodeFromDT(types) {
+    for (let i = 0; i < types.length; i++) {
+        if (types[i] !== 'text/plain') {    // horrible hack to access
+            return (types[i]).toUpperCase();
+        }
+    }
+    return undefined;
+}
 
 class Favourites extends Component {
     constructor(props) {
         super(props);
-        this.onDrag = this.onDrag.bind(this);
+
         this.onClick = this.onClick.bind(this);
         this.toggleFavourite = this.toggleFavourite.bind(this);
+
+        this.onDragOverFavourite = this.onDragOverFavourite.bind(this);
+        this.onDropOverFavourite = this.onDropOverFavourite.bind(this);
     }
 
     componentDidMount() {
+        this.addDropTarget('favDropTarget');
+        // this.props.favourites.codes.forEach(favourite => this.addDragTarget(favourite));
         const scrollPadding = 'scroll-padding';
         const el = this.refs.scrollarea;
         $(this.refs.scrollarea).mCustomScrollbar({
@@ -37,8 +59,58 @@ class Favourites extends Component {
         this.props.dispatch(selectStock(stockCode, stockName));
     }
 
-    onDrag() {
-        // TODO: send content to tearout
+    onDragOverFavourite(e, targetCode) {
+        const codes = this.props.favourites.codes;
+        const code = getCodeFromDT(e.dataTransfer.types);
+        const move = this.props.favourites.move;
+        const index = codes.indexOf(targetCode);
+
+        const indexOfCode = codes.indexOf(code);
+        if (indexOfCode <= -1 ||
+            targetCode !== code &&
+             indexOfCode !== index &&
+              indexOfCode + 1 !== index) {
+            e.target.classList.add('dragOver');
+        }
+
+        if (move.index !== index || targetCode !== code) {
+            // this.props.dispatch(dragOverFavourite(index, code));
+        }
+        e.stopPropagation();
+    }
+
+    // when dropped over fav
+    onDropOverFavourite(e, targetCode) {
+        const codes = this.props.favourites.codes;
+        const code = e.dataTransfer.getData('text/plain');
+        // const code = getCodeFromDT(e.dataTransfer.types);
+        this.props.dispatch(insertFavouriteAt(codes.indexOf(targetCode), code));
+        e.target.classList.remove('dragOver');
+        e.stopPropagation();
+    }
+
+    addDropTarget(id) {
+        const dropTarget = document.getElementById(id);
+        this.dropTarget = dropTarget;
+
+        dropTarget.addEventListener('drop', e => {
+            const codes = this.props.favourites.codes;
+            const code = e.dataTransfer.getData('text/plain');
+            // const code = getCodeFromDT(e.dataTransfer.types);
+            this.props.dispatch(insertFavouriteAt(codes.length, code));
+            dropTarget.classList.remove('dragOver');
+        }, false);
+
+        dropTarget.addEventListener('dragover', e => {
+            if (!dropTarget.classList.contains('dragOver')) {
+                dropTarget.classList.add('dragOver');
+            }
+            e.preventDefault();
+        }, false);
+
+        dropTarget.addEventListener('dragleave', () => {
+            dropTarget.classList.remove('dragOver');
+        }, false);
     }
 
     toggleFavourite(stockCode) {
@@ -50,13 +122,17 @@ class Favourites extends Component {
 
     render() {
         const { favourites, hasErrors, isStarting, selection } = this.props;
+        const codes = favourites.codes;
         let bindings = {
+            dnd: {
+                onDragEnter: this.onDragOverFavourite,
+                onDrop: this.onDropOverFavourite
+            },
             onClick: this.onClick,
-            onIconClick: this.toggleFavourite,
-            onDrag: this.onDrag
+            onIconClick: this.toggleFavourite
         };
         return (
-            <div>
+            <div id="favDropTarget" className="favDropTarget" >
                 <div className="sidetab-top">
                     <img src={favTabImage} className="top-icon" title="Favourites List" draggable="false" />
                 </div>
@@ -71,13 +147,14 @@ class Favourites extends Component {
                             An error occurred while retrieving data. Please check your internet connection or wait for our data services to be re-established.
                         </div>
                         }
-                        {!hasErrors && favourites.length === 0 && <div className="no-favourites">
+                        {!hasErrors && codes.length === 0 && <div className="no-favourites">
                             <p>You have no favourites to display.</p>
                             <p>Use the search tab to add new stocks to the list.</p>
                         </div>
                         }
-                        {favourites && favourites.length > 0 && (favourites || []).map(stockCode =>
-                            <Favourite key={stockCode} stockCode={stockCode} bindings={bindings} selected={stockCode === selection.code} isFavourite={favourites.indexOf(stockCode) >= 0} />)}
+                        {codes.map(stockCode =>
+                            <Favourite key={stockCode} stockCode={stockCode} bindings={bindings} selected={stockCode === selection.code} isFavourite={codes.indexOf(stockCode) >= 0} />
+                        )}
                     </div>
                 </div>
             </div>
@@ -86,7 +163,7 @@ class Favourites extends Component {
 }
 Favourites.propTypes = {
     selection: PropTypes.object,
-    favourites: PropTypes.array,
+    favourites: PropTypes.object,
     hasErrors: PropTypes.bool,
     isStarting: PropTypes.bool,
     dispatch: PropTypes.func.isRequired

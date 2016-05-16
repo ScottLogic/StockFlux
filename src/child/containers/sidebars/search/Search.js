@@ -50,7 +50,7 @@ class Search extends Component {
 
     render() {
         const { favourites, isSearching, hasErrors, results, term, selection } = this.props;
-
+        const codes = favourites.codes;
         let bindings = {
             onClick: this.onClick,
             onIconClick: this.onIconClick
@@ -76,7 +76,7 @@ class Search extends Component {
                               stock={stock}
                               bindings={bindings}
                               selected={stock.code === selection.code}
-                              isFavourite={favourites.indexOf(stock.code) >= 0}
+                              isFavourite={codes.indexOf(stock.code) >= 0}
                             />)}
                         {results && results.length === 0 && !hasErrors && !isSearching && <div className="results-message no-results">
                             Oops!<br />
@@ -92,7 +92,7 @@ Search.propTypes = {
     isSearching: PropTypes.bool,
     hasErrors: PropTypes.bool,
     results: PropTypes.array,
-    favourites: PropTypes.array,
+    favourites: PropTypes.object,
     selection: PropTypes.object.isRequired,
     term: PropTypes.string.isRequired,
     dispatch: PropTypes.func.isRequired
