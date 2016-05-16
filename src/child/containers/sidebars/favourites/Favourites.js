@@ -36,7 +36,6 @@ class Favourites extends Component {
 
     componentDidMount() {
         this.addDropTarget('favDropTarget');
-        // this.props.favourites.codes.forEach(favourite => this.addDragTarget(favourite));
         const scrollPadding = 'scroll-padding';
         const el = this.refs.scrollarea;
         $(this.refs.scrollarea).mCustomScrollbar({
@@ -62,7 +61,6 @@ class Favourites extends Component {
     onDragOverFavourite(e, targetCode) {
         const codes = this.props.favourites.codes;
         const code = getCodeFromDT(e.dataTransfer.types);
-        const move = this.props.favourites.move;
         const index = codes.indexOf(targetCode);
 
         const indexOfCode = codes.indexOf(code);
@@ -72,10 +70,6 @@ class Favourites extends Component {
               indexOfCode + 1 !== index) {
             e.target.classList.add('dragOver');
         }
-
-        if (move.index !== index || targetCode !== code) {
-            // this.props.dispatch(dragOverFavourite(index, code));
-        }
         e.stopPropagation();
     }
 
@@ -83,7 +77,6 @@ class Favourites extends Component {
     onDropOverFavourite(e, targetCode) {
         const codes = this.props.favourites.codes;
         const code = e.dataTransfer.getData('text/plain');
-        // const code = getCodeFromDT(e.dataTransfer.types);
         this.props.dispatch(insertFavouriteAt(codes.indexOf(targetCode), code));
         e.target.classList.remove('dragOver');
         e.stopPropagation();
@@ -100,7 +93,6 @@ class Favourites extends Component {
         dropTarget.addEventListener('drop', e => {
             const codes = this.props.favourites.codes;
             const code = e.dataTransfer.getData('text/plain');
-            // const code = getCodeFromDT(e.dataTransfer.types);
             this.props.dispatch(insertFavouriteAt(codes.length, code));
             dropTarget.classList.remove('dragOver');
         }, false);
