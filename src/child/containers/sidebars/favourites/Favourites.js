@@ -89,6 +89,10 @@ class Favourites extends Component {
         e.stopPropagation();
     }
 
+    onQuandlResponse(stockCode, stockName) {
+        this.props.dispatch(quandlResponse(stockCode, stockName));
+    }
+
     addDropTarget(id) {
         const dropTarget = document.getElementById(id);
         this.dropTarget = dropTarget;
@@ -111,14 +115,6 @@ class Favourites extends Component {
         dropTarget.addEventListener('dragleave', () => {
             dropTarget.classList.remove('dragOver');
         }, false);
-    }
-
-    onQuandlResponse(stockCode, stockName) {
-        this.props.dispatch(quandlResponse(stockCode, stockName));
-    }
-
-    onQuandlResponse(stockCode, stockName) {
-        this.props.dispatch(quandlResponse(stockCode, stockName));
     }
 
     toggleFavourite(stockCode) {
