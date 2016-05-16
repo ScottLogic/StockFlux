@@ -55,26 +55,41 @@ function search(state = { term: '' }, action) {
             hasErrors: true
         });
     case ACTION_TYPES.SIDEBAR.CLEAR_SEARCH:
-        return {};
+        return { term: '' };
     default:
         return state;
     }
 }
 
 // state is an array of codes
-function favourites(state = [], action) {
+function favourites(state = { codes: [], names: {} }, action) {
     let newState;
     let index;
 
     switch (action.type) {
     case ACTION_TYPES.SIDEBAR.TOGGLE_FAVOURITE:
-        index = state.indexOf(action.code);
-        newState = [...state];
+        index = state.codes.indexOf(action.code);
+        newState = Object.assign({}, state, {
+            codes: [...state.codes],
+            names: Object.assign({}, state.names)
+        });
+
         if (index >= 0) {
-            newState.splice(index, 1);
+            newState.codes.splice(index, 1);
+            delete newState.names[action.code];
         } else {
-            newState.push(action.code);
+            newState.codes.push(action.code);
         }
+
+        return newState;
+
+
+    case ACTION_TYPES.SIDEBAR.QUANDL_RESPONSE:
+        newState = Object.assign({}, state, {
+            names: Object.assign({}, state.names)
+        });
+        newState.names[action.code] = action.name;
+
         return newState;
     default:
         return state;

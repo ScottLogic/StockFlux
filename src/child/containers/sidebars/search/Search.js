@@ -36,12 +36,12 @@ class Search extends Component {
         }, SEARCH_TIMEOUT_INTERVAL);
     }
 
-    onIconClick(stock) {
-        this.props.dispatch(toggleFavourite(stock.code));
+    onIconClick(stockCode) {
+        this.props.dispatch(toggleFavourite(stockCode));
     }
 
-    onClick(stock) {
-        this.props.dispatch(selectStock(stock.code, stock.name));
+    onClick(stockCode, stockName) {
+        this.props.dispatch(selectStock(stockCode, stockName));
     }
 
     clear() {
@@ -55,6 +55,7 @@ class Search extends Component {
             onClick: this.onClick,
             onIconClick: this.onIconClick
         };
+
         return (
             <div>
                 <div>
@@ -64,11 +65,29 @@ class Search extends Component {
                 </div>
                 <div id="search-scroll" ref="searchscroll" className="side-scroll custom-scrollbar">
                     <div className="sidetab hiddenOnContracted">
-                        {hasErrors && <div className="results-message">
-                            An error occurred while retrieving data. Please check your internet connection or wait for our data services to be re-established.
-                        </div>
-}
+                        {hasErrors &&
+                            <div className="results-message">
+                                An error occurred while retrieving data. Please check your internet connection or wait for our data services to be re-established.
+                            </div>
+                        }
+
                         {isSearching && <div className="loading-message results-message">Loading search results...</div>}
+
+                        {!isSearching && !results && favourites.codes.map(stockCode =>
+                            <SearchResult
+                              key={stockCode}
+                              stock={{ code: stockCode, name: favourites.names[stockCode] }}
+                              bindings={bindings}
+                              selected={stockCode === selection.code}
+                              isFavourite={favourites.codes.indexOf(stockCode) >= 0}
+                            />)
+                        }
+
+                        {!isSearching && !results && !hasErrors && favourites.codes.length === 0 &&
+                            <div className="no-favourites">
+                                <p>Use the search tab to add new stocks to the list.</p>
+                            </div>
+                        }
 
                         {(results || []).map(stock =>
                             <SearchResult
@@ -76,8 +95,9 @@ class Search extends Component {
                               stock={stock}
                               bindings={bindings}
                               selected={stock.code === selection.code}
-                              isFavourite={favourites.indexOf(stock.code) >= 0}
-                            />)}
+                              isFavourite={favourites.codes.indexOf(stock.code) >= 0}
+                            />)
+                        }
                         {results && results.length === 0 && !hasErrors && !isSearching && <div className="results-message no-results">
                             Oops!<br />
                             Looks like no matches were found.
@@ -92,7 +112,7 @@ Search.propTypes = {
     isSearching: PropTypes.bool,
     hasErrors: PropTypes.bool,
     results: PropTypes.array,
-    favourites: PropTypes.array,
+    favourites: PropTypes.object,
     selection: PropTypes.object.isRequired,
     term: PropTypes.string.isRequired,
     dispatch: PropTypes.func.isRequired
