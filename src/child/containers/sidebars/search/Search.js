@@ -59,7 +59,7 @@ class Search extends Component {
             <div>
                 <div>
                     <img className="top-icon" src={searchTabImage} title="Search Stocks" draggable="false" />
-                    <input value={term} className="sidetab hiddenOnContracted" type="text" maxLength="20" placeholder="Enter stock name or symbol" onChange={this.onChange} />
+                    <input value={term} className="sidetab searchInput" type="text" maxLength="20" placeholder="Enter stock name or symbol" onChange={this.onChange} />
                     <div className="button-icon close hiddenOnContracted" title="Close Search" onClick={this.clear}>&nbsp;</div>
                 </div>
                 <div id="search-scroll" ref="searchscroll" className="side-scroll custom-scrollbar">
