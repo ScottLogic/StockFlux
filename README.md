@@ -19,7 +19,7 @@ This is an 'evergreen' application, each time it launches the application code i
 
 # Development
 
-The application is built using AngularJS and ES2015, transpiled via Babel. The charts are rendered using [d3fc](https://d3fc.io/), a Scott Logic open source project which provides a number of components that allow the creation of bespoke interactive charts. The bulk of the charting code is adapted from [BitFlux](http://scottlogic.github.io/BitFlux/), which showcases the capabilities of d3fc.
+The application is built using React and ES2015, transpiled via Babel. The charts are rendered using [d3fc](https://d3fc.io/), a Scott Logic open source project which provides a number of components that allow the creation of bespoke interactive charts. The bulk of the charting code is adapted from [BitFlux](http://scottlogic.github.io/BitFlux/), which showcases the capabilities of d3fc.
 
 The displayed data is real and provided by [Quandl](https://www.quandl.com). The application uses separate Quandl API keys for development and release to mitigate chances of crossing Quandl's [rate limits](https://www.quandl.com/docs/api?json#rate-limits).
 
@@ -29,17 +29,26 @@ The displayed data is real and provided by [Quandl](https://www.quandl.com). The
 
 - Download or clone this repository locally
 - Ensure [Node.js](https://nodejs.org/), which includes npm, is installed
-- Ensure [Grunt](http://gruntjs.com/getting-started#installing-the-cli) is installed:
 
-```
-npm install -g grunt-cli
-```
 
-- Navigate to the root of your local copy of this project and install the dependencies:
+Install dependencies:
 
 ```
 npm install
 ```
+
+Start the webpack development server:
+
+```
+npm start
+```
+
+Launch the OpenFin runtime:
+
+```
+npm run openfin
+```
+
 
 #### Running locally
 
