@@ -49,7 +49,13 @@ class Favourites extends Component {
     toggleFavourite(stockCode) {
         this.props.dispatch(toggleFavourite(stockCode));
         if (this.props.selection.code === stockCode) {
-            this.props.dispatch(unselectStock());
+            if (this.props.favourites.codes.length >= 2) {
+                const newStockCode = this.props.favourites.codes.find(favourite => favourite !== stockCode);
+                const newStockName = this.props.favourites.names[newStockCode];
+                this.props.dispatch(selectStock(newStockCode, newStockName));
+            } else {
+                this.props.dispatch(unselectStock());
+            }
         }
     }
 
