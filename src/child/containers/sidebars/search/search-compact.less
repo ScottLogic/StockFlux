@@ -1,0 +1,34 @@
+﻿.close {
+  display: none;
+}
+
+.compact-search {
+  display: none;
+}
+
+.compact {
+  #search-scroll {
+    .position(absolute, @top: 35px, @bottom: 0px);
+  }
+
+  .compact-search {
+    display: block;
+
+    &.expanded .close {
+      background-image: url('../../../assets/png/close.png');
+      .position(relative, @top: -24px, @right: 2px);
+      float: right;
+    }
+    &.search .search-result.selected.dark {
+      background-color: transparent;
+
+      &.darkens:hover {
+        background-color: @dark-background;
+      }
+    }
+  }
+
+  .main-search {
+    display: none;
+  }
+}
