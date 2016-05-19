@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import * as actions from '../../../src/child/actions/window';
 import { WINDOW as ACTION_TYPES } from '../../../src/child/constants/actionTypes.js';
 
-describe('window actions', () => {
+describe('child/actions/window', () => {
     it('should create an action for minimize', () => {
         const expectedAction = { type: ACTION_TYPES.MINIMIZE };
         expect(actions.minimise()).to.deep.equal(expectedAction);
