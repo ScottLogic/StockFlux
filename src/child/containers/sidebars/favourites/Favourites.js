@@ -61,13 +61,10 @@ class Favourites extends Component {
     onDragOverFavourite(e, targetCode) {
         const codes = this.props.favourites.codes;
         const code = getCodeFromDT(e.dataTransfer.types);
-        const index = codes.indexOf(targetCode);
+        // const index = codes.indexOf(targetCode);
 
         const indexOfCode = codes.indexOf(code);
-        if (indexOfCode <= -1 ||
-            targetCode !== code &&
-             indexOfCode !== index &&
-              indexOfCode + 1 !== index) {
+        if (indexOfCode <= -1 || targetCode !== code) {
             e.target.classList.add('dragOver');
         }
         e.stopPropagation();
@@ -77,7 +74,9 @@ class Favourites extends Component {
     onDropOverFavourite(e, targetCode) {
         const codes = this.props.favourites.codes;
         const code = e.dataTransfer.getData('text/plain');
-        this.props.dispatch(insertFavouriteAt(codes.indexOf(targetCode), code));
+        const currentDropCodeIndex = codes.indexOf(code);
+        const targetCodeLocation = codes.indexOf(targetCode);
+        this.props.dispatch(insertFavouriteAt(Math.max(0, currentDropCodeIndex > targetCodeLocation ? targetCodeLocation : targetCodeLocation - 1), code));
         e.target.classList.remove('dragOver');
         e.stopPropagation();
     }

@@ -27,7 +27,8 @@
 .favouriteWrapper{
     cursor: pointer;
     border-width: 1px 0;
-    transition: 0.25s all;
+    max-height: @favourite-height * 2;
+    transition: 0.5s padding;
     * {
         cursor: pointer;
         transition: 0.25s all;
@@ -36,12 +37,14 @@
             pointer-events: all;
         }
     }
-}
-
-.favouriteWrapper.dragging {
-    background-color: #2B595B;
-    * {
-        opacity: 0;
+    &.dragging{
+        background-color: #2B595B;
+        transition-delay: 0.25s;
+        transition-property: max-height, padding;
+        max-height: 0;
+        * {
+            opacity: 0;
+        }
     }
 }
 
