@@ -8,7 +8,6 @@ const quandlService = new QuandlService();
 import arrowUp from '../assets/png/arrow_up.png';
 import arrowDown from '../assets/png/arrow_down.png';
 
-
 class Favourite extends Component {
 
     constructor(props) {
@@ -18,6 +17,7 @@ class Favourite extends Component {
 
     componentDidMount() {
         const stockCode = this.props.stockCode;
+        this.addDragTarget(stockCode);
         quandlService.getStockData(stockCode, response => {
             const data = response.stockData.data[0];
             const stockData = {
@@ -37,6 +37,38 @@ class Favourite extends Component {
         this.props.bindings.onIconClick(this.props.stockCode);
     }
 
+    addDragTarget(stockCode) {
+        const dragTarget = document.getElementById(`stock_${stockCode}`);
+        dragTarget.addEventListener('dragstart', e => {
+            // TODO: fade out window if it's last stock
+            dragTarget.classList.add('dragging');
+            e.dataTransfer.setData('text/plain', stockCode);
+            e.dataTransfer.setData(stockCode, '');  // used to access propery on dragEnter. check getCodeFromDT
+        }, false);
+
+        dragTarget.addEventListener('dragover', e => {
+            e.preventDefault();
+            e.stopPropagation();
+        }, false);
+
+        dragTarget.addEventListener('dragenter', e => this.props.bindings.dnd.onDragEnter(e, stockCode), false);
+
+        dragTarget.addEventListener('dragleave', () => {
+            dragTarget.classList.remove('dragOver');
+        }, false);
+
+        dragTarget.addEventListener('drop', e => this.props.bindings.dnd.onDrop(e, stockCode), false);
+
+        dragTarget.addEventListener('dragend', e => {
+            // If the dropEffect property has the value 'none' on dragend,
+            // then the drag was cancelled
+            dragTarget.classList.remove('dragging');
+            if (e.dataTransfer.dropEffect === 'none') {
+                // TODO: Open window with stock + reposition && fade window if it's the only stock in favourites
+            }
+        }, false);
+    }
+
     render() {
         const { stockCode, selected, bindings } = this.props;
 
@@ -54,9 +86,9 @@ class Favourite extends Component {
         const name = stockData.name ? truncate(stockData.name) : '';
 
         return (
-            <div>
+            <div id={`stock_${stockCode}`} draggable="true" className="favouriteWrapper" onClick={() => bindings.onClick(stockCode, name)}>
                 <div className="drop-target">
-                    <div className={`darkens favourite tearable ${cls}`} onClick={() => bindings.onClick(stockCode, name)} ng-dblclick="doubleClick(stock)" draggable="false">
+                    <div className={`darkens favourite tearable ${cls}`} ng-dblclick="doubleClick(stock)" draggable="false">
                         <div className="top">
                             <div className="button-icon star active" onClick={this.onIconClick}>&nbsp;</div>
                             <div className="name">{name}</div>
@@ -77,7 +109,7 @@ class Favourite extends Component {
                 </div>
                 <div className="hover-area"></div>
             </div>
-            );
+        );
     }
 }
 

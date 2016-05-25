@@ -50,7 +50,7 @@ class Search extends Component {
 
     render() {
         const { favourites, isSearching, hasErrors, results, term, selection } = this.props;
-
+        const codes = favourites.codes;
         let bindings = {
             onClick: this.onClick,
             onIconClick: this.onIconClick
@@ -95,9 +95,8 @@ class Search extends Component {
                               stock={stock}
                               bindings={bindings}
                               selected={stock.code === selection.code}
-                              isFavourite={favourites.codes.indexOf(stock.code) >= 0}
-                            />)
-                        }
+                              isFavourite={codes.indexOf(stock.code) >= 0}
+                            />)}
                         {results && results.length === 0 && !hasErrors && !isSearching && <div className="results-message no-results">
                             Oops!<br />
                             Looks like no matches were found.
