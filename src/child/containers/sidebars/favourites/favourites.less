@@ -11,6 +11,48 @@
 @highlight-colour: #447272;
 @scrollbar-padding: 20px;
 
+.favDropTarget #favourite-scroll {
+    transition: 0.25s all;
+}
+
+.favDropTarget.dragOver #favourite-scroll {
+    background-color: #45D6BC;
+}
+
+.favouriteDropPlaceholder {
+    background-color: rebeccapurple;
+    height: @favourite-height;
+}
+
+.favouriteWrapper{
+    cursor: pointer;
+    border-width: 1px 0;
+    max-height: @favourite-height * 2;
+    transition: 0.5s padding;
+    * {
+        cursor: pointer;
+        transition: 0.25s all;
+        pointer-events: none;
+        .button-icon{
+            pointer-events: all;
+        }
+    }
+    &.dragging{
+        background-color: #2B595B;
+        transition-delay: 0.25s;
+        transition-property: max-height, padding;
+        max-height: 0;
+        * {
+            opacity: 0;
+        }
+    }
+}
+
+.favouriteWrapper.dragOver {
+    padding-top: @favourite-height;
+    background-color: #2E5356;
+}
+
 .favourites {
   float: right;
   .size(@width: @expanded-width, @height: 100%);
