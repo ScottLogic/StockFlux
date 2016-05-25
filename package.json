@@ -7,6 +7,7 @@
     "ci": "npm run lint && npm test",
     "lint": "eslint --plugin import jsx-ally react *.js src/ test/",
     "test": "mocha --compilers js:babel-register --recursive",
+    "test:watch": "npm test -- --watch",
     "postinstall": "cd node_modules/BitFlux && npm i && grunt build:module"
   },
   "devDependencies": {
