@@ -24,6 +24,14 @@ export function unselectStock() {
     };
 }
 
+export function insertFavouriteAt(index, code) {
+    return {
+        type: ACTION_TYPES.INSERT_FAVOURITE_AT,
+        index,
+        code
+    };
+}
+
 export function toggleFavourite(code) {
     return {
         type: ACTION_TYPES.TOGGLE_FAVOURITE,
