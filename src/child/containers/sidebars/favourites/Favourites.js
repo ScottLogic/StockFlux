@@ -61,7 +61,6 @@ class Favourites extends Component {
     onDragOverFavourite(e, targetCode) {
         const codes = this.props.favourites.codes;
         const code = getCodeFromDT(e.dataTransfer.types);
-        // const index = codes.indexOf(targetCode);
 
         const indexOfCode = codes.indexOf(code);
         if (indexOfCode <= -1 || targetCode !== code) {
