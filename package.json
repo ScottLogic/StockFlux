@@ -8,9 +8,11 @@
     "lint": "eslint --plugin import jsx-ally react *.js src/ test/",
     "test": "mocha --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch",
+    "test:cov": "babel-node node_modules/isparta/bin/isparta cover --report text --report html node_modules/mocha/bin/_mocha -- --recursive",
     "postinstall": "cd node_modules/BitFlux && npm i && grunt build:module"
   },
   "devDependencies": {
+    "babel-cli": "^6.9.0",
     "babel-core": "^6.7.6",
     "babel-eslint": "^6.0.3",
     "babel-loader": "^6.2.4",
@@ -27,6 +29,7 @@
     "eslint-plugin-react": "^5.0.1",
     "file-loader": "^0.8.5",
     "grunt-cli": "^1.2.0",
+    "isparta": "^4.0.0",
     "less": "^2.6.1",
     "less-loader": "^2.2.3",
     "mocha": "^2.4.5",
