@@ -28,6 +28,17 @@ describe('child/actions/sidebar', () => {
         expect(actions.unselectStock()).to.deep.equal(expectedAction);
     });
 
+    it('should create an action to insert a favourite at a given index', () => {
+        const index = 1;
+        const code = 'GOOG';
+        const expectedAction = {
+            type: ACTION_TYPES.INSERT_FAVOURITE_AT,
+            index,
+            code
+        };
+        expect(actions.insertFavouriteAt(index, code)).to.deep.equal(expectedAction);
+    });
+
     it('should create an action to toggle a favourite', () => {
         const code = 'GOOG';
         const expectedAction = {
