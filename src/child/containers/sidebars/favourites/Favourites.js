@@ -33,10 +33,12 @@ class Favourites extends Component {
         this.onDropOverFavourite = this.onDropOverFavourite.bind(this);
         this.onQuandlResponse = this.onQuandlResponse.bind(this);
         this.onDoubleClick = this.onDoubleClick.bind(this);
+        this.onDrop = this.onDrop.bind(this);
+        this.onDragOver = this.onDragOver.bind(this);
+        this.onDragLeave = this.onDragLeave.bind(this);
     }
 
     componentDidMount() {
-        this.addDropTarget('favDropTarget');
         const scrollPadding = 'scroll-padding';
         const el = this.refs.scrollarea;
         $(this.refs.scrollarea).mCustomScrollbar({
@@ -96,29 +98,23 @@ class Favourites extends Component {
         this.props.bindings.toggleFavourite(stockCode);
     }
 
-    addDropTarget(id) {
-        const dropTarget = document.getElementById(id);
-        this.dropTarget = dropTarget;
-
-        dropTarget.addEventListener('drop', e => {
-            const codes = this.props.favourites.codes;
-            const code = e.dataTransfer.getData('text/plain');
-            this.props.dispatch(insertFavouriteAt(codes.length, code));
-            dropTarget.classList.remove('dragOver');
-        }, false);
-
-        dropTarget.addEventListener('dragover', e => {
-            if (!dropTarget.classList.contains('dragOver')) {
-                dropTarget.classList.add('dragOver');
-            }
-            e.preventDefault();
-        }, false);
-
-        dropTarget.addEventListener('dragleave', () => {
-            dropTarget.classList.remove('dragOver');
-        }, false);
+    onDrop(e) {
+        const codes = this.props.favourites.codes;
+        const code = e.dataTransfer.getData('text/plain');
+        this.props.dispatch(insertFavouriteAt(codes.length, code));
+        e.currentTarget.classList.remove('dragOver');
     }
 
+    onDragOver(e) {
+        if (!e.currentTarget.classList.contains('dragOver')) {
+            e.currentTarget.classList.add('dragOver');
+        }
+        e.preventDefault();
+    }
+
+    onDragLeave(e) {
+        e.currentTarget.classList.remove('dragOver');
+    }
 
     render() {
         const { favourites, hasErrors, isStarting, selection } = this.props;
@@ -134,7 +130,13 @@ class Favourites extends Component {
             onDoubleClick: this.onDoubleClick
         };
         return (
-            <div id="favDropTarget" className="favDropTarget" >
+            <div
+              id="favDropTarget"
+              className="favDropTarget"
+              onDrop={this.onDrop}
+              onDragOver={this.onDragOver}
+              onDragLeave={this.onDragLeave}
+            >
                 <div className="sidetab-top">
                     <img src={favTabImage} className="top-icon" title="Favourites List" draggable="false" />
                 </div>

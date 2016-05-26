@@ -12,11 +12,14 @@ class Favourite extends Component {
     constructor(props) {
         super(props);
         this.onIconClick = this.onIconClick.bind(this);
+        this.onDragStart = this.onDragStart.bind(this);
+        this.onDragOver = this.onDragOver.bind(this);
+        this.onDragLeave = this.onDragLeave.bind(this);
+        this.onDragEnd = this.onDragEnd.bind(this);
     }
 
     componentDidMount() {
         const stockCode = this.props.stockCode;
-        this.addDragTarget(stockCode);
         quandlServiceGetStockData(stockCode)
             .then(response => {
                 const data = response.stockData.data[0];
@@ -38,36 +41,29 @@ class Favourite extends Component {
         this.props.bindings.onIconClick(this.props.stockCode);
     }
 
-    addDragTarget(stockCode) {
-        const dragTarget = document.getElementById(`stock_${stockCode}`);
-        dragTarget.addEventListener('dragstart', e => {
+    onDragStart(stockCode) {
+        return e => {
             // TODO: fade out window if it's last stock
-            dragTarget.classList.add('dragging');
+            e.currentTarget.classList.add('dragging');
             e.dataTransfer.setData('text/plain', stockCode);
             e.dataTransfer.setData(stockCode, '');  // used to access propery on dragEnter. check getCodeFromDT
-        }, false);
+        };
+    }
 
-        dragTarget.addEventListener('dragover', e => {
-            e.preventDefault();
-            e.stopPropagation();
-        }, false);
+    onDragOver(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
 
-        dragTarget.addEventListener('dragenter', e => this.props.bindings.dnd.onDragEnter(e, stockCode), false);
+    onDragLeave(e) {
+        e.currentTarget.classList.remove('dragOver');
+    }
 
-        dragTarget.addEventListener('dragleave', () => {
-            dragTarget.classList.remove('dragOver');
-        }, false);
-
-        dragTarget.addEventListener('drop', e => this.props.bindings.dnd.onDrop(e, stockCode), false);
-
-        dragTarget.addEventListener('dragend', e => {
-            // If the dropEffect property has the value 'none' on dragend,
-            // then the drag was cancelled
-            dragTarget.classList.remove('dragging');
-            if (e.dataTransfer.dropEffect === 'none') {
-                // TODO: Open window with stock + reposition && fade window if it's the only stock in favourites
-            }
-        }, false);
+    onDragEnd(e) {
+        e.currentTarget.classList.remove('dragging');
+        if (e.dataTransfer.dropEffect === 'none') {
+            // TODO: Open window with stock + reposition && fade window if it's the only stock in favourites
+        }
     }
 
     render() {
@@ -92,6 +88,12 @@ class Favourite extends Component {
               draggable="true"
               className="favouriteWrapper"
               onClick={() => bindings.onClick(stockCode, name)}
+              onDragStart={this.onDragStart(stockCode)}
+              onDragOver={this.onDragOver}
+              onDragEnter={e => bindings.dnd.onDragEnter(e, stockCode)}
+              onDragLeave={this.onDragLeave}
+              onDrop={e => bindings.dnd.onDrop(e, stockCode)}
+              onDragEnd={this.onDragEnd}
               onDoubleClick={() => bindings.onDoubleClick(stockCode, name)}
             >
                 <div className="drop-target">
