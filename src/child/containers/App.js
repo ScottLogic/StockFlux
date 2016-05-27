@@ -10,6 +10,7 @@ import { truncate } from '../services/formatters';
 import DevTools from './devTools/DevTools.js';
 import '../../../node_modules/d3fc/dist/d3fc.min.css';
 import '../../../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css';
+import noFavourites from '../assets/png/no_favourites.png';
 require('script!../../../node_modules/jquery/dist/jquery.min.js');
 require('script!../../../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js');
 require('script!../../../node_modules/moment/moment.js');
@@ -22,6 +23,7 @@ const App = ({ code, name }) => (
         <SideBar />
         <div className="main-content">
             <Toolbar />
+            <img className={`no-favourites-image${code ? ' hidden' : ''}`} src={noFavourites} />
             <div className={code ? '' : 'hidden'}>
                 <div id="showcase-title">
                     <div className="code">{code}</div> <div className="name">({truncate(name)})</div>
