@@ -21,15 +21,11 @@ class Toolbar extends Component {
         this.onCloseClick = this.onCloseClick.bind(this);
 
         this.onMinimize = this.onMinimize.bind(this);
-        this.onMaximize = this.onMaximize.bind(this);
-        this.onRestore = this.onRestore.bind(this);
         // reset maximize state on window resize
 
         fin.desktop.main(() => {
             const win = fin.desktop.Window.getCurrent();
             win.addEventListener('minimized', this.onMinimize);
-            win.addEventListener('maximized', this.onMaximize);
-            win.addEventListener('restored', this.onRestore);
         });
     }
     onMinimizeClick() {
@@ -45,11 +41,11 @@ class Toolbar extends Component {
     }
 
     onMaximizeClick() {
-        fin.desktop.Window.getCurrent().maximize();
+        this.props.dispatch(maximize());
     }
 
     onRestoreClick() {
-        fin.desktop.Window.getCurrent().restore();
+        this.props.dispatch(restore());
     }
 
     onCloseClick() {
@@ -64,14 +60,6 @@ class Toolbar extends Component {
 
     onMinimize() {
         this.props.dispatch(minimise());
-    }
-
-    onMaximize() {
-        this.props.dispatch(maximize());
-    }
-
-    onRestore() {
-        this.props.dispatch(restore());
     }
 
     render() {

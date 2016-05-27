@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Toolbar from './toolbar/Toolbar.js';
 import SideBar from './sidebars/Sidebar.js';
@@ -17,32 +17,62 @@ require('script!../../../node_modules/BitFlux/node_modules/bootstrap/js/dropdown
 require('script!../../../node_modules/d3fc/dist/d3fc.bundle.min.js');
 require('script!../../../node_modules/BitFlux/dist/bitflux.js');
 
-const App = ({ code, name }) => (
-    <div className="main">
-        <SideBar />
-        <div className="main-content">
-            <Toolbar />
-            <div className={code ? '' : 'hidden'}>
-                <div id="showcase-title">
-                    <div className="code">{code}</div> <div className="name">({truncate(name)})</div>
+class App extends Component {
+    componentDidMount() {
+        const { isMaximised } = this.props;
+        fin.desktop.main(() => {
+            const win = fin.desktop.Window.getCurrent();
+            if (isMaximised) {
+                win.maximize();
+            }
+        });
+    }
+
+    componentWillUpdate(nextProps) {
+        const { isMaximised } = this.props;
+        const nextIsMaximised = nextProps.isMaximised;
+
+        if (nextIsMaximised !== isMaximised) {
+            if (nextIsMaximised) {
+                fin.desktop.Window.getCurrent().maximize();
+            } else {
+                fin.desktop.Window.getCurrent().restore();
+            }
+        }
+    }
+
+    render() {
+        const { code, name } = this.props;
+        return (
+            <div className="main">
+                <SideBar />
+                <div className="main-content">
+                    <Toolbar />
+                    <div className={code ? '' : 'hidden'}>
+                        <div id="showcase-title">
+                            <div className="code">{code}</div> <div className="name">({truncate(name)})</div>
+                        </div>
+                        <Showcase code={code} />
+                    </div>
+                    <Version />
                 </div>
-                <Showcase code={code} />
+                <DevTools />
             </div>
-            <Version />
-        </div>
-        <DevTools />
-    </div>
-);
+        );
+    }
+}
 
 App.propTypes = {
     code: PropTypes.string,
-    name: PropTypes.string
+    name: PropTypes.string,
+    isMaximised: PropTypes.bool
 };
 
 function mapStateToProps(state) {
-    const { selection } = state;
+    const { selection, windowState } = state;
     const { name, code } = selection;
-    return { name, code };
+    const { isMaximised } = windowState;
+    return { name, code, isMaximised };
 }
 
 export default connect(mapStateToProps)(App);
