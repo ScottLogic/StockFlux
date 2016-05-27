@@ -7,11 +7,36 @@ import configureStore from './store/configureStore';
 
 import './assets/styles/style.less';
 
-const store = configureStore();
+fin.desktop.main(() => {
+    fin.desktop.InterApplicationBus.publish(
+        'childConnected',
+        { uuid: window.name }
+    );
 
-render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    document.getElementById('app')
-);
+    fin.desktop.InterApplicationBus.subscribe(
+        '*',
+        'initState',
+        message => {
+            const { state, uuid, id } = message;
+            console.log('initState: ' + uuid);
+            if (uuid === window.name) {
+                const store = configureStore(state);
+
+                store.subscribe(() => {
+                    console.log('yo');
+                    fin.desktop.InterApplicationBus.publish(
+                        'childUpdated',
+                        { state: store.getState(), id }
+                    );
+                });
+
+                render(
+                    <Provider store={store}>
+                        <App />
+                    </Provider>,
+                    document.getElementById('app')
+                );
+            }
+        }
+    );
+});
