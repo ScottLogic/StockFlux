@@ -20,6 +20,8 @@ class Showcase extends Component {
         if (this.props.code) {
             this.firstRun = true;
             this.chart.run(this.refs.chart);
+            // Added to make sure correct data on startup is displayed
+            this.chart.changeQuandlProduct(this.props.code);
         }
     }
 
