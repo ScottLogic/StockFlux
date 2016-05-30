@@ -6,13 +6,13 @@ import {
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
 import rootReducer from '../reducers/reducers.js';
-// import DevTools from '../containers/devTools/DevTools.js';
+import DevTools from '../containers/devTools/DevTools.js';
 
 const enhancer = compose(
     // Middleware you want to use in development:
-    applyMiddleware(thunkMiddleware, createLogger())
+    applyMiddleware(thunkMiddleware, createLogger()),
     // Required! Enable Redux DevTools with the monitors you chose
-    // DevTools.instrument()
+    DevTools.instrument()
 );
 
 export default function configureStore(initialState) {
