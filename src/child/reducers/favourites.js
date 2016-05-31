@@ -7,7 +7,7 @@ export default function favourites(state = { codes: [], names: {} }, action) {
     let currentIndex;
 
     switch (action.type) {
-    case ACTION_TYPES.SIDEBAR.TOGGLE_FAVOURITE:
+    case ACTION_TYPES.TOGGLE_FAVOURITE:
         index = state.codes.indexOf(action.code);
         newState = Object.assign({}, state, {
             codes: [...state.codes],
@@ -20,7 +20,7 @@ export default function favourites(state = { codes: [], names: {} }, action) {
             newState.codes.push(action.code);
         }
         return newState;
-    case ACTION_TYPES.SIDEBAR.INSERT_FAVOURITE_AT:
+    case ACTION_TYPES.INSERT_FAVOURITE_AT:
         codes = [...state.codes];
         currentIndex = codes.indexOf(action.code);
         if (currentIndex >= 0) {
@@ -33,7 +33,7 @@ export default function favourites(state = { codes: [], names: {} }, action) {
             codes.push(action.code);
         }
         return Object.assign({}, state, { codes, move: {} });
-    case ACTION_TYPES.SIDEBAR.QUANDL_RESPONSE:
+    case ACTION_TYPES.QUANDL_RESPONSE:
         newState = Object.assign({}, state, {
             names: Object.assign({}, state.names, {
                 [action.code]: action.name
