@@ -1,25 +1,22 @@
 
-export const INITIALISE_STATE = 'INITIALISE_STATE';
-export const CHILD_CONNECT = 'CHILD_CONNECT';
-export const CHILD_CHANGE = 'CHILD_CHANGE';
-export const CHILD_CLOSED = 'CHILD_CLOSED';
+import ACTION_TYPES from './actionTypes.js';
 
 export function initialiseState() {
     return {
-        type: INITIALISE_STATE
+        type: ACTION_TYPES.INITIALISE_STATE
     };
 }
 
 export function childConnect(id) {
     return {
-        type: CHILD_CONNECT,
+        type: ACTION_TYPES.CHILD_CONNECT,
         id
     };
 }
 
 export function childChange(state, id) {
     return {
-        type: CHILD_CHANGE,
+        type: ACTION_TYPES.CHILD_CHANGE,
         state,
         id
     };
@@ -27,7 +24,7 @@ export function childChange(state, id) {
 
 export function childClosed(id) {
     return {
-        type: CHILD_CLOSED,
+        type: ACTION_TYPES.CHILD_CLOSED,
         id
     };
 }
