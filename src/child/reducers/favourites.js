@@ -32,7 +32,7 @@ export default function favourites(state = { codes: [], names: {} }, action) {
         } else {
             codes.push(action.code);
         }
-        return Object.assign({}, state, { codes, move: {} });
+        return Object.assign({}, state, { codes });
     case ACTION_TYPES.QUANDL_RESPONSE:
         newState = Object.assign({}, state, {
             names: Object.assign({}, state.names, {
