@@ -4,7 +4,8 @@
   "scripts": {
     "start": "webpack-dev-server -d",
     "openfin": "node openfin-launcher.js",
-    "ci": "npm run lint && npm test",
+    "build": "webpack",
+    "ci": "npm run lint && npm test && npm run build",
     "lint": "eslint --plugin import jsx-ally react *.js src/ test/",
     "test": "mocha --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch",
