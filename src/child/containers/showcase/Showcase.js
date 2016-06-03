@@ -1,13 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import QuandlService from '../../services/QuandlService';
+import { apiKey as quandlServiceApiKey } from '../../services/QuandlService';
 import configService from '../../../shared/ConfigService';
 
 class Showcase extends Component {
 
     componentDidMount() {
 
-        const quandlService = new QuandlService();
-        this.chart = bitflux.app().quandlApiKey(quandlService.apiKey());
+        this.chart = bitflux.app().quandlApiKey(quandlServiceApiKey());
 
         this.chart.periodsOfDataToFetch(configService.getBitfluxStockAmount());
         this.chart.proportionOfDataToDisplayByDefault(configService.getInitialBitfluxProportion());

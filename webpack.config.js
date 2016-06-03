@@ -20,7 +20,8 @@ module.exports = {
             { test: /\.svg$/, loader: 'file-loader' },
             { test: /\.eot$/, loader: 'file-loader' },
             { test: /\.ttf$/, loader: 'file-loader' },
-            { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file-loader' }
+            { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file-loader' },
+            { test: /\.json$/, loader: 'json' }
         ]
     },
     resolve: {

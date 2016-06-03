@@ -13,23 +13,23 @@ const VOLUME_INDEX = 12;
 const QUANDL_URL = 'https://www.quandl.com/api/v3/';
 const QUANDL_WIKI = 'datasets/WIKI/';
 
-// Helper functions outside of Class scope
+// Helper functions
 function period() {
     return moment().subtract(28, 'days');
 }
 
-function processDataset(dataset) {
-    return {
-        name: dataset.name,
-        code: dataset.dataset_code
-    };
+function processSearchResults(result) {
+    return result.datasets.map(
+        dataset => { //eslint-disable-line
+            return {
+                name: dataset.name,
+                code: dataset.dataset_code
+            };
+        }
+    );
 }
 
-function isValidResponse(json) {
-    return json && !json.quandl_error;
-}
-
-function filterByDate(json) {
+function filterSearchResultsByDate(json) {
     const datasets = json.datasets;
     const result = [];
 
@@ -44,7 +44,6 @@ function filterByDate(json) {
     };
 }
 
-
 function extract(data) {
     return {
         date: data[DATE_INDEX],
@@ -56,7 +55,7 @@ function extract(data) {
     };
 }
 
-function processResponse(json) {
+function processStockData(json) {
     const datasetData = json.dataset;
     const financialData = datasetData.data;
     const results = [];
@@ -67,72 +66,60 @@ function processResponse(json) {
         results.push(extract(financialData[i]));
     }
 
-    json.stockData = { //eslint-disable-line
-        success: true,
+    json.stockData = { // eslint-disable-line no-param-reassign
         startDate: datasetData.start_date,
         endDate: datasetData.end_date,
         data: results
     };
+    return json;
+}
+
+function validateResponse(response) {
+    return response.json().then(json => {
+        if (response.ok && !json.quandl_error) {
+            return json;
+        }
+        return Promise.reject(json);
+    });
 }
 
 
-class QuandlService {
-
-    search(query, cb, errorCb, usefallback = false) {
-        const apiKeyParam = (usefallback ? '' : API_KEY_VALUE);
-        fetch(`${QUANDL_URL}datasets.json?${apiKeyParam}&query=${query}&database_code=WIKI`, {
-            method: 'GET',
-            cache: true,
-        })
-        .then(response => response.json())
-        .then(json => (isValidResponse(json) ? filterByDate(json) : {}))
-        .then(result => {
-            const processedDataset = result.datasets.map(
-                (dataset) => processDataset(dataset, query)
-            );
-            cb(processedDataset);
-        }).catch((result) => {
-            if (!usefallback) {
-                this.search(query, cb, errorCb, true);
-            } else if (errorCb) {
-                errorCb({
-                    success: false,
-                    code: result.status,
-                    message: result.statusText
-                });
-            }
-        });
-    }
-
-    // Queries Quandl for the specific stock code
-    getStockMetadata(code, callback) {
-        return fetch(`${QUANDL_URL}${QUANDL_WIKI}${code}/metadata.json?${API_KEY_VALUE}`)
-        .then(response => response.json())
-        .then(json => callback(json));
-    }
-
-    getStockData(code, callback, errorCb, usefallback = false) {
-        const startDate = period().format('YYYY-MM-DD');
-        const apiKeyParam = (usefallback ? '' : API_KEY_VALUE);
-
-        return fetch(`${QUANDL_URL}${QUANDL_WIKI}${code}.json?${apiKeyParam}&start_date=${startDate}`, {
-            method: 'GET',
-            cache: true
-        })
-        .then(response => response.json())
-        .then(json => {
-            if (isValidResponse(json)) {
-                processResponse(json);
-                callback(json);
-            } else {
-                errorCb(json);
-            }
-        });
-    }
-
-    apiKey() {
-        return API_KEY;
-    }
+// Exported functions
+export function search(query, usefallback = false) {
+    const apiKeyParam = (usefallback ? '' : API_KEY_VALUE);
+    return fetch(`${QUANDL_URL}datasets.json?${apiKeyParam}&query=${query}&database_code=WIKI`, {
+        method: 'GET',
+        cache: true,
+    })
+    .then(validateResponse)
+    .then(filterSearchResultsByDate)
+    .then(processSearchResults)
+    .catch((error) => {
+        if (!usefallback) {
+            return search(query, true);
+        }
+        return Promise.reject(error);
+    });
 }
 
-export default QuandlService;
+// Queries Quandl for the specific stock code
+export function getStockMetadata(code) {
+    return fetch(`${QUANDL_URL}${QUANDL_WIKI}${code}/metadata.json?${API_KEY_VALUE}`)
+    .then(validateResponse);
+}
+
+export function getStockData(code, usefallback = false) {
+    const startDate = period().format('YYYY-MM-DD');
+    const apiKeyParam = (usefallback ? '' : API_KEY_VALUE);
+
+    return fetch(`${QUANDL_URL}${QUANDL_WIKI}${code}.json?${apiKeyParam}&start_date=${startDate}`, {
+        method: 'GET',
+        cache: true
+    })
+    .then(validateResponse)
+    .then(processStockData);
+}
+
+export function apiKey() {
+    return API_KEY;
+}

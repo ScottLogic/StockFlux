@@ -1,0 +1,73 @@
+{
+  "datasets": [
+    {
+      "id": 9775718,
+      "dataset_code": "GOOG",
+      "database_code": "WIKI",
+      "name": "Alphabet Inc (GOOG) Prices, Dividends, Splits and Trading Volume",
+      "description": "End of day open, high, low, close and volume, dividends and splits, and split/dividend adjusted open, high, low close and volume for Google Inc. (GOOG). Ex-Dividend is non-zero on ex-dividend dates. Split Ratio is 1 on non-split dates. Adjusted prices are calculated per CRSP (www.crsp.com/products/documentation/crsp-calculations)\n\nThis data is in the public domain. You may copy, distribute, disseminate or include the data in other products for commercial and/or noncommercial purposes.\n\nThis data is part of Quandl's Wiki initiative to get financial data permanently into the public domain. Quandl relies on users like you to flag errors and provide data where data is wrong or missing. Get involved: connect@quandl.com\n",
+      "refreshed_at": "2016-05-31T21:47:50.929Z",
+      "newest_available_date": "2016-05-31",
+      "oldest_available_date": "2014-03-27",
+      "column_names": [
+        "Date",
+        "Open",
+        "High",
+        "Low",
+        "Close",
+        "Volume",
+        "Ex-Dividend",
+        "Split Ratio",
+        "Adj. Open",
+        "Adj. High",
+        "Adj. Low",
+        "Adj. Close",
+        "Adj. Volume"
+      ],
+      "frequency": "daily",
+      "type": "Time Series",
+      "premium": false,
+      "database_id": 4922
+    },
+    {
+      "id": 11304017,
+      "dataset_code": "GOOGL",
+      "database_code": "WIKI",
+      "name": "Alphabet Inc (GOOGL) Prices, Dividends, Splits and Trading Volume",
+      "description": "This dataset has no description.",
+      "refreshed_at": "2016-05-31T21:47:50.933Z",
+      "newest_available_date": "2016-05-31",
+      "oldest_available_date": "2004-08-19",
+      "column_names": [
+        "Date",
+        "Open",
+        "High",
+        "Low",
+        "Close",
+        "Volume",
+        "Ex-Dividend",
+        "Split Ratio",
+        "Adj. Open",
+        "Adj. High",
+        "Adj. Low",
+        "Adj. Close",
+        "Adj. Volume"
+      ],
+      "frequency": "daily",
+      "type": "Time Series",
+      "premium": false,
+      "database_id": 4922
+    }
+  ],
+  "meta": {
+    "query": "GOOG",
+    "per_page": 100,
+    "current_page": 1,
+    "prev_page": null,
+    "total_pages": 1,
+    "total_count": 2,
+    "next_page": null,
+    "current_first_item": 1,
+    "current_last_item": 2
+  }
+}
