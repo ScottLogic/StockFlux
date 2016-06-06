@@ -7,21 +7,21 @@ export function minimise() {
     };
 }
 
-function compact() {
+export function compact() {
     return {
         type: ACTION_TYPES.TOGGLE_COMPACT,
         state: true
     };
 }
 
-function expand() {
+export function expand() {
     return {
         type: ACTION_TYPES.TOGGLE_COMPACT,
         state: false
     };
 }
 
-function resizing() {
+export function resizing() {
     return {
         type: ACTION_TYPES.RESIZING
     };
