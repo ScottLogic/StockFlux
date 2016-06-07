@@ -10,6 +10,10 @@ const getId = () => id++;
 // Need to increment on drag out also
 let openWindows = 0;
 
+let newlySpawnedId = -1;
+let newlySpawnedStockCode = null;
+let newlySpawnedStockName = null;
+
 function createChildWindows() {
     const store = parentStore([{ id, state: configureStore().getState() }]);
 
@@ -31,10 +35,19 @@ function createChildWindows() {
             const newId = getId();
             store.dispatch(childConnect(newId));
             const childState = store.getState().find(state => state.id === newId);
+
             fin.desktop.InterApplicationBus.publish(
                 'initState',
                 { state: childState, uuid: message.uuid, id: newId }
             );
+
+            // If this window is spawned by dragging out a favourite
+            if (newId === newlySpawnedId) {
+                fin.desktop.InterApplicationBus.publish(
+                    'initialiseDragged',
+                    { id: newId, stockCode: newlySpawnedStockCode, stockName: newlySpawnedStockName }
+                );
+            }
         }
     );
 
@@ -55,6 +68,24 @@ function createChildWindows() {
             if (openWindows !== 1) {
                 store.dispatch(childClosed(message.id));
             }
+        }
+    );
+
+    fin.desktop.InterApplicationBus.subscribe(
+        '*',
+        'spawnNewWindow',
+        message => {
+            // Spawn a new window and set up close listener
+            const childWindow = new fin.desktop.Window(
+                configService.getWindowConfig(),
+                () => childWindow.show()
+            );
+            openWindows++;
+            childWindow.addEventListener('closed', closedEvent);
+
+            newlySpawnedId = id;
+            newlySpawnedStockCode = message.stockCode;
+            newlySpawnedStockName = message.stockName;
         }
     );
 
