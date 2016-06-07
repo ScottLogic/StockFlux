@@ -1,12 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import {
-    minimise,
-    maximize,
-    restore,
-    compact,
-    expand
-} from '../../actions/window.js';
+import { minimise, maximize, restore, compact, expand, close } from '../../actions/window.js';
 import icon from '../../assets/png/scottlogic_logo.png';
 
 
@@ -53,11 +47,7 @@ class Toolbar extends Component {
     }
 
     onCloseClick() {
-        fin.desktop.InterApplicationBus.publish(
-            'childClosing',
-            { id: window.id }
-        );
-        window.close();
+        this.props.dispatch(close());
     }
 
     onMinimize() {

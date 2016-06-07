@@ -15,10 +15,12 @@ function children(state = [], action) {
         if (newState.some(currentState => currentState.id === action.id)) {
             return state;
         }
-        return [...state, { id: action.id, state: action.state }];
+        return [...state, { id: action.id }];
     }
     case ACTION_TYPES.CHILD_CHANGE: {
-        newState.find(currentState => currentState.id === action.id).state = action.state;
+        if (newState.some(currentState => currentState.id === action.id)) {
+            newState.find(currentState => currentState.id === action.id).state = action.state;
+        }
         return newState;
     }
     case ACTION_TYPES.CHILD_CLOSED: {

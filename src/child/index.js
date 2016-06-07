@@ -5,16 +5,20 @@ import App from './containers/App';
 import 'babel-polyfill';
 import configureStore from './store/configureStore';
 
+import { selectStock, toggleFavourite } from './actions/sidebar';
+
 import './assets/styles/style.less';
 
 fin.desktop.main(() => {
+    let store = null;
+
     fin.desktop.InterApplicationBus.subscribe(
         '*',
         'initState',
         message => {
             const { state, uuid, id } = message;
             if (uuid === window.name) {
-                const store = configureStore(state.state);
+                store = configureStore(state.state);
                 window.id = id;
 
                 store.subscribe(() => {
@@ -30,6 +34,18 @@ fin.desktop.main(() => {
                     </Provider>,
                     document.getElementById('app')
                 );
+            }
+        }
+    );
+
+    fin.desktop.InterApplicationBus.subscribe(
+        '*',
+        'initialiseDragged',
+        message => {
+            const { id, stockCode, stockName } = message;
+            if (window.id === id) {
+                store.dispatch(toggleFavourite(stockCode));
+                store.dispatch(selectStock(stockCode, stockName));
             }
         }
     );

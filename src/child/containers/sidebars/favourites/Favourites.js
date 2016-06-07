@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { selectStock, unselectStock, toggleFavourite, quandlResponse, insertFavouriteAt } from '../../../actions/sidebar';
+import { close } from '../../../actions/window';
 import favTabImage from '../../../assets/png/favourites_tab.png';
 import Favourite from '../../../components/Favourite.js';
 
@@ -32,6 +33,7 @@ class Favourites extends Component {
         this.onDragOverFavourite = this.onDragOverFavourite.bind(this);
         this.onDropOverFavourite = this.onDropOverFavourite.bind(this);
         this.onQuandlResponse = this.onQuandlResponse.bind(this);
+        this.onDropOutside = this.onDropOutside.bind(this);
     }
 
     componentDidMount() {
@@ -80,6 +82,22 @@ class Favourites extends Component {
         e.stopPropagation();
     }
 
+    onDropOutside(e, stockCode) {
+        // Notify the parent to spawn a new window with this stockCode
+        fin.desktop.InterApplicationBus.publish(
+            'spawnNewWindow',
+            { stockCode, stockName: this.props.favourites.names[stockCode] }
+        );
+
+        // Unfavourite the stock from this window
+        this.toggleFavourite(stockCode);
+
+        if (!this.props.favourites.codes.length) {
+            this.props.dispatch(close());
+        }
+        e.stopPropagation();
+    }
+
     onQuandlResponse(stockCode, stockName) {
         this.props.dispatch(quandlResponse(stockCode, stockName));
     }
@@ -108,7 +126,6 @@ class Favourites extends Component {
     }
 
     toggleFavourite(stockCode) {
-        this.props.dispatch(toggleFavourite(stockCode));
         if (this.props.selection.code === stockCode) {
             if (this.props.favourites.codes.length >= 2) {
                 const newStockCode = this.props.favourites.codes.find(favourite => favourite !== stockCode);
@@ -118,6 +135,7 @@ class Favourites extends Component {
                 this.props.dispatch(unselectStock());
             }
         }
+        this.props.dispatch(toggleFavourite(stockCode));
     }
 
     render() {
@@ -126,7 +144,8 @@ class Favourites extends Component {
         let bindings = {
             dnd: {
                 onDragEnter: this.onDragOverFavourite,
-                onDrop: this.onDropOverFavourite
+                onDrop: this.onDropOverFavourite,
+                onDropOutside: this.onDropOutside
             },
             onClick: this.onClick,
             onIconClick: this.toggleFavourite,

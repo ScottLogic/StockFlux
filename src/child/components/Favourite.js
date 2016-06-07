@@ -64,7 +64,8 @@ class Favourite extends Component {
             // then the drag was cancelled
             dragTarget.classList.remove('dragging');
             if (e.dataTransfer.dropEffect === 'none') {
-                // TODO: Open window with stock + reposition && fade window if it's the only stock in favourites
+                // TODO: reposition && fade window if it's the only stock in favourites
+                this.props.bindings.dnd.onDropOutside(e, stockCode);
             }
         }, false);
     }

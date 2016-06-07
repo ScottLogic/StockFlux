@@ -56,7 +56,7 @@ describe('parent/reducers', () => {
 
         it('should return a new state if a new child connects', () => {
             const initialState = [{ id: 0, state: 'STORE' }];
-            const expectedState = [{ id: 0, state: 'STORE' }, { id: 1, state: 'STORE' }];
+            const expectedState = [{ id: 0, state: 'STORE' }, { id: 1 }];
             const action = {
                 type: ACTION_TYPES.CHILD_CONNECT,
                 id: 1,
