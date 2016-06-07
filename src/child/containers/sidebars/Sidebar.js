@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Favourites from './favourites/Favourites.js';
 import Search from './search/Search.js';
 
-import { selectFavourites, selectSearch } from '../../actions/sidebar';
+import { selectFavourites, selectSearch, toggleFavourite, selectStock, unselectStock } from '../../actions/sidebar';
 
 
 class Sidebar extends Component {
@@ -11,6 +11,7 @@ class Sidebar extends Component {
         super(props);
         this.focusFav = this.focusFav.bind(this);
         this.focusSearch = this.focusSearch.bind(this);
+        this.toggleFavourite = this.toggleFavourite.bind(this);
     }
 
     focusFav() {
@@ -25,16 +26,35 @@ class Sidebar extends Component {
         }
     }
 
+    toggleFavourite(stockCode) {
+        this.props.dispatch(toggleFavourite(stockCode));
+
+        const isFavourite = this.props.favourites.codes.some(favourite => favourite === stockCode);
+        if (this.props.selection.code === stockCode && isFavourite) {
+            if (this.props.favourites.codes.length >= 2) {
+                const newStockCode = this.props.favourites.codes.find(favourite => favourite !== stockCode);
+                const newStockName = this.props.favourites.names[newStockCode];
+                this.props.dispatch(selectStock(newStockCode, newStockName));
+            } else {
+                this.props.dispatch(unselectStock());
+            }
+        }
+    }
+
     render() {
         const { sidebar } = this.props;
+
+        let bindings = {
+            toggleFavourite: this.toggleFavourite
+        };
 
         return (
             <div className="sidebars">
                 <div className={`search main-search ${sidebar.showSearch ? 'expanded' : 'contracted'}`} onClick={this.focusSearch}>
-                    <Search />
+                    <Search bindings={bindings} />
                 </div>
                 <div className={`favourites ${sidebar.showFavourites ? 'expanded' : 'contracted'}`} onClick={this.focusFav}>
-                    <Favourites />
+                    <Favourites bindings={bindings} />
                 </div>
 
                 <div className="closed-window-selection">
@@ -46,11 +66,13 @@ class Sidebar extends Component {
 }
 Sidebar.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    sidebar: PropTypes.object.isRequired
+    sidebar: PropTypes.object.isRequired,
+    selection: PropTypes.object.isRequired,
+    favourites: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
-    const { sidebar } = state;
-    return { sidebar };
+    const { sidebar, selection, favourites } = state;
+    return { sidebar, selection, favourites };
 }
 export default connect(mapStateToProps)(Sidebar);
