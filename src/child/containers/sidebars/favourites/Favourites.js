@@ -2,7 +2,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { selectStock, unselectStock, toggleFavourite, quandlResponse, insertFavouriteAt } from '../../../actions/sidebar';
+import { selectStock, quandlResponse, insertFavouriteAt } from '../../../actions/sidebar';
 import favTabImage from '../../../assets/png/favourites_tab.png';
 import Favourite from '../../../components/Favourite.js';
 
@@ -28,7 +28,7 @@ class Favourites extends Component {
         super(props);
 
         this.onClick = this.onClick.bind(this);
-        this.toggleFavourite = this.toggleFavourite.bind(this);
+        this.onIconClick = this.onIconClick.bind(this);
         this.onDragOverFavourite = this.onDragOverFavourite.bind(this);
         this.onDropOverFavourite = this.onDropOverFavourite.bind(this);
         this.onQuandlResponse = this.onQuandlResponse.bind(this);
@@ -84,6 +84,10 @@ class Favourites extends Component {
         this.props.dispatch(quandlResponse(stockCode, stockName));
     }
 
+    onIconClick(stockCode) {
+        this.props.bindings.toggleFavourite(stockCode);
+    }
+
     addDropTarget(id) {
         const dropTarget = document.getElementById(id);
         this.dropTarget = dropTarget;
@@ -107,18 +111,6 @@ class Favourites extends Component {
         }, false);
     }
 
-    toggleFavourite(stockCode) {
-        this.props.dispatch(toggleFavourite(stockCode));
-        if (this.props.selection.code === stockCode) {
-            if (this.props.favourites.codes.length >= 2) {
-                const newStockCode = this.props.favourites.codes.find(favourite => favourite !== stockCode);
-                const newStockName = this.props.favourites.names[newStockCode];
-                this.props.dispatch(selectStock(newStockCode, newStockName));
-            } else {
-                this.props.dispatch(unselectStock());
-            }
-        }
-    }
 
     render() {
         const { favourites, hasErrors, isStarting, selection } = this.props;
@@ -129,7 +121,7 @@ class Favourites extends Component {
                 onDrop: this.onDropOverFavourite
             },
             onClick: this.onClick,
-            onIconClick: this.toggleFavourite,
+            onIconClick: this.onIconClick,
             onQuandlResponse: this.onQuandlResponse
         };
         return (
@@ -173,6 +165,7 @@ Favourites.propTypes = {
     favourites: PropTypes.object.isRequired,
     hasErrors: PropTypes.bool,
     isStarting: PropTypes.bool,
+    bindings: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired
 };
 
