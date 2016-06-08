@@ -1,13 +1,8 @@
 /* global $ */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-
-<<<<<<< 3c1bf73e18a6ca250c07ca258da95eec9b740c20
 import { selectStock, quandlResponse, insertFavouriteAt } from '../../../actions/sidebar';
-=======
-import { selectStock, unselectStock, toggleFavourite, quandlResponse, insertFavouriteAt } from '../../../actions/sidebar';
 import { close } from '../../../actions/window';
->>>>>>> feat: Added drag out of current window support
 import favTabImage from '../../../assets/png/favourites_tab.png';
 import Favourite from '../../../components/Favourite.js';
 
@@ -94,7 +89,7 @@ class Favourites extends Component {
         );
 
         // Unfavourite the stock from this window
-        this.toggleFavourite(stockCode);
+        this.props.bindings.toggleFavourite(stockCode);
 
         if (!this.props.favourites.codes.length) {
             this.props.dispatch(close());
@@ -132,22 +127,6 @@ class Favourites extends Component {
             dropTarget.classList.remove('dragOver');
         }, false);
     }
-
-<<<<<<< 3c1bf73e18a6ca250c07ca258da95eec9b740c20
-=======
-    toggleFavourite(stockCode) {
-        if (this.props.selection.code === stockCode) {
-            if (this.props.favourites.codes.length >= 2) {
-                const newStockCode = this.props.favourites.codes.find(favourite => favourite !== stockCode);
-                const newStockName = this.props.favourites.names[newStockCode];
-                this.props.dispatch(selectStock(newStockCode, newStockName));
-            } else {
-                this.props.dispatch(unselectStock());
-            }
-        }
-        this.props.dispatch(toggleFavourite(stockCode));
-    }
->>>>>>> feat: Added drag out of current window support
 
     render() {
         const { favourites, hasErrors, isStarting, selection } = this.props;

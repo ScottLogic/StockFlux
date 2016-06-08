@@ -5,7 +5,7 @@ import App from './containers/App';
 import 'babel-polyfill';
 import configureStore from './store/configureStore';
 
-import { selectStock, toggleFavourite } from './actions/sidebar';
+import { selectStock, toggleFavourite, selectFavourites } from './actions/sidebar';
 
 import './assets/styles/style.less';
 
@@ -46,6 +46,7 @@ fin.desktop.main(() => {
             if (window.id === id) {
                 store.dispatch(toggleFavourite(stockCode));
                 store.dispatch(selectStock(stockCode, stockName));
+                store.dispatch(selectFavourites());
             }
         }
     );

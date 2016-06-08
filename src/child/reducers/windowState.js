@@ -18,12 +18,6 @@ export default function windowState(state = {
             isMaximised: false
         });
     case ACTION_TYPES.CLOSE:
-        fin.desktop.InterApplicationBus.publish(
-            'childClosing',
-            { id: window.id }
-        );
-        window.close();
-        return state;
     default:
         return state;
     }
