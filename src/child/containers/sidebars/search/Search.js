@@ -1,7 +1,7 @@
 /* global $ */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { searchInput, search, clearSearch, selectStock, toggleFavourite } from '../../../actions/sidebar';
+import { selectStock, searchInput, search, clearSearch } from '../../../actions/sidebar';
 import searchTabImage from '../../../assets/png/search_tab.png';
 import SearchResult from '../../../components/SearchResult.js';
 const SEARCH_TIMEOUT_INTERVAL = 250;
@@ -37,7 +37,7 @@ class Search extends Component {
     }
 
     onIconClick(stockCode) {
-        this.props.dispatch(toggleFavourite(stockCode));
+        this.props.bindings.toggleFavourite(stockCode);
     }
 
     onClick(stockCode, stockName) {
@@ -114,6 +114,7 @@ Search.propTypes = {
     favourites: PropTypes.object,
     selection: PropTypes.object.isRequired,
     term: PropTypes.string.isRequired,
+    bindings: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired
 };
 
