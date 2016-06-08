@@ -6,6 +6,7 @@ import 'babel-polyfill';
 import configureStore from './store/configureStore';
 
 import { selectStock, toggleFavourite } from './actions/sidebar';
+import { close } from './actions/window';
 
 import './assets/styles/style.less';
 
@@ -46,6 +47,31 @@ fin.desktop.main(() => {
             if (window.id === id) {
                 store.dispatch(toggleFavourite(stockCode));
                 store.dispatch(selectStock(stockCode, stockName));
+            }
+        }
+    );
+
+    fin.desktop.InterApplicationBus.subscribe(
+        '*',
+        'favouriteTransfer',
+        message => {
+            const { id, stockCode } = message;
+            if (window.id === id) {
+                if (store.getState().favourites.codes.some(favourite => favourite === message.stockCode)) {
+                    store.dispatch(toggleFavourite(stockCode));
+                }
+
+                const favourites = store.getState().favourites;
+
+                if (favourites.codes.length) {
+                    // This isn't the last favourite
+                    const newStockCode = favourites.codes.find(favourite => favourite !== message.stockCode);
+                    const newStockName = favourites.names[newStockCode];
+                    store.dispatch(selectStock(newStockCode, newStockName));
+                } else {
+                    // This is the last favourite
+                    store.dispatch(close());
+                }
             }
         }
     );

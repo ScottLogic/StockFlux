@@ -25,6 +25,11 @@ export function unselectStock() {
 }
 
 export function insertFavouriteAt(index, code) {
+    fin.desktop.InterApplicationBus.publish(
+        'droppedFavourite',
+        { id: window.id, stockCode: code }
+    );
+
     return {
         type: ACTION_TYPES.INSERT_FAVOURITE_AT,
         index,

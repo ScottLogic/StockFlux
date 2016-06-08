@@ -34,6 +34,7 @@ class Favourites extends Component {
         this.onDropOverFavourite = this.onDropOverFavourite.bind(this);
         this.onQuandlResponse = this.onQuandlResponse.bind(this);
         this.onDropOutside = this.onDropOutside.bind(this);
+        this.alertParentOfDragging = this.alertParentOfDragging.bind(this);
     }
 
     componentDidMount() {
@@ -63,7 +64,6 @@ class Favourites extends Component {
     onDragOverFavourite(e, targetCode) {
         const codes = this.props.favourites.codes;
         const code = getCodeFromDT(e.dataTransfer.types);
-
         const indexOfCode = codes.indexOf(code);
         if (indexOfCode <= -1 || targetCode !== code) {
             e.target.classList.add('dragOver');
@@ -92,6 +92,7 @@ class Favourites extends Component {
         // Unfavourite the stock from this window
         this.toggleFavourite(stockCode);
 
+        // Close the window if this was the last favourite
         if (!this.props.favourites.codes.length) {
             this.props.dispatch(close());
         }
@@ -125,6 +126,13 @@ class Favourites extends Component {
         }, false);
     }
 
+    alertParentOfDragging(stockCode) {
+        fin.desktop.InterApplicationBus.publish(
+            'draggingFavourite',
+            { id: window.id, stockCode }
+        );
+    }
+
     toggleFavourite(stockCode) {
         if (this.props.selection.code === stockCode) {
             if (this.props.favourites.codes.length >= 2) {
@@ -145,7 +153,8 @@ class Favourites extends Component {
             dnd: {
                 onDragEnter: this.onDragOverFavourite,
                 onDrop: this.onDropOverFavourite,
-                onDropOutside: this.onDropOutside
+                onDropOutside: this.onDropOutside,
+                alertParentOfDragging: this.alertParentOfDragging
             },
             onClick: this.onClick,
             onIconClick: this.toggleFavourite,

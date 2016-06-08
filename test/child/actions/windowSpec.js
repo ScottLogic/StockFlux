@@ -9,6 +9,11 @@ global.fin = { desktop: { InterApplicationBus: { publish } } };
 global.window = { close };
 
 describe('child/actions/window', () => {
+    beforeEach(() => {
+        publish.reset();
+        close.reset();
+    });
+
     it('should create an action for minimize', () => {
         const expectedAction = { type: ACTION_TYPES.MINIMIZE };
         expect(actions.minimise()).to.deep.equal(expectedAction);

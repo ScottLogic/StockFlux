@@ -7,12 +7,13 @@ import 'babel-polyfill';
 let id = 0;
 const getId = () => id++;
 
-// Need to increment on drag out also
 let openWindows = 0;
 
 let newlySpawnedId = -1;
 let newlySpawnedStockCode = null;
 let newlySpawnedStockName = null;
+
+let draggedFavourite = null;
 
 function createChildWindows() {
     const store = parentStore([{ id, state: configureStore().getState() }]);
@@ -61,6 +62,36 @@ function createChildWindows() {
 
     fin.desktop.InterApplicationBus.subscribe(
         '*',
+        'draggingFavourite',
+        message => {
+            // Only accept if we don't currently have a draggedFavourite initialised
+            // This is to avoid the target window claiming ownership of the favourite
+            // This would lead to the favourite not being removed from the source window
+            if (!draggedFavourite) {
+                draggedFavourite = {
+                    id: message.id,
+                    stockCode: message.stockCode
+                };
+            }
+        }
+    );
+
+    fin.desktop.InterApplicationBus.subscribe(
+        '*',
+        'droppedFavourite',
+        message => {
+            if (draggedFavourite.id !== message.id) {
+                fin.desktop.InterApplicationBus.publish(
+                    'favouriteTransfer',
+                    { id: draggedFavourite.id, stockCode: draggedFavourite.stockCode }
+                );
+            }
+            draggedFavourite = null;
+        }
+    );
+
+    fin.desktop.InterApplicationBus.subscribe(
+        '*',
         'childClosing',
         message => {
             // If this isn't the final window, remove it from the store so
@@ -86,6 +117,8 @@ function createChildWindows() {
             newlySpawnedId = id;
             newlySpawnedStockCode = message.stockCode;
             newlySpawnedStockName = message.stockName;
+
+            draggedFavourite = null;
         }
     );
 

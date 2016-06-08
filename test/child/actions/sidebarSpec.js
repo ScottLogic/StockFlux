@@ -3,6 +3,11 @@ import * as actions from '../../../src/child/actions/sidebar';
 import { SIDEBAR as ACTION_TYPES } from '../../../src/child/constants/actionTypes.js';
 
 describe('child/actions/sidebar', () => {
+    beforeEach(() => {
+        global.fin.desktop.InterApplicationBus.publish.reset();
+        global.window.close.reset();
+    });
+
     it('should create an action to input a stock to search for', () => {
         const term = 'GOOG';
         const expectedAction = {
@@ -37,6 +42,7 @@ describe('child/actions/sidebar', () => {
             code
         };
         expect(actions.insertFavouriteAt(index, code)).to.deep.equal(expectedAction);
+        expect(global.fin.desktop.InterApplicationBus.publish.calledOnce).to.be.true;
     });
 
     it('should create an action to toggle a favourite', () => {
