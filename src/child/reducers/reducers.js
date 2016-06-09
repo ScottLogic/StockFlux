@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
-import deepFreeze from 'deep-freeze';
 
 import selection from './selection';
 import sidebar from './sidebar';
 import favourites from './favourites';
 import search from './search';
 import windowState from './windowState';
+
+import devReducers from './reducers.dev';
+import prodReducers from './reducers.prod';
 
 const rootReducer = combineReducers({
     selection,
@@ -18,12 +20,9 @@ const rootReducer = combineReducers({
 // Wrap the reducer in dev to freeze the state and action
 const checkImmutable = (reducer) => {
     if (process.env.NODE_ENV === 'production') {
-        return reducer;
+        return prodReducers(reducer);
     }
-    return (state, action) => reducer(
-        state !== undefined ? deepFreeze(state) : state,
-        action !== undefined ? deepFreeze(action) : action
-    );
+    return devReducers(reducer);
 };
 
 export default checkImmutable(rootReducer);
