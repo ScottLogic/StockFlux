@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import reducers from '../../../src/child/reducers/reducers.dev.js';
+import reducers from '../../../../src/child/reducers/reducers.dev.js';
 
 describe('child/reducers/reducers.dev', () => {
     it('should return the reducer', () => {
