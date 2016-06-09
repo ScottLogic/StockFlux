@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import semver from 'semver';
-import versionValue from '../../src/shared/versionValue';
+import versionValue from '../../../src/shared/versionValue';
 
 describe('shared/versionValue', () => {
     it('should be a valid semantic version', () => {
