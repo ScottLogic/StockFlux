@@ -13,7 +13,8 @@ export default function windowState(state = {
     case ACTION_TYPES.TOGGLE_COMPACT:
         return Object.assign({}, state, {
             isCompact: action.state,
-            isResizing: false
+            isResizing: false,
+            hasErrors: false
         });
     case ACTION_TYPES.MAXIMIZE:
         return Object.assign({}, state, {
@@ -22,6 +23,11 @@ export default function windowState(state = {
     case ACTION_TYPES.RESTORE:
         return Object.assign({}, state, {
             isMaximised: false
+        });
+    case ACTION_TYPES.RESIZE_ERROR:
+        return Object.assign({}, state, {
+            isResizing: false,
+            hasErrors: true
         });
     case ACTION_TYPES.CLOSE:
     default:

@@ -22,7 +22,8 @@ describe('child/reducers/windowState', () => {
         })).to.deep.equal({
             isCompact: true,
             isMaximised: false,
-            isResizing: false
+            isResizing: false,
+            hasErrors: false
         });
         expect(windowState({
             isCompact: true,
@@ -34,7 +35,8 @@ describe('child/reducers/windowState', () => {
         })).to.deep.equal({
             isCompact: false,
             isMaximised: false,
-            isResizing: false
+            isResizing: false,
+            hasErrors: false
         });
     });
 
@@ -155,6 +157,20 @@ describe('child/reducers/windowState', () => {
             isCompact: true,
             isMaximised: true,
             isResizing: true
+        });
+    });
+
+    it('should handle RESIZE_ERROR', () => {
+        const action = { type: 'RESIZE_ERROR' };
+        expect(windowState({
+            isCompact: false,
+            isMaximised: false,
+            isResizing: true
+        }, action)).to.deep.equal({
+            isCompact: false,
+            isMaximised: false,
+            isResizing: false,
+            hasErrors: true
         });
     });
 

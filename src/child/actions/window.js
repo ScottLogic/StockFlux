@@ -51,13 +51,23 @@ export function close() {
     };
 }
 
+export function resizeError() {
+    return {
+        type: ACTION_TYPES.RESIZE_ERROR
+    };
+}
+
 export function resizeToCompact() {
     return dispatch => {
         dispatch(resizing());
         const compactWindowDimensions = configService.getCompactWindowDimensions();
-        fin.desktop.Window.getCurrent().resizeTo(compactWindowDimensions[0], compactWindowDimensions[1], 'top-right', () => {
-            dispatch(compact());
-        });
+        fin.desktop.Window.getCurrent().resizeTo(
+            compactWindowDimensions[0],
+            compactWindowDimensions[1],
+            'top-right',
+            () => dispatch(compact()),
+            () => dispatch(resizeError())
+        );
     };
 }
 
@@ -65,8 +75,12 @@ export function resizeToDefault() {
     return dispatch => {
         dispatch(resizing());
         const defaultWindowDimensions = configService.getDefaultWindowDimensions();
-        fin.desktop.Window.getCurrent().resizeTo(defaultWindowDimensions[0], defaultWindowDimensions[1], 'top-right', () => {
-            dispatch(expand());
-        });
+        fin.desktop.Window.getCurrent().resizeTo(
+            defaultWindowDimensions[0],
+            defaultWindowDimensions[1],
+            'top-right',
+            () => dispatch(expand()),
+            () => dispatch(resizeError())
+        );
     };
 }
