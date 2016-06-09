@@ -2,8 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 import { truncate } from '../services/formatters';
 import Minichart from './minichart/Minichart.js';
-import QuandlService from '../services/QuandlService.js';
-const quandlService = new QuandlService();
+import { getStockData as quandlServiceGetStockData } from '../services/QuandlService.js';
 
 import arrowUp from '../assets/png/arrow_up.png';
 import arrowDown from '../assets/png/arrow_down.png';
@@ -18,18 +17,20 @@ class Favourite extends Component {
     componentDidMount() {
         const stockCode = this.props.stockCode;
         this.addDragTarget(stockCode);
-        quandlService.getStockData(stockCode, response => {
-            const data = response.stockData.data[0];
-            const stockData = {
-                name: response.dataset.name,
-                price: data.close,
-                delta: data.close - data.open,
-                percentage: (data.close - data.open) / data.open * 100
-            };
-            const chartData = response;
-            this.props.bindings.onQuandlResponse(stockCode, response.dataset.name);
-            this.setState({ stockData, chartData });
-        });
+        quandlServiceGetStockData(stockCode)
+            .then(response => {
+                const data = response.stockData.data[0];
+                const stockName = response.dataset.name;
+                const stockData = {
+                    name: stockName,
+                    price: data.close,
+                    delta: data.close - data.open,
+                    percentage: (data.close - data.open) / data.open * 100
+                };
+                const chartData = response;
+                this.props.bindings.onQuandlResponse(stockCode, stockName);
+                this.setState({ stockData, chartData });
+            });
     }
 
     onIconClick(e) {

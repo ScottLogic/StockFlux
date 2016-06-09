@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import * as actions from '../../../src/child/actions/window';
-import { WINDOW as ACTION_TYPES } from '../../../src/child/constants/actionTypes.js';
+import * as actions from '../../../../src/child/actions/window';
+import { WINDOW as ACTION_TYPES } from '../../../../src/child/constants/actionTypes.js';
 
 describe('child/actions/window', () => {
     it('should create an action for minimize', () => {

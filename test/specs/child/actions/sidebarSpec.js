@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import * as actions from '../../../src/child/actions/sidebar';
-import { SIDEBAR as ACTION_TYPES } from '../../../src/child/constants/actionTypes.js';
+import * as actions from '../../../../src/child/actions/sidebar';
+import { SIDEBAR as ACTION_TYPES } from '../../../../src/child/constants/actionTypes.js';
 
 describe('child/actions/sidebar', () => {
     it('should create an action to input a stock to search for', () => {

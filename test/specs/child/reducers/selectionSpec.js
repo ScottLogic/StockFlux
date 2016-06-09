@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import selection from '../../../src/child/reducers/selection';
-import { SIDEBAR as ACTION_TYPES } from '../../../src/child/constants/actionTypes';
+import selection from '../../../../src/child/reducers/selection';
+import { SIDEBAR as ACTION_TYPES } from '../../../../src/child/constants/actionTypes';
 
 describe('child/reducers/selection', () => {
     it('should return the initial state', () => {
