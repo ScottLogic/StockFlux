@@ -1,7 +1,6 @@
 import { SIDEBAR as ACTION_TYPES } from '../constants/actionTypes.js';
 
-import QuandlService from '../services/QuandlService.js';
-const quandlService = new QuandlService();
+import { search as quandlServiceSearch } from '../services/QuandlService.js';
 
 export function searchInput(term) {
     return {
@@ -92,10 +91,9 @@ export function search(term) {
             dispatch(clearSearch());
         } else {
             dispatch(searchStarted(term));
-            quandlService.search(term,
-                results => dispatch(searchFinished(term, results)),
-                () => dispatch(searchError())
-            );
+            quandlServiceSearch(term)
+                .then(results => dispatch(searchFinished(term, results)))
+                .catch(() => dispatch(searchError()));
         }
     };
 }

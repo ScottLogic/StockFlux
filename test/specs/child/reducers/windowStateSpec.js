@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import windowState from '../../../src/child/reducers/windowState.js';
-import { WINDOW as ACTION_TYPES } from '../../../src/child/constants/actionTypes';
+import windowState from '../../../../src/child/reducers/windowState.js';
+import { WINDOW as ACTION_TYPES } from '../../../../src/child/constants/actionTypes';
 
 describe('child/reducers/windowState', () => {
     it('should return the initial state', () => {
