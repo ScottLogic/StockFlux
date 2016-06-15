@@ -3,14 +3,14 @@
     "startup_app": {
         "name": "StockFlux",
         "uuid": "StockFlux",
-        "maxWidth": 600,
-        "maxHeight": 200,
-        "defaultWidth": 400,
-        "defaultHeight": 200,
+        "maxWidth": 0,
+        "maxHeight": 0,
+        "defaultWidth": 0,
+        "defaultHeight": 0,
         "frame": false,
         "showTaskbarIcon": false,
-        "url": "http://localhost:5000/parent.html",
-        "autoShow" : true
+        "url": "http://localhost:5001/parent.html",
+        "autoShow" : false
     },
     "runtime": {
         "arguments": "--enable-aggressive-domstorage-flushing",

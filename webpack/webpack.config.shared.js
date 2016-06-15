@@ -1,15 +1,12 @@
 const webpack = require('webpack');
 
 module.exports = {
-    devtool: 'cheap-module-eval-source-map',
     entry: {
-        child: ['webpack-dev-server/client?http://localhost:5000', 'webpack/hot/only-dev-server', './src/child/index.js'],
-        parent: ['webpack-dev-server/client?http://localhost:5000', 'webpack/hot/only-dev-server', './src/parent/parent.js']
+        child: ['./src/child/index.js'],
+        parent: ['./src/parent/parent.js']
     },
     output: {
-        path: `${__dirname}/public`,
-        filename: './[name]_bundle.js',
-        publicPath: '/'
+        filename: './[name]_bundle.js'
     },
     module: {
         loaders: [
@@ -27,13 +24,7 @@ module.exports = {
     resolve: {
         extensions: ['', '.js']
     },
-    devServer: {
-        contentBase: './public',
-        hot: true,
-        port: 5000
-    },
     plugins: [
-        new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.optimize.OccurenceOrderPlugin()
     ]
 };

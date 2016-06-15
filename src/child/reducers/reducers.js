@@ -6,9 +6,6 @@ import favourites from './favourites';
 import search from './search';
 import windowState from './windowState';
 
-import devReducers from './reducers.dev';
-import prodReducers from './reducers.prod';
-
 const rootReducer = combineReducers({
     selection,
     sidebar,
@@ -20,9 +17,9 @@ const rootReducer = combineReducers({
 // Wrap the reducer in dev to freeze the state and action
 const checkImmutable = (reducer) => {
     if (process.env.NODE_ENV === 'production') {
-        return prodReducers(reducer);
+        return require('./reducers.prod').default(reducer);     // eslint-disable-line global-require
     }
-    return devReducers(reducer);
+    return require('./reducers.dev').default(reducer);          // eslint-disable-line global-require
 };
 
 export default checkImmutable(rootReducer);
