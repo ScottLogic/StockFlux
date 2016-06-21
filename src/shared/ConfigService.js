@@ -9,9 +9,7 @@ const TEAROUT_CARD_DIMENSIONS = [TEAROUT_CARD_WIDTH, 110];
 const COMPACT_WINDOW_DIMENSIONS = [TEAROUT_CARD_WIDTH, 500];
 const DEFAULT_WINDOW_DIMENSIONS = [1280, 720];
 
-// Be very careful changing the line below. It is replaced with a string.replace in the grunt build
-// to disable the right click menu in release.
-const allowContextMenu = true;
+const allowContextMenu = process.env.NODE_ENV !== 'production';
 
 /**
  * Stores common configuration for the application.

@@ -46,34 +46,40 @@ npm start
 Launch the OpenFin runtime:
 
 ```
-npm run openfin
+npm run openfin:dev
 ```
 
+### npm Build Tasks
 
-#### Running locally
+#### Development Build
 
-To run in an OpenFin shell run the `serve` grunt task:
+Run webpack-dev-server with the development config: `npm start`
 
-```
-grunt serve
-```
+Launch OpenFin with the development setup (requires the dev server to be running): `npm run openfin:dev`
 
-The project is also accessible at http://localhost:5000
+#### Production Build
 
-#### Contributing
+Build and serve the production bundle: `npm run prod`
 
-Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details of how to contribute.
+Launch OpenFin with the production setup (requires the server to be running): `npm run openfin:prod`
 
-#### Testing
+### Testing
 
 There is a [test plan](docs/TEST_PLAN.md) that covers the main features and behaviour. This should be used as a basis for testing before releasing and also the main features covered on testing PR changes.
 
-#### Releasing
+#### npm Tasks
 
-To release, run the Grunt task: `grunt release` for a major release, or `grunt bump:minor`
-for a minor. This updates all the version references to a new version. Then, submit a PR
-with this new version in to `dev`, and then merge it to `master`. Merging to master will
-trigger the update of the deployed gh-pages version.
+Run the full suite of unit tests: `npm test`
+
+Lint and run the tests: `npm run ci`
+
+Run the tests once initially and on any subsequent changes to JavaScript files: `npm run test:watch`
+
+Get details on the test coverage: `npm run test:cov`
+
+### Contributing
+
+Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details of how to contribute.
 
 ## License
 

@@ -2,3 +2,9 @@ node_modules
 .idea
 .grunt
 coverage
+
+public/
+!app.dev.json
+!app.prod.json
+!index.html
+!parent.html
