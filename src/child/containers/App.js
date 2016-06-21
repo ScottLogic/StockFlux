@@ -32,7 +32,7 @@ const App = ({ code, name }) => (
             </div>
             <Version />
         </div>
-        <DevTools />
+        {(process.env.NODE_ENV !== 'production' && <DevTools />)}
     </div>
 );
 
