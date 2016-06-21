@@ -6,7 +6,6 @@ import Showcase from './showcase/Showcase';
 import Version from '../components/version/Version';
 import { truncate } from '../services/formatters';
 
-
 import DevTools from './devTools/DevTools.js';
 import '../../../node_modules/d3fc/dist/d3fc.min.css';
 import '../../../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css';
@@ -32,7 +31,7 @@ const App = ({ code, name }) => (
             </div>
             <Version />
         </div>
-        <DevTools />
+        {DevTools && <DevTools />}
     </div>
 );
 
