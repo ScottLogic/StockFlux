@@ -11,7 +11,6 @@ describe('child/services/QuandlService', () => {
 
     after(() => {
         nock.cleanAll();
-        nock.restore();
     });
 
     describe('search', () => {
