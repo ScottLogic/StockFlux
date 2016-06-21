@@ -1,6 +1,11 @@
 import { expect } from 'chai';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import nock from 'nock';
 import * as actions from '../../../../src/child/actions/sidebar';
 import { SIDEBAR as ACTION_TYPES } from '../../../../src/child/constants/actionTypes.js';
+import { apiKey } from '../../../../src/child/services/QuandlService';
+import createFakeQuandlServer from '../../../helper/fakeQuandlServer';
 
 describe('child/actions/sidebar', () => {
     it('should create an action to input a stock to search for', () => {
@@ -48,35 +53,6 @@ describe('child/actions/sidebar', () => {
         expect(actions.toggleFavourite(code)).to.deep.equal(expectedAction);
     });
 
-    it('should create an action to clear a search', () => {
-        const expectedAction = { type: ACTION_TYPES.CLEAR_SEARCH };
-        expect(actions.clearSearch()).to.deep.equal(expectedAction);
-    });
-
-    it('should create an action to finish a search', () => {
-        const term = 'GOOG';
-        const result1 = {
-            code: 'GOOG',
-            name: 'Alphabet Inc (GOOG) Prices, Dividends, Splits and Trading Volume'
-        };
-        const result2 = {
-            code: 'GOOGL',
-            name: 'Alphabet Inc (GOOGL) Prices, Dividends, Splits and Trading Volume'
-        };
-        const results = [result1, result2];
-        const expectedAction = {
-            type: ACTION_TYPES.SEARCH_FINISHED,
-            term,
-            results
-        };
-        expect(actions.searchFinished(term, results)).to.deep.equal(expectedAction);
-    });
-
-    it('should create an action to error a search', () => {
-        const expectedAction = { type: ACTION_TYPES.SEARCH_ERROR };
-        expect(actions.searchError()).to.deep.equal(expectedAction);
-    });
-
     it('should create an action to select search', () => {
         const expectedAction = { type: ACTION_TYPES.SEARCH_CLICKED };
         expect(actions.selectSearch()).to.deep.equal(expectedAction);
@@ -96,5 +72,68 @@ describe('child/actions/sidebar', () => {
             name
         };
         expect(actions.quandlResponse(code, name)).to.deep.equal(expectedAction);
+    });
+
+    describe('search', () => {
+        let mockStore;
+        before(() => {
+            mockStore = configureMockStore([thunk]);
+            createFakeQuandlServer(apiKey());
+        });
+
+        after(() => {
+            nock.cleanAll();
+        });
+
+        it('should create an action to clear a search', () => {
+            const term = '';
+            const expectedActions = [{ type: ACTION_TYPES.CLEAR_SEARCH }];
+
+            const store = mockStore();
+
+            return store.dispatch(actions.search(term))
+                .then(() => {
+                    expect(store.getActions()).to.deep.equal(expectedActions);
+                });
+        });
+
+        it('should create an action to finish a successful search', () => {
+            const term = 'GOOG';
+            const result1 = {
+                code: 'GOOG',
+                name: 'Alphabet Inc (GOOG) Prices, Dividends, Splits and Trading Volume'
+            };
+            const result2 = {
+                code: 'GOOGL',
+                name: 'Alphabet Inc (GOOGL) Prices, Dividends, Splits and Trading Volume'
+            };
+            const results = [result1, result2];
+            const expectedActions = [
+                { type: ACTION_TYPES.SEARCH_STARTED, term },
+                { type: ACTION_TYPES.SEARCH_FINISHED, term, results }
+            ];
+
+            const store = mockStore();
+
+            return store.dispatch(actions.search(term))
+                .then(() => {
+                    expect(store.getActions()).to.deep.equal(expectedActions);
+                });
+        });
+
+        it('should create an action to error a search', () => {
+            const term = 'BAD';
+            const expectedActions = [
+                { type: ACTION_TYPES.SEARCH_STARTED, term },
+                { type: ACTION_TYPES.SEARCH_ERROR }
+            ];
+
+            const store = mockStore();
+
+            return store.dispatch(actions.search(term))
+                .then(() => {
+                    expect(store.getActions()).to.deep.equal(expectedActions);
+                });
+        });
     });
 });
