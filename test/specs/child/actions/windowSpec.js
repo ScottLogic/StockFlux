@@ -1,6 +1,12 @@
 import { expect } from 'chai';
+import sinon from 'sinon';
 import * as actions from '../../../../src/child/actions/window';
 import { WINDOW as ACTION_TYPES } from '../../../../src/child/constants/actionTypes.js';
+
+const publish = sinon.spy();
+const close = sinon.spy();
+global.fin = { desktop: { InterApplicationBus: { publish } } };
+global.window = { close };
 
 describe('child/actions/window', () => {
     it('should create an action for minimize', () => {
@@ -42,5 +48,10 @@ describe('child/actions/window', () => {
     it('should create an action for close', () => {
         const expectedAction = { type: ACTION_TYPES.CLOSE };
         expect(actions.close()).to.deep.equal(expectedAction);
+
+        expect(publish.calledOnce).to.be.true;
+        expect(publish.calledWithExactly('childClosing', { id: window.id })).to.be.true;
+        expect(close.calledOnce).to.be.true;
+        expect(close.calledWithExactly()).to.be.true;
     });
 });

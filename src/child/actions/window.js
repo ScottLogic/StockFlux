@@ -39,6 +39,11 @@ export function restore() {
 }
 
 export function close() {
+    fin.desktop.InterApplicationBus.publish(
+        'childClosing',
+        { id: window.id }
+    );
+    window.close();
     return {
         type: ACTION_TYPES.CLOSE
     };
