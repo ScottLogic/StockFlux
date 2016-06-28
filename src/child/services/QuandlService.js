@@ -89,7 +89,7 @@ export function search(query, usefallback = false) {
     const apiKeyParam = (usefallback ? '' : API_KEY_VALUE);
     return fetch(`${QUANDL_URL}datasets.json?${apiKeyParam}&query=${query}&database_code=WIKI`, {
         method: 'GET',
-        cache: true,
+        cache: true
     })
     .then(validateResponse)
     .then(filterSearchResultsByDate)
