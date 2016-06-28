@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import sinon from 'sinon';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import nock from 'nock';
@@ -76,13 +77,16 @@ describe('child/actions/sidebar', () => {
 
     describe('search', () => {
         let mockStore;
+        let clock;
         before(() => {
             mockStore = configureMockStore([thunk]);
             createFakeQuandlServer(apiKey());
+            clock = sinon.useFakeTimers(new Date(2016, 5, 1).getTime());
         });
 
         after(() => {
             nock.cleanAll();
+            clock.restore();
         });
 
         it('should create an action to clear a search', () => {

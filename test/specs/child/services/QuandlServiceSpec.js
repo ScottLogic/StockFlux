@@ -5,12 +5,15 @@ import { search, getStockMetadata, getStockData, apiKey } from '../../../../src/
 import createFakeQuandlServer from '../../../helper/fakeQuandlServer';
 
 describe('child/services/QuandlService', () => {
+    let clock;
     before(() => {
         createFakeQuandlServer(apiKey());
+        clock = sinon.useFakeTimers(new Date(2016, 5, 1).getTime());
     });
 
     after(() => {
         nock.cleanAll();
+        clock.restore();
     });
 
     describe('search', () => {
@@ -66,11 +69,6 @@ describe('child/services/QuandlService', () => {
     });
 
     describe('getStockData', () => {
-        let clock;
-        before(() => {
-            clock = sinon.useFakeTimers(new Date(2016, 5, 1).getTime());
-        });
-
         it('should return stock data when using an API key', () =>
             getStockData('GOOG').then(response => {
                 expect(response.dataset.dataset_code).to.equal('GOOG');
@@ -108,10 +106,6 @@ describe('child/services/QuandlService', () => {
                 expect(error.quandl_error.message).to.equal('Quandl error message description.');
             })
         );
-
-        after(() => {
-            clock.restore();
-        });
     });
 
     describe('apiKey', () => {
