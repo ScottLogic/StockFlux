@@ -43,4 +43,9 @@ describe('child/actions/window', () => {
         const expectedAction = { type: ACTION_TYPES.CLOSE };
         expect(actions.close()).to.deep.equal(expectedAction);
     });
+
+    it('should create an action for resizing', () => {
+        const expectedAction = { type: ACTION_TYPES.RESIZING };
+        expect(actions.resizing()).to.deep.equal(expectedAction);
+    });
 });
