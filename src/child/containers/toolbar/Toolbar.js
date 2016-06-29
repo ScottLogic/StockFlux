@@ -4,8 +4,8 @@ import {
     minimise,
     maximize,
     restore,
-    compact,
-    expand
+    resizeToCompact,
+    resizeToDefault
 } from '../../actions/window.js';
 import icon from '../../assets/png/scottlogic_logo.png';
 
@@ -37,11 +37,11 @@ class Toolbar extends Component {
     }
 
     onCompactClick() {
-        this.props.dispatch(compact());
+        this.props.dispatch(resizeToCompact());
     }
 
     onFullViewClick() {
-        this.props.dispatch(expand());
+        this.props.dispatch(resizeToDefault());
     }
 
     onMaximizeClick() {
