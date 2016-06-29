@@ -1,7 +1,7 @@
 /* global $ */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { selectStock, searchInput, search, clearSearch } from '../../../actions/sidebar';
+import { selectStock, searchInput, search, selectFavourites } from '../../../actions/sidebar';
 import searchTabImage from '../../../assets/png/search_tab.png';
 import SearchResult from '../../../components/SearchResult.js';
 const SEARCH_TIMEOUT_INTERVAL = 250;
@@ -12,7 +12,7 @@ class Search extends Component {
         this.onChange = this.onChange.bind(this);
         this.onClick = this.onClick.bind(this);
         this.onIconClick = this.onIconClick.bind(this);
-        this.clear = this.clear.bind(this);
+        this.closeSearch = this.closeSearch.bind(this);
     }
 
     componentDidMount() {
@@ -44,8 +44,8 @@ class Search extends Component {
         this.props.dispatch(selectStock(stockCode, stockName));
     }
 
-    clear() {
-        this.props.dispatch(clearSearch());
+    closeSearch() {
+        this.props.dispatch(selectFavourites());
     }
 
     render() {
@@ -61,7 +61,7 @@ class Search extends Component {
                 <div>
                     <img className="top-icon" src={searchTabImage} title="Search Stocks" draggable="false" />
                     <input value={term} className="sidetab searchInput" type="text" maxLength="20" placeholder="Enter stock name or symbol" onChange={this.onChange} />
-                    <div className="button-icon close hiddenOnContracted" title="Close Search" onClick={this.clear}>&nbsp;</div>
+                    <div className="button-icon close" title="Close Search" onClick={this.closeSearch}>&nbsp;</div>
                 </div>
                 <div id="search-scroll" ref="searchscroll" className="side-scroll custom-scrollbar">
                     <div className="sidetab hiddenOnContracted">

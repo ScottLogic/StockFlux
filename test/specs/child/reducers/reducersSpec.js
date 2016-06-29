@@ -17,7 +17,8 @@ describe('child/reducers/reducers', () => {
             },
             windowState: {
                 isCompact: false,
-                isMaximised: false
+                isMaximised: false,
+                isResizing: false
             },
         };
         expect(reducers(undefined, {})).to.deep.equal(initialState);

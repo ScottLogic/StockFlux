@@ -1,4 +1,5 @@
 import { WINDOW as ACTION_TYPES } from '../constants/actionTypes.js';
+import configService from '../../shared/ConfigService';
 
 export function minimise() {
     return {
@@ -17,6 +18,12 @@ export function expand() {
     return {
         type: ACTION_TYPES.TOGGLE_COMPACT,
         state: false
+    };
+}
+
+export function resizing() {
+    return {
+        type: ACTION_TYPES.RESIZING
     };
 }
 
@@ -41,5 +48,39 @@ export function restore() {
 export function close() {
     return {
         type: ACTION_TYPES.CLOSE
+    };
+}
+
+export function resizeError() {
+    return {
+        type: ACTION_TYPES.RESIZE_ERROR
+    };
+}
+
+export function resizeToCompact() {
+    return dispatch => {
+        dispatch(resizing());
+        const compactWindowDimensions = configService.getCompactWindowDimensions();
+        fin.desktop.Window.getCurrent().resizeTo(
+            compactWindowDimensions[0],
+            compactWindowDimensions[1],
+            'top-right',
+            () => dispatch(compact()),
+            () => dispatch(resizeError())
+        );
+    };
+}
+
+export function resizeToDefault() {
+    return dispatch => {
+        dispatch(resizing());
+        const defaultWindowDimensions = configService.getDefaultWindowDimensions();
+        fin.desktop.Window.getCurrent().resizeTo(
+            defaultWindowDimensions[0],
+            defaultWindowDimensions[1],
+            'top-right',
+            () => dispatch(expand()),
+            () => dispatch(resizeError())
+        );
     };
 }
