@@ -54,7 +54,7 @@ class Sidebar extends Component {
                     <Search bindings={bindings} />
                 </div>
                 <div className={`search compact-search ${sidebar.showSearch ? 'expanded' : 'contracted'}`} onClick={this.focusSearch}>
-                    <Search />
+                    <Search bindings={bindings} />
                 </div>
                 <div className={`favourites ${sidebar.showFavourites ? 'expanded' : 'contracted'}`} onClick={this.focusFav}>
                     <Favourites bindings={bindings} />
