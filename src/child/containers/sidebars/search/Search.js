@@ -119,8 +119,8 @@ Search.propTypes = {
 };
 
 function mapStateToProps(state) {
-    const { favourites, selection } = state;
-    const { isSearching, hasErrors, results, term } = state && state.search;
+    const { favourites, selection } = state[fin.desktop.Window.getCurrent().contentWindow.name];
+    const { isSearching, hasErrors, results, term } = state[fin.desktop.Window.getCurrent().contentWindow.name] && state[fin.desktop.Window.getCurrent().contentWindow.name].search;
     return { favourites, isSearching, hasErrors, results, term, selection };
 }
 

@@ -84,7 +84,7 @@ Sidebar.propTypes = {
 };
 
 function mapStateToProps(state) {
-    const { sidebar, selection, favourites, windowState } = state;
+    const { sidebar, selection, favourites, windowState } = state[fin.desktop.Window.getCurrent().contentWindow.name];
     return { sidebar, selection, favourites, windowState };
 }
 export default connect(mapStateToProps)(Sidebar);

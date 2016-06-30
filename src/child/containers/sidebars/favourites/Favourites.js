@@ -182,8 +182,7 @@ Favourites.propTypes = {
 };
 
 function mapStateToProps(state) {
-    const { favourites, selection, windowState } = state;
-    // TODO: create logic for 'isStarting
+    const { favourites, selection, windowState } = state[fin.desktop.Window.getCurrent().contentWindow.name];
     return { favourites, selection, windowState, isStarting: false, hasErrors: false };
 }
 export default connect(mapStateToProps)(Favourites);
