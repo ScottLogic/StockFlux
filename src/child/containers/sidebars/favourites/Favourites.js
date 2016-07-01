@@ -1,8 +1,8 @@
 /* global $ */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-
-import { quandlResponse, insertFavouriteAt } from '../../../actions/sidebar';
+import { selectStock, quandlResponse, insertFavouriteAt } from '../../../actions/sidebar';
+import { resizeToDefault } from '../../../actions/window';
 import favTabImage from '../../../assets/png/favourites_tab.png';
 import Favourite from '../../../components/Favourite.js';
 
@@ -32,6 +32,7 @@ class Favourites extends Component {
         this.onDragOverFavourite = this.onDragOverFavourite.bind(this);
         this.onDropOverFavourite = this.onDropOverFavourite.bind(this);
         this.onQuandlResponse = this.onQuandlResponse.bind(this);
+        this.onDoubleClick = this.onDoubleClick.bind(this);
     }
 
     componentDidMount() {
@@ -56,6 +57,13 @@ class Favourites extends Component {
 
     onClick(stockCode, stockName) {
         this.props.bindings.selectStock(stockCode, stockName);
+    }
+
+    onDoubleClick(stockCode, stockName) {
+        if (this.props.windowState.isCompact) {
+            this.props.dispatch(resizeToDefault());
+            this.props.dispatch(selectStock(stockCode, stockName));
+        }
     }
 
     onDragOverFavourite(e, targetCode) {
@@ -122,7 +130,8 @@ class Favourites extends Component {
             },
             onClick: this.onClick,
             onIconClick: this.onIconClick,
-            onQuandlResponse: this.onQuandlResponse
+            onQuandlResponse: this.onQuandlResponse,
+            onDoubleClick: this.onDoubleClick
         };
         return (
             <div id="favDropTarget" className="favDropTarget" >
@@ -163,6 +172,7 @@ class Favourites extends Component {
 Favourites.propTypes = {
     selection: PropTypes.object,
     favourites: PropTypes.object.isRequired,
+    windowState: PropTypes.object.isRequired,
     hasErrors: PropTypes.bool,
     isStarting: PropTypes.bool,
     bindings: PropTypes.object.isRequired,
@@ -170,8 +180,8 @@ Favourites.propTypes = {
 };
 
 function mapStateToProps(state) {
-    const { favourites, selection } = state;
+    const { favourites, selection, windowState } = state;
     // TODO: create logic for 'isStarting
-    return { favourites, selection, isStarting: false, hasErrors: false };
+    return { favourites, selection, windowState, isStarting: false, hasErrors: false };
 }
 export default connect(mapStateToProps)(Favourites);
