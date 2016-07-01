@@ -1,3 +1,7 @@
-const VERSION = { version: '10.1.0' };
+/* eslint global-require: 0 */
 
-export default VERSION.version;
+if (process.env.NODE_ENV === 'production') {
+    module.exports = require('./versionValue.prod.js').default;
+} else {
+    module.exports = require('./versionValue.dev.js').default;
+}
