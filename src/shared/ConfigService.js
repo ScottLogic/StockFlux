@@ -8,6 +8,7 @@ const TEAROUT_CARD_WIDTH = 230;
 const TEAROUT_CARD_DIMENSIONS = [TEAROUT_CARD_WIDTH, 110];
 const COMPACT_WINDOW_DIMENSIONS = [TEAROUT_CARD_WIDTH, 500];
 const DEFAULT_WINDOW_DIMENSIONS = [1280, 720];
+const DEFAULT_WINDOW_MIN_DIMENSIONS = [918, 510];
 
 const allowContextMenu = process.env.NODE_ENV !== 'production';
 
@@ -51,8 +52,8 @@ class ConfigService {
             url: 'index.html',
             resizable: true,
             maximizable: true,
-            minWidth: 918,
-            minHeight: 510,
+            minWidth: DEFAULT_WINDOW_MIN_DIMENSIONS[0],
+            minHeight: DEFAULT_WINDOW_MIN_DIMENSIONS[1],
             defaultWidth: DEFAULT_WINDOW_DIMENSIONS[0],
             defaultHeight: DEFAULT_WINDOW_DIMENSIONS[1]
         });
@@ -80,6 +81,10 @@ class ConfigService {
 
     getDefaultWindowDimensions() {
         return DEFAULT_WINDOW_DIMENSIONS;
+    }
+
+    getDefaultWindowMinDimensions() {
+        return DEFAULT_WINDOW_MIN_DIMENSIONS;
     }
 
     getTopCardOffset(compact) {
