@@ -12,6 +12,7 @@ class Sidebar extends Component {
         this.focusFav = this.focusFav.bind(this);
         this.focusSearch = this.focusSearch.bind(this);
         this.toggleFavourite = this.toggleFavourite.bind(this);
+        this.selectStock = this.selectStock.bind(this);
     }
 
     focusFav() {
@@ -41,11 +42,18 @@ class Sidebar extends Component {
         }
     }
 
+    selectStock(stockCode, stockName) {
+        if (!this.props.windowState.isCompact) {
+            this.props.dispatch(selectStock(stockCode, stockName));
+        }
+    }
+
     render() {
         const { sidebar } = this.props;
 
         let bindings = {
-            toggleFavourite: this.toggleFavourite
+            toggleFavourite: this.toggleFavourite,
+            selectStock: this.selectStock
         };
 
         return (
@@ -70,12 +78,13 @@ class Sidebar extends Component {
 Sidebar.propTypes = {
     dispatch: PropTypes.func.isRequired,
     sidebar: PropTypes.object.isRequired,
+    windowState: PropTypes.object.isRequired,
     selection: PropTypes.object.isRequired,
     favourites: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
-    const { sidebar, selection, favourites } = state;
-    return { sidebar, selection, favourites };
+    const { sidebar, selection, favourites, windowState } = state;
+    return { sidebar, selection, favourites, windowState };
 }
 export default connect(mapStateToProps)(Sidebar);

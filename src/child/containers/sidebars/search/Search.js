@@ -1,7 +1,7 @@
 /* global $ */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { selectStock, searchInput, search, selectFavourites } from '../../../actions/sidebar';
+import { searchInput, search, selectFavourites } from '../../../actions/sidebar';
 import searchTabImage from '../../../assets/png/search_tab.png';
 import SearchResult from '../../../components/SearchResult.js';
 const SEARCH_TIMEOUT_INTERVAL = 250;
@@ -41,7 +41,7 @@ class Search extends Component {
     }
 
     onClick(stockCode, stockName) {
-        this.props.dispatch(selectStock(stockCode, stockName));
+        this.props.bindings.selectStock(stockCode, stockName);
     }
 
     closeSearch() {
