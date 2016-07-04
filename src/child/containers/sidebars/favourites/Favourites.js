@@ -2,7 +2,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { selectStock, quandlResponse, insertFavouriteAt } from '../../../actions/sidebar';
+import { quandlResponse, insertFavouriteAt } from '../../../actions/sidebar';
 import favTabImage from '../../../assets/png/favourites_tab.png';
 import Favourite from '../../../components/Favourite.js';
 
@@ -55,7 +55,7 @@ class Favourites extends Component {
     }
 
     onClick(stockCode, stockName) {
-        this.props.dispatch(selectStock(stockCode, stockName));
+        this.props.bindings.selectStock(stockCode, stockName);
     }
 
     onDragOverFavourite(e, targetCode) {
