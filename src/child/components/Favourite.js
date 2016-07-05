@@ -87,9 +87,15 @@ class Favourite extends Component {
         const name = stockData.name ? truncate(stockData.name) : '';
 
         return (
-            <div id={`stock_${stockCode}`} draggable="true" className="favouriteWrapper" onClick={() => bindings.onClick(stockCode, name)}>
+            <div
+              id={`stock_${stockCode}`}
+              draggable="true"
+              className="favouriteWrapper"
+              onClick={() => bindings.onClick(stockCode, name)}
+              onDoubleClick={() => bindings.onDoubleClick(stockCode, name)}
+            >
                 <div className="drop-target">
-                    <div className={`darkens favourite tearable ${cls}`} ng-dblclick="doubleClick(stock)" draggable="false">
+                    <div className={`darkens favourite tearable ${cls}`} draggable="false">
                         <div className="top">
                             <div className="button-icon star active" onClick={this.onIconClick}>&nbsp;</div>
                             <div className="name">{name}</div>
