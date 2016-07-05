@@ -57,30 +57,104 @@ export function resizeError() {
     };
 }
 
-export function resizeToCompact() {
-    return dispatch => {
-        dispatch(resizing());
-        const compactWindowDimensions = configService.getCompactWindowDimensions();
-        fin.desktop.Window.getCurrent().resizeTo(
-            compactWindowDimensions[0],
-            compactWindowDimensions[1],
-            'top-right',
-            () => dispatch(compact()),
-            () => dispatch(resizeError())
-        );
+function updatingOptions() {
+    return {
+        type: ACTION_TYPES.UPDATING_OPTIONS
     };
 }
 
-export function resizeToDefault() {
+function updatingOptionsSuccess() {
+    return {
+        type: ACTION_TYPES.UPDATING_OPTIONS_SUCCESS
+    };
+}
+
+function updatingOptionsError() {
+    return {
+        type: ACTION_TYPES.UPDATING_OPTIONS_ERROR
+    };
+}
+
+function updateOptionsToCompact() {
+    return dispatch => {
+        dispatch(updatingOptions());
+        const [minWidth, minHeight] = configService.getCompactWindowDimensions();
+
+        return new Promise((resolve, reject) => {
+            fin.desktop.Window.getCurrent().updateOptions({
+                resizable: false,
+                maximizable: false,
+                minWidth,
+                minHeight
+            },
+            () => resolve(dispatch(updatingOptionsSuccess())),
+            () => reject(dispatch(updatingOptionsError())));
+        });
+    };
+}
+
+function updateOptionsToDefault() {
+    return dispatch => {
+        dispatch(updatingOptions());
+        const [minWidth, minHeight] = configService.getDefaultWindowMinDimensions();
+
+        return new Promise((resolve, reject) => {
+            fin.desktop.Window.getCurrent().updateOptions({
+                resizable: true,
+                maximizable: true,
+                minWidth,
+                minHeight
+            },
+            () => resolve(dispatch(updatingOptionsSuccess())),
+            () => reject(dispatch(updatingOptionsError())));
+        });
+    };
+}
+
+function resizeCompact() {
     return dispatch => {
         dispatch(resizing());
-        const defaultWindowDimensions = configService.getDefaultWindowDimensions();
-        fin.desktop.Window.getCurrent().resizeTo(
-            defaultWindowDimensions[0],
-            defaultWindowDimensions[1],
-            'top-right',
-            () => dispatch(expand()),
-            () => dispatch(resizeError())
-        );
+        const [compactWindowWidth, compactWindowHeight] = configService.getCompactWindowDimensions();
+
+        return new Promise((resolve, reject) => {
+            fin.desktop.Window.getCurrent().resizeTo(
+                compactWindowWidth,
+                compactWindowHeight,
+                'top-right',
+                () => resolve(dispatch(compact())),
+                () => reject(dispatch(resizeError()))
+            );
+        });
     };
+}
+
+function resizeDefault() {
+    return dispatch => {
+        dispatch(resizing());
+        const [defaultWindowWidth, defaultWindowHeight] = configService.getDefaultWindowDimensions();
+
+        return new Promise((resolve, reject) => {
+            fin.desktop.Window.getCurrent().resizeTo(
+                defaultWindowWidth,
+                defaultWindowHeight,
+                'top-right',
+                () => resolve(dispatch(expand())),
+                () => reject(dispatch(resizeError()))
+            );
+        });
+    };
+}
+
+export function resizeToCompact() {
+    return dispatch => Promise.all([
+        dispatch(updateOptionsToCompact()),
+        dispatch(resizeCompact())
+    ]);
+}
+
+export function resizeToDefault() {
+    return dispatch => Promise.all([
+        dispatch(updateOptionsToDefault()),
+        dispatch(resizeDefault())
+    ]);
 }
