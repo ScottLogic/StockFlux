@@ -1,8 +1,9 @@
 import { unmountComponentAtNode } from 'react-dom';
 import {
-    minimise,
+    minimize,
     maximize,
     restore,
+    resizeWindow
 } from '../actions/window.js';
 
 class WindowStateService {
@@ -14,6 +15,7 @@ class WindowStateService {
         this.onMaximize = this.onMaximize.bind(this);
         this.onRestore = this.onRestore.bind(this);
         this.onCloseRequested = this.onCloseRequested.bind(this);
+        this.onBoundsChanged = this.onBoundsChanged.bind(this);
     }
 
     start() {
@@ -21,6 +23,7 @@ class WindowStateService {
         this.window.addEventListener('maximized', this.onMaximize);
         this.window.addEventListener('restored', this.onRestore);
         this.window.addEventListener('close-requested', this.onCloseRequested);
+        this.window.addEventListener('bounds-changed', this.onBoundsChanged);
     }
 
     stop() {
@@ -28,10 +31,11 @@ class WindowStateService {
         this.window.removeEventListener('maximized', this.onMaximize);
         this.window.removeEventListener('restored', this.onRestore);
         this.window.removeEventListener('close-requested', this.onCloseRequested);
+        this.window.removeEventListener('bounds-changed', this.onBoundsChanged);
     }
 
     onMinimize() {
-        this.store.dispatch(minimise());
+        this.store.dispatch(minimize());
     }
 
     onMaximize() {
@@ -51,6 +55,14 @@ class WindowStateService {
         unmountComponentAtNode(this.rootElement);
         this.stop();
         this.window.close(true);
+    }
+
+    onBoundsChanged(e) {
+        const positionChangeType = 0;
+
+        if (e.changeType !== positionChangeType && !this.store.getState().childWindows[e.name].windowState.isCompact) {
+            this.store.dispatch(resizeWindow([e.width, e.height]));
+        }
     }
 }
 

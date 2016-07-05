@@ -3,18 +3,19 @@ import configService from '../../shared/ConfigService';
 import createActionCreator from '../utils/createActionCreator';
 import currentWindowService from '../services/currentWindowService';
 
-export const minimise = createActionCreator(() => ({
+export const minimize = createActionCreator(() => ({
     type: ACTION_TYPES.MINIMIZE
 }));
 
-export const compact = createActionCreator(() => ({
+export const compact = createActionCreator((isMaximized) => ({
     type: ACTION_TYPES.TOGGLE_COMPACT,
-    state: true
+    isCompact: true,
+    previousMaximizedState: isMaximized
 }));
 
 export const expand = createActionCreator(() => ({
     type: ACTION_TYPES.TOGGLE_COMPACT,
-    state: false
+    isCompact: false
 }));
 
 export const resizing = createActionCreator(() => ({
@@ -37,7 +38,11 @@ export const open = createActionCreator(() => ({
     type: ACTION_TYPES.OPEN
 }));
 
-export const resizeError = createActionCreator(() => ({
+const resizeSuccess = createActionCreator(() => ({
+    type: ACTION_TYPES.RESIZE_SUCCESS
+}));
+
+const resizeError = createActionCreator(() => ({
     type: ACTION_TYPES.RESIZE_ERROR
 }));
 
@@ -52,6 +57,67 @@ const updatingOptionsSuccess = createActionCreator(() => ({
 const updatingOptionsError = createActionCreator(() => ({
     type: ACTION_TYPES.UPDATING_OPTIONS_ERROR
 }));
+
+export const resizeWindow = createActionCreator((dimensions) => ({
+    type: ACTION_TYPES.RESIZE_WINDOW,
+    previousExpandedDimensions: dimensions
+}));
+
+function getWindowStateForCurrentWindow(getState) {
+    return getState().childWindows[currentWindowService.getCurrentWindowName()].windowState;
+}
+
+export function minimizeWindow() {
+    return dispatch => {
+        dispatch(resizing());
+        fin.desktop.Window.getCurrent().minimize(
+            () => dispatch(resizeSuccess()),
+            () => dispatch(resizeError())
+        );
+    };
+}
+
+export function maximizeWindow() {
+    return dispatch => {
+        dispatch(resizing());
+        fin.desktop.Window.getCurrent().maximize(
+            () => dispatch(resizeSuccess()),
+            () => dispatch(resizeError())
+        );
+    };
+}
+
+export function restoreWindow() {
+    return dispatch => {
+        dispatch(resizing());
+        fin.desktop.Window.getCurrent().restore(
+            () => dispatch(resizeSuccess()),
+            () => dispatch(resizeError())
+        );
+    };
+}
+
+function resizeCompactSuccess() {
+    return (dispatch, getState) => {
+        const { isMaximized } = getWindowStateForCurrentWindow(getState);
+
+        dispatch(resizeSuccess());
+        dispatch(compact(isMaximized));
+    };
+}
+
+function resizePreviousSuccess() {
+    return (dispatch, getState) => {
+        const { previousMaximizedState } = getWindowStateForCurrentWindow(getState);
+
+        if (previousMaximizedState) {
+            dispatch(maximizeWindow());
+        } else {
+            dispatch(resizeSuccess());
+        }
+        dispatch(expand());
+    };
+}
 
 function updateOptionsToCompact() {
     return dispatch => {
@@ -99,24 +165,24 @@ function resizeCompact() {
                 compactWindowWidth,
                 compactWindowHeight,
                 'top-right',
-                () => resolve(dispatch(compact())),
+                () => resolve(dispatch(resizeCompactSuccess())),
                 () => reject(dispatch(resizeError()))
             );
         });
     };
 }
 
-function resizeDefault() {
-    return dispatch => {
+function resizePrevious() {
+    return (dispatch, getState) => {
         dispatch(resizing());
-        const [defaultWindowWidth, defaultWindowHeight] = configService.getDefaultWindowDimensions();
+        const [previousWindowWidth, previousWindowHeight] = getWindowStateForCurrentWindow(getState).previousExpandedDimensions;
 
         return new Promise((resolve, reject) => {
             currentWindowService.resizeTo(
-                defaultWindowWidth,
-                defaultWindowHeight,
+                previousWindowWidth,
+                previousWindowHeight,
                 'top-right',
-                () => resolve(dispatch(expand())),
+                () => resolve(dispatch(resizePreviousSuccess())),
                 () => reject(dispatch(resizeError()))
             );
         });
@@ -130,9 +196,9 @@ export function resizeToCompact() {
     ]);
 }
 
-export function resizeToDefault() {
+export function resizeToPrevious() {
     return dispatch => Promise.all([
         dispatch(updateOptionsToDefault()),
-        dispatch(resizeDefault())
+        dispatch(resizePrevious())
     ]);
 }
