@@ -20,5 +20,6 @@
         "company": "ScottLogic",
         "description": "Hosts BitFlux as an OpenFin application.",
         "name": "StockFlux"
-    }
+    },
+    "splashScreenImage": "http://localhost:5001/splashscreen.png"
 }
