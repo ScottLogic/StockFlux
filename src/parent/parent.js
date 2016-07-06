@@ -2,29 +2,24 @@ import configService from '../shared/ConfigService';
 import parentStore from './store/configureStore';
 import 'babel-polyfill';
 
-// Need to increment on drag out also
-let openWindows = 0;
-
-const closedEvent = () => {
-    openWindows--;
-    // Close the application
-    if (openWindows === 0) {
-        fin.desktop.Window.getCurrent().contentWindow.close();
-    }
-};
-
 function createChildWindow(windowName) {
     const childWindow = new fin.desktop.Window(
         configService.getWindowConfig(windowName),
         () => childWindow.show()
     );
-
-    openWindows++;
-    childWindow.addEventListener('closed', closedEvent);
 }
 
 function createChildWindows() {
-    fin.desktop.Window.getCurrent().contentWindow.store = parentStore();
+    const store = parentStore();
+    fin.desktop.Window.getCurrent().contentWindow.store = store;
+
+    // Subscribe to the store so we can avoid having the side effect
+    // of closing the parent window in a reducer
+    store.subscribe(() => {
+        if (!Object.keys(store.getState()).length) {
+            fin.desktop.Window.getCurrent().contentWindow.close();
+        }
+    });
 
     if (!Object.keys(fin.desktop.Window.getCurrent().contentWindow.store.getState()).length) {
         createChildWindow();

@@ -161,7 +161,7 @@ describe('child/reducers/windowState', () => {
     });
 
     it('should handle RESIZE_ERROR', () => {
-        const action = { type: 'RESIZE_ERROR' };
+        const action = { type: ACTION_TYPES.RESIZE_ERROR };
         expect(windowState({
             isCompact: false,
             isMaximised: false,
