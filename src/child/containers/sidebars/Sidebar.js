@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Favourites from './favourites/Favourites.js';
 import Search from './search/Search.js';
+import { sidebarSelector as mapStateToProps } from '../../selectors/index';
 
 import { selectFavourites, selectSearch, toggleFavourite, selectStock, unselectStock } from '../../actions/sidebar';
 
@@ -83,8 +84,4 @@ Sidebar.propTypes = {
     favourites: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state) {
-    const { sidebar, selection, favourites, windowState } = state[fin.desktop.Window.getCurrent().contentWindow.name];
-    return { sidebar, selection, favourites, windowState };
-}
 export default connect(mapStateToProps)(Sidebar);

@@ -5,6 +5,7 @@ import { selectStock, quandlResponse, insertFavouriteAt } from '../../../actions
 import { resizeToDefault } from '../../../actions/window';
 import favTabImage from '../../../assets/png/favourites_tab.png';
 import Favourite from '../../../components/Favourite.js';
+import { favouritesSelector as mapStateToProps } from '../../../selectors/index';
 
 /*
  *  dataTransfer.getData is only available in dragstart, drop and dragEnd
@@ -181,8 +182,4 @@ Favourites.propTypes = {
     dispatch: PropTypes.func.isRequired
 };
 
-function mapStateToProps(state) {
-    const { favourites, selection, windowState } = state[fin.desktop.Window.getCurrent().contentWindow.name];
-    return { favourites, selection, windowState, isStarting: false, hasErrors: false };
-}
 export default connect(mapStateToProps)(Favourites);

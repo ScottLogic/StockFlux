@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { searchInput, search, selectFavourites } from '../../../actions/sidebar';
 import searchTabImage from '../../../assets/png/search_tab.png';
 import SearchResult from '../../../components/SearchResult.js';
+import { searchSelector as mapStateToProps } from '../../../selectors/index';
 const SEARCH_TIMEOUT_INTERVAL = 250;
 
 class Search extends Component {
@@ -117,11 +118,5 @@ Search.propTypes = {
     bindings: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired
 };
-
-function mapStateToProps(state) {
-    const { favourites, selection } = state[fin.desktop.Window.getCurrent().contentWindow.name];
-    const { isSearching, hasErrors, results, term } = state[fin.desktop.Window.getCurrent().contentWindow.name] && state[fin.desktop.Window.getCurrent().contentWindow.name].search;
-    return { favourites, isSearching, hasErrors, results, term, selection };
-}
 
 export default connect(mapStateToProps)(Search);

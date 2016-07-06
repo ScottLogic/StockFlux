@@ -7,6 +7,7 @@ import {
     resizeToCompact,
     resizeToDefault
 } from '../../actions/window.js';
+import { toolbarSelector as mapStateToProps } from '../../selectors/index';
 import icon from '../../assets/png/scottlogic_logo.png';
 
 
@@ -94,10 +95,5 @@ Toolbar.propTypes = {
     windowState: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired
 };
-
-function mapStateToProps(state) {
-    const { windowState } = state[fin.desktop.Window.getCurrent().contentWindow.name];
-    return { windowState };
-}
 
 export default connect(mapStateToProps)(Toolbar);
