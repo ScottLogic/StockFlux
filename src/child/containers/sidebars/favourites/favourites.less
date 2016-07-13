@@ -1,4 +1,4 @@
-@favourite-height: 110px;
+@favourite-height: 109px;
 @favourite-padding-top: 10px;
 // Padding right is declared in the variables file:
 // it's used to determine the placement of other elements, while the other
@@ -28,7 +28,6 @@
     cursor: pointer;
     border-width: 1px 0;
     max-height: @favourite-height * 2;
-    transition: 0.5s padding;
     * {
         cursor: pointer;
         transition: 0.25s all;
@@ -39,7 +38,7 @@
     }
     &.dragging{
         background-color: #2B595B;
-        transition-delay: 0.25s;
+        transition-delay: 0.01s;
         transition-property: max-height, padding;
         max-height: 0;
         * {
@@ -50,6 +49,11 @@
 
 .favouriteWrapper.dragOver {
     padding-top: @favourite-height;
+    background-color: #2E5356;
+}
+
+.favouriteWrapper.dragOverBottom {
+    padding-bottom: @favourite-height;
     background-color: #2E5356;
 }
 

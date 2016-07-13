@@ -11,38 +11,22 @@ import selectionShape from '../../../propTypeShapes/selection';
 import favouritesShape from '../../../propTypeShapes/favourites';
 import windowStateShape from '../../../propTypeShapes/windowState';
 
-/*
- *  dataTransfer.getData is only available in dragstart, drop and dragEnd
- * This allows us to get around that by setting only 2 properties:
- * -> The 'text/plain' key points to the stock code
- * -> ${stockcode} is the key and points to empty string
- * By accesing the set keys and ignoring 'text/plain'
- * we get the key code of the stock being dragged
- * */
-function getCodeFromDT(types) {
-    for (let i = 0; i < types.length; i++) {
-        if (types[i] !== 'text/plain') {    // horrible hack to access
-            return (types[i]).toUpperCase();
-        }
-    }
-    return undefined;
-}
-
 class Favourites extends Component {
     constructor(props) {
         super(props);
 
         this.onClick = this.onClick.bind(this);
-        this.onDragOverFavourite = this.onDragOverFavourite.bind(this);
-        this.onDropOverFavourite = this.onDropOverFavourite.bind(this);
+        this.onIconClick = this.onIconClick.bind(this);
         this.onQuandlResponse = this.onQuandlResponse.bind(this);
         this.onModalConfirmClick = this.onModalConfirmClick.bind(this);
         this.onModalBackdropClick = this.onModalBackdropClick.bind(this);
-        this.onIconClick = this.onIconClick.bind(this);
         this.onDoubleClick = this.onDoubleClick.bind(this);
         this.onDrop = this.onDrop.bind(this);
         this.onDragOver = this.onDragOver.bind(this);
+        this.onDragStart = this.onDragStart.bind(this);
+        this.onDragEnd = this.onDragEnd.bind(this);
         this.onDragLeave = this.onDragLeave.bind(this);
+        this.removeDragOver = this.removeDragOver.bind(this);
 
         this.state = { unfavouritingStockCode: null };
     }
@@ -50,7 +34,7 @@ class Favourites extends Component {
     componentDidMount() {
         const scrollPadding = 'scroll-padding';
         const el = this.scrollArea;
-        $(this.scrollArea).mCustomScrollbar({
+        $(el).mCustomScrollbar({
             scrollInertia: 0,
             mouseWheel: {
                 scrollAmount: 80
@@ -73,7 +57,11 @@ class Favourites extends Component {
     }
 
     onClick(stockCode, stockName) {
-        this.props.bindings.selectStock(stockCode, stockName);
+        return (e) => {
+            if (!e.defaultPrevented) {
+                this.props.bindings.selectStock(stockCode, stockName);
+            }
+        };
     }
 
     onDoubleClick(stockCode, stockName) {
@@ -83,30 +71,15 @@ class Favourites extends Component {
         }
     }
 
-    onDragOverFavourite(e, targetCode) {
-        const codes = this.props.favourites.codes;
-        const code = getCodeFromDT(e.dataTransfer.types);
-
-        const indexOfCode = codes.indexOf(code);
-        if (indexOfCode <= -1 || targetCode !== code) {
-            e.target.classList.add('dragOver');
-        }
-        e.stopPropagation();
-    }
-
-    // when dropped over fav
-    onDropOverFavourite(e, targetCode) {
-        const codes = this.props.favourites.codes;
-        const code = e.dataTransfer.getData('text/plain');
-        const currentDropCodeIndex = codes.indexOf(code);
-        const targetCodeLocation = codes.indexOf(targetCode);
-        this.props.dispatch(insertFavouriteAt(Math.max(0, currentDropCodeIndex > targetCodeLocation ? targetCodeLocation : targetCodeLocation - 1), code));
-        e.target.classList.remove('dragOver');
-        e.stopPropagation();
-    }
-
     onQuandlResponse(stockCode, stockName) {
         this.props.dispatch(quandlResponse(stockCode, stockName));
+    }
+
+    onIconClick(stockCode) {
+        return (e) => {
+            this.setState({ unfavouritingStockCode: stockCode });
+            e.preventDefault();
+        };
     }
 
     onModalConfirmClick(stockCode) {
@@ -121,36 +94,93 @@ class Favourites extends Component {
         e.stopPropagation();
     }
 
-    onIconClick(stockCode) {
-        this.setState({ unfavouritingStockCode: stockCode });
-    }
+    onDragStart(e) {
+        const { favourites, bindings } = this.props;
 
-    onDrop(e) {
-        const codes = this.props.favourites.codes;
-        const code = e.dataTransfer.getData('text/plain');
-        this.props.dispatch(insertFavouriteAt(codes.length, code));
-        e.currentTarget.classList.remove('dragOver');
+        this.setState({
+            dragOverIndex: favourites.codes.indexOf(bindings.getCodeFromDT(e.dataTransfer.types)),
+            favouriteHeight: e.target.getBoundingClientRect().height,
+            dragStartClientY: e.nativeEvent.clientY
+        });
     }
 
     onDragOver(e) {
-        if (!e.currentTarget.classList.contains('dragOver')) {
-            e.currentTarget.classList.add('dragOver');
+        const { removeDragOver, props, state } = this;
+        const { favourites, bindings } = props;
+        const { dragOverIndex, favouriteHeight, dragStartClientY } = state;
+        const favouriteElements = this.sidetab.childNodes;
+
+        if (dragStartClientY) {
+            const dragOverIndexOffset = Math.ceil((((e.nativeEvent.clientY - dragStartClientY) / (favouriteHeight / 2)) + 1) / 2);
+            const currentDraggedIndex = favourites.codes.indexOf(bindings.getCodeFromDT(e.dataTransfer.types));
+            let nextDragOverIndex = currentDraggedIndex + dragOverIndexOffset;
+
+            if (nextDragOverIndex <= currentDraggedIndex) {
+                nextDragOverIndex--;
+            }
+
+            if (favouriteElements[nextDragOverIndex] && nextDragOverIndex !== dragOverIndex) {
+                removeDragOver();
+                favouriteElements[nextDragOverIndex].classList.add('dragOver');
+                this.setState({ dragOverIndex: nextDragOverIndex });
+            } else if (nextDragOverIndex >= favouriteElements.length) {
+                removeDragOver();
+                favouriteElements[favouriteElements.length - 1].classList.add('dragOverBottom');
+                this.setState({ dragOverIndex: favouriteElements.length });
+            }
+        } else {
+            bindings.addActive();
         }
         e.preventDefault();
     }
 
-    onDragLeave(e) {
-        e.currentTarget.classList.remove('dragOver');
+    onDragEnd() {
+        this.setState({ dragStartClientY: null });
+        this.removeDragOver();
+    }
+
+    onDragLeave() {
+        if (!this.state.dragStartClientY) {
+            this.favDropTarget.classList.remove('dragOver');
+        }
+    }
+
+    onDrop(e) {
+        const { props, state, removeDragOver } = this;
+        const { dispatch, favourites, bindings } = props;
+        const { dragOverIndex, dragStartClientY } = state;
+
+        const code = bindings.getCodeFromDT(e.dataTransfer.types);
+
+        if (dragStartClientY) {
+            const currentDraggedIndex = favourites.codes.indexOf(code);
+            dispatch(insertFavouriteAt(Math.max(0, currentDraggedIndex > dragOverIndex ? dragOverIndex : dragOverIndex - 1), code));
+        } else {
+            if (!favourites.codes.includes(code)) {
+                dispatch(insertFavouriteAt(favourites.codes.length, code));
+            }
+            bindings.removeActive();
+        }
+        removeDragOver();
+    }
+
+    removeDragOver() {
+        const { dragOverIndex } = this.state;
+        const favouriteElements = this.sidetab.childNodes;
+
+        this.favDropTarget.classList.remove('dragOver');
+
+        if (favouriteElements[dragOverIndex]) {
+            favouriteElements[dragOverIndex].classList.remove('dragOver');
+        } else {
+            favouriteElements[favouriteElements.length - 1].classList.remove('dragOverBottom');
+        }
     }
 
     render() {
         const { favourites, hasErrors, isStarting, selection } = this.props;
         const codes = favourites.codes;
         let bindings = {
-            dnd: {
-                onDragEnter: this.onDragOverFavourite,
-                onDrop: this.onDropOverFavourite
-            },
             onClick: this.onClick,
             onQuandlResponse: this.onQuandlResponse,
             onModalConfirmClick: this.onModalConfirmClick,
@@ -162,15 +192,20 @@ class Favourites extends Component {
             <div
               id="favDropTarget"
               className="favDropTarget"
-              onDrop={this.onDrop}
+              ref={ref => { this.favDropTarget = ref; }}
+              onDragStart={this.onDragStart}
               onDragOver={this.onDragOver}
+              onDragEnd={this.onDragEnd}
+              onDragLeave={this.onDragLeave}
+              onDrag={this.onDrag}
+              onDrop={this.onDrop}
               onDragLeave={this.onDragLeave}
             >
                 <div className="sidetab-top">
                     <img src={favTabImage} className="top-icon" title="Favourites List" draggable="false" />
                 </div>
                 <div id="favourite-scroll" ref={ref => { this.scrollArea = ref; }} className="side-scroll custom-scrollbar hiddenOnContracted">
-                    <div className="sidetab">
+                    <div className="sidetab" ref={ref => { this.sidetab = ref; }}>
 
                         {isStarting && <div className="no-favourites">
                             <p>Loading favourite stocks...</p>
@@ -210,7 +245,10 @@ Favourites.propTypes = {
     isStarting: PropTypes.bool,
     bindings: PropTypes.shape({
         toggleFavourite: PropTypes.func.isRequired,
-        selectStock: PropTypes.func.isRequired
+        selectStock: PropTypes.func.isRequired,
+        getCodeFromDT: PropTypes.func.isRequired,
+        addActive: PropTypes.func.isRequired,
+        removeActive: PropTypes.func.isRequired
     }).isRequired,
     dispatch: PropTypes.func.isRequired
 };

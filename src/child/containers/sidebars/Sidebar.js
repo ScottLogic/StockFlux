@@ -6,7 +6,7 @@ import { sidebarSelector as mapStateToProps } from '../../selectors/selectors';
 
 import { selectFavourites, selectSearch } from '../../actions/sidebar';
 import { selectStock, unselectStock } from '../../actions/selection';
-import { toggleFavourite } from '../../actions/favourites';
+import { toggleFavourite, insertFavouriteAt } from '../../actions/favourites';
 
 import windowStateShape from '../../propTypeShapes/windowState';
 import selectionShape from '../../propTypeShapes/selection';
@@ -15,10 +15,47 @@ import favouritesShape from '../../propTypeShapes/favourites';
 class Sidebar extends Component {
     constructor(props) {
         super(props);
+        this.onDragOver = this.onDragOver.bind(this);
+        this.onDrop = this.onDrop.bind(this);
+        this.addActive = this.addActive.bind(this);
+        this.removeActive = this.removeActive.bind(this);
         this.focusFav = this.focusFav.bind(this);
         this.focusSearch = this.focusSearch.bind(this);
         this.toggleFavourite = this.toggleFavourite.bind(this);
         this.selectStock = this.selectStock.bind(this);
+    }
+
+    onDragOver(e) {
+        if (!e.defaultPrevented && !this.props.sidebar.showFavourites) {
+            this.addActive();
+            e.preventDefault();
+        }
+    }
+
+    onDrop(e) {
+        const code = this.getCodeFromDT(e.dataTransfer.types);
+        const codes = this.props.favourites.codes;
+        if (!codes.includes(code)) {
+            this.props.dispatch(insertFavouriteAt(codes.length, code));
+        }
+        this.removeActive();
+    }
+
+    getCodeFromDT(types) {
+        for (let i = 0; i < types.length; i++) {
+            if (types[i] !== 'text/plain') {
+                return (types[i]).toUpperCase();
+            }
+        }
+        return undefined;
+    }
+
+    addActive() {
+        this.favourites.classList.add('active');
+    }
+
+    removeActive() {
+        this.favourites.classList.remove('active');
     }
 
     focusFav() {
@@ -59,18 +96,21 @@ class Sidebar extends Component {
 
         let bindings = {
             toggleFavourite: this.toggleFavourite,
-            selectStock: this.selectStock
+            selectStock: this.selectStock,
+            getCodeFromDT: this.getCodeFromDT,
+            addActive: this.addActive,
+            removeActive: this.removeActive
         };
 
         return (
-            <div className="sidebars">
+            <div className="sidebars" onDragOver={this.onDragOver} onDragLeave={this.removeActive} onDrop={this.onDrop}>
                 <div className={`search main-search ${sidebar.showSearch ? 'expanded' : 'contracted'}`} onClick={this.focusSearch}>
                     <Search bindings={bindings} />
                 </div>
                 <div className={`search compact-search ${sidebar.showSearch ? 'expanded' : 'contracted'}`} onClick={this.focusSearch}>
                     <Search bindings={bindings} />
                 </div>
-                <div className={`favourites ${sidebar.showFavourites ? 'expanded' : 'contracted'}`} onClick={this.focusFav}>
+                <div className={`favourites ${sidebar.showFavourites ? 'expanded' : 'contracted'}`} onClick={this.focusFav} ref={ref => { this.favourites = ref; }}>
                     <Favourites bindings={bindings} />
                 </div>
 

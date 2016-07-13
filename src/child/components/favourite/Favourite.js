@@ -20,8 +20,6 @@ class Favourite extends Component {
         super(props);
         this.onIconClick = this.onIconClick.bind(this);
         this.onDragStart = this.onDragStart.bind(this);
-        this.onDragOver = this.onDragOver.bind(this);
-        this.onDragLeave = this.onDragLeave.bind(this);
         this.onDragEnd = this.onDragEnd.bind(this);
         this.onMouseOver = this.onMouseOver.bind(this);
         this.onMouseOut = this.onMouseOut.bind(this);
@@ -53,7 +51,7 @@ class Favourite extends Component {
         const { bindings, stockCode } = this.props;
 
         this.setState({ starTop: e.target.getBoundingClientRect().top });
-        bindings.onIconClick(stockCode);
+        bindings.onIconClick(stockCode)(e);
         e.stopPropagation();
     }
 
@@ -74,20 +72,8 @@ class Favourite extends Component {
         };
     }
 
-    onDragOver(e) {
-        e.preventDefault();
-        e.stopPropagation();
-    }
-
-    onDragLeave(e) {
-        e.currentTarget.classList.remove('dragOver');
-    }
-
     onDragEnd(e) {
         e.currentTarget.classList.remove('dragging');
-        if (e.dataTransfer.dropEffect === 'none') {
-            // TODO: Open window with stock + reposition && fade window if it's the only stock in favourites
-        }
     }
 
     onModalBackdropClick(e) {
@@ -138,12 +124,8 @@ class Favourite extends Component {
               id={`stock_${stockCode}`}
               draggable={!isUnfavouriting}
               className="favouriteWrapper"
-              onClick={() => bindings.onClick(stockCode, name)}
+              onClick={bindings.onClick(stockCode, name)}
               onDragStart={this.onDragStart(stockCode)}
-              onDragOver={this.onDragOver}
-              onDragEnter={e => bindings.dnd.onDragEnter(e, stockCode)}
-              onDragLeave={this.onDragLeave}
-              onDrop={e => bindings.dnd.onDrop(e, stockCode)}
               onDragEnd={this.onDragEnd}
               onDoubleClick={() => bindings.onDoubleClick(stockCode, name)}
               onMouseOver={this.onMouseOver}
@@ -183,10 +165,6 @@ Favourite.propTypes = {
     stockCode: PropTypes.string.isRequired,
     selected: PropTypes.bool.isRequired,
     bindings: PropTypes.shape({
-        dnd: PropTypes.shape({
-            onDragEnter: PropTypes.func.isRequired,
-            onDrop: PropTypes.func.isRequired
-        }).isRequired,
         onClick: PropTypes.func.isRequired,
         onIconClick: PropTypes.func.isRequired,
         onQuandlResponse: PropTypes.func.isRequired,
