@@ -10,9 +10,9 @@
     "prod": "npm run build && npm run serve",
     "ci": "npm run lint && npm test && npm run build",
     "lint": "eslint --plugin import jsx-ally react *.js src/ test/",
-    "test": "cross-env BABEL_ENV=test mocha --compilers js:babel-register --recursive",
+    "test": "cross-env BABEL_ENV=test mocha --opts test/mocha.opts",
     "test:watch": "npm test -- --watch",
-    "test:cov": "cross-env BABEL_ENV=test babel-node node_modules/isparta/bin/isparta cover --report text --report html node_modules/mocha/bin/_mocha -- --recursive",
+    "test:cov": "cross-env BABEL_ENV=test babel-node node_modules/isparta/bin/isparta cover --report text --report html node_modules/mocha/bin/_mocha -- --opts test/mocha.opts",
     "postinstall": "cd node_modules/BitFlux && npm i && grunt build:module"
   },
   "devDependencies": {
@@ -41,6 +41,8 @@
     "http-server": "^0.9.0",
     "isparta": "^4.0.0",
     "json-loader": "^0.5.4",
+    "jsdom": "9.3.0",
+    "jsdom-global": "2.0.0",
     "less": "^2.6.1",
     "less-loader": "^2.2.3",
     "mocha": "^2.4.5",
