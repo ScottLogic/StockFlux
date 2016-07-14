@@ -3,7 +3,7 @@ import {
     minimize,
     maximize,
     restore,
-    resizeWindow
+    windowResized
 } from '../actions/window.js';
 
 class WindowStateService {
@@ -61,7 +61,7 @@ class WindowStateService {
         const positionChangeType = 0;
 
         if (e.changeType !== positionChangeType && !this.store.getState().childWindows[e.name].windowState.isCompact) {
-            this.store.dispatch(resizeWindow([e.width, e.height]));
+            this.store.dispatch(windowResized([e.width, e.height]));
         }
     }
 }

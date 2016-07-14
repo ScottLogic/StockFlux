@@ -58,8 +58,8 @@ const updatingOptionsError = createActionCreator(() => ({
     type: ACTION_TYPES.UPDATING_OPTIONS_ERROR
 }));
 
-export const resizeWindow = createActionCreator((dimensions) => ({
-    type: ACTION_TYPES.RESIZE_WINDOW,
+export const windowResized = createActionCreator((dimensions) => ({
+    type: ACTION_TYPES.WINDOW_RESIZED,
     previousExpandedDimensions: dimensions
 }));
 

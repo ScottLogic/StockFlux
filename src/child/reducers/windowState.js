@@ -43,7 +43,7 @@ export default function windowState(state = {
             isResizing: false,
             hasErrors: true
         });
-    case ACTION_TYPES.RESIZE_WINDOW:
+    case ACTION_TYPES.WINDOW_RESIZED:
         return Object.assign({}, state, {
             previousExpandedDimensions: action.previousExpandedDimensions
         });
