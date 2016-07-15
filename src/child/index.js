@@ -18,11 +18,35 @@ require('script!../../node_modules/d3fc/dist/d3fc.bundle.min.js');
 require('script!../../node_modules/BitFlux/dist/bitflux.js');
 /* eslint-enable import/no-unresolved */
 
-const store = configureStore();
+fin.desktop.main(() => {
+    fin.desktop.InterApplicationBus.subscribe(
+        '*',
+        'initState',
+        message => {
+            const { state, uuid, id } = message;
+            if (uuid === window.name) {
+                const store = configureStore(state.state);
+                window.id = id;
 
-render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    document.getElementById('app')
-);
+                store.subscribe(() => {
+                    fin.desktop.InterApplicationBus.publish(
+                        'childUpdated',
+                        { state: store.getState(), id }
+                    );
+                });
+
+                render(
+                    <Provider store={store}>
+                        <App />
+                    </Provider>,
+                    document.getElementById('app')
+                );
+            }
+        }
+    );
+
+    fin.desktop.InterApplicationBus.publish(
+        'childConnected',
+        { uuid: window.name }
+    );
+});

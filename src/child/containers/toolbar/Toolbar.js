@@ -53,12 +53,10 @@ class Toolbar extends Component {
     }
 
     onCloseClick() {
-        // notifyParent(WINDOW_CLOSE, {
-        //     name: window.name,
-        //     state: this.props.windowState
-        // });
-        // this.props.dispatch(close());
-        // console.log('    state', this)
+        fin.desktop.InterApplicationBus.publish(
+            'childClosing',
+            { id: window.id }
+        );
         window.close();
     }
 
