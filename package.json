@@ -11,6 +11,7 @@
     "openfin:dev": "node openfin-dev-launcher.js",
     "openfin:prod": "node openfin-prod-launcher.js",
     "build": "webpack -p --config webpack/webpack.config.prod.js",
+    "build:deploy": "npm run build && node configJson.js",
     "serve": "http-server -p 5001",
     "prod": "npm run build && npm run serve",
     "ci": "npm run lint && npm test && npm run build",
@@ -20,7 +21,8 @@
     "test:watch": "npm test -- --watch",
     "test:cov": "cross-env BABEL_ENV=test babel-node node_modules/isparta/bin/isparta cover --report text --report html node_modules/mocha/bin/_mocha -- --opts test/mocha.opts",
     "postinstall": "cd node_modules/BitFlux && npm i && grunt build:module",
-    "remotedev": "remotedev --hostname=localhost --port=9090"
+    "remotedev": "remotedev --hostname=localhost --port=9090",
+    "release": "npm run ci && npm version"
   },
   "devDependencies": {
     "babel": "^6.5.2",
@@ -77,6 +79,7 @@
     "jquery": "^1.11.1",
     "malihu-custom-scrollbar-plugin": "^3.1.3",
     "moment": "^2.13.0",
+    "openfin-config-builder": "^1.0.8",
     "openfin-launcher": "^0.1.8",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
