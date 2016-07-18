@@ -5,6 +5,10 @@ import { searchInput, search, selectFavourites } from '../../../actions/sidebar'
 import searchTabImage from '../../../assets/png/search_tab.png';
 import SearchResult from '../../../components/SearchResult.js';
 import { searchSelector as mapStateToProps } from '../../../selectors/index';
+
+import favouriteShape from '../../../proptypes/favourites';
+import selectionShape from '../../../proptypes/selection';
+
 const SEARCH_TIMEOUT_INTERVAL = 250;
 
 class Search extends Component {
@@ -112,10 +116,13 @@ Search.propTypes = {
     isSearching: PropTypes.bool,
     hasErrors: PropTypes.bool,
     results: PropTypes.array,
-    favourites: PropTypes.object,
-    selection: PropTypes.object.isRequired,
+    favourites: favouriteShape,
+    selection: selectionShape,
     term: PropTypes.string.isRequired,
-    bindings: PropTypes.object.isRequired,
+    bindings: PropTypes.shape({
+        toggleFavourite: PropTypes.func.isRequired,
+        selectStock: PropTypes.func.isRequired
+    }).isRequired,
     dispatch: PropTypes.func.isRequired
 };
 

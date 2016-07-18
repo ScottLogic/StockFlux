@@ -7,6 +7,10 @@ import favTabImage from '../../../assets/png/favourites_tab.png';
 import Favourite from '../../../components/Favourite.js';
 import { favouritesSelector as mapStateToProps } from '../../../selectors/index';
 
+import selectionShape from '../../../proptypes/selection';
+import favouritesShape from '../../../proptypes/favourites';
+import windowStateShape from '../../../proptypes/windowState';
+
 /*
  *  dataTransfer.getData is only available in dragstart, drop and dragEnd
  * This allows us to get around that by setting only 2 properties:
@@ -172,13 +176,17 @@ class Favourites extends Component {
         );
     }
 }
+
 Favourites.propTypes = {
-    selection: PropTypes.object,
-    favourites: PropTypes.object.isRequired,
-    windowState: PropTypes.object.isRequired,
+    selection: selectionShape,
+    favourites: favouritesShape,
+    windowState: windowStateShape,
     hasErrors: PropTypes.bool,
     isStarting: PropTypes.bool,
-    bindings: PropTypes.object.isRequired,
+    bindings: PropTypes.shape({
+        toggleFavourite: PropTypes.func.isRequired,
+        selectStock: PropTypes.func.isRequired
+    }).isRequired,
     dispatch: PropTypes.func.isRequired
 };
 

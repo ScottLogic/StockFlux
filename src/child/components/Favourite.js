@@ -122,11 +122,19 @@ class Favourite extends Component {
     }
 }
 
-// onClick: PropTypes.func.isRequired,
 Favourite.propTypes = {
     stockCode: PropTypes.string.isRequired,
     selected: PropTypes.bool.isRequired,
-    bindings: PropTypes.object.isRequired,
+    bindings: PropTypes.shape({
+        dnd: PropTypes.shape({
+            onDragEnter: PropTypes.func.isRequired,
+            onDrop: PropTypes.func.isRequired
+        }).isRequired,
+        onClick: PropTypes.func.isRequired,
+        onIconClick: PropTypes.func.isRequired,
+        onQuandlResponse: PropTypes.func.isRequired,
+        onDoubleClick: PropTypes.func.isRequired
+    }).isRequired,
     isFavourite: PropTypes.bool.isRequired
 };
 
