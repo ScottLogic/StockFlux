@@ -6,7 +6,6 @@ import Showcase from './showcase/Showcase';
 import Version from '../components/version/Version';
 import { truncate } from '../services/formatters';
 
-import DevTools from './devTools/DevTools.js';
 import noFavourites from '../assets/png/no_favourites.png';
 
 const App = ({ code, name, windowState }) => (
@@ -23,7 +22,6 @@ const App = ({ code, name, windowState }) => (
             </div>
             <Version />
         </div>
-        {DevTools && <DevTools />}
     </div>
 );
 
