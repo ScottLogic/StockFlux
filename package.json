@@ -7,12 +7,14 @@
       "url" : "https://github.com/ScottLogic/StockFlux.git"
   },
   "scripts": {
-    "start": "webpack-dev-server -d --config webpack/webpack.config.dev.js",
+    "start": "npm run publicdir && webpack-dev-server -d --config webpack/webpack.config.dev.js",
     "openfin:dev": "node openfin-dev-launcher.js",
     "openfin:prod": "node openfin-prod-launcher.js",
-    "build": "webpack -p --config webpack/webpack.config.prod.js",
+    "build": "npm run publicdir && webpack -p --config webpack/webpack.config.prod.js",
     "serve": "http-server -p 5001",
     "prod": "npm run build && npm run serve",
+    "publicdir": "npm run clean && mkdir public && cp-cli src/static/ public/",
+    "clean": "rimraf public/",
     "ci": "npm run lint && npm test && npm run build",
     "lint": "eslint --plugin import jsx-ally react *.js src/ test/",
     "test": "cross-env BABEL_ENV=test mocha --opts test/mocha.opts",
@@ -70,6 +72,7 @@
     "BitFlux": "github:scottlogic/BitFlux#1.6.1",
     "babel-polyfill": "^6.3.14",
     "classnames": "^2.2.3",
+    "cp-cli": "^1.0.2",
     "d3fc": "^5.3.0",
     "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.1.1",
@@ -84,7 +87,8 @@
     "redux-localstorage": "^0.4.1",
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.0.1",
-    "reselect": "^2.5.3"
+    "reselect": "^2.5.3",
+    "rimraf": "^2.5.3"
   },
   "description": "Hosts the BitFlux as an OpenFin application."
 }
