@@ -77,7 +77,8 @@
     "react-redux": "^4.4.4",
     "redux": "^3.4.0",
     "redux-logger": "^2.6.1",
-    "redux-thunk": "^2.0.1"
+    "redux-thunk": "^2.0.1",
+    "reselect": "^2.5.3"
   },
   "description": "Hosts the BitFlux as an OpenFin application."
 }

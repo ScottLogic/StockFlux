@@ -5,6 +5,7 @@ import SideBar from './sidebars/Sidebar.js';
 import Showcase from './showcase/Showcase';
 import Version from '../components/version/Version';
 import { truncate } from '../services/formatters';
+import { appSelector as mapStateToProps } from '../selectors/index';
 
 import noFavourites from '../assets/png/no_favourites.png';
 
@@ -30,11 +31,5 @@ App.propTypes = {
     name: PropTypes.string,
     windowState: PropTypes.object.isRequired
 };
-
-function mapStateToProps(state) {
-    const { selection, windowState } = state;
-    const { name, code } = selection;
-    return { name, code, windowState };
-}
 
 export default connect(mapStateToProps)(App);

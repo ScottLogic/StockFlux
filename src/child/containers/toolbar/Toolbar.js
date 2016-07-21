@@ -7,6 +7,7 @@ import {
     resizeToCompact,
     resizeToDefault
 } from '../../actions/window.js';
+import { toolbarSelector as mapStateToProps } from '../../selectors/index';
 import icon from '../../assets/png/scottlogic_logo.png';
 
 
@@ -53,13 +54,7 @@ class Toolbar extends Component {
     }
 
     onCloseClick() {
-        // notifyParent(WINDOW_CLOSE, {
-        //     name: window.name,
-        //     state: this.props.windowState
-        // });
-        // this.props.dispatch(close());
-        // console.log('    state', this)
-        window.close();
+        fin.desktop.Window.getCurrent().contentWindow.close();
     }
 
     onMinimize() {
@@ -100,10 +95,5 @@ Toolbar.propTypes = {
     windowState: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired
 };
-
-function mapStateToProps(state) {
-    const { windowState } = state;
-    return { windowState };
-}
 
 export default connect(mapStateToProps)(Toolbar);
