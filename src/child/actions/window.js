@@ -76,18 +76,21 @@ export function resizeError() {
 
 function updatingOptions() {
     return {
+        windowName: currentWindowService.getCurrentWindow().name,
         type: ACTION_TYPES.UPDATING_OPTIONS
     };
 }
 
 function updatingOptionsSuccess() {
     return {
+        windowName: currentWindowService.getCurrentWindow().name,
         type: ACTION_TYPES.UPDATING_OPTIONS_SUCCESS
     };
 }
 
 function updatingOptionsError() {
     return {
+        windowName: currentWindowService.getCurrentWindow().name,
         type: ACTION_TYPES.UPDATING_OPTIONS_ERROR
     };
 }
