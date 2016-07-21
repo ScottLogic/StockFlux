@@ -3,6 +3,7 @@ import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
 import rootReducer from '../reducers/reducers.js';
 import devTools from 'remote-redux-devtools';
+import persistState from 'redux-localstorage';
 
 const devToolsMiddleware = devTools({
     name: 'StockFlux',
@@ -15,7 +16,8 @@ const enhancer = compose(
     // Middleware you want to use in development:
     applyMiddleware(thunkMiddleware, createLogger()),
     // Required! Enable Redux DevTools with the monitors you chose
-    devToolsMiddleware
+    devToolsMiddleware,
+    persistState()
 );
 
 function configureStore(initialState) {
