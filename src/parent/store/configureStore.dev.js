@@ -27,8 +27,8 @@ function configureStore(initialState) {
 
     if (module.hot) {
         // Enable Webpack hot module replacement for reducers
-        module.hot.accept('../reducers/reducers.js', () => {
-            const nextRootReducer = require('../reducers/reducers.js').default; // eslint-disable-line global-require
+        module.hot.accept('../reducers/reducers', () => {
+            const nextRootReducer = require('../reducers/reducers').default; // eslint-disable-line global-require
             store.replaceReducer(nextRootReducer);
         });
     }
