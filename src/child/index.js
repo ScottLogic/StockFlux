@@ -5,6 +5,7 @@ import App from './containers/App';
 import 'babel-polyfill';
 
 import { open, close } from './actions/window';
+import { dragAccept } from './actions/sidebar';
 
 import './assets/styles/style.less';
 import '../../node_modules/d3fc/dist/d3fc.min.css';
@@ -20,13 +21,20 @@ require('script!../../node_modules/BitFlux/dist/bitflux.js');
 /* eslint-enable import/no-unresolved */
 
 fin.desktop.main(() => {
-    fin.desktop.Window.getCurrent().contentWindow.addEventListener('beforeunload', () => {
-        fin.desktop.Window.getCurrent().contentWindow.opener.store.dispatch(close());
+    const store = fin.desktop.Window.getCurrent().contentWindow.opener.store;
+    fin.desktop.Window.getCurrent().contentWindow.store = fin.desktop.Window.getCurrent().contentWindow.opener.store;
+
+    $(window).unload(() => {        // eslint-disable-line no-undef
         unmountComponentAtNode(document.getElementById('app'));
+        store.dispatch(close());
     });
 
-    const store = fin.desktop.Window.getCurrent().contentWindow.opener.store;
     store.dispatch(open());
+
+    console.log(store.getState().dragOut);
+    if (store.getState().dragOut) {
+        store.dispatch(dragAccept());
+    }
 
     render(
         <Provider store={store}>

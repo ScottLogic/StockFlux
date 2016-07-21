@@ -1,11 +1,14 @@
 /* global $ */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { selectStock, quandlResponse, insertFavouriteAt } from '../../../actions/sidebar';
+import { selectStock, quandlResponse, insertFavouriteAt, dragOut } from '../../../actions/sidebar';
 import { resizeToDefault } from '../../../actions/window';
 import favTabImage from '../../../assets/png/favourites_tab.png';
 import Favourite from '../../../components/Favourite.js';
 import { favouritesSelector as mapStateToProps } from '../../../selectors/index';
+
+
+import configService from '../../../../shared/ConfigService';
 
 /*
  *  dataTransfer.getData is only available in dragstart, drop and dragEnd
@@ -37,6 +40,7 @@ class Favourites extends Component {
         this.onDrop = this.onDrop.bind(this);
         this.onDragOver = this.onDragOver.bind(this);
         this.onDragLeave = this.onDragLeave.bind(this);
+        this.onDropOutside = this.onDropOutside.bind(this);
     }
 
     componentDidMount() {
@@ -67,6 +71,20 @@ class Favourites extends Component {
             this.props.dispatch(resizeToDefault());
             this.props.dispatch(selectStock(stockCode, stockName));
         }
+    }
+
+    onDropOutside(e, stockCode) {
+        this.props.dispatch(dragOut(stockCode, this.props.favourites.names[stockCode]));
+
+        // Unfavourite the stock from this window
+        this.props.bindings.toggleFavourite(stockCode);
+
+        const childWindow = new fin.desktop.Window(
+            configService.getWindowConfig(),
+            () => childWindow.show()
+        );
+
+        e.stopPropagation();
     }
 
     onDragOverFavourite(e, targetCode) {
@@ -123,7 +141,8 @@ class Favourites extends Component {
         let bindings = {
             dnd: {
                 onDragEnter: this.onDragOverFavourite,
-                onDrop: this.onDropOverFavourite
+                onDrop: this.onDropOverFavourite,
+                onDropOutside: this.onDropOutside
             },
             onClick: this.onClick,
             onIconClick: this.onIconClick,

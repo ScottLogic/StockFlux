@@ -10,14 +10,16 @@ export const SIDEBAR = {
     TOGGLE_FAVOURITE: 'CHILD_TOGGLE_FAVOURITE',
     SELECTION: 'CHILD_SELECTION',
     UNSELECT: 'CHILD_UNSELECT',
-    QUANDL_RESPONSE: 'CHILD_QUANDL_RESPONSE'
+    QUANDL_RESPONSE: 'CHILD_QUANDL_RESPONSE',
+    DRAG_OUT: 'DRAG_OUT',           // Handled by parent
+    DRAG_ACCEPT: 'DRAG_ACCEPT'      // Handled by parent
 };
 
 export const WINDOW = {
     MINIMIZE: 'CHILD_MINIMIZE',
     MAXIMIZE: 'CHILD_MAXIMIZE',
     RESTORE: 'CHILD_RESTORE',
-    CLOSE: 'CLOSE',     // Without 'CHILD' preface because parent must handle this action
+    CLOSE: 'CLOSE',                 // Handled by parent
     OPEN: 'CHILD_OPEN',
     TOGGLE_COMPACT: 'CHILD_TOGGLE_COMPACT',
     STATE_EXPANDED: 'CHILD_STATE_EXPANDED',
