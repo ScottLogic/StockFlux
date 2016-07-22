@@ -1,12 +1,12 @@
 {
   "name": "bitflux-openfin",
-  "version": "10.1.0",
+  "version": "10.2.0",
   "scripts": {
     "start": "webpack-dev-server -d --config webpack/webpack.config.dev.js",
     "openfin:dev": "node openfin-dev-launcher.js",
     "openfin:prod": "node openfin-prod-launcher.js",
     "build": "webpack -p --config webpack/webpack.config.prod.js",
-    "build:deploy": "npm run build && node configJson.js",
+    "build:deploy": "npm run build && node updateOpenFinConfigForDeployment.js",
     "serve": "http-server -p 5001",
     "prod": "npm run build && npm run serve",
     "ci": "npm run lint && npm test && npm run build",
