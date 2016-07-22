@@ -29,11 +29,12 @@ class Sidebar extends Component {
     }
 
     toggleFavourite(stockCode) {
+        const isFavourite = this.props.favourites.codes.some(favourite => favourite === stockCode);
+
         this.props.dispatch(toggleFavourite(stockCode));
 
-        const isFavourite = this.props.favourites.codes.some(favourite => favourite === stockCode);
         if (this.props.selection.code === stockCode && isFavourite) {
-            if (this.props.favourites.codes.length >= 2) {
+            if (this.props.favourites.codes.length >= 1) {
                 const newStockCode = this.props.favourites.codes.find(favourite => favourite !== stockCode);
                 const newStockName = this.props.favourites.names[newStockCode];
                 this.props.dispatch(selectStock(newStockCode, newStockName));

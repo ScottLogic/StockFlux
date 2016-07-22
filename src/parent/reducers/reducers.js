@@ -8,6 +8,43 @@ function parentReducer(state = {}, action) {
     case ACTION_TYPES.CLOSE: {
         const newState = Object.assign({}, state);
         delete newState[action.windowName];
+
+        if (!Object.keys(newState).length) {
+            fin.desktop.Window.getCurrent().contentWindow.close();
+        }
+
+        return newState;
+    }
+
+    case ACTION_TYPES.DRAG_OUT: {
+        const newState = Object.assign({}, state);
+        newState.dragOut = {
+            stockCode: action.code,
+            stockName: action.name
+        };
+        console.log(newState);
+        return newState;
+    }
+
+    case ACTION_TYPES.DRAG_ACCEPT: {
+        const newState = Object.assign({}, state, {
+            [action.windowName]: Object.assign({}, state[action.windowName], {
+                selection: {
+                    code: state.dragOut.stockCode,
+                    name: state.dragOut.stockName
+                },
+                favourites: {
+                    codes: [state.dragOut.stockCode],
+                    names: {
+                        [state.dragOut.stockCode]: state.dragOut.stockName
+                    }
+                },
+                sidebar: {
+                    showFavourites: true
+                }
+            })
+        });
+        delete newState.dragOut;
         return newState;
     }
 

@@ -1,15 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import {
-    minimise,
-    maximize,
-    restore,
-    resizeToCompact,
-    resizeToDefault
-} from '../../actions/window.js';
+import { minimise, maximize, restore, resizeToCompact, resizeToDefault } from '../../actions/window.js';
 import { toolbarSelector as mapStateToProps } from '../../selectors/index';
 import icon from '../../assets/png/scottlogic_logo.png';
-
 
 class Toolbar extends Component {
     constructor(props) {

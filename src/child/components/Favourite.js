@@ -59,11 +59,14 @@ class Favourite extends Component {
         e.currentTarget.classList.remove('dragOver');
     }
 
-    onDragEnd(e) {
-        e.currentTarget.classList.remove('dragging');
-        if (e.dataTransfer.dropEffect === 'none') {
-            // TODO: Open window with stock + reposition && fade window if it's the only stock in favourites
-        }
+    onDragEnd(stockCode) {
+        return e => {
+            e.currentTarget.classList.remove('dragging');
+            if (e.dataTransfer.dropEffect === 'none') {
+                // TODO: reposition && fade window if it's the only stock in favourites
+                this.props.bindings.dnd.onDropOutside(e, stockCode);
+            }
+        };
     }
 
     render() {
@@ -93,7 +96,7 @@ class Favourite extends Component {
               onDragEnter={e => bindings.dnd.onDragEnter(e, stockCode)}
               onDragLeave={this.onDragLeave}
               onDrop={e => bindings.dnd.onDrop(e, stockCode)}
-              onDragEnd={this.onDragEnd}
+              onDragEnd={this.onDragEnd(stockCode)}
               onDoubleClick={() => bindings.onDoubleClick(stockCode, name)}
             >
                 <div className="drop-target">
