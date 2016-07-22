@@ -10,7 +10,9 @@ export const SIDEBAR = {
     TOGGLE_FAVOURITE: 'CHILD_TOGGLE_FAVOURITE',
     SELECTION: 'CHILD_SELECTION',
     UNSELECT: 'CHILD_UNSELECT',
-    QUANDL_RESPONSE: 'CHILD_QUANDL_RESPONSE'
+    QUANDL_RESPONSE: 'CHILD_QUANDL_RESPONSE',
+    DRAG_START: 'DRAG_START',       // Handled by parent
+    DRAG_END: 'DRAG_END'            // Handled by parent
 };
 
 export const WINDOW = {
