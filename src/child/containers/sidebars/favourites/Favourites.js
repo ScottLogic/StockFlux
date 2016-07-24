@@ -5,7 +5,7 @@ import { selectStock, quandlResponse, insertFavouriteAt } from '../../../actions
 import { resizeToDefault } from '../../../actions/window';
 import favTabImage from '../../../assets/png/favourites_tab.png';
 import Favourite from '../../../components/Favourite.js';
-import { favouritesSelector as mapStateToProps } from '../../../selectors/index';
+import { favouritesSelector as mapStateToProps } from '../../../selectors/selectors';
 
 import selectionShape from '../../../propTypeShapes/selection';
 import favouritesShape from '../../../propTypeShapes/favourites';

@@ -5,7 +5,7 @@ import SideBar from './sidebars/Sidebar.js';
 import Showcase from './showcase/Showcase';
 import Version from '../components/version/Version';
 import { truncate } from '../services/formatters';
-import { appSelector as mapStateToProps } from '../selectors/index';
+import { appSelector as mapStateToProps } from '../selectors/selectors';
 
 import noFavourites from '../assets/png/no_favourites.png';
 
