@@ -44,3 +44,5 @@ export const toolbarSelector = createSelector(
         return { windowState };
     }
 );
+
+export const indexSelector = (state) => windowStateSelector(state).windowState;
