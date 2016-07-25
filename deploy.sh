@@ -13,7 +13,7 @@ then
     git clone https://github.com/rjmcneill/StockFlux.git --branch gh-pages gh-pages
 
     # Get line with version from the file -> get the second word -> remove quotes around the value
-    VERSION=$(grep -m 1 "version" package.json | awk -v N=$2 '{print $2}' | cut -d \" -f2)
+    VERSION=$(grep "\"version\":" package.json | awk -v N=$2 '{print $2}' | cut -d \" -f2)
 
     echo "Type is: $TYPE"
     echo "Version is: $VERSION"
@@ -43,7 +43,6 @@ then
         fi
         # Rebuild everything to do $VERSION
         echo "Cleaning build. Targetting $VERSION"
-        echo "$VERSION"
         npm run build:deploy $VERSION
 
         rm -rf "./gh-pages/$VERSION"
