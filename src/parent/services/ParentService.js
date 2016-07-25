@@ -27,8 +27,22 @@ class ParentService {
     }
 
     createChildWindow(windowName) {
+        let windowConfig;
+        if (windowName) {
+            const { windowState } = this.store.getState().childWindows[windowName];
+            if (windowState.isCompact) {
+                windowConfig = configService.getCompactWindowConfig(windowName);
+            } else if (windowState.isMaximized) {
+                windowConfig = configService.getMaximizedWindowConfig(windowName);
+            } else {
+                windowConfig = configService.getWindowConfig(windowName);
+            }
+        } else {
+            windowConfig = configService.getWindowConfig();
+        }
+
         const childWindow = new fin.desktop.Window(
-            configService.getWindowConfig(windowName),
+            windowConfig,
             () => this.createChildWindowSuccess(childWindow)
         );
     }

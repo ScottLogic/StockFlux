@@ -164,7 +164,7 @@ function resizeCompact() {
             currentWindowService.resizeTo(
                 compactWindowWidth,
                 compactWindowHeight,
-                'top-right',
+                'top-left',
                 () => resolve(dispatch(resizeCompactSuccess())),
                 () => reject(dispatch(resizeError()))
             );
@@ -181,7 +181,7 @@ function resizePrevious() {
             currentWindowService.resizeTo(
                 previousWindowWidth,
                 previousWindowHeight,
-                'top-right',
+                'top-left',
                 () => resolve(dispatch(resizePreviousSuccess())),
                 () => reject(dispatch(resizeError()))
             );
