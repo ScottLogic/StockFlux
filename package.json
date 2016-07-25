@@ -1,6 +1,6 @@
 {
   "name": "bitflux-openfin",
-  "version": "10.2.0",
+  "version": "10.1.0",
   "scripts": {
     "start": "webpack-dev-server -d --config webpack/webpack.config.dev.js",
     "openfin:dev": "node openfin-dev-launcher.js",
