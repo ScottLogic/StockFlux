@@ -25,8 +25,14 @@ const Stock = ({ isFavourite, stock, selected, bindings }) => {
 };
 
 Stock.propTypes = {
-    stock: PropTypes.object.isRequired,
-    bindings: PropTypes.object.isRequired,
+    stock: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        code: PropTypes.string.isRequired
+    }).isRequired,
+    bindings: PropTypes.shape({
+        onClick: PropTypes.func.isRequired,
+        onIconClick: PropTypes.func.isRequired
+    }).isRequired,
     isFavourite: PropTypes.bool.isRequired,
     selected: PropTypes.bool.isRequired
 };
