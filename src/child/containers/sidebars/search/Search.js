@@ -6,8 +6,8 @@ import searchTabImage from '../../../assets/png/search_tab.png';
 import SearchResult from '../../../components/SearchResult.js';
 import { searchSelector as mapStateToProps } from '../../../selectors/index';
 
-import favouriteShape from '../../../proptypes/favourites';
-import selectionShape from '../../../proptypes/selection';
+import favouriteShape from '../../../propTypeShapes/favourites';
+import selectionShape from '../../../propTypeShapes/selection';
 
 const SEARCH_TIMEOUT_INTERVAL = 250;
 
@@ -116,8 +116,8 @@ Search.propTypes = {
     isSearching: PropTypes.bool,
     hasErrors: PropTypes.bool,
     results: PropTypes.array,
-    favourites: favouriteShape,
-    selection: selectionShape,
+    favourites: favouriteShape.isRequired,
+    selection: selectionShape.isRequired,
     term: PropTypes.string.isRequired,
     bindings: PropTypes.shape({
         toggleFavourite: PropTypes.func.isRequired,

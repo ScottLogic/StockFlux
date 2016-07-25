@@ -7,9 +7,9 @@ import favTabImage from '../../../assets/png/favourites_tab.png';
 import Favourite from '../../../components/Favourite.js';
 import { favouritesSelector as mapStateToProps } from '../../../selectors/index';
 
-import selectionShape from '../../../proptypes/selection';
-import favouritesShape from '../../../proptypes/favourites';
-import windowStateShape from '../../../proptypes/windowState';
+import selectionShape from '../../../propTypeShapes/selection';
+import favouritesShape from '../../../propTypeShapes/favourites';
+import windowStateShape from '../../../propTypeShapes/windowState';
 
 /*
  *  dataTransfer.getData is only available in dragstart, drop and dragEnd
@@ -178,9 +178,9 @@ class Favourites extends Component {
 }
 
 Favourites.propTypes = {
-    selection: selectionShape,
-    favourites: favouritesShape,
-    windowState: windowStateShape,
+    selection: selectionShape.isRequired,
+    favourites: favouritesShape.isRequired,
+    windowState: windowStateShape.isRequired,
     hasErrors: PropTypes.bool,
     isStarting: PropTypes.bool,
     bindings: PropTypes.shape({

@@ -10,7 +10,7 @@ import {
 import { toolbarSelector as mapStateToProps } from '../../selectors/index';
 import icon from '../../assets/png/scottlogic_logo.png';
 
-import windowStateShape from '../../proptypes/windowState';
+import windowStateShape from '../../propTypeShapes/windowState';
 
 class Toolbar extends Component {
     constructor(props) {
@@ -93,7 +93,7 @@ class Toolbar extends Component {
 }
 
 Toolbar.propTypes = {
-    windowState: windowStateShape,
+    windowState: windowStateShape.isRequired,
     dispatch: PropTypes.func.isRequired
 };
 
