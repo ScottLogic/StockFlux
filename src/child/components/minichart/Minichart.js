@@ -94,9 +94,15 @@ class Minichart extends Component {
  }
 
 
-// onClick: PropTypes.func.isRequired,
 Minichart.propTypes = {
-    chartData: PropTypes.object,
+    chartData: PropTypes.shape({
+        dataset: PropTypes.object,
+        stockData: PropTypes.shape({
+            data: PropTypes.array,
+            endDate: PropTypes.string,
+            startDate: PropTypes.string
+        })
+    }),
     stockCode: PropTypes.string.isRequired
 };
 

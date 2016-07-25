@@ -9,6 +9,8 @@ import { appSelector as mapStateToProps } from '../selectors/index';
 
 import noFavourites from '../assets/png/no_favourites.png';
 
+import windowStateShape from '../propTypeShapes/windowState';
+
 const App = ({ code, name, windowState }) => (
     <div className={`main${windowState.isCompact ? ' compact' : ''}`}>
         <SideBar />
@@ -29,7 +31,7 @@ const App = ({ code, name, windowState }) => (
 App.propTypes = {
     code: PropTypes.string,
     name: PropTypes.string,
-    windowState: PropTypes.object.isRequired
+    windowState: windowStateShape.isRequired
 };
 
 export default connect(mapStateToProps)(App);

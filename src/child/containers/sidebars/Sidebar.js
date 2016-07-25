@@ -6,6 +6,9 @@ import { sidebarSelector as mapStateToProps } from '../../selectors/index';
 
 import { selectFavourites, selectSearch, toggleFavourite, selectStock, unselectStock } from '../../actions/sidebar';
 
+import windowStateShape from '../../propTypeShapes/windowState';
+import selectionShape from '../../propTypeShapes/selection';
+import favouritesShape from '../../propTypeShapes/favourites';
 
 class Sidebar extends Component {
     constructor(props) {
@@ -79,9 +82,9 @@ class Sidebar extends Component {
 Sidebar.propTypes = {
     dispatch: PropTypes.func.isRequired,
     sidebar: PropTypes.object.isRequired,
-    windowState: PropTypes.object.isRequired,
-    selection: PropTypes.object.isRequired,
-    favourites: PropTypes.object.isRequired
+    windowState: windowStateShape.isRequired,
+    selection: selectionShape.isRequired,
+    favourites: favouritesShape.isRequired
 };
 
 export default connect(mapStateToProps)(Sidebar);
