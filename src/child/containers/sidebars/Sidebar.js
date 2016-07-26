@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Favourites from './favourites/Favourites.js';
 import Search from './search/Search.js';
-import { sidebarSelector as mapStateToProps } from '../../selectors/index';
+import { sidebarSelector as mapStateToProps } from '../../selectors/selectors';
 
 import { selectFavourites, selectSearch, toggleFavourite, selectStock, unselectStock } from '../../actions/sidebar';
 
