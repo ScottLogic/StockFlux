@@ -1,6 +1,11 @@
 {
   "name": "bitflux-openfin",
   "version": "10.1.0",
+  "license": "GPL-3.0",
+  "repository": {
+      "type" : "git",
+      "url" : "https://github.com/ScottLogic/StockFlux.git"
+  },
   "scripts": {
     "start": "webpack-dev-server -d --config webpack/webpack.config.dev.js",
     "openfin:dev": "node openfin-dev-launcher.js",
