@@ -7,7 +7,10 @@ const config = Object.assign({}, sharedConfig, {
     devServer: {
         contentBase: './public',
         hot: true,
-        port: 5000
+        port: 5000,
+        stats: {
+            chunks: false
+        }
     }
 });
 
