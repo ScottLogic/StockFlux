@@ -6,8 +6,11 @@ import { WINDOW as ACTION_TYPES } from '../../../../src/child/constants/actionTy
 describe('child/actions/window', () => {
 
     before(() => {
-        const windowNameFunc = () => ({ name: 0 });
-        rewiredActions.__Rewire__('currentWindowService', { getCurrentWindow: windowNameFunc });
+        rewiredActions.__Rewire__('currentWindowService', { getCurrentWindowName: () => 0 });
+    });
+
+    after(() => {
+        rewiredActions.__ResetDependency__('currentWindowService');
     });
 
     it('should create an action for minimise', () => {
