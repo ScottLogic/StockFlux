@@ -13,8 +13,11 @@ import createFakeQuandlServer from '../../../helper/fakeQuandlServer';
 describe('child/actions/sidebar', () => {
 
     before(() => {
-        const windowNameFunc = () => ({ name: 0 });
-        rewiredActions.__Rewire__('currentWindowService', { getCurrentWindow: windowNameFunc });
+        rewiredActions.__Rewire__('currentWindowService', { getCurrentWindowName: () => 0 });
+    });
+
+    after(() => {
+        rewiredActions.__ResetDependency__('currentWindowService');
     });
 
     it('should create an action to input a stock to search for', () => {
