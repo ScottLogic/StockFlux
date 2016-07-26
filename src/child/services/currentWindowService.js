@@ -6,6 +6,10 @@ class CurrentWindowService {
         return fin.desktop.Window.getCurrent();
     }
 
+    getCurrentWindowName() {
+        return this.getCurrentWindow().name;
+    }
+
     ready(cb) {
         fin.desktop.main(cb);
     }

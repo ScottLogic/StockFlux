@@ -4,14 +4,14 @@ import currentWindowService from '../services/currentWindowService';
 
 export function minimise() {
     return {
-        windowName: currentWindowService.getCurrentWindow().name,
+        windowName: currentWindowService.getCurrentWindowName(),
         type: ACTION_TYPES.MINIMIZE
     };
 }
 
 export function compact() {
     return {
-        windowName: currentWindowService.getCurrentWindow().name,
+        windowName: currentWindowService.getCurrentWindowName(),
         type: ACTION_TYPES.TOGGLE_COMPACT,
         state: true
     };
@@ -19,7 +19,7 @@ export function compact() {
 
 export function expand() {
     return {
-        windowName: currentWindowService.getCurrentWindow().name,
+        windowName: currentWindowService.getCurrentWindowName(),
         type: ACTION_TYPES.TOGGLE_COMPACT,
         state: false
     };
@@ -27,70 +27,70 @@ export function expand() {
 
 export function resizing() {
     return {
-        windowName: currentWindowService.getCurrentWindow().name,
+        windowName: currentWindowService.getCurrentWindowName(),
         type: ACTION_TYPES.RESIZING
     };
 }
 
 export function fullView() {
     return {
-        windowName: currentWindowService.getCurrentWindow().name,
+        windowName: currentWindowService.getCurrentWindowName(),
         type: ACTION_TYPES.STATE_FULL_VIEW
     };
 }
 
 export function maximize() {
     return {
-        windowName: currentWindowService.getCurrentWindow().name,
+        windowName: currentWindowService.getCurrentWindowName(),
         type: ACTION_TYPES.MAXIMIZE
     };
 }
 
 export function restore() {
     return {
-        windowName: currentWindowService.getCurrentWindow().name,
+        windowName: currentWindowService.getCurrentWindowName(),
         type: ACTION_TYPES.RESTORE
     };
 }
 
 export function open() {
     return {
-        windowName: currentWindowService.getCurrentWindow().name,
+        windowName: currentWindowService.getCurrentWindowName(),
         type: ACTION_TYPES.OPEN
     };
 }
 
 export function close() {
     return {
-        windowName: currentWindowService.getCurrentWindow().name,
+        windowName: currentWindowService.getCurrentWindowName(),
         type: ACTION_TYPES.CLOSE
     };
 }
 
 export function resizeError() {
     return {
-        windowName: currentWindowService.getCurrentWindow().name,
+        windowName: currentWindowService.getCurrentWindowName(),
         type: ACTION_TYPES.RESIZE_ERROR
     };
 }
 
 function updatingOptions() {
     return {
-        windowName: currentWindowService.getCurrentWindow().name,
+        windowName: currentWindowService.getCurrentWindowName(),
         type: ACTION_TYPES.UPDATING_OPTIONS
     };
 }
 
 function updatingOptionsSuccess() {
     return {
-        windowName: currentWindowService.getCurrentWindow().name,
+        windowName: currentWindowService.getCurrentWindowName(),
         type: ACTION_TYPES.UPDATING_OPTIONS_SUCCESS
     };
 }
 
 function updatingOptionsError() {
     return {
-        windowName: currentWindowService.getCurrentWindow().name,
+        windowName: currentWindowService.getCurrentWindowName(),
         type: ACTION_TYPES.UPDATING_OPTIONS_ERROR
     };
 }

@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import currentWindowService from '../services/currentWindowService';
 
-const getCurrentWindowState = (state) => state[currentWindowService.getCurrentWindow().name];
+const getCurrentWindowState = (state) => state[currentWindowService.getCurrentWindowName()];
 const createCurrentWindowStateSelector = (...args) => createSelector(getCurrentWindowState, ...args);
 
 export const appSelector = createCurrentWindowStateSelector(
