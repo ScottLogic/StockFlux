@@ -1,10 +1,10 @@
 import { createSelector } from 'reselect';
 import currentWindowService from '../services/currentWindowService';
 
-const windowStateSelector = (state) => state[currentWindowService.getCurrentWindow().contentWindow.name];
+const getCurrentWindowState = (state) => state[currentWindowService.getCurrentWindow().name];
+const createCurrentWindowStateSelector = (...args) => createSelector(getCurrentWindowState, ...args);
 
-export const appSelector = createSelector(
-    windowStateSelector,
+export const appSelector = createCurrentWindowStateSelector(
     (state) => {
         const { selection, windowState } = state;
         const { name, code } = selection;
@@ -12,16 +12,14 @@ export const appSelector = createSelector(
     }
 );
 
-export const favouritesSelector = createSelector(
-    windowStateSelector,
+export const favouritesSelector = createCurrentWindowStateSelector(
     (state) => {
         const { favourites, selection, windowState } = state;
         return { favourites, selection, windowState, isStarting: false, hasErrors: false };
     }
 );
 
-export const searchSelector = createSelector(
-    windowStateSelector,
+export const searchSelector = createCurrentWindowStateSelector(
     (state) => {
         const { favourites, selection } = state;
         const { isSearching, hasErrors, results, term } = state.search;
@@ -29,16 +27,14 @@ export const searchSelector = createSelector(
     }
 );
 
-export const sidebarSelector = createSelector(
-    windowStateSelector,
+export const sidebarSelector = createCurrentWindowStateSelector(
     (state) => {
         const { sidebar, selection, favourites, windowState } = state;
         return { sidebar, selection, favourites, windowState };
     }
 );
 
-export const toolbarSelector = createSelector(
-    windowStateSelector,
+export const toolbarSelector = createCurrentWindowStateSelector(
     (state) => {
         const { windowState } = state;
         return { windowState };
