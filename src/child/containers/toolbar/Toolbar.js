@@ -7,7 +7,7 @@ import {
     resizeToCompact,
     resizeToDefault
 } from '../../actions/window.js';
-import { toolbarSelector as mapStateToProps } from '../../selectors/index';
+import { toolbarSelector as mapStateToProps } from '../../selectors/selectors';
 import icon from '../../assets/png/scottlogic_logo.png';
 
 import windowStateShape from '../../propTypeShapes/windowState';
