@@ -16,6 +16,8 @@ class Favourite extends Component {
         this.onDragOver = this.onDragOver.bind(this);
         this.onDragLeave = this.onDragLeave.bind(this);
         this.onDragEnd = this.onDragEnd.bind(this);
+        this.onMouseOver = this.onMouseOver.bind(this);
+        this.onMouseOut = this.onMouseOut.bind(this);
     }
 
     componentDidMount() {
@@ -39,6 +41,14 @@ class Favourite extends Component {
     onIconClick(e) {
         e.stopPropagation();
         this.props.bindings.onIconClick(this.props.stockCode);
+    }
+
+    onMouseOver() {
+        this.setState({ isHovered: true });
+    }
+
+    onMouseOut() {
+        this.setState({ isHovered: false });
     }
 
     onDragStart(stockCode) {
@@ -70,11 +80,13 @@ class Favourite extends Component {
         const { stockCode, selected, bindings } = this.props;
 
         let { stockData, chartData } = this.state || {};
+        const { isHovered } = this.state || {};
         stockData = stockData || {};
 
         const cls = classNames({
             selected,
-            dark: selected
+            dark: selected,
+            hovered: isHovered
         });
 
         const price = !isNaN(+stockData.price) ? (+stockData.price).toFixed(2) : '';
@@ -95,6 +107,8 @@ class Favourite extends Component {
               onDrop={e => bindings.dnd.onDrop(e, stockCode)}
               onDragEnd={this.onDragEnd}
               onDoubleClick={() => bindings.onDoubleClick(stockCode, name)}
+              onMouseOver={this.onMouseOver}
+              onMouseOut={this.onMouseOut}
             >
                 <div className="drop-target">
                     <div className={`darkens favourite tearable ${cls}`} draggable="false">
