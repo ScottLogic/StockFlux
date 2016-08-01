@@ -1,7 +1,7 @@
 /* global $ */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { selectStock, quandlResponse, insertFavouriteAt } from '../../../actions/sidebar';
+import { selectStock, quandlResponse, insertFavouriteAt } from '../../../actions/favourites';
 import { resizeToDefault } from '../../../actions/window';
 import favTabImage from '../../../assets/png/favourites_tab.png';
 import Favourite from '../../../components/Favourite.js';

@@ -1,4 +1,4 @@
-import { WINDOW as ACTION_TYPES } from '../constants/actionTypes.js';
+import { WINDOW as ACTION_TYPES } from '../../shared/constants/actionTypes';
 import configService from '../../shared/ConfigService';
 import currentWindowService from '../services/currentWindowService';
 
@@ -57,13 +57,6 @@ export function open() {
     return {
         windowName: currentWindowService.getCurrentWindowName(),
         type: ACTION_TYPES.OPEN
-    };
-}
-
-export function close() {
-    return {
-        windowName: currentWindowService.getCurrentWindowName(),
-        type: ACTION_TYPES.CLOSE
     };
 }
 

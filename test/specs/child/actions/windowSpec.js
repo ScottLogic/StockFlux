@@ -1,10 +1,15 @@
 import { expect } from 'chai';
-import { minimise, compact, expand, fullView, maximize,
-         restore, close, resizing, __RewireAPI__ as rewiredActions } from '../../../../src/child/actions/window';
-import { WINDOW as ACTION_TYPES } from '../../../../src/child/constants/actionTypes.js';
+import { minimise,
+         compact,
+         expand,
+         fullView,
+         maximize,
+         restore,
+         resizing,
+         __RewireAPI__ as rewiredActions } from '../../../../src/child/actions/window';
+import { WINDOW as ACTION_TYPES } from '../../../../src/shared/constants/actionTypes';
 
 describe('child/actions/window', () => {
-
     before(() => {
         rewiredActions.__Rewire__('currentWindowService', { getCurrentWindowName: () => 0 });
     });
@@ -15,7 +20,8 @@ describe('child/actions/window', () => {
 
     it('should create an action for minimise', () => {
         const expectedAction = { windowName: 0, type: ACTION_TYPES.MINIMIZE };
-        expect(minimise()).to.deep.equal(expectedAction);
+        const actualAction = minimise();
+        expect(actualAction).to.deep.equal(expectedAction);
     });
 
     it('should create an action for compact', () => {
@@ -24,7 +30,9 @@ describe('child/actions/window', () => {
             type: ACTION_TYPES.TOGGLE_COMPACT,
             state: true
         };
-        expect(compact()).to.deep.equal(expectedAction);
+        const actualAction = compact();
+        expect(actualAction.type).to.be.a('string');
+        expect(actualAction).to.deep.equal(expectedAction);
     });
 
     it('should create an action for expand', () => {
@@ -33,31 +41,36 @@ describe('child/actions/window', () => {
             type: ACTION_TYPES.TOGGLE_COMPACT,
             state: false
         };
-        expect(expand()).to.deep.equal(expectedAction);
+        const actualAction = expand();
+        expect(actualAction.type).to.be.a('string');
+        expect(actualAction).to.deep.equal(expectedAction);
     });
 
     it('should create an action for full view', () => {
         const expectedAction = { windowName: 0, type: ACTION_TYPES.STATE_FULL_VIEW };
-        expect(fullView()).to.deep.equal(expectedAction);
+        const actualAction = fullView();
+        expect(actualAction.type).to.be.a('string');
+        expect(actualAction).to.deep.equal(expectedAction);
     });
 
     it('should create an action for maximize', () => {
         const expectedAction = { windowName: 0, type: ACTION_TYPES.MAXIMIZE };
-        expect(maximize()).to.deep.equal(expectedAction);
+        const actualAction = maximize();
+        expect(actualAction.type).to.be.a('string');
+        expect(actualAction).to.deep.equal(expectedAction);
     });
 
     it('should create an action for restore', () => {
         const expectedAction = { windowName: 0, type: ACTION_TYPES.RESTORE };
-        expect(restore()).to.deep.equal(expectedAction);
-    });
-
-    it('should create an action for close', () => {
-        const expectedAction = { windowName: 0, type: ACTION_TYPES.CLOSE };
-        expect(close()).to.deep.equal(expectedAction);
+        const actualAction = restore();
+        expect(actualAction.type).to.be.a('string');
+        expect(actualAction).to.deep.equal(expectedAction);
     });
 
     it('should create an action for resizing', () => {
         const expectedAction = { windowName: 0, type: ACTION_TYPES.RESIZING };
-        expect(resizing()).to.deep.equal(expectedAction);
+        const actualAction = resizing();
+        expect(actualAction.type).to.be.a('string');
+        expect(actualAction).to.deep.equal(expectedAction);
     });
 });
