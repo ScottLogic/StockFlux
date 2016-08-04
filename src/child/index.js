@@ -1,3 +1,4 @@
+/* global $ */
 import React from 'react';
 import { Provider } from 'react-redux';
 import { render, unmountComponentAtNode } from 'react-dom';
@@ -20,12 +21,14 @@ require('script!../../node_modules/BitFlux/dist/bitflux.js');
 /* eslint-enable import/no-unresolved */
 
 fin.desktop.main(() => {
-    fin.desktop.Window.getCurrent().contentWindow.addEventListener('beforeunload', () => {
-        fin.desktop.Window.getCurrent().contentWindow.opener.store.dispatch(close());
+    const store = fin.desktop.Window.getCurrent().contentWindow.opener.store;
+
+    // Using jQuery unload because the standard beforeunload seems unreliable
+    $(window).unload(() => {
+        store.dispatch(close());
         unmountComponentAtNode(document.getElementById('app'));
     });
 
-    const store = fin.desktop.Window.getCurrent().contentWindow.opener.store;
     store.dispatch(open());
 
     render(
