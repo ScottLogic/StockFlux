@@ -13,14 +13,6 @@ function createChildWindows() {
     const store = parentStore();
     fin.desktop.Window.getCurrent().contentWindow.store = store;
 
-    // Subscribe to the store so we can avoid having the side effect
-    // of closing the parent window in a reducer
-    store.subscribe(() => {
-        if (!Object.keys(store.getState()).length) {
-            fin.desktop.Window.getCurrent().contentWindow.close();
-        }
-    });
-
     if (!Object.keys(fin.desktop.Window.getCurrent().contentWindow.store.getState()).length) {
         createChildWindow();
     } else {

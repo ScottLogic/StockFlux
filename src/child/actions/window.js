@@ -1,6 +1,7 @@
 import { WINDOW as ACTION_TYPES } from '../constants/actionTypes.js';
 import configService from '../../shared/ConfigService';
 import currentWindowService from '../services/currentWindowService';
+import { openWindowNamesSelector } from '../selectors/selectors';
 
 export function minimise() {
     return {
@@ -64,6 +65,18 @@ export function close() {
     return {
         windowName: currentWindowService.getCurrentWindowName(),
         type: ACTION_TYPES.CLOSE
+    };
+}
+
+export function windowClosed() {
+    return (dispatch, getState) => {
+        const openWindowNames = openWindowNamesSelector(getState());
+
+        if (openWindowNames.length === 1) {
+            currentWindowService.getCurrentWindow().contentWindow.parent.close();
+        } else {
+            dispatch(close());
+        }
     };
 }
 
