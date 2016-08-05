@@ -66,6 +66,21 @@ export function quandlResponse(code, name) {
     };
 }
 
+export function dragStart(code) {
+    return {
+        windowName: currentWindowService.getCurrentWindow().name,
+        type: ACTION_TYPES.DRAG_START,
+        code
+    };
+}
+
+export function dragEnd() {
+    return {
+        windowName: currentWindowService.getCurrentWindow().name,
+        type: ACTION_TYPES.DRAG_END
+    };
+}
+
 function clearSearch() {
     return {
         windowName: currentWindowService.getCurrentWindowName(),

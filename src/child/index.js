@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { render, unmountComponentAtNode } from 'react-dom';
 import App from './containers/App';
 import 'babel-polyfill';
+import $ from 'jquery';
 
 import { open, close } from './actions/window';
 
@@ -25,8 +26,8 @@ fin.desktop.main(() => {
 
     // Using jQuery unload because the standard beforeunload seems unreliable
     $(window).unload(() => {
-        store.dispatch(close());
         unmountComponentAtNode(document.getElementById('app'));
+        store.dispatch(close());
     });
 
     store.dispatch(open());

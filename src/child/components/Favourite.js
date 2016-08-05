@@ -53,6 +53,7 @@ class Favourite extends Component {
 
     onDragStart(stockCode) {
         return e => {
+            this.props.bindings.dnd.onDragStart(e, stockCode);
             // TODO: fade out window if it's last stock
             e.currentTarget.classList.add('dragging');
             e.dataTransfer.setData('text/plain', stockCode);
@@ -141,6 +142,7 @@ Favourite.propTypes = {
     selected: PropTypes.bool.isRequired,
     bindings: PropTypes.shape({
         dnd: PropTypes.shape({
+            onDragStart: PropTypes.func.isRequired,
             onDragEnter: PropTypes.func.isRequired,
             onDrop: PropTypes.func.isRequired
         }).isRequired,
