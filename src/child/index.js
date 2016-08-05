@@ -5,7 +5,7 @@ import { render, unmountComponentAtNode } from 'react-dom';
 import App from './containers/App';
 import 'babel-polyfill';
 
-import { open, close } from './actions/window';
+import { open, windowClosed } from './actions/window';
 
 import './assets/styles/style.less';
 import '../../node_modules/d3fc/dist/d3fc.min.css';
@@ -20,14 +20,16 @@ require('script!../../node_modules/d3fc/dist/d3fc.bundle.min.js');
 require('script!../../node_modules/BitFlux/dist/bitflux.js');
 /* eslint-enable import/no-unresolved */
 
-fin.desktop.main(() => {
-    const store = fin.desktop.Window.getCurrent().contentWindow.opener.store;
+const { store, parent } = window.opener;
 
+fin.desktop.main(() => {
     // Using jQuery unload because the standard beforeunload seems unreliable
     $(window).unload(() => {
-        store.dispatch(close());
         unmountComponentAtNode(document.getElementById('app'));
+        store.dispatch(windowClosed());
     });
+
+    window.parent = parent;
 
     store.dispatch(open());
 

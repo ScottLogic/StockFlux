@@ -1,6 +1,9 @@
 import { createSelector } from 'reselect';
 import currentWindowService from '../services/currentWindowService';
 
+const windowNamePattern = /^window\d*$/;
+
+const getState = (state) => state;
 const getCurrentWindowState = (state) => state[currentWindowService.getCurrentWindowName()];
 const createCurrentWindowStateSelector = (...args) => createSelector(getCurrentWindowState, ...args);
 
@@ -39,4 +42,9 @@ export const toolbarSelector = createCurrentWindowStateSelector(
         const { windowState } = state;
         return { windowState };
     }
+);
+
+export const openWindowNamesSelector = createSelector(
+    getState,
+    (state) => Object.keys(state).filter(key => key.match(windowNamePattern))
 );
