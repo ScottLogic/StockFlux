@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import windowState from '../../../../src/child/reducers/windowState.js';
-import { WINDOW as ACTION_TYPES } from '../../../../src/child/constants/actionTypes';
+import { WINDOW as ACTION_TYPES } from '../../../../src/shared/constants/actionTypes';
 
 describe('child/reducers/windowState', () => {
     it('should return the initial state', () => {
@@ -76,46 +76,6 @@ describe('child/reducers/windowState', () => {
         }, action)).to.deep.equal({
             isCompact: true,
             isMaximised: false,
-            isResizing: false
-        });
-    });
-
-    it('should handle CLOSE', () => {
-        const action = { type: ACTION_TYPES.CLOSE };
-        expect(windowState({
-            isCompact: false,
-            isMaximised: false,
-            isResizing: false
-        }, action)).to.deep.equal({
-            isCompact: false,
-            isMaximised: false,
-            isResizing: false
-        });
-        expect(windowState({
-            isCompact: true,
-            isMaximised: false,
-            isResizing: false
-        }, action)).to.deep.equal({
-            isCompact: true,
-            isMaximised: false,
-            isResizing: false
-        });
-        expect(windowState({
-            isCompact: false,
-            isMaximised: true,
-            isResizing: false
-        }, action)).to.deep.equal({
-            isCompact: false,
-            isMaximised: true,
-            isResizing: false
-        });
-        expect(windowState({
-            isCompact: true,
-            isMaximised: true,
-            isResizing: false
-        }, action)).to.deep.equal({
-            isCompact: true,
-            isMaximised: true,
             isResizing: false
         });
     });

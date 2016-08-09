@@ -1,4 +1,4 @@
-import { WINDOW as ACTION_TYPES } from '../constants/actionTypes';
+import { WINDOW as ACTION_TYPES } from '../../shared/constants/actionTypes';
 
 export default function windowState(state = {
     isCompact: false,
@@ -29,7 +29,6 @@ export default function windowState(state = {
             isResizing: false,
             hasErrors: true
         });
-    case ACTION_TYPES.CLOSE:
     default:
         return state;
     }

@@ -1,4 +1,4 @@
-import { SIDEBAR as ACTION_TYPES } from '../constants/actionTypes';
+import { SEARCH as ACTION_TYPES } from '../../shared/constants/actionTypes';
 
 export default function search(state = { term: '' }, action) {
     switch (action.type) {

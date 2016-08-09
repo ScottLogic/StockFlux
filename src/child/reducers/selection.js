@@ -1,4 +1,4 @@
-import { SIDEBAR as ACTION_TYPES } from '../constants/actionTypes';
+import { SELECTION as ACTION_TYPES } from '../../shared/constants/actionTypes';
 
 export default function selection(state = {}, action) {
     switch (action.type) {

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import sidebar from '../../../../src/child/reducers/sidebar.js';
-import { SIDEBAR as ACTION_TYPES } from '../../../../src/child/constants/actionTypes';
+import { SIDEBAR as ACTION_TYPES } from '../../../../src/shared/constants/actionTypes';
 
 describe('child/reducers/sidebar', () => {
     it('should return the initial state', () => {
