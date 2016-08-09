@@ -1,7 +1,7 @@
 /* global $ */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { searchInput, search, selectFavourites } from '../../../actions/sidebar';
+import { searchInput, search, selectFavourites } from '../../../actions/search';
 import searchTabImage from '../../../assets/png/search_tab.png';
 import SearchResult from '../../../components/SearchResult.js';
 import { searchSelector as mapStateToProps } from '../../../selectors/selectors';

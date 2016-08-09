@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import search from '../../../../src/child/reducers/search.js';
-import { SIDEBAR as ACTION_TYPES } from '../../../../src/child/constants/actionTypes';
+import { SEARCH as ACTION_TYPES } from '../../../../src/shared/constants/actionTypes';
 
 describe('child/reducers/search', () => {
     it('should return the initial state', () => {
