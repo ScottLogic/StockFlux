@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import favourites from '../../../../src/child/reducers/favourites';
-import { SIDEBAR as ACTION_TYPES } from '../../../../src/child/constants/actionTypes';
+import { FAVOURITES as ACTION_TYPES } from '../../../../src/shared/constants/actionTypes';
 
 describe('child/reducers/favourites', () => {
     it('should return the initial state', () => {

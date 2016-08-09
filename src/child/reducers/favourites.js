@@ -1,4 +1,4 @@
-import { SIDEBAR as ACTION_TYPES } from '../constants/actionTypes';
+import { FAVOURITES as ACTION_TYPES } from '../../shared/constants/actionTypes';
 
 export default function favourites(state = { codes: [], names: {} }, action) {
     let newState;

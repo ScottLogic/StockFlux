@@ -4,7 +4,9 @@ import Favourites from './favourites/Favourites.js';
 import Search from './search/Search.js';
 import { sidebarSelector as mapStateToProps } from '../../selectors/selectors';
 
-import { selectFavourites, selectSearch, toggleFavourite, selectStock, unselectStock } from '../../actions/sidebar';
+import { selectFavourites, selectSearch } from '../../actions/sidebar';
+import { selectStock, unselectStock } from '../../actions/selection';
+import { toggleFavourite } from '../../actions/favourites';
 
 import windowStateShape from '../../propTypeShapes/windowState';
 import selectionShape from '../../propTypeShapes/selection';

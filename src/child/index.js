@@ -3,9 +3,10 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { render, unmountComponentAtNode } from 'react-dom';
 import App from './containers/App';
+import currentWindowService from './services/currentWindowService';
 import 'babel-polyfill';
 
-import { open, close } from './actions/window';
+import { open } from './actions/window';
 
 import './assets/styles/style.less';
 import '../../node_modules/d3fc/dist/d3fc.min.css';
@@ -20,13 +21,13 @@ require('script!../../node_modules/d3fc/dist/d3fc.bundle.min.js');
 require('script!../../node_modules/BitFlux/dist/bitflux.js');
 /* eslint-enable import/no-unresolved */
 
-fin.desktop.main(() => {
-    const store = fin.desktop.Window.getCurrent().contentWindow.opener.store;
+currentWindowService.ready(() => {
+    const currentWindow = currentWindowService.getCurrentWindow();
+    const store = currentWindow.contentWindow.opener.store;
+    const rootElement = document.getElementById('app');
 
-    // Using jQuery unload because the standard beforeunload seems unreliable
-    $(window).unload(() => {
-        store.dispatch(close());
-        unmountComponentAtNode(document.getElementById('app'));
+    currentWindow.contentWindow.addEventListener('beforeunload', () => {
+        unmountComponentAtNode(rootElement);
     });
 
     store.dispatch(open());
@@ -35,6 +36,6 @@ fin.desktop.main(() => {
         <Provider store={store}>
             <App />
         </Provider>,
-        document.getElementById('app')
+        rootElement
     );
 });
