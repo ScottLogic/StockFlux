@@ -11,37 +11,39 @@ import {
 describe('child/selectors/selectors', () => {
 
     const intitialState = {
-        window0001: {},
-        window0002: {
-            favourites: {
-                codes: ['AAPL', 'GOOG'],
-                names: {
-                    AAPL: 'Apple Inc (AAPL) Prices, Dividends, Splits and Trading Volume',
-                    GOOG: 'Alphabet Inc (GOOG) Prices, Dividends, Splits and Trading Volume'
+        childWindows: {
+            window0001: {},
+            window0002: {
+                favourites: {
+                    codes: ['AAPL', 'GOOG'],
+                    names: {
+                        AAPL: 'Apple Inc (AAPL) Prices, Dividends, Splits and Trading Volume',
+                        GOOG: 'Alphabet Inc (GOOG) Prices, Dividends, Splits and Trading Volume'
+                    }
+                },
+                search: {
+                    isSearching: false,
+                    term: 'AAPL',
+                    results: [{
+                        name: 'Apple Inc (AAPL) Prices, Dividends, Splits and Trading Volume',
+                        code: 'AAPL'
+                    }]
+                },
+                selection: {
+                    code: 'AAPL',
+                    name: 'Apple Inc (AAPL) Prices, Dividends, Splits and Trading Volume'
+                },
+                sidebar: {
+                    showFavourites: true
+                },
+                windowState: {
+                    isCompact: false,
+                    isMaximised: false,
+                    isResizing: false
                 }
             },
-            search: {
-                isSearching: false,
-                term: 'AAPL',
-                results: [{
-                    name: 'Apple Inc (AAPL) Prices, Dividends, Splits and Trading Volume',
-                    code: 'AAPL'
-                }]
-            },
-            selection: {
-                code: 'AAPL',
-                name: 'Apple Inc (AAPL) Prices, Dividends, Splits and Trading Volume'
-            },
-            sidebar: {
-                showFavourites: true
-            },
-            windowState: {
-                isCompact: false,
-                isMaximised: false,
-                isResizing: false
-            }
-        },
-        window0003: {}
+            window0003: {}
+        }
     };
 
     before(() => {

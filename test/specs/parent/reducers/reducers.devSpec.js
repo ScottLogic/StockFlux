@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import reducers from '../../../../src/child/reducers/reducers.dev.js';
+import reducers from '../../../../src/parent/reducers/reducers.dev.js';
 
-describe('child/reducers/reducers.dev', () => {
+describe('parent/reducers/reducers.dev', () => {
     it('should return the reducer', () => {
         const spy = sinon.spy((state, action) => Object.assign({}, state, { foo: action.foo }));
         const reducer = reducers(spy);

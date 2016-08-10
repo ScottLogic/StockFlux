@@ -1,42 +1,17 @@
-import { PARENT as ACTION_TYPES } from '../../shared/constants/actionTypes';
-import childReducers from '../../child/reducers/reducers.js';
+import { combineReducers } from 'redux';
 
-function parentReducer(state = {}, action) {
+import childWindows from './childWindows';
 
-    switch (action.type) {
+const rootReducer = combineReducers({
+    childWindows
+});
 
-    case ACTION_TYPES.CLOSE: {
-        const newState = Object.assign({}, state);
-        delete newState[action.windowName];
-        return newState;
+// Wrap the reducer in dev to freeze the state and action
+const checkImmutable = (reducer) => {
+    if (process.env.NODE_ENV === 'production') {
+        return require('./reducers.prod').default(reducer);     // eslint-disable-line global-require
     }
+    return require('./reducers.dev').default(reducer);          // eslint-disable-line global-require
+};
 
-    default: {
-        const subString = action.type.substring(0, 5);
-
-        // All child actions are prefaced with 'CHILD'; if the incoming
-        // action is for the child, let the child reducers handle the action
-        if (subString === 'CHILD') {
-            const childState = state[action.windowName];
-            let newState = {};
-
-            if (childState) {
-                newState = Object.assign({}, state, {
-                    [action.windowName]: childReducers(childState, action)
-                });
-            } else {
-                newState = Object.assign({}, state, {
-                    [action.windowName]: childReducers({}, action)
-                });
-            }
-
-            return newState;
-        }
-
-        return state;
-    }
-
-    }
-}
-
-export default parentReducer;
+export default checkImmutable(rootReducer);
