@@ -9,7 +9,7 @@ class ParentService {
     }
 
     getChildWindowCount() {
-        return Object.keys(this.store.getState()).length;
+        return Object.keys(this.store.getState().childWindows).length;
     }
 
     onChildClosed({ name }) {
@@ -39,7 +39,7 @@ class ParentService {
         if (this.getChildWindowCount() === 0) {
             this.createChildWindow();
         } else {
-            Object.keys(this.store.getState()).forEach((windowName) => {
+            Object.keys(this.store.getState().childWindows).forEach((windowName) => {
                 const newWindowName = windowName === 'undefined' ? null : windowName;
                 this.createChildWindow(newWindowName);
             });

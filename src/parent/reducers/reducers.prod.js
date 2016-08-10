@@ -1,2 +1,1 @@
-
 export default (reducer) => reducer;
