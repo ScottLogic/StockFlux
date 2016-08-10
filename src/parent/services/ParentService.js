@@ -8,11 +8,15 @@ class ParentService {
         this.onChildClosed = this.onChildClosed.bind(this);
     }
 
+    getChildWindowCount() {
+        return Object.keys(this.store.getState()).length;
+    }
+
     onChildClosed({ name }) {
         this.store.dispatch(close(name));
 
         // Close the main parent window if all child windows are closed
-        if (Object.keys(this.store.getState()).length === 0) {
+        if (this.getChildWindowCount() === 0) {
             fin.desktop.Window.getCurrent().contentWindow.close();
         }
     }
@@ -32,10 +36,10 @@ class ParentService {
     start() {
         fin.desktop.Window.getCurrent().contentWindow.store = this.store;
 
-        if (!Object.keys(fin.desktop.Window.getCurrent().contentWindow.store.getState()).length) {
+        if (this.getChildWindowCount() === 0) {
             this.createChildWindow();
         } else {
-            Object.keys(fin.desktop.Window.getCurrent().contentWindow.store.getState()).forEach((windowName) => {
+            Object.keys(this.store.getState()).forEach((windowName) => {
                 const newWindowName = windowName === 'undefined' ? null : windowName;
                 this.createChildWindow(newWindowName);
             });
