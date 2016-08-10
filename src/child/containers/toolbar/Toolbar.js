@@ -1,9 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import {
-    minimise,
-    maximize,
-    restore,
     resizeToCompact,
     resizeToDefault
 } from '../../actions/window.js';
@@ -22,18 +19,9 @@ class Toolbar extends Component {
         this.onRestoreClick = this.onRestoreClick.bind(this);
         this.onCloseClick = this.onCloseClick.bind(this);
 
-        this.onMinimize = this.onMinimize.bind(this);
-        this.onMaximize = this.onMaximize.bind(this);
-        this.onRestore = this.onRestore.bind(this);
         // reset maximize state on window resize
-
-        fin.desktop.main(() => {
-            const win = fin.desktop.Window.getCurrent();
-            win.addEventListener('minimized', this.onMinimize);
-            win.addEventListener('maximized', this.onMaximize);
-            win.addEventListener('restored', this.onRestore);
-        });
     }
+
     onMinimizeClick() {
         fin.desktop.Window.getCurrent().minimize();
     }
@@ -56,18 +44,6 @@ class Toolbar extends Component {
 
     onCloseClick() {
         fin.desktop.Window.getCurrent().contentWindow.close();
-    }
-
-    onMinimize() {
-        this.props.dispatch(minimise());
-    }
-
-    onMaximize() {
-        this.props.dispatch(maximize());
-    }
-
-    onRestore() {
-        this.props.dispatch(restore());
     }
 
     render() {

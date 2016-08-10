@@ -3,6 +3,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { render, unmountComponentAtNode } from 'react-dom';
 import App from './containers/App';
+import WindowStateService from './services/WindowStateService';
 import currentWindowService from './services/currentWindowService';
 import 'babel-polyfill';
 
@@ -26,8 +27,12 @@ currentWindowService.ready(() => {
     const store = currentWindow.contentWindow.opener.store;
     const rootElement = document.getElementById('app');
 
+    const windowStateService = new WindowStateService(currentWindow, store);
+    windowStateService.start();
+
     currentWindow.contentWindow.addEventListener('beforeunload', () => {
         unmountComponentAtNode(rootElement);
+        windowStateService.stop();
     });
 
     store.dispatch(open());
