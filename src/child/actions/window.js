@@ -60,7 +60,7 @@ export function open() {
     };
 }
 
-export function resizeError() {
+function resizeError() {
     return {
         windowName: currentWindowService.getCurrentWindowName(),
         type: ACTION_TYPES.RESIZE_ERROR
@@ -94,7 +94,7 @@ function updateOptionsToCompact() {
         const [minWidth, minHeight] = configService.getCompactWindowDimensions();
 
         return new Promise((resolve, reject) => {
-            fin.desktop.Window.getCurrent().updateOptions({
+            currentWindowService.updateOptions({
                 resizable: false,
                 maximizable: false,
                 minWidth,
@@ -112,7 +112,7 @@ function updateOptionsToDefault() {
         const [minWidth, minHeight] = configService.getDefaultWindowMinDimensions();
 
         return new Promise((resolve, reject) => {
-            fin.desktop.Window.getCurrent().updateOptions({
+            currentWindowService.updateOptions({
                 resizable: true,
                 maximizable: true,
                 minWidth,
@@ -130,7 +130,7 @@ function resizeCompact() {
         const [compactWindowWidth, compactWindowHeight] = configService.getCompactWindowDimensions();
 
         return new Promise((resolve, reject) => {
-            fin.desktop.Window.getCurrent().resizeTo(
+            currentWindowService.resizeTo(
                 compactWindowWidth,
                 compactWindowHeight,
                 'top-right',
@@ -147,7 +147,7 @@ function resizeDefault() {
         const [defaultWindowWidth, defaultWindowHeight] = configService.getDefaultWindowDimensions();
 
         return new Promise((resolve, reject) => {
-            fin.desktop.Window.getCurrent().resizeTo(
+            currentWindowService.resizeTo(
                 defaultWindowWidth,
                 defaultWindowHeight,
                 'top-right',
