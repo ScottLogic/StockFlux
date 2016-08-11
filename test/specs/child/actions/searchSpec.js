@@ -3,6 +3,7 @@ import sinon from 'sinon';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import nock from 'nock';
+import currentWindowServiceStub from '../../../helper/currentWindowServiceStub';
 import { searchInput,
          search,
          __RewireAPI__ as rewiredActions } from '../../../../src/child/actions/search';
@@ -12,7 +13,7 @@ import createFakeQuandlServer from '../../../helper/fakeQuandlServer';
 
 describe('child/actions/search', () => {
     before(() => {
-        rewiredActions.__Rewire__('currentWindowService', { getCurrentWindowName: () => 0 });
+        rewiredActions.__Rewire__('currentWindowService', currentWindowServiceStub);
     });
 
     after(() => {
@@ -22,7 +23,7 @@ describe('child/actions/search', () => {
     it('should create an action to input a stock to search for', () => {
         const term = 'GOOG';
         const expectedAction = {
-            windowName: 0,
+            windowName: 'window0002',
             type: ACTION_TYPES.SEARCH_INPUT,
             term
         };
@@ -47,7 +48,7 @@ describe('child/actions/search', () => {
 
         it('should create an action to clear a search', () => {
             const term = '';
-            const expectedActions = [{ windowName: 0, type: ACTION_TYPES.CLEAR_SEARCH }];
+            const expectedActions = [{ windowName: 'window0002', type: ACTION_TYPES.CLEAR_SEARCH }];
 
             const store = mockStore();
 
@@ -70,8 +71,8 @@ describe('child/actions/search', () => {
             };
             const results = [result1, result2];
             const expectedActions = [
-                { windowName: 0, type: ACTION_TYPES.SEARCH_STARTED, term },
-                { windowName: 0, type: ACTION_TYPES.SEARCH_FINISHED, term, results }
+                { windowName: 'window0002', type: ACTION_TYPES.SEARCH_STARTED, term },
+                { windowName: 'window0002', type: ACTION_TYPES.SEARCH_FINISHED, term, results }
             ];
 
             const store = mockStore();
@@ -87,8 +88,8 @@ describe('child/actions/search', () => {
         it('should create an action to error a search', () => {
             const term = 'BAD';
             const expectedActions = [
-                { windowName: 0, type: ACTION_TYPES.SEARCH_STARTED, term },
-                { windowName: 0, type: ACTION_TYPES.SEARCH_ERROR }
+                { windowName: 'window0002', type: ACTION_TYPES.SEARCH_STARTED, term },
+                { windowName: 'window0002', type: ACTION_TYPES.SEARCH_ERROR }
             ];
 
             const store = mockStore();
