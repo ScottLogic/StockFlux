@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import currentWindowServiceStub from '../../../helper/currentWindowServiceStub';
 import { selectSearch,
          selectFavourites,
          __RewireAPI__ as rewiredActions } from '../../../../src/child/actions/sidebar';
@@ -6,7 +7,7 @@ import { SIDEBAR as ACTION_TYPES } from '../../../../src/shared/constants/action
 
 describe('child/actions/sidebar', () => {
     before(() => {
-        rewiredActions.__Rewire__('currentWindowService', { getCurrentWindowName: () => 0 });
+        rewiredActions.__Rewire__('currentWindowService', currentWindowServiceStub);
     });
 
     after(() => {
@@ -14,14 +15,14 @@ describe('child/actions/sidebar', () => {
     });
 
     it('should create an action to select search', () => {
-        const expectedAction = { windowName: 0, type: ACTION_TYPES.SEARCH_CLICKED };
+        const expectedAction = { windowName: 'window0002', type: ACTION_TYPES.SEARCH_CLICKED };
         const actualAction = selectSearch();
         expect(actualAction.type).to.be.a('string');
         expect(actualAction).to.deep.equal(expectedAction);
     });
 
     it('should create an action to select favourites', () => {
-        const expectedAction = { windowName: 0, type: ACTION_TYPES.FAV_CLICKED };
+        const expectedAction = { windowName: 'window0002', type: ACTION_TYPES.FAV_CLICKED };
         const actualAction = selectFavourites();
         expect(actualAction.type).to.be.a('string');
         expect(actualAction).to.deep.equal(expectedAction);

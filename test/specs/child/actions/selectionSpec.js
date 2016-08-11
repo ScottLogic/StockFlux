@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import currentWindowServiceStub from '../../../helper/currentWindowServiceStub';
 import { selectStock,
          unselectStock,
          __RewireAPI__ as rewiredActions } from '../../../../src/child/actions/selection';
@@ -6,7 +7,7 @@ import { SELECTION as ACTION_TYPES } from '../../../../src/shared/constants/acti
 
 describe('child/actions/selection', () => {
     before(() => {
-        rewiredActions.__Rewire__('currentWindowService', { getCurrentWindowName: () => 0 });
+        rewiredActions.__Rewire__('currentWindowService', currentWindowServiceStub);
     });
 
     after(() => {
@@ -17,7 +18,7 @@ describe('child/actions/selection', () => {
         const code = 'GOOG';
         const name = 'Alphabet Inc (GOOG) Prices, Dividends, Splits and Trading Volume';
         const expectedAction = {
-            windowName: 0,
+            windowName: 'window0002',
             type: ACTION_TYPES.SELECTION,
             code,
             name
@@ -28,7 +29,7 @@ describe('child/actions/selection', () => {
     });
 
     it('should create an action to unselect a stock', () => {
-        const expectedAction = { windowName: 0, type: ACTION_TYPES.UNSELECT };
+        const expectedAction = { windowName: 'window0002', type: ACTION_TYPES.UNSELECT };
         const actualAction = unselectStock();
         expect(actualAction.type).to.be.a('string');
         expect(actualAction).to.deep.equal(expectedAction);

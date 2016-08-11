@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import currentWindowServiceStub from '../../../helper/currentWindowServiceStub';
 import { insertFavouriteAt,
          toggleFavourite,
          quandlResponse,
@@ -7,7 +8,7 @@ import { FAVOURITES as ACTION_TYPES } from '../../../../src/shared/constants/act
 
 describe('child/actions/favourites', () => {
     before(() => {
-        rewiredActions.__Rewire__('currentWindowService', { getCurrentWindowName: () => 0 });
+        rewiredActions.__Rewire__('currentWindowService', currentWindowServiceStub);
     });
 
     after(() => {
@@ -18,7 +19,7 @@ describe('child/actions/favourites', () => {
         const index = 1;
         const code = 'GOOG';
         const expectedAction = {
-            windowName: 0,
+            windowName: 'window0002',
             type: ACTION_TYPES.INSERT_FAVOURITE_AT,
             index,
             code
@@ -31,7 +32,7 @@ describe('child/actions/favourites', () => {
     it('should create an action to toggle a favourite', () => {
         const code = 'GOOG';
         const expectedAction = {
-            windowName: 0,
+            windowName: 'window0002',
             type: ACTION_TYPES.TOGGLE_FAVOURITE,
             code
         };
@@ -44,7 +45,7 @@ describe('child/actions/favourites', () => {
         const code = 'GOOG';
         const name = 'Alphabet Inc (GOOG) Prices, Dividends, Splits and Trading Volume';
         const expectedAction = {
-            windowName: 0,
+            windowName: 'window0002',
             type: ACTION_TYPES.QUANDL_RESPONSE,
             code,
             name
