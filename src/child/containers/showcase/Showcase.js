@@ -18,7 +18,7 @@ class Showcase extends Component {
 
         if (this.props.code) {
             this.firstRun = true;
-            this.chart.run(this.refs.chart);
+            this.chart.run(this.showcaseContainer);
             // Added to make sure correct data on startup is displayed
             this.chart.changeQuandlProduct(this.props.code);
         }
@@ -28,7 +28,7 @@ class Showcase extends Component {
         if (this.props.code !== nextProps.code && nextProps.code) {
             if (!this.firstRun) {
                 this.firstRun = true;
-                this.chart.run(this.refs.chart);
+                this.chart.run(this.showcaseContainer);
             }
             this.chart.changeQuandlProduct(nextProps.code);
         }
@@ -39,9 +39,7 @@ class Showcase extends Component {
     }
 
     render() {
-        return (
-            <div ref="chart" id="showcase-container"></div>
-        );
+        return <div ref={ref => { this.showcaseContainer = ref; }} id="showcase-container"></div>;
     }
 }
 

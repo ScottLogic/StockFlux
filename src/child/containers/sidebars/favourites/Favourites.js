@@ -45,8 +45,8 @@ class Favourites extends Component {
 
     componentDidMount() {
         const scrollPadding = 'scroll-padding';
-        const el = this.refs.scrollarea;
-        $(this.refs.scrollarea).mCustomScrollbar({
+        const el = this.scrollArea;
+        $(this.scrollArea).mCustomScrollbar({
             scrollInertia: 0,
             mouseWheel: {
                 scrollAmount: 80
@@ -145,7 +145,7 @@ class Favourites extends Component {
                 <div className="sidetab-top">
                     <img src={favTabImage} className="top-icon" title="Favourites List" draggable="false" />
                 </div>
-                <div id="favourite-scroll" ref="scrollarea" className="side-scroll custom-scrollbar hiddenOnContracted">
+                <div id="favourite-scroll" ref={ref => { this.scrollArea = ref; }} className="side-scroll custom-scrollbar hiddenOnContracted">
                     <div className="sidetab">
 
                         {isStarting && <div className="no-favourites">
