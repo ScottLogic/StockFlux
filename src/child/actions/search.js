@@ -1,45 +1,30 @@
 import { SEARCH as ACTION_TYPES } from '../../shared/constants/actionTypes';
 import { search as quandlServiceSearch } from '../services/QuandlService.js';
-import currentWindowService from '../services/currentWindowService';
+import createActionCreator from '../utils/createActionCreator';
 
-export function searchInput(term) {
-    return {
-        windowName: currentWindowService.getCurrentWindowName(),
-        type: ACTION_TYPES.SEARCH_INPUT,
-        term
-    };
-}
+export const searchInput = createActionCreator((term) => ({
+    type: ACTION_TYPES.SEARCH_INPUT,
+    term
+}));
 
-function clearSearch() {
-    return {
-        windowName: currentWindowService.getCurrentWindowName(),
-        type: ACTION_TYPES.CLEAR_SEARCH
-    };
-}
+const clearSearch = createActionCreator(() => ({
+    type: ACTION_TYPES.CLEAR_SEARCH
+}));
 
-function searchStarted(term) {
-    return {
-        windowName: currentWindowService.getCurrentWindowName(),
-        type: ACTION_TYPES.SEARCH_STARTED,
-        term
-    };
-}
+const searchStarted = createActionCreator((term) => ({
+    type: ACTION_TYPES.SEARCH_STARTED,
+    term
+}));
 
-function searchFinished(term, results) {
-    return {
-        windowName: currentWindowService.getCurrentWindowName(),
-        type: ACTION_TYPES.SEARCH_FINISHED,
-        term,
-        results
-    };
-}
+const searchFinished = createActionCreator((term, results) => ({
+    type: ACTION_TYPES.SEARCH_FINISHED,
+    term,
+    results
+}));
 
-function searchError() {
-    return {
-        windowName: currentWindowService.getCurrentWindowName(),
-        type: ACTION_TYPES.SEARCH_ERROR
-    };
-}
+const searchError = createActionCreator(() => ({
+    type: ACTION_TYPES.SEARCH_ERROR
+}));
 
 export function search(term) {
     return dispatch => {

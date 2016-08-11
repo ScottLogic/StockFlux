@@ -1,18 +1,12 @@
 import { SELECTION as ACTION_TYPES } from '../../shared/constants/actionTypes';
-import currentWindowService from '../services/currentWindowService';
+import createActionCreator from '../utils/createActionCreator';
 
-export function selectStock(code, name) {
-    return {
-        windowName: currentWindowService.getCurrentWindowName(),
-        type: ACTION_TYPES.SELECTION,
-        code,
-        name
-    };
-}
+export const selectStock = createActionCreator((code, name) => ({
+    type: ACTION_TYPES.SELECTION,
+    code,
+    name
+}));
 
-export function unselectStock() {
-    return {
-        windowName: currentWindowService.getCurrentWindowName(),
-        type: ACTION_TYPES.UNSELECT
-    };
-}
+export const unselectStock = createActionCreator(() => ({
+    type: ACTION_TYPES.UNSELECT
+}));
