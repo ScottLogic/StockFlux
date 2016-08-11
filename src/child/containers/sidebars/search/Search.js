@@ -21,7 +21,7 @@ class Search extends Component {
     }
 
     componentDidMount() {
-        $(this.refs.searchscroll).mCustomScrollbar({
+        $(this.searchScroll).mCustomScrollbar({
             scrollInertia: 0,
             mouseWheel: {
                 scrollAmount: 80
@@ -68,7 +68,7 @@ class Search extends Component {
                     <input value={term} className="sidetab searchInput" type="text" maxLength="20" placeholder="Enter stock name or symbol" onChange={this.onChange} />
                     <div className="button-icon close" title="Close Search" onClick={this.closeSearch}>&nbsp;</div>
                 </div>
-                <div id="search-scroll" ref="searchscroll" className="side-scroll custom-scrollbar">
+                <div id="search-scroll" ref={ref => { this.searchScroll = ref; }} className="side-scroll custom-scrollbar">
                     <div className="sidetab hiddenOnContracted">
                         {hasErrors &&
                             <div className="results-message">
