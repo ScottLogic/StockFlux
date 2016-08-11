@@ -17,6 +17,14 @@ class CurrentWindowService {
     openUrlWithBrowser(url) {
         fin.desktop.System.openUrlWithBrowser(url);
     }
+
+    resizeTo(...args) {
+        return this.getCurrentWindow().resizeTo(...args);
+    }
+
+    updateOptions(...args) {
+        return this.getCurrentWindow().updateOptions(...args);
+    }
 }
 
 export default new CurrentWindowService();
