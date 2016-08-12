@@ -1,92 +1,57 @@
 import { WINDOW as ACTION_TYPES } from '../../shared/constants/actionTypes';
 import configService from '../../shared/ConfigService';
+import createActionCreator from '../utils/createActionCreator';
 import currentWindowService from '../services/currentWindowService';
 
-export function minimise() {
-    return {
-        windowName: currentWindowService.getCurrentWindowName(),
-        type: ACTION_TYPES.MINIMIZE
-    };
-}
+export const minimise = createActionCreator(() => ({
+    type: ACTION_TYPES.MINIMIZE
+}));
 
-export function compact() {
-    return {
-        windowName: currentWindowService.getCurrentWindowName(),
-        type: ACTION_TYPES.TOGGLE_COMPACT,
-        state: true
-    };
-}
+export const compact = createActionCreator(() => ({
+    type: ACTION_TYPES.TOGGLE_COMPACT,
+    state: true
+}));
 
-export function expand() {
-    return {
-        windowName: currentWindowService.getCurrentWindowName(),
-        type: ACTION_TYPES.TOGGLE_COMPACT,
-        state: false
-    };
-}
+export const expand = createActionCreator(() => ({
+    type: ACTION_TYPES.TOGGLE_COMPACT,
+    state: false
+}));
 
-export function resizing() {
-    return {
-        windowName: currentWindowService.getCurrentWindowName(),
-        type: ACTION_TYPES.RESIZING
-    };
-}
+export const resizing = createActionCreator(() => ({
+    type: ACTION_TYPES.RESIZING
+}));
 
-export function fullView() {
-    return {
-        windowName: currentWindowService.getCurrentWindowName(),
-        type: ACTION_TYPES.STATE_FULL_VIEW
-    };
-}
+export const fullView = createActionCreator(() => ({
+    type: ACTION_TYPES.STATE_FULL_VIEW
+}));
 
-export function maximize() {
-    return {
-        windowName: currentWindowService.getCurrentWindowName(),
-        type: ACTION_TYPES.MAXIMIZE
-    };
-}
+export const maximize = createActionCreator(() => ({
+    type: ACTION_TYPES.MAXIMIZE
+}));
 
-export function restore() {
-    return {
-        windowName: currentWindowService.getCurrentWindowName(),
-        type: ACTION_TYPES.RESTORE
-    };
-}
+export const restore = createActionCreator(() => ({
+    type: ACTION_TYPES.RESTORE
+}));
 
-export function open() {
-    return {
-        windowName: currentWindowService.getCurrentWindowName(),
-        type: ACTION_TYPES.OPEN
-    };
-}
+export const open = createActionCreator(() => ({
+    type: ACTION_TYPES.OPEN
+}));
 
-function resizeError() {
-    return {
-        windowName: currentWindowService.getCurrentWindowName(),
-        type: ACTION_TYPES.RESIZE_ERROR
-    };
-}
+export const resizeError = createActionCreator(() => ({
+    type: ACTION_TYPES.RESIZE_ERROR
+}));
 
-function updatingOptions() {
-    return {
-        windowName: currentWindowService.getCurrentWindowName(),
-        type: ACTION_TYPES.UPDATING_OPTIONS
-    };
-}
+const updatingOptions = createActionCreator(() => ({
+    type: ACTION_TYPES.UPDATING_OPTIONS
+}));
 
-function updatingOptionsSuccess() {
-    return {
-        windowName: currentWindowService.getCurrentWindowName(),
-        type: ACTION_TYPES.UPDATING_OPTIONS_SUCCESS
-    };
-}
+const updatingOptionsSuccess = createActionCreator(() => ({
+    type: ACTION_TYPES.UPDATING_OPTIONS_SUCCESS
+}));
 
-function updatingOptionsError() {
-    return {
-        windowName: currentWindowService.getCurrentWindowName(),
-        type: ACTION_TYPES.UPDATING_OPTIONS_ERROR
-    };
-}
+const updatingOptionsError = createActionCreator(() => ({
+    type: ACTION_TYPES.UPDATING_OPTIONS_ERROR
+}));
 
 function updateOptionsToCompact() {
     return dispatch => {
