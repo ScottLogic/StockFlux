@@ -1,16 +1,10 @@
 import { SIDEBAR as ACTION_TYPES } from '../../shared/constants/actionTypes';
-import currentWindowService from '../services/currentWindowService';
+import createActionCreator from '../utils/createActionCreator';
 
-export function selectSearch() {
-    return {
-        windowName: currentWindowService.getCurrentWindowName(),
-        type: ACTION_TYPES.SEARCH_CLICKED
-    };
-}
+export const selectSearch = createActionCreator(() => ({
+    type: ACTION_TYPES.SEARCH_CLICKED
+}));
 
-export function selectFavourites() {
-    return {
-        windowName: currentWindowService.getCurrentWindowName(),
-        type: ACTION_TYPES.FAV_CLICKED
-    };
-}
+export const selectFavourites = createActionCreator(() => ({
+    type: ACTION_TYPES.FAV_CLICKED
+}));
