@@ -15,6 +15,7 @@
     "prod": "npm run build && npm run serve",
     "ci": "npm run lint && npm test && npm run build",
     "lint": "eslint --plugin import jsx-ally react *.js src/ test/",
+    "lint:fix": "npm run lint -- --fix",
     "test": "cross-env BABEL_ENV=test mocha --opts test/mocha.opts",
     "test:watch": "npm test -- --watch",
     "test:cov": "cross-env BABEL_ENV=test babel-node node_modules/isparta/bin/isparta cover --report text --report html node_modules/mocha/bin/_mocha -- --opts test/mocha.opts",
