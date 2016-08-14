@@ -8,16 +8,16 @@ if (process.argv.length <= 2) {
 
 const deployName = process.argv[2];
 
-const validDeployableBranchNames = ['master', 'dev', 'chore/deployable-build'];
+const validDeployableBranchNames = ['master', 'dev'];
 const isInvalidDeployableBranchName = (name) => validDeployableBranchNames.indexOf(name) === -1;
 const isInvalidSemver = (name) => semver.valid(name) === null;
 
 if (isInvalidSemver(deployName) && isInvalidDeployableBranchName(deployName)) {
-    console.error('Deploy name must be valid, master, or dev');
+    console.error('Deploy name must be a valid semver, "master", or "dev"');
     process.exit(1);
 }
 
-const deployedUrl = `http://rjmcneill.github.io/StockFlux/${deployName}/`;
+const deployedUrl = `http://scottlogic.github.io/StockFlux/${deployName}/`;
 
 configBuilder.update({
     startup_app: {
