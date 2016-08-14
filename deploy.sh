@@ -7,10 +7,10 @@ RELEASE_BRANCH=$(echo "$TRAVIS_BRANCH" |  sed -n 's/^release\-/&/p')
 # Get the release type (dev/master) from the branch name
 TYPE="$TRAVIS_BRANCH"
 
-if ([ "$TRAVIS_PULL_REQUEST" == "false" ]  && [ "${TRAVIS_REPO_SLUG}" == "rjmcneill/StockFlux" ] && ([ "$TYPE" == "chore/deployable-build" ] || [ "$TYPE" == "dev" ] || [ "$TYPE" == "master" ] || [ -n "$RELEASE_BRANCH" ]))
+if ([ "$TRAVIS_PULL_REQUEST" == "false" ]  && [ "${TRAVIS_REPO_SLUG}" == "ScottLogic/StockFlux" ] && ([ "$TYPE" == "dev" ] || [ "$TYPE" == "master" ] || [ -n "$RELEASE_BRANCH" ]))
 then
     # Clone the latest gh-pages
-    git clone https://github.com/rjmcneill/StockFlux.git --branch gh-pages gh-pages
+    git clone https://github.com/ScottLogic/StockFlux.git --branch gh-pages gh-pages
 
     # Get line with version from the file -> get the second word -> remove quotes around the value
     VERSION=$(grep "\"version\":" package.json | awk -v N=$2 '{print $2}' | cut -d \" -f2)
@@ -27,7 +27,7 @@ then
         cp -r "./public" "./gh-pages/$TYPE"
     fi
 
-    if ([ "$TYPE" == "chore/deployable-build" ] || [ $TYPE == "master" ] || [ -n "$RELEASE_BRANCH" ])
+    if ([ $TYPE == "master" ] || [ -n "$RELEASE_BRANCH" ])
     then
         echo "On $TYPE - building versioned build"
         if ([ -z "$VERSION" ])
@@ -57,7 +57,7 @@ then
 
     # Inside this git repo we'll pretend to be a new user
     git config user.name "Travis CI"
-    git config user.email "travis@rjmcneill.com"
+    git config user.email "travis@scottlogic.com"
 
     # The first and only commit to this new Git repo contains all the
     # files present with the commit message "Deploy to GitHub Pages".
