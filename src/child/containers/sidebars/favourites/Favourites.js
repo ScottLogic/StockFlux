@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { selectStock, quandlResponse, insertFavouriteAt } from '../../../actions/favourites';
 import { resizeToDefault } from '../../../actions/window';
 import favTabImage from '../../../assets/png/favourites_tab.png';
-import Favourite from '../../../components/Favourite.js';
+import Favourite from '../../../components/favourite/Favourite.js';
 import { favouritesSelector as mapStateToProps } from '../../../selectors/selectors';
 
 import selectionShape from '../../../propTypeShapes/selection';
@@ -33,14 +33,18 @@ class Favourites extends Component {
         super(props);
 
         this.onClick = this.onClick.bind(this);
-        this.onIconClick = this.onIconClick.bind(this);
         this.onDragOverFavourite = this.onDragOverFavourite.bind(this);
         this.onDropOverFavourite = this.onDropOverFavourite.bind(this);
         this.onQuandlResponse = this.onQuandlResponse.bind(this);
+        this.onModalConfirmClick = this.onModalConfirmClick.bind(this);
+        this.onModalBackdropClick = this.onModalBackdropClick.bind(this);
+        this.onIconClick = this.onIconClick.bind(this);
         this.onDoubleClick = this.onDoubleClick.bind(this);
         this.onDrop = this.onDrop.bind(this);
         this.onDragOver = this.onDragOver.bind(this);
         this.onDragLeave = this.onDragLeave.bind(this);
+
+        this.state = { unfavouritingStockCode: null };
     }
 
     componentDidMount() {
@@ -60,6 +64,12 @@ class Favourites extends Component {
                 }
             }
         });
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        if (nextState.unfavouritingStockCode !== this.state.unfavouritingStockCode) {
+            $(this.scrollArea).mCustomScrollbar(nextState.unfavouritingStockCode ? 'disable' : 'update');
+        }
     }
 
     onClick(stockCode, stockName) {
@@ -99,8 +109,20 @@ class Favourites extends Component {
         this.props.dispatch(quandlResponse(stockCode, stockName));
     }
 
+    onModalConfirmClick(stockCode) {
+        return () => {
+            this.setState({ unfavouritingStockCode: null });
+            this.props.bindings.toggleFavourite(stockCode);
+        };
+    }
+
+    onModalBackdropClick(e) {
+        this.setState({ unfavouritingStockCode: null });
+        e.stopPropagation();
+    }
+
     onIconClick(stockCode) {
-        this.props.bindings.toggleFavourite(stockCode);
+        this.setState({ unfavouritingStockCode: stockCode });
     }
 
     onDrop(e) {
@@ -130,8 +152,10 @@ class Favourites extends Component {
                 onDrop: this.onDropOverFavourite
             },
             onClick: this.onClick,
-            onIconClick: this.onIconClick,
             onQuandlResponse: this.onQuandlResponse,
+            onModalConfirmClick: this.onModalConfirmClick,
+            onModalBackdropClick: this.onModalBackdropClick,
+            onIconClick: this.onIconClick,
             onDoubleClick: this.onDoubleClick
         };
         return (
@@ -168,6 +192,7 @@ class Favourites extends Component {
                               bindings={bindings}
                               selected={stockCode === selection.code}
                               isFavourite={favourites.codes.indexOf(stockCode) >= 0}
+                              isUnfavouriting={this.state.unfavouritingStockCode === stockCode}
                             />)
                         }
                     </div>
