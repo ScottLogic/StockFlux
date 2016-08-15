@@ -1,11 +1,18 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
-import { truncate } from '../services/formatters';
-import Minichart from './minichart/Minichart.js';
-import { getStockData as quandlServiceGetStockData } from '../services/QuandlService.js';
+import { truncate } from '../../services/formatters';
+import Minichart from '../minichart/Minichart.js';
+import Confirmation from './UnfavouriteConfirmation.js';
+import { getStockData as quandlServiceGetStockData } from '../../services/QuandlService.js';
 
-import arrowUp from '../assets/png/arrow_up.png';
-import arrowDown from '../assets/png/arrow_down.png';
+import arrowUp from '../../assets/png/arrow_up.png';
+import arrowDown from '../../assets/png/arrow_down.png';
+
+const modalHeight = 84;
+const bubbleHeadOffset = 25;
+const bubbleHeadFlippedOffset = -10;
+const modalOffset = 30;
+const modalFlippedOffset = -89;
 
 class Favourite extends Component {
 
@@ -18,6 +25,10 @@ class Favourite extends Component {
         this.onDragEnd = this.onDragEnd.bind(this);
         this.onMouseOver = this.onMouseOver.bind(this);
         this.onMouseOut = this.onMouseOut.bind(this);
+        this.onModalBackdropClick = this.onModalBackdropClick.bind(this);
+        this.shouldPositionModalAboveStar = this.shouldPositionModalAboveStar.bind(this);
+        this.modalBubbleHeadTopPosition = this.modalBubbleHeadTopPosition.bind(this);
+        this.modalTopPosition = this.modalTopPosition.bind(this);
     }
 
     componentDidMount() {
@@ -39,8 +50,11 @@ class Favourite extends Component {
     }
 
     onIconClick(e) {
+        const { bindings, stockCode } = this.props;
+
+        this.setState({ starTop: e.target.getBoundingClientRect().top });
+        bindings.onIconClick(stockCode);
         e.stopPropagation();
-        this.props.bindings.onIconClick(this.props.stockCode);
     }
 
     onMouseOver() {
@@ -76,11 +90,29 @@ class Favourite extends Component {
         }
     }
 
+    onModalBackdropClick(e) {
+        this.setState({ isHovered: false });
+        this.props.bindings.onModalBackdropClick(e);
+    }
+
+    shouldPositionModalAboveStar(starTopPos) {
+        const modalBottom = starTopPos + modalOffset + modalHeight;
+        return modalBottom >= window.innerHeight;
+    }
+
+    modalBubbleHeadTopPosition() {
+        return this.state.starTop + (this.shouldPositionModalAboveStar(this.state.starTop) ? bubbleHeadFlippedOffset : bubbleHeadOffset);
+    }
+
+    modalTopPosition() {
+        return this.state.starTop + (this.shouldPositionModalAboveStar(this.state.starTop) ? modalFlippedOffset : modalOffset);
+    }
+
     render() {
-        const { stockCode, selected, bindings } = this.props;
+        const { stockCode, selected, bindings, isUnfavouriting } = this.props;
 
         let { stockData, chartData } = this.state || {};
-        const { isHovered } = this.state || {};
+        const { isHovered, starTop } = this.state || {};
         stockData = stockData || {};
 
         const cls = classNames({
@@ -94,10 +126,17 @@ class Favourite extends Component {
         const percentage = !isNaN(+stockData.percentage) ? Math.abs((+stockData.percentage)).toFixed(2) : '';
         const name = stockData.name ? truncate(stockData.name) : '';
 
+        const confirmationBindings = {
+            onModalConfirmClick: bindings.onModalConfirmClick(stockCode),
+            onModalBackdropClick: this.onModalBackdropClick,
+            modalBubbleHeadTopPosition: this.modalBubbleHeadTopPosition,
+            modalTopPosition: this.modalTopPosition
+        };
+
         return (
             <div
               id={`stock_${stockCode}`}
-              draggable="true"
+              draggable={!isUnfavouriting}
               className="favouriteWrapper"
               onClick={() => bindings.onClick(stockCode, name)}
               onDragStart={this.onDragStart(stockCode)}
@@ -114,6 +153,10 @@ class Favourite extends Component {
                     <div className={`darkens favourite tearable ${cls}`} draggable="false">
                         <div className="top">
                             <div className="button-icon star active" onClick={this.onIconClick}>&nbsp;</div>
+                            {isUnfavouriting && <Confirmation
+                              bindings={confirmationBindings}
+                              isFlipped={this.shouldPositionModalAboveStar(starTop)}
+                            />}
                             <div className="name">{name}</div>
                             <div className="code">{stockCode.toUpperCase()}</div>
                         </div>
@@ -147,9 +190,12 @@ Favourite.propTypes = {
         onClick: PropTypes.func.isRequired,
         onIconClick: PropTypes.func.isRequired,
         onQuandlResponse: PropTypes.func.isRequired,
-        onDoubleClick: PropTypes.func.isRequired
+        onDoubleClick: PropTypes.func.isRequired,
+        onModalConfirmClick: PropTypes.func.isRequired,
+        onModalBackdropClick: PropTypes.func.isRequired
     }).isRequired,
-    isFavourite: PropTypes.bool.isRequired
+    isFavourite: PropTypes.bool.isRequired,
+    isUnfavouriting: PropTypes.bool.isRequired
 };
 
 export default Favourite;
