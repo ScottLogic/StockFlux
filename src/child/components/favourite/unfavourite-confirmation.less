@@ -1,0 +1,49 @@
+.bubble-head {
+  .bubble-head(@left: 245px, @top: 88px);
+}
+
+.confirmation-backdrop {
+  cursor: default;
+  .position(fixed, @top: 0px, @right: 0px, @bottom: 0px, @left: 0px);
+  z-index: 1050;
+  .no-overflow;
+  outline: 0;
+  display: block;
+  pointer-events: all;
+
+  .confirmation-modal {
+    &.flipped {
+      .box-shadow(-@shadow-depth -@shadow-depth, @dark-background);
+    }
+
+    .box-shadow(-@shadow-depth @shadow-depth, @dark-background);
+    .position(relative, @top: 92px, @left: 200px);
+    .size(@width: 204px);
+
+    .confirmation-content {
+      pointer-events: all;
+      cursor: default;
+
+      .message {
+        .font(12px, @font-thin, 1.4);
+        text-align: left;
+      }
+
+      .buttons {
+        text-align: center;
+
+        button {
+          color: inherit;
+          margin: 10px 0 6px 0;
+          .size(@width: 90px);
+          border-radius: 0;
+          border: none;
+          pointer-events: all;
+        }
+      }
+
+      background-color: @light-background;
+      padding: 6px;
+    }
+  }
+}
