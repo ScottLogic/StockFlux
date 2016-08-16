@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const sharedConfig = require('./webpack.config.shared.js');
 
@@ -13,7 +14,11 @@ config.plugins.push(
         compressor: {
             warnings: false
         }
-    })
+    }),
+    new CopyWebpackPlugin([
+        { from: 'src/static' },
+        { from: 'openfin-config/app.dev.json', to: './app.json' }
+    ])
 );
 
 module.exports = config;

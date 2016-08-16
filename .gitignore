@@ -3,10 +3,4 @@ node_modules
 .grunt
 coverage
 
-public/*
-!public/app.dev.json
-!public/app.prod.json
-!public/index.html
-!public/parent.html
-!public/splashscreen.png
-!public/favicon.ico
+public
