@@ -4,16 +4,16 @@ set -eo pipefail
 # Check for release branch - not using grep as set -e means it fails script
 RELEASE_BRANCH=$(echo "$TRAVIS_BRANCH" |  sed -n 's/^release\-/&/p')
 
-#Get the release type (dev/master) from the branch name
+# Get the release type (dev/master) from the branch name
 TYPE="$TRAVIS_BRANCH"
 
 if ([ "$TRAVIS_PULL_REQUEST" == "false" ]  && [ "${TRAVIS_REPO_SLUG}" == "ScottLogic/StockFlux" ] && ([ "$TYPE" == "dev" ] || [ "$TYPE" == "master" ] || [ -n "$RELEASE_BRANCH" ]))
 then
-    #Clone the latest gh-pages
+    # Clone the latest gh-pages
     git clone https://github.com/ScottLogic/StockFlux.git --branch gh-pages gh-pages
 
-    #Get line with version from the file -> get the second word -> remove quotes around the value
-    VERSION=$(grep "version" package.json | awk -v N=$2 '{print $2}' | cut -d \" -f2)
+    # Get line with version from the file -> get the second word -> remove quotes around the value
+    VERSION=$(grep "\"version\":" package.json | awk -v N=$2 '{print $2}' | cut -d \" -f2)
 
     echo "Type is: $TYPE"
     echo "Version is: $VERSION"
@@ -21,7 +21,7 @@ then
     if ([ $TYPE == "master" ] || [ $TYPE == "dev" ])
     then
         echo "Preparing to build version $TYPE"
-        grunt ci --build-target=$TYPE
+        npm run build:deploy $TYPE
 
         rm -rf "./gh-pages/$TYPE"
         cp -r "./public" "./gh-pages/$TYPE"
@@ -37,13 +37,13 @@ then
         fi
         if [ -n "$RELEASE_BRANCH" ]
         then
-            #For release branches add rc postfix
+            # For release branches add rc postfix
             VERSION="$VERSION-rc"
             echo "Release branch - updating version to $VERSION"
         fi
         # Rebuild everything to do $VERSION
         echo "Cleaning build. Targetting $VERSION"
-        grunt ci --build-target=$VERSION
+        npm run build:deploy $VERSION
 
         rm -rf "./gh-pages/$VERSION"
         cp -r "./public" "./gh-pages/$VERSION"
@@ -51,11 +51,11 @@ then
 
     cd gh-pages
 
-    #Removing git history
+    # Removing git history
     rm -rf .git
     git init
 
-    # inside this git repo we'll pretend to be a new user
+    # Inside this git repo we'll pretend to be a new user
     git config user.name "Travis CI"
     git config user.email "travis@scottlogic.com"
 
@@ -72,7 +72,7 @@ then
     git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1
 
     echo "Cleaning residual gh-pages folder"
-    rm -rf ./gh-pages
+    rm -rf ../gh-pages
 else
     echo "Nothing needs deploying"
 fi
