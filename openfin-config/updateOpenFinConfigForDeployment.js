@@ -28,8 +28,8 @@ configBuilder.update({
         icon: `${deployedUrl}favicon.ico`
     },
     splashScreenImage: `${deployedUrl}splashscreen.png`
-}, 'public/app.prod.json').then(() => {
-    console.log('Updating of app.prod.json succeeded');
+}, 'public/app.json').then(() => {
+    console.log('Updating of app.json succeeded');
 }).fail((err) => {
-    console.error('Updating of app.prod.json failed:', err);
+    console.error('Updating of app.json failed:', err);
 });

@@ -3,19 +3,18 @@
   "version": "10.1.0",
   "license": "GPL-3.0",
   "repository": {
-      "type" : "git",
-      "url" : "https://github.com/ScottLogic/StockFlux.git"
+    "type": "git",
+    "url": "https://github.com/ScottLogic/StockFlux.git"
   },
   "scripts": {
-    "start": "npm run publicdir && webpack-dev-server -d --config webpack/webpack.config.dev.js",
+    "start": "npm run clean && webpack-dev-server -d --config webpack/webpack.config.dev.js",
     "openfin:dev": "node openfin-dev-launcher.js",
     "openfin:prod": "node openfin-prod-launcher.js",
-    "build": "npm run publicdir && webpack -p --config webpack/webpack.config.prod.js",
-    "build:deploy": "npm run build && node updateOpenFinConfigForDeployment.js",
+    "build": "npm run clean && webpack -p --config webpack/webpack.config.prod.js",
+    "build:deploy": "npm run build && node openfin-config/updateOpenFinConfigForDeployment.js",
     "serve": "http-server -p 5001",
     "prod": "npm run build && npm run serve",
-    "publicdir": "npm run clean && mkdir public && cp-cli src/static/ public/",
-    "clean": "rimraf public/",
+    "clean": "rimraf public/*",
     "ci": "npm run lint && npm test && npm run build",
     "lint": "eslint --plugin import jsx-ally react *.js src/ test/",
     "lint:fix": "npm run lint -- --fix",
@@ -39,6 +38,7 @@
     "babel-template": "^6.9.0",
     "babel-types": "^6.9.1",
     "chai": "^3.5.0",
+    "copy-webpack-plugin": "^3.0.1",
     "cross-env": "^1.0.8",
     "css-loader": "^0.23.1",
     "deep-freeze": "0.0.1",
@@ -51,9 +51,9 @@
     "grunt-cli": "^1.2.0",
     "http-server": "^0.9.0",
     "isparta": "^4.0.0",
-    "json-loader": "^0.5.4",
     "jsdom": "9.3.0",
     "jsdom-global": "2.0.0",
+    "json-loader": "^0.5.4",
     "less": "^2.6.1",
     "less-loader": "^2.2.3",
     "mocha": "^2.4.5",
@@ -64,6 +64,7 @@
     "redux-mock-store": "^1.1.0",
     "remote-redux-devtools": "^0.3.3",
     "remotedev-server": "^0.1.2",
+    "rimraf": "^2.5.3",
     "script-loader": "^0.7.0",
     "semver": "^5.1.0",
     "sinon": "^1.17.4",
@@ -76,7 +77,6 @@
     "BitFlux": "github:scottlogic/BitFlux#1.6.1",
     "babel-polyfill": "^6.3.14",
     "classnames": "^2.2.3",
-    "cp-cli": "^1.0.2",
     "d3fc": "^5.3.0",
     "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.1.1",
@@ -91,8 +91,7 @@
     "redux-localstorage": "^0.4.1",
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.0.1",
-    "reselect": "^2.5.3",
-    "rimraf": "^2.5.3"
+    "reselect": "^2.5.3"
   },
   "description": "Hosts the BitFlux as an OpenFin application."
 }
