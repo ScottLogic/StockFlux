@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import reducers from '../../../../src/child/reducers/reducers';
+import configService from '../../../../src/shared/ConfigService';
 
 describe('child/reducers/reducers', () => {
     it('should return the initial state', () => {
@@ -17,8 +18,10 @@ describe('child/reducers/reducers', () => {
             },
             windowState: {
                 isCompact: false,
-                isMaximised: false,
-                isResizing: false
+                isMaximized: false,
+                isResizing: false,
+                previousExpandedDimensions: configService.getDefaultWindowDimensions(),
+                previousMaximizedState: false
             },
         };
         expect(reducers(undefined, {})).to.deep.equal(initialState);

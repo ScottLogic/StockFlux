@@ -1,42 +1,65 @@
 import { expect } from 'chai';
 import windowState from '../../../../src/child/reducers/windowState.js';
 import { WINDOW as ACTION_TYPES } from '../../../../src/shared/constants/actionTypes';
+import configService from '../../../../src/shared/ConfigService';
 
 describe('child/reducers/windowState', () => {
+    const dimensions = configService.getDefaultWindowDimensions();
+
     it('should return the initial state', () => {
         expect(windowState(undefined, {})).to.deep.equal({
             isCompact: false,
-            isMaximised: false,
-            isResizing: false
+            isMaximized: false,
+            isResizing: false,
+            previousExpandedDimensions: dimensions,
+            previousMaximizedState: false
         });
     });
 
     it('should handle TOGGLE_COMPACT', () => {
         expect(windowState({
             isCompact: false,
-            isMaximised: false,
-            isResizing: true
+            previousMaximizedState: false,
         }, {
             type: ACTION_TYPES.TOGGLE_COMPACT,
-            state: true
+            isCompact: true,
+            previousMaximizedState: false
         })).to.deep.equal({
             isCompact: true,
-            isMaximised: false,
-            isResizing: false,
-            hasErrors: false
+            previousMaximizedState: false
+        });
+        expect(windowState({
+            isCompact: false,
+            previousMaximizedState: true
+        }, {
+            type: ACTION_TYPES.TOGGLE_COMPACT,
+            isCompact: true,
+            previousMaximizedState: true
+        })).to.deep.equal({
+            isCompact: true,
+            previousMaximizedState: true
         });
         expect(windowState({
             isCompact: true,
-            isMaximised: false,
-            isResizing: true
+            previousMaximizedState: false
         }, {
             type: ACTION_TYPES.TOGGLE_COMPACT,
-            state: false
+            isCompact: false,
+            previousMaximizedState: false
         })).to.deep.equal({
             isCompact: false,
-            isMaximised: false,
-            isResizing: false,
-            hasErrors: false
+            previousMaximizedState: false
+        });
+        expect(windowState({
+            isCompact: true,
+            previousMaximizedState: true
+        }, {
+            type: ACTION_TYPES.TOGGLE_COMPACT,
+            isCompact: false,
+            previousMaximizedState: true
+        })).to.deep.equal({
+            isCompact: false,
+            previousMaximizedState: true
         });
     });
 
@@ -44,17 +67,17 @@ describe('child/reducers/windowState', () => {
         const action = { type: ACTION_TYPES.MAXIMIZE };
         expect(windowState({
             isCompact: true,
-            isMaximised: false
+            isMaximized: false
         }, action)).to.deep.equal({
             isCompact: true,
-            isMaximised: true
+            isMaximized: true
         });
         expect(windowState({
             isCompact: true,
-            isMaximised: true
+            isMaximized: true
         }, action)).to.deep.equal({
             isCompact: true,
-            isMaximised: true
+            isMaximized: true
         });
     });
 
@@ -62,20 +85,20 @@ describe('child/reducers/windowState', () => {
         const action = { type: ACTION_TYPES.RESTORE };
         expect(windowState({
             isCompact: true,
-            isMaximised: false,
+            isMaximized: false,
             isResizing: false
         }, action)).to.deep.equal({
             isCompact: true,
-            isMaximised: false,
+            isMaximized: false,
             isResizing: false
         });
         expect(windowState({
             isCompact: true,
-            isMaximised: true,
+            isMaximized: true,
             isResizing: false
         }, action)).to.deep.equal({
             isCompact: true,
-            isMaximised: false,
+            isMaximized: false,
             isResizing: false
         });
     });
@@ -84,39 +107,50 @@ describe('child/reducers/windowState', () => {
         const action = { type: ACTION_TYPES.RESIZING };
         expect(windowState({
             isCompact: false,
-            isMaximised: false,
+            isMaximized: false,
             isResizing: false
         }, action)).to.deep.equal({
             isCompact: false,
-            isMaximised: false,
+            isMaximized: false,
             isResizing: true
         });
         expect(windowState({
             isCompact: true,
-            isMaximised: false,
+            isMaximized: false,
             isResizing: false
         }, action)).to.deep.equal({
             isCompact: true,
-            isMaximised: false,
+            isMaximized: false,
             isResizing: true
         });
         expect(windowState({
             isCompact: false,
-            isMaximised: true,
+            isMaximized: true,
             isResizing: false
         }, action)).to.deep.equal({
             isCompact: false,
-            isMaximised: true,
+            isMaximized: true,
             isResizing: true
         });
         expect(windowState({
             isCompact: true,
-            isMaximised: true,
+            isMaximized: true,
             isResizing: false
         }, action)).to.deep.equal({
             isCompact: true,
-            isMaximised: true,
+            isMaximized: true,
             isResizing: true
+        });
+    });
+
+    it('should handle RESIZE_SUCCESS', () => {
+        const action = { type: ACTION_TYPES.RESIZE_SUCCESS };
+        expect(windowState({
+            isResizing: true,
+            hasErrors: false
+        }, action)).to.deep.equal({
+            isResizing: false,
+            hasErrors: false
         });
     });
 
@@ -124,11 +158,11 @@ describe('child/reducers/windowState', () => {
         const action = { type: ACTION_TYPES.RESIZE_ERROR };
         expect(windowState({
             isCompact: false,
-            isMaximised: false,
+            isMaximized: false,
             isResizing: true
         }, action)).to.deep.equal({
             isCompact: false,
-            isMaximised: false,
+            isMaximized: false,
             isResizing: false,
             hasErrors: true
         });
@@ -138,38 +172,38 @@ describe('child/reducers/windowState', () => {
         const action = { type: 'UNKNOWN_ACTION' };
         expect(windowState({
             isCompact: false,
-            isMaximised: false,
+            isMaximized: false,
             isResizing: false
         }, action)).to.deep.equal({
             isCompact: false,
-            isMaximised: false,
+            isMaximized: false,
             isResizing: false
         });
         expect(windowState({
             isCompact: true,
-            isMaximised: false,
+            isMaximized: false,
             isResizing: false
         }, action)).to.deep.equal({
             isCompact: true,
-            isMaximised: false,
+            isMaximized: false,
             isResizing: false
         });
         expect(windowState({
             isCompact: false,
-            isMaximised: true,
+            isMaximized: true,
             isResizing: false
         }, action)).to.deep.equal({
             isCompact: false,
-            isMaximised: true,
+            isMaximized: true,
             isResizing: false
         });
         expect(windowState({
             isCompact: true,
-            isMaximised: true,
+            isMaximized: true,
             isResizing: false
         }, action)).to.deep.equal({
             isCompact: true,
-            isMaximised: true,
+            isMaximized: true,
             isResizing: false
         });
     });
