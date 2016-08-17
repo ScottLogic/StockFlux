@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import currentWindowServiceStub from '../../../helper/currentWindowServiceStub';
-import { minimise,
+import { minimize,
          compact,
          expand,
          fullView,
@@ -11,7 +11,7 @@ import { minimise,
          resizing,
          open,
          resizeToCompact,
-         resizeToDefault,
+         resizeToPrevious,
          __RewireAPI__ as rewiredActions } from '../../../../src/child/actions/window';
 import { WINDOW as ACTION_TYPES } from '../../../../src/shared/constants/actionTypes';
 
@@ -24,19 +24,22 @@ describe('child/actions/window', () => {
         rewiredActions.__ResetDependency__('currentWindowService');
     });
 
-    it('should create an action for minimise', () => {
+    it('should create an action for minimize', () => {
         const expectedAction = { windowName: 'window0002', type: ACTION_TYPES.MINIMIZE };
-        const actualAction = minimise();
+        const actualAction = minimize();
         expect(actualAction).to.deep.equal(expectedAction);
     });
 
     it('should create an action for compact', () => {
+        const previousMaximizedState = false;
+        const previousExpandedDimensions = [1000, 1000];
         const expectedAction = {
             windowName: 'window0002',
             type: ACTION_TYPES.TOGGLE_COMPACT,
-            state: true
+            isCompact: true,
+            previousMaximizedState
         };
-        const actualAction = compact();
+        const actualAction = compact(previousMaximizedState, previousExpandedDimensions);
         expect(actualAction.type).to.be.a('string');
         expect(actualAction).to.deep.equal(expectedAction);
     });
@@ -45,7 +48,7 @@ describe('child/actions/window', () => {
         const expectedAction = {
             windowName: 'window0002',
             type: ACTION_TYPES.TOGGLE_COMPACT,
-            state: false
+            isCompact: false
         };
         const actualAction = expand();
         expect(actualAction.type).to.be.a('string');
@@ -92,7 +95,16 @@ describe('child/actions/window', () => {
 
         beforeEach(() => {
             const mockStore = configureMockStore([thunk]);
-            store = mockStore();
+            store = mockStore({
+                childWindows: {
+                    window0002: {
+                        windowState: {
+                            isMaximized: false,
+                            previousExpandedDimensions: [1000, 1000]
+                        }
+                    }
+                }
+            });
         });
 
         afterEach(() => {
@@ -100,6 +112,7 @@ describe('child/actions/window', () => {
         });
 
         describe('compact', () => {
+
             it('should return a promise', () => {
                 expect(store.dispatch(resizeToCompact())).to.be.a('promise');
             });
@@ -109,7 +122,8 @@ describe('child/actions/window', () => {
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS },
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS_SUCCESS },
                     { windowName: 'window0002', type: ACTION_TYPES.RESIZING },
-                    { windowName: 'window0002', type: ACTION_TYPES.TOGGLE_COMPACT, state: true }
+                    { windowName: 'window0002', type: ACTION_TYPES.RESIZE_SUCCESS },
+                    { windowName: 'window0002', type: ACTION_TYPES.TOGGLE_COMPACT, isCompact: true, previousMaximizedState: false }
                 ];
 
                 currentWindowServiceStub.updateOptions.callsArg(1); // call success callback
@@ -121,6 +135,7 @@ describe('child/actions/window', () => {
                         expect(store.getActions()[1].type).to.be.a('string');
                         expect(store.getActions()[2].type).to.be.a('string');
                         expect(store.getActions()[3].type).to.be.a('string');
+                        expect(store.getActions()[4].type).to.be.a('string');
                         expect(store.getActions()).to.deep.equal(expectedActions);
                     });
             });
@@ -130,7 +145,8 @@ describe('child/actions/window', () => {
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS },
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS_ERROR },
                     { windowName: 'window0002', type: ACTION_TYPES.RESIZING },
-                    { windowName: 'window0002', type: ACTION_TYPES.TOGGLE_COMPACT, state: true }
+                    { windowName: 'window0002', type: ACTION_TYPES.RESIZE_SUCCESS },
+                    { windowName: 'window0002', type: ACTION_TYPES.TOGGLE_COMPACT, isCompact: true, previousMaximizedState: false }
                 ];
 
                 currentWindowServiceStub.updateOptions.callsArg(2); // call error callback
@@ -142,6 +158,7 @@ describe('child/actions/window', () => {
                         expect(store.getActions()[1].type).to.be.a('string');
                         expect(store.getActions()[2].type).to.be.a('string');
                         expect(store.getActions()[3].type).to.be.a('string');
+                        expect(store.getActions()[4].type).to.be.a('string');
                         expect(store.getActions()).to.deep.equal(expectedActions);
                     });
             });
@@ -189,9 +206,9 @@ describe('child/actions/window', () => {
             });
         });
 
-        describe('default', () => {
+        describe('previous', () => {
             it('should return a promise', () => {
-                expect(store.dispatch(resizeToDefault())).to.be.a('promise');
+                expect(store.dispatch(resizeToPrevious())).to.be.a('promise');
             });
 
             it('should resolve when both updating the options and resizing succeed', () => {
@@ -199,18 +216,20 @@ describe('child/actions/window', () => {
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS },
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS_SUCCESS },
                     { windowName: 'window0002', type: ACTION_TYPES.RESIZING },
-                    { windowName: 'window0002', type: ACTION_TYPES.TOGGLE_COMPACT, state: false }
+                    { windowName: 'window0002', type: ACTION_TYPES.RESIZE_SUCCESS },
+                    { windowName: 'window0002', type: ACTION_TYPES.TOGGLE_COMPACT, isCompact: false }
                 ];
 
                 currentWindowServiceStub.updateOptions.callsArg(1); // call success callback
                 currentWindowServiceStub.resizeTo.callsArg(3);      // call success callback
 
-                return store.dispatch(resizeToDefault())
+                return store.dispatch(resizeToPrevious())
                     .then(() => {
                         expect(store.getActions()[0].type).to.be.a('string');
                         expect(store.getActions()[1].type).to.be.a('string');
                         expect(store.getActions()[2].type).to.be.a('string');
                         expect(store.getActions()[3].type).to.be.a('string');
+                        expect(store.getActions()[4].type).to.be.a('string');
                         expect(store.getActions()).to.deep.equal(expectedActions);
                     });
             });
@@ -220,13 +239,14 @@ describe('child/actions/window', () => {
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS },
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS_ERROR },
                     { windowName: 'window0002', type: ACTION_TYPES.RESIZING },
-                    { windowName: 'window0002', type: ACTION_TYPES.TOGGLE_COMPACT, state: false }
+                    { windowName: 'window0002', type: ACTION_TYPES.RESIZE_SUCCESS },
+                    { windowName: 'window0002', type: ACTION_TYPES.TOGGLE_COMPACT, isCompact: false }
                 ];
 
                 currentWindowServiceStub.updateOptions.callsArg(2); // call error callback
                 currentWindowServiceStub.resizeTo.callsArg(3);      // call success callback
 
-                return store.dispatch(resizeToDefault())
+                return store.dispatch(resizeToPrevious())
                     .catch(() => {
                         expect(store.getActions()[0].type).to.be.a('string');
                         expect(store.getActions()[1].type).to.be.a('string');
@@ -247,7 +267,7 @@ describe('child/actions/window', () => {
                 currentWindowServiceStub.updateOptions.callsArg(1); // call success callback
                 currentWindowServiceStub.resizeTo.callsArg(4);      // call error callback
 
-                return store.dispatch(resizeToDefault())
+                return store.dispatch(resizeToPrevious())
                     .catch(() => {
                         expect(store.getActions()[0].type).to.be.a('string');
                         expect(store.getActions()[1].type).to.be.a('string');
@@ -268,7 +288,7 @@ describe('child/actions/window', () => {
                 currentWindowServiceStub.updateOptions.callsArg(2); // call error callback
                 currentWindowServiceStub.resizeTo.callsArg(4);      // call error callback
 
-                return store.dispatch(resizeToDefault())
+                return store.dispatch(resizeToPrevious())
                     .catch(() => {
                         expect(store.getActions()[0].type).to.be.a('string');
                         expect(store.getActions()[1].type).to.be.a('string');

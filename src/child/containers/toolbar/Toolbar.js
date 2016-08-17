@@ -1,8 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import {
+    minimizeWindow,
+    maximizeWindow,
+    restoreWindow,
     resizeToCompact,
-    resizeToDefault
+    resizeToPrevious
 } from '../../actions/window.js';
 import { toolbarSelector as mapStateToProps } from '../../selectors/selectors';
 import icon from '../../assets/png/scottlogic_logo.png';
@@ -23,23 +26,28 @@ class Toolbar extends Component {
     }
 
     onMinimizeClick() {
-        fin.desktop.Window.getCurrent().minimize();
+        const { dispatch } = this.props;
+        dispatch(minimizeWindow());
     }
 
     onCompactClick() {
-        this.props.dispatch(resizeToCompact());
+        const { dispatch } = this.props;
+        dispatch(resizeToCompact());
     }
 
     onFullViewClick() {
-        this.props.dispatch(resizeToDefault());
+        const { dispatch } = this.props;
+        dispatch(resizeToPrevious());
     }
 
     onMaximizeClick() {
-        fin.desktop.Window.getCurrent().maximize();
+        const { dispatch } = this.props;
+        dispatch(maximizeWindow());
     }
 
     onRestoreClick() {
-        fin.desktop.Window.getCurrent().restore();
+        const { dispatch } = this.props;
+        dispatch(restoreWindow());
     }
 
     onCloseClick() {
@@ -52,14 +60,14 @@ class Toolbar extends Component {
             <div className="toolbarWrapper drag">
                 <img id="logo" src={icon} className="logo" alt="Scott Logic" />
                 <div className="wrapper action">
-                    <div className="button-icon minimise" onClick={this.onMinimizeClick} title="Minimize">&nbsp;</div>
+                    <div className="button-icon minimize" onClick={this.onMinimizeClick} title="Minimize">&nbsp;</div>
                     {windowState.isCompact
                         ? <div className="button-icon full_view" onClick={this.onFullViewClick} title="Full View">&nbsp;</div>
                         : <div className="button-icon compact" onClick={this.onCompactClick} title="Compact View">&nbsp;</div>
                     }
-                    {!windowState.isCompact && (windowState.isMaximised
+                    {!windowState.isCompact && (windowState.isMaximized
                         ? <div className="button-icon normal_size" onClick={this.onRestoreClick} title="Restore">&nbsp;</div>
-                        : <div className="button-icon maximise" onClick={this.onMaximizeClick} title="Maximize">&nbsp;</div>
+                    : <div className="button-icon maximize" onClick={this.onMaximizeClick} title="Maximize">&nbsp;</div>
                     )}
                     <div className="button-icon closeIcon" onClick={this.onCloseClick} title="Close">&nbsp;</div>
                 </div>
