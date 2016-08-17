@@ -1,7 +1,7 @@
 /* global $ */
 import React from 'react';
 import { Provider } from 'react-redux';
-import { render, unmountComponentAtNode } from 'react-dom';
+import { render } from 'react-dom';
 import App from './containers/App';
 import WindowStateService from './services/WindowStateService';
 import currentWindowService from './services/currentWindowService';
@@ -27,13 +27,8 @@ currentWindowService.ready(() => {
     const store = currentWindow.contentWindow.opener.store;
     const rootElement = document.getElementById('app');
 
-    const windowStateService = new WindowStateService(currentWindow, store);
+    const windowStateService = new WindowStateService(currentWindow, store, rootElement);
     windowStateService.start();
-
-    currentWindow.contentWindow.addEventListener('beforeunload', () => {
-        unmountComponentAtNode(rootElement);
-        windowStateService.stop();
-    });
 
     store.dispatch(open());
 
