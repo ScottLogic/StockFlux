@@ -4,6 +4,7 @@ import { truncate } from '../../services/formatters';
 import Minichart from '../minichart/Minichart.js';
 import Confirmation from './UnfavouriteConfirmation.js';
 import { getStockData as quandlServiceGetStockData } from '../../services/QuandlService.js';
+import currentWindowService from '../../services/currentWindowService';
 
 import arrowUp from '../../assets/png/arrow_up.png';
 import arrowDown from '../../assets/png/arrow_down.png';
@@ -27,6 +28,8 @@ class Favourite extends Component {
         this.shouldPositionModalAboveStar = this.shouldPositionModalAboveStar.bind(this);
         this.modalBubbleHeadTopPosition = this.modalBubbleHeadTopPosition.bind(this);
         this.modalTopPosition = this.modalTopPosition.bind(this);
+
+        this.state = { isDragging: false };
     }
 
     componentDidMount() {
@@ -66,14 +69,17 @@ class Favourite extends Component {
     onDragStart(stockCode) {
         return e => {
             // TODO: fade out window if it's last stock
-            e.currentTarget.classList.add('dragging');
-            e.dataTransfer.setData('text/plain', stockCode);
-            e.dataTransfer.setData(stockCode, '');  // used to access propery on dragEnter. check getCodeFromDT
+            const codeData = { code: stockCode };
+            const windowData = { window: currentWindowService.getCurrentWindowName() };
+
+            this.setState({ isDragging: true });
+            e.dataTransfer.setData(JSON.stringify(codeData), '');  // used to access propery on dragEnter. Check getCodeFromDT in Sidebar.js
+            e.dataTransfer.setData(JSON.stringify(windowData), '');
         };
     }
 
-    onDragEnd(e) {
-        e.currentTarget.classList.remove('dragging');
+    onDragEnd() {
+        this.setState({ isDragging: false });
     }
 
     onModalBackdropClick(e) {
@@ -95,13 +101,19 @@ class Favourite extends Component {
     }
 
     render() {
-        const { stockCode, selected, bindings, isUnfavouriting } = this.props;
+        const { stockCode, selected, bindings, isUnfavouriting, dragOver, dragOverBottom } = this.props;
 
         let { stockData, chartData } = this.state || {};
-        const { isHovered, starTop } = this.state || {};
+        const { isHovered, starTop, isDragging } = this.state || {};
         stockData = stockData || {};
 
-        const cls = classNames({
+        const favouriteWrapperCls = classNames({
+            dragging: isDragging,
+            dragOver,
+            dragOverBottom
+        });
+
+        const favouriteCls = classNames({
             selected,
             dark: selected,
             hovered: isHovered
@@ -123,7 +135,7 @@ class Favourite extends Component {
             <div
               id={`stock_${stockCode}`}
               draggable={!isUnfavouriting}
-              className="favouriteWrapper"
+              className={`favouriteWrapper ${favouriteWrapperCls}`}
               onClick={bindings.onClick(stockCode, name)}
               onDragStart={this.onDragStart(stockCode)}
               onDragEnd={this.onDragEnd}
@@ -132,7 +144,7 @@ class Favourite extends Component {
               onMouseOut={this.onMouseOut}
             >
                 <div className="drop-target">
-                    <div className={`darkens favourite tearable ${cls}`} draggable="false">
+                    <div className={`darkens favourite tearable ${favouriteCls}`} draggable="false">
                         <div className="top">
                             <div className="button-icon star active" onClick={this.onIconClick}>&nbsp;</div>
                             {isUnfavouriting && <Confirmation
@@ -173,7 +185,9 @@ Favourite.propTypes = {
         onModalBackdropClick: PropTypes.func.isRequired
     }).isRequired,
     isFavourite: PropTypes.bool.isRequired,
-    isUnfavouriting: PropTypes.bool.isRequired
+    isUnfavouriting: PropTypes.bool.isRequired,
+    dragOver: PropTypes.bool.isRequired,
+    dragOverBottom: PropTypes.bool.isRequired
 };
 
 export default Favourite;

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import Favourites from './favourites/Favourites.js';
 import Search from './search/Search.js';
 import { sidebarSelector as mapStateToProps } from '../../selectors/selectors';
+import classNames from 'classnames';
+import currentWindowService from '../../services/currentWindowService';
 
 import { selectFavourites, selectSearch } from '../../actions/sidebar';
 import { selectStock, unselectStock } from '../../actions/selection';
@@ -15,7 +17,9 @@ import favouritesShape from '../../propTypeShapes/favourites';
 class Sidebar extends Component {
     constructor(props) {
         super(props);
+        this.onDragEnter = this.onDragEnter.bind(this);
         this.onDragOver = this.onDragOver.bind(this);
+        this.onDragLeave = this.onDragLeave.bind(this);
         this.onDrop = this.onDrop.bind(this);
         this.addActive = this.addActive.bind(this);
         this.removeActive = this.removeActive.bind(this);
@@ -23,12 +27,27 @@ class Sidebar extends Component {
         this.focusSearch = this.focusSearch.bind(this);
         this.toggleFavourite = this.toggleFavourite.bind(this);
         this.selectStock = this.selectStock.bind(this);
+
+        this.state = { draggingFromAnotherWindow: false };
+    }
+
+    onDragEnter(e) {
+        const dragStartWindow = this.getWindowFromDT(e.dataTransfer.types);
+
+        if (dragStartWindow !== currentWindowService.getCurrentWindowName()) {
+            this.addActive();
+        }
     }
 
     onDragOver(e) {
-        if (!e.defaultPrevented && !this.props.sidebar.showFavourites) {
-            this.addActive();
+        if (!e.defaultPrevented) {
             e.preventDefault();
+        }
+    }
+
+    onDragLeave(e) {
+        if (e.target === e.currentTarget) {
+            this.removeActive();
         }
     }
 
@@ -41,21 +60,41 @@ class Sidebar extends Component {
         this.removeActive();
     }
 
+    /*
+     * DataTransfer.getData is only available in dragstart, drop and dragEnd
+     * We can get around that by adding our data to DataTransfer.types
+     * Each element of the types array is stringified JSON
+     * */
     getCodeFromDT(types) {
         for (let i = 0; i < types.length; i++) {
-            if (types[i] !== 'text/plain') {
-                return (types[i]).toUpperCase();
+            const dataTransferObj = JSON.parse(types[i]);
+            if (Object.keys(dataTransferObj)[0] === 'code') {
+                return dataTransferObj.code.toUpperCase();
+            }
+        }
+        return undefined;
+    }
+
+    getWindowFromDT(types) {
+        for (let i = 0; i < types.length; i++) {
+            const dataTransferObj = JSON.parse(types[i]);
+            if (Object.keys(dataTransferObj)[0] === 'window') {
+                return dataTransferObj.window;
             }
         }
         return undefined;
     }
 
     addActive() {
-        this.favourites.classList.add('active');
+        if (!this.state.draggingFromAnotherWindow) {
+            this.setState({ draggingFromAnotherWindow: true });
+        }
     }
 
     removeActive() {
-        this.favourites.classList.remove('active');
+        if (this.state.draggingFromAnotherWindow) {
+            this.setState({ draggingFromAnotherWindow: false });
+        }
     }
 
     focusFav() {
@@ -97,20 +136,32 @@ class Sidebar extends Component {
         let bindings = {
             toggleFavourite: this.toggleFavourite,
             selectStock: this.selectStock,
-            getCodeFromDT: this.getCodeFromDT,
-            addActive: this.addActive,
-            removeActive: this.removeActive
+            getCodeFromDT: this.getCodeFromDT
         };
 
+        const sidebarsCls = classNames({
+            active: this.state.draggingFromAnotherWindow
+        });
+
+        const searchCls = classNames({
+            expanded: sidebar.showSearch,
+            contracted: sidebar.showFavourites
+        });
+
+        const favouritesCls = classNames({
+            expanded: sidebar.showFavourites,
+            contracted: sidebar.showSearch
+        });
+
         return (
-            <div className="sidebars" onDragOver={this.onDragOver} onDragLeave={this.removeActive} onDrop={this.onDrop}>
-                <div className={`search main-search ${sidebar.showSearch ? 'expanded' : 'contracted'}`} onClick={this.focusSearch}>
+            <div className={`sidebars ${sidebarsCls}`} onDragEnter={this.onDragEnter} onDragOver={this.onDragOver} onDragLeave={this.onDragLeave} onDrop={this.onDrop}>
+                <div className={`search main-search ${searchCls}`} onClick={this.focusSearch}>
                     <Search bindings={bindings} />
                 </div>
-                <div className={`search compact-search ${sidebar.showSearch ? 'expanded' : 'contracted'}`} onClick={this.focusSearch}>
+                <div className={`search compact-search ${searchCls}`} onClick={this.focusSearch}>
                     <Search bindings={bindings} />
                 </div>
-                <div className={`favourites ${sidebar.showFavourites ? 'expanded' : 'contracted'}`} onClick={this.focusFav} ref={ref => { this.favourites = ref; }}>
+                <div className={`favourites ${favouritesCls}`} onClick={this.focusFav}>
                     <Favourites bindings={bindings} />
                 </div>
 

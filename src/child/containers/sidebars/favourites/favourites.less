@@ -15,10 +15,6 @@
     transition: 0.25s all;
 }
 
-.favDropTarget.dragOver #favourite-scroll {
-    background-color: #45D6BC;
-}
-
 .favouriteDropPlaceholder {
     background-color: rebeccapurple;
     height: @favourite-height;
@@ -57,6 +53,16 @@
     background-color: #2E5356;
 }
 
+.sidebars.active {
+    .favourites {
+      background-color: @highlight-colour;
+
+      .favourite, .hover-area {
+        background-color: @highlight-colour;
+      }
+    }
+}
+
 .favourites {
   float: right;
   .size(@width: @expanded-width, @height: 100%);
@@ -65,14 +71,6 @@
   &.active-add, &.active-remove {
     .favourite, .hover-area {
       .transition();
-    }
-  }
-
-  &.active {
-    background-color: @highlight-colour;
-
-    .favourite, .hover-area {
-      background-color: @highlight-colour;
     }
   }
 }

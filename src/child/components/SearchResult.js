@@ -26,7 +26,7 @@ const Stock = ({ isFavourite, stock, selected, bindings }) => {
 
 Stock.propTypes = {
     stock: PropTypes.shape({
-        name: PropTypes.string.isRequired,
+        name: PropTypes.string, // temporarily undefined when dragged from another window
         code: PropTypes.string.isRequired
     }).isRequired,
     bindings: PropTypes.shape({

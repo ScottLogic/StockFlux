@@ -25,8 +25,6 @@ class Favourites extends Component {
         this.onDragOver = this.onDragOver.bind(this);
         this.onDragStart = this.onDragStart.bind(this);
         this.onDragEnd = this.onDragEnd.bind(this);
-        this.onDragLeave = this.onDragLeave.bind(this);
-        this.removeDragOver = this.removeDragOver.bind(this);
 
         this.state = { unfavouritingStockCode: null };
     }
@@ -105,48 +103,36 @@ class Favourites extends Component {
     }
 
     onDragOver(e) {
-        const { removeDragOver, props, state } = this;
+        const { props, state } = this;
         const { favourites, bindings } = props;
+        const { codes } = favourites;
         const { dragOverIndex, favouriteHeight, dragStartClientY } = state;
-        const favouriteElements = this.sidetab.childNodes;
 
         if (dragStartClientY) {
             const dragOverIndexOffset = Math.ceil((((e.nativeEvent.clientY - dragStartClientY) / (favouriteHeight / 2)) + 1) / 2);
-            const currentDraggedIndex = favourites.codes.indexOf(bindings.getCodeFromDT(e.dataTransfer.types));
+            const currentDraggedIndex = codes.indexOf(bindings.getCodeFromDT(e.dataTransfer.types));
             let nextDragOverIndex = currentDraggedIndex + dragOverIndexOffset;
 
             if (nextDragOverIndex <= currentDraggedIndex) {
                 nextDragOverIndex--;
             }
 
-            if (favouriteElements[nextDragOverIndex] && nextDragOverIndex !== dragOverIndex) {
-                removeDragOver();
-                favouriteElements[nextDragOverIndex].classList.add('dragOver');
+            if (codes[nextDragOverIndex] && nextDragOverIndex !== dragOverIndex) {
                 this.setState({ dragOverIndex: nextDragOverIndex });
-            } else if (nextDragOverIndex >= favouriteElements.length) {
-                removeDragOver();
-                favouriteElements[favouriteElements.length - 1].classList.add('dragOverBottom');
-                this.setState({ dragOverIndex: favouriteElements.length });
+            } else if (nextDragOverIndex >= codes.length) {
+                this.setState({ dragOverIndex: codes.length });
             }
-        } else {
-            bindings.addActive();
         }
+
         e.preventDefault();
     }
 
     onDragEnd() {
-        this.setState({ dragStartClientY: null });
-        this.removeDragOver();
-    }
-
-    onDragLeave() {
-        if (!this.state.dragStartClientY) {
-            this.favDropTarget.classList.remove('dragOver');
-        }
+        this.setState({ dragStartClientY: null, dragOverIndex: null });
     }
 
     onDrop(e) {
-        const { props, state, removeDragOver } = this;
+        const { props, state } = this;
         const { dispatch, favourites, bindings } = props;
         const { dragOverIndex, dragStartClientY } = state;
 
@@ -159,27 +145,14 @@ class Favourites extends Component {
             if (!favourites.codes.includes(code)) {
                 dispatch(insertFavouriteAt(favourites.codes.length, code));
             }
-            bindings.removeActive();
-        }
-        removeDragOver();
-    }
-
-    removeDragOver() {
-        const { dragOverIndex } = this.state;
-        const favouriteElements = this.sidetab.childNodes;
-
-        this.favDropTarget.classList.remove('dragOver');
-
-        if (favouriteElements[dragOverIndex]) {
-            favouriteElements[dragOverIndex].classList.remove('dragOver');
-        } else {
-            favouriteElements[favouriteElements.length - 1].classList.remove('dragOverBottom');
         }
     }
 
     render() {
         const { favourites, hasErrors, isStarting, selection } = this.props;
+        const { unfavouritingStockCode, dragOverIndex } = this.state;
         const codes = favourites.codes;
+
         let bindings = {
             onClick: this.onClick,
             onQuandlResponse: this.onQuandlResponse,
@@ -192,7 +165,6 @@ class Favourites extends Component {
             <div
               id="favDropTarget"
               className="favDropTarget"
-              ref={ref => { this.favDropTarget = ref; }}
               onDragStart={this.onDragStart}
               onDragOver={this.onDragOver}
               onDragEnd={this.onDragEnd}
@@ -205,8 +177,7 @@ class Favourites extends Component {
                     <img src={favTabImage} className="top-icon" title="Favourites List" draggable="false" />
                 </div>
                 <div id="favourite-scroll" ref={ref => { this.scrollArea = ref; }} className="side-scroll custom-scrollbar hiddenOnContracted">
-                    <div className="sidetab" ref={ref => { this.sidetab = ref; }}>
-
+                    <div className="sidetab">
                         {isStarting && <div className="no-favourites">
                             <p>Loading favourite stocks...</p>
                         </div>
@@ -220,14 +191,16 @@ class Favourites extends Component {
                             <p>Use the search tab to add new stocks to the list.</p>
                         </div>
                         }
-                        {codes.map(stockCode =>
+                        {codes.map((stockCode, i) =>
                             <Favourite
                               key={stockCode}
                               stockCode={stockCode}
                               bindings={bindings}
                               selected={stockCode === selection.code}
-                              isFavourite={favourites.codes.indexOf(stockCode) >= 0}
-                              isUnfavouriting={this.state.unfavouritingStockCode === stockCode}
+                              isFavourite={codes.indexOf(stockCode) >= 0}
+                              isUnfavouriting={unfavouritingStockCode === stockCode}
+                              dragOver={dragOverIndex === i}
+                              dragOverBottom={dragOverIndex === codes.length && i === codes.length - 1}
                             />)
                         }
                     </div>
@@ -246,9 +219,7 @@ Favourites.propTypes = {
     bindings: PropTypes.shape({
         toggleFavourite: PropTypes.func.isRequired,
         selectStock: PropTypes.func.isRequired,
-        getCodeFromDT: PropTypes.func.isRequired,
-        addActive: PropTypes.func.isRequired,
-        removeActive: PropTypes.func.isRequired
+        getCodeFromDT: PropTypes.func.isRequired
     }).isRequired,
     dispatch: PropTypes.func.isRequired
 };
