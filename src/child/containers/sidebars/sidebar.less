@@ -69,6 +69,10 @@
 .sidebars {
     .size(@width: @sidebar-width, @height: 100%);
     float: left;
+
+    &.active * {
+        pointer-events: none;
+    }
 }
 .sidetab-top {
     .size(@height: @toolbar-height);
