@@ -26,7 +26,7 @@ class Favourites extends Component {
         this.onDrop = this.onDrop.bind(this);
         this.onDragOver = this.onDragOver.bind(this);
         this.onDragStart = this.onDragStart.bind(this);
-        this.onDragEnd = this.onDragEnd.bind(this);
+        this.resetDragState = this.resetDragState.bind(this);
         this.onDropOutside = this.onDropOutside.bind(this);
 
         this.state = { unfavouritingStockCode: null };
@@ -136,10 +136,6 @@ class Favourites extends Component {
         e.preventDefault();
     }
 
-    onDragEnd() {
-        this.setState({ dragStartClientY: null, dragOverIndex: null });
-    }
-
     onDrop(e) {
         const { props, state } = this;
         const { dispatch, favourites, bindings } = props;
@@ -157,6 +153,10 @@ class Favourites extends Component {
         }
     }
 
+    resetDragState() {
+        this.setState({ dragStartClientY: null, dragOverIndex: null });
+    }
+
     render() {
         const { favourites, hasErrors, isStarting, selection } = this.props;
         const { unfavouritingStockCode, dragOverIndex } = this.state;
@@ -169,6 +169,7 @@ class Favourites extends Component {
             onModalBackdropClick: this.onModalBackdropClick,
             onIconClick: this.onIconClick,
             onDoubleClick: this.onDoubleClick,
+            resetDragState: this.resetDragState,
             onDropOutside: this.onDropOutside
         };
         return (
@@ -177,7 +178,7 @@ class Favourites extends Component {
               className="favDropTarget"
               onDragStart={this.onDragStart}
               onDragOver={this.onDragOver}
-              onDragEnd={this.onDragEnd}
+              onDragEnd={this.resetDragState}
               onDragLeave={this.onDragLeave}
               onDrag={this.onDrag}
               onDrop={this.onDrop}
