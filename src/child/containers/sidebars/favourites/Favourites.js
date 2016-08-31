@@ -1,8 +1,9 @@
 /* global $ */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { selectStock, quandlResponse, insertFavouriteAt } from '../../../actions/favourites';
-import { resizeToDefault } from '../../../actions/window';
+import { quandlResponse, insertFavouriteAt } from '../../../actions/favourites';
+import { selectStock } from '../../../actions/selection';
+import { resizeToPrevious } from '../../../actions/window';
 import favTabImage from '../../../assets/png/favourites_tab.png';
 import Favourite from '../../../components/favourite/Favourite.js';
 import { favouritesSelector as mapStateToProps } from '../../../selectors/selectors';
@@ -64,7 +65,7 @@ class Favourites extends Component {
 
     onDoubleClick(stockCode, stockName) {
         if (this.props.windowState.isCompact) {
-            this.props.dispatch(resizeToDefault());
+            this.props.dispatch(resizeToPrevious());
             this.props.dispatch(selectStock(stockCode, stockName));
         }
     }
