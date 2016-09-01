@@ -8,6 +8,9 @@ import currentWindowService from './services/currentWindowService';
 import 'babel-polyfill';
 
 import { open } from './actions/window';
+import { toggleFavourite } from './actions/favourites';
+import { selectFavourites } from './actions/sidebar';
+import { dragAccept } from '../parent/actions/parent';
 
 import './assets/styles/style.less';
 import '../../node_modules/d3fc/dist/d3fc.min.css';
@@ -31,6 +34,12 @@ currentWindowService.ready(() => {
     windowStateService.start();
 
     store.dispatch(open());
+
+    if (store.getState().dragOut) {
+        store.dispatch(toggleFavourite(store.getState().dragOut));
+        store.dispatch(selectFavourites());
+        store.dispatch(dragAccept());
+    }
 
     render(
         <Provider store={store}>

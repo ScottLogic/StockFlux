@@ -71,14 +71,21 @@ class Favourite extends Component {
             // TODO: fade out window if it's last stock
             const codeData = { code: stockCode };
             const windowData = { window: currentWindowService.getCurrentWindowName() };
+            const { clientX } = e;
+            const { offsetY } = e.nativeEvent;
 
-            this.setState({ isDragging: true });
+            this.setState({ isDragging: true, clientX, offsetY });
             e.dataTransfer.setData(JSON.stringify(codeData), '');  // used to access propery on dragEnter. Check getCodeFromDT in Sidebar.js
             e.dataTransfer.setData(JSON.stringify(windowData), '');
         };
     }
 
-    onDragEnd() {
+    onDragEnd(e) {
+        if (e.dataTransfer.dropEffect === 'none') {
+            const { screenX, screenY } = e;
+            const { clientX, offsetY } = this.state;
+            this.props.bindings.onDropOutside(this.props.stockCode, { screenX, screenY, clientX, offsetY });
+        }
         this.setState({ isDragging: false });
     }
 
@@ -182,7 +189,8 @@ Favourite.propTypes = {
         onQuandlResponse: PropTypes.func.isRequired,
         onDoubleClick: PropTypes.func.isRequired,
         onModalConfirmClick: PropTypes.func.isRequired,
-        onModalBackdropClick: PropTypes.func.isRequired
+        onModalBackdropClick: PropTypes.func.isRequired,
+        onDropOutside: PropTypes.func.isRequired
     }).isRequired,
     isFavourite: PropTypes.bool.isRequired,
     isUnfavouriting: PropTypes.bool.isRequired,

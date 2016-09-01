@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
 import childWindows from './childWindows';
+import dragOut from './dragOut';
 
 const rootReducer = combineReducers({
-    childWindows
+    childWindows,
+    dragOut
 });
 
 // Wrap the reducer in dev to freeze the state and action
