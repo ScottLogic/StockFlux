@@ -6,6 +6,12 @@ class ParentService {
     constructor(store) {
         this.store = store;
         this.onChildClosed = this.onChildClosed.bind(this);
+
+        fin.desktop.InterApplicationBus.subscribe(
+            fin.desktop.Application.getCurrent().uuid,
+            'createChildWindow',
+            position => this.createChildWindow(null, position)
+        );
     }
 
     getChildWindowCount() {
@@ -21,15 +27,19 @@ class ParentService {
         }
     }
 
-    createChildWindowSuccess(childWindow) {
+    createChildWindowSuccess(childWindow, position) {
+        if (position) {
+            childWindow.setBounds(position[0], position[1]);
+        }
+
         childWindow.show();
         childWindow.addEventListener('closed', this.onChildClosed);
     }
 
-    createChildWindow(windowName) {
+    createChildWindow(windowName, position) {
         const childWindow = new fin.desktop.Window(
             configService.getWindowConfig(windowName),
-            () => this.createChildWindowSuccess(childWindow)
+            () => this.createChildWindowSuccess(childWindow, position)
         );
     }
 

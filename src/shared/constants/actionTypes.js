@@ -40,5 +40,7 @@ export const WINDOW = {
 };
 
 export const PARENT = {
-    CLOSE: 'CLOSE'
+    CLOSE: 'CLOSE',
+    DRAG_OUT: 'DRAG_OUT',
+    DRAG_ACCEPT: 'DRAG_ACCEPT'
 };

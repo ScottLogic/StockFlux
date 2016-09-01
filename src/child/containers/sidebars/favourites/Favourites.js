@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { quandlResponse, insertFavouriteAt } from '../../../actions/favourites';
 import { selectStock } from '../../../actions/selection';
 import { resizeToPrevious } from '../../../actions/window';
+import { favouriteDroppedOutside } from '../../../../parent/actions/parent';
 import favTabImage from '../../../assets/png/favourites_tab.png';
 import Favourite from '../../../components/favourite/Favourite.js';
 import { favouritesSelector as mapStateToProps } from '../../../selectors/selectors';
@@ -26,6 +27,7 @@ class Favourites extends Component {
         this.onDragOver = this.onDragOver.bind(this);
         this.onDragStart = this.onDragStart.bind(this);
         this.onDragEnd = this.onDragEnd.bind(this);
+        this.onDropOutside = this.onDropOutside.bind(this);
 
         this.state = { unfavouritingStockCode: null };
     }
@@ -91,6 +93,12 @@ class Favourites extends Component {
     onModalBackdropClick(e) {
         this.setState({ unfavouritingStockCode: null });
         e.stopPropagation();
+    }
+
+    onDropOutside(stockCode, { screenX, screenY, clientX, offsetY }) {
+        const dropX = screenX - clientX;
+        const dropY = screenY - (this.sidetabTop.getBoundingClientRect().height + offsetY);
+        this.props.dispatch(favouriteDroppedOutside(stockCode, [dropX, dropY]));
     }
 
     onDragStart(e) {
@@ -160,7 +168,8 @@ class Favourites extends Component {
             onModalConfirmClick: this.onModalConfirmClick,
             onModalBackdropClick: this.onModalBackdropClick,
             onIconClick: this.onIconClick,
-            onDoubleClick: this.onDoubleClick
+            onDoubleClick: this.onDoubleClick,
+            onDropOutside: this.onDropOutside
         };
         return (
             <div
@@ -174,7 +183,7 @@ class Favourites extends Component {
               onDrop={this.onDrop}
               onDragLeave={this.onDragLeave}
             >
-                <div className="sidetab-top">
+                <div className="sidetab-top" ref={ref => { this.sidetabTop = ref; }}>
                     <img src={favTabImage} className="top-icon" title="Favourites List" draggable="false" />
                 </div>
                 <div id="favourite-scroll" ref={ref => { this.scrollArea = ref; }} className="side-scroll custom-scrollbar hiddenOnContracted">
