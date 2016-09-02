@@ -50,6 +50,13 @@ class Favourite extends Component {
             });
     }
 
+    componentWillUnmount() {
+        // onDragEnd is not called when a tile is successfully dragged into
+        // another window (as the Favourite is removed), therefore we have to
+        // reset the drag state here
+        this.props.bindings.resetDragState();
+    }
+
     onIconClick(e) {
         const { bindings, stockCode } = this.props;
 
@@ -190,6 +197,7 @@ Favourite.propTypes = {
         onDoubleClick: PropTypes.func.isRequired,
         onModalConfirmClick: PropTypes.func.isRequired,
         onModalBackdropClick: PropTypes.func.isRequired,
+        resetDragState: PropTypes.func.isRequired,
         onDropOutside: PropTypes.func.isRequired
     }).isRequired,
     isFavourite: PropTypes.bool.isRequired,

@@ -7,8 +7,8 @@ import classNames from 'classnames';
 import currentWindowService from '../../services/currentWindowService';
 
 import { selectFavourites, selectSearch } from '../../actions/sidebar';
-import { selectStock, unselectStock } from '../../actions/selection';
-import { toggleFavourite, insertFavouriteAt } from '../../actions/favourites';
+import { selectStock } from '../../actions/selection';
+import { toggleFavourite, moveFavouriteFromWindow } from '../../actions/favourites';
 
 import windowStateShape from '../../propTypeShapes/windowState';
 import selectionShape from '../../propTypeShapes/selection';
@@ -55,7 +55,7 @@ class Sidebar extends Component {
         const code = this.getCodeFromDT(e.dataTransfer.types);
         const codes = this.props.favourites.codes;
         if (!codes.includes(code)) {
-            this.props.dispatch(insertFavouriteAt(codes.length, code));
+            this.props.dispatch(moveFavouriteFromWindow(code, this.getWindowFromDT(e.dataTransfer.types)));
         }
         this.removeActive();
     }
@@ -111,17 +111,6 @@ class Sidebar extends Component {
 
     toggleFavourite(stockCode) {
         this.props.dispatch(toggleFavourite(stockCode));
-
-        const isFavourite = this.props.favourites.codes.some(favourite => favourite === stockCode);
-        if (this.props.selection.code === stockCode && isFavourite) {
-            if (this.props.favourites.codes.length >= 2) {
-                const newStockCode = this.props.favourites.codes.find(favourite => favourite !== stockCode);
-                const newStockName = this.props.favourites.names[newStockCode];
-                this.props.dispatch(selectStock(newStockCode, newStockName));
-            } else {
-                this.props.dispatch(unselectStock());
-            }
-        }
     }
 
     selectStock(stockCode, stockName) {

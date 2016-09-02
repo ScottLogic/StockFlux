@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import currentWindowServiceStub from '../../../helper/currentWindowServiceStub';
 import { insertFavouriteAt,
-         toggleFavourite,
+         toggleFavouriteInWindow,
          quandlResponse,
          __RewireAPI__ as rewiredActions } from '../../../../src/child/actions/favourites';
 import { FAVOURITES as ACTION_TYPES } from '../../../../src/shared/constants/actionTypes';
@@ -29,14 +29,15 @@ describe('child/actions/favourites', () => {
         expect(actualAction).to.deep.equal(expectedAction);
     });
 
-    it('should create an action to toggle a favourite', () => {
+    it('should create an action to toggle a favourite in a window', () => {
         const code = 'GOOG';
+        const windowName = 'window0002';
         const expectedAction = {
-            windowName: 'window0002',
             type: ACTION_TYPES.TOGGLE_FAVOURITE,
+            windowName,
             code
         };
-        const actualAction = toggleFavourite(code);
+        const actualAction = toggleFavouriteInWindow(code, windowName);
         expect(actualAction.type).to.be.a('string');
         expect(actualAction).to.deep.equal(expectedAction);
     });
