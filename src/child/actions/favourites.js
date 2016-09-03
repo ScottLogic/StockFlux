@@ -23,16 +23,16 @@ function toggleFavouriteInWindow(code, windowName) {
     };
 }
 
-export function toggleFavourite(code, windowName) {
+export function toggleFavourite(code, windowName = currentWindowService.getCurrentWindowName()) {
     return (dispatch, getState) => {
-        const windowToToggleFavouriteIn = windowName || currentWindowService.getCurrentWindowName();
-        const { favourites, selection } = getState().childWindows[windowToToggleFavouriteIn];
+        const { favourites, selection } = getState().childWindows[windowName];
 
-        dispatch(toggleFavouriteInWindow(code, windowToToggleFavouriteIn));
+        dispatch(toggleFavouriteInWindow(code, windowName));
 
+        const isSelected = selection.code === code;
         const isFavourite = favourites.codes.some(favourite => favourite === code);
-        if (selection.code === code && isFavourite) {
-            if (favourites.codes.length) {
+        if (isSelected && isFavourite) {
+            if (favourites.codes.length > 1) {
                 const newSelectedCode = favourites.codes.find(favourite => favourite !== code);
                 dispatch(selectStock(newSelectedCode, favourites.names[newSelectedCode]));
             } else {
