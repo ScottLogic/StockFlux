@@ -2,9 +2,9 @@
 StockFlux uses Google Analytics. This documents describes what's tracked and how.
 
 ## Tracking events
-Use the global ```function reportAction(category, action) ``` to add tracking to a user action.
+Use the global `function reportAction(category, action)` to add tracking to a user action.
 
-These will show in [google analytics](analytics.google.com) under Behaviour -> Events
+These will show in [Google Analytics](https://analytics.google.com) under Behaviour -> Events.
 
 Existing events include:
 - Window change
@@ -18,7 +18,7 @@ Existing events include:
 - Toggle
 - Restore window
 
-Existing action include
+Existing actions include:
 - Standard
 - Return to same
 - Start
@@ -39,8 +39,3 @@ Practical examples of this are:
 > /StockFlux/10.1.0/index.html
 
 GA treats different directories separately, giving us what pages where accessed in which release.
-
-
-
-
-
