@@ -16,7 +16,7 @@
     "prod": "npm run build && npm run serve",
     "clean": "rimraf public/*",
     "ci": "npm run lint && npm test && npm run build",
-    "lint": "eslint --plugin import jsx-ally react *.js src/ test/",
+    "lint": "eslint *.js src/ test/",
     "lint:fix": "npm run lint -- --fix",
     "test": "cross-env BABEL_ENV=test mocha --opts test/mocha.opts",
     "test:watch": "npm test -- --watch",
