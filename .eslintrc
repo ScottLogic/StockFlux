@@ -26,6 +26,8 @@
     "jsx-a11y/img-has-alt": 0
   },
   "plugins": [
-    "react"
+    "react",
+    "import",
+    "jsx-a11y"
   ]
 }
