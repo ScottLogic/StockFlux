@@ -59,6 +59,35 @@ class ConfigService {
         });
     }
 
+    getCompactWindowConfig(name) {
+        return this.getConfig(name, {
+            showTaskbarIcon: true,
+            saveWindowState: true,
+            url: 'index.html',
+            resizable: false,
+            maximizable: false,
+            minWidth: COMPACT_WINDOW_DIMENSIONS[0],
+            minHeight: COMPACT_WINDOW_DIMENSIONS[1],
+            defaultWidth: COMPACT_WINDOW_DIMENSIONS[0],
+            defaultHeight: COMPACT_WINDOW_DIMENSIONS[1]
+        });
+    }
+
+    getMaximizedWindowConfig(name) {
+        return this.getConfig(name, {
+            showTaskbarIcon: true,
+            saveWindowState: true,
+            url: 'index.html',
+            resizable: true,
+            maximizable: true,
+            state: 'maximized',
+            minWidth: DEFAULT_WINDOW_MIN_DIMENSIONS[0],
+            minHeight: DEFAULT_WINDOW_MIN_DIMENSIONS[1],
+            defaultWidth: DEFAULT_WINDOW_DIMENSIONS[0],
+            defaultHeight: DEFAULT_WINDOW_DIMENSIONS[1]
+        });
+    }
+
     getTearoutConfig(name) {
         return this.getConfig(name, {
             maximizable: false,
