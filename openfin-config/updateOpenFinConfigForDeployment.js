@@ -8,12 +8,12 @@ if (process.argv.length <= 2) {
 
 const deployName = process.argv[2];
 
-const validDeployableBranchNames = ['master', 'dev'];
+const validDeployableBranchNames = ['master', 'dev', 'react_redux'];
 const isInvalidDeployableBranchName = (name) => validDeployableBranchNames.indexOf(name) === -1;
 const isInvalidSemver = (name) => semver.valid(name) === null;
 
 if (isInvalidSemver(deployName) && isInvalidDeployableBranchName(deployName)) {
-    console.error('Deploy name must be a valid semver, "master", or "dev"');
+    console.error('Deploy name must be a valid semver, "master", "dev", or "react_redux"');
     process.exit(1);
 }
 
@@ -32,4 +32,5 @@ configBuilder.update({
     console.log('Updating of app.json succeeded');
 }).fail((err) => {
     console.error('Updating of app.json failed:', err);
+    process.exit(1);
 });
