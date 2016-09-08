@@ -28,9 +28,32 @@ describe('child/actions/selection', () => {
         expect(actualAction).to.deep.equal(expectedAction);
     });
 
+    it('should create an action to select a stock and allow window name to be overridden', () => {
+        const code = 'GOOG';
+        const name = 'Alphabet Inc (GOOG) Prices, Dividends, Splits and Trading Volume';
+        const windowName = 'window0001';
+        const expectedAction = {
+            windowName,
+            type: ACTION_TYPES.SELECTION,
+            code,
+            name
+        };
+        const actualAction = selectStock(code, name, windowName);
+        expect(actualAction.type).to.be.a('string');
+        expect(actualAction).to.deep.equal(expectedAction);
+    });
+
     it('should create an action to unselect a stock', () => {
         const expectedAction = { windowName: 'window0002', type: ACTION_TYPES.UNSELECT };
         const actualAction = unselectStock();
+        expect(actualAction.type).to.be.a('string');
+        expect(actualAction).to.deep.equal(expectedAction);
+    });
+
+    it('should create an action to unselect a stock and allow window name to be overridden', () => {
+        const windowName = 'window0001';
+        const expectedAction = { windowName, type: ACTION_TYPES.UNSELECT };
+        const actualAction = unselectStock(windowName);
         expect(actualAction.type).to.be.a('string');
         expect(actualAction).to.deep.equal(expectedAction);
     });
