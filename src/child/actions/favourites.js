@@ -34,9 +34,9 @@ export function toggleFavourite(code, windowName = currentWindowService.getCurre
         if (isSelected && isFavourite) {
             if (favourites.codes.length > 1) {
                 const newSelectedCode = favourites.codes.find(favourite => favourite !== code);
-                dispatch(selectStock(newSelectedCode, favourites.names[newSelectedCode]));
+                dispatch(selectStock(newSelectedCode, favourites.names[newSelectedCode], windowName));
             } else {
-                dispatch(unselectStock());
+                dispatch(unselectStock(windowName));
             }
         }
     };
