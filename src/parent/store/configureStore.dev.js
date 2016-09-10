@@ -3,7 +3,7 @@ import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
 import rootReducer from '../reducers/reducers.js';
 import devTools from 'remote-redux-devtools';
-import persistState from 'redux-localstorage';
+import persistState from '../middleware/persistState';
 
 const devToolsMiddleware = devTools({
     name: 'StockFlux',
