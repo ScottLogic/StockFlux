@@ -1,6 +1,8 @@
 {
-  "name": "bitflux-openfin",
+  "name": "StockFlux",
+  "description": "Hosts BitFlux as an OpenFin application.",
   "version": "10.1.0",
+  "private": true,
   "license": "GPL-3.0",
   "repository": {
     "type": "git",
@@ -93,6 +95,5 @@
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.0.1",
     "reselect": "^2.5.3"
-  },
-  "description": "Hosts the BitFlux as an OpenFin application."
+  }
 }
