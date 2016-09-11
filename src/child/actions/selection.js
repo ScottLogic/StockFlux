@@ -5,7 +5,11 @@ export const selectStock = createActionCreator((code, name, windowName) => ({
     type: ACTION_TYPES.SELECTION,
     windowName,
     code,
-    name
+    name,
+    analyticsEvent: {
+        category: 'Select stock',
+        action: code
+    }
 }));
 
 export const unselectStock = createActionCreator((windowName) => ({

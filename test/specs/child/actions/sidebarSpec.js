@@ -15,14 +15,28 @@ describe('child/actions/sidebar', () => {
     });
 
     it('should create an action to select search', () => {
-        const expectedAction = { windowName: 'window0002', type: ACTION_TYPES.SEARCH_CLICKED };
+        const expectedAction = {
+            windowName: 'window0002',
+            type: ACTION_TYPES.SEARCH_CLICKED,
+            analyticsEvent: {
+                category: 'Show',
+                action: 'Search'
+            }
+        };
         const actualAction = selectSearch();
         expect(actualAction.type).to.be.a('string');
         expect(actualAction).to.deep.equal(expectedAction);
     });
 
     it('should create an action to select favourites', () => {
-        const expectedAction = { windowName: 'window0002', type: ACTION_TYPES.FAV_CLICKED };
+        const expectedAction = {
+            windowName: 'window0002',
+            type: ACTION_TYPES.FAV_CLICKED,
+            analyticsEvent: {
+                category: 'Show',
+                action: 'Favourites'
+            }
+        };
         const actualAction = selectFavourites();
         expect(actualAction.type).to.be.a('string');
         expect(actualAction).to.deep.equal(expectedAction);

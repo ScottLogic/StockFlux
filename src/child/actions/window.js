@@ -4,30 +4,42 @@ import createActionCreator from '../utils/createActionCreator';
 import currentWindowService from '../services/currentWindowService';
 
 export const minimize = createActionCreator(() => ({
-    type: ACTION_TYPES.MINIMIZE
+    type: ACTION_TYPES.MINIMIZE,
+    analyticsEvent: {
+        category: 'Window change',
+        action: 'Minimised'
+    }
 }));
 
 export const compact = createActionCreator((isMaximized) => ({
     type: ACTION_TYPES.TOGGLE_COMPACT,
     isCompact: true,
-    previousMaximizedState: isMaximized
+    previousMaximizedState: isMaximized,
+    analyticsEvent: {
+        category: 'Window change',
+        action: 'Compact'
+    }
 }));
 
 export const expand = createActionCreator(() => ({
     type: ACTION_TYPES.TOGGLE_COMPACT,
-    isCompact: false
+    isCompact: false,
+    analyticsEvent: {
+        category: 'Window change',
+        action: 'Standard'
+    }
 }));
 
 export const resizing = createActionCreator(() => ({
     type: ACTION_TYPES.RESIZING
 }));
 
-export const fullView = createActionCreator(() => ({
-    type: ACTION_TYPES.STATE_FULL_VIEW
-}));
-
 export const maximize = createActionCreator(() => ({
-    type: ACTION_TYPES.MAXIMIZE
+    type: ACTION_TYPES.MAXIMIZE,
+    analyticsEvent: {
+        category: 'Window change',
+        action: 'Maximised'
+    }
 }));
 
 export const restore = createActionCreator(() => ({
