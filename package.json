@@ -24,7 +24,7 @@
     "test:watch": "npm test -- --watch",
     "test:cov": "cross-env BABEL_ENV=test babel-node node_modules/isparta/bin/isparta cover --report text --report html node_modules/mocha/bin/_mocha -- --opts test/mocha.opts",
     "postinstall": "cd node_modules/BitFlux && npm i && grunt build:module",
-    "remotedev": "remotedev --hostname=localhost --port=9090",
+    "remotedev": "remotedev --hostname=localhost --port=8000",
     "release": "npm run ci && npm version"
   },
   "devDependencies": {
