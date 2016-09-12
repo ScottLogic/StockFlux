@@ -9,7 +9,7 @@ const devToolsMiddleware = devTools({
     name: 'StockFlux',
     realtime: true,
     hostname: 'localhost',
-    port: 9090
+    port: 8000
 });
 
 const enhancer = compose(
