@@ -48,7 +48,7 @@ Start the remote redux dev tools server:
 ```
 npm run remotedev
 ```
-Navigate to `http://localhost:9090` or use the [redux devtools extension](https://github.com/zalmoxisus/redux-devtools-extension) to inspect and dispatch actions.
+Navigate to `http://localhost:8000` or use the [redux devtools extension](https://github.com/zalmoxisus/redux-devtools-extension) to inspect and dispatch actions.
 
 Launch the OpenFin runtime:
 
