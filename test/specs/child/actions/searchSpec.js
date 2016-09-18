@@ -71,7 +71,7 @@ describe('child/actions/search', () => {
             };
             const results = [result1, result2];
             const expectedActions = [
-                { windowName: 'window0002', type: ACTION_TYPES.SEARCH_STARTED, term },
+                { windowName: 'window0002', type: ACTION_TYPES.SEARCH_STARTED, term, analyticsEvent: { category: 'Search', action: term } },
                 { windowName: 'window0002', type: ACTION_TYPES.SEARCH_FINISHED, term, results }
             ];
 
@@ -88,7 +88,7 @@ describe('child/actions/search', () => {
         it('should create an action to error a search', () => {
             const term = 'BAD';
             const expectedActions = [
-                { windowName: 'window0002', type: ACTION_TYPES.SEARCH_STARTED, term },
+                { windowName: 'window0002', type: ACTION_TYPES.SEARCH_STARTED, term, analyticsEvent: { category: 'Search', action: term } },
                 { windowName: 'window0002', type: ACTION_TYPES.SEARCH_ERROR }
             ];
 

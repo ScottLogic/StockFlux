@@ -21,7 +21,11 @@ describe('child/actions/selection', () => {
             windowName: 'window0002',
             type: ACTION_TYPES.SELECTION,
             code,
-            name
+            name,
+            analyticsEvent: {
+                category: 'Select stock',
+                action: code
+            }
         };
         const actualAction = selectStock(code, name);
         expect(actualAction.type).to.be.a('string');
@@ -36,7 +40,11 @@ describe('child/actions/selection', () => {
             windowName,
             type: ACTION_TYPES.SELECTION,
             code,
-            name
+            name,
+            analyticsEvent: {
+                category: 'Select stock',
+                action: code
+            }
         };
         const actualAction = selectStock(code, name, windowName);
         expect(actualAction.type).to.be.a('string');

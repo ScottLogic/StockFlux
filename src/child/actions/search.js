@@ -13,7 +13,11 @@ const clearSearch = createActionCreator(() => ({
 
 const searchStarted = createActionCreator((term) => ({
     type: ACTION_TYPES.SEARCH_STARTED,
-    term
+    term,
+    analyticsEvent: {
+        category: 'Search',
+        action: term
+    }
 }));
 
 const searchFinished = createActionCreator((term, results) => ({

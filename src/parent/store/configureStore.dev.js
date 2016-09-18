@@ -4,6 +4,7 @@ import createLogger from 'redux-logger';
 import rootReducer from '../reducers/reducers.js';
 import devTools from 'remote-redux-devtools';
 import persistState from '../middleware/persistState';
+import analytics from '../middleware/analytics';
 
 const devToolsMiddleware = devTools({
     name: 'StockFlux',
@@ -14,7 +15,7 @@ const devToolsMiddleware = devTools({
 
 const enhancer = compose(
     // Middleware you want to use in development:
-    applyMiddleware(thunkMiddleware, createLogger()),
+    applyMiddleware(thunkMiddleware, createLogger(), analytics),
     // Required! Enable Redux DevTools with the monitors you chose
     devToolsMiddleware,
     persistState()

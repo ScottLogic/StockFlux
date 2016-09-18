@@ -5,7 +5,6 @@ import currentWindowServiceStub from '../../../helper/currentWindowServiceStub';
 import { minimize,
          compact,
          expand,
-         fullView,
          maximize,
          restore,
          resizing,
@@ -25,7 +24,14 @@ describe('child/actions/window', () => {
     });
 
     it('should create an action for minimize', () => {
-        const expectedAction = { windowName: 'window0002', type: ACTION_TYPES.MINIMIZE };
+        const expectedAction = {
+            windowName: 'window0002',
+            type: ACTION_TYPES.MINIMIZE,
+            analyticsEvent: {
+                category: 'Window change',
+                action: 'Minimised'
+            }
+        };
         const actualAction = minimize();
         expect(actualAction).to.deep.equal(expectedAction);
     });
@@ -37,7 +43,11 @@ describe('child/actions/window', () => {
             windowName: 'window0002',
             type: ACTION_TYPES.TOGGLE_COMPACT,
             isCompact: true,
-            previousMaximizedState
+            previousMaximizedState,
+            analyticsEvent: {
+                category: 'Window change',
+                action: 'Compact'
+            }
         };
         const actualAction = compact(previousMaximizedState, previousExpandedDimensions);
         expect(actualAction.type).to.be.a('string');
@@ -48,22 +58,26 @@ describe('child/actions/window', () => {
         const expectedAction = {
             windowName: 'window0002',
             type: ACTION_TYPES.TOGGLE_COMPACT,
-            isCompact: false
+            isCompact: false,
+            analyticsEvent: {
+                category: 'Window change',
+                action: 'Standard'
+            }
         };
         const actualAction = expand();
         expect(actualAction.type).to.be.a('string');
         expect(actualAction).to.deep.equal(expectedAction);
     });
 
-    it('should create an action for full view', () => {
-        const expectedAction = { windowName: 'window0002', type: ACTION_TYPES.STATE_FULL_VIEW };
-        const actualAction = fullView();
-        expect(actualAction.type).to.be.a('string');
-        expect(actualAction).to.deep.equal(expectedAction);
-    });
-
     it('should create an action for maximize', () => {
-        const expectedAction = { windowName: 'window0002', type: ACTION_TYPES.MAXIMIZE };
+        const expectedAction = {
+            windowName: 'window0002',
+            type: ACTION_TYPES.MAXIMIZE,
+            analyticsEvent: {
+                category: 'Window change',
+                action: 'Maximised'
+            }
+        };
         const actualAction = maximize();
         expect(actualAction.type).to.be.a('string');
         expect(actualAction).to.deep.equal(expectedAction);
@@ -123,7 +137,7 @@ describe('child/actions/window', () => {
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS_SUCCESS },
                     { windowName: 'window0002', type: ACTION_TYPES.RESIZING },
                     { windowName: 'window0002', type: ACTION_TYPES.RESIZE_SUCCESS },
-                    { windowName: 'window0002', type: ACTION_TYPES.TOGGLE_COMPACT, isCompact: true, previousMaximizedState: false }
+                    { windowName: 'window0002', type: ACTION_TYPES.TOGGLE_COMPACT, isCompact: true, previousMaximizedState: false, analyticsEvent: { category: 'Window change', action: 'Compact' } }
                 ];
 
                 currentWindowServiceStub.updateOptions.callsArg(1); // call success callback
@@ -146,7 +160,7 @@ describe('child/actions/window', () => {
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS_ERROR },
                     { windowName: 'window0002', type: ACTION_TYPES.RESIZING },
                     { windowName: 'window0002', type: ACTION_TYPES.RESIZE_SUCCESS },
-                    { windowName: 'window0002', type: ACTION_TYPES.TOGGLE_COMPACT, isCompact: true, previousMaximizedState: false }
+                    { windowName: 'window0002', type: ACTION_TYPES.TOGGLE_COMPACT, isCompact: true, previousMaximizedState: false, analyticsEvent: { category: 'Window change', action: 'Compact' } }
                 ];
 
                 currentWindowServiceStub.updateOptions.callsArg(2); // call error callback
@@ -217,7 +231,7 @@ describe('child/actions/window', () => {
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS_SUCCESS },
                     { windowName: 'window0002', type: ACTION_TYPES.RESIZING },
                     { windowName: 'window0002', type: ACTION_TYPES.RESIZE_SUCCESS },
-                    { windowName: 'window0002', type: ACTION_TYPES.TOGGLE_COMPACT, isCompact: false }
+                    { windowName: 'window0002', type: ACTION_TYPES.TOGGLE_COMPACT, isCompact: false, analyticsEvent: { category: 'Window change', action: 'Standard' } }
                 ];
 
                 currentWindowServiceStub.updateOptions.callsArg(1); // call success callback
@@ -240,7 +254,7 @@ describe('child/actions/window', () => {
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS_ERROR },
                     { windowName: 'window0002', type: ACTION_TYPES.RESIZING },
                     { windowName: 'window0002', type: ACTION_TYPES.RESIZE_SUCCESS },
-                    { windowName: 'window0002', type: ACTION_TYPES.TOGGLE_COMPACT, isCompact: false }
+                    { windowName: 'window0002', type: ACTION_TYPES.TOGGLE_COMPACT, isCompact: false, analyticsEvent: { category: 'Window change', action: 'Standard' } }
                 ];
 
                 currentWindowServiceStub.updateOptions.callsArg(2); // call error callback
