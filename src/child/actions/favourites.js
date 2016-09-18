@@ -19,7 +19,11 @@ function toggleFavouriteInWindow(code, windowName) {
     return {
         type: ACTION_TYPES.TOGGLE_FAVOURITE,
         windowName,
-        code
+        code,
+        analyticsEvent: {
+            category: 'Toggle Favourite',
+            action: code
+        }
     };
 }
 

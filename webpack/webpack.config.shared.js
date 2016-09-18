@@ -3,7 +3,8 @@ const webpack = require('webpack');
 module.exports = {
     entry: {
         child: ['./src/child/index.js'],
-        parent: ['./src/parent/parent.js']
+        parent: ['./src/parent/parent.js'],
+        analytics: ['./src/parent/analytics/analytics.js']
     },
     output: {
         filename: './[name]_bundle.js'
