@@ -76,7 +76,15 @@ describe('child/actions/favourites', () => {
                 const windowName = 'window0002';
 
                 const expectedActions = [
-                    { windowName, code, type: FAVOURITES_ACTION_TYPES.TOGGLE_FAVOURITE }
+                    {
+                        windowName,
+                        code,
+                        type: FAVOURITES_ACTION_TYPES.TOGGLE_FAVOURITE,
+                        analyticsEvent: {
+                            category: 'Toggle Favourite',
+                            action: code
+                        }
+                    }
                 ];
 
                 store.dispatch(toggleFavourite(code));
@@ -102,7 +110,15 @@ describe('child/actions/favourites', () => {
                 const windowName = 'window0003';
 
                 const expectedActions = [
-                    { windowName, code, type: FAVOURITES_ACTION_TYPES.TOGGLE_FAVOURITE }
+                    {
+                        windowName,
+                        code,
+                        type: FAVOURITES_ACTION_TYPES.TOGGLE_FAVOURITE,
+                        analyticsEvent: {
+                            category: 'Toggle Favourite',
+                            action: code
+                        }
+                    }
                 ];
 
                 store.dispatch(toggleFavourite(code, windowName));
@@ -130,7 +146,15 @@ describe('child/actions/favourites', () => {
                 const windowName = 'window0002';
 
                 const expectedActions = [
-                    { windowName, code, type: FAVOURITES_ACTION_TYPES.TOGGLE_FAVOURITE }
+                    {
+                        windowName,
+                        code,
+                        type: FAVOURITES_ACTION_TYPES.TOGGLE_FAVOURITE,
+                        analyticsEvent: {
+                            category: 'Toggle Favourite',
+                            action: code
+                        }
+                    }
                 ];
 
                 store.dispatch(toggleFavourite(code, windowName));
@@ -162,7 +186,15 @@ describe('child/actions/favourites', () => {
                 const windowName = 'window0002';
 
                 const expectedActions = [
-                    { windowName, code, type: FAVOURITES_ACTION_TYPES.TOGGLE_FAVOURITE }
+                    {
+                        windowName,
+                        code,
+                        type: FAVOURITES_ACTION_TYPES.TOGGLE_FAVOURITE,
+                        analyticsEvent: {
+                            category: 'Toggle Favourite',
+                            action: code
+                        }
+                    }
                 ];
 
                 store.dispatch(toggleFavourite(code, windowName));
@@ -191,7 +223,15 @@ describe('child/actions/favourites', () => {
                 const windowName = 'window0002';
 
                 const expectedActions = [
-                    { windowName, code, type: FAVOURITES_ACTION_TYPES.TOGGLE_FAVOURITE }
+                    {
+                        windowName,
+                        code,
+                        type: FAVOURITES_ACTION_TYPES.TOGGLE_FAVOURITE,
+                        analyticsEvent: {
+                            category: 'Toggle Favourite',
+                            action: code
+                        }
+                    }
                 ];
 
                 store.dispatch(toggleFavourite(code, windowName));
@@ -222,8 +262,19 @@ describe('child/actions/favourites', () => {
                 const windowName = 'window0002';
 
                 const expectedActions = [
-                    { windowName, code, type: FAVOURITES_ACTION_TYPES.TOGGLE_FAVOURITE },
-                    { windowName, type: SELECTION_ACTION_TYPES.UNSELECT }
+                    {
+                        windowName,
+                        code,
+                        type: FAVOURITES_ACTION_TYPES.TOGGLE_FAVOURITE,
+                        analyticsEvent: {
+                            category: 'Toggle Favourite',
+                            action: code
+                        }
+                    },
+                    {
+                        windowName,
+                        type: SELECTION_ACTION_TYPES.UNSELECT
+                    }
                 ];
 
                 store.dispatch(toggleFavourite(code, windowName));
@@ -260,8 +311,25 @@ describe('child/actions/favourites', () => {
                 const windowName = 'window0002';
 
                 const expectedActions = [
-                    { windowName, code: favouriteToToggleCode, type: FAVOURITES_ACTION_TYPES.TOGGLE_FAVOURITE },
-                    { windowName, code: favouriteToSelectCode, name: favouriteToSelectName, type: SELECTION_ACTION_TYPES.SELECTION }
+                    {
+                        windowName,
+                        code: favouriteToToggleCode,
+                        type: FAVOURITES_ACTION_TYPES.TOGGLE_FAVOURITE,
+                        analyticsEvent: {
+                            category: 'Toggle Favourite',
+                            action: favouriteToToggleCode
+                        }
+                    },
+                    {
+                        windowName,
+                        code: favouriteToSelectCode,
+                        name: favouriteToSelectName,
+                        type: SELECTION_ACTION_TYPES.SELECTION,
+                        analyticsEvent: {
+                            category: 'Select stock',
+                            action: favouriteToSelectCode
+                        }
+                    }
                 ];
 
                 store.dispatch(toggleFavourite(favouriteToToggleCode, windowName));
@@ -297,8 +365,25 @@ describe('child/actions/favourites', () => {
                 const windowName = 'window0002';
 
                 const expectedActions = [
-                    { windowName, code: favouriteToToggleCode, type: FAVOURITES_ACTION_TYPES.TOGGLE_FAVOURITE },
-                    { windowName, code: favouriteToSelectCode, name: favouriteToSelectName, type: SELECTION_ACTION_TYPES.SELECTION }
+                    {
+                        windowName,
+                        code: favouriteToToggleCode,
+                        type: FAVOURITES_ACTION_TYPES.TOGGLE_FAVOURITE,
+                        analyticsEvent: {
+                            category: 'Toggle Favourite',
+                            action: favouriteToToggleCode
+                        }
+                    },
+                    {
+                        windowName,
+                        code: favouriteToSelectCode,
+                        name: favouriteToSelectName,
+                        type: SELECTION_ACTION_TYPES.SELECTION,
+                        analyticsEvent: {
+                            category: 'Select stock',
+                            action: favouriteToSelectCode
+                        }
+                    }
                 ];
 
                 store.dispatch(toggleFavourite(favouriteToToggleCode, windowName));
