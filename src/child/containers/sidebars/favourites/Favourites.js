@@ -95,10 +95,10 @@ class Favourites extends Component {
         e.stopPropagation();
     }
 
-    onDropOutside(stockCode, { screenX, screenY, clientX, offsetY }) {
+    onDropOutside(stockCode, stockName, { screenX, screenY, clientX, offsetY }) {
         const dropX = screenX - clientX;
         const dropY = screenY - (this.sidetabTop.getBoundingClientRect().height + offsetY);
-        this.props.dispatch(favouriteDroppedOutside(stockCode, [dropX, dropY]));
+        this.props.dispatch(favouriteDroppedOutside(stockCode, stockName, [dropX, dropY]));
     }
 
     onDragStart(e) {
