@@ -9,10 +9,11 @@ export function close(windowName) {
     };
 }
 
-function dragOut(code) {
+function dragOut(code, name) {
     return {
         type: ACTION_TYPES.DRAG_OUT,
-        code
+        code,
+        name
     };
 }
 
@@ -22,9 +23,9 @@ export function dragAccept() {
     };
 }
 
-export function favouriteDroppedOutside(code, position) {
+export function favouriteDroppedOutside(code, name, position) {
     return (dispatch, getState) => {
-        dispatch(dragOut(code));
+        dispatch(dragOut(code, name));
         fin.desktop.InterApplicationBus.send(
             fin.desktop.Application.getCurrent().uuid,
             'createChildWindow',

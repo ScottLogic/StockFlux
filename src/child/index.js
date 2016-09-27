@@ -9,6 +9,7 @@ import 'babel-polyfill';
 
 import { open } from './actions/window';
 import { toggleFavourite } from './actions/favourites';
+import { selectStock } from './actions/selection';
 import { selectFavourites } from './actions/sidebar';
 import { dragAccept } from '../parent/actions/parent';
 
@@ -35,8 +36,10 @@ currentWindowService.ready(() => {
 
     store.dispatch(open());
 
-    if (store.getState().dragOut) {
-        store.dispatch(toggleFavourite(store.getState().dragOut));
+    const { dragOut } = store.getState();
+    if (dragOut !== null) {
+        store.dispatch(toggleFavourite(dragOut.code));
+        store.dispatch(selectStock(dragOut.code, dragOut.name));
         store.dispatch(selectFavourites());
         store.dispatch(dragAccept());
     }

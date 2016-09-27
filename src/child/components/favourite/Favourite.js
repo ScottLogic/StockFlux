@@ -91,7 +91,9 @@ class Favourite extends Component {
         if (e.dataTransfer.dropEffect === 'none') {
             const { screenX, screenY } = e;
             const { clientX, offsetY } = this.state;
-            this.props.bindings.onDropOutside(this.props.stockCode, { screenX, screenY, clientX, offsetY });
+            let { stockData } = this.state;
+            stockData = stockData || {};
+            this.props.bindings.onDropOutside(this.props.stockCode, stockData.name, { screenX, screenY, clientX, offsetY });
         }
         this.setState({ isDragging: false });
     }
