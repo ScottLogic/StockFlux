@@ -19,7 +19,7 @@ class ParentService {
     }
 
     onChildClosed({ name }) {
-        this.store.dispatch(close(name));
+        this.store.dispatch(close(name, Date.now()));
 
         // Close the main parent window if all child windows are closed
         if (this.getChildWindowCount() === 0 && this.store.getState().dragOut === null) {

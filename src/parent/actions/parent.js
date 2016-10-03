@@ -2,9 +2,10 @@ import { PARENT as ACTION_TYPES } from '../../shared/constants/actionTypes';
 import { toggleFavourite } from '../../child/actions/favourites';
 import currentWindowService from '../../child/services/currentWindowService';
 
-export function close(windowName) {
+export function close(windowName, date) {
     return {
         windowName,
+        date,
         type: ACTION_TYPES.CLOSE
     };
 }

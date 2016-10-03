@@ -7,5 +7,3 @@ fin.desktop.main(() => {
     const parentService = new ParentService(store);
     parentService.start();
 });
-
-window.parent = window;

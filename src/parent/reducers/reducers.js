@@ -27,13 +27,14 @@ const rootReducer = reduceReducers(
                 childWindows: Object.assign({}, state.childWindows, {
                     [action.reopenWindowName]: newClosedWindow
                 }),
-                closedWindows: newClosedWindows
+                closedWindows: newClosedWindows,
+                dragOut: state.dragOut ? Object.assign({}, state.dragOut) : null
             };
         }
 
         case PARENT.CLOSE: {
             const newClosedWindow = Object.assign({}, state.childWindows[action.windowName], {
-                date: Date.now()
+                date: action.date
             });
 
             const newChildWindows = Object.assign({}, state.childWindows);
@@ -42,11 +43,21 @@ const rootReducer = reduceReducers(
 
             const numberOfFavourites = state.childWindows[action.windowName].favourites.codes.length;
 
+            const newClosedWindows = Object.assign({}, state.closedWindows, numberOfFavourites ? {
+                [action.windowName]: newClosedWindow
+            } : {});
+
+            const limitedClosedWindows = Object.keys(newClosedWindows)
+                .sort((a, b) => newClosedWindows[a].date - newClosedWindows[b].date)
+                .slice(-5)
+                .reduce((prev, key) => Object.assign(prev, {
+                    [key]: newClosedWindows[key]
+                }), {});
+
             return {
                 childWindows: newChildWindows,
-                closedWindows: Object.assign({}, state.closedWindows, numberOfFavourites ? {
-                    [action.windowName]: newClosedWindow
-                } : {})
+                closedWindows: limitedClosedWindows,
+                dragOut: state.dragOut ? Object.assign({}, state.dragOut) : null
             };
         }
 

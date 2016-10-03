@@ -126,7 +126,7 @@ class Sidebar extends Component {
     }
 
     render() {
-        const { sidebar, numberOfClosedWindows } = this.props;
+        const { sidebar, closedWindowsCount } = this.props;
 
         let bindings = {
             toggleFavourite: this.toggleFavourite,
@@ -161,7 +161,7 @@ class Sidebar extends Component {
                     <Favourites bindings={bindings} />
                 </div>
                 <div className="closed-window-selection">
-                    {numberOfClosedWindows ? <ClosedWindows bindings={bindings} /> : null}
+                    {closedWindowsCount ? <ClosedWindows bindings={bindings} /> : null}
                 </div>
             </div>
         );
@@ -173,7 +173,7 @@ Sidebar.propTypes = {
     windowState: windowStateShape.isRequired,
     selection: selectionShape.isRequired,
     favourites: favouritesShape.isRequired,
-    numberOfClosedWindows: PropTypes.number.isRequired
+    closedWindowsCount: PropTypes.number.isRequired
 };
 
 export default connect(mapStateToProps)(Sidebar);

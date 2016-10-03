@@ -23,8 +23,9 @@ const windowReopened = createActionCreator((reopenWindowName) => ({
     reopenWindowName
 }));
 
-const openWindowError = createActionCreator(() => ({
-    type: ACTION_TYPES.OPEN_WINDOW_ERROR
+const openWindowError = createActionCreator((reopenWindowName) => ({
+    type: ACTION_TYPES.OPEN_WINDOW_ERROR,
+    reopenWindowName
 }));
 
 export function reopenWindow(windowName) {
@@ -36,7 +37,7 @@ export function reopenWindow(windowName) {
                 () => dispatch(windowReopened(windowName)),
                 () => dispatch(openWindowError())
             ),
-            () => dispatch(openWindowError())
+            () => dispatch(openWindowError(windowName))
         );
     };
 }

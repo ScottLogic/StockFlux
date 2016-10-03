@@ -149,7 +149,7 @@ describe('child/selectors/selectors', () => {
                     isMaximised: false,
                     isResizing: false
                 },
-                numberOfClosedWindows: 1
+                closedWindowsCount: 1
             };
             expect(sidebarSelector(intitialState)).to.deep.equal(expectedResult);
         });

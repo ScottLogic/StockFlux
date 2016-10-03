@@ -32,10 +32,9 @@ export const searchSelector = createCurrentWindowStateSelector(
 export const sidebarSelector = createSelector(
     [getClosedWindows, getCurrentWindowState],
     (closedWindows, currentWindowState) => {
-        const closedWindowNames = closedWindows ? Object.keys(closedWindows) : [];
-        const numberOfClosedWindows = closedWindowNames.length;
+        const closedWindowsCount = Object.keys(closedWindows).length;
         const { sidebar, selection, favourites, windowState } = currentWindowState;
-        return { sidebar, selection, favourites, windowState, numberOfClosedWindows };
+        return { sidebar, selection, favourites, windowState, closedWindowsCount };
     }
 );
 
@@ -48,10 +47,7 @@ export const toolbarSelector = createCurrentWindowStateSelector(
 
 export const closedWindowsSelector = createSelector(
     getClosedWindows,
-    (state) => {
-        const closedWindows = state || {};
-        return { closedWindows };
-    }
+    (closedWindows) => ({ closedWindows })
 );
 
 export const openWindowNamesSelector = createSelector(
