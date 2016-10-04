@@ -7,7 +7,8 @@ import { sidebarSelector as mapStateToProps } from '../../selectors/selectors';
 import classNames from 'classnames';
 import currentWindowService from '../../services/currentWindowService';
 
-import { selectFavourites, selectSearch, reopenWindow } from '../../actions/sidebar';
+import { openClosedWindow } from '../../../parent/actions/parent';
+import { selectFavourites, selectSearch } from '../../actions/sidebar';
 import { selectStock } from '../../actions/selection';
 import { toggleFavourite, moveFavouriteFromWindow } from '../../actions/favourites';
 
@@ -122,7 +123,7 @@ class Sidebar extends Component {
     }
 
     openWindow(windowName) {
-        this.props.dispatch(reopenWindow(windowName));
+        this.props.dispatch(openClosedWindow(windowName));
     }
 
     render() {

@@ -26,10 +26,9 @@ require('script!../../node_modules/d3fc/dist/d3fc.bundle.min.js');
 require('script!../../node_modules/BitFlux/dist/bitflux.js');
 /* eslint-enable import/no-unresolved */
 
-const { store } = window.opener;
-
 currentWindowService.ready(() => {
     const currentWindow = currentWindowService.getCurrentWindow();
+    const store = currentWindow.contentWindow.opener.store;
     const rootElement = document.getElementById('app');
 
     const windowStateService = new WindowStateService(currentWindow, store, rootElement);

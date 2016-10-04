@@ -10,7 +10,7 @@ class ParentService {
         fin.desktop.InterApplicationBus.subscribe(
             fin.desktop.Application.getCurrent().uuid,
             'createChildWindow',
-            position => this.createChildWindow(null, position)
+            ({ windowName, position }) => this.createChildWindow(windowName, position)
         );
     }
 

@@ -10,6 +10,13 @@ export function close(windowName, date) {
     };
 }
 
+function reopen(windowName) {
+    return {
+        windowName,
+        type: ACTION_TYPES.REOPEN
+    };
+}
+
 function dragOut(code, name) {
     return {
         type: ACTION_TYPES.DRAG_OUT,
@@ -30,7 +37,7 @@ export function favouriteDroppedOutside(code, name, position) {
         fin.desktop.InterApplicationBus.send(
             fin.desktop.Application.getCurrent().uuid,
             'createChildWindow',
-            position
+            { position }
         );
 
         const currentWindowName = currentWindowService.getCurrentWindowName();
@@ -42,5 +49,16 @@ export function favouriteDroppedOutside(code, name, position) {
                 children.find(childWindow => childWindow.name === currentWindowName).close();
             });
         }
+    };
+}
+
+export function openClosedWindow(windowName) {
+    return dispatch => {
+        dispatch(reopen(windowName));
+        fin.desktop.InterApplicationBus.send(
+            fin.desktop.Application.getCurrent().uuid,
+            'createChildWindow',
+            { windowName }
+        );
     };
 }

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import reduceReducers from 'reduce-reducers';
 
-import { PARENT, SIDEBAR } from '../../shared/constants/actionTypes';
+import { PARENT as ACTION_TYPES } from '../../shared/constants/actionTypes';
 
 import childWindows from './childWindows';
 import closedWindows from './closedWindows';
@@ -15,24 +15,24 @@ const rootReducer = reduceReducers(
     }),
     (state, action) => {
         switch (action.type) {
-        case SIDEBAR.REOPEN_WINDOW: {
-            const newClosedWindow = Object.assign({}, state.closedWindows[action.reopenWindowName], {});
+        case ACTION_TYPES.REOPEN: {
+            const newClosedWindow = Object.assign({}, state.closedWindows[action.windowName], {});
 
             delete newClosedWindow.date;
 
             const newClosedWindows = Object.assign({}, state.closedWindows);
-            delete newClosedWindows[action.reopenWindowName];
+            delete newClosedWindows[action.windowName];
 
             return {
                 childWindows: Object.assign({}, state.childWindows, {
-                    [action.reopenWindowName]: newClosedWindow
+                    [action.windowName]: newClosedWindow
                 }),
                 closedWindows: newClosedWindows,
-                dragOut: state.dragOut ? Object.assign({}, state.dragOut) : null
+                dragOut: state.dragOut
             };
         }
 
-        case PARENT.CLOSE: {
+        case ACTION_TYPES.CLOSE: {
             const newClosedWindow = Object.assign({}, state.childWindows[action.windowName], {
                 date: action.date
             });
@@ -57,7 +57,7 @@ const rootReducer = reduceReducers(
             return {
                 childWindows: newChildWindows,
                 closedWindows: limitedClosedWindows,
-                dragOut: state.dragOut ? Object.assign({}, state.dragOut) : null
+                dragOut: state.dragOut
             };
         }
 
