@@ -90,6 +90,7 @@
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-redux": "^4.4.4",
+    "reduce-reducers": "^0.1.2",
     "redux": "^3.4.0",
     "redux-localstorage": "^0.4.1",
     "redux-logger": "^2.6.1",

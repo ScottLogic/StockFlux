@@ -2,10 +2,18 @@ import { PARENT as ACTION_TYPES } from '../../shared/constants/actionTypes';
 import { toggleFavourite } from '../../child/actions/favourites';
 import currentWindowService from '../../child/services/currentWindowService';
 
-export function close(windowName) {
+export function close(windowName, date) {
     return {
         windowName,
+        date,
         type: ACTION_TYPES.CLOSE
+    };
+}
+
+function reopen(windowName) {
+    return {
+        windowName,
+        type: ACTION_TYPES.REOPEN
     };
 }
 
@@ -24,22 +32,30 @@ export function dragAccept() {
 }
 
 export function favouriteDroppedOutside(code, name, position) {
-    return (dispatch, getState) => {
+    return dispatch => {
         dispatch(dragOut(code, name));
         fin.desktop.InterApplicationBus.send(
             fin.desktop.Application.getCurrent().uuid,
             'createChildWindow',
-            position
+            { position }
         );
 
         const currentWindowName = currentWindowService.getCurrentWindowName();
-        if (getState().childWindows[currentWindowName].favourites.codes.length > 1) {
-            dispatch(toggleFavourite(code));
-        } else {
-            const application = fin.desktop.Application.getCurrent();
-            application.getChildWindows(children => {
-                children.find(childWindow => childWindow.name === currentWindowName).close();
-            });
-        }
+        dispatch(toggleFavourite(code));
+        const application = fin.desktop.Application.getCurrent();
+        application.getChildWindows(children => {
+            children.find(childWindow => childWindow.name === currentWindowName).close();
+        });
+    };
+}
+
+export function openClosedWindow(windowName) {
+    return dispatch => {
+        dispatch(reopen(windowName));
+        fin.desktop.InterApplicationBus.send(
+            fin.desktop.Application.getCurrent().uuid,
+            'createChildWindow',
+            { windowName }
+        );
     };
 }
