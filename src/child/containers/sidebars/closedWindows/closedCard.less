@@ -1,0 +1,23 @@
+.closed-time {
+  .font(12px, @font-light);
+}
+
+.closed-stocks {
+  .font(14px);
+  .wrap-ellipsis;
+}
+
+.closed-card {
+  .size(@height: 70px);
+  padding: 15px 12px 15px 12px;
+  cursor: default;
+  .no-overflow;
+
+  &:hover {
+    background: @dark-background;
+  }
+}
+
+.closed-selection .closed-card-container:not(:last-child) {
+  border-bottom: 1px solid @dark-background;
+}
