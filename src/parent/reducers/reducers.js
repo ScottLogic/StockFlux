@@ -16,16 +16,16 @@ const rootReducer = reduceReducers(
     (state, action) => {
         switch (action.type) {
         case ACTION_TYPES.REOPEN: {
-            const newClosedWindow = Object.assign({}, state.closedWindows[action.windowName], {});
+            const windowToReopen = Object.assign({}, state.closedWindows[action.windowName]);
 
-            delete newClosedWindow.date;
+            delete windowToReopen.date;
 
             const newClosedWindows = Object.assign({}, state.closedWindows);
             delete newClosedWindows[action.windowName];
 
             return {
                 childWindows: Object.assign({}, state.childWindows, {
-                    [action.windowName]: newClosedWindow
+                    [action.windowName]: windowToReopen
                 }),
                 closedWindows: newClosedWindows,
                 dragOut: state.dragOut
@@ -41,17 +41,17 @@ const rootReducer = reduceReducers(
 
             delete newChildWindows[action.windowName];
 
-            const numberOfFavourites = state.childWindows[action.windowName].favourites.codes.length;
+            const closingWindowHasFavourites = state.childWindows[action.windowName].favourites.codes.length > 0;
 
-            const newClosedWindows = Object.assign({}, state.closedWindows, numberOfFavourites ? {
+            const newClosedWindows = Object.assign({}, state.closedWindows, closingWindowHasFavourites ? {
                 [action.windowName]: newClosedWindow
             } : {});
 
             const limitedClosedWindows = Object.keys(newClosedWindows)
                 .sort((a, b) => newClosedWindows[a].date - newClosedWindows[b].date)
                 .slice(-5)
-                .reduce((prev, key) => Object.assign(prev, {
-                    [key]: newClosedWindows[key]
+                .reduce((prev, windowName) => Object.assign(prev, {
+                    [windowName]: newClosedWindows[windowName]
                 }), {});
 
             return {

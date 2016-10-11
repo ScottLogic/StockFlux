@@ -34,8 +34,6 @@ currentWindowService.ready(() => {
     const windowStateService = new WindowStateService(currentWindow, store, rootElement);
     windowStateService.start();
 
-    window.store = store;
-
     store.dispatch(open());
 
     const { dragOut } = store.getState();
