@@ -32,7 +32,7 @@ export function dragAccept() {
 }
 
 export function favouriteDroppedOutside(code, name, position) {
-    return dispatch => {
+    return (dispatch, getState) => {
         dispatch(dragOut(code, name));
         fin.desktop.InterApplicationBus.send(
             fin.desktop.Application.getCurrent().uuid,
@@ -41,11 +41,14 @@ export function favouriteDroppedOutside(code, name, position) {
         );
 
         const currentWindowName = currentWindowService.getCurrentWindowName();
+        const currentWindowFavouritesCount = getState().childWindows[currentWindowName].favourites.codes.length;
         dispatch(toggleFavourite(code));
-        const application = fin.desktop.Application.getCurrent();
-        application.getChildWindows(children => {
-            children.find(childWindow => childWindow.name === currentWindowName).close();
-        });
+        if (currentWindowFavouritesCount <= 1) {
+            const application = fin.desktop.Application.getCurrent();
+            application.getChildWindows(children => {
+                children.find(childWindow => childWindow.name === currentWindowName).close();
+            });
+        }
     };
 }
 
