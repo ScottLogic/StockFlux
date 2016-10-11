@@ -1,11 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Favourites from './favourites/Favourites.js';
+import ClosedWindows from './closedWindows/ClosedWindows';
 import Search from './search/Search.js';
 import { sidebarSelector as mapStateToProps } from '../../selectors/selectors';
 import classNames from 'classnames';
 import currentWindowService from '../../services/currentWindowService';
 
+import { openClosedWindow } from '../../../parent/actions/parent';
 import { selectFavourites, selectSearch } from '../../actions/sidebar';
 import { selectStock } from '../../actions/selection';
 import { toggleFavourite, moveFavouriteFromWindow } from '../../actions/favourites';
@@ -27,6 +29,7 @@ class Sidebar extends Component {
         this.focusSearch = this.focusSearch.bind(this);
         this.toggleFavourite = this.toggleFavourite.bind(this);
         this.selectStock = this.selectStock.bind(this);
+        this.openWindow = this.openWindow.bind(this);
 
         this.state = { draggingFromAnotherWindow: false };
     }
@@ -119,13 +122,18 @@ class Sidebar extends Component {
         }
     }
 
+    openWindow(windowName) {
+        this.props.dispatch(openClosedWindow(windowName));
+    }
+
     render() {
-        const { sidebar } = this.props;
+        const { sidebar, closedWindowsCount } = this.props;
 
         let bindings = {
             toggleFavourite: this.toggleFavourite,
             selectStock: this.selectStock,
-            getCodeFromDT: this.getCodeFromDT
+            getCodeFromDT: this.getCodeFromDT,
+            openWindow: this.openWindow
         };
 
         const sidebarsCls = classNames({
@@ -153,9 +161,8 @@ class Sidebar extends Component {
                 <div className={`favourites ${favouritesCls}`} onClick={this.focusFav}>
                     <Favourites bindings={bindings} />
                 </div>
-
                 <div className="closed-window-selection">
-                    <closed-window-list icon="'closed_tabs'"></closed-window-list>
+                    {closedWindowsCount ? <ClosedWindows bindings={bindings} /> : null}
                 </div>
             </div>
         );
@@ -166,7 +173,8 @@ Sidebar.propTypes = {
     sidebar: PropTypes.object.isRequired,
     windowState: windowStateShape.isRequired,
     selection: selectionShape.isRequired,
-    favourites: favouritesShape.isRequired
+    favourites: favouritesShape.isRequired,
+    closedWindowsCount: PropTypes.number.isRequired
 };
 
 export default connect(mapStateToProps)(Sidebar);

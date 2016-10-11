@@ -6,6 +6,8 @@ import {
     searchSelector,
     sidebarSelector,
     toolbarSelector,
+    closedWindowsSelector,
+    openWindowNamesSelector,
     __RewireAPI__ as rewiredSelectors
 } from '../../../../src/child/selectors/selectors';
 
@@ -44,6 +46,9 @@ describe('child/selectors/selectors', () => {
                 }
             },
             window0003: {}
+        },
+        closedWindows: {
+            window0004: {}
         }
     };
 
@@ -143,7 +148,8 @@ describe('child/selectors/selectors', () => {
                     isCompact: false,
                     isMaximised: false,
                     isResizing: false
-                }
+                },
+                closedWindowsCount: 1
             };
             expect(sidebarSelector(intitialState)).to.deep.equal(expectedResult);
         });
@@ -159,6 +165,24 @@ describe('child/selectors/selectors', () => {
                 }
             };
             expect(toolbarSelector(intitialState)).to.deep.equal(expectedResult);
+        });
+    });
+
+    describe('closedWindowsSelector', () => {
+        it('should return the correct result', () => {
+            const expectedResult = {
+                closedWindows: {
+                    window0004: {}
+                }
+            };
+            expect(closedWindowsSelector(intitialState)).to.deep.equal(expectedResult);
+        });
+    });
+
+    describe('openWindowNamesSelector', () => {
+        it('should return the correct result', () => {
+            const expectedResult = ['window0001', 'window0002', 'window0003'];
+            expect(openWindowNamesSelector(intitialState)).to.deep.equal(expectedResult);
         });
     });
 });
