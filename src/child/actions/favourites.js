@@ -48,9 +48,9 @@ export function toggleFavourite(code, windowName = currentWindowService.getCurre
 
 export function moveFavouriteFromWindow(code, dragStartWindow) {
     return (dispatch, getState) => {
-        if (getState().childWindows[dragStartWindow].favourites.codes.length > 1) {
-            dispatch(toggleFavourite(code, dragStartWindow));
-        } else {
+        const dragStartWindowFavouritesCount = getState().childWindows[dragStartWindow].favourites.codes.length;
+        dispatch(toggleFavourite(code, dragStartWindow));
+        if (dragStartWindowFavouritesCount <= 1) {
             const application = fin.desktop.Application.getCurrent();
             application.getChildWindows(children => {
                 children.find(childWindow => childWindow.name === dragStartWindow).close();
