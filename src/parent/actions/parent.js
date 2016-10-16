@@ -1,6 +1,7 @@
 import { PARENT as ACTION_TYPES } from '../../shared/constants/actionTypes';
 import { toggleFavourite } from '../../child/actions/favourites';
 import currentWindowService from '../../child/services/currentWindowService';
+import configService from '../../shared/ConfigService';
 
 export function close(windowName, date) {
     return {
@@ -17,27 +18,34 @@ function reopen(windowName) {
     };
 }
 
-function dragOut(code, name) {
+function dragOut(windowName, code, name) {
     return {
         type: ACTION_TYPES.DRAG_OUT,
+        windowName,
         code,
         name
     };
 }
 
-export function dragAccept() {
+export function dragAccept(windowName) {
     return {
-        type: ACTION_TYPES.DRAG_ACCEPT
+        type: ACTION_TYPES.DRAG_ACCEPT,
+        windowName
     };
 }
 
 export function favouriteDroppedOutside(code, name, position) {
     return (dispatch, getState) => {
-        dispatch(dragOut(code, name));
+        const newWindowName = configService.createName();
+        const newWindowConfig = {
+            windowName: newWindowName,
+            position
+        };
+        dispatch(dragOut(newWindowName, code, name));
         fin.desktop.InterApplicationBus.send(
             fin.desktop.Application.getCurrent().uuid,
             'createChildWindow',
-            { position }
+            newWindowConfig
         );
 
         const currentWindowName = currentWindowService.getCurrentWindowName();
