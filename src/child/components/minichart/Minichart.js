@@ -9,9 +9,6 @@ class Minichart extends Component {
     componentDidUpdate() {
         const { stockCode, chartData } = this.props;
         let data = chartData.stockData.data;
-        const extent = fc.util.innerDimensions(document.getElementById(`${stockCode}chart`));
-        const width = extent.width;
-        const height = extent.height;
 
         // There needs to be 2 data points to draw the minichart
         // if there's not enough, show an error.
@@ -19,6 +16,10 @@ class Minichart extends Component {
             this.showMinichart = false;
             return;
         }
+
+        const extent = fc.util.innerDimensions(document.getElementById(`${stockCode}chart`));
+        const width = extent.width;
+        const height = extent.height;
 
         data = data.map(d => {
             const datum = d;
@@ -74,20 +75,19 @@ class Minichart extends Component {
 
     render() {
         const { stockCode, chartData } = this.props;
+        const shouldShowChart = this.showMinichart !== false && chartData && chartData.stockData && chartData.stockData.data.length > 2;
         return (
             <div className="minichartWrapper">
-                <svg className="minichart" id={`${stockCode}chart`}>
+                {shouldShowChart ? <svg className="minichart" id={`${stockCode}chart`}>
                     <defs>
                         <linearGradient id={`${stockCode}-minichart-gradient`} x1="0" x2="0" y1="0" y2="1">
                             <stop offset="0%" className="minichart-gradient top" />
                             <stop offset="100%" className="minichart-gradient bottom" />
                         </linearGradient>
                     </defs>
-                </svg>
-                {!chartData && <div className="minichart minichart-error">
+                </svg> : <div className="minichart minichart-error">
                     Not enough data to show minichart
-                </div>
-            }
+                </div>}
             </div>
         );
     }
