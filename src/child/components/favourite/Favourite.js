@@ -38,12 +38,17 @@ class Favourite extends Component {
             .then(response => {
                 const data = response.stockData.data[0];
                 const stockName = response.dataset.name;
-                const stockData = {
-                    name: stockName,
-                    price: data.close,
-                    delta: data.close - data.open,
-                    percentage: (data.close - data.open) / data.open * 100
-                };
+                let stockData;
+                if (data) {
+                    stockData = {
+                        name: stockName,
+                        price: data.close,
+                        delta: data.close - data.open,
+                        percentage: (data.close - data.open) / data.open * 100
+                    };
+                } else {
+                    stockData = { name: stockName };
+                }
                 const chartData = response;
                 this.props.bindings.onQuandlResponse(stockCode, stockName);
                 this.setState({ stockData, chartData });
@@ -135,9 +140,9 @@ class Favourite extends Component {
             hovered: isHovered
         });
 
-        const price = !isNaN(+stockData.price) ? (+stockData.price).toFixed(2) : '';
-        const delta = !isNaN(+stockData.delta) ? (+stockData.delta).toFixed(2) : '';
-        const percentage = !isNaN(+stockData.percentage) ? Math.abs((+stockData.percentage)).toFixed(2) : '';
+        const price = !isNaN(+stockData.price) ? (+stockData.price).toFixed(2) : null;
+        const delta = !isNaN(+stockData.delta) ? (+stockData.delta).toFixed(2) : null;
+        const percentage = !isNaN(+stockData.percentage) ? Math.abs((+stockData.percentage)).toFixed(2) : null;
         const name = stockData.name ? truncate(stockData.name) : '';
 
         const confirmationBindings = {
@@ -173,12 +178,12 @@ class Favourite extends Component {
                         <div className="bottom">
                             <Minichart stockCode={stockCode} chartData={chartData} />
                             <div className="details">
-                                <div className="price">{price}</div>
-                                <div className="delta">{delta}</div>
-                                <div className="percentage">
+                                {price && <div className="price">{price}</div>}
+                                {delta && <div className="delta">{delta}</div>}
+                                {percentage && <div className="percentage">
                                     <img src={percentage > 0 ? arrowUp : arrowDown} className="stock-arrow" draggable="false" />
                                     {percentage}%
-                                </div>
+                                </div>}
                             </div>
                         </div>
                     </div>
