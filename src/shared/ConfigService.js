@@ -9,6 +9,7 @@ const TEAROUT_CARD_DIMENSIONS = [TEAROUT_CARD_WIDTH, 110];
 const COMPACT_WINDOW_DIMENSIONS = [TEAROUT_CARD_WIDTH, 500];
 const DEFAULT_WINDOW_DIMENSIONS = [1280, 720];
 const DEFAULT_WINDOW_MIN_DIMENSIONS = [918, 510];
+const DEFAULT_STOCKS = ['AAPL', 'MSFT', 'TITN', 'TSLA'];
 
 const allowContextMenu = process.env.NODE_ENV !== 'production';
 
@@ -126,6 +127,10 @@ class ConfigService {
 
     getBitfluxStockAmount() {
         return BITFLUX_STOCK_AMOUNT;
+    }
+
+    getDefaultStocks() {
+        return DEFAULT_STOCKS;
     }
 }
 

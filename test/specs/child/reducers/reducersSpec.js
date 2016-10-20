@@ -9,6 +9,7 @@ describe('child/reducers/reducers', () => {
                 codes: [],
                 names: {}
             },
+            initialOpen: false,
             search: {
                 term: ''
             },

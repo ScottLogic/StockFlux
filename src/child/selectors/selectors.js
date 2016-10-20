@@ -20,6 +20,12 @@ export const favouritesSelector = createCurrentWindowStateSelector(
         return { favourites, selection, windowState, isStarting: false, hasErrors: false };
     }
 );
+export const initialOpenSelector = createCurrentWindowStateSelector(
+    (state) => {
+        const { initialOpen } = state;
+        return initialOpen;
+    }
+);
 
 export const searchSelector = createCurrentWindowStateSelector(
     (state) => {

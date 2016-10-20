@@ -5,6 +5,7 @@ import currentWindowServiceStub from '../../../helper/currentWindowServiceStub';
 import { insertFavouriteAt,
          toggleFavourite,
          quandlResponse,
+         toggleFavouriteInWindow,
          __RewireAPI__ as rewiredActions } from '../../../../src/child/actions/favourites';
 import { FAVOURITES as FAVOURITES_ACTION_TYPES, SELECTION as SELECTION_ACTION_TYPES } from '../../../../src/shared/constants/actionTypes';
 
@@ -41,6 +42,23 @@ describe('child/actions/favourites', () => {
             name
         };
         const actualAction = quandlResponse(code, name);
+        expect(actualAction.type).to.be.a('string');
+        expect(actualAction).to.deep.equal(expectedAction);
+    });
+
+    it('should create an action to toggle a favourite in a window', () => {
+        const code = 'GOOG';
+        const windowName = 'window0002';
+        const expectedAction = {
+            type: FAVOURITES_ACTION_TYPES.TOGGLE_FAVOURITE,
+            windowName,
+            code,
+            analyticsEvent: {
+                category: 'Toggle Favourite',
+                action: code
+            }
+        };
+        const actualAction = toggleFavouriteInWindow(code, windowName);
         expect(actualAction.type).to.be.a('string');
         expect(actualAction).to.deep.equal(expectedAction);
     });
