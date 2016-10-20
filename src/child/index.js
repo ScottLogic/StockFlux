@@ -28,6 +28,7 @@ require('script!../../node_modules/BitFlux/dist/bitflux.js');
 
 currentWindowService.ready(() => {
     const currentWindow = currentWindowService.getCurrentWindow();
+    const currentWindowName = currentWindowService.getCurrentWindowName();
     const store = currentWindow.contentWindow.opener.store;
     const rootElement = document.getElementById('app');
 
@@ -37,11 +38,12 @@ currentWindowService.ready(() => {
     store.dispatch(open());
 
     const { dragOut } = store.getState();
-    if (dragOut !== null) {
-        store.dispatch(toggleFavourite(dragOut.code));
-        store.dispatch(selectStock(dragOut.code, dragOut.name));
+    const initialStock = dragOut[currentWindowName];
+    if (initialStock) {
+        store.dispatch(toggleFavourite(initialStock.code));
+        store.dispatch(selectStock(initialStock.code, initialStock.name));
         store.dispatch(selectFavourites());
-        store.dispatch(dragAccept());
+        store.dispatch(dragAccept(currentWindowName));
     }
 
     render(

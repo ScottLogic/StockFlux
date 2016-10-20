@@ -10,7 +10,7 @@ class ParentService {
         fin.desktop.InterApplicationBus.subscribe(
             fin.desktop.Application.getCurrent().uuid,
             'createChildWindow',
-            ({ windowName, position }) => this.createChildWindow(windowName, position)
+            (config) => this.createChildWindow(config)
         );
     }
 
@@ -22,7 +22,7 @@ class ParentService {
         this.store.dispatch(close(name, Date.now()));
 
         // Close the main parent window if all child windows are closed
-        if (this.getChildWindowCount() === 0 && this.store.getState().dragOut === null) {
+        if (this.getChildWindowCount() === 0 && Object.keys(this.store.getState().dragOut).length === 0) {
             fin.desktop.Window.getCurrent().contentWindow.close();
         }
     }
@@ -36,25 +36,31 @@ class ParentService {
         childWindow.addEventListener('closed', this.onChildClosed);
     }
 
-    createChildWindow(windowName, position) {
-        let windowConfig;
-        if (windowName) {
-            const { windowState } = this.store.getState().childWindows[windowName];
-            if (windowState.isCompact) {
-                windowConfig = configService.getCompactWindowConfig(windowName);
-            } else if (windowState.isMaximized) {
-                windowConfig = configService.getMaximizedWindowConfig(windowName);
-            } else {
-                windowConfig = configService.getWindowConfig(windowName);
-            }
-        } else {
-            windowConfig = configService.getWindowConfig();
-        }
-
+    createChildWindow(config = {}) {
+        const { windowName, position, intialState } = config;
+        const windowConfig = this.getChildWindowConfigOrDefault(windowName, intialState);
         const childWindow = new fin.desktop.Window(
             windowConfig,
             () => this.createChildWindowSuccess(childWindow, position)
         );
+    }
+
+    getChildWindowConfigOrDefault(windowName, intialState) {
+        let windowConfig;
+        if (windowName && intialState) {
+            if (intialState.isCompact) {
+                windowConfig = configService.getCompactWindowConfig(windowName);
+            } else if (intialState.isMaximized) {
+                windowConfig = configService.getMaximizedWindowConfig(windowName);
+            } else {
+                windowConfig = configService.getWindowConfig(windowName);
+            }
+        } else if (windowName) {
+            windowConfig = configService.getWindowConfig(windowName);
+        } else {
+            windowConfig = configService.getWindowConfig();
+        }
+        return windowConfig;
     }
 
     start() {
@@ -63,9 +69,10 @@ class ParentService {
         if (this.getChildWindowCount() === 0) {
             this.createChildWindow();
         } else {
-            Object.keys(this.store.getState().childWindows).forEach((windowName) => {
+            const childWindows = this.store.getState().childWindows;
+            Object.keys(childWindows).forEach((windowName) => {
                 const newWindowName = windowName === 'undefined' ? null : windowName;
-                this.createChildWindow(newWindowName);
+                this.createChildWindow({ windowName: newWindowName, initalState: childWindows[newWindowName] });
             });
         }
     }
