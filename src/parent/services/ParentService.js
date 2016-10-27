@@ -1,5 +1,7 @@
 import configService from '../../shared/ConfigService';
 import { close } from '../actions/parent';
+import { toggleFavouriteInWindow } from '../../child/actions/favourites';
+import { willBeInitialOpen } from '../../child/actions/initialOpen';
 
 class ParentService {
 
@@ -27,9 +29,17 @@ class ParentService {
         }
     }
 
-    createChildWindowSuccess(childWindow, position) {
+    createChildWindowSuccess(childWindow, position, defaultStocks) {
         if (position) {
             childWindow.setBounds(position[0], position[1]);
+        }
+
+        if (defaultStocks) {
+            const childWindowName = childWindow.name;
+            this.store.dispatch(willBeInitialOpen(childWindowName));
+            defaultStocks.forEach((code) => {
+                this.store.dispatch(toggleFavouriteInWindow(code, childWindowName));
+            });
         }
 
         childWindow.show();
@@ -37,11 +47,11 @@ class ParentService {
     }
 
     createChildWindow(config = {}) {
-        const { windowName, position, intialState } = config;
+        const { windowName, position, intialState, defaultStocks } = config;
         const windowConfig = this.getChildWindowConfigOrDefault(windowName, intialState);
         const childWindow = new fin.desktop.Window(
             windowConfig,
-            () => this.createChildWindowSuccess(childWindow, position)
+            () => this.createChildWindowSuccess(childWindow, position, defaultStocks)
         );
     }
 
@@ -67,7 +77,7 @@ class ParentService {
         fin.desktop.Window.getCurrent().contentWindow.store = this.store;
 
         if (this.getChildWindowCount() === 0) {
-            this.createChildWindow();
+            this.createChildWindow({ defaultStocks: configService.getDefaultStocks() });
         } else {
             const childWindows = this.store.getState().childWindows;
             Object.keys(childWindows).forEach((windowName) => {

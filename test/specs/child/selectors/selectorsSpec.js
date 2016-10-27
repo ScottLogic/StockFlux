@@ -8,6 +8,7 @@ import {
     toolbarSelector,
     closedWindowsSelector,
     openWindowNamesSelector,
+    initialOpenSelector,
     __RewireAPI__ as rewiredSelectors
 } from '../../../../src/child/selectors/selectors';
 
@@ -24,6 +25,7 @@ describe('child/selectors/selectors', () => {
                         GOOG: 'Alphabet Inc (GOOG) Prices, Dividends, Splits and Trading Volume'
                     }
                 },
+                initialOpen: false,
                 search: {
                     isSearching: false,
                     term: 'AAPL',
@@ -100,6 +102,14 @@ describe('child/selectors/selectors', () => {
             expect(favouritesSelector(intitialState)).to.deep.equal(expectedResult);
         });
     });
+
+    describe('initialOpenSelector', () => {
+        it('should return the correct result', () => {
+            const expectedResult = false;
+            expect(initialOpenSelector(intitialState)).to.equal(expectedResult);
+        });
+    });
+
 
     describe('searchSelector', () => {
         it('should return the correct result', () => {

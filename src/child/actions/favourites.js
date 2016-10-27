@@ -15,7 +15,7 @@ export const quandlResponse = createActionCreator((code, name) => ({
     name
 }));
 
-function toggleFavouriteInWindow(code, windowName) {
+export function toggleFavouriteInWindow(code, windowName) {
     return {
         type: ACTION_TYPES.TOGGLE_FAVOURITE,
         windowName,

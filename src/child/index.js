@@ -9,9 +9,11 @@ import 'babel-polyfill';
 
 import { open } from './actions/window';
 import { toggleFavourite } from './actions/favourites';
+import { opened } from './actions/initialOpen';
 import { selectStock } from './actions/selection';
 import { selectFavourites } from './actions/sidebar';
 import { dragAccept } from '../parent/actions/parent';
+import { favouritesSelector, initialOpenSelector } from './selectors/selectors';
 
 import './assets/styles/style.less';
 import '../../node_modules/d3fc/dist/d3fc.min.css';
@@ -44,6 +46,15 @@ currentWindowService.ready(() => {
         store.dispatch(selectStock(initialStock.code, initialStock.name));
         store.dispatch(selectFavourites());
         store.dispatch(dragAccept(currentWindowName));
+    } else if (initialOpenSelector(store.getState()) === true) {
+        store.dispatch(opened());
+        const { favourites } = favouritesSelector(store.getState());
+        if (favourites.codes && favourites.codes.length > 0) {
+            const stockCode = favourites.codes[0];
+            const stockName = favourites.names[stockCode];
+            store.dispatch(selectStock(stockCode, stockName));
+            store.dispatch(selectFavourites());
+        }
     }
 
     render(
