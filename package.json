@@ -13,7 +13,7 @@
     "openfin:dev": "node openfin-dev-launcher.js",
     "openfin:prod": "node openfin-prod-launcher.js",
     "build": "npm run clean && webpack -p --config webpack/webpack.config.prod.js",
-    "build:deploy": "npm run build && node openfin-config/updateOpenFinConfigForDeployment.js",
+    "build:deploy": "npm run build && node openfin-config/updateForDeployment.js",
     "serve": "http-server -p 5001",
     "prod": "npm run build && npm run serve",
     "clean": "rimraf public/*",
