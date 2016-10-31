@@ -10,8 +10,8 @@
   },
   "scripts": {
     "start": "npm run clean && webpack-dev-server -d --config webpack/webpack.config.dev.js",
-    "openfin:dev": "node openfin-dev-launcher.js",
-    "openfin:prod": "node openfin-prod-launcher.js",
+    "openfin:dev": "node openfin-launcher/dev.js",
+    "openfin:prod": "node openfin-launcher/prod.js",
     "build": "npm run clean && webpack -p --config webpack/webpack.config.prod.js",
     "build:deploy": "npm run build && node openfin-config/updateForDeployment.js",
     "serve": "http-server -p 5001",
