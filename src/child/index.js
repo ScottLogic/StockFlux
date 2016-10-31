@@ -5,7 +5,6 @@ import { render } from 'react-dom';
 import App from './containers/App';
 import WindowStateService from './services/WindowStateService';
 import currentWindowService from './services/currentWindowService';
-import 'babel-polyfill';
 
 import { open } from './actions/window';
 import { toggleFavourite } from './actions/favourites';

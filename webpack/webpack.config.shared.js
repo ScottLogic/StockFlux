@@ -2,8 +2,8 @@ const webpack = require('webpack');
 
 module.exports = {
     entry: {
-        child: ['./src/child/index.js'],
-        parent: ['./src/parent/parent.js'],
+        child: ['babel-polyfill', './src/child/index.js'],
+        parent: ['babel-polyfill', './src/parent/parent.js'],
         analytics: ['./src/parent/analytics/analytics.js']
     },
     output: {

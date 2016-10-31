@@ -1,6 +1,5 @@
 import parentStore from './store/configureStore';
 import ParentService from './services/ParentService';
-import 'babel-polyfill';
 
 fin.desktop.main(() => {
     const store = parentStore();
