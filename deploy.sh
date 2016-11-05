@@ -7,7 +7,7 @@ RELEASE_BRANCH=$(echo "$TRAVIS_BRANCH" |  sed -n 's/^release\-/&/p')
 # Get the release type (dev/master) from the branch name
 TYPE="$TRAVIS_BRANCH"
 
-if ([ "$TRAVIS_PULL_REQUEST" == "false" ]  && [ "${TRAVIS_REPO_SLUG}" == "ScottLogic/StockFlux" ] && ([ "$TYPE" == "react_redux" ] || [ "$TYPE" == "dev" ] || [ "$TYPE" == "master" ] || [ -n "$RELEASE_BRANCH" ]))
+if ([ "$TRAVIS_PULL_REQUEST" == "false" ]  && [ "${TRAVIS_REPO_SLUG}" == "ScottLogic/StockFlux" ] && ([ "$TYPE" == "dev" ] || [ "$TYPE" == "master" ] || [ -n "$RELEASE_BRANCH" ]))
 then
     # Clone the latest gh-pages
     git clone https://github.com/ScottLogic/StockFlux.git --branch gh-pages gh-pages
@@ -18,7 +18,7 @@ then
     echo "Type is: $TYPE"
     echo "Version is: $VERSION"
 
-    if ([ "$TYPE" == "react_redux" ] || [ $TYPE == "master" ] || [ $TYPE == "dev" ])
+    if ([ $TYPE == "master" ] || [ $TYPE == "dev" ])
     then
         echo "Preparing to build version $TYPE"
         npm run build:deploy $TYPE

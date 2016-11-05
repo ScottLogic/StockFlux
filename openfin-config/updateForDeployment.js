@@ -8,12 +8,12 @@ if (process.argv.length <= 2) {
 
 const deployName = process.argv[2];
 
-const validDeployableBranchNames = ['master', 'dev', 'react_redux'];
+const validDeployableBranchNames = ['master', 'dev'];
 const isInvalidDeployableBranchName = (name) => validDeployableBranchNames.indexOf(name) === -1;
 const isInvalidSemver = (name) => semver.valid(name) === null;
 
 if (isInvalidSemver(deployName) && isInvalidDeployableBranchName(deployName)) {
-    console.error('Deploy name must be a valid semver, "master", "dev", or "react_redux"');
+    console.error('Deploy name must be a valid semver, "master", or "dev"');
     process.exit(1);
 }
 
