@@ -95,6 +95,7 @@
     "redux-localstorage": "^0.4.1",
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.0.1",
-    "reselect": "^2.5.3"
+    "reselect": "^2.5.3",
+    "throat": "^3.0.0"
   }
 }

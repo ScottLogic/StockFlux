@@ -1,5 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import moment from 'moment';
+import { default as throat } from 'throat';
+
 // Be very careful changing the line below. It is replaced with a string.replace in the grunt build
 // to swap out the API key for release.
 const API_KEY = 'kM9Z9aEULVDD7svZ4A8B';
@@ -12,6 +14,10 @@ const CLOSE_INDEX = 11;
 const VOLUME_INDEX = 12;
 const QUANDL_URL = 'https://www.quandl.com/api/v3/';
 const QUANDL_WIKI = 'datasets/WIKI/';
+
+// limit concurrency to ensure that we don't have any concurrent Quandl requests
+// see: https://blog.quandl.com/change-quandl-api-limits
+const throttle = throat(1);
 
 // Helper functions
 function period() {
@@ -87,10 +93,10 @@ function validateResponse(response) {
 // Exported functions
 export function search(query, usefallback = false) {
     const apiKeyParam = (usefallback ? '' : API_KEY_VALUE);
-    return fetch(`${QUANDL_URL}datasets.json?${apiKeyParam}&query=${query}&database_code=WIKI`, {
+    return throttle(() => fetch(`${QUANDL_URL}datasets.json?${apiKeyParam}&query=${query}&database_code=WIKI`, {
         method: 'GET',
         cache: true
-    })
+    }))
     .then(validateResponse)
     .then(filterSearchResultsByDate)
     .then(processSearchResults)
@@ -104,7 +110,7 @@ export function search(query, usefallback = false) {
 
 // Queries Quandl for the specific stock code
 export function getStockMetadata(code) {
-    return fetch(`${QUANDL_URL}${QUANDL_WIKI}${code}/metadata.json?${API_KEY_VALUE}`)
+    return throttle(() => fetch(`${QUANDL_URL}${QUANDL_WIKI}${code}/metadata.json?${API_KEY_VALUE}`))
     .then(validateResponse);
 }
 
@@ -112,10 +118,10 @@ export function getStockData(code, usefallback = false) {
     const startDate = period().format('YYYY-MM-DD');
     const apiKeyParam = (usefallback ? '' : API_KEY_VALUE);
 
-    return fetch(`${QUANDL_URL}${QUANDL_WIKI}${code}.json?${apiKeyParam}&start_date=${startDate}`, {
+    return throttle(() => fetch(`${QUANDL_URL}${QUANDL_WIKI}${code}.json?${apiKeyParam}&start_date=${startDate}`, {
         method: 'GET',
         cache: true
-    })
+    }))
     .then(validateResponse)
     .then(processStockData);
 }
