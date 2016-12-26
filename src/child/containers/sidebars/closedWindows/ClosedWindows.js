@@ -44,9 +44,9 @@ class ClosedWindows extends Component {
         return (
             <div>
                 {modalOpen && <div className="favourite-closed-cover" onClick={() => this.setState({ modalOpen: false })}>
-                    <div className="bubble-head"></div>
+                    <div className="bubble-head" />
                     <div className="closed-selection">
-                        {closedWindowsNames.map(closedWindowName =>
+                        {closedWindowsNames.map((closedWindowName) =>
                             <div key={closedWindowName} className="closed-card-container" onClick={() => this.props.bindings.openWindow(closedWindowName)}>
                                 <div className="closed-card">
                                     <div className="closed-time">{moment(closedWindows[closedWindowName].date).format('DD MMM YYYY HH:mm')}</div>
@@ -76,7 +76,7 @@ ClosedWindows.propTypes = {
         selectStock: PropTypes.func.isRequired,
         openWindow: PropTypes.func.isRequired,
     }).isRequired,
-    closedWindows: PropTypes.object.isRequired
+    closedWindows: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
 };
 
 export default connect(mapStateToProps)(ClosedWindows);

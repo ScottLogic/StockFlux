@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { searchInput, search } from '../../../actions/search';
 import { selectFavourites } from '../../../actions/sidebar';
 import searchTabImage from '../../../assets/png/search_tab.png';
-import SearchResult from '../../../components/SearchResult.js';
+import SearchResult from '../../../components/SearchResult';
 import { searchSelector as mapStateToProps } from '../../../selectors/selectors';
 
 import favouriteShape from '../../../propTypeShapes/favourites';
@@ -57,7 +57,7 @@ class Search extends Component {
     render() {
         const { favourites, isSearching, hasErrors, results, term, selection } = this.props;
         const codes = favourites.codes;
-        let bindings = {
+        const bindings = {
             onClick: this.onClick,
             onIconClick: this.onIconClick
         };
@@ -69,7 +69,7 @@ class Search extends Component {
                     <input value={term} className="sidetab searchInput" type="text" maxLength="20" placeholder="Enter stock name or symbol" onChange={this.onChange} />
                     <div className="button-icon close" title="Close Search" onClick={this.closeSearch}>&nbsp;</div>
                 </div>
-                <div id="search-scroll" ref={ref => { this.searchScroll = ref; }} className="side-scroll custom-scrollbar">
+                <div id="search-scroll" ref={(ref) => { this.searchScroll = ref; }} className="side-scroll custom-scrollbar">
                     <div className="sidetab hiddenOnContracted">
                         {hasErrors &&
                             <div className="results-message">
@@ -79,7 +79,7 @@ class Search extends Component {
 
                         {isSearching && <div className="loading-message results-message">Loading search results...</div>}
 
-                        {!isSearching && !results && favourites.codes.map(stockCode =>
+                        {!isSearching && !results && favourites.codes.map((stockCode) =>
                             <SearchResult
                               key={stockCode}
                               stock={{ code: stockCode, name: favourites.names[stockCode] }}
@@ -95,7 +95,7 @@ class Search extends Component {
                             </div>
                         }
 
-                        {(results || []).map(stock =>
+                        {(results || []).map((stock) =>
                             <SearchResult
                               key={stock.code}
                               stock={stock}
@@ -116,7 +116,7 @@ class Search extends Component {
 Search.propTypes = {
     isSearching: PropTypes.bool,
     hasErrors: PropTypes.bool,
-    results: PropTypes.array,
+    results: PropTypes.array, // eslint-disable-line react/forbid-prop-types
     favourites: favouriteShape.isRequired,
     selection: selectionShape.isRequired,
     term: PropTypes.string.isRequired,

@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Favourites from './favourites/Favourites.js';
-import ClosedWindows from './closedWindows/ClosedWindows';
-import Search from './search/Search.js';
-import { sidebarSelector as mapStateToProps } from '../../selectors/selectors';
 import classNames from 'classnames';
+import Favourites from './favourites/Favourites';
+import ClosedWindows from './closedWindows/ClosedWindows';
+import Search from './search/Search';
+import { sidebarSelector as mapStateToProps } from '../../selectors/selectors';
 import currentWindowService from '../../services/currentWindowService';
 
 import { openClosedWindow } from '../../../parent/actions/parent';
@@ -13,8 +13,8 @@ import { selectStock } from '../../actions/selection';
 import { toggleFavourite, moveFavouriteFromWindow } from '../../actions/favourites';
 
 import windowStateShape from '../../propTypeShapes/windowState';
-import selectionShape from '../../propTypeShapes/selection';
 import favouritesShape from '../../propTypeShapes/favourites';
+import sidebarShape from '../../propTypeShapes/sidebar';
 
 class Sidebar extends Component {
     constructor(props) {
@@ -69,7 +69,7 @@ class Sidebar extends Component {
      * Each element of the types array is stringified JSON
      * */
     getCodeFromDT(types) {
-        for (let i = 0; i < types.length; i++) {
+        for (let i = 0; i < types.length; i += 1) {
             const dataTransferObj = JSON.parse(types[i]);
             if (Object.keys(dataTransferObj)[0] === 'code') {
                 return dataTransferObj.code.toUpperCase();
@@ -79,7 +79,7 @@ class Sidebar extends Component {
     }
 
     getWindowFromDT(types) {
-        for (let i = 0; i < types.length; i++) {
+        for (let i = 0; i < types.length; i += 1) {
             const dataTransferObj = JSON.parse(types[i]);
             if (Object.keys(dataTransferObj)[0] === 'window') {
                 return dataTransferObj.window;
@@ -129,7 +129,7 @@ class Sidebar extends Component {
     render() {
         const { sidebar, closedWindowsCount } = this.props;
 
-        let bindings = {
+        const bindings = {
             toggleFavourite: this.toggleFavourite,
             selectStock: this.selectStock,
             getCodeFromDT: this.getCodeFromDT,
@@ -170,9 +170,8 @@ class Sidebar extends Component {
 }
 Sidebar.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    sidebar: PropTypes.object.isRequired,
+    sidebar: sidebarShape.isRequired,
     windowState: windowStateShape.isRequired,
-    selection: selectionShape.isRequired,
     favourites: favouritesShape.isRequired,
     closedWindowsCount: PropTypes.number.isRequired
 };

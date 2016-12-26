@@ -1,4 +1,4 @@
-import childReducers from '../../child/reducers/reducers.js';
+import childReducers from '../../child/reducers/reducers';
 
 export default function childWindows(state = {}, action) {
     const subString = action.type.substring(0, 5);

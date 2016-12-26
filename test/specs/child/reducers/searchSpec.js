@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import search from '../../../../src/child/reducers/search.js';
+import search from '../../../../src/child/reducers/search';
 import { SEARCH as ACTION_TYPES } from '../../../../src/shared/constants/actionTypes';
 
 describe('child/reducers/search', () => {

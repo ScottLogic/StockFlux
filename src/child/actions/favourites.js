@@ -34,10 +34,10 @@ export function toggleFavourite(code, windowName = currentWindowService.getCurre
         dispatch(toggleFavouriteInWindow(code, windowName));
 
         const isSelected = selection.code === code;
-        const isFavourite = favourites.codes.some(favourite => favourite === code);
+        const isFavourite = favourites.codes.some((favourite) => favourite === code);
         if (isSelected && isFavourite) {
             if (favourites.codes.length > 1) {
-                const newSelectedCode = favourites.codes.find(favourite => favourite !== code);
+                const newSelectedCode = favourites.codes.find((favourite) => favourite !== code);
                 dispatch(selectStock(newSelectedCode, favourites.names[newSelectedCode], windowName));
             } else {
                 dispatch(unselectStock(windowName));
@@ -52,8 +52,8 @@ export function moveFavouriteFromWindow(code, dragStartWindow) {
         dispatch(toggleFavourite(code, dragStartWindow));
         if (dragStartWindowFavouritesCount <= 1) {
             const application = fin.desktop.Application.getCurrent();
-            application.getChildWindows(children => {
-                children.find(childWindow => childWindow.name === dragStartWindow).close();
+            application.getChildWindows((children) => {
+                children.find((childWindow) => childWindow.name === dragStartWindow).close();
             });
         }
 

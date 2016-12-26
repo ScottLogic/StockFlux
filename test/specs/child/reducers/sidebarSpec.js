@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import sidebar from '../../../../src/child/reducers/sidebar.js';
+import sidebar from '../../../../src/child/reducers/sidebar';
 import { SIDEBAR as ACTION_TYPES } from '../../../../src/shared/constants/actionTypes';
 
 describe('child/reducers/sidebar', () => {

@@ -80,7 +80,7 @@ function getWindowStateForCurrentWindow(getState) {
 }
 
 export function minimizeWindow() {
-    return dispatch => {
+    return (dispatch) => {
         dispatch(resizing());
         fin.desktop.Window.getCurrent().minimize(
             () => dispatch(resizeSuccess()),
@@ -90,7 +90,7 @@ export function minimizeWindow() {
 }
 
 export function maximizeWindow() {
-    return dispatch => {
+    return (dispatch) => {
         dispatch(resizing());
         fin.desktop.Window.getCurrent().maximize(
             () => dispatch(resizeSuccess()),
@@ -100,7 +100,7 @@ export function maximizeWindow() {
 }
 
 export function restoreWindow() {
-    return dispatch => {
+    return (dispatch) => {
         dispatch(resizing());
         fin.desktop.Window.getCurrent().restore(
             () => dispatch(resizeSuccess()),
@@ -132,7 +132,7 @@ function resizePreviousSuccess() {
 }
 
 function updateOptionsToCompact() {
-    return dispatch => {
+    return (dispatch) => {
         dispatch(updatingOptions());
         const [minWidth, minHeight] = configService.getCompactWindowDimensions();
 
@@ -150,7 +150,7 @@ function updateOptionsToCompact() {
 }
 
 function updateOptionsToDefault() {
-    return dispatch => {
+    return (dispatch) => {
         dispatch(updatingOptions());
         const [minWidth, minHeight] = configService.getDefaultWindowMinDimensions();
 
@@ -168,7 +168,7 @@ function updateOptionsToDefault() {
 }
 
 function resizeCompact() {
-    return dispatch => {
+    return (dispatch) => {
         dispatch(resizing());
         const [compactWindowWidth, compactWindowHeight] = configService.getCompactWindowDimensions();
 
@@ -202,14 +202,14 @@ function resizePrevious() {
 }
 
 export function resizeToCompact() {
-    return dispatch => Promise.all([
+    return (dispatch) => Promise.all([
         dispatch(updateOptionsToCompact()),
         dispatch(resizeCompact())
     ]);
 }
 
 export function resizeToPrevious() {
-    return dispatch => Promise.all([
+    return (dispatch) => Promise.all([
         dispatch(updateOptionsToDefault()),
         dispatch(resizePrevious())
     ]);

@@ -18,7 +18,7 @@ describe('child/services/QuandlService', () => {
 
     describe('search', () => {
         it('should return search results when using an API key', () =>
-            search('GOOG').then(response => {
+            search('GOOG').then((response) => {
                 expect(response.length).to.equal(2);
                 expect(response[0].code).to.equal('GOOG');
                 expect(response[0].name).to.equal('Alphabet Inc (GOOG) Prices, Dividends, Splits and Trading Volume');
@@ -28,7 +28,7 @@ describe('child/services/QuandlService', () => {
         );
 
         it('should return search results when falling back to using no API key', () =>
-            search('GOOG', true).then(response => {
+            search('GOOG', true).then((response) => {
                 expect(response.length).to.equal(2);
                 expect(response[0].code).to.equal('GOOG');
                 expect(response[0].name).to.equal('Alphabet Inc (GOOG) Prices, Dividends, Splits and Trading Volume');
@@ -38,14 +38,14 @@ describe('child/services/QuandlService', () => {
         );
 
         it('should catch errors when using an API key', () =>
-            search('BAD').catch(error => {
+            search('BAD').catch((error) => {
                 expect(error.quandl_error.code).to.equal('QEAx01');
                 expect(error.quandl_error.message).to.equal('Quandl error message description.');
             })
         );
 
         it('should catch errors when falling back to using no API key', () =>
-            search('BAD', true).catch(error => {
+            search('BAD', true).catch((error) => {
                 expect(error.quandl_error.code).to.equal('QEAx01');
                 expect(error.quandl_error.message).to.equal('Quandl error message description.');
             })
@@ -54,14 +54,14 @@ describe('child/services/QuandlService', () => {
 
     describe('getStockMetadata', () => {
         it('should return stock metadata', () =>
-            getStockMetadata('GOOG').then(response => {
+            getStockMetadata('GOOG').then((response) => {
                 expect(response.dataset.dataset_code).to.equal('GOOG');
                 expect(response.dataset.name).to.equal('Alphabet Inc (GOOG) Prices, Dividends, Splits and Trading Volume');
             })
         );
 
         it('should catch errors', () =>
-            getStockMetadata('BAD').catch(error => {
+            getStockMetadata('BAD').catch((error) => {
                 expect(error.quandl_error.code).to.equal('QEAx01');
                 expect(error.quandl_error.message).to.equal('Quandl error message description.');
             })
@@ -70,7 +70,7 @@ describe('child/services/QuandlService', () => {
 
     describe('getStockData', () => {
         it('should return stock data when using an API key', () =>
-            getStockData('GOOG').then(response => {
+            getStockData('GOOG').then((response) => {
                 expect(response.dataset.dataset_code).to.equal('GOOG');
                 expect(response.dataset.name).to.equal('Alphabet Inc (GOOG) Prices, Dividends, Splits and Trading Volume');
 
@@ -82,7 +82,7 @@ describe('child/services/QuandlService', () => {
         );
 
         it('should return stock data when falling back to using no API key', () =>
-            getStockData('GOOG', true).then(response => {
+            getStockData('GOOG', true).then((response) => {
                 expect(response.dataset.dataset_code).to.equal('GOOG');
                 expect(response.dataset.name).to.equal('Alphabet Inc (GOOG) Prices, Dividends, Splits and Trading Volume');
 
@@ -94,14 +94,14 @@ describe('child/services/QuandlService', () => {
         );
 
         it('should catch errors when using an API key', () =>
-            getStockData('BAD').catch(error => {
+            getStockData('BAD').catch((error) => {
                 expect(error.quandl_error.code).to.equal('QEAx01');
                 expect(error.quandl_error.message).to.equal('Quandl error message description.');
             })
         );
 
         it('should catch errors when falling back to using no API key', () =>
-            getStockData('BAD', true).catch(error => {
+            getStockData('BAD', true).catch((error) => {
                 expect(error.quandl_error.code).to.equal('QEAx01');
                 expect(error.quandl_error.message).to.equal('Quandl error message description.');
             })

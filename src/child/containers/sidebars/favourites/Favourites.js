@@ -6,7 +6,7 @@ import { selectStock } from '../../../actions/selection';
 import { resizeToPrevious } from '../../../actions/window';
 import { favouriteDroppedOutside } from '../../../../parent/actions/parent';
 import favTabImage from '../../../assets/png/favourites_tab.png';
-import Favourite from '../../../components/favourite/Favourite.js';
+import Favourite from '../../../components/favourite/Favourite';
 import { favouritesSelector as mapStateToProps } from '../../../selectors/selectors';
 
 import selectionShape from '../../../propTypeShapes/selection';
@@ -123,7 +123,7 @@ class Favourites extends Component {
             let nextDragOverIndex = currentDraggedIndex + dragOverIndexOffset;
 
             if (nextDragOverIndex <= currentDraggedIndex) {
-                nextDragOverIndex--;
+                nextDragOverIndex -= 1;
             }
 
             if (codes[nextDragOverIndex] && nextDragOverIndex !== dragOverIndex) {
@@ -146,10 +146,8 @@ class Favourites extends Component {
         if (dragStartClientY) {
             const currentDraggedIndex = favourites.codes.indexOf(code);
             dispatch(insertFavouriteAt(Math.max(0, currentDraggedIndex > dragOverIndex ? dragOverIndex : dragOverIndex - 1), code));
-        } else {
-            if (!favourites.codes.includes(code)) {
-                dispatch(insertFavouriteAt(favourites.codes.length, code));
-            }
+        } else if (!favourites.codes.includes(code)) {
+            dispatch(insertFavouriteAt(favourites.codes.length, code));
         }
     }
 
@@ -162,7 +160,7 @@ class Favourites extends Component {
         const { unfavouritingStockCode, dragOverIndex } = this.state;
         const codes = favourites.codes;
 
-        let bindings = {
+        const bindings = {
             onClick: this.onClick,
             onQuandlResponse: this.onQuandlResponse,
             onModalConfirmClick: this.onModalConfirmClick,
@@ -182,12 +180,11 @@ class Favourites extends Component {
               onDragLeave={this.onDragLeave}
               onDrag={this.onDrag}
               onDrop={this.onDrop}
-              onDragLeave={this.onDragLeave}
             >
-                <div className="sidetab-top" ref={ref => { this.sidetabTop = ref; }}>
+                <div className="sidetab-top" ref={(ref) => { this.sidetabTop = ref; }}>
                     <img src={favTabImage} className="top-icon" title="Favourites List" draggable="false" />
                 </div>
-                <div id="favourite-scroll" ref={ref => { this.scrollArea = ref; }} className="side-scroll custom-scrollbar hiddenOnContracted">
+                <div id="favourite-scroll" ref={(ref) => { this.scrollArea = ref; }} className="side-scroll custom-scrollbar hiddenOnContracted">
                     <div className="sidetab">
                         {isStarting && <div className="no-favourites">
                             <p>Loading favourite stocks...</p>
@@ -208,7 +205,6 @@ class Favourites extends Component {
                               stockCode={stockCode}
                               bindings={bindings}
                               selected={stockCode === selection.code}
-                              isFavourite={codes.indexOf(stockCode) >= 0}
                               isUnfavouriting={unfavouritingStockCode === stockCode}
                               dragOver={dragOverIndex === i}
                               dragOverBottom={dragOverIndex === codes.length && i === codes.length - 1}

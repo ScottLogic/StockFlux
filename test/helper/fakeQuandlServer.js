@@ -28,6 +28,6 @@ module.exports = (apiKey = '') => {
     return nock('https://www.quandl.com')
         .persist()
         .defaultReplyHeaders({ 'Content-Type': 'application/json' })
-        .get((uri) => routes.hasOwnProperty(uri))
+        .get((uri) => Object.prototype.hasOwnProperty.call(routes, uri))
         .reply((uri) => routes[uri]);
 };

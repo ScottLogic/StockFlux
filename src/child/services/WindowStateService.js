@@ -4,7 +4,7 @@ import {
     maximize,
     restore,
     windowResized
-} from '../actions/window.js';
+} from '../actions/window';
 
 class WindowStateService {
     constructor(openFinWindow, store, rootElement) {

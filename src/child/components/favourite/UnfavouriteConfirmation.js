@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 
-const UnfavouriteConfirmation = props => (
+const UnfavouriteConfirmation = (props) => (
     <div className="confirmation-backdrop" onClick={props.bindings.onModalBackdropClick}>
-        <div className="bubble-head" style={{ top: props.bindings.modalBubbleHeadTopPosition() }}></div>
+        <div className="bubble-head" style={{ top: props.bindings.modalBubbleHeadTopPosition() }} />
         <div className={`confirmation-modal${props.isFlipped ? ' flipped' : ''}`} style={{ top: props.bindings.modalTopPosition() }}>
             <div className="confirmation-content" onClick={(e) => e.stopPropagation()}>
                 <div className="message">

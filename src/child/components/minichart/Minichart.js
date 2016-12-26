@@ -21,7 +21,7 @@ class Minichart extends Component {
         const width = extent.width;
         const height = extent.height;
 
-        data = data.map(d => {
+        data = data.map((d) => {
             const datum = d;
             const date = moment(d.date);
             datum.date = date.toDate();

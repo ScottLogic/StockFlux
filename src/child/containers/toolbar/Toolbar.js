@@ -6,7 +6,7 @@ import {
     restoreWindow,
     resizeToCompact,
     resizeToPrevious
-} from '../../actions/window.js';
+} from '../../actions/window';
 import { toolbarSelector as mapStateToProps } from '../../selectors/selectors';
 import icon from '../../assets/png/scottlogic_logo.png';
 
