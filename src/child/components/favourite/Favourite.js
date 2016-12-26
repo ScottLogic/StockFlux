@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 import { truncate } from '../../services/formatters';
-import Minichart from '../minichart/Minichart.js';
-import Confirmation from './UnfavouriteConfirmation.js';
-import { getStockData as quandlServiceGetStockData } from '../../services/QuandlService.js';
+import Minichart from '../minichart/Minichart';
+import Confirmation from './UnfavouriteConfirmation';
+import { getStockData as quandlServiceGetStockData } from '../../services/QuandlService';
 import currentWindowService from '../../services/currentWindowService';
 
 import arrowUp from '../../assets/png/arrow_up.png';
@@ -35,7 +35,7 @@ class Favourite extends Component {
     componentDidMount() {
         const stockCode = this.props.stockCode;
         quandlServiceGetStockData(stockCode)
-            .then(response => {
+            .then((response) => {
                 const data = response.stockData.data[0];
                 const stockName = response.dataset.name;
                 let stockData;
@@ -44,7 +44,7 @@ class Favourite extends Component {
                         name: stockName,
                         price: data.close,
                         delta: data.close - data.open,
-                        percentage: (data.close - data.open) / data.open * 100
+                        percentage: ((data.close - data.open) / data.open) * 100
                     };
                 } else {
                     stockData = { name: stockName };
@@ -79,7 +79,7 @@ class Favourite extends Component {
     }
 
     onDragStart(stockCode) {
-        return e => {
+        return (e) => {
             // TODO: fade out window if it's last stock
             const codeData = { code: stockCode };
             const windowData = { window: currentWindowService.getCurrentWindowName() };
@@ -124,8 +124,8 @@ class Favourite extends Component {
     render() {
         const { stockCode, selected, bindings, isUnfavouriting, dragOver, dragOverBottom } = this.props;
 
-        let { stockData, chartData } = this.state || {};
-        const { isHovered, starTop, isDragging } = this.state || {};
+        let { stockData } = this.state || {};
+        const { isHovered, starTop, isDragging, chartData } = this.state || {};
         stockData = stockData || {};
 
         const favouriteWrapperCls = classNames({
@@ -188,7 +188,7 @@ class Favourite extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="hover-area"></div>
+                <div className="hover-area" />
             </div>
         );
     }
@@ -207,7 +207,6 @@ Favourite.propTypes = {
         resetDragState: PropTypes.func.isRequired,
         onDropOutside: PropTypes.func.isRequired
     }).isRequired,
-    isFavourite: PropTypes.bool.isRequired,
     isUnfavouriting: PropTypes.bool.isRequired,
     dragOver: PropTypes.bool.isRequired,
     dragOverBottom: PropTypes.bool.isRequired

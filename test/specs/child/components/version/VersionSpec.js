@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import Version from '../../../../../src/child/components/version/Version.js';
+import Version from '../../../../../src/child/components/version/Version';
 
 describe('child/components/version/Version', () => {
     let output;

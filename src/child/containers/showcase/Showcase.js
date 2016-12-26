@@ -39,7 +39,7 @@ class Showcase extends Component {
     }
 
     render() {
-        return <div ref={ref => { this.showcaseContainer = ref; }} id="showcase-container"></div>;
+        return <div ref={(ref) => { this.showcaseContainer = ref; }} id="showcase-container" />;
     }
 }
 

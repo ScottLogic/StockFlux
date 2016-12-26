@@ -1,5 +1,5 @@
 import { SEARCH as ACTION_TYPES } from '../../shared/constants/actionTypes';
-import { search as quandlServiceSearch } from '../services/QuandlService.js';
+import { search as quandlServiceSearch } from '../services/QuandlService';
 import createActionCreator from '../utils/createActionCreator';
 
 export const searchInput = createActionCreator((term) => ({
@@ -31,13 +31,13 @@ const searchError = createActionCreator(() => ({
 }));
 
 export function search(term) {
-    return dispatch => {
+    return (dispatch) => {
         if (term.trim() === '') {
             return Promise.resolve(dispatch(clearSearch()));
         }
         dispatch(searchStarted(term));
         return quandlServiceSearch(term)
-            .then(results => dispatch(searchFinished(term, results)))
+            .then((results) => dispatch(searchFinished(term, results)))
             .catch(() => dispatch(searchError()));
     };
 }

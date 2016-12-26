@@ -53,15 +53,15 @@ export function favouriteDroppedOutside(code, name, position) {
         dispatch(toggleFavourite(code));
         if (currentWindowFavouritesCount <= 1) {
             const application = fin.desktop.Application.getCurrent();
-            application.getChildWindows(children => {
-                children.find(childWindow => childWindow.name === currentWindowName).close();
+            application.getChildWindows((children) => {
+                children.find((childWindow) => childWindow.name === currentWindowName).close();
             });
         }
     };
 }
 
 export function openClosedWindow(windowName) {
-    return dispatch => {
+    return (dispatch) => {
         dispatch(reopen(windowName));
         fin.desktop.InterApplicationBus.send(
             fin.desktop.Application.getCurrent().uuid,

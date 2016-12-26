@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
-import rootReducer from '../reducers/reducers.js';
 import devTools from 'remote-redux-devtools';
+import rootReducer from '../reducers/reducers';
 import persistState from '../middleware/persistState';
 import analytics from '../middleware/analytics';
 

@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import moment from 'moment';
-import { default as throat } from 'throat';
+import throat from 'throat';
 
 // Be very careful changing the line below. It is replaced with a string.replace in the grunt build
 // to swap out the API key for release.
@@ -39,7 +39,7 @@ function filterSearchResultsByDate(json) {
     const datasets = json.datasets;
     const result = [];
 
-    for (let i = 0, max = datasets.length; i < max; i++) {
+    for (let i = 0, max = datasets.length; i < max; i += 1) {
         if (moment(datasets[i].newest_available_date) > period()) {
             result.push(datasets[i]);
         }
@@ -68,7 +68,7 @@ function processStockData(json) {
     let i = 0;
     const max = financialData.length;
 
-    for (i; i < max; i++) {
+    for (i; i < max; i += 1) {
         results.push(extract(financialData[i]));
     }
 
@@ -81,7 +81,7 @@ function processStockData(json) {
 }
 
 function validateResponse(response) {
-    return response.json().then(json => {
+    return response.json().then((json) => {
         if (response.ok && !json.quandl_error) {
             return json;
         }

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import { truncate } from '../services/formatters';
 import classNames from 'classnames';
+import { truncate } from '../services/formatters';
 
 const Stock = ({ isFavourite, stock, selected, bindings }) => {
 

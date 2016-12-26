@@ -1,4 +1,6 @@
-export function truncate(input) {
+/* eslint-disable import/prefer-default-export */
+
+export const truncate = (input) => {
     if (input) {
         const openBracketIndex = input.indexOf('(');
         if (openBracketIndex !== -1) {
@@ -6,4 +8,4 @@ export function truncate(input) {
         }
     }
     return input;
-}
+};
