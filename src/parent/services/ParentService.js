@@ -25,7 +25,7 @@ class ParentService {
 
         // Close the main parent window if all child windows are closed
         if (this.getChildWindowCount() === 0 && Object.keys(this.store.getState().dragOut).length === 0) {
-            fin.desktop.Window.getCurrent().contentWindow.close();
+            fin.desktop.Window.getCurrent().close();
         }
     }
 

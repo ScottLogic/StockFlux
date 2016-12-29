@@ -51,7 +51,7 @@ class Toolbar extends Component {
     }
 
     onCloseClick() {
-        fin.desktop.Window.getCurrent().contentWindow.close();
+        fin.desktop.Window.getCurrent().close();
     }
 
     render() {
