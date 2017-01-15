@@ -7,7 +7,9 @@ class ParentService {
 
     constructor(store) {
         this.store = store;
+        this.parentClosing = false;
         this.onChildClosed = this.onChildClosed.bind(this);
+        this.onCloseRequested = this.onCloseRequested.bind(this);
 
         fin.desktop.InterApplicationBus.subscribe(
             fin.desktop.Application.getCurrent().uuid,
@@ -20,13 +22,27 @@ class ParentService {
         return Object.keys(this.store.getState().childWindows).length;
     }
 
-    onChildClosed({ name }) {
-        this.store.dispatch(close(name, Date.now()));
+    getWindowDragOutCount() {
+        return Object.keys(this.store.getState().dragOut).length;
+    }
 
-        // Close the main parent window if all child windows are closed
-        if (this.getChildWindowCount() === 0 && Object.keys(this.store.getState().dragOut).length === 0) {
-            fin.desktop.Window.getCurrent().close();
+    onChildClosed({ name }) {
+        if (this.parentClosing) {
+            return;
         }
+
+        const isFinalChildWindowClosing = this.getChildWindowCount() <= 1;
+
+        if (isFinalChildWindowClosing && this.getWindowDragOutCount() === 0) {
+            fin.desktop.Window.getCurrent().close();
+        } else {
+            this.store.dispatch(close(name, Date.now()));
+        }
+    }
+
+    onCloseRequested() {
+        this.parentClosing = true;
+        fin.desktop.Window.getCurrent().close(true);
     }
 
     createChildWindowSuccess(childWindow, position, defaultStocks) {
@@ -75,6 +91,8 @@ class ParentService {
 
     start() {
         fin.desktop.Window.getCurrent().contentWindow.store = this.store;
+
+        fin.desktop.Window.getCurrent().addEventListener('close-requested', this.onCloseRequested);
 
         if (this.getChildWindowCount() === 0) {
             this.createChildWindow({ defaultStocks: configService.getDefaultStocks() });
