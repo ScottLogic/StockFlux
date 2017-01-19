@@ -2,9 +2,18 @@ import fetch from 'isomorphic-fetch';
 import moment from 'moment';
 import throat from 'throat';
 
-// Be very careful changing the line below. It is replaced with a string.replace in the grunt build
-// to swap out the API key for release.
-const API_KEY = 'kM9Z9aEULVDD7svZ4A8B';
+// eslint-disable-next-line
+function exor(a, b) { let r = ''; for (let i = 0; i < a.length; i += 1) { r += String.fromCharCode(a.charCodeAt(i) ^ b.charCodeAt(i)); } return btoa(r); }
+// eslint-disable-next-line
+function dxor(a, b) { let r = ''; c = atob(a); for (let i = 0; i < c.length; i += 1) { r += String.fromCharCode(c.charCodeAt(i) ^ b.charCodeAt(i)); } return r; }
+
+const DEPLOY_KEY = Boolean(process.env.TRAVIS === 'true'
+    && process.env.TRAVIS_SECURE_ENV_VARS === 'true'
+    && process.env.TRAVIS_PULL_REQUEST === 'false'
+    && process.env.QUANDL_API_KEY
+    && process.env.QUANDL_KEY);
+
+const API_KEY = DEPLOY_KEY ? dxor(process.env.QUANDL_API_KEY, process.env.QUANDL_KEY) : 'kM9Z9aEULVDD7svZ4A8B';
 const API_KEY_VALUE = `api_key=${API_KEY}`;
 const DATE_INDEX = 0;
 const OPEN_INDEX = 8;
@@ -17,7 +26,8 @@ const QUANDL_WIKI = 'datasets/WIKI/';
 
 // limit concurrency to ensure that we don't have any concurrent Quandl requests
 // see: https://blog.quandl.com/change-quandl-api-limits
-const throttle = throat(1);
+const concurrency = DEPLOY_KEY ? Infinity : 1;
+const throttle = throat(concurrency);
 
 // Helper functions
 function period() {
