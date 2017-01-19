@@ -116,9 +116,5 @@ describe('child/services/QuandlService', () => {
         it('should return a string of length 20', () => {
             expect(apiKey()).to.have.lengthOf(20);
         });
-
-        it('should return the correct value', () => {
-            expect(apiKey()).to.equal('kM9Z9aEULVDD7svZ4A8B');
-        });
     });
 });
