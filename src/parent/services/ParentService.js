@@ -63,20 +63,20 @@ class ParentService {
     }
 
     createChildWindow(config = {}) {
-        const { windowName, position, intialState, defaultStocks } = config;
-        const windowConfig = this.getChildWindowConfigOrDefault(windowName, intialState);
+        const { windowName, position, initialState, defaultStocks } = config;
+        const windowConfig = this.getChildWindowConfigOrDefault(windowName, initialState);
         const childWindow = new fin.desktop.Window(
             windowConfig,
             () => this.createChildWindowSuccess(childWindow, position, defaultStocks)
         );
     }
 
-    getChildWindowConfigOrDefault(windowName, intialState) {
+    getChildWindowConfigOrDefault(windowName, initialState) {
         let windowConfig;
-        if (windowName && intialState) {
-            if (intialState.isCompact) {
+        if (windowName && initialState) {
+            if (initialState.windowState.isCompact) {
                 windowConfig = configService.getCompactWindowConfig(windowName);
-            } else if (intialState.isMaximized) {
+            } else if (initialState.windowState.isMaximized) {
                 windowConfig = configService.getMaximizedWindowConfig(windowName);
             } else {
                 windowConfig = configService.getWindowConfig(windowName);
@@ -100,7 +100,7 @@ class ParentService {
             const childWindows = this.store.getState().childWindows;
             Object.keys(childWindows).forEach((windowName) => {
                 const newWindowName = windowName === 'undefined' ? null : windowName;
-                this.createChildWindow({ windowName: newWindowName, initalState: childWindows[newWindowName] });
+                this.createChildWindow({ windowName: newWindowName, initialState: childWindows[newWindowName] });
             });
         }
     }
