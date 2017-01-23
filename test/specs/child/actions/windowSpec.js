@@ -91,7 +91,7 @@ describe('child/actions/window', () => {
     });
 
     it('should create an action for resizing', () => {
-        const expectedAction = { windowName: 'window0002', type: ACTION_TYPES.RESIZING };
+        const expectedAction = { windowName: 'window0002', type: ACTION_TYPES.RESIZING, isChangingView: false };
         const actualAction = resizing();
         expect(actualAction.type).to.be.a('string');
         expect(actualAction).to.deep.equal(expectedAction);
@@ -135,7 +135,7 @@ describe('child/actions/window', () => {
                 const expectedActions = [
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS },
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS_SUCCESS },
-                    { windowName: 'window0002', type: ACTION_TYPES.RESIZING },
+                    { windowName: 'window0002', type: ACTION_TYPES.RESIZING, isChangingView: true },
                     { windowName: 'window0002', type: ACTION_TYPES.RESIZE_SUCCESS },
                     { windowName: 'window0002', type: ACTION_TYPES.TOGGLE_COMPACT, isCompact: true, previousMaximizedState: false, analyticsEvent: { category: 'Window change', action: 'Compact' } }
                 ];
@@ -158,7 +158,7 @@ describe('child/actions/window', () => {
                 const expectedActions = [
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS },
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS_ERROR },
-                    { windowName: 'window0002', type: ACTION_TYPES.RESIZING },
+                    { windowName: 'window0002', type: ACTION_TYPES.RESIZING, isChangingView: true },
                     { windowName: 'window0002', type: ACTION_TYPES.RESIZE_SUCCESS },
                     { windowName: 'window0002', type: ACTION_TYPES.TOGGLE_COMPACT, isCompact: true, previousMaximizedState: false, analyticsEvent: { category: 'Window change', action: 'Compact' } }
                 ];
@@ -181,7 +181,7 @@ describe('child/actions/window', () => {
                 const expectedActions = [
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS },
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS_SUCCESS },
-                    { windowName: 'window0002', type: ACTION_TYPES.RESIZING },
+                    { windowName: 'window0002', type: ACTION_TYPES.RESIZING, isChangingView: true },
                     { windowName: 'window0002', type: ACTION_TYPES.RESIZE_ERROR }
                 ];
 
@@ -202,7 +202,7 @@ describe('child/actions/window', () => {
                 const expectedActions = [
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS },
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS_ERROR },
-                    { windowName: 'window0002', type: ACTION_TYPES.RESIZING },
+                    { windowName: 'window0002', type: ACTION_TYPES.RESIZING, isChangingView: true },
                     { windowName: 'window0002', type: ACTION_TYPES.RESIZE_ERROR }
                 ];
 
@@ -229,7 +229,7 @@ describe('child/actions/window', () => {
                 const expectedActions = [
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS },
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS_SUCCESS },
-                    { windowName: 'window0002', type: ACTION_TYPES.RESIZING },
+                    { windowName: 'window0002', type: ACTION_TYPES.RESIZING, isChangingView: true },
                     { windowName: 'window0002', type: ACTION_TYPES.RESIZE_SUCCESS },
                     { windowName: 'window0002', type: ACTION_TYPES.TOGGLE_COMPACT, isCompact: false, analyticsEvent: { category: 'Window change', action: 'Standard' } }
                 ];
@@ -252,7 +252,7 @@ describe('child/actions/window', () => {
                 const expectedActions = [
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS },
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS_ERROR },
-                    { windowName: 'window0002', type: ACTION_TYPES.RESIZING },
+                    { windowName: 'window0002', type: ACTION_TYPES.RESIZING, isChangingView: true },
                     { windowName: 'window0002', type: ACTION_TYPES.RESIZE_SUCCESS },
                     { windowName: 'window0002', type: ACTION_TYPES.TOGGLE_COMPACT, isCompact: false, analyticsEvent: { category: 'Window change', action: 'Standard' } }
                 ];
@@ -274,7 +274,7 @@ describe('child/actions/window', () => {
                 const expectedActions = [
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS },
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS_SUCCESS },
-                    { windowName: 'window0002', type: ACTION_TYPES.RESIZING },
+                    { windowName: 'window0002', type: ACTION_TYPES.RESIZING, isChangingView: true },
                     { windowName: 'window0002', type: ACTION_TYPES.RESIZE_ERROR }
                 ];
 
@@ -295,7 +295,7 @@ describe('child/actions/window', () => {
                 const expectedActions = [
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS },
                     { windowName: 'window0002', type: ACTION_TYPES.UPDATING_OPTIONS_ERROR },
-                    { windowName: 'window0002', type: ACTION_TYPES.RESIZING },
+                    { windowName: 'window0002', type: ACTION_TYPES.RESIZING, isChangingView: true },
                     { windowName: 'window0002', type: ACTION_TYPES.RESIZE_ERROR }
                 ];
 

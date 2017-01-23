@@ -30,8 +30,9 @@ export const expand = createActionCreator(() => ({
     }
 }));
 
-export const resizing = createActionCreator(() => ({
-    type: ACTION_TYPES.RESIZING
+export const resizing = createActionCreator((isChangingView = false) => ({
+    type: ACTION_TYPES.RESIZING,
+    isChangingView
 }));
 
 export const maximize = createActionCreator(() => ({
@@ -169,7 +170,7 @@ function updateOptionsToDefault() {
 
 function resizeCompact() {
     return (dispatch) => {
-        dispatch(resizing());
+        dispatch(resizing(true));
         const [compactWindowWidth, compactWindowHeight] = configService.getCompactWindowDimensions();
 
         return new Promise((resolve, reject) => {
@@ -186,7 +187,7 @@ function resizeCompact() {
 
 function resizePrevious() {
     return (dispatch, getState) => {
-        dispatch(resizing());
+        dispatch(resizing(true));
         const [previousWindowWidth, previousWindowHeight] = getWindowStateForCurrentWindow(getState).previousExpandedDimensions;
 
         return new Promise((resolve, reject) => {

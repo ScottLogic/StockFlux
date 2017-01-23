@@ -19,6 +19,7 @@ describe('child/reducers/reducers', () => {
             },
             windowState: {
                 isCompact: false,
+                isChangingView: false,
                 isMaximized: false,
                 isResizing: false,
                 previousExpandedDimensions: configService.getDefaultWindowDimensions(),
