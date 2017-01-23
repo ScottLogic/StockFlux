@@ -17,11 +17,11 @@ const App = ({ code, name, windowState }) => (
         <div className="main-content">
             <Toolbar />
             <img className={`no-favourites-image${code ? ' hidden' : ''}`} src={noFavourites} />
-            <div className={`showcase${code && !windowState.isResizing ? '' : ' hidden'}`}>
+            <div className={`showcase${code ? '' : ' hidden'}`}>
                 <div id="showcase-title">
                     <div className="code">{code}</div> <div className="name">{name ? `(${truncate(name)})` : ''}</div>
                 </div>
-                <Showcase code={code} />
+                {!windowState.isCompact && <Showcase code={code} />}
             </div>
             <Version />
         </div>
