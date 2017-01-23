@@ -60,7 +60,7 @@ class WindowStateService {
     onBoundsChanged(e) {
         const positionChangeType = 0;
 
-        if (e.changeType !== positionChangeType && !this.store.getState().childWindows[e.name].windowState.isCompact) {
+        if (e.changeType !== positionChangeType && !this.store.getState().childWindows[e.name].windowState.isCompact && !this.store.getState().childWindows[e.name].windowState.isChangingView) {
             this.store.dispatch(windowResized([e.width, e.height]));
         }
     }

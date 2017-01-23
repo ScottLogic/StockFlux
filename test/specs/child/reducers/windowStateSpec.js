@@ -9,6 +9,7 @@ describe('child/reducers/windowState', () => {
     it('should return the initial state', () => {
         expect(windowState(undefined, {})).to.deep.equal({
             isCompact: false,
+            isChangingView: false,
             isMaximized: false,
             isResizing: false,
             previousExpandedDimensions: dimensions,
@@ -103,41 +104,97 @@ describe('child/reducers/windowState', () => {
         });
     });
 
-    it('should handle RESIZING', () => {
-        const action = { type: ACTION_TYPES.RESIZING };
+    it('should handle RESIZING when not changing view', () => {
+        const action = { type: ACTION_TYPES.RESIZING, isChangingView: false };
         expect(windowState({
             isCompact: false,
+            isChangingView: false,
             isMaximized: false,
             isResizing: false
         }, action)).to.deep.equal({
             isCompact: false,
+            isChangingView: false,
+            isMaximized: false,
+            isResizing: true
+        });
+        expect(windowState({
+            isCompact: true,
+            isChangingView: false,
+            isMaximized: false,
+            isResizing: false
+        }, action)).to.deep.equal({
+            isCompact: true,
+            isChangingView: false,
+            isMaximized: false,
+            isResizing: true
+        });
+        expect(windowState({
+            isCompact: false,
+            isChangingView: false,
+            isMaximized: true,
+            isResizing: false
+        }, action)).to.deep.equal({
+            isCompact: false,
+            isChangingView: false,
+            isMaximized: true,
+            isResizing: true
+        });
+        expect(windowState({
+            isCompact: true,
+            isChangingView: false,
+            isMaximized: true,
+            isResizing: false
+        }, action)).to.deep.equal({
+            isCompact: true,
+            isChangingView: false,
+            isMaximized: true,
+            isResizing: true
+        });
+    });
+
+    it('should handle RESIZING when changing view', () => {
+        const action = { type: ACTION_TYPES.RESIZING, isChangingView: true };
+        expect(windowState({
+            isCompact: false,
+            isChangingView: false,
+            isMaximized: false,
+            isResizing: false
+        }, action)).to.deep.equal({
+            isCompact: false,
+            isChangingView: true,
             isMaximized: false,
             isResizing: true
         });
         expect(windowState({
             isCompact: true,
+            isChangingView: false,
             isMaximized: false,
             isResizing: false
         }, action)).to.deep.equal({
             isCompact: true,
+            isChangingView: true,
             isMaximized: false,
             isResizing: true
         });
         expect(windowState({
             isCompact: false,
+            isChangingView: false,
             isMaximized: true,
             isResizing: false
         }, action)).to.deep.equal({
             isCompact: false,
+            isChangingView: true,
             isMaximized: true,
             isResizing: true
         });
         expect(windowState({
             isCompact: true,
+            isChangingView: false,
             isMaximized: true,
             isResizing: false
         }, action)).to.deep.equal({
             isCompact: true,
+            isChangingView: true,
             isMaximized: true,
             isResizing: true
         });
@@ -147,9 +204,21 @@ describe('child/reducers/windowState', () => {
         const action = { type: ACTION_TYPES.RESIZE_SUCCESS };
         expect(windowState({
             isResizing: true,
+            isChangingView: true,
             hasErrors: false
         }, action)).to.deep.equal({
             isResizing: false,
+            isChangingView: false,
+            hasErrors: false
+        });
+
+        expect(windowState({
+            isResizing: true,
+            isChangingView: false,
+            hasErrors: false
+        }, action)).to.deep.equal({
+            isResizing: false,
+            isChangingView: false,
             hasErrors: false
         });
     });
@@ -158,10 +227,25 @@ describe('child/reducers/windowState', () => {
         const action = { type: ACTION_TYPES.RESIZE_ERROR };
         expect(windowState({
             isCompact: false,
+            isChangingView: false,
             isMaximized: false,
             isResizing: true
         }, action)).to.deep.equal({
             isCompact: false,
+            isChangingView: false,
+            isMaximized: false,
+            isResizing: false,
+            hasErrors: true
+        });
+
+        expect(windowState({
+            isCompact: false,
+            isChangingView: true,
+            isMaximized: false,
+            isResizing: true
+        }, action)).to.deep.equal({
+            isCompact: false,
+            isChangingView: false,
             isMaximized: false,
             isResizing: false,
             hasErrors: true
@@ -172,37 +256,45 @@ describe('child/reducers/windowState', () => {
         const action = { type: 'UNKNOWN_ACTION' };
         expect(windowState({
             isCompact: false,
+            isChangingView: true,
             isMaximized: false,
             isResizing: false
         }, action)).to.deep.equal({
             isCompact: false,
+            isChangingView: true,
             isMaximized: false,
             isResizing: false
         });
         expect(windowState({
             isCompact: true,
+            isChangingView: false,
             isMaximized: false,
             isResizing: false
         }, action)).to.deep.equal({
             isCompact: true,
+            isChangingView: false,
             isMaximized: false,
             isResizing: false
         });
         expect(windowState({
             isCompact: false,
+            isChangingView: false,
             isMaximized: true,
             isResizing: false
         }, action)).to.deep.equal({
             isCompact: false,
+            isChangingView: false,
             isMaximized: true,
             isResizing: false
         });
         expect(windowState({
             isCompact: true,
+            isChangingView: false,
             isMaximized: true,
             isResizing: false
         }, action)).to.deep.equal({
             isCompact: true,
+            isChangingView: false,
             isMaximized: true,
             isResizing: false
         });

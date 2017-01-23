@@ -3,6 +3,7 @@ import configService from '../../shared/ConfigService';
 
 export default function windowState(state = {
     isCompact: false,
+    isChangingView: false,
     isMaximized: false,
     isResizing: false,
     previousExpandedDimensions: configService.getDefaultWindowDimensions(),
@@ -11,7 +12,8 @@ export default function windowState(state = {
     switch (action.type) {
     case ACTION_TYPES.RESIZING:
         return Object.assign({}, state, {
-            isResizing: true
+            isResizing: true,
+            isChangingView: action.isChangingView
         });
     case ACTION_TYPES.TOGGLE_COMPACT: {
         if (action.isCompact) {
@@ -36,11 +38,13 @@ export default function windowState(state = {
     case ACTION_TYPES.RESIZE_SUCCESS:
         return Object.assign({}, state, {
             isResizing: false,
+            isChangingView: false,
             hasErrors: false
         });
     case ACTION_TYPES.RESIZE_ERROR:
         return Object.assign({}, state, {
             isResizing: false,
+            isChangingView: false,
             hasErrors: true
         });
     case ACTION_TYPES.WINDOW_RESIZED:
