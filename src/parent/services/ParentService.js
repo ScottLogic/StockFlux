@@ -31,7 +31,7 @@ class ParentService {
             return;
         }
 
-        const isFinalChildWindowClosing = this.getChildWindowCount() <= 1;
+        const isFinalChildWindowClosing = this.getChildWindowCount() === 0 || (this.getChildWindowCount() === 1 && this.store.getState().childWindows[name]);
 
         if (isFinalChildWindowClosing && this.getWindowDragOutCount() === 0) {
             fin.desktop.Window.getCurrent().close();
