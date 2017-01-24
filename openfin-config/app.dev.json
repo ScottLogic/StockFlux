@@ -15,7 +15,7 @@
     },
     "runtime": {
         "arguments": "--enable-aggressive-domstorage-flushing",
-        "version": "stable"
+        "version": "5.44.12.27"
     },
     "shortcut": {
         "company": "ScottLogic",
