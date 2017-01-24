@@ -1,14 +1,15 @@
 language: node_js
 
 node_js:
-  - "4.0"
+- '6.9'
 
 sudo: false
 
 install:
 - npm install
-- npm install -g grunt-cli
-- npm install -g npm@'>=2.13.5'
+
+script:
+- npm run ci
 
 env:
   global:

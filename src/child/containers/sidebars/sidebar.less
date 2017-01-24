@@ -1,0 +1,105 @@
+@hover-colour: #455D63;
+@flash-colour: #447272;
+@bottom-tab-height: 40px;
+.click-flash(@final-colour) {
+    0% {
+        background-color: @flash-colour;
+    }
+    100% {
+        background-color: @final-colour;
+    }
+}
+@-webkit-keyframes search {
+    .click-flash(@search-background);
+}
+@-webkit-keyframes favourites {
+    .click-flash(@favourites-background);
+}
+.expanded {
+    .size(@width: @expanded-width);
+    -webkit-animation-duration: 0.4s;
+    -webkit-animation-timing-function: ease-in;
+}
+.search.expanded {
+    -webkit-animation-name: search;
+}
+.favourites.expanded {
+    -webkit-animation-name: favourites;
+}
+.closed-window-selection {
+    .position(absolute, @bottom: 0px, @left: 50px);
+    background-color: @middle-background;
+    .size(@width: @expanded-width, @height: @bottom-tab-height);
+    border-top: 1px solid @dark-background;
+}
+.favourite-closed {
+    .position(absolute, @right: 15px, @bottom: 10px);
+    .size(@width: 20px, @height: 20px);
+}
+.favourite-closed-cover {
+    .position(fixed, @top: 0px, @right: 0px, @bottom: 0px, @left: 0px);
+    z-index: 1000;
+}
+.contracted {
+    .size(@width: (@sidebar-width - @expanded-width));
+    overflow: hidden;
+    .sidetab-top {
+        .no-drag;
+    }
+    &:hover {
+        background: @hover-colour;
+    }
+    .hiddenOnContracted {
+        display: none;
+    }
+}
+.sidetab {
+    opacity: 1;
+    width: @expanded-width;
+    &.ng-hide-remove {
+        .transition(@duration: 0.1s, @delay: 0.3s);
+    }
+    &.ng-hide-add {
+        .transition(@duration: 0.1s, @delay: 0s);
+    }
+    &.ng-hide {
+        opacity: 0;
+    }
+}
+.sidebars {
+    .size(@width: @sidebar-width, @height: 100%);
+    float: left;
+
+    &.active * {
+        pointer-events: none;
+    }
+}
+.sidetab-top {
+    .size(@height: @toolbar-height);
+}
+.darkens:hover {
+    background: @dark-background;
+}
+.top-icon {
+    float: right;
+    margin-right: 15px;
+    margin-top: 15px;
+}
+.bottom-icon {
+    float: right;
+    margin-right: 15px;
+    margin-top: 7px;
+    cursor: pointer;
+}
+.no-favourites {
+    padding: 12px 15px 12px 20px;
+    color: @text-grey;
+    .font(14px, @font-medium);
+}
+.errorWrapper {
+    padding-top: 0;
+}
+.star {
+    float: right;
+    cursor: pointer;
+}

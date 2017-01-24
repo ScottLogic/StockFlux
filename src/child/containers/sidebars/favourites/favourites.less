@@ -1,0 +1,156 @@
+@favourite-height: 109px;
+@favourite-padding-top: 10px;
+// Padding right is declared in the variables file:
+// it's used to determine the placement of other elements, while the other
+// padding variables are not.
+@favourite-padding-bottom: 5px;
+@favourite-padding-left: 0px;
+@top-height: 30px;
+@top-padding-left: 10px;
+@fav-split-color: #323A48;
+@highlight-colour: #447272;
+@scrollbar-padding: 20px;
+
+.favDropTarget #favourite-scroll {
+    transition: 0.25s all;
+}
+
+.favouriteDropPlaceholder {
+    background-color: rebeccapurple;
+    height: @favourite-height;
+}
+
+.favouriteWrapper{
+    cursor: pointer;
+    border-width: 1px 0;
+    max-height: @favourite-height * 2;
+    * {
+        cursor: pointer;
+        transition: 0.25s all;
+        pointer-events: none;
+        .button-icon{
+            pointer-events: all;
+        }
+    }
+    &.dragging{
+        background-color: #2B595B;
+        transition-delay: 0.01s;
+        transition-property: max-height, padding;
+        max-height: 0;
+        * {
+            opacity: 0;
+        }
+    }
+}
+
+.favouriteWrapper.dragOver {
+    padding-top: @favourite-height;
+    background-color: #2E5356;
+}
+
+.favouriteWrapper.dragOverBottom {
+    padding-bottom: @favourite-height;
+    background-color: #2E5356;
+}
+
+.sidebars.active {
+    .favourites {
+      background-color: @highlight-colour;
+
+      .favourite, .hover-area {
+        background-color: @highlight-colour;
+      }
+    }
+}
+
+.favourites {
+  float: right;
+  .size(@width: @expanded-width, @height: 100%);
+  background-color: @favourites-background;
+
+  &.active-add, &.active-remove {
+    .favourite, .hover-area {
+      .transition();
+    }
+  }
+}
+
+.hover-area {
+  background-color: @fav-split-color;
+  .size(@width: @expanded-width, @height: 1px);
+}
+
+.drop-target {
+  .size(@width: @expanded-width, @height: @favourite-height);
+  background-color: #2E5356;
+}
+
+// Don't nest this as it is the root element of the injected HTML for tearout windows
+.favourite {
+  padding: @favourite-padding-top @favourite-padding-right @favourite-padding-bottom @favourite-padding-left;
+  background-color: @middle-background;
+  .size(@width: @expanded-width, @height: @favourite-height);
+  cursor: pointer;
+
+  &.darkens {
+    &.hovered {
+      background-color: @dark-background;
+    }
+  }
+
+  .top {
+    padding-left: @top-padding-left;
+    .transition();
+
+    .name {
+      .font(12px, @font-light, 1.4);
+      .size(@width: (@expanded-width - @top-padding-left - @scrollbar-padding - 5 - @star-width - @favourite-padding-right)); // padding width
+      .wrap-ellipsis;
+    }
+
+    .code {
+      padding-top: 1px;
+      .font(20px, @font-medium, 1.0);
+    }
+  }
+
+  .bottom {
+    .details {
+      float: right;
+      text-align: right;
+      padding-top: 5px;
+
+      .price {
+        .font(18px, @font-medium, 1.0);
+      }
+
+      .delta {
+        padding-top: 5px;
+        .font(14px, @font-light, 1.0);
+      }
+
+      .delta, .percentage {
+        padding-right: 1px;
+      }
+
+      .stock-arrow {
+        .size(@height: 9px);
+        padding-bottom: 1px;
+        padding-right: 3px;
+      }
+
+      .percentage {
+        padding-top: 1px;
+        .font(12px, @font-light, 1.0);
+      }
+    }
+  }
+}
+
+.scroll-padding:hover .top {
+  padding-left: @scrollbar-padding !important;
+}
+
+.dark {
+  background: @dark-background;
+}

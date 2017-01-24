@@ -1,0 +1,80 @@
+@search-result-height: 60px;
+@search-splitter-style: 1px solid @separator-colour;
+.search {
+
+    .tips{
+        padding: 1rem;
+    }
+
+    overflow: hidden;
+    float: left;
+    height: 100%; // Not using this mixin as this depends on contracted/expanded
+    background-color: @search-background;
+    z-index: 1;
+    .transition();
+    .position(absolute);
+    .box-shadow(@shadow-depth 0px, @dark-background);
+    icon {
+        display: none;
+    }
+    .side-scroll {
+        border-top: 1px solid @middle-background;
+    }
+    input {
+        border: none;
+        background: transparent;
+        .font(12px);
+        color: @text-grey;
+        .size(@width: 184px);
+        padding-left: 15px;
+        padding-top: 16px;
+        &:focus {
+            outline: none;
+        }
+    }
+    .results-message {
+        color: @text-grey;
+        padding-left: 12px;
+        .font(14px);
+    }
+    .errorDetailsWrapper {
+        margin: 12px 0;
+    }
+    .search-result {
+        .size(@width: @expanded-width, @height: @search-result-height);
+        border-bottom: @search-splitter-style;
+        .button-icon.star {
+            background-position: 0 50%;
+        }
+        .name {
+            .font(12px, @font-thin);
+            .size(@width: 155px);
+            .wrap-ellipsis;
+        }
+        .code {
+            .font(20px, @font-medium, 1.4);
+        }
+        .details {
+            .position(relative);
+            float: left;
+            padding-left: 20px;
+            padding-top: 8px;
+        }
+        .star-icon {
+            padding-right: 15px;
+            padding-top: 21px;
+        }
+    }
+    .searchInput {
+        opacity: 1;
+        .transition(@duration: 0.1s, @delay: 0.3s);
+    }
+    &.contracted .searchInput {
+        opacity: 0;
+        .transition(@duration: 50ms, @delay: 0s);
+        cursor: default;
+    }
+}
+.search #search-scroll {
+    .position(absolute, @top: @toolbar-height, @bottom: 0px);
+}

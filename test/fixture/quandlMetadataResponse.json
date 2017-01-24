@@ -1,0 +1,31 @@
+{
+    "dataset": {
+        "id": 9775718,
+        "dataset_code": "GOOG",
+        "database_code": "WIKI",
+        "name": "Alphabet Inc (GOOG) Prices, Dividends, Splits and Trading Volume",
+        "description": "End of day open, high, low, close and volume, dividends and splits, and split/dividend adjusted open, high, low close and volume for Google Inc. (GOOG). Ex-Dividend is non-zero on ex-dividend dates. Split Ratio is 1 on non-split dates. Adjusted prices are calculated per CRSP (www.crsp.com/products/documentation/crsp-calculations)\n\nThis data is in the public domain. You may copy, distribute, disseminate or include the data in other products for commercial and/or noncommercial purposes.\n\nThis data is part of Quandl's Wiki initiative to get financial data permanently into the public domain. Quandl relies on users like you to flag errors and provide data where data is wrong or missing. Get involved: connect@quandl.com\n",
+        "refreshed_at": "2016-05-31T21:47:50.929Z",
+        "newest_available_date": "2016-05-31",
+        "oldest_available_date": "2014-03-27",
+        "column_names": [
+            "Date",
+            "Open",
+            "High",
+            "Low",
+            "Close",
+            "Volume",
+            "Ex-Dividend",
+            "Split Ratio",
+            "Adj. Open",
+            "Adj. High",
+            "Adj. Low",
+            "Adj. Close",
+            "Adj. Volume"
+        ],
+        "frequency": "daily",
+        "type": "Time Series",
+        "premium": false,
+        "database_id": 4922
+    }
+}

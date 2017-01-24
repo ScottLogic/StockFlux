@@ -19,7 +19,7 @@ This is an 'evergreen' application, each time it launches the application code i
 
 # Development
 
-The application is built using AngularJS and ES2015, transpiled via Babel. The charts are rendered using [d3fc](https://d3fc.io/), a Scott Logic open source project which provides a number of components that allow the creation of bespoke interactive charts. The bulk of the charting code is adapted from [BitFlux](http://scottlogic.github.io/BitFlux/), which showcases the capabilities of d3fc.
+The application is built using React and ES2015, transpiled via Babel. The charts are rendered using [d3fc](https://d3fc.io/), a Scott Logic open source project which provides a number of components that allow the creation of bespoke interactive charts. The bulk of the charting code is adapted from [BitFlux](http://scottlogic.github.io/BitFlux/), which showcases the capabilities of d3fc.
 
 The displayed data is real and provided by [Quandl](https://www.quandl.com). The application uses separate Quandl API keys for development and release to mitigate chances of crossing Quandl's [rate limits](https://www.quandl.com/docs/api?json#rate-limits).
 
@@ -29,38 +29,64 @@ The displayed data is real and provided by [Quandl](https://www.quandl.com). The
 
 - Download or clone this repository locally
 - Ensure [Node.js](https://nodejs.org/), which includes npm, is installed
-- Ensure [Grunt](http://gruntjs.com/getting-started#installing-the-cli) is installed:
 
-```
-npm install -g grunt-cli
-```
 
-- Navigate to the root of your local copy of this project and install the dependencies:
+Install dependencies:
 
 ```
 npm install
 ```
 
-#### Running locally
-
-To run in an OpenFin shell run the `serve` grunt task:
+Start the webpack development server:
 
 ```
-grunt serve
+npm start
 ```
 
-The project is also accessible at http://localhost:5000
+Start the remote redux dev tools server:
 
-#### Testing
+```
+npm run remotedev
+```
+Navigate to `http://localhost:8000` or use the [redux devtools extension](https://github.com/zalmoxisus/redux-devtools-extension) to inspect and dispatch actions.
+
+Launch the OpenFin runtime:
+
+```
+npm run openfin:dev
+```
+
+### npm Build Tasks
+
+#### Development Build
+
+Run webpack-dev-server with the development config: `npm start`
+
+Launch OpenFin with the development setup (requires the dev server to be running): `npm run openfin:dev`
+
+#### Production Build
+
+Build and serve the production bundle: `npm run prod`
+
+Launch OpenFin with the production setup (requires the server to be running): `npm run openfin:prod`
+
+### Testing
 
 There is a [test plan](docs/TEST_PLAN.md) that covers the main features and behaviour. This should be used as a basis for testing before releasing and also the main features covered on testing PR changes.
 
-#### Releasing
+#### npm Tasks
 
-To release, run the Grunt task: `grunt release` for a major release, or `grunt bump:minor`
-for a minor. This updates all the version references to a new version. Then, submit a PR
-with this new version in to `dev`, and then merge it to `master`. Merging to master will
-trigger the update of the deployed gh-pages version.
+Run the full suite of unit tests: `npm test`
+
+Lint and run the tests: `npm run ci`
+
+Run the tests once initially and on any subsequent changes to JavaScript files: `npm run test:watch`
+
+Get details on the test coverage: `npm run test:cov`
+
+### Contributing
+
+Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details of how to contribute.
 
 ## License
 

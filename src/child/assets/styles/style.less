@@ -1,0 +1,110 @@
+@import "../../../../node_modules/BitFlux/src/assets/styles/style.less";
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500);
+
+@import "variables.less";
+@import "mixins.less";
+
+@import "../../components/version/version.less";
+
+@import "../../containers/sidebars/closedWindows/closedCard.less";
+@import "../../containers/sidebars/closedWindows/closedWindowList.less";
+
+@import "../../containers/toolbar/toolbar.less";
+@import "../../containers/toolbar/toolbar-mixins.less";
+@import "../../containers/sidebars/sidebar.less";
+@import "../../containers/sidebars/search/search.less";
+@import "../../containers/sidebars/favourites/favourites.less";
+
+@import "../../components/minichart/minichart.less";
+@import "../../components/favourite/unfavourite-confirmation.less";
+@import "../../containers/showcase/showcase-changes.less";
+@import "../../containers/sidebars/custom-scroll.less";
+
+// Compact styles
+@import "../../containers/main/main-compact.less";
+@import "../../containers/toolbar/toolbar-compact.less";
+@import "../../components/favourite/unfavourite-confirmation-compact.less";
+@import "../../containers/sidebars/favourites/favourite-compact.less";
+@import "../../containers/sidebars/sidebar-compact.less";
+@import "../../containers/sidebars/search/search-compact.less";
+/*
+@import "../../closedWindows/closedWindowList/closedWindowList-compact.less";
+*/
+body {
+  -webkit-user-select: none;
+}
+
+#app, .main, body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.main-content {
+    margin-left: @sidebar-width;
+}
+.main {
+    background-color: @dark-background;
+    padding: 0;
+}
+/*.main {
+  background-color: @dark-background;
+  padding: 0px;
+  .position(fixed, @top: 0px, @right: 0px, @bottom: 0px, @left: 0px);
+  border: 1px solid @light-background;
+}
+
+.main-content {
+  .position(absolute, @top: @toolbar-height, @right: 0px, @bottom: 0px, @left: (@sidebar-width + 20));
+}*/
+#showcase-container {
+  .position(absolute, @top: @toolbar-height, @right: 0px, @bottom: 0px, @left: (@sidebar-width + 20));
+}
+
+.button-icon {
+    display: inline-block;
+    width: @icons-size;
+    height: 100%;
+    background-position: 50% 80%;
+    background-repeat: no-repeat;
+    transition: @icon-transition-duration all;
+    cursor: pointer;
+}
+
+.disable-transitions {
+  * {
+    transition: none !important;
+  }
+}
+
+.disable-pointer {
+  * {
+    pointer-events: none;
+  }
+}
+
+#showcase-title {
+  color: @chart-teal;
+  .position(relative, @top: 5px, @left: 20px);
+  z-index: 10;
+  display: inline-block;
+
+  .code, .name {
+    display: inline-block;
+  }
+
+  .code {
+    .font(18px, @font-medium);
+  }
+
+  .name {
+    .font(14px, @font-light);
+  }
+}
+
+.no-favourites-image {
+    max-width: 1060px;
+    max-height: 500px;
+    width: 100%;
+    position: relative;
+    -webkit-user-drag: none;
+}

@@ -1,0 +1,307 @@
+// Override BitFlux colours
+@primary-dark-blue: @dark-background;
+@secondary-orange: @chart-teal;
+@secondary-grey: @chart-teal;
+@primary-blue: @chart-teal;
+@gridline-colour: @chart-fade;
+@tertiary-purple: #9D97E5;
+@tertiary-green: #5DE559;
+@tertiary-red: #FB4345;
+@tertiary-yellow: #FFFB6B;
+@tertiary-blue: @chart-teal;
+@button-hover: #214244;
+
+@bollinger-fill-colour: fade(@chart-fade, 20%);
+@bollinger-average-colour: @tertiary-yellow;
+
+@faded-colour: fade(@chart-fade, 0%);
+
+@navigator-extent-colour-top: @secondary-orange;
+@navigator-extent-colour-bottom: @faded-colour;
+
+#legend {
+  background-color: default;
+  margin-top: 5px;
+  margin-left: 1px;
+  margin-right: 1px;
+  padding: 5 5 5 0;
+  align-self: flex-start;
+
+  #tooltip {
+    padding-top: 10px;
+  }
+}
+
+.selectors {
+  button {
+    cursor: default;
+
+    &:hover {
+      background: @button-hover;
+    }
+  }
+
+  .dropdown.open button {
+    background: #296762;
+  }
+
+  .dropdown-toggle {
+    height: 28px;
+    border-radius: 0;
+  }
+
+  .selector-dropdown:nth-child(2) .dropdown-toggle {
+    width: inherit;
+    padding-top: 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+    .font(@size: 14px, @line-height: 0);
+  }
+
+  .selector-dropdown {
+    &.open {
+      .dropdown-toggle {
+        border-bottom: none;
+        .position(relative);
+        z-index: 2;
+      }
+
+      .dropdown-menu {
+        z-index: 1;
+      }
+    }
+
+    .dropdown-menu {
+      top: 25px;
+      border-radius: 0;
+    }
+  }
+}
+
+.container-fluid {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+#primary-container .average > path.line {
+  stroke-dasharray: 0;
+}
+
+.secondary-container {
+  .bar {
+    stroke: @chart-fade !important;
+    fill: @chart-fade !important;
+  }
+
+  .macd-divergence .bar {
+    stroke: @chart-fade !important;
+    fill: @chart-fade !important;
+  }
+
+  .macd-signal .line, .macd .line, .rsi {
+    stroke-width: 2px;
+  }
+
+  .y-axis {
+    .tick {
+      &.orient-right text {
+        .font(10px);
+      }
+    }
+  }
+}
+
+#navbar-row {
+  padding-top: 20px;
+
+  #navbar-container .plot-area {
+    .multi {
+      .area {
+        fill: url(#brush-gradient) !important;
+        fill-opacity: 0.2;
+      }
+
+      path {
+        stroke: @chart-fade !important;
+        stroke-width: 1.5px;
+      }
+    }
+
+    .w, .e {
+      width: 1px;
+
+      > rect {
+        fill: @chart-teal !important;
+      }
+
+      .outer-handle, .inner-handle {
+        stroke: @chart-teal !important;
+      }
+
+      .inner-handle {
+        fill: @chart-teal !important;
+      }
+    }
+  }
+
+  #navbar-reset {
+    opacity: 1.0;
+
+    .reset-button {
+      stroke: @chart-teal !important;
+
+      &:hover {
+        fill: @button-hover !important;
+      }
+    }
+  }
+
+  #navbar-container {
+    #brush-gradient .brush-gradient-top {
+      stop-color: @chart-teal;
+    }
+  }
+}
+
+.y-axis {
+  .close-line.tick {
+    > path {
+      stroke: @chart-teal !important;
+      fill: @chart-teal !important;
+    }
+
+    > text {
+      fill: black !important;
+    }
+  }
+
+  .tick text, #x-axis-container .tick text, #navbar-row #navbar-container text {
+    .font(14px);
+    fill: @text-grey;
+  }
+}
+
+#x-axis-container .tick, #navbar-row #navbar-container {
+  text {
+    .font(14px);
+    fill: @text-grey;
+  }
+}
+
+.multi.rsi.indicator {
+  stroke: @tertiary-purple;
+}
+
+.multi.rsi.annotations .annotation.horizontal line {
+  stroke-dasharray: 8px;
+}
+
+.plot-area .annotation.close-line > line {
+  stroke: @chart-teal;
+}
+
+.dropdown .dropdown-menu {
+  background-color: @dark-background !important;
+  border-color: @chart-teal;
+
+  > li {
+    padding-top: 0px;
+    padding-bottom: 0px;
+
+    &:hover {
+      background-color: @button-hover;
+    }
+
+    &:first-of-type {
+      margin-top: 10px;
+    }
+
+    > a {
+      color: @chart-teal;
+    }
+  }
+}
+
+.head-row {
+  display: none;
+}
+
+.primary-row {
+  margin-top: 19px;
+}
+
+#charts {
+  padding-right: 0px !important;
+}
+
+#charts-container {
+  padding-bottom: 3px;
+}
+
+.selectors {
+  top: -21px;
+  right: 80px;
+  left: auto;
+}
+
+#app-container {
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-right: 0px;
+  width: 100%;
+}
+
+#product-dropdown {
+  display: @hide;
+}
+
+#mobile-product-dropdown {
+  .dropdown-toggle {
+    display: none;
+  }
+}
+
+#overlay {
+
+  .edit-indicator {
+    .icon {
+      border-radius: 0;
+
+      &.bf-icon-delete {
+        background-image: url('../../assets/png/close_indicator.png');
+      }
+    }
+  }
+}
+
+// OVERRIDES
+// Phone
+@phone-landscape-nav-display: @show;
+@phone-landscape-clear-all-display: @hide;
+@phone-landscape-period-tab-display: @hide;
+@phone-landscape-period-dropdown-display: @hide;
+
+@phone-portrait-nav-display: @show;
+@phone-portrait-clear-all-display: @hide;
+@phone-portrait-period-tab-display: @hide;
+@phone-portrait-period-dropdown-display: @hide;
+
+// Tablet
+@tablet-landscape-nav-display: @show;
+@tablet-landscape-clear-all-display: @hide;
+@tablet-landscape-period-tab-display: @hide;
+@tablet-landscape-period-dropdown-display: @hide;
+
+@tablet-portrait-nav-display: @show;
+@tablet-portrait-clear-all-display: @hide;
+@tablet-portrait-period-tab-display: @hide;
+@tablet-portrait-period-dropdown-display: @hide;
+
+
+// Tablet + phone
+@mobile-device-legend-display: @show;
+@mobile-device-crosshair-display: @show;
+@mobile-device-product-dropdown-display: @hide;
+@mobile-device-head-selectors-display: @show;
+@mobile-device-overlay-selectors-display: @show;
+@mobile-device-overlay-product-dropdown-display: @hide;
