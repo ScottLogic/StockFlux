@@ -13,7 +13,7 @@ Here are a few things to try:
 
 ## Installing
 
-In order to install the application, download [StockFlux installer zipfile](https://dl.openfin.co/services/download?fileName=StockFlux-master&config=http://scottlogic.github.io/StockFlux/master/app.json), unzip and run the executable. If you haven't already installed an OpenFin application, this will install the required runtime. It'll also add shortcuts to StockFlux to your desktop and start menu.
+In order to install the application, download [StockFlux installer zipfile](https://install.openfin.co/download?fileName=StockFlux-master&config=http://scottlogic.github.io/StockFlux/master/app.json), unzip and run the executable. If you haven't already installed an OpenFin application, this will install the required runtime. It'll also add shortcuts to StockFlux to your desktop and start menu.
 
 This is an 'evergreen' application, each time it launches the application code is downloaded (from GitHub pages), ensuring that it is always up-to-date.
 
