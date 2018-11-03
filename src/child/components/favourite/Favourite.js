@@ -142,7 +142,7 @@ class Favourite extends Component {
 
         const price = !isNaN(+stockData.price) ? (+stockData.price).toFixed(2) : null;
         const delta = !isNaN(+stockData.delta) ? (+stockData.delta).toFixed(2) : null;
-        const percentage = !isNaN(+stockData.percentage) ? Math.abs((+stockData.percentage)).toFixed(2) : null;
+        const percentage = !isNaN(+stockData.percentage) ? (+stockData.percentage).toFixed(2) : null;
         const name = stockData.name ? truncate(stockData.name) : '';
 
         const confirmationBindings = {
@@ -180,9 +180,9 @@ class Favourite extends Component {
                             <div className="details">
                                 {price && <div className="price">{price}</div>}
                                 {delta && <div className="delta">{delta}</div>}
-                                {percentage && <div className="percentage">
+                                {percentage !== null && <div className="percentage">
                                     <img src={percentage > 0 ? arrowUp : arrowDown} className="stock-arrow" draggable="false" />
-                                    {percentage}%
+                                    {Math.abs(percentage)}%
                                 </div>}
                             </div>
                         </div>
