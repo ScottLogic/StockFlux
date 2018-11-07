@@ -63,11 +63,11 @@ describe('child/actions/search', () => {
             const term = 'GOOG';
             const result1 = {
                 code: 'GOOG',
-                name: 'Alphabet Inc (GOOG) Prices, Dividends, Splits and Trading Volume'
+                name: 'Alphabet Inc. (GOOG) Stock Prices, Dividends and Splits'
             };
             const result2 = {
                 code: 'GOOGL',
-                name: 'Alphabet Inc (GOOGL) Prices, Dividends, Splits and Trading Volume'
+                name: 'Alphabet Inc. (GOOGL) Stock Prices, Dividends and Splits'
             };
             const results = [result1, result2];
             const expectedActions = [
