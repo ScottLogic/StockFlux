@@ -71,7 +71,7 @@ Hover off means to move mouse cursor off an element.
 
 ### Searching
 | Action |Result |
-|---|---|---|
+|---|---|
 | View empty search field | Should contain text "Enter stock name or symbol" |
 | Enter "A" character into search field | Should remove the "Enter stock name or symbol" text and replace with the entered search term. The search results field should display "loading search results". Search results which match criteria should be displayed|
 | Entering "A" character into search field and hovering on search results | A scroll bar should become visible down the left side of the search results to allow scrolling down the long list. Dragging it should scroll down the list.  The stock hovered over should receive dark grey highlighting. |
