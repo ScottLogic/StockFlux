@@ -1,12 +1,37 @@
 import React, { Component, PropTypes } from 'react';
-import { apiKey as quandlServiceApiKey } from '../../services/QuandlService';
+import { apiKey as quandlServiceApiKey, dataset as quandlServiceDataset } from '../../services/QuandlService';
 import configService from '../../../shared/ConfigService';
+
+const columnNameMap = {
+    Open: 'unadjustedOpen',
+    High: 'unadjustedHigh',
+    Low: 'unadjustedLow',
+    Close: 'unadjustedClose',
+    Volume: 'unadjustedVolume',
+    Adj_Open: 'open',
+    Adj_High: 'high',
+    Adj_Low: 'low',
+    Adj_Close: 'close',
+    Adj_Volume: 'volume'
+};
+
+function mapColumnNames(colName) {
+    let mappedName = columnNameMap[colName];
+    if (!mappedName) {
+        mappedName = colName[0].toLowerCase() + colName.substr(1);
+    }
+    return mappedName;
+}
 
 class Showcase extends Component {
 
     componentDidMount() {
 
-        this.chart = bitflux.app().quandlApiKey(quandlServiceApiKey());
+        this.chart = bitflux
+            .app()
+            .quandlDatabase(quandlServiceDataset())
+            .quandlColumnNameMap(mapColumnNames)
+            .quandlApiKey(quandlServiceApiKey());
 
         this.chart.periodsOfDataToFetch(configService.getBitfluxStockAmount());
         this.chart.proportionOfDataToDisplayByDefault(configService.getInitialBitfluxProportion());

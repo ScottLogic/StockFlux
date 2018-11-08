@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 import nock from 'nock';
-import { search, getStockMetadata, getStockData, apiKey } from '../../../../src/child/services/QuandlService';
+import { search, getStockData, apiKey } from '../../../../src/child/services/QuandlService';
 import createFakeQuandlServer from '../../../helper/fakeQuandlServer';
 
 describe('child/services/QuandlService', () => {
@@ -21,9 +21,9 @@ describe('child/services/QuandlService', () => {
             search('GOOG').then((response) => {
                 expect(response.length).to.equal(2);
                 expect(response[0].code).to.equal('GOOG');
-                expect(response[0].name).to.equal('Alphabet Inc (GOOG) Prices, Dividends, Splits and Trading Volume');
+                expect(response[0].name).to.equal('Alphabet Inc. (GOOG) Stock Prices, Dividends and Splits');
                 expect(response[1].code).to.equal('GOOGL');
-                expect(response[1].name).to.equal('Alphabet Inc (GOOGL) Prices, Dividends, Splits and Trading Volume');
+                expect(response[1].name).to.equal('Alphabet Inc. (GOOGL) Stock Prices, Dividends and Splits');
             })
         );
 
@@ -31,9 +31,9 @@ describe('child/services/QuandlService', () => {
             search('GOOG', true).then((response) => {
                 expect(response.length).to.equal(2);
                 expect(response[0].code).to.equal('GOOG');
-                expect(response[0].name).to.equal('Alphabet Inc (GOOG) Prices, Dividends, Splits and Trading Volume');
+                expect(response[0].name).to.equal('Alphabet Inc. (GOOG) Stock Prices, Dividends and Splits');
                 expect(response[1].code).to.equal('GOOGL');
-                expect(response[1].name).to.equal('Alphabet Inc (GOOGL) Prices, Dividends, Splits and Trading Volume');
+                expect(response[1].name).to.equal('Alphabet Inc. (GOOGL) Stock Prices, Dividends and Splits');
             })
         );
 
@@ -52,27 +52,11 @@ describe('child/services/QuandlService', () => {
         );
     });
 
-    describe('getStockMetadata', () => {
-        it('should return stock metadata', () =>
-            getStockMetadata('GOOG').then((response) => {
-                expect(response.dataset.dataset_code).to.equal('GOOG');
-                expect(response.dataset.name).to.equal('Alphabet Inc (GOOG) Prices, Dividends, Splits and Trading Volume');
-            })
-        );
-
-        it('should catch errors', () =>
-            getStockMetadata('BAD').catch((error) => {
-                expect(error.quandl_error.code).to.equal('QEAx01');
-                expect(error.quandl_error.message).to.equal('Quandl error message description.');
-            })
-        );
-    });
-
     describe('getStockData', () => {
         it('should return stock data when using an API key', () =>
             getStockData('GOOG').then((response) => {
                 expect(response.dataset.dataset_code).to.equal('GOOG');
-                expect(response.dataset.name).to.equal('Alphabet Inc (GOOG) Prices, Dividends, Splits and Trading Volume');
+                expect(response.dataset.name).to.equal('Alphabet Inc. (GOOG) Stock Prices, Dividends and Splits');
 
                 expect(response.stockData).to.be.an('object');
                 expect(response.stockData.startDate).not.to.be.undefined;
@@ -84,7 +68,7 @@ describe('child/services/QuandlService', () => {
         it('should return stock data when falling back to using no API key', () =>
             getStockData('GOOG', true).then((response) => {
                 expect(response.dataset.dataset_code).to.equal('GOOG');
-                expect(response.dataset.name).to.equal('Alphabet Inc (GOOG) Prices, Dividends, Splits and Trading Volume');
+                expect(response.dataset.name).to.equal('Alphabet Inc. (GOOG) Stock Prices, Dividends and Splits');
 
                 expect(response.stockData).to.be.an('object');
                 expect(response.stockData.startDate).not.to.be.undefined;

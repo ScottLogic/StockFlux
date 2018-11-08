@@ -1,10 +1,10 @@
 {
   "dataset": {
-    "id": 9775718,
+    "id": 42624632,
     "dataset_code": "GOOG",
-    "database_code": "WIKI",
-    "name": "Alphabet Inc (GOOG) Prices, Dividends, Splits and Trading Volume",
-    "description": "End of day open, high, low, close and volume, dividends and splits, and split/dividend adjusted open, high, low close and volume for Google Inc. (GOOG). Ex-Dividend is non-zero on ex-dividend dates. Split Ratio is 1 on non-split dates. Adjusted prices are calculated per CRSP (www.crsp.com/products/documentation/crsp-calculations)\n\nThis data is in the public domain. You may copy, distribute, disseminate or include the data in other products for commercial and/or noncommercial purposes.\n\nThis data is part of Quandl's Wiki initiative to get financial data permanently into the public domain. Quandl relies on users like you to flag errors and provide data where data is wrong or missing. Get involved: connect@quandl.com\n",
+    "database_code": "EOD",
+    "name": "Alphabet Inc. (GOOG) Stock Prices, Dividends and Splits",
+    "description": "\u003cp\u003e\u003cb\u003eTicker\u003c/b\u003e: GOOG\u003c/p\u003e\n\u003cp\u003e\u003cb\u003eExchange\u003c/b\u003e: NASDAQ\u003c/p\u003e\n\u003cp\u003ePrices, dividends, splits for Alphabet Inc. (GOOG).\n\n\u003cp\u003eColumns:\u003c/p\u003e\n\u003cp\u003eOpen, High, Low, Close, Volume are \u003cb\u003eunadjusted\u003c/b\u003e.\u003c/p\u003e\n\u003cp\u003eDividend shows the \u003cb\u003eunadjusted\u003c/b\u003e dividend on any ex-dividend date else 0.0.\u003c/p\u003e\n\u003cp\u003eSplit shows any split that occurred on a the given DATE else 1.0\u003c/p\u003e\n\u003cp\u003eAdjusted values are adjusted for dividends and splits using the \u003ca href='http://www.crsp.com/products/documentation/crsp-calculations'\u003eCRSP methodology\u003c/a\u003e.\u003c/p\u003e\n\u003cp\u003eUpdates of this dataset occur at 5pm ET.  Subsequent corrections from the exchange are applied at 9pm ET.\u003c/p\u003e\n\u003cp\u003eData is sourced from NASDAQ, NYSE and AMEX via \u003ca href='http://www.quotemedia.com'\u003eQuotemedia\u003c/a\u003e.\u003c/p\u003e\n\n",
     "refreshed_at": "2016-05-31 21:47:50 UTC",
     "newest_available_date": "2016-05-31",
     "oldest_available_date": "2014-03-27",
@@ -15,17 +15,17 @@
       "Low",
       "Close",
       "Volume",
-      "Ex-Dividend",
-      "Split Ratio",
-      "Adj. Open",
-      "Adj. High",
-      "Adj. Low",
-      "Adj. Close",
-      "Adj. Volume"
+      "Dividend",
+      "Split",
+      "Adj_Open",
+      "Adj_High",
+      "Adj_Low",
+      "Adj_Close",
+      "Adj_Volume"
     ],
     "frequency": "daily",
     "type": "Time Series",
-    "premium": false,
+    "premium": true,
     "limit": null,
     "transform": null,
     "column_index": null,
@@ -8119,7 +8119,7 @@
       ]
     ],
     "collapse": null,
-    "order": "desc",
-    "database_id": 4922
+    "order": null,
+    "database_id": 12910
   }
 }
