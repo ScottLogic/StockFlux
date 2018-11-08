@@ -5,6 +5,14 @@ import { scaleDiscontinuous, discontinuitySkipWeekends } from 'd3fc-discontinuou
 import { extentDate, extentLinear } from 'd3fc-extent';
 import { seriesSvgArea, seriesSvgLine, seriesSvgPoint, seriesSvgMulti } from 'd3fc-series';
 
+function innerDimensions(element) {
+    const style = element.ownerDocument.defaultView.getComputedStyle(element);
+    return {
+        width: parseFloat(style.width) - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight),
+        height: parseFloat(style.height) - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom)
+    };
+}
+
 class Minichart extends Component {
 
     shouldComponentUpdate(nextProps) {
@@ -40,44 +48,44 @@ class Minichart extends Component {
 
         // Create scale for x axis
         const xScale = scaleDiscontinuous(scaleTime())
-            .domain(extentDate().accessors([d => d.date])(data))
+            .domain(extentDate().accessors([(d) => d.date])(data))
             .discontinuityProvider(discontinuitySkipWeekends())
             .range([0, width]);
 
         // Create scale for y axis. We're only showing close, so
         // only use that extent.
-        const closeExtent = extentLinear().accessors([d => d.close])(data);
+        const closeExtent = extentLinear().accessors([(d) => d.close])(data);
         const yScale = scaleLinear()
             .domain(closeExtent)
             .range([height, 0])
             .nice();
 
         const area = seriesSvgArea()
-            .crossValue(d => d.date)
-            .baseValue(_ => closeExtent[0])
-            .mainValue(d => d.close)
+            .crossValue((d) => d.date)
+            .baseValue((_) => closeExtent[0])
+            .mainValue((d) => d.close)
             .decorate((selection) => {
                 selection.attr('fill', `url(#${stockCode}-minichart-gradient)`);
             });
 
         const line = seriesSvgLine()
-            .crossValue(d => d.date)
-            .mainValue(d => d.close);
+            .crossValue((d) => d.date)
+            .mainValue((d) => d.close);
 
         const point = seriesSvgPoint()
-            .crossValue(d => d.date)
-            .mainValue(d => d.close);
+            .crossValue((d) => d.date)
+            .mainValue((d) => d.close);
 
         const multi = seriesSvgMulti()
             .series([area, line, point])
             .xScale(xScale)
             .yScale(yScale)
-            .mapping((data, index, series) => {
+            .mapping((_, index, series) => {
                 switch (series[index]) {
-                    case point:
-                        return [data.slice(0)[0]];
-                    default:
-                        return data;
+                case point:
+                    return [data.slice(0)[0]];
+                default:
+                    return data;
                 }
             });
         container
@@ -105,7 +113,6 @@ class Minichart extends Component {
     }
  }
 
-
 Minichart.propTypes = {
     chartData: PropTypes.shape({
         dataset: PropTypes.object,
@@ -119,11 +126,3 @@ Minichart.propTypes = {
 };
 
 export default Minichart;
-
-function innerDimensions(element) {
-    const style = element.ownerDocument.defaultView.getComputedStyle(element);
-    return {
-        width: parseFloat(style.width) - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight),
-        height: parseFloat(style.height) - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom)
-    };
-}
