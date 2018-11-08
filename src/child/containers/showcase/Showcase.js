@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import bitflux from 'BitFlux/dist/bitflux.js';
 import { apiKey as quandlServiceApiKey, dataset as quandlServiceDataset } from '../../services/QuandlService';
 import configService from '../../../shared/ConfigService';
 
