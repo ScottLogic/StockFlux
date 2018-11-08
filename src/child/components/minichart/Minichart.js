@@ -1,9 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import { scaleLinear, scaleTime } from 'd3-scale';
 import { select } from 'd3-selection';
-import { scaleDiscontinuous, discontinuitySkipWeekends } from 'd3fc-discontinuous-scale';
-import { extentDate, extentLinear } from 'd3fc-extent';
-import { seriesSvgArea, seriesSvgLine, seriesSvgPoint, seriesSvgMulti } from 'd3fc-series';
+import {
+    extentDate,
+    extentLinear,
+    discontinuitySkipWeekends,
+    scaleDiscontinuous,
+    seriesSvgArea,
+    seriesSvgLine,
+    seriesSvgPoint,
+    seriesSvgMulti
+} from 'd3fc';
 
 function innerDimensions(element) {
     const style = element.ownerDocument.defaultView.getComputedStyle(element);
