@@ -1,7 +1,7 @@
 {
   "name": "StockFlux",
   "description": "Hosts BitFlux as an OpenFin application.",
-  "version": "11.1.0",
+  "version": "11.2.0",
   "private": true,
   "license": "GPL-3.0",
   "repository": {
