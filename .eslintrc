@@ -31,7 +31,8 @@
     "import/no-extraneous-dependencies": ["error", {
       "devDependencies": ["test/**", "openfin-config/**", "openfin-launcher/**", "webpack/**", "**/*.dev*"],
       "optionalDependencies": false
-    }]
+    }],
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
   },
   "plugins": [
     "react",
