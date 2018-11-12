@@ -1,4 +1,24 @@
 import React, { Component, PropTypes } from 'react';
+import { scaleLinear, scaleTime } from 'd3-scale';
+import { select } from 'd3-selection';
+import {
+    extentDate,
+    extentLinear,
+    discontinuitySkipWeekends,
+    scaleDiscontinuous,
+    seriesSvgArea,
+    seriesSvgLine,
+    seriesSvgPoint,
+    seriesSvgMulti
+} from 'd3fc';
+
+function innerDimensions(element) {
+    const style = element.ownerDocument.defaultView.getComputedStyle(element);
+    return {
+        width: parseFloat(style.width) - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight),
+        height: parseFloat(style.height) - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom)
+    };
+}
 
 class Minichart extends Component {
 
@@ -17,60 +37,67 @@ class Minichart extends Component {
             return;
         }
 
-        const extent = fc.util.innerDimensions(document.getElementById(`${stockCode}chart`));
-        const width = extent.width;
-        const height = extent.height;
-
         data = data.map((d) => {
             const datum = d;
             const date = moment(d.date);
             datum.date = date.toDate();
             return datum;
         });
-        const container = d3.select(`#${stockCode}chart`)
-                        .insert('svg', 'div')
-                        .attr('width', width)
-                        .attr('height', height);
-                    // Create scale for x axis
-        const xScale = fc.scale.dateTime()
-                        .domain(fc.util.extent().fields(['date'])(data))
-                        .discontinuityProvider(fc.scale.discontinuity.skipWeekends())
-                        .range([0, width]);
 
-                    // Create scale for y axis. We're only showing close, so
-                    // only use that extent.
-        const closeExtent = fc.util.extent().fields(['close'])(data);
+        const extent = innerDimensions(document.getElementById(`${stockCode}chart`));
+        const width = extent.width;
+        const height = extent.height;
 
-        const yScale = d3.scale.linear()
-                        .domain(closeExtent)
-                        .range([height, 0])
-                        .nice();
-        const area = fc.series.area()
-                        .y0Value(() => closeExtent[0])
-                        .y1Value((d) => d.close)
-                        .decorate((selection) => {
-                            selection.attr('fill', `url(#${stockCode}-minichart-gradient)`);
-                        });
-        const line = fc.series.line();
+        const container = select(`#${stockCode}chart`)
+            .insert('svg', 'div')
+            .attr('width', width)
+            .attr('height', height);
 
-        const pointData = [].concat(data.slice(0)[0]);
-        const point = fc.series.point();
+        // Create scale for x axis
+        const xScale = scaleDiscontinuous(scaleTime())
+            .domain(extentDate().accessors([(d) => d.date])(data))
+            .discontinuityProvider(discontinuitySkipWeekends())
+            .range([0, width]);
 
-        const multi = fc.series.multi()
-                        .series([area, line, point])
-                        .xScale(xScale)
-                        .yScale(yScale)
-                        .mapping((series) => {
-                            switch (series) {
-                            case point:
-                                return pointData;
-                            default:
-                                return data;
-                            }
-                        });
-        container.append('g')
-                    .datum(data)
-                    .call(multi);
+        // Create scale for y axis. We're only showing close, so
+        // only use that extent.
+        const closeExtent = extentLinear().accessors([(d) => d.close])(data);
+        const yScale = scaleLinear()
+            .domain(closeExtent)
+            .range([height, 0])
+            .nice();
+
+        const area = seriesSvgArea()
+            .crossValue((d) => d.date)
+            .baseValue((_) => closeExtent[0])
+            .mainValue((d) => d.close)
+            .decorate((selection) => {
+                selection.attr('fill', `url(#${stockCode}-minichart-gradient)`);
+            });
+
+        const line = seriesSvgLine()
+            .crossValue((d) => d.date)
+            .mainValue((d) => d.close);
+
+        const point = seriesSvgPoint()
+            .crossValue((d) => d.date)
+            .mainValue((d) => d.close);
+
+        const multi = seriesSvgMulti()
+            .series([area, line, point])
+            .xScale(xScale)
+            .yScale(yScale)
+            .mapping((_, index, series) => {
+                switch (series[index]) {
+                case point:
+                    return [data.slice(0)[0]];
+                default:
+                    return data;
+                }
+            });
+        container
+            .datum(data)
+            .call(multi);
     }
 
     render() {
@@ -92,7 +119,6 @@ class Minichart extends Component {
         );
     }
  }
-
 
 Minichart.propTypes = {
     chartData: PropTypes.shape({
