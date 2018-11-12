@@ -65,3 +65,23 @@ This project uses the [GitFlow]([https://www.atlassian.com/git/tutorials/compari
 
 Please follow the [AngularJS commit message convention](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#-git-commit-guidelines) for the commit message format.
 This simplifies the generation of the change log for a release.
+
+
+## Creating a release
+
+Create locally a new branch based off `dev`, named `release-x.x.x`.
+On this branch update the version in `package.json` to match the release number
+and commit the change with the version as the commit message.
+Push the branch to the upstream repository (provided you have write permission)
+and open PR for this branch into `dev` and `master` branches.
+Once the build has passed you can merge both PRs.
+Travis should do the deployment(s) automatically.
+The release candidate can be found at
+[http://scottlogic.github.io/StockFlux/11.2.0-rc/install.html](http://scottlogic.github.io/StockFlux/x.x.x-rc/install.html)
+Now checkout to the `master` branch locally, tag the release
+`git tag -a x.x.x -m "x.x.x"` and push the tag to the upstream repository
+`git push origin x.x.x`
+On github go to [releases](https://github.com/ScottLogic/StockFlux/releases),
+check that the tag appears at the top of the timeline.
+Click on `Draft a new release`, fill the form and confirm by clicking on
+`Publish release`
