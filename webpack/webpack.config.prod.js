@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const sharedConfig = require('./webpack.config.shared.js');
 
@@ -15,15 +16,19 @@ config.plugins.push(
         'process.env.QUANDL_API_KEY': JSON.stringify(process.env.QUANDL_API_KEY),
         'process.env.QUANDL_KEY': JSON.stringify(process.env.QUANDL_KEY)
     }),
-    new webpack.optimize.UglifyJsPlugin({
-        compressor: {
-            warnings: false
-        }
-    }),
     new CopyWebpackPlugin([
         { from: 'src/static' },
         { from: 'openfin-config/app.prod.json', to: './app.json' }
     ])
 );
+config.optimization = {
+    minimizer: [
+        new UglifyJsPlugin({
+            uglifyOptions: {
+                warnings: false
+            }
+        })
+    ]
+};
 
 module.exports = config;
