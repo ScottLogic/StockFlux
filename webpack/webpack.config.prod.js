@@ -3,7 +3,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const sharedConfig = require('./webpack.config.shared.js');
 
-const config = Object.assign({}, sharedConfig);
+const config = Object.assign({}, sharedConfig, {
+    mode: 'production',
+});
 
 config.output.path = `${__dirname}/../public`;
 config.plugins.push(
@@ -14,11 +16,6 @@ config.plugins.push(
         'process.env.TRAVIS_PULL_REQUEST': JSON.stringify(process.env.TRAVIS_PULL_REQUEST),
         'process.env.QUANDL_API_KEY': JSON.stringify(process.env.QUANDL_API_KEY),
         'process.env.QUANDL_KEY': JSON.stringify(process.env.QUANDL_KEY)
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-        compressor: {
-            warnings: false
-        }
     }),
     new CopyWebpackPlugin([
         { from: 'src/static' },
