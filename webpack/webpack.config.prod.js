@@ -3,7 +3,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const sharedConfig = require('./webpack.config.shared.js');
 
-const config = Object.assign({}, sharedConfig);
+const config = Object.assign({}, sharedConfig, {
+    mode: 'production',
+});
 
 config.output.path = `${__dirname}/../public`;
 config.plugins.push(
