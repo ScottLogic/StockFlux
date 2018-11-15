@@ -1,7 +1,7 @@
 module.exports = {
     entry: {
-        child: ['babel-polyfill', './src/child/index.js'],
-        parent: ['babel-polyfill', './src/parent/parent.js'],
+        child: ['./src/child/index.js'],
+        parent: ['./src/parent/parent.js'],
         analytics: ['./src/parent/analytics/analytics.js']
     },
     output: {
