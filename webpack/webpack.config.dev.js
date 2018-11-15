@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const sharedConfig = require('./webpack.config.shared.js');
 
 const config = Object.assign({}, sharedConfig, {
+    mode: 'development',
     devtool: 'cheap-module-eval-source-map',
     devServer: {
         contentBase: './public',
