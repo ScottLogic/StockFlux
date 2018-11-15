@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const sharedConfig = require('./webpack.config.shared.js');
 
@@ -21,14 +20,5 @@ config.plugins.push(
         { from: 'openfin-config/app.prod.json', to: './app.json' }
     ])
 );
-config.optimization = {
-    minimizer: [
-        new UglifyJsPlugin({
-            uglifyOptions: {
-                warnings: false
-            }
-        })
-    ]
-};
 
 module.exports = config;

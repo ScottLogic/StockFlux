@@ -1,5 +1,3 @@
-const webpack = require('webpack');
-
 module.exports = {
     entry: {
         child: ['babel-polyfill', './src/child/index.js'],
