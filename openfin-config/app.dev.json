@@ -3,19 +3,20 @@
     "startup_app": {
         "name": "StockFlux Development",
         "uuid": "StockFluxDev",
-        "maxWidth": 600,
-        "maxHeight": 200,
-        "defaultWidth": 400,
-        "defaultHeight": 200,
+        "maxWidth": 100,
+        "maxHeight": 100,
+        "defaultWidth": 100,
+        "defaultHeight": 100,
         "frame": false,
         "showTaskbarIcon": false,
         "url": "http://localhost:5000/parent.html",
         "autoShow" : true,
         "applicationIcon": "http://localhost:5000/favicon.ico"
     },
+    "services": [ {"name": "layouts"} ],
     "runtime": {
         "arguments": "--enable-aggressive-domstorage-flushing",
-        "version": "8.56.24.41"
+        "version": "9.61.36.36"
     },
     "shortcut": {
         "company": "ScottLogic",

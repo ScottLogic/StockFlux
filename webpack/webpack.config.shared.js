@@ -1,7 +1,7 @@
 module.exports = {
     entry: {
-        child: ['./src/child/index.js'],
-        parent: ['./src/parent/parent.js'],
+        child: ['babel-polyfill', './src/child/index.js'],
+        parent: ['babel-polyfill', './src/parent/parent.js'],
         analytics: ['./src/parent/analytics/analytics.js']
     },
     output: {
@@ -9,7 +9,7 @@ module.exports = {
     },
     module: {
         rules: [
-            { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
+            { test: /\.js$/, exclude: /node_modules(?!(\/|\\)openfin-layouts)/, loader: 'babel-loader' },
             { test: /\.less$/, loader: 'style-loader!css-loader!less-loader' },
             { test: /\.css$/, loader: 'style-loader!css-loader' },
             { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' },

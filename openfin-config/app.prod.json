@@ -13,9 +13,10 @@
         "autoShow" : false,
         "applicationIcon": "http://localhost:5001/favicon.ico"
     },
+    "services": [ {"name": "layouts"} ],
     "runtime": {
         "arguments": "--enable-aggressive-domstorage-flushing",
-        "version": "8.56.24.41"
+        "version": "9.61.36.36"
     },
     "shortcut": {
         "company": "ScottLogic",
