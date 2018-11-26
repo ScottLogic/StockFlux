@@ -4,6 +4,7 @@ import { render } from 'react-dom';
 import App from './containers/App';
 import WindowStateService from './services/WindowStateService';
 import currentWindowService from './services/currentWindowService';
+import LayoutsService from './services/LayoutsService';
 
 import { open } from './actions/window';
 import { toggleFavourite } from './actions/favourites';
@@ -32,6 +33,8 @@ currentWindowService.ready(() => {
     const currentWindowName = currentWindowService.getCurrentWindowName();
     const store = currentWindow.contentWindow.opener.store;
     const rootElement = document.getElementById('app');
+
+    LayoutsService(store);
 
     const windowStateService = new WindowStateService(currentWindow, store, rootElement);
     windowStateService.start();

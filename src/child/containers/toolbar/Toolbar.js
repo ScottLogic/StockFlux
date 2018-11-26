@@ -61,9 +61,11 @@ class Toolbar extends Component {
                 <img id="logo" src={icon} className="logo" alt="Scott Logic" />
                 <div className="wrapper action">
                     <div className="button-icon minimize" onClick={this.onMinimizeClick} title="Minimize">&nbsp;</div>
-                    {windowState.isCompact
-                        ? <div className="button-icon full_view" onClick={this.onFullViewClick} title="Full View">&nbsp;</div>
-                        : <div className="button-icon compact" onClick={this.onCompactClick} title="Compact View">&nbsp;</div>
+                    {windowState.isInSnapGroup
+                        ? null
+                        : windowState.isCompact
+                            ? <div className="button-icon full_view" onClick={this.onFullViewClick} title="Full View">&nbsp;</div>
+                            : <div className="button-icon compact" onClick={this.onCompactClick} title="Compact View">&nbsp;</div>
                     }
                     {!windowState.isCompact && (windowState.isMaximized
                         ? <div className="button-icon normal_size" onClick={this.onRestoreClick} title="Restore">&nbsp;</div>
