@@ -21,7 +21,7 @@ const LOCAL_KEY = Boolean(
 const API_KEY = (
     (DEPLOY_KEY && dxor(process.env.QUANDL_API_KEY, process.env.QUANDL_KEY))
     || (LOCAL_KEY && process.env.QUANDL_API_KEY)
-    || 'kM9Z9aEULVDD7svZ4A8B'
+    || 'api_key'
 );
 const API_KEY_VALUE = `api_key=${API_KEY}`;
 const DATE_INDEX = 0;
