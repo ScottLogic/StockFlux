@@ -13,7 +13,16 @@ const DEPLOY_KEY = Boolean(process.env.TRAVIS === 'true'
     && process.env.QUANDL_API_KEY
     && process.env.QUANDL_KEY);
 
-const API_KEY = DEPLOY_KEY ? dxor(process.env.QUANDL_API_KEY, process.env.QUANDL_KEY) : 'kM9Z9aEULVDD7svZ4A8B';
+const LOCAL_KEY = Boolean(
+    process.env.TRAVIS !== 'true' &&
+    process.env.QUANDL_API_KEY
+);
+
+const API_KEY = (
+    DEPLOY_KEY && dxor(process.env.QUANDL_API_KEY, process.env.QUANDL_KEY)
+    || LOCAL_KEY && process.env.QUANDL_API_KEY
+    || 'kM9Z9aEULVDD7svZ4A8B'
+);
 const API_KEY_VALUE = `api_key=${API_KEY}`;
 const DATE_INDEX = 0;
 const OPEN_INDEX = 8;
