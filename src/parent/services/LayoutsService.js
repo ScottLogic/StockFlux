@@ -2,7 +2,7 @@ import * as Layouts from 'openfin-layouts';
 
 const uuid = fin.desktop.Application.getCurrent().uuid;
 
-function LayoutsService(store) {
+export function start(store) {
     const layoutsStore = LayoutsStore();
 
     fin.desktop.InterApplicationBus.subscribe(uuid, 'join-snap-group', updateGroupsAndNotify);
@@ -68,5 +68,3 @@ async function getChildWindows() {
     const app = layout.apps.find(app => app.uuid === uuid);
     return app.childWindows;
 }
-
-export default LayoutsService;
