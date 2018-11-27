@@ -24,7 +24,7 @@ The application is built using React and ES2015, transpiled via Babel. The chart
 The displayed data is real and provided by [Quandl](https://www.quandl.com). The application uses separate Quandl API keys for development and release to mitigate chances of crossing Quandl's [rate limits](https://www.quandl.com/docs/api?json#rate-limits).
 
 When working locally, make sure you set the environment variable `QUANDL_API_KEY` representing the Quandl API key before you start the development server or run a build.
-You can privately ask the key to another Stockflux developer as it is not exposed publicly.
+The key is located in the StockFlux confluence page under the Internal Systems space.
 
 ### Initial Setup
 
