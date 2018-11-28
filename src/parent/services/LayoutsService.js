@@ -48,16 +48,20 @@ function LayoutsStore() {
 
     function sameGroupCounts() {
         return Object.keys(sameGroup || {}).reduce(
-            // eslint-disable-next-line no-param-reassign
-            (counts, key) => (counts[key] = sameGroup[key].length) && counts,
+            (counts, key) => {
+                // eslint-disable-next-line no-param-reassign
+                counts[key] = sameGroup[key].length;
+                return counts;
+            },
             {}
         );
     }
 
     function diff(previousCounts, nextCounts) {
+        const nextCountsKeys = Object.keys(nextCounts);
         return {
-            joined: Object.keys(nextCounts).filter((key) => nextCounts[key] !== previousCounts[key] && nextCounts[key] > 1),
-            left: Object.keys(nextCounts).filter((key) => nextCounts[key] !== previousCounts[key] && nextCounts[key] === 1)
+            joined: nextCountsKeys.filter((key) => nextCounts[key] !== previousCounts[key] && nextCounts[key] > 1),
+            left: nextCountsKeys.filter((key) => nextCounts[key] !== previousCounts[key] && nextCounts[key] === 1)
         };
     }
 
