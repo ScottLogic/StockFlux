@@ -2,7 +2,7 @@ import * as Layouts from 'openfin-layouts';
 
 const uuid = fin.desktop.Application.getCurrent().uuid;
 
-export function start(store) {
+export default function start(store) {
     const layoutsStore = LayoutsStore();
 
     fin.desktop.InterApplicationBus.subscribe(uuid, 'join-snap-group', updateGroupsAndNotify);
@@ -12,8 +12,8 @@ export function start(store) {
 
     async function updateGroupsAndNotify() {
         const { joined, left } = await layoutsStore.updateGroups();
-        joined.forEach(windowName => fin.desktop.InterApplicationBus.send(uuid, 'joined-snap-group', { windowName }));
-        left.forEach(windowName => fin.desktop.InterApplicationBus.send(uuid, 'left-snap-group', { windowName }));
+        joined.forEach((windowName) => fin.desktop.InterApplicationBus.send(uuid, 'joined-snap-group', { windowName }));
+        left.forEach((windowName) => fin.desktop.InterApplicationBus.send(uuid, 'left-snap-group', { windowName }));
     }
 }
 
@@ -22,7 +22,7 @@ function LayoutsStore() {
 
     async function updateGroups() {
         const childWindows = await getChildWindows();
-        return resetGroups(childWindows)
+        return resetGroups(childWindows);
     }
 
     function resetGroups(childWindows) {
@@ -32,8 +32,10 @@ function LayoutsStore() {
             (group, childWindow) => {
                 if (group[childWindow.name] === undefined) {
                     const windowGroup = childWindow.windowGroup || [];
-                    group[childWindow.name] = [childWindow.name].concat(windowGroup.map(win => win.name));
-                    windowGroup.forEach(win => (group[win.name] = group[childWindow.name]));
+                    // eslint-disable-next-line no-param-reassign
+                    group[childWindow.name] = [childWindow.name].concat(windowGroup.map((win) => win.name));
+                    // eslint-disable-next-line no-param-reassign
+                    windowGroup.forEach((win) => (group[win.name] = group[childWindow.name]));
                 }
                 return group;
             },
@@ -46,6 +48,7 @@ function LayoutsStore() {
 
     function sameGroupCounts() {
         return Object.keys(sameGroup || {}).reduce(
+            // eslint-disable-next-line no-param-reassign
             (counts, key) => (counts[key] = sameGroup[key].length) && counts,
             {}
         );
@@ -53,8 +56,8 @@ function LayoutsStore() {
 
     function diff(previousCounts, nextCounts) {
         return {
-            joined: Object.keys(nextCounts).filter(key => nextCounts[key] !== previousCounts[key] && nextCounts[key] > 1),
-            left: Object.keys(nextCounts).filter(key => nextCounts[key] !== previousCounts[key] && nextCounts[key] === 1)
+            joined: Object.keys(nextCounts).filter((key) => nextCounts[key] !== previousCounts[key] && nextCounts[key] > 1),
+            left: Object.keys(nextCounts).filter((key) => nextCounts[key] !== previousCounts[key] && nextCounts[key] === 1)
         };
     }
 
@@ -65,6 +68,6 @@ function LayoutsStore() {
 
 async function getChildWindows() {
     const layout = await Layouts.generateLayout();
-    const app = layout.apps.find(app => app.uuid === uuid);
-    return app.childWindows;
+    const currentApp = layout.apps.find((app) => app.uuid === uuid);
+    return currentApp.childWindows;
 }
