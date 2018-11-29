@@ -5,6 +5,8 @@ import currentWindowServiceStub from '../../../helper/currentWindowServiceStub';
 import { minimize,
          compact,
          expand,
+         joinedSnapGroup,
+         leftSnapGroup,
          maximize,
          restore,
          resizing,
@@ -100,6 +102,20 @@ describe('child/actions/window', () => {
     it('should create an action for open', () => {
         const expectedAction = { windowName: 'window0002', type: ACTION_TYPES.OPEN };
         const actualAction = open();
+        expect(actualAction.type).to.be.a('string');
+        expect(actualAction).to.deep.equal(expectedAction);
+    });
+
+    it('should create an action for joinedSnapGroup', () => {
+        const expectedAction = { windowName: 'window0002', type: ACTION_TYPES.JOINED_SNAP_GROUP };
+        const actualAction = joinedSnapGroup();
+        expect(actualAction.type).to.be.a('string');
+        expect(actualAction).to.deep.equal(expectedAction);
+    });
+
+    it('should create an action for leftSnapGroup', () => {
+        const expectedAction = { windowName: 'window0002', type: ACTION_TYPES.LEFT_SNAP_GROUP };
+        const actualAction = leftSnapGroup();
         expect(actualAction.type).to.be.a('string');
         expect(actualAction).to.deep.equal(expectedAction);
     });

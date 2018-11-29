@@ -43,6 +43,7 @@ describe('child/selectors/selectors', () => {
                 },
                 windowState: {
                     isCompact: false,
+                    isInSnapGroup: false,
                     isMaximised: false,
                     isResizing: false
                 }
@@ -69,6 +70,7 @@ describe('child/selectors/selectors', () => {
                 code: 'AAPL',
                 windowState: {
                     isCompact: false,
+                    isInSnapGroup: false,
                     isMaximised: false,
                     isResizing: false
                 }
@@ -93,6 +95,7 @@ describe('child/selectors/selectors', () => {
                 },
                 windowState: {
                     isCompact: false,
+                    isInSnapGroup: false,
                     isMaximised: false,
                     isResizing: false
                 },
@@ -156,6 +159,7 @@ describe('child/selectors/selectors', () => {
                 },
                 windowState: {
                     isCompact: false,
+                    isInSnapGroup: false,
                     isMaximised: false,
                     isResizing: false
                 },
@@ -170,6 +174,7 @@ describe('child/selectors/selectors', () => {
             const expectedResult = {
                 windowState: {
                     isCompact: false,
+                    isInSnapGroup: false,
                     isMaximised: false,
                     isResizing: false
                 }

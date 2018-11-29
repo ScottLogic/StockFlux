@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const sharedConfig = require('./webpack.config.shared.js');
 
 const config = Object.assign({}, sharedConfig, {
+    mode: 'development',
     devtool: 'cheap-module-eval-source-map',
     devServer: {
         contentBase: './public',
@@ -21,7 +22,8 @@ config.entry.parent.push('webpack-dev-server/client?http://localhost:5000', 'web
 config.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
-        'process.env.NODE_ENV': '"development"'
+        'process.env.NODE_ENV': '"development"',
+        'process.env.QUANDL_API_KEY': JSON.stringify(process.env.QUANDL_API_KEY)
     }),
     new CopyWebpackPlugin([
         { from: 'src/static' },
