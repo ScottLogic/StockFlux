@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import 'babel-polyfill';
 import fakeOpenFin from '../../../helper/fakeOpenFin';
 
 describe('parent/services/LayoutsService', () => {

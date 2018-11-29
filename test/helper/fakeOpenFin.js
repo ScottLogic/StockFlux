@@ -1,5 +1,4 @@
 import sinon from 'sinon';
-import 'babel-polyfill';
 
 function createOpenFin({
     application: { uuid },

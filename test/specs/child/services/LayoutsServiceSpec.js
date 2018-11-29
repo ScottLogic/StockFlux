@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import 'babel-polyfill';
 import fakeOpenFin from '../../../helper/fakeOpenFin';
 import { joinedSnapGroup, leftSnapGroup } from '../../../../src/child/actions/window';
 
