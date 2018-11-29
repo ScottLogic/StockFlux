@@ -76,6 +76,14 @@ export const windowResized = createActionCreator((dimensions) => ({
     previousExpandedDimensions: dimensions
 }));
 
+export const joinedSnapGroup = createActionCreator(() => ({
+    type: ACTION_TYPES.JOINED_SNAP_GROUP
+}));
+
+export const leftSnapGroup = createActionCreator(() => ({
+    type: ACTION_TYPES.LEFT_SNAP_GROUP
+}));
+
 function getWindowStateForCurrentWindow(getState) {
     return getState().childWindows[currentWindowService.getCurrentWindowName()].windowState;
 }

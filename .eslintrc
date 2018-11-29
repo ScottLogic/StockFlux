@@ -5,12 +5,12 @@
     "browser": true,
     "es6": true
   },
-   "parserOptions": {
-        "ecmaVersion": 6,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "jsx": true
-        }
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "rules": {
     "react/jsx-uses-react": 2,
@@ -32,7 +32,9 @@
       "devDependencies": ["test/**", "openfin-config/**", "openfin-launcher/**", "webpack/**", "**/*.dev*"],
       "optionalDependencies": false
     }],
-    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "no-nested-ternary": "off",
+    "no-use-before-define": "off"
   },
   "plugins": [
     "react",

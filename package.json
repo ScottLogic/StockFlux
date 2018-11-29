@@ -72,6 +72,7 @@
   },
   "dependencies": {
     "BitFlux": "github:scottlogic/BitFlux#1.6.2",
+    "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.3",
     "d3-scale": "^2.1.2",
     "d3-selection": "^1.3.2",
@@ -83,6 +84,7 @@
     "malihu-custom-scrollbar-plugin": "^3.1.3",
     "moment": "^2.13.0",
     "openfin-launcher": "^1.4.8",
+    "openfin-layouts": "^0.9.3",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-redux": "^4.4.4",
