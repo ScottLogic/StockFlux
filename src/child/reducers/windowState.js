@@ -4,6 +4,7 @@ import configService from '../../shared/ConfigService';
 export default function windowState(state = {
     isCompact: false,
     isChangingView: false,
+    isInSnapGroup: false,
     isMaximized: false,
     isResizing: false,
     previousExpandedDimensions: configService.getDefaultWindowDimensions(),
@@ -50,6 +51,14 @@ export default function windowState(state = {
     case ACTION_TYPES.WINDOW_RESIZED:
         return Object.assign({}, state, {
             previousExpandedDimensions: action.previousExpandedDimensions
+        });
+    case ACTION_TYPES.JOINED_SNAP_GROUP:
+        return Object.assign({}, state, {
+            isInSnapGroup: true
+        });
+    case ACTION_TYPES.LEFT_SNAP_GROUP:
+        return Object.assign({}, state, {
+            isInSnapGroup: false
         });
     case ACTION_TYPES.CLOSE:
     default:
