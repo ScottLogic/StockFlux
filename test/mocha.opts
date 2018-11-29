@@ -1,3 +1,4 @@
 --require jsdom-global/register
+--require babel-polyfill
 --compilers js:@babel/register
 --recursive

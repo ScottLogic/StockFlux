@@ -8,6 +8,7 @@ import {
     resizeToPrevious
 } from '../../actions/window';
 import { toolbarSelector as mapStateToProps } from '../../selectors/selectors';
+import { undockWindow } from '../../services/LayoutsService';
 import icon from '../../assets/png/scottlogic_logo.png';
 
 import windowStateShape from '../../propTypeShapes/windowState';
@@ -61,9 +62,11 @@ class Toolbar extends Component {
                 <img id="logo" src={icon} className="logo" alt="Scott Logic" />
                 <div className="wrapper action">
                     <div className="button-icon minimize" onClick={this.onMinimizeClick} title="Minimize">&nbsp;</div>
-                    {windowState.isCompact
-                        ? <div className="button-icon full_view" onClick={this.onFullViewClick} title="Full View">&nbsp;</div>
-                        : <div className="button-icon compact" onClick={this.onCompactClick} title="Compact View">&nbsp;</div>
+                    {windowState.isInSnapGroup
+                        ? <div className="button-icon undock" onClick={undockWindow} title="Undock">&nbsp;</div>
+                        : windowState.isCompact
+                            ? <div className="button-icon full_view" onClick={this.onFullViewClick} title="Full View">&nbsp;</div>
+                            : <div className="button-icon compact" onClick={this.onCompactClick} title="Compact View">&nbsp;</div>
                     }
                     {!windowState.isCompact && (windowState.isMaximized
                         ? <div className="button-icon normal_size" onClick={this.onRestoreClick} title="Restore">&nbsp;</div>

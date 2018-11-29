@@ -10,6 +10,7 @@ describe('child/reducers/windowState', () => {
         expect(windowState(undefined, {})).to.deep.equal({
             isCompact: false,
             isChangingView: false,
+            isInSnapGroup: false,
             isMaximized: false,
             isResizing: false,
             previousExpandedDimensions: dimensions,
@@ -249,6 +250,24 @@ describe('child/reducers/windowState', () => {
             isMaximized: false,
             isResizing: false,
             hasErrors: true
+        });
+    });
+
+    it('should handle JOINED_SNAP_GROUP', () => {
+        const action = { type: ACTION_TYPES.JOINED_SNAP_GROUP };
+        expect(windowState({
+            isInSnapGroup: false
+        }, action)).to.deep.equal({
+            isInSnapGroup: true
+        });
+    });
+
+    it('should handle LEFT_SNAP_GROUP', () => {
+        const action = { type: ACTION_TYPES.LEFT_SNAP_GROUP };
+        expect(windowState({
+            isInSnapGroup: true
+        }, action)).to.deep.equal({
+            isInSnapGroup: false
         });
     });
 

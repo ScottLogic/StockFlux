@@ -45,3 +45,6 @@ jspm_packages
 
 # Public built files
 public
+
+#Openfin cache
+OpenFin/
