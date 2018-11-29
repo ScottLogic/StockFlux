@@ -20,7 +20,7 @@
     "ci": "npm run lint && npm test && npm run build",
     "lint": "eslint --ignore-path .gitignore -- .",
     "lint:fix": "eslint --fix --ignore-path .gitignore -- .",
-    "test": "cross-env BABEL_ENV=test mocha --opts test/mocha.opts --require babel-polyfill --compilers js:@babel/register",
+    "test": "cross-env BABEL_ENV=test mocha --opts test/mocha.opts",
     "test:watch": "npm test -- --watch",
     "test:cov": "cross-env BABEL_ENV=test babel-node node_modules/isparta/bin/isparta cover --report text --report html node_modules/mocha/bin/_mocha -- --opts test/mocha.opts",
     "postinstall": "cd node_modules/BitFlux && npm i && grunt build:module",
