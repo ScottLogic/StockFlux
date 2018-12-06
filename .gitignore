@@ -48,3 +48,6 @@ public
 
 #Openfin cache
 OpenFin/
+
+#IDEs
+.idea

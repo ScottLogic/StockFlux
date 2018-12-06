@@ -22,6 +22,7 @@
     "no-console": 0,
     "indent": ["error", 4],
     "comma-dangle" : 0,
+    "linebreak-style": 0,
     "prefer-template": 1,
     "padded-blocks": 0,
     "max-len": 0,
