@@ -5,7 +5,7 @@ describe('child/services/formatters', () => {
     describe('truncate', () => {
         it('should return undefined for an input of undefined', () => {
             const input = undefined;
-            expect(truncate(input)).not.to.be.defined;
+            expect(truncate(input)).to.be.undefined;
         });
 
         it('should return null for an input of null', () => {
