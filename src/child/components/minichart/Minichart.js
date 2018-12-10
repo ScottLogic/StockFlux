@@ -11,6 +11,7 @@ import {
     seriesSvgPoint,
     seriesSvgMulti
 } from 'd3fc';
+import moment from 'moment';
 
 function innerDimensions(element) {
     const style = element.ownerDocument.defaultView.getComputedStyle(element);

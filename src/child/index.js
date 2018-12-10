@@ -22,7 +22,6 @@ import '../../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollba
 /* eslint-disable import/no-extraneous-dependencies */
 require('script-loader!../../node_modules/jquery/dist/jquery.min.js');
 require('script-loader!../../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js');
-require('script-loader!../../node_modules/moment/moment.js');
 require('script-loader!../../node_modules/BitFlux/node_modules/bootstrap/js/dropdown.js');
 /* eslint-enable import/no-unresolved */
 /* eslint-enable import/no-webpack-loader-syntax */
