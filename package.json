@@ -73,7 +73,7 @@
     "webpack-dev-server": "^3.1.10"
   },
   "dependencies": {
-    "BitFlux": "github:scottlogic/BitFlux#1.6.2",
+    "BitFlux": "github:scottlogic/BitFlux#1.8.1",
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.3",
     "d3-scale": "^2.1.2",
