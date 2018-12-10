@@ -72,7 +72,7 @@ class Toolbar extends React.Component {
                     }
                     {!windowState.isCompact && (windowState.isMaximized
                         ? <div className="button-icon normal_size" onClick={this.onRestoreClick} title="Restore">&nbsp;</div>
-                    : <div className="button-icon maximize" onClick={this.onMaximizeClick} title="Maximize">&nbsp;</div>
+                        : <div className="button-icon maximize" onClick={this.onMaximizeClick} title="Maximize">&nbsp;</div>
                     )}
                     <div className="button-icon closeIcon" onClick={this.onCloseClick} title="Close">&nbsp;</div>
                 </div>

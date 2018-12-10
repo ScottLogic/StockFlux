@@ -129,40 +129,42 @@ class Sidebar extends React.Component {
     render() {
         const { sidebar, closedWindowsCount } = this.props;
 
-        const bindings = {
+        const searchBindings = {
             toggleFavourite: this.toggleFavourite,
-            selectStock: this.selectStock,
-            getCodeFromDT: this.getCodeFromDT,
-            openWindow: this.openWindow
+            selectStock: this.selectStock
+        };
+        const favouritesBindings = {
+            ...searchBindings,
+            getCodeFromDT: this.getCodeFromDT
         };
 
-        const sidebarsCls = classNames({
+        const sidebarsClass = classNames({
             active: this.state.draggingFromAnotherWindow
         });
 
-        const searchCls = classNames({
+        const searchClass = classNames({
             expanded: sidebar.showSearch,
             contracted: sidebar.showFavourites
         });
 
-        const favouritesCls = classNames({
+        const favouritesClass = classNames({
             expanded: sidebar.showFavourites,
             contracted: sidebar.showSearch
         });
 
         return (
-            <div className={`sidebars ${sidebarsCls}`} onDragEnter={this.onDragEnter} onDragOver={this.onDragOver} onDragLeave={this.onDragLeave} onDrop={this.onDrop}>
-                <div className={`search main-search ${searchCls}`} onClick={this.focusSearch}>
-                    <Search bindings={bindings} />
+            <div className={`sidebars ${sidebarsClass}`} onDragEnter={this.onDragEnter} onDragOver={this.onDragOver} onDragLeave={this.onDragLeave} onDrop={this.onDrop}>
+                <div className={`search main-search ${searchClass}`} onClick={this.focusSearch}>
+                    <Search bindings={searchBindings} />
                 </div>
-                <div className={`search compact-search ${searchCls}`} onClick={this.focusSearch}>
-                    <Search bindings={bindings} />
+                <div className={`search compact-search ${searchClass}`} onClick={this.focusSearch}>
+                    <Search bindings={searchBindings} />
                 </div>
-                <div className={`favourites ${favouritesCls}`} onClick={this.focusFav}>
-                    <Favourites bindings={bindings} />
+                <div className={`favourites ${favouritesClass}`} onClick={this.focusFav}>
+                    <Favourites bindings={favouritesBindings} />
                 </div>
                 <div className="closed-window-selection">
-                    {closedWindowsCount ? <ClosedWindows bindings={bindings} /> : null}
+                    {closedWindowsCount ? <ClosedWindows openWindow={this.openWindow} /> : null}
                 </div>
             </div>
         );

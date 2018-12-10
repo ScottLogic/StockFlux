@@ -39,16 +39,17 @@ class ClosedWindows extends React.Component {
         const { iconHover, modalOpen } = this.state;
         const icon = iconHover || modalOpen ? closedWindowsImageActive : closedWindowsImageInactive;
 
-        const closedWindows = this.props.closedWindows || {};
+        const { closedWindows, openWindow } = this.props;
         const closedWindowsNames = Object.keys(closedWindows) || [];
 
         return (
             <div>
-                {modalOpen && <div className="favourite-closed-cover" onClick={() => this.setState({ modalOpen: false })}>
+                {modalOpen &&
+                <div className="favourite-closed-cover" onClick={() => this.setState({ modalOpen: false })}>
                     <div className="bubble-head" />
                     <div className="closed-selection">
                         {closedWindowsNames.map((closedWindowName) =>
-                            <div key={closedWindowName} className="closed-card-container" onClick={() => this.props.bindings.openWindow(closedWindowName)}>
+                            <div key={closedWindowName} className="closed-card-container" onClick={() => openWindow(closedWindowName)}>
                                 <div className="closed-card">
                                     <div className="closed-time">{moment(closedWindows[closedWindowName].date).format('DD MMM YYYY HH:mm')}</div>
                                     <div className="closed-stocks">{closedWindows[closedWindowName].favourites.codes.join(', ')}</div>
@@ -72,12 +73,11 @@ class ClosedWindows extends React.Component {
 }
 
 ClosedWindows.propTypes = {
-    bindings: PropTypes.shape({
-        toggleFavourite: PropTypes.func.isRequired,
-        selectStock: PropTypes.func.isRequired,
-        openWindow: PropTypes.func.isRequired,
-    }).isRequired,
-    closedWindows: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
+    closedWindows: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    openWindow: PropTypes.func.isRequired
+};
+ClosedWindows.defaultProps = {
+    closedWindows: {}
 };
 
 export default connect(mapStateToProps)(ClosedWindows);

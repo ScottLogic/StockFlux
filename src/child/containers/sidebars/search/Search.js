@@ -58,7 +58,7 @@ class Search extends React.Component {
     render() {
         const { favourites, isSearching, hasErrors, results, term, selection } = this.props;
         const { codes, names } = favourites;
-        const bindings = {
+        const searchResultBindings = {
             onClick: this.onClick,
             onIconClick: this.onIconClick
         };
@@ -84,7 +84,7 @@ class Search extends React.Component {
                             <SearchResult
                               key={stockCode}
                               stock={{ code: stockCode, name: names[stockCode] }}
-                              bindings={bindings}
+                              bindings={searchResultBindings}
                               selected={stockCode === selection.code}
                               isFavourite={codes.indexOf(stockCode) >= 0}
                             />)
@@ -100,7 +100,7 @@ class Search extends React.Component {
                             <SearchResult
                               key={stock.code}
                               stock={stock}
-                              bindings={bindings}
+                              bindings={searchResultBindings}
                               selected={stock.code === selection.code}
                               isFavourite={codes.indexOf(stock.code) >= 0}
                             />)}

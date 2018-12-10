@@ -2,10 +2,15 @@ import fetch from 'isomorphic-fetch';
 import moment from 'moment';
 import throat from 'throat';
 
-// eslint-disable-next-line
-function exor(a, b) { let r = ''; for (let i = 0; i < a.length; i += 1) { r += String.fromCharCode(a.charCodeAt(i) ^ b.charCodeAt(i)); } return btoa(r); }
-// eslint-disable-next-line
-function dxor(a, b) { let r = ''; const c = atob(a); for (let i = 0; i < c.length; i += 1) { r += String.fromCharCode(c.charCodeAt(i) ^ b.charCodeAt(i)); } return r; }
+function dxor(a, b) {
+    let r = '';
+    const c = atob(a); // decode base64 to plain
+    for (let i = 0; i < c.length; i += 1) {
+        // eslint-disable-next-line no-bitwise
+        r += String.fromCharCode(c.charCodeAt(i) ^ b.charCodeAt(i));
+    }
+    return r;
+}
 
 const DEPLOY_KEY = Boolean(process.env.TRAVIS === 'true'
     && process.env.TRAVIS_SECURE_ENV_VARS === 'true'
@@ -40,33 +45,25 @@ const concurrency = DEPLOY_KEY ? Infinity : 1;
 const throttle = throat(concurrency);
 
 // Helper functions
-function period() {
+function startOfPeriod() {
     return moment().subtract(28, 'days');
 }
 
 function processSearchResults(result) {
-    return result.datasets.map(
-        dataset => { //eslint-disable-line
-            return {
-                name: dataset.name,
-                code: dataset.dataset_code
-            };
-        }
-    );
+    return result.datasets.map((dataSet) => ({
+        name: dataSet.name,
+        code: dataSet.dataset_code
+    }));
 }
 
 function filterSearchResultsByDate(json) {
-    const datasets = json.datasets;
-    const result = [];
-
-    for (let i = 0, max = datasets.length; i < max; i += 1) {
-        if (moment(datasets[i].newest_available_date) > period()) {
-            result.push(datasets[i]);
-        }
-    }
+    const periodStartDate = startOfPeriod();
+    const validDatasets = json.datasets.filter((dataSet) =>
+        moment(dataSet.newest_available_date).isAfter(periodStartDate)
+    );
 
     return {
-        datasets: result
+        datasets: validDatasets
     };
 }
 
@@ -82,22 +79,18 @@ function extract(data) {
 }
 
 function processStockData(json) {
-    const datasetData = json.dataset;
-    const financialData = datasetData.data;
-    const results = [];
-    let i = 0;
-    const max = financialData.length;
+    const { data, end_date, start_date } = json.dataset;
+    const results = data.map(extract);
 
-    for (i; i < max; i += 1) {
-        results.push(extract(financialData[i]));
-    }
-
-    json.stockData = { // eslint-disable-line no-param-reassign
-        startDate: datasetData.start_date,
-        endDate: datasetData.end_date,
+    const stockData = {
+        startDate: start_date,
+        endDate: end_date,
         data: results
     };
-    return json;
+    return {
+        ...json,
+        stockData
+    };
 }
 
 function validateResponse(response) {
@@ -110,8 +103,8 @@ function validateResponse(response) {
 }
 
 // Exported functions
-export function search(query, usefallback = false) {
-    const apiKeyParam = (usefallback ? '' : API_KEY_VALUE);
+export function search(query, useFallback = false) {
+    const apiKeyParam = (useFallback ? '' : API_KEY_VALUE);
     return throttle(() => fetch(`${DATASETS_URL}.json?${apiKeyParam}&query=${query}&database_code=${DATASET}`, {
         method: 'GET',
         cache: true
@@ -120,16 +113,16 @@ export function search(query, usefallback = false) {
     .then(filterSearchResultsByDate)
     .then(processSearchResults)
     .catch((error) => {
-        if (!usefallback) {
+        if (!useFallback) {
             return search(query, true);
         }
         return Promise.reject(error);
     });
 }
 
-export function getStockData(code, usefallback = false) {
-    const startDate = period().format('YYYY-MM-DD');
-    const apiKeyParam = (usefallback ? '' : API_KEY_VALUE);
+export function getStockData(code, useFallback = false) {
+    const startDate = startOfPeriod().format('YYYY-MM-DD');
+    const apiKeyParam = (useFallback ? '' : API_KEY_VALUE);
 
     return throttle(() => fetch(`${DATASETS_URL}/${DATASET}/${code}.json?${apiKeyParam}&start_date=${startDate}`, {
         method: 'GET',

@@ -126,9 +126,7 @@ class Favourite extends React.Component {
     render() {
         const { stockCode, selected, bindings, isUnfavouriting, dragOver, dragOverBottom } = this.props;
 
-        let { stockData } = this.state || {};
-        const { isHovered, starTop, isDragging, chartData } = this.state || {};
-        stockData = stockData || {};
+        const { chartData, isDragging, isHovered, starTop, stockData = {} } = this.state || {};
 
         const favouriteWrapperCls = classNames({
             dragging: isDragging,
@@ -142,9 +140,9 @@ class Favourite extends React.Component {
             hovered: isHovered
         });
 
-        const price = !isNaN(+stockData.price) ? (+stockData.price).toFixed(2) : null;
-        const delta = !isNaN(+stockData.delta) ? (+stockData.delta).toFixed(2) : null;
-        const percentage = !isNaN(+stockData.percentage) ? (+stockData.percentage).toFixed(2) : null;
+        const price = Number.isFinite(+stockData.price) ? (+stockData.price).toFixed(2) : null;
+        const delta = Number.isFinite(+stockData.delta) ? (+stockData.delta).toFixed(2) : null;
+        const percentage = Number.isFinite(+stockData.percentage) ? (+stockData.percentage).toFixed(2) : null;
         const name = stockData.name ? truncate(stockData.name) : '';
 
         const confirmationBindings = {
