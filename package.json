@@ -61,7 +61,7 @@
     "react-addons-test-utils": "^15.1.0",
     "redux-mock-store": "^1.1.0",
     "remote-redux-devtools": "^0.3.3",
-    "remotedev-server": "^0.1.2",
+    "remotedev-server": "^0.3.1",
     "rimraf": "^2.5.3",
     "script-loader": "^0.7.2",
     "semver": "^5.1.0",
