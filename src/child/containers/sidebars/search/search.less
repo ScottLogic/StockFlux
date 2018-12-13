@@ -14,9 +14,7 @@
     .transition();
     .position(absolute);
     .box-shadow(@shadow-depth 0px, @dark-background);
-    icon {
-        display: none;
-    }
+
     .side-scroll {
         border-top: 1px solid @middle-background;
     }
@@ -73,6 +71,16 @@
         opacity: 0;
         .transition(@duration: 50ms, @delay: 0s);
         cursor: default;
+    }
+
+    &.main-search.expanded .button-icon.close {
+        position: absolute;
+        top: 13px;
+        right: 10px;
+        height: auto;
+    }
+    &.contracted .button-icon.close {
+        display: none;
     }
 }
 .search #search-scroll {
