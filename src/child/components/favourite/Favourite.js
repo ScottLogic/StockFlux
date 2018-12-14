@@ -1,5 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
+import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
+
 import { truncate } from '../../services/formatters';
 import Minichart from '../minichart/Minichart';
 import Confirmation from './UnfavouriteConfirmation';
@@ -15,7 +17,7 @@ const bubbleHeadFlippedOffset = -10;
 const modalOffset = 30;
 const modalFlippedOffset = -89;
 
-class Favourite extends Component {
+class Favourite extends React.Component {
 
     constructor(props) {
         super(props);
@@ -33,7 +35,7 @@ class Favourite extends Component {
     }
 
     componentDidMount() {
-        const stockCode = this.props.stockCode;
+        const { bindings, stockCode } = this.props;
         quandlServiceGetStockData(stockCode)
             .then((response) => {
                 const data = response.stockData.data[0];
@@ -50,7 +52,7 @@ class Favourite extends Component {
                     stockData = { name: stockName };
                 }
                 const chartData = response;
-                this.props.bindings.onQuandlResponse(stockCode, stockName);
+                bindings.onQuandlResponse(stockCode, stockName);
                 this.setState({ stockData, chartData });
             });
     }

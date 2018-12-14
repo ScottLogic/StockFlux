@@ -1,5 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import * as PropTypes from 'prop-types';
+
 import {
     minimizeWindow,
     maximizeWindow,
@@ -9,11 +11,11 @@ import {
 } from '../../actions/window';
 import { toolbarSelector as mapStateToProps } from '../../selectors/selectors';
 import { undockWindow } from '../../services/LayoutsService';
-import icon from '../../assets/png/scottlogic_logo.png';
-
 import windowStateShape from '../../propTypeShapes/windowState';
 
-class Toolbar extends Component {
+import icon from '../../assets/png/scottlogic_logo.png';
+
+class Toolbar extends React.Component {
     constructor(props) {
         super(props);
         this.onMinimizeClick = this.onMinimizeClick.bind(this);

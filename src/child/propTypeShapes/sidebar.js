@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 
 const sidebarShape = PropTypes.shape({
     showFavourites: PropTypes.bool,

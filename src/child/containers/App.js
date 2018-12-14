@@ -1,5 +1,7 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import * as PropTypes from 'prop-types';
+
 import Toolbar from './toolbar/Toolbar';
 import SideBar from './sidebars/Sidebar';
 import Showcase from './showcase/Showcase';

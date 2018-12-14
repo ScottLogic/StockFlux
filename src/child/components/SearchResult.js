@@ -1,9 +1,10 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
+
 import { truncate } from '../services/formatters';
 
 const Stock = ({ isFavourite, stock, selected, bindings }) => {
-
     const cls = classNames({
         'search-result': true,
         darkens: true,

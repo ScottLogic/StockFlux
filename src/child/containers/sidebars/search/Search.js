@@ -1,6 +1,7 @@
 /* global $ */
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import * as PropTypes from 'prop-types';
 import { searchInput, search } from '../../../actions/search';
 import { selectFavourites } from '../../../actions/sidebar';
 import searchTabImage from '../../../assets/png/search_tab.png';
@@ -12,7 +13,7 @@ import selectionShape from '../../../propTypeShapes/selection';
 
 const SEARCH_TIMEOUT_INTERVAL = 250;
 
-class Search extends Component {
+class Search extends React.Component {
     constructor(props) {
         super(props);
         this.onChange = this.onChange.bind(this);
@@ -56,7 +57,7 @@ class Search extends Component {
 
     render() {
         const { favourites, isSearching, hasErrors, results, term, selection } = this.props;
-        const codes = favourites.codes;
+        const { codes, names } = favourites;
         const bindings = {
             onClick: this.onClick,
             onIconClick: this.onIconClick
@@ -79,17 +80,17 @@ class Search extends Component {
 
                         {isSearching && <div className="loading-message results-message">Loading search results...</div>}
 
-                        {!isSearching && !results && favourites.codes.map((stockCode) =>
+                        {!isSearching && !results && codes.map((stockCode) =>
                             <SearchResult
                               key={stockCode}
-                              stock={{ code: stockCode, name: favourites.names[stockCode] }}
+                              stock={{ code: stockCode, name: names[stockCode] }}
                               bindings={bindings}
                               selected={stockCode === selection.code}
-                              isFavourite={favourites.codes.indexOf(stockCode) >= 0}
+                              isFavourite={codes.indexOf(stockCode) >= 0}
                             />)
                         }
 
-                        {!isSearching && !results && !hasErrors && favourites.codes.length === 0 &&
+                        {!isSearching && !results && !hasErrors && codes.length === 0 &&
                             <div className="no-favourites">
                                 <p>Use the search tab to add new stocks to the list.</p>
                             </div>

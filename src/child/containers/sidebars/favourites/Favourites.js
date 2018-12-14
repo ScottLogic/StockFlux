@@ -1,6 +1,7 @@
 /* global $ */
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import * as PropTypes from 'prop-types';
 import { quandlResponse, insertFavouriteAt } from '../../../actions/favourites';
 import { selectStock } from '../../../actions/selection';
 import { resizeToPrevious } from '../../../actions/window';
@@ -13,7 +14,7 @@ import selectionShape from '../../../propTypeShapes/selection';
 import favouritesShape from '../../../propTypeShapes/favourites';
 import windowStateShape from '../../../propTypeShapes/windowState';
 
-class Favourites extends Component {
+class Favourites extends React.Component {
     constructor(props) {
         super(props);
 

@@ -1,22 +1,22 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
+
 import Favourites from './favourites/Favourites';
 import ClosedWindows from './closedWindows/ClosedWindows';
 import Search from './search/Search';
 import { sidebarSelector as mapStateToProps } from '../../selectors/selectors';
 import currentWindowService from '../../services/currentWindowService';
-
 import { openClosedWindow } from '../../../parent/actions/parent';
 import { selectFavourites, selectSearch } from '../../actions/sidebar';
 import { selectStock } from '../../actions/selection';
 import { toggleFavourite, moveFavouriteFromWindow } from '../../actions/favourites';
-
 import windowStateShape from '../../propTypeShapes/windowState';
 import favouritesShape from '../../propTypeShapes/favourites';
 import sidebarShape from '../../propTypeShapes/sidebar';
 
-class Sidebar extends Component {
+class Sidebar extends React.Component {
     constructor(props) {
         super(props);
         this.onDragEnter = this.onDragEnter.bind(this);
