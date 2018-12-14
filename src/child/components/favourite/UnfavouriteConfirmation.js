@@ -1,15 +1,16 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import * as PropTypes from 'prop-types';
 
-const UnfavouriteConfirmation = (props) => (
-    <div className="confirmation-backdrop" onClick={props.bindings.onModalBackdropClick}>
-        <div className="bubble-head" style={{ top: props.bindings.modalBubbleHeadTopPosition() }} />
-        <div className={`confirmation-modal${props.isFlipped ? ' flipped' : ''}`} style={{ top: props.bindings.modalTopPosition() }}>
+const UnfavouriteConfirmation = ({ bindings, isFlipped }) => (
+    <div className="confirmation-backdrop" onClick={bindings.onModalBackdropClick}>
+        <div className="bubble-head" style={{ top: bindings.modalBubbleHeadTopPosition() }} />
+        <div className={`confirmation-modal${isFlipped ? ' flipped' : ''}`} style={{ top: bindings.modalTopPosition() }}>
             <div className="confirmation-content" onClick={(e) => e.stopPropagation()}>
                 <div className="message">
                     <span>Are you sure you wish to remove this stock from your favourites?</span>
                 </div>
                 <div className="buttons">
-                    <button className="btn btn-primary" onClick={props.bindings.onModalConfirmClick}>Confirm</button>
+                    <button className="btn btn-primary" onClick={bindings.onModalConfirmClick}>Confirm</button>
                 </div>
             </div>
         </div>

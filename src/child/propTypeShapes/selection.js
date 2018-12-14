@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 
 const selectionShape = PropTypes.shape({
     code: PropTypes.string,

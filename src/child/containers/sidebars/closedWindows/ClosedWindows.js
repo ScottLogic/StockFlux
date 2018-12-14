@@ -1,12 +1,13 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import * as PropTypes from 'prop-types';
 import moment from 'moment';
-import { closedWindowsSelector as mapStateToProps } from '../../../selectors/selectors';
 
+import { closedWindowsSelector as mapStateToProps } from '../../../selectors/selectors';
 import closedWindowsImageInactive from '../../../assets/png/closed_tabs.png';
 import closedWindowsImageActive from '../../../assets/png/closed_tabs_active.png';
 
-class ClosedWindows extends Component {
+class ClosedWindows extends React.Component {
 
     constructor(props) {
         super(props);

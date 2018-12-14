@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
+import * as PropTypes from 'prop-types';
 import { scaleLinear, scaleTime } from 'd3-scale';
 import { select } from 'd3-selection';
 import {
@@ -21,7 +22,7 @@ function innerDimensions(element) {
     };
 }
 
-class Minichart extends Component {
+class Minichart extends React.Component {
 
     shouldComponentUpdate(nextProps) {
         return this.props.chartData !== nextProps.chartData;
