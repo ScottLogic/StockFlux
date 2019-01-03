@@ -1,5 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
+import * as PropTypes from 'prop-types';
 import bitflux from 'BitFlux/dist/bitflux';
+
 import { apiKey as quandlServiceApiKey, dataset as quandlServiceDataset } from '../../services/QuandlService';
 import configService from '../../../shared/ConfigService';
 
@@ -24,17 +26,17 @@ function mapColumnNames(colName) {
     return mappedName;
 }
 
-class Showcase extends Component {
+class Showcase extends React.Component {
 
     componentDidMount() {
 
         this.chart = bitflux
             .app()
+            .fetchGdaxProducts(true)
             .quandlDatabase(quandlServiceDataset())
             .quandlColumnNameMap(mapColumnNames)
             .quandlApiKey(quandlServiceApiKey());
 
-        this.chart.periodsOfDataToFetch(configService.getBitfluxStockAmount());
         this.chart.proportionOfDataToDisplayByDefault(configService.getInitialBitfluxProportion());
 
         // If there's already a selection, run the chart and use that.
@@ -44,19 +46,29 @@ class Showcase extends Component {
 
         if (this.props.code) {
             this.firstRun = true;
+
+            // For Coinbase data source, we can only request 300 periods at a time, whatever the
+            // granularity. As default granularity for Bitcoin data is 1 hour, this means we can ask
+            // for 8 days and 8 hours of data per request.
+            // To fetch a wider range of data, we could either decrease the initial
+            // granularity and increase on zoom-in, or make several concurrent requests.
+
+            // TODO Get from configService depending on data source (will be 300 for Bitcoin, 1200 for Quandl)
+            this.chart.periodsOfDataToFetch(300 /* configService.getBitfluxStockAmount('bitcoin') */);
+
             this.chart.run(this.showcaseContainer);
             // Added to make sure correct data on startup is displayed
             this.chart.changeQuandlProduct(this.props.code);
         }
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (this.props.code !== nextProps.code && nextProps.code) {
+    componentWillReceiveProps({ code }) {
+        if (code && code !== this.props.code) {
             if (!this.firstRun) {
                 this.firstRun = true;
                 this.chart.run(this.showcaseContainer);
             }
-            this.chart.changeQuandlProduct(nextProps.code);
+            this.chart.changeQuandlProduct(code);
         }
     }
 

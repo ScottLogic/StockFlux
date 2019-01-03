@@ -1,5 +1,6 @@
-const BITFLUX_STOCK_AMOUNT = 1200;
-const BITFLUX_INITIAL_PROPORTION = 112 / BITFLUX_STOCK_AMOUNT; // 112 days == ~4 months
+const BITCOIN_STOCK_AMOUNT = 300;
+const QUANDL_STOCK_AMOUNT = 1200;
+const BITFLUX_INITIAL_PROPORTION = 112 / QUANDL_STOCK_AMOUNT; // 112 days == ~4 months
 const CLOSED_SIDEBAR_WIDTH = 50;
 const SIDETAB_TOP_HEIGHT = 50;
 const TEAROUT_WINDOW_OFFSET = [CLOSED_SIDEBAR_WIDTH, SIDETAB_TOP_HEIGHT];
@@ -115,7 +116,7 @@ class ConfigService {
     }
 
     getBitfluxStockAmount() {
-        return BITFLUX_STOCK_AMOUNT;
+        return QUANDL_STOCK_AMOUNT;
     }
 
     getDefaultStocks() {
