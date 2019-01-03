@@ -7,6 +7,8 @@ import childWindows from './childWindows';
 import closedWindows from './closedWindows';
 import dragOut from './dragOut';
 
+const MAX_CLOSED_WINDOWS = 5;
+
 const rootReducer = reduceReducers(
     combineReducers({
         childWindows,
@@ -33,30 +35,32 @@ const rootReducer = reduceReducers(
         }
 
         case ACTION_TYPES.CLOSE: {
-            const newClosedWindow = Object.assign({}, state.childWindows[action.windowName], {
-                date: action.date
-            });
+            // FIXME Solve why close event is fired twice when re-opened window is closed! Event listener not removed?
+            if (!state.childWindows[action.windowName]) return state;
 
-            const newChildWindows = Object.assign({}, state.childWindows);
-
-            delete newChildWindows[action.windowName];
-
+            const newClosedWindows = { ...state.closedWindows };
             const closingWindowHasFavourites = state.childWindows[action.windowName].favourites.codes.length > 0;
 
-            const newClosedWindows = Object.assign({}, state.closedWindows, closingWindowHasFavourites ? {
-                [action.windowName]: newClosedWindow
-            } : {});
+            if (closingWindowHasFavourites) {
+                newClosedWindows[action.windowName] = {
+                    ...state.childWindows[action.windowName],
+                    date: action.date
+                };
+            }
+            if (Object.keys(newClosedWindows).length > MAX_CLOSED_WINDOWS) {
+                Object.entries(newClosedWindows) // [[winName1, winObject1], [winName2, winObject2], ...]
+                    .sort((aEntry, bEntry) => bEntry[1].date - aEntry[1].date)
+                    .slice(MAX_CLOSED_WINDOWS) // skip the five newest entries - we will keep those
+                    .map((entry) => entry[0])
+                    .forEach((windowName) => delete newClosedWindows[windowName]);
+            }
 
-            const limitedClosedWindows = Object.keys(newClosedWindows)
-                .sort((a, b) => newClosedWindows[a].date - newClosedWindows[b].date)
-                .slice(-5)
-                .reduce((prev, windowName) => Object.assign(prev, {
-                    [windowName]: newClosedWindows[windowName]
-                }), {});
+            const newChildWindows = { ...state.childWindows };
+            delete newChildWindows[action.windowName];
 
             return {
                 childWindows: newChildWindows,
-                closedWindows: limitedClosedWindows,
+                closedWindows: newClosedWindows,
                 dragOut: state.dragOut
             };
         }
