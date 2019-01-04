@@ -8,6 +8,7 @@ class ParentService {
     constructor(store) {
         this.store = store;
         this.parentClosing = false;
+        this.childWindows = {};
         this.onChildClosed = this.onChildClosed.bind(this);
         this.onCloseRequested = this.onCloseRequested.bind(this);
 
@@ -31,6 +32,12 @@ class ParentService {
             return;
         }
 
+        if (this.childWindows[name]) {
+            this.childWindows[name].removeEventListener('closed', this.onChildClosed, () => (
+                delete this.childWindows[name]
+            ));
+        }
+
         const isFinalChildWindowClosing = this.getChildWindowCount() === 0 ||
             (this.getChildWindowCount() === 1 && this.store.getState().childWindows[name]);
 
@@ -51,8 +58,9 @@ class ParentService {
             childWindow.setBounds(position[0], position[1]);
         }
 
+        const childWindowName = childWindow.name;
+
         if (defaultStocks) {
-            const childWindowName = childWindow.name;
             this.store.dispatch(willBeInitialOpen(childWindowName));
             defaultStocks.forEach((code) => {
                 this.store.dispatch(toggleFavouriteInWindow(code, childWindowName));
@@ -60,7 +68,9 @@ class ParentService {
         }
 
         childWindow.show();
-        childWindow.addEventListener('closed', this.onChildClosed);
+        childWindow.addEventListener('closed', this.onChildClosed, () => (
+            this.childWindows[childWindowName] = childWindow
+        ));
     }
 
     createChildWindow(config = {}) {
