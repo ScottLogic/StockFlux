@@ -27,13 +27,13 @@ require('script-loader!../../node_modules/BitFlux/node_modules/bootstrap/js/drop
 /* eslint-enable import/no-webpack-loader-syntax */
 /* eslint-enable import/no-extraneous-dependencies */
 
-currentWindowService.ready(() => {
+currentWindowService.ready(async () => {
     const currentWindow = currentWindowService.getCurrentWindow();
     const currentWindowName = currentWindowService.getCurrentWindowName();
     const store = currentWindow.contentWindow.opener.store;
     const rootElement = document.getElementById('app');
 
-    startLayoutsService(store);
+    await startLayoutsService(store);
 
     const windowStateService = new WindowStateService(currentWindow, store, rootElement);
     windowStateService.start();
