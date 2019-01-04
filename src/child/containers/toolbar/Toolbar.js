@@ -25,6 +25,9 @@ class Toolbar extends React.Component {
         this.onRestoreClick = this.onRestoreClick.bind(this);
         this.onCloseClick = this.onCloseClick.bind(this);
 
+        // TODO: AS Layouts close application
+        this.onAppCloseClick = this.onAppCloseClick.bind(this);
+
         // reset maximize state on window resize
     }
 
@@ -57,6 +60,11 @@ class Toolbar extends React.Component {
         fin.desktop.Window.getCurrent().close();
     }
 
+    // TODO: AS layouts
+    onAppCloseClick() {
+        fin.desktop.Application.getCurrent().close();
+    }
+
     render() {
         const { windowState } = this.props;
         return (
@@ -75,6 +83,7 @@ class Toolbar extends React.Component {
                     : <div className="button-icon maximize" onClick={this.onMaximizeClick} title="Maximize">&nbsp;</div>
                     )}
                     <div className="button-icon closeIcon" onClick={this.onCloseClick} title="Close">&nbsp;</div>
+                    <div className="button-icon closeIcon" onClick={this.onAppCloseClick} title="Close App">&nbsp;</div>
                 </div>
             </div>
         );

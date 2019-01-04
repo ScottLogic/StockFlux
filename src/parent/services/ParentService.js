@@ -1,5 +1,11 @@
+// TODO: AS layouts
+import * as Layouts from 'openfin-layouts';
+
 import configService from '../../shared/ConfigService';
-import { close } from '../actions/parent';
+
+// TODO : AS layouts
+import { close, layoutUpdated } from '../actions/parent';
+
 import { toggleFavouriteInWindow } from '../../child/actions/favourites';
 import { willBeInitialOpen } from '../../child/actions/initialOpen';
 
@@ -41,9 +47,11 @@ class ParentService {
         }
     }
 
-    onCloseRequested() {
+    // TODO : AS layouts
+    async onCloseRequested() {
         this.parentClosing = true;
-        fin.desktop.Window.getCurrent().close(true);
+        await this.saveLayout();
+        fin.desktop.Application.getCurrent().close(true);
     }
 
     createChildWindowSuccess(childWindow, position, defaultStocks) {
@@ -66,10 +74,11 @@ class ParentService {
     createChildWindow(config = {}) {
         const { windowName, position, initialState, defaultStocks } = config;
         const windowConfig = this.getChildWindowConfigOrDefault(windowName, initialState);
-        const childWindow = new fin.desktop.Window(
-            windowConfig,
-            () => this.createChildWindowSuccess(childWindow, position, defaultStocks)
-        );
+
+        // TODO: AS Layouts => this functionality probably needs to be moved into the appRestore method of the LayoutsService. All windows 
+        // should probably be created and positioned at that point during the restore layout process rather than here.
+
+        const childWindow = new fin.desktop.Window(windowConfig, () => this.createChildWindowSuccess(childWindow, position, defaultStocks));
     }
 
     getChildWindowConfigOrDefault(windowName, initialState) {
@@ -104,6 +113,12 @@ class ParentService {
                 this.createChildWindow({ windowName: newWindowName, initialState: childWindows[newWindowName] });
             });
         }
+    }
+
+    // TODO : AS layouts
+    async saveLayout() {
+        const layout = await Layouts.generateLayout();
+        this.store.dispatch(layoutUpdated(layout));
     }
 
 }

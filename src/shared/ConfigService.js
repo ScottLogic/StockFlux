@@ -28,13 +28,13 @@ class ConfigService {
             autoShow: false,
             frame: false,
             shadow: false,
-            resizeRegion: {
-                size: 7,
-                topLeftCorner: 14,
-                topRightCorner: 14,
-                bottomRightCorner: 14,
-                bottomLeftCorner: 14
-            }
+            //resizeRegion: {
+            //    size: 7,
+             //   topLeftCorner: 14,
+             //   topRightCorner: 14,
+             //   bottomRightCorner: 14,
+             //   bottomLeftCorner: 14
+            //}
         };
 
         Object.keys(sharedConfig).forEach((key) => {
@@ -48,8 +48,8 @@ class ConfigService {
 
     getWindowConfig(name) {
         return this.getConfig(name, {
-            showTaskbarIcon: true,
-            saveWindowState: true,
+            showTaskbarIcon: false, //TODO : AS here
+            saveWindowState: false,
             url: 'index.html',
             resizable: true,
             maximizable: true,
@@ -62,8 +62,8 @@ class ConfigService {
 
     getCompactWindowConfig(name) {
         return this.getConfig(name, {
-            showTaskbarIcon: true,
-            saveWindowState: true,
+            showTaskbarIcon: false, //TODO : AS here
+            saveWindowState: false,
             url: 'index.html',
             resizable: false,
             maximizable: false,

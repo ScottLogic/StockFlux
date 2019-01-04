@@ -50,5 +50,9 @@ export const PARENT = {
     CLOSE: 'CLOSE',
     DRAG_OUT: 'DRAG_OUT',
     DRAG_ACCEPT: 'DRAG_ACCEPT',
-    REOPEN: 'REOPEN'
+    REOPEN: 'REOPEN',
+
+    // TODO : AS updating
+    LAYOUT_UPDATED: 'LAYOUT_UPDATED'
+
 };

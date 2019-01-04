@@ -70,3 +70,11 @@ export function openClosedWindow(windowName) {
         );
     };
 }
+
+// TODO: AS layouts
+export function layoutUpdated(layout) {
+    return {
+        type: ACTION_TYPES.LAYOUT_UPDATED,
+        layout
+    };
+}

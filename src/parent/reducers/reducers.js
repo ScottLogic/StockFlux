@@ -7,13 +7,19 @@ import childWindows from './childWindows';
 import closedWindows from './closedWindows';
 import dragOut from './dragOut';
 
+// TODO : AS layouts
+import layout from './layout';
+
 const MAX_CLOSED_WINDOWS = 5;
 
 const rootReducer = reduceReducers(
     combineReducers({
         childWindows,
         closedWindows,
-        dragOut
+        dragOut,
+
+        // TODO: AS layouts
+        layout
     }),
     (state, action) => {
         switch (action.type) {
@@ -30,7 +36,10 @@ const rootReducer = reduceReducers(
                     [action.windowName]: windowToReopen
                 }),
                 closedWindows: newClosedWindows,
-                dragOut: state.dragOut
+                dragOut: state.dragOut,
+
+                // TODO: AS layouts
+                layout: state.layout
             };
         }
 
@@ -61,7 +70,10 @@ const rootReducer = reduceReducers(
             return {
                 childWindows: newChildWindows,
                 closedWindows: newClosedWindows,
-                dragOut: state.dragOut
+                dragOut: state.dragOut,
+
+                // TODO: AS layouts
+                layout: state.layout
             };
         }
 
