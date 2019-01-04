@@ -1,6 +1,6 @@
-import * as Layouts from 'openfin-layouts';
+import { generateLayout } from 'openfin-layouts';
 
-const uuid = fin.desktop.Application.getCurrent().uuid;
+const { uuid } = fin.desktop.Application.getCurrent();
 
 export default function start(store) {
     const layoutsStore = LayoutsStore();
@@ -71,7 +71,7 @@ function LayoutsStore() {
 }
 
 async function getChildWindows() {
-    const layout = await Layouts.generateLayout();
+    const layout = await generateLayout();
     const currentApp = layout.apps.find((app) => app.uuid === uuid);
     return currentApp.childWindows;
 }

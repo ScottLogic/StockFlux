@@ -1,16 +1,14 @@
-import * as Layouts from 'openfin-layouts';
+import { addEventListener, undockWindow as layoutServiceUndockWindow } from 'openfin-layouts';
 import { joinedSnapGroup, leftSnapGroup } from '../actions/window';
 
-const uuid = fin.desktop.Application.getCurrent().uuid;
-const childWindow = fin.desktop.Window.getCurrent();
-const childWindowName = childWindow.name;
+const { name: childWindowName, uuid } = fin.desktop.Window.getCurrent();
 
-export function start(store) {
-    Layouts.addEventListener('join-snap-group', () => {
+export async function start(store) {
+    await addEventListener('join-snap-group', () => {
         fin.desktop.InterApplicationBus.send(uuid, 'join-snap-group', null);
     });
 
-    Layouts.addEventListener('leave-snap-group', () => {
+    await addEventListener('leave-snap-group', () => {
         fin.desktop.InterApplicationBus.send(uuid, 'leave-snap-group', null);
     });
 
@@ -28,5 +26,5 @@ export function start(store) {
 }
 
 export async function undockWindow() {
-    await Layouts.undockWindow(childWindow);
+    await layoutServiceUndockWindow();
 }
