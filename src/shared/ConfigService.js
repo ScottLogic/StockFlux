@@ -13,6 +13,20 @@ const DEFAULT_STOCKS = ['AAPL', 'MSFT', 'TITN', 'TSLA'];
 
 const allowContextMenu = process.env.NODE_ENV !== 'production';
 
+const commonConfig = {
+    contextMenu: allowContextMenu,
+    autoShow: false,
+    frame: false,
+    shadow: false,
+    resizeRegion: {
+        size: 7,
+        topLeftCorner: 14,
+        topRightCorner: 14,
+        bottomRightCorner: 14,
+        bottomLeftCorner: 14
+    }
+};
+
 /**
  * Stores common configuration for the application.
  */
@@ -22,28 +36,11 @@ class ConfigService {
     }
 
     getConfig(name, overrides) {
-        const sharedConfig = {
+        return {
             name: name || this.createName(),
-            contextMenu: allowContextMenu,
-            autoShow: false,
-            frame: false,
-            shadow: false,
-            resizeRegion: {
-                size: 7,
-                topLeftCorner: 14,
-                topRightCorner: 14,
-                bottomRightCorner: 14,
-                bottomLeftCorner: 14
-            }
+            ...commonConfig,
+            ...overrides
         };
-
-        Object.keys(sharedConfig).forEach((key) => {
-            if (overrides[key] === undefined) {
-                overrides[key] = sharedConfig[key]; // eslint-disable-line no-param-reassign
-            }
-        });
-
-        return overrides;
     }
 
     getWindowConfig(name) {
@@ -75,29 +72,21 @@ class ConfigService {
     }
 
     getMaximizedWindowConfig(name) {
-        return this.getConfig(name, {
-            showTaskbarIcon: true,
-            saveWindowState: true,
-            url: 'index.html',
-            resizable: true,
-            maximizable: true,
-            state: 'maximized',
-            minWidth: DEFAULT_WINDOW_MIN_DIMENSIONS[0],
-            minHeight: DEFAULT_WINDOW_MIN_DIMENSIONS[1],
-            defaultWidth: DEFAULT_WINDOW_DIMENSIONS[0],
-            defaultHeight: DEFAULT_WINDOW_DIMENSIONS[1]
-        });
+        return {
+            ...this.getWindowConfig(name),
+            state: 'maximized'
+        };
     }
 
     getTearoutConfig(name) {
         return this.getConfig(name, {
-            maximizable: false,
-            resizable: false,
             showTaskbarIcon: false,
             saveWindowState: false,
+            url: 'tearout.html',
+            resizable: false,
+            maximizable: false,
             maxWidth: TEAROUT_CARD_DIMENSIONS[0],
-            maxHeight: TEAROUT_CARD_DIMENSIONS[1],
-            url: 'tearout.html'
+            maxHeight: TEAROUT_CARD_DIMENSIONS[1]
         });
     }
 

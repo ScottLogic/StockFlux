@@ -11,10 +11,7 @@ describe('parent/services/LayoutsService', () => {
     let startLayoutsService;
     let store;
 
-    fakeOpenFin(openfinLayout, {
-        application: { uuid },
-        window: { name: windowName }
-    });
+    fakeOpenFin({ openfinLayout, environment: { name: windowName, uuid } });
 
     beforeEach(() => {
         // eslint-disable-next-line global-require
@@ -22,19 +19,19 @@ describe('parent/services/LayoutsService', () => {
         store = { subscribe: sinon.spy() };
     });
 
-    it('listen to inter-applications join-snap-group event', () => {
+    it('listens to inter-applications join-snap-group event on start', () => {
         startLayoutsService(store);
         expect(global.fin.desktop.InterApplicationBus.subscribe.firstCall.args[0]).to.equal(uuid);
         expect(global.fin.desktop.InterApplicationBus.subscribe.firstCall.args[1]).to.equal('join-snap-group');
     });
 
-    it('listen to inter-applications leave-snap-group event', () => {
+    it('listens to inter-applications leave-snap-group event on start', () => {
         startLayoutsService(store);
         expect(global.fin.desktop.InterApplicationBus.subscribe.lastCall.args[0]).to.equal(uuid);
         expect(global.fin.desktop.InterApplicationBus.subscribe.lastCall.args[1]).to.equal('leave-snap-group');
     });
 
-    it('subscribe to store updates', () => {
+    it('subscribes to store updates on start', () => {
         startLayoutsService(store);
         expect(store.subscribe.calledOnce).to.be.true;
     });
@@ -57,7 +54,7 @@ describe('parent/services/LayoutsService', () => {
         store.subscribe.lastCall.args[0].call();
         await new Promise(setTimeout, 0);
 
-        global.fin.desktop.InterApplicationBus.send.reset();
+        global.fin.desktop.InterApplicationBus.send.resetHistory();
 
         openfinLayout.generateLayout.onCall(1).returns(new Promise((resolve) => {
             resolve({
@@ -101,7 +98,7 @@ describe('parent/services/LayoutsService', () => {
         store.subscribe.lastCall.args[0].call();
         await new Promise(setTimeout, 0);
 
-        global.fin.desktop.InterApplicationBus.send.reset();
+        global.fin.desktop.InterApplicationBus.send.resetHistory();
 
         openfinLayout.generateLayout.onCall(1).returns(new Promise((resolve) => {
             resolve({
@@ -119,7 +116,7 @@ describe('parent/services/LayoutsService', () => {
         store.subscribe.lastCall.args[0].call();
         await new Promise(setTimeout, 0);
 
-        global.fin.desktop.InterApplicationBus.send.reset();
+        global.fin.desktop.InterApplicationBus.send.resetHistory();
 
         openfinLayout.generateLayout.onCall(2).returns(new Promise((resolve) => {
             resolve({

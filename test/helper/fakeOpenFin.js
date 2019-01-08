@@ -1,21 +1,39 @@
 import sinon from 'sinon';
 
-function createOpenFin({
-    application: { uuid },
-    window: { name }
-}) {
+function createOpenFin({ name, uuid }) {
+    const close = sinon.spy();
+    const addEventListener = sinon.spy();
+    const send = sinon.spy();
+    const subscribe = sinon.spy();
+
+    const currentWindow = {
+        contentWindow: {},
+        name,
+        uuid,
+        addEventListener,
+        close
+    };
+
+    class Window {
+        constructor(config, callback) {
+            currentWindow.name = config.name;
+            setTimeout(callback, 0);
+        }
+        static getCurrent() {
+            return currentWindow;
+        }
+    }
+
     return {
         desktop: {
             Application: {
                 getCurrent: () => ({ uuid })
             },
             InterApplicationBus: {
-                send: () => {},
-                subscribe: () => {}
+                send,
+                subscribe
             },
-            Window: {
-                getCurrent: () => ({ name })
-            }
+            Window
         },
         InterApplicationBus: {
             Channel: {
@@ -27,33 +45,33 @@ function createOpenFin({
     };
 }
 
-function fakeOpenFin(openfinLayout, environment) {
+function fakeOpenFin({ environment, openfinLayout }) {
     let Layouts;
 
     beforeEach(() => {
         global.fin = createOpenFin(environment);
-        global.fin.desktop.InterApplicationBus.send = sinon.spy(global.fin.desktop.InterApplicationBus, 'send');
-        global.fin.desktop.InterApplicationBus.subscribe = sinon.spy(global.fin.desktop.InterApplicationBus, 'subscribe');
 
-        // eslint-disable-next-line global-require
-        Layouts = require('openfin-layouts');
+        if (openfinLayout) {
+            // eslint-disable-next-line global-require
+            Layouts = require('openfin-layouts');
 
-        // eslint-disable-next-line no-param-reassign
-        openfinLayout.addEventListener = sinon.spy(Layouts, 'addEventListener');
-        // eslint-disable-next-line no-param-reassign
-        openfinLayout.generateLayout = sinon.stub(Layouts, 'generateLayout');
-        // eslint-disable-next-line no-param-reassign
-        openfinLayout.undockWindow = sinon.spy(Layouts, 'undockWindow');
+            // eslint-disable-next-line no-param-reassign
+            openfinLayout.addEventListener = sinon.stub(Layouts, 'addEventListener');
+            // eslint-disable-next-line no-param-reassign
+            openfinLayout.generateLayout = sinon.stub(Layouts, 'generateLayout');
+            // eslint-disable-next-line no-param-reassign
+            openfinLayout.undockWindow = sinon.stub(Layouts, 'undockWindow');
+        }
     });
 
     afterEach(() => {
-        global.fin.desktop.InterApplicationBus.send.restore();
-        global.fin.desktop.InterApplicationBus.subscribe.restore();
         delete global.fin;
 
-        Layouts.addEventListener.restore();
-        Layouts.generateLayout.restore();
-        Layouts.undockWindow.restore();
+        if (Layouts) {
+            Layouts.addEventListener.restore();
+            Layouts.generateLayout.restore();
+            Layouts.undockWindow.restore();
+        }
     });
 }
 
