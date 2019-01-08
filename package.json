@@ -65,7 +65,7 @@
     "rimraf": "^2.5.3",
     "script-loader": "^0.7.2",
     "semver": "^5.1.0",
-    "sinon": "^1.17.4",
+    "sinon": "^7.2.2",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.25.1",

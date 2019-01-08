@@ -19,14 +19,24 @@ class ParentService {
         );
     }
 
-    getChildWindowCount() {
-        return Object.keys(this.store.getState().childWindows).length;
+    // external
+    start() {
+        fin.desktop.Window.getCurrent().contentWindow.store = this.store;
+
+        fin.desktop.Window.getCurrent().addEventListener('close-requested', this.onCloseRequested);
+
+        if (this.getChildWindowCount() === 0) {
+            this.createChildWindow({ defaultStocks: configService.getDefaultStocks() });
+        } else {
+            const childWindowState = this.store.getState().childWindows;
+            Object.keys(childWindowState).forEach((windowName) => {
+                const newWindowName = windowName === 'undefined' ? null : windowName;
+                this.createChildWindow({ windowName: newWindowName, initialState: childWindowState[newWindowName] });
+            });
+        }
     }
 
-    getWindowDragOutCount() {
-        return Object.keys(this.store.getState().dragOut).length;
-    }
-
+    // internal, in response to Window 'closed' event
     onChildClosed({ name }) {
         if (this.parentClosing) {
             return;
@@ -48,31 +58,13 @@ class ParentService {
         }
     }
 
+    // internal, in response to Window 'close-requested' event
     onCloseRequested() {
         this.parentClosing = true;
         fin.desktop.Window.getCurrent().close(true);
     }
 
-    createChildWindowSuccess(childWindow, position, defaultStocks) {
-        if (position) {
-            childWindow.setBounds(position[0], position[1]);
-        }
-
-        const childWindowName = childWindow.name;
-
-        if (defaultStocks) {
-            this.store.dispatch(willBeInitialOpen(childWindowName));
-            defaultStocks.forEach((code) => {
-                this.store.dispatch(toggleFavouriteInWindow(code, childWindowName));
-            });
-        }
-
-        childWindow.show();
-        childWindow.addEventListener('closed', this.onChildClosed, () => (
-            this.childWindows[childWindowName] = childWindow
-        ));
-    }
-
+    // internal, in response to 'createChildWindow' message through InterApplicationBus
     createChildWindow(config = {}) {
         const { windowName, position, initialState, defaultStocks } = config;
         const windowConfig = this.getChildWindowConfigOrDefault(windowName, initialState);
@@ -82,6 +74,17 @@ class ParentService {
         );
     }
 
+    // internal
+    getChildWindowCount() {
+        return Object.keys(this.store.getState().childWindows).length;
+    }
+
+    // internal
+    getWindowDragOutCount() {
+        return Object.keys(this.store.getState().dragOut).length;
+    }
+
+    // internal
     getChildWindowConfigOrDefault(windowName, initialState) {
         let windowConfig;
         if (windowName && initialState) {
@@ -100,20 +103,25 @@ class ParentService {
         return windowConfig;
     }
 
-    start() {
-        fin.desktop.Window.getCurrent().contentWindow.store = this.store;
+    // internal
+    createChildWindowSuccess(childWindow, position, defaultStocks) {
+        if (position) {
+            childWindow.setBounds(position[0], position[1]);
+        }
 
-        fin.desktop.Window.getCurrent().addEventListener('close-requested', this.onCloseRequested);
+        const childWindowName = childWindow.name;
 
-        if (this.getChildWindowCount() === 0) {
-            this.createChildWindow({ defaultStocks: configService.getDefaultStocks() });
-        } else {
-            const childWindows = this.store.getState().childWindows;
-            Object.keys(childWindows).forEach((windowName) => {
-                const newWindowName = windowName === 'undefined' ? null : windowName;
-                this.createChildWindow({ windowName: newWindowName, initialState: childWindows[newWindowName] });
+        if (defaultStocks) {
+            this.store.dispatch(willBeInitialOpen(childWindowName));
+            defaultStocks.forEach((code) => {
+                this.store.dispatch(toggleFavouriteInWindow(code, childWindowName));
             });
         }
+
+        childWindow.show();
+        childWindow.addEventListener('closed', this.onChildClosed, () => (
+            this.childWindows[childWindowName] = childWindow
+        ));
     }
 
 }
