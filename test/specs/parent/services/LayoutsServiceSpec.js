@@ -39,7 +39,7 @@ describe('parent/services/LayoutsService', () => {
     it('when a window joins a group the windows of that group are notified', async () => {
         startLayoutsService(store);
 
-        openfinLayout.generateLayout.onCall(0).returns(new Promise((resolve) => {
+        openfinLayout.workspaces.generate.onCall(0).returns(new Promise((resolve) => {
             resolve({
                 apps: [{
                     uuid,
@@ -56,7 +56,7 @@ describe('parent/services/LayoutsService', () => {
 
         global.fin.desktop.InterApplicationBus.send.resetHistory();
 
-        openfinLayout.generateLayout.onCall(1).returns(new Promise((resolve) => {
+        openfinLayout.workspaces.generate.onCall(1).returns(new Promise((resolve) => {
             resolve({
                 apps: [{
                     uuid,
@@ -83,7 +83,7 @@ describe('parent/services/LayoutsService', () => {
     it('when a window leaves a group the windows of that group are notified', async () => {
         startLayoutsService(store);
 
-        openfinLayout.generateLayout.onCall(0).returns(new Promise((resolve) => {
+        openfinLayout.workspaces.generate.onCall(0).returns(new Promise((resolve) => {
             resolve({
                 apps: [{
                     uuid,
@@ -100,7 +100,7 @@ describe('parent/services/LayoutsService', () => {
 
         global.fin.desktop.InterApplicationBus.send.resetHistory();
 
-        openfinLayout.generateLayout.onCall(1).returns(new Promise((resolve) => {
+        openfinLayout.workspaces.generate.onCall(1).returns(new Promise((resolve) => {
             resolve({
                 apps: [{
                     uuid,
@@ -118,7 +118,7 @@ describe('parent/services/LayoutsService', () => {
 
         global.fin.desktop.InterApplicationBus.send.resetHistory();
 
-        openfinLayout.generateLayout.onCall(2).returns(new Promise((resolve) => {
+        openfinLayout.workspaces.generate.onCall(2).returns(new Promise((resolve) => {
             resolve({
                 apps: [{
                     uuid,

@@ -21,19 +21,19 @@ describe('child/services/LayoutsService', () => {
     });
 
     describe('start', () => {
-        it('listen to openfin layouts join-snap-group event', async () => {
+        it('listen to openfin layouts window-docked event', async () => {
             await layoutsService.start();
-            expect(openfinLayout.addEventListener.firstCall.args[0]).to.equal('join-snap-group');
-            await openfinLayout.addEventListener.firstCall.args[1].call();
+            expect(openfinLayout.snapAndDock.addEventListener.firstCall.args[0]).to.equal('window-docked');
+            await openfinLayout.snapAndDock.addEventListener.firstCall.args[1].call();
             expect(global.fin.desktop.InterApplicationBus.send.lastCall.args[0]).to.equal(uuid);
             expect(global.fin.desktop.InterApplicationBus.send.lastCall.args[1]).to.equal('join-snap-group');
             expect(global.fin.desktop.InterApplicationBus.send.lastCall.args[2]).to.be.null;
         });
 
-        it('listen to openfin layouts leave-snap-group event', async () => {
+        it('listen to openfin layouts window-undocked event', async () => {
             await layoutsService.start();
-            expect(openfinLayout.addEventListener.secondCall.args[0]).to.equal('leave-snap-group');
-            await openfinLayout.addEventListener.secondCall.args[1].call();
+            expect(openfinLayout.snapAndDock.addEventListener.secondCall.args[0]).to.equal('window-undocked');
+            await openfinLayout.snapAndDock.addEventListener.secondCall.args[1].call();
             expect(global.fin.desktop.InterApplicationBus.send.lastCall.args[0]).to.equal(uuid);
             expect(global.fin.desktop.InterApplicationBus.send.lastCall.args[1]).to.equal('leave-snap-group');
             expect(global.fin.desktop.InterApplicationBus.send.lastCall.args[2]).to.be.null;
@@ -63,7 +63,7 @@ describe('child/services/LayoutsService', () => {
     describe('undockWindows', () => {
         it('calls openfin layouts undockWindow', async () => {
             await layoutsService.undockWindow();
-            expect(openfinLayout.undockWindow.calledOnce).to.be.true;
+            expect(openfinLayout.snapAndDock.undockWindow.calledOnce).to.be.true;
         });
     });
 });

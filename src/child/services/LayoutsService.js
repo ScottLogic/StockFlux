@@ -1,14 +1,14 @@
-import { addEventListener, undockWindow as layoutServiceUndockWindow } from 'openfin-layouts';
+import { snapAndDock } from 'openfin-layouts';
 import { joinedSnapGroup, leftSnapGroup } from '../actions/window';
 
 const { name: childWindowName, uuid } = fin.desktop.Window.getCurrent();
 
 export async function start(store) {
-    await addEventListener('join-snap-group', () => {
+    await snapAndDock.addEventListener('window-docked', () => {
         fin.desktop.InterApplicationBus.send(uuid, 'join-snap-group', null);
     });
 
-    await addEventListener('leave-snap-group', () => {
+    await snapAndDock.addEventListener('window-undocked', () => {
         fin.desktop.InterApplicationBus.send(uuid, 'leave-snap-group', null);
     });
 
@@ -26,5 +26,5 @@ export async function start(store) {
 }
 
 export async function undockWindow() {
-    await layoutServiceUndockWindow();
+    await snapAndDock.undockWindow();
 }
