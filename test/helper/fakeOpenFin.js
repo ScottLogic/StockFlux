@@ -56,11 +56,12 @@ function fakeOpenFin({ environment, openfinLayout }) {
             Layouts = require('openfin-layouts');
 
             // eslint-disable-next-line no-param-reassign
-            openfinLayout.addEventListener = sinon.stub(Layouts, 'addEventListener');
+            openfinLayout.snapAndDock = {
+                addEventListener: sinon.stub(Layouts.snapAndDock, 'addEventListener'),
+                undockWindow: sinon.stub(Layouts.snapAndDock, 'undockWindow')
+            };
             // eslint-disable-next-line no-param-reassign
-            openfinLayout.generateLayout = sinon.stub(Layouts, 'generateLayout');
-            // eslint-disable-next-line no-param-reassign
-            openfinLayout.undockWindow = sinon.stub(Layouts, 'undockWindow');
+            openfinLayout.workspaces = { generate: sinon.stub(Layouts.workspaces, 'generate') };
         }
     });
 
@@ -68,9 +69,9 @@ function fakeOpenFin({ environment, openfinLayout }) {
         delete global.fin;
 
         if (Layouts) {
-            Layouts.addEventListener.restore();
-            Layouts.generateLayout.restore();
-            Layouts.undockWindow.restore();
+            Layouts.snapAndDock.addEventListener.restore();
+            Layouts.snapAndDock.undockWindow.restore();
+            Layouts.workspaces.generate.restore();
         }
     });
 }

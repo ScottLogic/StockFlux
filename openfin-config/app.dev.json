@@ -10,18 +10,22 @@
         "frame": false,
         "showTaskbarIcon": false,
         "url": "http://localhost:5000/parent.html",
-        "autoShow" : true,
+        "autoShow": true,
         "applicationIcon": "http://localhost:5000/favicon.ico"
     },
     "services": [
         {
             "name": "layouts",
-            "manifestUrl": "https://cdn.openfin.co/services/openfin/layouts/0.9.5/app.json?$$disableTabbingOperations=true"
+            "config": {
+                "features": {
+                    "tab": false
+                }
+            }
         }
     ],
     "runtime": {
         "arguments": "--enable-aggressive-domstorage-flushing",
-        "version": "9.61.37.46"
+        "version": "9.61.38.40"
     },
     "shortcut": {
         "company": "ScottLogic",
