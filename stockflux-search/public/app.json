@@ -11,9 +11,19 @@
         "frame": false
     },
     "runtime": {
-        "arguments": "",
-        "version": "stable"
+        "arguments": "--enable-aggressive-domstorage-flushing",
+        "version": "9.61.38.40"
     },
+    "services": [
+        {
+            "name": "layouts",
+            "config": {
+                "features": {
+                    "tab": false
+                }
+            }
+        }
+    ],
     "shortcut": {
         "company": "OpenFin",
         "description": "Openfin POC",

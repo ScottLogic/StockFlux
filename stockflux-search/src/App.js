@@ -1,19 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Search from './components/Search';
 import Titlebar from './components/Titlebar';
 
-class App extends Component {
-  render() {
+const App = () => {
     return (
-      <div>
-        <Titlebar />
-        <Search
-          favourites={{codes: [], names: {}}}
-          selection={{}}
-        />
-      </div>
+        <>
+            <Titlebar/>
+            <Search
+                favourites={{ codes: [], names: {} }}
+                selection={{}}
+            />
+        </>
     );
-  }
-}
+};
 
 export default App;

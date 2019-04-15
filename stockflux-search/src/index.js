@@ -6,5 +6,6 @@ import App from './App';
 import 'malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar';
 import 'jquery-mousewheel/jquery.mousewheel';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-
+window.fin.desktop.main(() => {
+    ReactDOM.render(<App/>, document.getElementById('root'));
+});
