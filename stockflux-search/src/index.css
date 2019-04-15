@@ -1,14 +1,57 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500);
+@import './styles/custom-scroll.css';
+@import './styles/button-icon.css';
+@import '../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css';
+
+:root {
+  /* colours */
+  --text-grey: #AEB1B5;
+  --light-background: #464E58;
+  --middle-background: #28313D;
+  --dark-background: #1A212A;
+  --separator-colour: #5B626B;
+  --search-background: var(--light-background);
+
+  /* dimensions */
+  --expanded-width: 230px;
+  --toolbar-height: 50px;
+  --search-result-height: 60px;
+  --icons-size: 30px;
+  --titlebar-height: 34px;
+  --scrollbar-width: 16px;
+
+  /* transitions  */
+  --icon-transition-duration: 0.5s;
+
+  /* font-weight */
+  --font-thin: 100;
+  --font-light: 300;
+  --font-medium-light: 400;
+  --font-medium: 500;
+
+  /* font-size */
+  --font-normal: 12px;
+  --font-large: 14px;
+  --font-xlarge: 16px;
+  --font-xxlarge: 18px;
+  --font-xxxlarge: 20px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+body {
+  color: #FFFFFF;
+  margin: 0;
+  font-family:"Roboto", sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+p {
+  margin: 0 0 12px;
+}
+
+.hidden {
+  display: none;
 }

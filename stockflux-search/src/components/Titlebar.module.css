@@ -1,0 +1,17 @@
+.titlebarContainer {
+  --webkit-app-region: drag;
+  display: flex;
+  flex-direction: row-reverse;
+  height: var(--titlebar-height);
+  background-color: var(--dark-background);
+}
+
+.icons {
+  display: inline-block;
+  display: flex;
+  align-items: center;
+}
+
+.icons > * {
+  height: 15px;
+}

@@ -1,0 +1,81 @@
+.button-icon {
+    display: inline-block;
+    width: 30px;
+    height: 100%;
+    background-position: 50% 80%;
+    background-repeat: no-repeat;
+    transition: 0.5s all;
+    cursor: pointer;
+}
+
+.button-icon.closed_tabs_small {
+    background-image: url('./png/closed_tabs_small.png');
+}
+.button-icon.closed_tabs_small:hover {
+    background-image: url('./png/closed_tabs_small_active.png');
+}
+.button-icon.minimize {
+    background-image: url('./png/minimize.png');
+}
+.button-icon.minimize:hover {
+    background-image: url('./png/minimize_active.png');
+}
+.button-icon.compact {
+    background-image: url('./png/compact.png');
+}
+.button-icon.compact:hover {
+    background-image: url('./png/compact_active.png');
+}
+.button-icon.full_view {
+    background-image: url('./png/full_view.png');
+}
+.button-icon.full_view:hover {
+    background-image: url('./png/full_view_active.png');
+}
+.button-icon.maximize {
+    background-image: url('./png/maximize.png');
+}
+.button-icon.maximize:hover {
+    background-image: url('./png/maximize_active.png');
+}
+.button-icon.normal_size {
+    background-image: url('./png/normal_size.png');
+}
+.button-icon.normal_size:hover {
+    background-image: url('./png/normal_size_active.png');
+}
+.button-icon.closeIcon {
+    background-image: url('./png/close.png');
+}
+.button-icon.closeIcon:hover {
+    background-image: url('./png/close_active.png');
+}
+.button-icon.undock {
+    background-image: url('./png/undock.png');
+}
+.button-icon.undock:hover {
+    background-image: url('./png/undock_active.png');
+}
+.button-icon.star {
+    background-image: url('./png/favourite_off.png');
+}
+
+.search-result .button-icon.star {
+    transition: all 0s;
+}
+
+.search-result:hover .button-icon.star,
+.dark .button-icon.star {
+    background-image: url('./png/favourite_off_hover.png');
+    transition: all 0s;
+}
+.dark .button-icon.star:hover {
+    background-image: url('./png/favourite_hover.png');
+    transition: all var(--icon-transition-duration);
+}
+.button-icon.star.active{
+    background-image: url('./png/favourite_on.png') !important;
+}
+.button-icon.star:hover {
+    background-image: url('./png/favourite_hover.png') !important;
+}
