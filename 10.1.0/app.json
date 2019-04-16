@@ -1,0 +1,26 @@
+{
+    "devtools_port": 9090,
+    "startup_app": {
+        "name": "StockFlux",
+        "uuid": "StockFlux",
+        "maxWidth": 0,
+        "maxHeight": 0,
+        "defaultWidth": 0,
+        "defaultHeight": 0,
+        "frame": false,
+        "showTaskbarIcon": false,
+        "url": "http://scottlogic.github.io/StockFlux/10.1.0/parent.html",
+        "applicationIcon": "http://scottlogic.github.io/StockFlux/10.1.0/favicon.ico"
+    },
+    "runtime": {
+        "arguments": "--enable-aggressive-domstorage-flushing",
+        "version": "stable"
+    },
+    "shortcut": {
+        "company": "ScottLogic",
+        "description": "Hosts BitFlux as an OpenFin application.",
+        "icon": "http://scottlogic.github.io/StockFlux/10.1.0/favicon.ico",
+        "name": "StockFlux"
+    },
+    "splashScreenImage": "http://scottlogic.github.io/StockFlux/10.1.0/assets/png/splashscreen.png"
+}

@@ -1,0 +1,17 @@
+﻿<img class="star" ng-src="assets/png/{{starCtrl.favouriteUrl()}}.png" ng-click="starCtrl.click($event); $event.stopPropagation();"
+     ng-mouseenter="starCtrl.mouseEnter()" ng-mouseleave="starCtrl.mouseLeave()" title="{{starCtrl.tooltip()}}" draggable="false" />
+<div class="confirmation-backdrop" ng-if="starCtrl.confirmationShow" ng-mousedown="starCtrl.hideModal(); $event.stopPropagation();"
+    ng-dblclick="$event.stopPropagation()">
+  <div class="bubble-head" ng-style="{top:starCtrl.modalBubbleTop()+'px'}"></div>
+  <div class="confirmation-modal" ng-class="{flipped: starCtrl.modalFlip()}" ng-click="$event.stopPropagation();"
+    ng-mousedown="$event.stopPropagation();" ng-style="{top:starCtrl.modalTop()+'px'}">
+    <div class=confirmation-content>
+      <div class="message">
+        <span>Are you sure you wish to remove this stock from your favourites?</span>
+      </div>
+      <div class="buttons">
+        <button class="btn btn-primary ng-binding" ng-click="starCtrl.deselect(); $event.stopPropagation();">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>

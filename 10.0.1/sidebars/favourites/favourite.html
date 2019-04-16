@@ -1,0 +1,24 @@
+﻿<div class="drop-target">
+    <div class="favourite darkens{{selection() !== stock.code ? '' : ' dark'}}" ng-click="singleClick(stock)" ng-dblclick="doubleClick(stock)" draggable="false"
+         ng-init="(selection() == null || selection() === '') && select(stock);">
+        <div class="top">
+            <img class="tearable {{single()}}" src="assets/png/drag_handle.png" title="Move Stock" draggable="false" />
+            <div class="star">
+                <star stock="stock" confirm="true"></star>
+            </div>
+            <div class="stock-name name">{{stock.name | truncate}}</div>
+            <div class="code">{{stock.code | uppercase}}</div>
+        </div>
+        <div class="bottom">
+            <div ng-controller="MinichartCtrl as minichartCtrl">
+                <minichart stock="stock" render-chart="minichartCtrl.renderChart(stock)"></minichart>
+            </div>
+            <div class="details">
+                <div class="price">{{stock.price | number:2 }}</div>
+                <div class="delta">{{stock.delta < 0 ? '' : '+'}}{{stock.delta | number:2 }}</div>
+                <div class="percentage"><img ng-src="assets/png/{{icon(stock)}}.png" class="stock-arrow" />{{stock.percentage | number:2 }}%</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hover-area"></div>

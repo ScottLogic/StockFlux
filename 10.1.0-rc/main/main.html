@@ -1,0 +1,15 @@
+<div class="main" ng-class="{compact: mainCtrl.isCompact(), 'disable-pointer': mainCtrl.disablePointer()}">
+    <toolbar></toolbar>
+    <side-bar></side-bar>
+    <div class="right-content">
+        <div class="main-content">
+            <div ng-controller="ShowcaseCtrl as showcaseCtrl" ng-show="showcaseCtrl.hasSelection()" ng-if="!mainCtrl.isCompact()">
+                <div id="showcase-title">
+                    <div class="code">{{showcaseCtrl.selectionCode()}}</div> <div class="name"> ({{showcaseCtrl.selectionName() | truncate}})</div>
+                </div>
+                <showcase selection="showcaseCtrl.selectionCode()"></showcase>
+            </div>
+        </div>
+    </div>
+    <version ng-if="!mainCtrl.isCompact()"></version>
+</div>
