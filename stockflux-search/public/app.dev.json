@@ -1,0 +1,37 @@
+{
+    "runtime": {
+        "arguments": "--enable-aggressive-domstorage-flushing",
+        "version": "9.61.38.40"
+    },
+    "startup_app": {
+        "name": "stockflux-search",
+        "uuid": "33aa9062-9eb0-4875-b819-c90f38ef03ea",
+        "url": "http://localhost:3000/index.html",
+        "applicationIcon": "http://localhost:3000/favicon.ico",
+        "autoShow": true,
+        "defaultWidth": 230,
+        "defaultHeight": 300,
+        "maxWidth": 230,
+        "minWidth": 230,
+        "minHeight": 300,
+        "frame": false,
+        "contextMenu": true
+    },
+    "services": [
+        {
+            "name": "layouts",
+            "config": {
+                "features": {
+                    "tab": false
+                }
+            }
+        }
+    ],
+    "shortcut": {
+        "company": "ScottLogic",
+        "description": "Hosts BitFlux as an OpenFin application.",
+        "name": "StockFlux",
+        "icon": "http://localhost:3000/favicon.ico"
+    },
+    "splashScreenImage": "http://localhost:3000/splashscreen.png"
+}

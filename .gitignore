@@ -28,7 +28,7 @@ coverage
 build/Release
 
 # Dependency directories
-node_modules
+node_modules/
 jspm_packages
 
 # Optional npm cache directory
@@ -43,11 +43,9 @@ jspm_packages
 # Output of 'npm pack'
 *.tgz
 
-# Public built files
-public
-
 #Openfin cache
 OpenFin/
 
 #IDEs
 .idea
+.vscode

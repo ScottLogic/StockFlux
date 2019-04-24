@@ -9,13 +9,16 @@
     "malihu-custom-scrollbar-plugin": "^3.1.5",
     "moment": "^2.24.0",
     "openfin-layouts": "^1.0.0",
+    "openfin-react-hooks": "file:../openfin-react-hooks",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "2.1.8",
+    "react-scripts": "^3.0.0",
+    "stockflux-core": "file:../stockflux-core",
     "throat": "^4.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
+    "launch": "openfin --launch --config ./public/app.dev.json",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -28,5 +31,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "openfin-cli": "^2.0.8"
+  }
 }

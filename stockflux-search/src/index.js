@@ -6,6 +6,12 @@ import App from './App';
 import 'malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar';
 import 'jquery-mousewheel/jquery.mousewheel';
 
-window.fin.desktop.main(() => {
-    ReactDOM.render(<App/>, document.getElementById('root'));
-});
+const mountApp = () => {
+  ReactDOM.render(<App />, document.getElementById('root'));
+};
+
+if (window.fin) {
+  window.fin.desktop.main(mountApp);
+} else {
+  console.error("This application can only be run in an OpenFin container.");
+}
