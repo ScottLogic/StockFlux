@@ -1,7 +1,8 @@
 {
-  "name": "stockflux-search",
+  "name": "stockflux-components",
   "version": "0.1.0",
   "private": true,
+  "main": "./src/index.js",
   "dependencies": {
     "classnames": "^2.2.6",
     "isomorphic-fetch": "^2.2.1",
@@ -13,13 +14,11 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "^3.0.0",
-    "stockflux-components": "file:../stockflux-components",
     "stockflux-core": "file:../stockflux-core",
     "throat": "^4.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "launch": "openfin --launch --config ./public/app.dev.json",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

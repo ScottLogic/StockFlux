@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useReducer, useRef } from 'rea
 import $ from 'jquery';
 import classnames from 'classnames';
 import { Quandl } from 'stockflux-core';
-import searchTabImage from '../styles/png/search_tab.png';
+import { Images } from 'stockflux-components';
 import SearchResult from './SearchResult';
 
 import styles from './Search.module.css';
@@ -106,7 +106,7 @@ export default function Search(props) {
   return (
     <div className={styles.search}>
       <div>
-        <img className={styles.topIcon} src={searchTabImage} title="Search Stocks" alt="Search Stocks" draggable="false" />
+        <img className={styles.topIcon} src={Images.SearchTab} title="Search Stocks" alt="Search Stocks" draggable="false" />
         <input value={term} className={styles.searchInput} type="text" maxLength="20" placeholder="Enter stock name or symbol" onChange={onChange} />
       </div>
       <div className={classnames(styles.searchScroll, 'side-scroll', 'custom-scrollbar')} ref={searchScroll}>
