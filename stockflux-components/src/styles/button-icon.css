@@ -44,10 +44,10 @@
 .button-icon.normal_size:hover {
     background-image: url('./png/normal_size_active.png');
 }
-.button-icon.closeIcon {
+.button-icon.close {
     background-image: url('./png/close.png');
 }
-.button-icon.closeIcon:hover {
+.button-icon.close:hover {
     background-image: url('./png/close_active.png');
 }
 .button-icon.undock {
