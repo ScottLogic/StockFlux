@@ -1,7 +1,8 @@
 import React, { useCallback } from 'react';
 import { useDocked } from 'openfin-react-hooks';
 import { snapAndDock } from 'openfin-layouts';
-import styles from './Titlebar.module.css';
+
+import './Titlebar.css';
 
 export default () => {
   const isDocked = useDocked();
@@ -21,8 +22,8 @@ export default () => {
   }, []);
 
   return (
-    <div className={styles.titlebarContainer}>
-      <div className={styles.icons}>
+    <div className="titlebar-container">
+      <div className="icons-container">
         <div className="button-icon minimize" onClick={onMinimizeClick} title="Minimize">&nbsp;</div>
         {isDocked && <div className="button-icon undock" onClick={onUndockClick} title="Undock">&nbsp;</div>}
         <div className="button-icon closeIcon" onClick={onCloseClick} title="Close">&nbsp;</div>

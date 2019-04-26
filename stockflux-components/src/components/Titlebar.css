@@ -1,4 +1,4 @@
-.titlebarContainer {
+.titlebar-container {
   -webkit-app-region: drag;
   display: flex;
   flex-direction: row-reverse;
@@ -6,13 +6,12 @@
   background-color: var(--dark-background);
 }
 
-.icons {
-  display: inline-block;
+.titlebar-container > .icons-container {
   display: flex;
   align-items: center;
   -webkit-app-region: no-drag;
 }
 
-.icons > * {
+.titlebar-container > .icons-container > .button-icon {
   height: 15px;
 }
