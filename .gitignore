@@ -49,3 +49,7 @@ OpenFin/
 #IDEs
 .idea
 .vscode
+
+# Transpiled code
+dist
+build
