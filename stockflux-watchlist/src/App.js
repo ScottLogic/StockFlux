@@ -1,15 +1,12 @@
 import React from 'react';
-import Search from './components/Search';
+import Watchlist from './components/Watchlist';
 import Components from 'stockflux-components';
 
 const App = () => {
   return (
     <>
       <Components.Titlebar />
-      <Search
-        favourites={{ codes: [], names: {} }}
-        selection={{}}
-      />
+      <Watchlist />
     </>
   );
 };
