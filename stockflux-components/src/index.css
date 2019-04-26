@@ -1,7 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500);
-@import './styles/custom-scroll.css';
 @import './styles/button-icon.css';
-@import '../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css';
 
 :root {
   /* colours */
