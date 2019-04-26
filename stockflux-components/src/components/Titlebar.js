@@ -26,7 +26,7 @@ export default () => {
       <div className="icons-container">
         <div className="button-icon minimize" onClick={onMinimizeClick} title="Minimize">&nbsp;</div>
         {isDocked && <div className="button-icon undock" onClick={onUndockClick} title="Undock">&nbsp;</div>}
-        <div className="button-icon close-icon" onClick={onCloseClick} title="Close">&nbsp;</div>
+        <div className="button-icon close" onClick={onCloseClick} title="Close">&nbsp;</div>
       </div>
     </div>
   )
