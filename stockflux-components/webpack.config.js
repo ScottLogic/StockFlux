@@ -36,7 +36,7 @@ module.exports = {
                     path.resolve(__dirname, 'src')
                 ],
                 use: [
-                    { loader: 'file-loader' }
+                    { loader: 'url-loader' }
                 ]
             }
         ],
