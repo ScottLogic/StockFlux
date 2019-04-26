@@ -32,7 +32,7 @@ const searchReducer = (state, { type, results }) => {
         ...state,
         isSearching: false,
         results
-      }
+      };
     case ERROR:
       return {
         ...state,
