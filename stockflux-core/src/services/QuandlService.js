@@ -10,17 +10,17 @@ function dxor(a, b) { let r = ''; const c = atob(a); for (let i = 0; i < c.lengt
 const DEPLOY_KEY = Boolean(process.env.TRAVIS === 'true'
     && process.env.TRAVIS_SECURE_ENV_VARS === 'true'
     && process.env.TRAVIS_PULL_REQUEST === 'false'
-    && process.env.QUANDL_API_KEY
+    && process.env.REACT_APP_QUANDL_API_KEY
     && process.env.QUANDL_KEY);
 
 const LOCAL_KEY = Boolean(
     process.env.TRAVIS !== 'true' &&
-    process.env.QUANDL_API_KEY
+    process.env.REACT_APP_QUANDL_API_KEY
 );
 
 const API_KEY = (
-    (DEPLOY_KEY && dxor(process.env.QUANDL_API_KEY, process.env.QUANDL_KEY))
-    || (LOCAL_KEY && process.env.QUANDL_API_KEY)
+    (DEPLOY_KEY && dxor(process.env.REACT_APP_QUANDL_API_KEY, process.env.QUANDL_KEY))
+    || (LOCAL_KEY && process.env.REACT_APP_QUANDL_API_KEY)
     || 'api_key'
 );
 const API_KEY_VALUE = `api_key=${API_KEY}`;
