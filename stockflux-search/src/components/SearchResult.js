@@ -19,7 +19,7 @@ const Stock = ({ isFavourite, stock, selected, bindings }) => {
     star: true,
     'button-icon': true,
     active: isFavourite
-  })
+  });
 
   return (
     <div className={cls}>
@@ -29,7 +29,7 @@ const Stock = ({ isFavourite, stock, selected, bindings }) => {
       </div>
       <div className={starCls} onClick={() => bindings.onIconClick(stock.code)}>
         &nbsp;
-            </div>
+      </div>
     </div>
   );
 };
