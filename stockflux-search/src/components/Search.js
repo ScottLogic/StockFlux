@@ -115,7 +115,8 @@ export default function Search() {
 
           {hasErrors &&
             <div className={styles.message}>
-              An error occurred while retrieving data. Please check your internet connection or wait for our data services to be re-established.
+              <p>An error occurred while retrieving data.</p>
+              <p>Please check your internet connection or wait for our data services to be re-established.</p>
             </div>
           }
 
