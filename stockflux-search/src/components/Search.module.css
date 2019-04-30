@@ -1,6 +1,5 @@
 .search {
   --header-height: 45px;
-  --icon-size: 20px;
 
   width: var(--expanded-width);
   height: 100%;
@@ -29,6 +28,7 @@
 }
 
 .searchIcon {
+  --icon-size: 20px;
   width: var(--icon-size);
   height: var(--icon-size);
 }
