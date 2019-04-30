@@ -9,7 +9,7 @@
 }
 
 .star {
-  background-position: 0 50%;
+  background-position: 0 50% !important;
   width: var(--icons-size);
   height: 100%;
   background-repeat: no-repeat;

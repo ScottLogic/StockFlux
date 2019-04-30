@@ -46,7 +46,7 @@ const searchReducer = (state, { type, results }) => {
     default:
       throw new Error();
   }
-}
+};
 
 export default function Search(props) {
   const { favourites, term, selection } = props;
@@ -111,12 +111,12 @@ export default function Search(props) {
         <img className={styles.topIcon} src={searchTab} title="Search Stocks" alt="Search Stocks" draggable="false" />
         <input value={term} className={styles.searchInput} type="text" maxLength="20" placeholder="Enter stock name or symbol" onChange={onChange} />
       </div>
-      <div className={classnames(styles.searchScroll, 'side-scroll', 'custom-scrollbar')} ref={searchScroll}>
-        <div>
+      <div className={classnames(styles.searchScroll, 'search-scroll', 'side-scroll', 'custom-scrollbar')} ref={searchScroll}>
+        <div className="sideTab">
           {hasErrors &&
             <div className={styles.message}>
               An error occurred while retrieving data. Please check your internet connection or wait for our data services to be re-established.
-                        </div>
+            </div>
           }
 
           {isSearching && <div className={styles.message}>Loading search results...</div>}
@@ -145,9 +145,12 @@ export default function Search(props) {
               selected={stock.code === selection.code}
               isFavourite={codes.indexOf(stock.code) >= 0}
             />)}
-          {results && results.length === 0 && !hasErrors && !isSearching && <div className={styles.message}>
-            Oops! Looks like no matches were found.
-                    </div>}
+
+            {results && results.length === 0 && !hasErrors && !isSearching &&
+              <div className={styles.message}>
+                Oops! Looks like no matches were found.
+              </div>
+            }
         </div>
       </div>
     </div>
