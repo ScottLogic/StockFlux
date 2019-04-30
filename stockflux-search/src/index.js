@@ -5,6 +5,8 @@ import App from './App';
 import 'malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar';
 import 'jquery-mousewheel/jquery.mousewheel';
 
+import 'malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css';
+
 const mountApp = () => {
   ReactDOM.render(<App />, document.getElementById('root'));
 };
