@@ -13,7 +13,7 @@ const SEARCH_TIMEOUT_INTERVAL = 250;
 
 const initialSearchState = {
   isSearching: false,
-  hasErrors: false
+  hasErrors: false,
 };
 
 const SEARCHING = 'searching';
@@ -48,25 +48,13 @@ const searchReducer = (state, { type, results }) => {
   }
 };
 
-export default function Search(props) {
-  const { favourites, term, selection } = props;
-  const { codes, names } = favourites;
-
+export default function Search() {
   const searchScroll = useRef(null);
-  const [query, setQuery] = useState();
+  const [query, setQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState();
-
   const [searchState, dispatch] = useReducer(searchReducer, initialSearchState);
   const { isSearching, hasErrors, results } = searchState;
-
   const onChange = useCallback(e => setQuery(e.target.value), []);
-  const onIconClick = useCallback(console.log, []); // TODO
-  const onClick = useCallback(console.log, []); // TODO
-
-  const bindings = {
-    onClick,
-    onIconClick
-  };
 
   useEffect(() => {
     const quandlSearch = async () => {
@@ -87,13 +75,8 @@ export default function Search(props) {
   }, [debouncedQuery]);
 
   useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedQuery(query);
-    }, SEARCH_TIMEOUT_INTERVAL);
-
-    return () => {
-      clearTimeout(handler);
-    };
+    const handler = setTimeout(() => setDebouncedQuery(query), SEARCH_TIMEOUT_INTERVAL);
+    return () => clearTimeout(handler);
   }, [query]);
 
   useEffect(() => {
@@ -107,50 +90,40 @@ export default function Search(props) {
 
   return (
     <div className={styles.search}>
-      <div>
-        <img className={styles.topIcon} src={searchTab} title="Search Stocks" alt="Search Stocks" draggable="false" />
-        <input value={term} className={styles.searchInput} type="text" maxLength="20" placeholder="Enter stock name or symbol" onChange={onChange} />
+      <div className={styles.header}>
+        <input value={query} className={styles.searchInput} type="text" maxLength="20" placeholder="Enter stock name or symbol" onChange={onChange} />
+        <img src={searchTab} className={styles.searchIcon} title="Search Stocks" alt="Search Stocks" draggable="false" />
       </div>
       <div className={classnames(styles.searchScroll, 'search-scroll', 'side-scroll', 'custom-scrollbar')} ref={searchScroll}>
-        <div className="sideTab">
+        <div>
+          {!isSearching && !results && !hasErrors &&
+            <div className={styles.message}>
+              <p>Use the search tab to add new stocks to the list</p>
+            </div>
+          }
+
+          {isSearching && <div className={styles.message}>Loading search results...</div>}
+
+          {(results || []).map((stock) =>
+            <SearchResult
+              key={stock.code}
+              stock={stock}
+              onFavouriteClick={() => console.log('favourite click')}
+              onResultClick={() => console.log('result click')}
+            />
+          )}
+
           {hasErrors &&
             <div className={styles.message}>
               An error occurred while retrieving data. Please check your internet connection or wait for our data services to be re-established.
             </div>
           }
 
-          {isSearching && <div className={styles.message}>Loading search results...</div>}
-
-          {!isSearching && !results && codes.map((stockCode) =>
-            <SearchResult
-              key={stockCode}
-              stock={{ code: stockCode, name: names[stockCode] }}
-              bindings={bindings}
-              selected={stockCode === selection.code}
-              isFavourite={codes.indexOf(stockCode) >= 0}
-            />)
-          }
-
-          {!isSearching && !results && !hasErrors && codes.length === 0 &&
+          {results && results.length === 0 && !hasErrors && !isSearching &&
             <div className={styles.message}>
-              <p>Use the search tab to add new stocks to the list.</p>
+              Oops! Looks like no matches were found.
             </div>
           }
-
-          {(results || []).map((stock) =>
-            <SearchResult
-              key={stock.code}
-              stock={stock}
-              bindings={bindings}
-              selected={stock.code === selection.code}
-              isFavourite={codes.indexOf(stock.code) >= 0}
-            />)}
-
-            {results && results.length === 0 && !hasErrors && !isSearching &&
-              <div className={styles.message}>
-                Oops! Looks like no matches were found.
-              </div>
-            }
         </div>
       </div>
     </div>

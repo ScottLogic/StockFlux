@@ -1,7 +1,9 @@
 .searchResult {
-  width: var(--expanded-width);
   height: var(--search-result-height);
   border-bottom: 1px solid var(--separator-colour);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .searchResult:hover {
@@ -10,12 +12,8 @@
 
 .star {
   background-position: 0 50% !important;
-  width: var(--icons-size);
-  height: 100%;
-  background-repeat: no-repeat;
   transition: var(--icon-transition-duration) all;
   cursor: pointer;
-  float: right;
 }
 
 .name {
@@ -36,13 +34,6 @@
 }
 
 .details {
-  position: relative;
-  float: left;
   padding-left: 20px;
-  padding-top: 8px;
-}
-
-.starIcon {
-  padding-right: 15px;
-  padding-top: 21px;
+  flex: 1;
 }
