@@ -7,6 +7,7 @@ import SearchResult from './SearchResult';
 import searchTab from './search-tab.png';
 
 import styles from './Search.module.css';
+import './custom-scroll.css';
 
 const SEARCH_TIMEOUT_INTERVAL = 250;
 
