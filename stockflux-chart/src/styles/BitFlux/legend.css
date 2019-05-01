@@ -1,0 +1,30 @@
+#legend {
+    margin-top: 1px;
+    margin-right: calc((var(--grid-gutter-width) / 2) + 60px);
+    padding: 10px;
+    background-color: rgba(38,51,55, 0.25);
+    border-radius: 2px;
+    font-size: var(--font-size-tiny);
+    align-self: flex-end;
+}
+
+#legend #tooltip {
+    padding-top: 5px;
+    width: 500px;
+    height: 20px;
+    justify-content: center;
+    overflow: visible;
+}
+  
+#legend #tooltip .cell {
+    dominant-baseline: auto;
+}
+  
+#legend #tooltip .label {
+    fill: var(--legend-label-font-colour);
+    font-size: var(--font-size-tiny);
+}
+
+#legend #tooltip .value {
+    fill: var(--legend-value-font-colour);
+}

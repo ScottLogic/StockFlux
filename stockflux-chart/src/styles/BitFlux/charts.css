@@ -1,0 +1,9 @@
+.multi, .stacked {
+    stroke: #06c;
+    fill: #9cf;
+}
+  
+#charts {
+    user-select: none;
+    cursor: default;
+}

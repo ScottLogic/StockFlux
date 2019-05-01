@@ -1,0 +1,104 @@
+#navbar-row {  
+    display: flex;
+}
+  
+#navbar-row #navbar-container {
+      min-height: var(--navigator-height);
+      margin-right: 0 !important;
+      overflow: visible;
+}
+
+#navbar-row #navbar-container .extent {
+    fill: var(--secondary-orange);
+    stroke: none;
+}
+  
+#navbar-row #navbar-container .background {
+    fill: var(--navigator-background-colour);
+    stroke: var(--gridline-colour);
+    stroke-width: var(--navigator-background-stroke-width);
+}
+  
+#navbar-row #navbar-container .cartesian-chart {
+    overflow: visible;
+}
+
+#navbar-row #navbar-container .plot-area-container .plot-area {
+    overflow: visible;
+}
+   
+#navbar-row #navbar-container .plot-area-container .plot-area .multi .area {
+    fill: var(--gridline-colour);
+}
+
+#navbar-row #navbar-container .plot-area-container .plot-area .multi path {
+    stroke: var(--navigator-colour);
+    stroke-width: var(--navigator-stroke);
+}
+
+#navbar-row #navbar-container .plot-area-container .plot-area .n, 
+#navbar-row #navbar-container .plot-area-container .plot-area .s, 
+#navbar-row #navbar-container .plot-area-container .plot-area .ne, 
+#navbar-row #navbar-container .plot-area-container .plot-area .nw, 
+#navbar-row #navbar-container .plot-area-container .plot-area .se, 
+#navbar-row #navbar-container .plot-area-container .plot-area .sw {
+    display: none;
+}
+
+#navbar-row #navbar-container .plot-area-container .plot-area .e > rect, 
+#navbar-row #navbar-container .plot-area-container .plot-area .w > rect {
+    fill: var(--navigator-stroke-colour);
+    stroke-width: 0;
+    visibility: visible !important;
+}
+
+#navbar-row #navbar-container .plot-area-container .plot-area .e .outer-handle,
+#navbar-row #navbar-container .plot-area-container .plot-area .w .outer-handle {
+    stroke: var(--primary-white);
+    fill: var(--primary-dark-blue);
+    shape-rendering: auto;
+}
+
+#navbar-row #navbar-container .plot-area-container .plot-area .e .inner-handle,
+#navbar-row #navbar-container .plot-area-container .plot-area .w .inner-handle {
+    stroke: var(--primary-white);
+    fill: var(--primary-white);
+    shape-rendering: auto;
+}
+
+  
+#navbar-row #navbar-container text {
+    font-size: var(--font-size-base);
+    fill: var(--font-colour);
+}
+  
+#navbar-row #navbar-container #brush-mask .mask-background {
+    fill: var(--mask-transparent);
+}
+  
+#navbar-row #navbar-container #brush-mask .line {
+    stroke-width: 1.2px;
+    stroke: var(--primary-white);       
+}
+  
+#navbar-row #navbar-container #brush-gradient .brush-gradient-bottom {
+    stop-color: var(--mask-transparent);
+}
+  
+#navbar-row #navbar-reset {
+      flex: 0 0 32px;
+      height: 40px;
+      opacity: 0.2;
+      margin: 10px 12px 0 15px;
+}
+
+#navbar-row #navbar-reset .reset-button {
+    stroke: var(--primary-white);
+    fill: var(--primary-dark-blue);
+    shape-rendering: auto;
+    cursor: pointer;
+}
+
+#navbar-row #navbar-reset .reset-button.active {
+    fill: var(--primary-white);
+}
