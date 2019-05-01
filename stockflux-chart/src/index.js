@@ -2,13 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import '../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css';
-import $ from 'jquery';
 
-window.jQuery = window.$ = $;
-// eslint-disable-next-line import/first
+import 'jquery/src/jquery';
 import 'malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js';
-// eslint-disable-next-line import/first
-require('bootstrap');
+import 'bootstrap/js/dropdown.js';
 
 const mountApp = () => {
   ReactDOM.render(<App />, document.getElementById('root'));

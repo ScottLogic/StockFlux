@@ -6,7 +6,6 @@
     "bootstrap": "^3.3.6",
     "BitFlux": "github:scottlogic/BitFlux#1.8.1",
     "grunt-cli": "^1.2.0",
-    "d3fc": "^14.0.21",
     "classnames": "^2.2.6",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.3.1",
