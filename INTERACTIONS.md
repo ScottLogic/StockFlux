@@ -16,7 +16,13 @@
 * Clicking the chart icon focuses the current default chart if it exists. Otherwise, it opens up a new chart with a default symbol.
 * You can search for symbols via the input box. It'll list relevant actions for each symbol it finds
     * e.g. Add symbol to existing watchlist or chart.
+    * You can add a symbol to an existing chart by picking a chart via its symbol, channel or both
 
 # Watchlist Interactions
 * Clicking on the star icon unfavourites a watchlist item and removes it from the watchlist
-* Clicking on an watchlist item's action button allows the user to either add that item's symbol to a new chart or an existing chart. 
+* Clicking on an watchlist item's action button allows the user to either
+    * add that item's symbol to a new chart
+    * add that items' symbol to an existing chart by picking it via its symbol, channel or both. 
+
+# Chart Interactions
+* Clicking on the channel toggle above the chart changes that chart's channel to the selected channel
