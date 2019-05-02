@@ -1,0 +1,16 @@
+.y-axis .close-line text {
+    fill: var(--font-colour);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-base);
+    line-height: var(--line-height-base);
+}
+  
+.y-axis .close-line .tick > path {
+    stroke: var(--closing-colour);
+    fill: var(--closing-colour);
+}
+  
+.plot-area .annotation.close-line > line {
+    stroke: var(--closing-colour);
+    stroke-dasharray: 4;
+}

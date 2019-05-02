@@ -1,0 +1,91 @@
+#overlay {
+    position:absolute;
+    top:0;
+    pointer-events: none;
+    padding-right: (var(--grid-gutter-width) / 2);
+}
+
+#overlay #overlay-primary-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#overlay #overlay-primary-container #overlay-primary-head {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 40px;
+}
+  
+#overlay #overlay-primary-container #overlay-primary-head .selectors {
+    margin-top: 6px;
+}
+  
+#overlay #overlay-primary-container #overlay-primary-head .selectors #mobile-product-dropdown {
+    display: none;
+}
+#overlay #overlay-primary-container #overlay-primary-head .selectors #mobile-product-dropdown .dropdown-toggle {
+    background-color: fadeout(var(--model-product-dropdown-background-colour, 25%));
+    border: none;
+}
+  
+#overlay #overlay-primary-container #overlay-primary-head .series-dropdown > .dropdown-toggle {
+    width: 50px;
+    padding: 0;
+}
+  
+#overlay #overlay-primary-container #overlay-primary-head .indicator-dropdown > .dropdown-toggle {
+    width: 130px;
+} 
+#overlay #overlay-primary-container #overlay-primary-bottom {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+}
+  
+#overlay #overlay-navbar-row {
+    display: flex;
+}
+  
+#overlay .edit-indicator-container {
+    display: flex;
+    margin-bottom: 8px;
+}
+  
+#overlay #overlay-secondaries-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+  
+#overlay .overlay-secondary-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+  
+#overlay .edit-indicator {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    background-color: rgba(26, 33, 42, 0.25);
+    height: var(--edit-indicator-height);
+    border-radius: 2px;
+    margin-left: 3px;
+    margin-right: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+  
+#overlay .edit-indicator .icon {
+    cursor: pointer;
+    background-color: var(--overlay-background-colour);
+    border-radius: 4px;
+}
+  
+#overlay .edit-indicator .indicator-label {
+    color: var(--edit-indicator-text-colour);
+    font-size: var(--font-size-tiny);
+    margin-left: 6px;
+}
+  

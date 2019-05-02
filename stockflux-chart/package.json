@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bootstrap": "^3.3.6",
+    "BitFlux": "github:scottlogic/BitFlux#1.8.1",
     "classnames": "^2.2.6",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.3.1",
-    "malihu-custom-scrollbar-plugin": "^3.1.5",
     "moment": "^2.24.0",
     "openfin-layouts": "^1.0.0",
     "react": "^16.8.6",
@@ -22,7 +23,8 @@
     "launch": "openfin --launch --config ./public/app.dev.json",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postinstall": "cd node_modules/BitFlux && npm i && grunt build:module"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -34,6 +36,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "grunt-cli": "^1.2.0",
     "openfin-cli": "^2.0.8"
   }
 }
