@@ -1,0 +1,49 @@
+.selectors {
+  position: absolute;
+  display: flex;
+  left: 8px;
+
+  .indicator-dropdown a {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .selector-dropdown:first-child {
+    .dropdown-toggle {
+      width: 50px;
+    }
+  }
+
+  .selector-dropdown:nth-child(2) {
+    .dropdown-toggle {
+      font-size: @font-size-small;
+      color: @primary-blue;
+    }
+  }
+
+  .dropdown-toggle {
+    border: 1px solid @secondary-grey;
+    height: 34px;
+    pointer-events: visiblePainted;
+  }
+
+  .dropdown-toggle > .icon {
+    vertical-align: middle;
+    display: inline-block;
+  }
+
+  .dropdown-menu {
+    top: 40px;
+  }
+
+  ul {
+    text-align: left;
+    pointer-events: visiblePainted;
+  }
+
+  li .icon {
+    vertical-align: middle;
+    margin-right: 16px;
+    display: inline-block;
+  }
+}

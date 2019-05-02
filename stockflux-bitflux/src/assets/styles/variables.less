@@ -1,0 +1,199 @@
+// Colour Scheme
+// Primary colours
+@primary-dark-blue: #263337;
+@primary-blue: #7B9FA1;
+@primary-white: #FFFFFF;
+@primary-black: #000000;
+@brand-primary: @primary-blue;
+
+// Secondary colours
+@secondary-dark-blue: #1C2629;
+@secondary-blue: #377EB8;
+@secondary-grey: #3C4F53;
+@secondary-orange: #FF7F00;
+
+// Tertiary colours
+@tertiary-purple: #984EA3;
+@tertiary-green: #4DAF4A;
+@tertiary-red: #E41A1C;
+@tertiary-pink: #F781BF;
+@tertiary-yellow: #FFFF33;
+@tertiary-blue: #A6CEE3;
+
+// Font
+@font-family: 'Roboto', sans-serif;
+@font-family-sans-serif: @font-family;
+@font-colour: @primary-white;
+@text-color: @font-colour;
+@font-weight-base: 300;
+@line-height-base: 1.5;
+
+// Font sizes
+@font-size-title: 24px;
+@font-size-huge: 20px;
+@font-size-large: 18px;
+@font-size-base: 16px;
+@font-size-small: 14px;
+@font-size-tiny: 12px;
+
+// Components
+@border-radius-base: 2px;
+@border-radius-large: 3px;
+@border-radius-small: 1px;
+
+// Background
+@background-colour: @primary-dark-blue;
+
+// Buttons
+@btn-primary-color: @brand-primary;
+@btn-primary-bg: @primary-dark-blue;
+@btn-primary-border: @secondary-grey;
+
+// Dropdown
+@dropdown-colour: @secondary-grey;
+@dropdown-hover-border: 1px solid @primary-white;
+@caret-colour: @primary-blue;
+@dropdown-button-border-color: @secondary-grey;
+@dropdown-selected-background: fade(@primary-white, 20%);
+@dropdown-selected-li-shadow: 1px 0 1px darken(@primary-white, 80%);
+
+// Plot Area
+@stroke-width: 1px;
+@series-colour: @secondary-orange;
+@area-fill-top: fade(@series-colour, 75%);
+@area-fill-bottom: fade(@series-colour, 10%);
+
+// Plot Area - Candlestick
+@candlestick-down-stroke: @secondary-orange;
+@candlestick-up-stroke: @secondary-orange;
+@candlestick-down-fill: @primary-dark-blue;
+@candlestick-up-fill: @secondary-orange;
+
+// Plot Area - Moving Average
+@moving-average-colour: @tertiary-yellow;
+
+// Plot Area - Bollinger
+@bollinger-upper-colour: @tertiary-blue;
+@bollinger-lower-colour: @tertiary-blue;
+@bollinger-average-colour: @tertiary-pink;
+@bollinger-fill-colour: fade(@primary-white, 20%);
+
+// Gridlines
+@gridline-colour: @secondary-grey;
+
+// Closing
+@closing-colour: @secondary-blue;
+
+// Primary Y Axis
+@y-axis-width: 60px;
+
+// Shared X Axis
+@x-axis-height: 50px;
+
+// Navigator
+// Changes to height or bottom-margin must also be carried over in nav.js variables
+@navigator-height: 100px;
+@navigator-bottom-margin-from-javascript: 40px;   //Temporary variable until fully ported to flex
+@navigator-extent-colour: @secondary-orange;
+@navigator-colour: @primary-blue;
+@navigator-background-colour: @secondary-dark-blue;
+@navigator-background-stroke-width: 1px;
+@navigator-stroke: 1px;
+@navigator-stroke-colour: @primary-white;
+@navigator-selection-border-colour: @primary-white;
+
+// Masks (SVG filters)
+@mask-transparent: @primary-black;
+@mask-opaque: @primary-white;
+
+// Widths
+@text-shrink-threshold-width: @min-width-supported;
+@min-width-supported: 320px;
+
+// Menu
+@option-group-padding: 15px;
+
+// Crosshair
+@crosshair-line-colour: @tertiary-blue;
+@crosshair-circle-colour: @tertiary-blue;
+@crosshair-circle-opacity: 0.75;
+@crosshair-colour: fade(@primary-blue, 20%);
+
+// Legend
+@legend-background-colour: @background-colour;
+@legend-label-font-colour: @secondary-grey;
+@legend-value-font-colour: @primary-blue;
+
+// Head
+@period-selector-font-colour: @primary-blue;
+@head-height: 48px;
+
+// Secondary Chart
+// RSI
+@rsi-line-colour: @tertiary-purple;
+
+// MACD
+@macd-signal-line-colour: @tertiary-red;
+@macd-line-colour: @tertiary-green;
+
+// Selectors
+@selector-font-colour: @primary-blue;
+@model-product-dropdown-background-colour: @background-colour;
+
+// Overlay
+@overlay-background-colour: @background-colour;
+@edit-indicator-text-colour: @primary-blue;
+@edit-indicator-height: 24px;
+
+// Form states and alerts
+@state-info-text: @font-colour;
+@state-info-bg: @primary-blue;
+@state-info-border: darken(spin(@state-info-bg, -10), 7%);
+
+// Notifications
+@notification-max-width: 400px;
+@notification-spacing: 20px;
+@notification-enter-animation-duration: 0.5s;
+
+// Loading
+@error-alert-width: 400px;
+
+// Spinner
+@spinner-colour: @primary-white;
+@spinner-size: 50px;
+@spinner-thickness: 7px;
+@spinner-animation-duration: 0.6s;
+
+// If the period dropdown is shown, the period tab and clear all should be hidden
+// Phone
+@phone-landscape-nav-display: @hide;
+@phone-landscape-clear-all-display: @show;
+@phone-landscape-period-tab-display: @hide;
+@phone-landscape-period-dropdown-display: @show;
+
+@phone-portrait-nav-display: @hide;
+@phone-portrait-clear-all-display: @show;
+@phone-portrait-period-tab-display: @hide;
+@phone-portrait-period-dropdown-display: @show;
+
+// Tablet
+@tablet-landscape-nav-display: @show;
+@tablet-landscape-clear-all-display: @hide;
+@tablet-landscape-period-tab-display: @show;
+@tablet-landscape-period-dropdown-display: @hide;
+
+@tablet-portrait-nav-display: @show;
+@tablet-portrait-clear-all-display: @hide;
+@tablet-portrait-period-tab-display: @show;
+@tablet-portrait-period-dropdown-display: @hide;
+
+// Tablet + phone
+@mobile-device-legend-display: @hide;
+@mobile-device-crosshair-display: @hide;
+@mobile-device-product-dropdown-display: @hide;
+@mobile-device-head-selectors-display: @show;
+@mobile-device-overlay-selectors-display: @hide;
+@mobile-device-overlay-product-dropdown-display: @show;
+
+@hide: ~'none !important';
+@show: flex;

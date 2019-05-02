@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^3.3.6",
-    "BitFlux": "github:scottlogic/BitFlux#1.8.1",
+    "BitFlux": "file:../stockflux-bitflux",
     "classnames": "^2.2.6",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.3.1",

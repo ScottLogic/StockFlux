@@ -1,0 +1,109 @@
+#overlay {
+  position:absolute;
+  top:0;
+  pointer-events: none;
+  padding-right: (@grid-gutter-width / 2);
+
+  #overlay-primary-container {
+    display: flex;
+    flex-direction: column;
+
+    #overlay-primary-head {
+      display: flex;
+      flex-direction: column;
+      flex: 0 0 40px;
+
+      .selectors {
+        .series-dropdown, .indicator-dropdown {
+          .phone-portrait-display(@mobile-device-overlay-selectors-display);
+          .phone-landscape-display(@mobile-device-overlay-selectors-display);
+          .tablet-portrait-display(@mobile-device-overlay-selectors-display);
+          .tablet-landscape-display(@mobile-device-overlay-selectors-display);
+        }
+
+        margin-top: 6px;
+
+        #mobile-product-dropdown {
+          .phone-portrait-display(@mobile-device-overlay-product-dropdown-display);
+          .phone-landscape-display(@mobile-device-overlay-product-dropdown-display);
+          .tablet-portrait-display(@mobile-device-overlay-product-dropdown-display);
+          .tablet-landscape-display(@mobile-device-overlay-product-dropdown-display);
+
+          display: none;
+
+          .dropdown-toggle {
+            background-color: fadeout(@model-product-dropdown-background-colour, 25%);
+            border: none;
+          }
+        }
+      }
+
+      .series-dropdown > .dropdown-toggle {
+        width: 50px;
+        padding: 0; // Fixes alignment on mobile (padding isn't required due to fixed width)
+      }
+
+      .indicator-dropdown > .dropdown-toggle {
+        width: 130px;
+      }
+    }
+
+    #overlay-primary-bottom {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+    }
+  }
+
+  #overlay-navbar-row {
+    .phone-portrait-display(@phone-portrait-nav-display);
+    .phone-landscape-display(@phone-landscape-nav-display);
+    .tablet-portrait-display(@tablet-portrait-nav-display);
+    .tablet-landscape-display(@tablet-landscape-nav-display);
+
+    display: flex;
+  }
+
+  .edit-indicator-container {
+    display: flex;
+    margin-bottom: 8px;
+  }
+
+  #overlay-secondaries-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .overlay-secondary-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .edit-indicator {
+    pointer-events: visiblePainted;
+    display: flex;
+    align-items: center;
+    background-color: fadeout(@overlay-background-colour, 25%);
+    height: @edit-indicator-height;
+    border-radius: 2px;
+    margin-left: 3px;
+    margin-right: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+
+    .icon {
+      cursor: pointer;
+      background-color: @overlay-background-colour;
+      border-radius: 4px;
+    }
+
+    .indicator-label {
+      color: @edit-indicator-text-colour;
+      font-size: @font-size-tiny;
+      margin-left: 6px;
+    }
+  }
+}

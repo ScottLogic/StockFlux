@@ -1,5 +1,5 @@
 import React from 'react';
-import Chart from './components/chart';
+import Chart from './components/Chart';
 import Components from 'stockflux-components';
 
 import '../node_modules/BitFlux/node_modules/d3fc/dist/d3fc.css';
