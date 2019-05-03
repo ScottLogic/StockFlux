@@ -1,0 +1,24 @@
+#notifications {
+  position: fixed;
+  top: (@head-height + 10px);
+  right: @notification-spacing;
+  margin-left: @notification-spacing;
+  z-index: 1000;
+
+  .messages {
+      max-width: @notification-max-width;
+      .alert {
+        animation: enter @notification-enter-animation-duration cubic-bezier(0.25, 0.1, 0.25, 1);
+        @keyframes enter {
+          0% {
+              opacity: 0;
+              transform: perspective(@notification-max-width) rotateX(90deg);
+          }
+          100% {
+              opacity: 1;
+              transform: perspective(@notification-max-width) rotateX(0deg);
+          }
+        }
+      }
+  }
+}

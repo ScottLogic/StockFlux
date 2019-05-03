@@ -1,0 +1,22 @@
+.y-axis {
+  .close-line {
+    text {
+      fill: @font-colour;
+      font-size: @font-size-base;
+      font-weight: @font-weight-base;
+      line-height: @line-height-base;
+    }
+
+    &.tick > path {
+      stroke: @closing-colour;
+      fill: @closing-colour;
+    }
+  }
+}
+
+.plot-area {
+  .annotation.close-line > line {
+    stroke: @closing-colour;
+    stroke-dasharray: 4;
+  }
+}

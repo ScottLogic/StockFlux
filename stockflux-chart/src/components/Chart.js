@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import bitflux from 'BitFlux/dist/bitflux';
+import bitflux from 'stockflux-bitflux/dist/bitflux';
 import './chart.css';
 
 export default function Chart() {
