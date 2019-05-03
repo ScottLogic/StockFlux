@@ -104,7 +104,7 @@ export default function Search() {
 
           {isSearching && <div className={styles.message}>Loading search results...</div>}
 
-          {(results || []).map((stock) =>
+          {(results || []).map(stock =>
             <SearchResult
               key={stock.code}
               stock={stock}
