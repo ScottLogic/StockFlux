@@ -6,10 +6,7 @@ const App = () => {
   return (
     <>
       <Components.Titlebar />
-      <Search
-        favourites={{ codes: [], names: {} }}
-        selection={{}}
-      />
+      <Search />
     </>
   );
 };

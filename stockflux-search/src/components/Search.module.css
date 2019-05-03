@@ -1,17 +1,20 @@
 .search {
-  float: left;
+  --header-height: 45px;
+
   width: var(--expanded-width);
   height: 100%;
   background-color: var(--search-background);
   transition: all 0.2s linear 0.1s;
   position: absolute;
-  box-shadow: 0px 2px 0px var(--dark-background);
+  box-shadow: 0 2px 0 var(--dark-background);
 }
 
-.topIcon {
-  float: right;
-  margin-right: 15px;
-  margin-top: 15px;
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 10px;
+  height: var(--header-height);
 }
 
 .searchInput {
@@ -19,30 +22,25 @@
   background: transparent;
   font-size: var(--font-normal);
   font-weight: var(--font-medium-light);
-  line-height: 1.5;
   color: var(--text-grey);
-  width: 184px;
-  padding-left: 10px;
-  padding-top: 16px;
-}
-
-.searchInput:focus {
+  flex: 1;
   outline: none;
 }
 
+.searchIcon {
+  --icon-size: 20px;
+  width: var(--icon-size);
+  height: var(--icon-size);
+}
+
 .message {
-  padding: 12px 15px 12px 20px;
+  padding: 10px;
+  text-align: center;
   color: var(--text-grey);
   font-size: var(--font-large);
   font-weight: var(--font-medium);
 }
 
 .searchScroll {
-  position: absolute;
-  width: 100%;
-  top: var(--toolbar-height);
-  right: auto;
-  bottom: 0px;
-  left: auto;
-  border-top: 1px solid var(--middle-background);
+  height: calc(100% - var(--header-height) - var(--titlebar-height));
 }
