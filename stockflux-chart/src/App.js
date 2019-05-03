@@ -2,7 +2,7 @@ import React from 'react';
 import Chart from './components/Chart';
 import Components from 'stockflux-components';
 
-import '../node_modules/BitFlux/node_modules/d3fc/dist/d3fc.css';
+import '../node_modules/stockflux-bitflux/node_modules/d3fc/dist/d3fc.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import './styles/BitFlux/primary.css';
 import './styles/BitFlux/variables.css';
