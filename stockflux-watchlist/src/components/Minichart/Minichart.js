@@ -16,7 +16,7 @@ import {
 } from "d3fc";
 import "./Minichart.css";
 
-const Minichart = props => {
+function Minichart(props) {
   const [shouldShowChart, setShouldShowChart] = useState(false);
   useEffect(() => {
     setShouldShowChart(props.chartData.length >= 2);
@@ -51,7 +51,7 @@ const Minichart = props => {
       Not enough data to show minichart
     </div>
   );
-};
+}
 const getInnerDimensions = () => {
   const {
     WIDTH,

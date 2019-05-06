@@ -49,6 +49,7 @@ OpenFin/
 #IDEs
 .idea
 .vscode
+.prettierc
 
 # Transpiled code
 dist

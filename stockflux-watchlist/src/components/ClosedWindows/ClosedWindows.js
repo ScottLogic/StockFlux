@@ -3,7 +3,7 @@ import moment from "moment";
 import closedWindowsImageInactive from "../../assets/png/closed_tabs.png";
 import closedWindowsImageActive from "../../assets/png/closed_tabs_active.png";
 
-const ClosedWindows = props => {
+function ClosedWindows(props) {
   const [iconHover, setIconHover] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -71,6 +71,6 @@ const ClosedWindows = props => {
       />
     </>
   );
-};
+}
 
 export default ClosedWindows;
