@@ -1,0 +1,93 @@
+.card {
+	padding: 10px 15px 5px 0;
+	cursor: pointer;
+	height: var(--card-height);
+	width: var(--card-width);
+}
+
+.drop-target {
+	height: var(--card-height);
+	width: var(--card-width);
+}
+
+.card-wrapper:hover .darkens {
+	background-color: var(--clr-card-hover);
+}
+
+.darkens:hover {
+	background-color: var(--clr-card-hover);
+}
+
+.card-top {
+	padding-left: var(--standard-padding);
+}
+
+.card-top .name {
+	font-size: var(--font-size-small);
+	font-weight: var(--font-weight-light);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.card-top .symbol {
+	padding-top: 1px;
+	font-size: var(--font-size-title);
+	font-weight: var(--font-weight-medium);
+}
+
+.details {
+	text-align: right;
+}
+
+.price,
+.delta {
+	line-height: 1;
+}
+
+.price {
+	font-size: var(--font-size-medium);
+	font-weight: var(--font-weight-medium);
+}
+
+.delta,
+.percentage {
+	padding-right: 1px;
+}
+
+.delta {
+	padding-top: 5px;
+	font-size: var(--font-size-smaller-medium);
+	font-weight: var(--font-weight-light);
+}
+
+.percentage {
+	padding-top: 1px;
+	font-size: var(--font-size-small);
+	font-weight: var(--font-weight-light);
+}
+
+.stock-arrow {
+	height: 9px;
+	padding-bottom: 1px;
+	padding-right: 3px;
+}
+
+.button-icon.star {
+	float: right;
+	margin-right: 0;
+}
+
+.minichartWrapper {
+	flex: 1;
+}
+
+.hover-area {
+	background-color: var(--fav-split-color);
+	width: var(--card-width);
+	height: 1px;
+}
+
+.default-background {
+	background: var(--clr-main-background);
+}
