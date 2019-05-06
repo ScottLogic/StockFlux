@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import starIcon from '../../assets/png/watchlist_star.png';
 import WatchlistCard from '../WatchlistCard/WatchlistCard';
 import ClosedWindows from '../ClosedWindows/ClosedWindows';
+import $ from 'jquery';
 import './Watchlist.css';
 import './custom-scroll.css';
-import $ from 'jquery';
 
 export const Watchlist = props => {
 	const [name] = useState('My Watchlist');
