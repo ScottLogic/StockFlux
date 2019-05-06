@@ -1,43 +1,43 @@
 .overflow,
 .minichart,
 .minichart svg {
-    overflow: visible;
+  overflow: visible;
 }
 
 .minichart {
-    position: absolute;
-    padding-top: 3px;
-    width: var(--minichart-width);
-    height: var(--minichart-height);
+  position: absolute;
+  padding-top: 3px;
+  width: var(--minichart-width);
+  height: var(--minichart-height);
 }
 
 g {
-    fill: var(--clr-main-background);
+  fill: var(--clr-main-background);
 }
 
 path.line {
-    stroke: var(--clr-chart-stroke);
+  stroke: var(--clr-chart-stroke);
 }
 
 .point {
-    fill: var(--clr-chart-stroke);
-    stroke: var(--clr-chart-stroke);
+  fill: var(--clr-chart-stroke);
+  stroke: var(--clr-chart-stroke);
 }
 
 .top {
-    stop-color: var(--clr-chart-stroke);
-    stop-opacity: 0.5;
+  stop-color: var(--clr-chart-stroke);
+  stop-opacity: 0.5;
 }
 
 .bottom {
-    stop-color: var(--clr-chart-stroke);
-    stop-opacity: 0;
+  stop-color: var(--clr-chart-stroke);
+  stop-opacity: 0;
 }
 
 .minichart-error {
-    padding: 0px 3px;
-    text-align: center;
-    font-size: var(--font-size-small);
-    font-weight: var(--font-weight-thin);
-    color: var(--clr-white);
+  padding: 0px 3px;
+  text-align: center;
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-thin);
+  color: var(--clr-white);
 }

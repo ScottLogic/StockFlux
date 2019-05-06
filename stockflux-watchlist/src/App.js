@@ -4,12 +4,12 @@ import Components from "stockflux-components";
 import "./App.css";
 
 const App = () => {
-    return (
-        <>
-            <Components.Titlebar />
-            <Watchlist />
-        </>
-    );
+  return (
+    <>
+      <Components.Titlebar />
+      <Watchlist />
+    </>
+  );
 };
 
 export default App;
