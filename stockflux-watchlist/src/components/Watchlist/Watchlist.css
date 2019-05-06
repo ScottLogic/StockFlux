@@ -47,6 +47,10 @@ body {
 	overflow-x: hidden;
 }
 
+.scroll-padding:hover .card-top {
+	padding-left: 20px !important;
+}
+
 ::-webkit-scrollbar {
 	width: 0px;
 }

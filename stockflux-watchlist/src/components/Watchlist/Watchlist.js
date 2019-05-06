@@ -1,9 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import starIcon from '../../assets/png/watchlist_star.png';
 import WatchlistCard from '../WatchlistCard/WatchlistCard';
 import ClosedWindows from '../ClosedWindows/ClosedWindows';
 import './Watchlist.css';
 import './custom-scroll.css';
+import $ from 'jquery';
 
 export const Watchlist = props => {
 	const [name] = useState('My Watchlist');
@@ -22,9 +23,8 @@ export const Watchlist = props => {
 	const headerRef = useRef(null);
 	const scrollRef = useRef(null);
 
-	/*
-	TODO: Add scrollbar
 	useEffect(() => {
+		const scrollPadding = 'scroll-padding';
 		$(scrollRef.current).mCustomScrollbar({
 			scrollInertia: 0,
 			mouseWheel: {
@@ -32,15 +32,14 @@ export const Watchlist = props => {
 			},
 			callbacks: {
 				onOverflowY: () => {
-					$(scrollRef.current).addClass('scrollPadding');
+					$(scrollRef.current).addClass(scrollPadding);
 				},
 				onOverflowYNone: () => {
-					$(scrollRef.current).removeClass('scrollPadding');
+					$(scrollRef.current).removeClass(scrollPadding);
 				}
 			}
 		});
 	}, []);
-	*/
 
 	const onIconClick = symbol => {
 		return e => {
