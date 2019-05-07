@@ -1,6 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500);
-@import './styles/button-icon.css';
-
 :root {
   /* colours */
   --text-grey: #AEB1B5;
@@ -34,23 +31,4 @@
   --font-xlarge: 16px;
   --font-xxlarge: 18px;
   --font-xxxlarge: 20px;
-}
-
-body {
-  color: #FFFFFF;
-  margin: 0;
-  font-family:"Roboto", sans-serif;
-  font-weight: 300;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
-
-p {
-  margin: 0 0 12px;
-}
-
-.hidden {
-  display: none;
 }
