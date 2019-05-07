@@ -35,28 +35,10 @@ module.exports = {
                 include: [
                     path.resolve(__dirname, 'src')
                 ],
-                exclude: [
-                    path.resolve(__dirname, 'src', 'index.css')
-                ],
                 use: [
                     { loader: 'style-loader' },
                     { loader: 'css-loader' }
                 ]
-            },
-            {
-                test: /index\.css$/,
-                include: [
-                    path.resolve(__dirname, 'src')
-                ],
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[name].[ext]',
-                        }
-                    },
-                    { loader: 'css-loader' }
-                ],
             },
             {
                 test: /\.png$/,
