@@ -1,43 +1,42 @@
 {
-    "name": "stockflux-watchlist",
-    "version": "0.1.0",
-    "private": true,
-    "dependencies": {
-        "classnames": "^2.2.6",
-        "d3-scale": "^2.1.2",
-        "d3-selection": "^1.3.2",
-        "d3fc": "^14.0.21",
-        "imports-loader": "^0.8.0",
-        "isomorphic-fetch": "^2.2.1",
-        "jquery": "^3.3.1",
-        "jquery-mousewheel": "^3.1.13",
-        "malihu-custom-scrollbar-plugin": "^3.1.5",
-        "moment": "^2.24.0",
-        "openfin-layouts": "^1.0.0",
-        "openfin-react-hooks": "file:../openfin-react-hooks",
-        "react": "^16.8.6",
-        "react-dom": "^16.8.6",
-        "react-scripts": "^3.0.0",
-        "stockflux-components": "file:../stockflux-components",
-        "stockflux-core": "file:../stockflux-core"
-    },
-    "scripts": {
-        "start": "react-scripts start",
-        "launch": "openfin --launch --config ./public/app.dev.json",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject"
-    },
-    "eslintConfig": {
-        "extends": "react-app"
-    },
-    "browserslist": [
-        ">0.2%",
-        "not dead",
-        "not ie <= 11",
-        "not op_mini all"
-    ],
-    "devDependencies": {
-        "openfin-cli": "^2.0.8"
-    }
+  "name": "stockflux-watchlist",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "d3-scale": "^2.1.2",
+    "d3-selection": "^1.3.2",
+    "d3fc": "^14.0.21",
+    "isomorphic-fetch": "^2.2.1",
+    "jquery": "^3.3.1",
+    "jquery-mousewheel": "^3.1.13",
+    "malihu-custom-scrollbar-plugin": "^3.1.5",
+    "moment": "^2.24.0",
+    "openfin-layouts": "^1.0.0",
+    "openfin-react-hooks": "file:../openfin-react-hooks",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "^3.0.0",
+    "stockflux-components": "file:../stockflux-components",
+    "stockflux-core": "file:../stockflux-core"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "launch": "openfin --launch --config ./public/app.dev.json",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "openfin-cli": "^2.0.8"
+  }
 }

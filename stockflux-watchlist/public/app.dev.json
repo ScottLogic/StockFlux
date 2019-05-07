@@ -1,7 +1,7 @@
 {
   "runtime": {
     "arguments": "--enable-aggressive-domstorage-flushing",
-    "version": "9.61.38.40"
+    "version": "10.66.39.43"
   },
   "startup_app": {
     "name": "stockflux-watchlist",

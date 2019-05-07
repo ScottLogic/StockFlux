@@ -118,7 +118,7 @@ const getPoint = () => {
 };
 
 const getTrimmedData = chartData => {
-  return chartData.map(d => {
+  return chartData.slice().map(d => {
     const datum = d;
     const date = moment(d.date);
     datum.date = date.toDate();
