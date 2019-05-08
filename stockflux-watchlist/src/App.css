@@ -1,0 +1,62 @@
+:root {
+  /* Fonts ----------------------------*/
+  /*-----------------------------------*/
+  --font-roboto-sans-serif: "Roboto", sans-serif;
+  --font-weight-thin: 100;
+  --font-weight-light: 300;
+  --font-weight-medium: 500;
+  --font-size-title: 14.5pt;
+  --font-size-medium: 13.5pt;
+  --font-size-smaller-medium: 10.5pt;
+  --font-size-small: 9pt;
+
+  /* Colors ---------------------------*/
+  /*-----------------------------------*/
+  --clr-white: #ffffff;
+  --clr-text-grey: #aeb1b5;
+  --clr-light-background: #464e58;
+  --clr-middle-background: #28313d;
+  --clr-dark-background: #1a212a;
+  --clr-dark-forest: #2e5356;
+  --clr-split: #323a48;
+
+  /* Dimensions -----------------------*/
+  /*-----------------------------------*/
+  --footer-height: 40px;
+  --card-height: 109px;
+  --card-width: 230px;
+  --toolbar-height: 50px;
+  --bubble-head-width: 10px;
+  --bubble-head-height: 10px;
+
+  /* Minichart Variables --------------*/
+  /*-----------------------------------*/
+  --minichart-width: 145px;
+  --minichart-height: 40px;
+  --clr-chart-teal: #37d8bc;
+  --clr-chart-fade: #307a71;
+  --clr-dark-forest: #2b595b;
+  --clr-chart-stroke: var(--clr-chart-teal);
+
+  /* Theme Variables ------------------*/
+  /*-----------------------------------*/
+  --clr-main-background: var(--clr-middle-background);
+  --clr-divider-dark: var(--clr-dark-background);
+  --clr-divider-light: var(--clr-split);
+  --clr-card-hover: var(--clr-dark-background);
+  --clr-secondary-text: var(--clr-text-grey);
+  --width-card: var(--card-width);
+  --height-card: var(--card-height);
+  --height-header: var(--toolbar-height);
+  --height-footer: var(--footer-height);
+  --font-watchlist: var(--font-roboto-sans-serif);
+
+  /* Other ----------------------------*/
+  /*-----------------------------------*/
+  --standard-padding: 10px;
+  --watchlist-side-padding: 15px;
+  --icon-transition-duration: 0.5s;
+  --transition-duration-standard: 0.25s;
+  --transition-duration-quick: 0.01s;
+  --shadow-depth: 2px;
+}
