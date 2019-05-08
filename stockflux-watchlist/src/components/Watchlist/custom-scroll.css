@@ -1,0 +1,30 @@
+.side-scroll {
+  padding-bottom: 0;
+  border-top: 1px solid var(--dark-background);
+  transition: border 0.7s;
+}
+
+.side-scroll .mCSB_scrollTools {
+  left: 2px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.side-scroll .mCSB_dragger_bar {
+  background-color: var(--dark-background) !important;
+  opacity: 0;
+  width: 10px !important;
+  height: 100% !important;
+}
+
+.side-scroll:hover .mCSB_dragger_bar {
+  opacity: 0.8;
+}
+
+.side-scroll .mCSB_draggerRail {
+  display: none;
+}
+
+.side-scroll .mCSB_container {
+  margin-right: 0 !important;
+}

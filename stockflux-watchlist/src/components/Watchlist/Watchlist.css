@@ -1,0 +1,117 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--clr-main-background);
+  font-family: var(--font-watchlist);
+  user-select: none;
+}
+
+.watchlist-name {
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-title);
+  margin-left: var(--watchlist-side-padding);
+  margin-top: auto;
+  margin-bottom: auto;
+  cursor: default;
+}
+
+.watchlist {
+  height: calc(100vh - var(--height-footer));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.header,
+.footer {
+  flex: 0 0 auto;
+  display: flex;
+}
+
+.header {
+  height: var(--height-header);
+}
+
+.footer {
+  height: var(--height-footer);
+  border-top: 1px solid var(--clr-divider-dark);
+}
+
+.scroll-wrapper {
+  transition: var(--transition-duration-standard) all;
+  flex: 1 1 auto;
+  position: relative;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.scroll-padding:hover .card-top {
+  padding-left: 20px !important;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+.icon-right {
+  margin-right: var(--watchlist-side-padding);
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+}
+
+.icon-clickable {
+  cursor: pointer;
+}
+
+.no-watchlist {
+  padding: 12px 15px 12px 20px;
+  color: var(--clr-secondary-text);
+  font-size: 10.5pt;
+  font-weight: var(--font-weight-light);
+}
+
+.card-container {
+  opacity: 1;
+}
+
+.card-wrapper {
+  cursor: pointer;
+  border-width: 1px 0;
+  max-height: calc(var(--card-height) * 2);
+  border-bottom: 1px solid var(--clr-divider-light);
+}
+
+.card-wrapper * {
+  transition: var(--transition-duration-standard) all;
+}
+
+.card-wrapper * .icon-right {
+  pointer-events: all;
+}
+
+.card-wrapper.dragging {
+  transition-delay: var(--transition-duration-quick);
+  transition-property: max-height, padding;
+  max-height: 0;
+}
+
+.card-wrapper.dragging * {
+  opacity: 0;
+}
+
+.card-wrapper.dragOverBottom,
+.card-wrapper.dragOver,
+.card-wrapper.dragging {
+  background-color: var(--clr-dark-forest);
+}
+
+.card-wrapper.dragOver {
+  padding-top: var(--card-height);
+}
+
+.card-wrapper.dragOverBottom {
+  padding-bottom: var(--card-height);
+}
