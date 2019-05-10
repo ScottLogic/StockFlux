@@ -5,6 +5,7 @@
 body {
   background-color: var(--clr-main-background);
   font-family: var(--font-watchlist);
+  color: var(--text-grey-lighter);
   user-select: none;
 }
 
@@ -40,19 +41,11 @@ body {
 }
 
 .scroll-wrapper {
-  transition: var(--transition-duration-standard) all;
   flex: 1 1 auto;
   position: relative;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
-}
-
-.scroll-padding:hover .card-top {
-  padding-left: 20px !important;
-}
-
-::-webkit-scrollbar {
-  width: 0px;
+  margin: 0 5px;
 }
 
 .icon-right {
@@ -71,10 +64,6 @@ body {
   color: var(--clr-secondary-text);
   font-size: 10.5pt;
   font-weight: var(--font-weight-light);
-}
-
-.card-container {
-  opacity: 1;
 }
 
 .card-wrapper {

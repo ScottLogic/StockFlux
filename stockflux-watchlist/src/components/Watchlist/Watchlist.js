@@ -1,10 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import starIcon from "../../assets/png/watchlist_star.png";
 import WatchlistCard from "../WatchlistCard/WatchlistCard";
 import ClosedWindows from "../ClosedWindows/ClosedWindows";
-import $ from "jquery";
 import "./Watchlist.css";
-import "./custom-scroll.css";
 
 function Watchlist() {
   const [name] = useState("My Watchlist");
@@ -21,25 +19,6 @@ function Watchlist() {
   ]);
 
   const headerRef = useRef(null);
-  const scrollRef = useRef(null);
-
-  useEffect(() => {
-    const scrollPadding = "scroll-padding";
-    $(scrollRef.current).mCustomScrollbar({
-      scrollInertia: 0,
-      mouseWheel: {
-        scrollAmount: 80
-      },
-      callbacks: {
-        onOverflowY: () => {
-          $(scrollRef.current).addClass(scrollPadding);
-        },
-        onOverflowYNone: () => {
-          $(scrollRef.current).removeClass(scrollPadding);
-        }
-      }
-    });
-  }, []);
 
   const onIconClick = symbol => {
     return e => {
@@ -153,30 +132,25 @@ function Watchlist() {
         <span className="watchlist-name">{name}</span>
         <img src={starIcon} className="icon-right" alt="Star Icon" />
       </div>
-      <div
-        className="scroll-wrapper search-scroll side-scroll custom-scrollbar"
-        ref={scrollRef}
-      >
-        <div className="card-container">
-          {watchlist.length === 0 && (
-            <div className="no-watchlist">
-              <p>You have no watchlist stocks to display.</p>
-              <p>Use the search tab to add new stocks to the list.</p>
-            </div>
-          )}
-          {watchlist.map((symbol, i) => (
-            <WatchlistCard
-              key={symbol}
-              symbol={symbol}
-              bindings={bindings}
-              isUnwatching={unwatchedSymbol === symbol}
-              dragOver={dragOverIndex === i}
-              dragOverBottom={
-                dragOverIndex === watchlist.length && i === watchlist.length - 1
-              }
-            />
-          ))}
-        </div>
+      <div className="scroll-wrapper">
+        {watchlist.length === 0 && (
+          <div className="no-watchlist">
+            <p>You have no watchlist stocks to display.</p>
+            <p>Use the search tab to add new stocks to the list.</p>
+          </div>
+        )}
+        {watchlist.map((symbol, i) => (
+          <WatchlistCard
+            key={symbol}
+            symbol={symbol}
+            bindings={bindings}
+            isUnwatching={unwatchedSymbol === symbol}
+            dragOver={dragOverIndex === i}
+            dragOverBottom={
+              dragOverIndex === watchlist.length && i === watchlist.length - 1
+            }
+          />
+        ))}
       </div>
       <div className="footer">
         <ClosedWindows />
