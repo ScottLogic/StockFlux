@@ -1,6 +1,6 @@
 .containerList {
     overflow-y: auto;
-    height: 243px;
+    height: 220px;
     margin: var(--margin-small);
 }
 
