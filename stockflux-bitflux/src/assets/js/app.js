@@ -303,7 +303,7 @@ export default function() {
                     loading(false, 'Error loading data. Please make your selection again, or refresh the page.');
                     var responseText = '';
                     try {
-                        var responseObject = JSON.parse(err.responseText);
+                        var responseObject = err.responseText ? JSON.parse(err.responseText) : err;
                         var formattedMessage = source.historicNotificationFormatter(responseObject);
                         if (formattedMessage) {
                             responseText = '. ' + formattedMessage;
@@ -439,6 +439,26 @@ export default function() {
 
     app.changeQuandlProduct = function(productString) {
         var product = dataModel.product(productString, productString, [model.periods.day1], model.sources.quandl, '.3s');
+        var existsInHeadMenuProducts = model.headMenu.products.some(function(p) { return p.id === product.id; });
+        var existsInOverlayProducts = model.overlay.products.some(function(p) { return p.id === product.id; });
+
+        if (!existsInHeadMenuProducts) {
+            model.headMenu.products.push(product);
+        }
+
+        if (!existsInOverlayProducts) {
+            model.overlay.products.push(product);
+        }
+
+        changeProduct(product);
+
+        if (!firstRender) {
+            render();
+        }
+    };
+
+    app.changeScottStockProduct = function(productString) {
+        var product = dataModel.product(productString, productString, [model.periods.day1], model.sources.scottStock, '.3s');
         var existsInHeadMenuProducts = model.headMenu.products.some(function(p) { return p.id === product.id; });
         var existsInOverlayProducts = model.overlay.products.some(function(p) { return p.id === product.id; });
 

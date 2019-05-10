@@ -12,6 +12,9 @@ export default function Chart() {
         // using random generated data
         chart.run(showcaseContainer);
 
+        // hardcoded to test functionality
+        chart.changeScottStockProduct('MSFT');
+
         // TODO take symbol as a prop
         // make api request with symbol
         // render chart with data
