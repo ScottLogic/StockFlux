@@ -1,4 +1,4 @@
-import { subDays } from 'date-fns';
+import { format, subDays } from 'date-fns';
 import throat from 'throat';
 
 // eslint-disable-next-line
