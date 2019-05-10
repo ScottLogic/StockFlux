@@ -9,7 +9,7 @@
   --light-background: #464E58;
   --middle-background: #28313D;
   --dark-background: #1A212A;
-  --separator-colour: #5B626B;
+  --clr-split: #323a48;
 
   /* dimensions */
   --expanded-width: 230px;
@@ -18,6 +18,7 @@
   --icons-size: 30px;
   --titlebar-height: 35px;
   --bottom-tab-height: 40px;
+  --scrollbar-width: 12px;
 
   /* transitions  */
   --icon-transition-duration: 0.5s;
@@ -49,4 +50,7 @@
   --margin-small: 5px;
   --margin-medium: 10px;
   --margin-large: 15px;
+
+  --clr-divider-dark: var(--clr-dark-background);
+  --clr-divider-light: var(--clr-split);
 }
