@@ -10,7 +10,7 @@
     outline: none;
     background-color: transparent;
     border: none;
-    border-bottom: 1px solid var(--separator-colour);
+    border-bottom: 1px solid var(--clr-divider-light);
     padding-left: var(--padding-small);
     font-size: var(--font-normal);
     font-weight: var(--font-weight-bold);
