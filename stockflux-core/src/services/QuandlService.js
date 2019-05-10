@@ -1,5 +1,4 @@
-import fetch from 'isomorphic-fetch';
-import moment from 'moment';
+import { format, subDays } from 'date-fns';
 import throat from 'throat';
 
 // eslint-disable-next-line
@@ -41,7 +40,7 @@ const throttle = throat(concurrency);
 
 // Helper functions
 function period() {
-    return moment().subtract(28, 'days');
+    return subDays(new Date(), 28);
 }
 
 function processSearchResults(result) {
@@ -60,7 +59,7 @@ function filterSearchResultsByDate(json) {
     const result = [];
 
     for (let i = 0, max = datasets.length; i < max; i += 1) {
-        if (moment(datasets[i].newest_available_date) > period()) {
+        if (new Date(datasets[i].newest_available_date) > period()) {
             result.push(datasets[i]);
         }
     }
@@ -128,7 +127,7 @@ export function search(query, usefallback = false) {
 }
 
 export function getStockData(code, usefallback = false) {
-    const startDate = period().format('YYYY-MM-DD');
+    const startDate = format(period(), 'YYYY-MM-DD');
     const apiKeyParam = (usefallback ? '' : API_KEY_VALUE);
 
     return throttle(() => fetch(`${DATASETS_URL}/${DATASET}/${code}.json?${apiKeyParam}&start_date=${startDate}`, {

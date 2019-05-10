@@ -1,20 +1,24 @@
 :root {
   /* colours */
   --text-grey: #AEB1B5;
+  --text-grey-light: #C8CBCF;
+  --text-grey-lighter: #E1E4E8;
+
+  --lightest-background: #79818B;
+  --lighter-background: #606872;
   --light-background: #464E58;
   --middle-background: #28313D;
   --dark-background: #1A212A;
-  --separator-colour: #5B626B;
-  --search-background: var(--light-background);
+  --clr-split: #323a48;
 
   /* dimensions */
   --expanded-width: 230px;
   --toolbar-height: 50px;
   --search-result-height: 60px;
   --icons-size: 30px;
-  --titlebar-height: 34px;
-  --scrollbar-width: 16px;
+  --titlebar-height: 35px;
   --bottom-tab-height: 40px;
+  --scrollbar-width: 12px;
 
   /* transitions  */
   --icon-transition-duration: 0.5s;
@@ -31,4 +35,22 @@
   --font-xlarge: 16px;
   --font-xxlarge: 18px;
   --font-xxxlarge: 20px;
+
+  /* font-weight */
+  --font-weight-normal: 300;
+  --font-weight-bold: 400;
+  --font-weight-bolder: 500;
+
+  /* padding */
+  --padding-small: 5px;
+  --padding-medium: 10px;
+  --padding-large: 15px;
+
+  /* margin */
+  --margin-small: 5px;
+  --margin-medium: 10px;
+  --margin-large: 15px;
+
+  --clr-divider-dark: var(--clr-dark-background);
+  --clr-divider-light: var(--clr-split);
 }

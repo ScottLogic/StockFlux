@@ -1,0 +1,24 @@
+.containerList {
+    overflow-y: auto;
+    height: 220px;
+    margin: var(--margin-small);
+}
+
+.input {
+    height: 35px;
+    width: 100%;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--clr-divider-light);
+    padding-left: var(--padding-small);
+    font-size: var(--font-normal);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-grey);
+}
+
+.message {
+    text-align: center;
+    color: var(--text-grey);
+    font-weight: var(--font-weight-bold);
+}

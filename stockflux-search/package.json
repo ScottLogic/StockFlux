@@ -3,22 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "classnames": "^2.2.6",
-    "isomorphic-fetch": "^2.2.1",
-    "jquery": "^3.3.1",
-    "malihu-custom-scrollbar-plugin": "^3.1.5",
-    "moment": "^2.24.0",
+    "date-fns": "1.30.1",
     "openfin-layouts": "^1.0.0",
     "openfin-react-hooks": "file:../openfin-react-hooks",
+    "prop-types": "15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "^3.0.0",
     "stockflux-components": "file:../stockflux-components",
     "stockflux-core": "file:../stockflux-core",
-    "throat": "^4.1.0"
+    "throat": "4.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cross-env PORT=8050 react-scripts start",
     "launch": "openfin --launch --config ./public/app.dev.json",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -34,6 +31,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "cross-env": "^5.2.0",
     "openfin-cli": "^2.0.8"
   }
 }

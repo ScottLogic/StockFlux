@@ -35,7 +35,6 @@
   --minichart-height: 40px;
   --clr-chart-teal: #37d8bc;
   --clr-chart-fade: #307a71;
-  --clr-dark-forest: #2b595b;
   --clr-chart-stroke: var(--clr-chart-teal);
 
   /* Theme Variables ------------------*/
@@ -59,4 +58,8 @@
   --transition-duration-standard: 0.25s;
   --transition-duration-quick: 0.01s;
   --shadow-depth: 2px;
+}
+
+body {
+  margin: 0;
 }
