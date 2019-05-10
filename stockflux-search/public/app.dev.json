@@ -7,8 +7,8 @@
     "startup_app": {
         "name": "stockflux-search",
         "uuid": "33aa9062-9eb0-4875-b819-c90f38ef03ea",
-        "url": "http://localhost:3000/index.html",
-        "applicationIcon": "http://localhost:3000/favicon.ico",
+        "url": "http://localhost:8050/index.html",
+        "applicationIcon": "http://localhost:8050/favicon.ico",
         "autoShow": true,
         "defaultWidth": 325,
         "defaultHeight": 300,
@@ -34,7 +34,7 @@
         "company": "ScottLogic",
         "description": "Hosts StockFlux Search as an OpenFin application.",
         "name": "StockFlux Search",
-        "icon": "http://localhost:3000/favicon.ico"
+        "icon": "http://localhost:8050/favicon.ico"
     },
-    "splashScreenImage": "http://localhost:3000/splashscreen.png"
+    "splashScreenImage": "http://localhost:8050/splashscreen.png"
 }

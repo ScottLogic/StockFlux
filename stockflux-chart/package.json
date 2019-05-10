@@ -19,7 +19,7 @@
     "throat": "^4.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cross-env PORT=8051 react-scripts start",
     "launch": "openfin --launch --config ./public/app.dev.json",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -35,6 +35,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "cross-env": "^5.2.0",
     "openfin-cli": "^2.0.8"
   }
 }
