@@ -139,7 +139,7 @@ function Watchlist() {
         </span>
         <img src={starIcon} className="icon-right" alt="Star Icon" />
       </div>
-      <Components.ScrollWrapperY>
+      <Components.ScrollWrapperY contentChanged={Boolean(unwatchedSymbol)}>
         {watchlist.length === 0 && (
           <div className="no-watchlist">
             <p>You have no watchlist stocks to display.</p>
