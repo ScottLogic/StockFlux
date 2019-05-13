@@ -23,7 +23,7 @@ input[type="text"]#watchlist-name {
   padding: 5px;
   padding-right: 0;
   border: none;
-  font-weight: var(--font-medium);
+  font-weight: var(--font-weight-bolder);
   font-size: var(--font-xxxlarge);
   margin-left: calc(var(--padding-large) - 10px);
   font-size: var(--font-xxxlarge);
@@ -84,7 +84,7 @@ input#watchlist-name:focus {
   padding: 12px 15px 12px 20px;
   color: var(--text-grey);
   font-size: 10.5pt;
-  font-weight: var(--font-light);
+  font-weight: var(--font-weight-normal);
 }
 
 .card-wrapper {

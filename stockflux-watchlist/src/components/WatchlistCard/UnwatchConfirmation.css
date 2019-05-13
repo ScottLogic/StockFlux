@@ -48,7 +48,7 @@
 
 .confirmation-content .message {
   font-size: var(--font-normal);
-  font-weight: var(--font-light);
+  font-weight: var(--font-weight-normal);
   line-height: 1.4;
   text-align: center;
   cursor: default;

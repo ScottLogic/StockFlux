@@ -59,11 +59,11 @@ body {
 }
   
 #showcase-title .code {
-    font: 18px var(--font-medium);
+    font: 18px var(--font-weight-bolder);
 }
   
 #showcase-title  .name {
-    font: 14px var(--font-light);
+    font: 14px var(--font-weight-normal);
 }
 
 .no-favourites-image {

@@ -22,7 +22,7 @@
 
 .card-top .name {
   font-size: var(--font-normal);
-  font-weight: var(--font-light);
+  font-weight: var(--font-weight-normal);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -32,7 +32,7 @@
 .card-top .symbol {
   padding-top: 1px;
   font-size: var(--font-xxxlarge);
-  font-weight: var(--font-medium);
+  font-weight: var(--font-weight-bolder);
 }
 
 .details {
@@ -46,7 +46,7 @@
 
 .price {
   font-size: var(--font-xxlarge);
-  font-weight: var(--font-medium);
+  font-weight: var(--font-weight-bolder);
 }
 
 .delta,
@@ -57,13 +57,13 @@
 .delta {
   padding-top: 5px;
   font-size: var(--font-large);
-  font-weight: var(--font-light);
+  font-weight: var(--font-weight-normal);
 }
 
 .percentage {
   padding-top: 1px;
   font-size: var(--font-normal);
-  font-weight: var(--font-light);
+  font-weight: var(--font-weight-normal);
 }
 
 .stock-arrow {
