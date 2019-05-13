@@ -1,6 +1,6 @@
 .bubble-head {
   position: relative;
-  left: 200px;
+  left: 199px;
   top: 117px;
   width: var(--bubble-head-width);
   height: var(--bubble-head-height);
@@ -10,7 +10,7 @@
 
 .scroll-wrapper-y.scroll-padding-right:hover .bubble-head {
   -webkit-transition: var(--icon-transition-duration) all;
-  left: 187px;
+  left: 186px;
 }
 
 .confirmation-backdrop {
