@@ -17,7 +17,7 @@ export default function getScottStockData() {
             params.push('/' + moment(end).format('YYYY-MM-DD'));
         }
         // change to AWS endpoint
-        var url = 'http://ws01135:3000/ohlc/' + product + '/2016-01-01';
+        var url = 'https://nuwvo3ugc3.execute-api.eu-west-2.amazonaws.com/dev/ohlc/' + product + '/2016-01-01';
         fetch(url, {
                 method: 'GET'
             }).then(function(response) {
