@@ -6,8 +6,6 @@ import Minichart from '../Minichart/Minichart';
 import Confirmation from './UnwatchConfirmation';
 import { Quandl } from 'stockflux-core';
 import currentWindowService from '../../services/currentWindowService';
-import arrowUp from 'stockflux-components/src/images/arrow_up.png';
-import arrowDown from 'stockflux-components/src/images/arrow_down.png';
 import './WatchlistCard.css';
 
 function WatchlistCard(props) {
@@ -110,10 +108,7 @@ function WatchlistCard(props) {
       <div className="drop-target">
         <div className="card darkens default-background" draggable="false">
           <div className="card-top">
-            <div
-              className="button-icon icon-right star active"
-              onClick={onIconClick}
-            >
+            <div className="button-icon star active" onClick={onIconClick}>
               &nbsp;
             </div>
             {props.isUnwatching && (
@@ -137,10 +132,12 @@ function WatchlistCard(props) {
               <div className="percentage">
                 {stockData.percentage ? (
                   <>
-                    <img
-                      src={stockData.percentage > 0 ? arrowUp : arrowDown}
-                      className="stock-arrow"
-                      alt="Stock Arrow"
+                    <div
+                      className={classNames({
+                        'icon arrow-up': stockData.percentage > 0,
+                        'icon arrow-down': stockData.percentage < 0
+                      })}
+                      title="Stock Arrow"
                       draggable="false"
                     />
                     {Math.abs(stockData.percentage) + '%'}

@@ -8,12 +8,6 @@
     cursor: pointer;
 }
 
-.button-icon.closed_tabs_small {
-    background-image: url('../images/closed_tabs_small.png');
-}
-.button-icon.closed_tabs_small:hover {
-    background-image: url('../images/closed_tabs_small_active.png');
-}
 .button-icon.minimize {
     background-image: url('../images/minimize.png');
 }
@@ -57,14 +51,20 @@
     background-image: url('../images/undock_active.png');
 }
 .button-icon.star {
-    background-image: url('../images/favourite_off.png');
+    background-image: url('../images/star_off.png');
 }
 .button-icon.star:hover {
-    background-image: url('../images/favourite_off_hover.png');
+    background-image: url('../images/star_off_hover.png');
 }
 .button-icon.star.active {
-    background-image: url('../images/favourite_on.png') !important;
+    background-image: url('../images/star_on.png') !important;
 }
 .button-icon.star.active:hover {
-    background-image: url('../images/favourite_hover.png') !important;
+    background-image: url('../images/star_hover.png') !important;
+}
+.button-icon.star.active:hover {
+    background-image: url('../images/star_hover.png') !important;
+}
+.star-tab {
+    background-image: url('../images/star_tab.png');
 }

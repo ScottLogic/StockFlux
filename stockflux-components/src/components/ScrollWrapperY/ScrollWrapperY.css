@@ -1,14 +1,14 @@
-.scroll-wrapper-y {
+.scrollWrapperY {
   flex: 1 1 auto;
   position: relative;
   overflow-y: hidden;
   overflow-x: hidden;
-  -webkit-transition: 0.6s all;
-  transition: 0.6s all;
+  -webkit-transition: 0.6s padding-right;
+  transition: 0.6s padding-right;
   height: inherit;
 }
 
-.scroll-padding-right:hover {
-  padding-right: 13px !important;
+.scrollPaddingRight:hover {
+  padding-right: 13px;
   overflow: overlay;
 }

@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import starIcon from 'stockflux-components/src/images/star_tab.png';
 import WatchlistCard from '../WatchlistCard/WatchlistCard';
-import ClosedWindows from '../ClosedWindows/ClosedWindows';
 import Components from 'stockflux-components';
 
 import './Watchlist.css';
@@ -137,9 +135,11 @@ function Watchlist() {
             onChange={e => setName(e.target.value)}
           />
         </span>
-        <img src={starIcon} className="icon-right" alt="Star Icon" />
+        <div className="icon star-tab" title="Star Tab">
+          &nbsp;
+        </div>
       </div>
-      <Components.ScrollWrapperY contentChanged={Boolean(unwatchedSymbol)}>
+      <Components.ScrollWrapperY contentChanged={unwatchedSymbol}>
         {watchlist.length === 0 && (
           <div className="no-watchlist">
             <p>You have no watchlist stocks to display.</p>
@@ -159,9 +159,6 @@ function Watchlist() {
           />
         ))}
       </Components.ScrollWrapperY>
-      <div className="footer">
-        <ClosedWindows />
-      </div>
     </div>
   );
 }

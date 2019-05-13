@@ -8,7 +8,7 @@
   background-color: var(--light-background);
 }
 
-.scroll-wrapper-y.scroll-padding-right:hover .bubble-head {
+.scrollWrapperY.scrollPaddingRight:hover .bubble-head {
   -webkit-transition: var(--icon-transition-duration) all;
   left: 186px;
 }

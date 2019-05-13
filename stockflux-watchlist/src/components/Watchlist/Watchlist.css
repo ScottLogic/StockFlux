@@ -27,7 +27,10 @@ input[type="text"]#watchlist-name {
   font-size: var(--font-xxxlarge);
   margin-left: calc(var(--padding-large) - 10px);
   font-size: var(--font-xxxlarge);
-  width: 165px;
+  width: 182px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 input#watchlist-name::placeholder {
@@ -45,20 +48,11 @@ input#watchlist-name:focus {
   overflow: hidden;
 }
 
-.header,
-.footer {
+.header {
   flex: 0 0 auto;
   display: flex;
-}
-
-.header {
   height: var(--toolbar-height);
   border-bottom: 1px solid var(--dark-background);
-}
-
-.footer {
-  height: var(--bottom-tab-height);
-  border-top: 1px solid var(--dark-background);
 }
 
 .scroll-wrapper {
@@ -67,13 +61,6 @@ input#watchlist-name:focus {
   overflow-y: overlay;
   overflow-x: hidden;
   transition: 0.6s all;
-}
-
-.icon-right {
-  margin-right: var(--padding-large);
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-left: auto;
 }
 
 .icon-clickable {
@@ -124,8 +111,4 @@ input#watchlist-name:focus {
 
 .card-wrapper.dragOverBottom {
   padding-bottom: var(--card-height);
-}
-
-.footer img.icon-right {
-  padding-top: 4px;
 }
