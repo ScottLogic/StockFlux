@@ -90,8 +90,8 @@ const App = () => {
             <Components.Titlebar />
             <input type="text" className={styles.input} onChange={event => setQuery(event.target.value)} placeholder="Enter stock name or symbol" />
             <div className={styles.containerList}>
-                <Components.ScrollWrapperY contentChanged={Boolean(results)}>
-                    {!isSearching && results && results.length ? 
+                <Components.ScrollWrapperY contentChanged={results}>
+                    {!isSearching && results && results.length ?
                         results.map(result => (
                             <SearchResult
                                 key={result.code}
