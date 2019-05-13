@@ -1,0 +1,40 @@
+[
+  {
+    "appId": "watchlist",
+    "name": "Watchlist",
+    "manifest": "http://localhost:3923/provider/watchlist-manifest.json",
+    "manifestType": "openfin",
+    "title": "Watchlist",
+    "description": "Stockflux Watchlist app",
+    "images": [],
+    "contactEmail": "",
+    "supportEmail": "",
+    "publisher": "Scott Logic Ltd",
+    "icons": [
+      {
+        "icon": "http://localhost:3922/favicon.ico"
+      }
+    ],
+    "intents": []
+  },
+  {
+    "appId": "chart",
+    "name": "Chart",
+    "manifest": "http://localhost:3923/provider/chart-manifest.json",
+    "manifestType": "openfin",
+    "title": "Chart",
+    "description": "Stockflux Chart app",
+    "images": [],
+    "contactEmail": "",
+    "supportEmail": "",
+    "publisher": "Scott Logic Ltd",
+    "icons": [
+      {
+        "icon": "http://localhost:3922/favicon.ico"
+      }
+    ],
+    "intents": [
+      {"name": "ViewChart"}
+    ]
+  }
+]

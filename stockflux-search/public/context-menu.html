@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>StockFlux - Search</title>
+</head>
+
+<body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+
+    <script type="application/javascript" src="https://unpkg.com/react@16.8.6/umd/react.production.min.js" crossorigin></script>
+    <script type="application/javascript" src="https://unpkg.com/react-dom@16.8.6/umd/react-dom.production.min.js" crossorigin></script>
+    <script>
+        setTimeout(() => {
+            fin.Window.getCurrent()
+                .then(window => {
+                    window.on("update-window-options", function (event) {
+                        console.log("The window options have updated.", event);
+                    });
+                    window.wire.addListener('update-window-options', function (options) {
+                        console.log('window options updated', options);
+                    });
+                    return window.getOptions()
+                })
+                .then(options => options.customData)
+                .then(console.log);
+        }, 2000);
+    </script>
+</body>
+
+</html>
