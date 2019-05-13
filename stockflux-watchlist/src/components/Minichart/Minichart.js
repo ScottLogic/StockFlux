@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import * as PropTypes from "prop-types";
-import { scaleLinear, scaleTime } from "d3-scale";
-import { select } from "d3-selection";
-import { minichartDimensions } from "./constants";
-import moment from "moment";
+import React, { useEffect, useState } from 'react';
+import * as PropTypes from 'prop-types';
+import { scaleLinear, scaleTime } from 'd3-scale';
+import { select } from 'd3-selection';
+import { minichartDimensions } from './constants';
+import moment from 'moment';
 import {
   extentDate,
   extentLinear,
@@ -13,8 +13,8 @@ import {
   seriesSvgLine,
   seriesSvgPoint,
   seriesSvgMulti
-} from "d3fc";
-import "./Minichart.css";
+} from 'd3fc';
+import './Minichart.css';
 
 function Minichart(props) {
   const [shouldShowChart, setShouldShowChart] = useState(false);
@@ -68,9 +68,9 @@ const getInnerDimensions = () => {
 };
 const getContainer = (symbol, width, height) => {
   return select(`#${symbol}chart`)
-    .insert("svg", "div")
-    .attr("width", width)
-    .attr("height", height);
+    .insert('svg', 'div')
+    .attr('width', width)
+    .attr('height', height);
 };
 
 const getXAxisScale = (chartData, width) => {
@@ -101,7 +101,7 @@ const getArea = (symbol, chartData) => {
     .baseValue(_ => closeExtent[0])
     .mainValue(d => d.close)
     .decorate(selection => {
-      selection.attr("fill", `url(#${symbol}-minichart-gradient)`);
+      selection.attr('fill', `url(#${symbol}-minichart-gradient)`);
     });
 };
 

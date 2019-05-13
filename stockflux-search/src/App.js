@@ -90,10 +90,20 @@ const App = () => {
             <Components.Titlebar />
             <input type="text" className={styles.input} onChange={event => setQuery(event.target.value)} placeholder="Enter stock name or symbol" />
             <div className={styles.containerList}>
-                { !isSearching && results && results.length ?
-                    results.map((result) => (<SearchResult key={result.code} code={result.code} name={result.name} />)) :
-                    <div className={styles.message}>{getMessage(searchState, results)}</div>
-                }
+                <Components.ScrollWrapperY contentChanged={Boolean(results)}>
+                    {!isSearching && results && results.length ? 
+                        results.map(result => (
+                            <SearchResult
+                                key={result.code}
+                                code={result.code}
+                                name={result.name}
+                            />
+                            )) : 
+                        <div className={styles.message}>
+                            {getMessage(searchState, results)}
+                        </div>
+                    }
+                </Components.ScrollWrapperY>
             </div>
         </>
     );

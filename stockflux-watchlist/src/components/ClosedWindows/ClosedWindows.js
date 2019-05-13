@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import moment from "moment";
-import closedWindowsImageInactive from "../../assets/png/closed_tabs.png";
-import closedWindowsImageActive from "../../assets/png/closed_tabs_active.png";
+import React, { useState } from 'react';
+import moment from 'moment';
+import closedWindowsImageInactive from 'stockflux-components/src/images/closed_tabs.png';
+import closedWindowsImageActive from 'stockflux-components/src/images/closed_tabs_active.png';
 
 function ClosedWindows(props) {
   const [iconHover, setIconHover] = useState(false);
@@ -46,12 +46,12 @@ function ClosedWindows(props) {
                 <div className="closed-card">
                   <div className="closed-time">
                     {moment(closedWindows[closedWindowName].date).format(
-                      "DD MMM YYYY HH:mm"
+                      'DD MMM YYYY HH:mm'
                     )}
                   </div>
                   <div className="closed-stocks">
                     {closedWindows[closedWindowName].favourites.codes.join(
-                      ", "
+                      ', '
                     )}
                   </div>
                 </div>

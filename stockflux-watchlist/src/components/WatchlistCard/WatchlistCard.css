@@ -1,39 +1,38 @@
 .card {
-  padding: 10px 15px 5px 0;
+  padding: 5px 10px 5px 0;
   cursor: pointer;
   height: var(--card-height);
-  width: var(--card-width);
 }
 
 .drop-target {
   height: var(--card-height);
-  width: var(--card-width);
 }
 
 .card-wrapper:hover .darkens {
-  background-color: var(--clr-card-hover);
+  background-color: var(--dark-background);
 }
 
 .darkens:hover {
-  background-color: var(--clr-card-hover);
+  background-color: var(--dark-background);
 }
 
 .card-top {
-  padding-left: var(--standard-padding);
+  padding-left: var(--padding-medium);
 }
 
 .card-top .name {
-  font-size: var(--font-size-small);
-  font-weight: var(--font-weight-light);
+  font-size: var(--font-normal);
+  font-weight: var(--font-light);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  padding-top: var(--padding-small)
 }
 
 .card-top .symbol {
   padding-top: 1px;
-  font-size: var(--font-size-title);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--font-xxxlarge);
+  font-weight: var(--font-medium);
 }
 
 .details {
@@ -46,8 +45,8 @@
 }
 
 .price {
-  font-size: var(--font-size-medium);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--font-xxlarge);
+  font-weight: var(--font-medium);
 }
 
 .delta,
@@ -57,14 +56,14 @@
 
 .delta {
   padding-top: 5px;
-  font-size: var(--font-size-smaller-medium);
-  font-weight: var(--font-weight-light);
+  font-size: var(--font-large);
+  font-weight: var(--font-light);
 }
 
 .percentage {
   padding-top: 1px;
-  font-size: var(--font-size-small);
-  font-weight: var(--font-weight-light);
+  font-size: var(--font-normal);
+  font-weight: var(--font-light);
 }
 
 .stock-arrow {
@@ -75,6 +74,7 @@
 
 .button-icon.star {
   float: right;
+  padding: var(--padding-small);
   margin-right: 0;
 }
 
@@ -89,5 +89,5 @@
 }
 
 .default-background {
-  background: var(--clr-main-background);
+  background: var(--middle-background);
 }

@@ -51,6 +51,6 @@
   --margin-medium: 10px;
   --margin-large: 15px;
 
-  --clr-divider-dark: var(--clr-dark-background);
+  --clr-divider-dark: var(--dark-background);
   --clr-divider-light: var(--clr-split);
 }

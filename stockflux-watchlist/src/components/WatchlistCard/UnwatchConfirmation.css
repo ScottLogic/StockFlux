@@ -1,11 +1,16 @@
 .bubble-head {
   position: relative;
-  left: 195px;
+  left: 200px;
   top: 117px;
   width: var(--bubble-head-width);
   height: var(--bubble-head-height);
   transform: rotate(45deg);
-  background-color: var(--clr-light-background);
+  background-color: var(--light-background);
+}
+
+.scroll-wrapper-y.scroll-padding-right:hover .bubble-head {
+  -webkit-transition: var(--icon-transition-duration) all;
+  left: 187px;
 }
 
 .confirmation-backdrop {
@@ -24,28 +29,28 @@
 
 .flipped,
 .confirmation-modal {
-  box-shadow: 2px 2px, var(--clr-dark-background);
+  box-shadow: 2px 2px, var(--dark-background);
 }
 
 .confirmation-modal {
   position: absolute;
-  left: 12px;
-  width: 204px;
+  left: 9px;
+  width: 210px;
   cursor: default !important;
 }
 
 .confirmation-content {
   pointer-events: all;
   cursor: default;
-  background-color: var(--clr-light-background);
+  background-color: var(--light-background);
   padding: 6px;
 }
 
 .confirmation-content .message {
-  font-size: var(--font-size-small);
-  font-weight: var(--font-weight-thin);
+  font-size: var(--font-normal);
+  font-weight: var(--font-light);
   line-height: 1.4;
-  text-align: left;
+  text-align: center;
   cursor: default;
 }
 
@@ -62,5 +67,5 @@
   pointer-events: all;
   padding: 5px 0;
   pointer-events: all;
-  background-color: var(--clr-dark-background);
+  background-color: var(--dark-background);
 }
