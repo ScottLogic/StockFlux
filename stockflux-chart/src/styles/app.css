@@ -37,9 +37,9 @@ body {
     cursor: pointer;
 }
 
-.disable-transitions {
+/* .disable-transitions {
     transition: none !important;
-}
+} */
 
 .disable-pointer {
     pointer-events: none;
@@ -72,4 +72,8 @@ body {
     width: 100%;
     position: relative;
     -webkit-user-drag: none;
+}
+
+.close, .close:hover {
+    opacity: 1;
 }

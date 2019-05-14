@@ -25,18 +25,23 @@ import './styles/BitFlux/notification.css';
 import './styles/app.css';
 import './styles/BitFlux/sprite.css';
 
+let isListening = false;
+
 const App = () => {
     const [symbol, setSymbol] = useState(null);
     const [name, setName] = useState(null);
 
-    useEffect(() => {
-        fdc3.addIntentListener(fdc3.Intents.VIEW_CHART, context => {
-            if (context) {
-                setSymbol(context.name);
-                setName(context.id.default);
-            }
-        });
-    }, []);
+    const handleIntentContext = context => {
+        if (context) {
+            setSymbol(context.name);
+            setName(context.id.default);
+        }
+    };
+
+    if (!isListening) {
+        fdc3.addIntentListener(fdc3.Intents.VIEW_CHART, handleIntentContext);
+        isListening = true;
+    }
 
     return ( <>
         <div className='main'>
