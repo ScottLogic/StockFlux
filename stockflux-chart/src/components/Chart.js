@@ -1,23 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import {InterApplicationBusHooks} from 'openfin-react-hooks';
 import bitflux from 'stockflux-bitflux/dist/bitflux';
 import './chart.css';
 
+const chart = bitflux.app();
+chart.periodsOfDataToFetch(1200);
+chart.proportionOfDataToDisplayByDefault(112/1200);
+
 export default function Chart() {
-    let showcaseContainer;
-    const chart = bitflux.app();
+    const [symbol, setSymbol] = useState(null);
+
+    const showcaseContainer = useRef(null);
+    // calling run will use random generated data
+    
     useEffect(() => {
+        chart.run(showcaseContainer.current);
+        if (symbol) {
+            chart.changeStockFluxProduct(symbol);
+        }
+    }, [symbol, showcaseContainer]);
 
-        chart.periodsOfDataToFetch(1200);
-        chart.proportionOfDataToDisplayByDefault(112/1200);
-        // using random generated data
-        chart.run(showcaseContainer);
+    InterApplicationBusHooks.useSubscription('*', 'Chart', 'stockFlux:symbol');
 
-        // TODO take symbol as a prop
-        // make api request with symbol
-        // render chart with data
-    });
+    const handleSymbolChange = e => {
+        if(symbol === null || symbol === 'MSFT') {
+            setSymbol('AAPL');
+        } else if (symbol === 'AAPL') {
+            setSymbol('MSFT');
+        }
+    }
 
     return (
-        <div ref = {(ref) => { showcaseContainer = ref; }} id = "showcase-container" />
+        <>
+            <button onClick={handleSymbolChange}>SYMBOL</button>
+            <div ref={showcaseContainer} id = "showcase-container" />
+        </>
     );
 };

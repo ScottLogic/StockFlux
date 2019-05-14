@@ -1,7 +1,7 @@
-import React from "react";
-import * as PropTypes from "prop-types";
-import { modalDimensions } from "./ModalDimensions";
-import "./UnwatchConfirmation.css";
+import React from 'react';
+import * as PropTypes from 'prop-types';
+import { modalDimensions } from './ModalDimensions';
+import './UnwatchConfirmation.css';
 
 function UnwatchConfirmation(props) {
   const shouldPositionModalAboveStar = starTopPos => {
@@ -36,7 +36,7 @@ function UnwatchConfirmation(props) {
         style={{ top: modalBubbleHeadTopPosition() }}
       />
       <div
-        className={`confirmation-modal${isFlipped ? " flipped" : ""}`}
+        className={`confirmation-modal${isFlipped ? ' flipped' : ''}`}
         style={{ top: modalTopPosition() }}
       >
         <div

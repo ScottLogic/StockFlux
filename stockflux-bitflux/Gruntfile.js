@@ -28,6 +28,7 @@ module.exports = function(grunt) {
                 'assets/js/d3fc.bundle.js',
                 'assets/js/d3fc-rebind.js',
                 'assets/js/d3fc-financial-feed.js',
+                'assets/js/moment.js',
                 'assets/js/jquery.js',
                 'assets/js/seedrandom.js',
                 'assets/js/bootstrap.js'
@@ -87,6 +88,12 @@ module.exports = function(grunt) {
                 {
                     cwd: 'node_modules/d3fc-financial-feed/build/',
                     src: ['d3fc-financial-feed.js'],
+                    dest: 'dist/assets/js',
+                    expand: true
+                },
+                {
+                    cwd: 'node_modules/moment/',
+                    src: ['moment.js'],
                     dest: 'dist/assets/js',
                     expand: true
                 },
@@ -256,7 +263,8 @@ module.exports = function(grunt) {
                     d3fc: 'fc',
                     'd3fc-rebind': 'fc_rebind',
                     'd3fc-financial-feed': 'fc',
-                    jquery: '$'
+                    jquery: '$',
+                    moment: 'moment'
                 }
             },
             module: {

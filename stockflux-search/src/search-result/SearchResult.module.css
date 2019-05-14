@@ -1,5 +1,7 @@
 .searchResult {
     border-bottom: 1px solid var(--clr-split-light);
+    color: var(--text-grey);
+    margin-right: 0;
     padding: var(--padding-small) 0 var(--padding-small) var(--padding-small);
     user-select: none;
 }

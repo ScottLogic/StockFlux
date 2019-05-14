@@ -94,6 +94,7 @@ const App = () => {
             const win = await window.fin.Window.getCurrent();
             const bounds = await win.getBounds();
             win.resizeTo(bounds.width, Math.min(listContainer.current.scrollHeight + TITLEBAR_HEIGHT + SEARCH_INPUT_HEIGHT, MIN_HEIGHT));
+            console.log('resize', Math.min(listContainer.current.scrollHeight + TITLEBAR_HEIGHT + SEARCH_INPUT_HEIGHT, MIN_HEIGHT));
         })();
     });
 
@@ -102,9 +103,17 @@ const App = () => {
             <Components.Titlebar />
             <input type="text" className={styles.input} onChange={event => setQuery(event.target.value)} placeholder="Enter stock name or symbol" />
             <div className={styles.containerList} ref={listContainer}>
-                { !isSearching && results && results.length ?
-                    results.map((result) => (<SearchResult key={result.code} code={result.code} name={result.name} />)) :
-                    <div className={styles.message}>{getMessage(searchState, results)}</div>
+                {!isSearching && results && results.length ?
+                    results.map(result => (
+                        <SearchResult
+                            key={result.code}
+                            code={result.code}
+                            name={result.name}
+                        />
+                    )) :
+                    <div className={styles.message}>
+                        {getMessage(searchState, results)}
+                    </div>
                 }
             </div>
         </>

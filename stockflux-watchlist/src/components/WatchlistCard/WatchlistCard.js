@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from "react";
-import * as PropTypes from "prop-types";
-import classNames from "classnames";
-import { truncate } from "../../services/formatters";
-import Minichart from "../Minichart/Minichart";
-import Confirmation from "./UnwatchConfirmation";
-import { Quandl } from "stockflux-core";
-import currentWindowService from "../../services/currentWindowService";
-import arrowUp from "../../assets/png/arrow_up.png";
-import arrowDown from "../../assets/png/arrow_down.png";
-import "./WatchlistCard.css";
+import React, { useState, useEffect } from 'react';
+import * as PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { truncate } from '../../services/formatters';
+import Minichart from '../Minichart/Minichart';
+import Confirmation from './UnwatchConfirmation';
+import { Quandl } from 'stockflux-core';
+import currentWindowService from '../../services/currentWindowService';
+import './WatchlistCard.css';
 
 function WatchlistCard(props) {
   const [dragging, setDragging] = useState({
@@ -19,7 +17,7 @@ function WatchlistCard(props) {
   const [starTop, setStarTop] = useState(0);
   const [chartData, setChartData] = useState([]);
   const [stockData, setStockData] = useState({
-    name: "N/A",
+    name: 'N/A',
     price: 0,
     delta: 0,
     percentage: 0
@@ -57,7 +55,7 @@ function WatchlistCard(props) {
     return !isNaN(+percentage) ? (+percentage).toFixed(2) : null;
   };
   const getName = name => {
-    return name ? truncate(name) : "";
+    return name ? truncate(name) : '';
   };
 
   const onIconClick = e => {
@@ -75,13 +73,13 @@ function WatchlistCard(props) {
         window: currentWindowService.getCurrentWindowName()
       };
       setDragging({ isDragging: true, clientX, offsetY });
-      e.dataTransfer.setData(JSON.stringify(symbolData), "");
-      e.dataTransfer.setData(JSON.stringify(windowData), "");
+      e.dataTransfer.setData(JSON.stringify(symbolData), '');
+      e.dataTransfer.setData(JSON.stringify(windowData), '');
     };
   };
 
   const onDragEnd = e => {
-    if (e.dataTransfer.dropEffect === "none") {
+    if (e.dataTransfer.dropEffect === 'none') {
       const { screenX, screenY } = e;
       const { clientX, offsetY } = dragging;
       props.bindings.onDropOutside(props.symbol, stockData.name, {
@@ -98,7 +96,7 @@ function WatchlistCard(props) {
     <div
       id={`stock_${props.symbol}`}
       className={classNames({
-        "card-wrapper": true,
+        'card-wrapper': true,
         dragging: dragging.isDragging,
         dragOver: props.dragOver,
         dragOverBottom: props.dragOverBottom
@@ -110,10 +108,7 @@ function WatchlistCard(props) {
       <div className="drop-target">
         <div className="card darkens default-background" draggable="false">
           <div className="card-top">
-            <div
-              className="button-icon icon-right star active"
-              onClick={onIconClick}
-            >
+            <div className="button-icon star active" onClick={onIconClick}>
               &nbsp;
             </div>
             {props.isUnwatching && (
@@ -131,17 +126,25 @@ function WatchlistCard(props) {
           <div className="card-bottom">
             <Minichart symbol={props.symbol} chartData={chartData} />
             <div className="details">
-              {<div className="price">{stockData.price}</div>}
-              {<div className="delta">{stockData.delta}</div>}
+              {<div className="price">{stockData.price || 'N/A'}</div>}
+              {<div className="delta">{stockData.delta || ''}</div>}
 
               <div className="percentage">
-                <img
-                  src={stockData.percentage > 0 ? arrowUp : arrowDown}
-                  className="stock-arrow"
-                  alt="Stock Arrow"
-                  draggable="false"
-                />
-                {Math.abs(stockData.percentage)}%
+                {stockData.percentage ? (
+                  <>
+                    <div
+                      className={classNames({
+                        'icon arrow-up': stockData.percentage > 0,
+                        'icon arrow-down': stockData.percentage < 0
+                      })}
+                      title="Stock Arrow"
+                      draggable="false"
+                    />
+                    {Math.abs(stockData.percentage) + '%'}
+                  </>
+                ) : (
+                  ''
+                )}
               </div>
             </div>
           </div>
