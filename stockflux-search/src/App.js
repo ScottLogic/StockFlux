@@ -10,6 +10,9 @@ const SUCCESS = 'success';
 const ERROR = 'error';
 const INITIALISE = 'initialise';
 
+const MIN_HEIGHT = 400;
+const TITLEBAR_HEIGHT = 35;
+const SEARCH_INPUT_HEIGHT = 35;
 const SEARCH_TIMEOUT_INTERVAL = 250;
 
 const initialSearchState = {
@@ -90,7 +93,7 @@ const App = () => {
         (async () => {
             const win = await window.fin.Window.getCurrent();
             const bounds = await win.getBounds();
-            win.resizeTo(bounds.width, Math.min(listContainer.current.scrollHeight + 70 + 20, 400));
+            win.resizeTo(bounds.width, Math.min(listContainer.current.scrollHeight + TITLEBAR_HEIGHT + SEARCH_INPUT_HEIGHT, MIN_HEIGHT));
         })();
     });
 
