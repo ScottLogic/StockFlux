@@ -9,15 +9,13 @@
         "uuid": "33aa9062-9eb0-4875-b819-c90f38ef03ea",
         "url": "http://localhost:8050/index.html",
         "applicationIcon": "http://localhost:8050/favicon.ico",
+        "backgroundColor": "#28313D",
         "autoShow": true,
-        "defaultHeight": 300,
-        "minHeight": 300,
-        "maxHeight": 300,
+        "defaultHeight": 70,
         "defaultWidth": 400,
-        "minWidth": 400,
-        "maxWidth": 400,
         "resizable": false,
         "frame": false,
+        "alwaysOnTop": true,
         "contextMenu": true,
         "cornerRounding": {
             "height": 4,
@@ -29,7 +27,9 @@
             "name": "layouts",
             "config": {
                 "features": {
-                    "tab": true
+                    "tab": false,
+                    "dock": true,
+                    "snap": true
                 }
             }
         }

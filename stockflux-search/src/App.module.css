@@ -1,7 +1,7 @@
 .containerList {
     overflow-y: auto;
-    height: 220px;
-    margin: var(--margin-small);
+    max-height: 320px;
+    margin: var(--margin-small) var(--margin-small) var(--margin-small) 0;
 }
 
 .input {
