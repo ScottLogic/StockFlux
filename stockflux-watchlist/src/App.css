@@ -41,7 +41,7 @@
   /*-----------------------------------*/
   --clr-main-background: var(--clr-middle-background);
   --clr-divider-dark: var(--clr-dark-background);
-  --clr-divider-light: var(--clr-split);
+  --clr-divider-light: var(--clr-split-dark);
   --clr-card-hover: var(--clr-dark-background);
   --clr-secondary-text: var(--clr-text-grey);
   --width-card: var(--card-width);
