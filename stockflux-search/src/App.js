@@ -94,7 +94,6 @@ const App = () => {
             const win = await window.fin.Window.getCurrent();
             const bounds = await win.getBounds();
             win.resizeTo(bounds.width, Math.min(listContainer.current.scrollHeight + TITLEBAR_HEIGHT + SEARCH_INPUT_HEIGHT, MIN_HEIGHT));
-            console.log('resize', Math.min(listContainer.current.scrollHeight + TITLEBAR_HEIGHT + SEARCH_INPUT_HEIGHT, MIN_HEIGHT));
         })();
     });
 
