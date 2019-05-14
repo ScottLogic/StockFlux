@@ -1,24 +1,22 @@
-import React, { useState, useRef } from "react";
-import starIcon from "../../assets/png/watchlist_star.png";
-import WatchlistCard from "../WatchlistCard/WatchlistCard";
-import ClosedWindows from "../ClosedWindows/ClosedWindows";
-import "./Watchlist.css";
+import React, { useState } from 'react';
+import WatchlistCard from '../WatchlistCard/WatchlistCard';
+import Components from 'stockflux-components';
+
+import './Watchlist.css';
 
 function Watchlist() {
-  const [name] = useState("My Watchlist");
+  const [name, setName] = useState('');
   const [unwatchedSymbol, setUnwatchedSymbol] = useState(null);
   const [dragOverIndex, setDragOverIndex] = useState(null);
   const [dragStartClientY, setDragStartClientY] = useState(null);
   const [cardHeight, setCardHeight] = useState(null);
   const [watchlist, setWatchlist] = useState([
-    "AAPL",
-    "AAP",
-    "CC",
-    "MS",
-    "JPS"
+    'AAPL',
+    'AAP',
+    'CC',
+    'MS',
+    'JPS'
   ]);
-
-  const headerRef = useRef(null);
 
   const onIconClick = symbol => {
     return e => {
@@ -42,7 +40,7 @@ function Watchlist() {
   const getSymbolFromDataTransfer = types => {
     for (let i = 0; i < types.length; i += 1) {
       const dataTransferObj = JSON.parse(types[i]);
-      if (Object.keys(dataTransferObj)[0] === "symbol") {
+      if (Object.keys(dataTransferObj)[0] === 'symbol') {
         return dataTransferObj.symbol.toUpperCase();
       }
     }
@@ -111,7 +109,6 @@ function Watchlist() {
     setDragOverIndex(null);
     setDragStartClientY(null);
   };
-
   const bindings = {
     onModalConfirmClick: onModalConfirmClick,
     onModalBackdropClick: onModalBackdropClick,
@@ -128,11 +125,21 @@ function Watchlist() {
       onDragEnd={resetDragState}
       onDrop={onDrop}
     >
-      <div className="header" ref={headerRef}>
-        <span className="watchlist-name">{name}</span>
-        <img src={starIcon} className="icon-right" alt="Star Icon" />
+      <div className="header">
+        <span className="watchlist-name">
+          <input
+            id="watchlist-name"
+            type="text"
+            placeholder="My Watchlist"
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
+        </span>
+        <div className="icon star-tab" title="Star Tab">
+          &nbsp;
+        </div>
       </div>
-      <div className="scroll-wrapper">
+      <Components.ScrollWrapperY contentChanged={unwatchedSymbol}>
         {watchlist.length === 0 && (
           <div className="no-watchlist">
             <p>You have no watchlist stocks to display.</p>
@@ -151,10 +158,7 @@ function Watchlist() {
             }
           />
         ))}
-      </div>
-      <div className="footer">
-        <ClosedWindows />
-      </div>
+      </Components.ScrollWrapperY>
     </div>
   );
 }

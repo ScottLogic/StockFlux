@@ -23,12 +23,6 @@
   /* transitions  */
   --icon-transition-duration: 0.5s;
 
-  /* font-weight */
-  --font-thin: 100;
-  --font-light: 300;
-  --font-medium-light: 400;
-  --font-medium: 500;
-
   /* font-size */
   --font-normal: 12px;
   --font-large: 14px;
@@ -51,6 +45,6 @@
   --margin-medium: 10px;
   --margin-large: 15px;
 
-  --clr-divider-dark: var(--clr-dark-background);
+  --clr-divider-dark: var(--dark-background);
   --clr-divider-light: var(--clr-split);
 }

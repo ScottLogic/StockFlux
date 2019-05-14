@@ -1,7 +1,8 @@
 .containerList {
-    overflow-y: auto;
+    overflow-y: hidden;
     height: 220px;
     margin: var(--margin-small);
+    margin-right: 0;
 }
 
 .input {
