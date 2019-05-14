@@ -2,7 +2,6 @@ import React, { useState, useEffect, useReducer } from 'react';
 import { Quandl } from 'stockflux-core';
 import Components from 'stockflux-components';
 
-import showContextMenu from './context-menu';
 import SearchResult from './search-result';
 import styles from './App.module.css';
 
@@ -71,9 +70,6 @@ const App = () => {
                 try {
                     const quandlResults = await Quandl.search(debouncedQuery);
                     dispatch({ type: SUCCESS, results: quandlResults });
-
-                    showContextMenu({ x: 2000, y: 150 }, quandlResults);
-
                 } catch {
                     dispatch({ type: ERROR });
                 }
