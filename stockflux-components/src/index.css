@@ -1,5 +1,8 @@
 :root {
   /* colours */
+  --text-grey-darkest: #626569;
+  --text-grey-darker: #7B7E82;
+  --text-grey-dark: #95989C;
   --text-grey: #AEB1B5;
   --text-grey-light: #C8CBCF;
   --text-grey-lighter: #E1E4E8;
