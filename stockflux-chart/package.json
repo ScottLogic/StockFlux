@@ -4,18 +4,19 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^3.3.6",
-    "stockflux-bitflux": "file:../stockflux-bitflux",
     "classnames": "^2.2.6",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.3.1",
     "moment": "^2.24.0",
+    "openfin-fdc3": "^0.1.1",
     "openfin-layouts": "^1.0.0",
+    "openfin-react-hooks": "file:../openfin-react-hooks",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "^3.0.0",
+    "stockflux-bitflux": "file:../stockflux-bitflux",
     "stockflux-components": "file:../stockflux-components",
     "stockflux-core": "file:../stockflux-core",
-    "openfin-react-hooks": "file:../openfin-react-hooks",
     "throat": "^4.1.0"
   },
   "scripts": {

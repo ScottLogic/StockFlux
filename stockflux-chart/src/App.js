@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useEffect,useState} from 'react';
+import * as fdc3 from 'openfin-fdc3';
 import Chart from './components/Chart';
 import Components from 'stockflux-components';
 
-import '../node_modules/stockflux-bitflux/node_modules/d3fc/dist/d3fc.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.css';
+import 'stockflux-bitflux/node_modules/d3fc/dist/d3fc.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import './styles/BitFlux/primary.css';
 import './styles/BitFlux/variables.css';
 import './styles/BitFlux/base.css';
@@ -25,11 +26,26 @@ import './styles/app.css';
 import './styles/BitFlux/sprite.css';
 
 const App = () => {
+    const [symbol, setSymbol] = useState(null);
+    const [name, setName] = useState(null);
+
+    useEffect(() => {
+        fdc3.addIntentListener(fdc3.Intents.VIEW_CHART, context => {
+            if (context) {
+                setSymbol(context.name);
+                setName(context.id.default);
+            }
+        });
+    }, []);
+
     return ( <>
         <div className='main'>
             <div className='main-content'>
                 <Components.Titlebar />
-                <Chart />
+                <div id="showcase-title">
+                    <div className="code">{symbol}</div> <div className="name">{name ? name : 'Generated Data'}</div>
+                </div>
+                <Chart symbol={symbol}/>
             </div>
         </div>
         </>

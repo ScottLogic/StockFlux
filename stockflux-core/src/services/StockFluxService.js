@@ -17,7 +17,7 @@ export default function getStockFluxData() {
             params.push('/' + moment(end).format('YYYY-MM-DD'));
         }
         // change to AWS endpoint
-        var url = 'https://nuwvo3ugc3.execute-api.eu-west-2.amazonaws.com/dev/ohlc/' + product + '/2016-01-01';
+        var url = 'https://bkep4zhkka.execute-api.eu-west-2.amazonaws.com/dev/ohlc/' + product + '/2016-01-01';
         fetch(url, {
                 method: 'GET'
             }).then(function(response) {
