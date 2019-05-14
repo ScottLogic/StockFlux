@@ -457,8 +457,8 @@ export default function() {
         }
     };
 
-    app.changeScottStockProduct = function(productString) {
-        var product = dataModel.product(productString, productString, [model.periods.day1], model.sources.scottStock, '.3s');
+    app.changeStockFluxProduct = function(productString) {
+        var product = dataModel.product(productString, productString, [model.periods.day1], model.sources.stockFlux, '.3s');
         var existsInHeadMenuProducts = model.headMenu.products.some(function(p) { return p.id === product.id; });
         var existsInOverlayProducts = model.overlay.products.some(function(p) { return p.id === product.id; });
 

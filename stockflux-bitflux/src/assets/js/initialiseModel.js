@@ -11,8 +11,8 @@ import gdaxWebSocket from './data/gdax/streaming/webSocket';
 import gdaxStreamingErrorResponseFormatter from './data/gdax/streaming/errorResponseFormatter';
 import quandlAdaptor from './data/quandl/historic/feedAdaptor';
 import quandlHistoricErrorResponseFormatter from './data/quandl/historic/errorResponseFormatter';
-import scottStockAdaptor from './data/scottstock/historic/feedAdaptor';
-import scottStockErrorResponseFormatter from './data/scottstock/historic/errorResponseFormatter';
+import stockFluxAdaptor from './data/stockflux/historic/feedAdaptor';
+import stockFluxErrorResponseFormatter from './data/stockflux/historic/errorResponseFormatter';
 import skipWeekendsDiscontinuityProvider from './scale/discontinuity/skipWeekends';
 
 export default function() {
@@ -46,9 +46,9 @@ export default function() {
                 null,
                 null,
                 skipWeekendsDiscontinuityProvider()),
-            scottStock: model.data.source(
-                scottStockAdaptor(),
-                scottStockErrorResponseFormatter,
+            stockFlux: model.data.source(
+                stockFluxAdaptor(),
+                stockFluxErrorResponseFormatter,
                 null,
                 null,
                 fc.scale.discontinuity.identity()
@@ -60,7 +60,7 @@ export default function() {
         return {
             generated: model.data.product('Data Generator', 'Data Generator', [periods.day1], sources.generated, '.3s'),
             quandl: model.data.product('GOOG', 'GOOG', [periods.day1], sources.quandl, '.3s'),
-            scottStock: model.data.product('AAPL', 'AAPL', [periods.day1], sources.scottStock, '.3s')
+            stockFlux: model.data.product('AAPL', 'AAPL', [periods.day1], sources.stockFlux, '.3s')
         };
     }
 
@@ -192,8 +192,8 @@ export default function() {
         sources: sources,
         selectors: initialiseSelectors(),
         navReset: model.chart.navigationReset(),
-        headMenu: model.menu.head([ products.scottStock, products.generated, products.quandl], products.generated, periods.day1),
-        overlay: model.menu.overlay([ products.scottStock, products.generated, products.quandl], products.generated),
+        headMenu: model.menu.head([ products.stockFlux, products.generated, products.quandl], products.generated, periods.day1),
+        overlay: model.menu.overlay([ products.stockFlux, products.generated, products.quandl], products.generated),
         notificationMessages: model.notification.messages(),
         charts: initialiseCharts()
     };

@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import {InterApplicationBusHooks} from 'openfin-react-hooks';
 import bitflux from 'stockflux-bitflux/dist/bitflux';
 import './chart.css';
 
+const chart = bitflux.app();
+chart.periodsOfDataToFetch(1200);
+chart.proportionOfDataToDisplayByDefault(112/1200);
+
 export default function Chart() {
     const [symbol, setSymbol] = useState(null);
 
-    let showcaseContainer;
-    const chart = bitflux.app();
-    chart.periodsOfDataToFetch(1200);
-    chart.proportionOfDataToDisplayByDefault(112/1200);
+    const showcaseContainer = useRef(null);
     // calling run will use random generated data
     
     useEffect(() => {
-        chart.run(showcaseContainer);
+        chart.run(showcaseContainer.current);
         if (symbol) {
-            chart.changeScottStockProduct(symbol);
+            chart.changeStockFluxProduct(symbol);
         }
-        // eslint-disable-next-line
-    }, [symbol]);
+    }, [symbol, showcaseContainer]);
 
     InterApplicationBusHooks.useSubscription('*', 'Chart', 'stockFlux:symbol');
 
@@ -33,7 +33,7 @@ export default function Chart() {
     return (
         <>
             <button onClick={handleSymbolChange}>SYMBOL</button>
-            <div ref = {ref => { showcaseContainer = ref; }} id = "showcase-container" />
+            <div ref={showcaseContainer} id = "showcase-container" />
         </>
     );
 };

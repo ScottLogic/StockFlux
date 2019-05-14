@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 export default (topic, message) => {
-    const [success, setSuccess] = useState(false);
+    const [success, setSuccess] = useState(null);
     const [error, setError] = useState(null);
 
     const onSuccess = () => {

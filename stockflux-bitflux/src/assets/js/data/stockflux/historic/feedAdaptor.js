@@ -1,9 +1,9 @@
 import d3 from 'd3';
 import fcRebind from 'd3fc-rebind';
-import getScottStockData from '../../../../../../node_modules/stockflux-core/src/services/ScottStockService';
+import getStockFluxData from '../../../../../../node_modules/stockflux-core/src/services/StockFluxService';
 
 export default function() {
-    var historicFeed = getScottStockData(),
+    var historicFeed = getStockFluxData(),
         granularity,
         candles;
 
@@ -11,21 +11,21 @@ export default function() {
     allowedPeriods.set(60 * 60 * 24, 'daily');
     allowedPeriods.set(60 * 60 * 24 * 7, 'weekly');
 
-    var scottStockAdaptor = function scottStockAdaptor(cb) {
+    var stockFluxAdaptor = function stockFluxAdaptor(cb) {
         var startDate = new Date();
         historicFeed.start(startDate);
         historicFeed(cb);
     };
 
-    scottStockAdaptor.candles = function(x) {
+    stockFluxAdaptor.candles = function(x) {
         if (!arguments.length) {
             return candles;
         }
         candles = x;
-        return scottStockAdaptor;
+        return stockFluxAdaptor;
     };
 
-    scottStockAdaptor.granularity = function(x) {
+    stockFluxAdaptor.granularity = function(x) {
         if (!arguments.length) {
             return granularity;
         }
@@ -33,22 +33,22 @@ export default function() {
             throw new Error('Granularity of ' + x + ' is not supported.');
         }
         granularity = x;
-        return scottStockAdaptor;
+        return stockFluxAdaptor;
     };
 
-    scottStockAdaptor.apiKey = function() {
+    stockFluxAdaptor.apiKey = function() {
         throw new Error('Not implemented.');
     };
 
-    scottStockAdaptor.database = function() {
+    stockFluxAdaptor.database = function() {
         throw new Error('Not implemented.');
     };
 
-    scottStockAdaptor.columnNameMap = function() {
+    stockFluxAdaptor.columnNameMap = function() {
         throw new Error('Not implemented.');
     };
 
-    fcRebind.rebindAll(scottStockAdaptor, historicFeed);
+    fcRebind.rebindAll(stockFluxAdaptor, historicFeed);
 
-    return scottStockAdaptor;
+    return stockFluxAdaptor;
 }

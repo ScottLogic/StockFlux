@@ -2,12 +2,12 @@ import moment from 'moment';
 import fetch from 'isomorphic-fetch';
 
 // written in the same structure as d3fc-financial-feed
-export default function getScottStockData() {
+export default function getStockFluxData() {
     var product,
         start,
         end;
 
-    var scottStock = function(cb) {
+    var stockFlux = function(cb) {
         var params = [];
         // defaulting data to 2016-01-01 as currently UI has no influence over dates 
         if (start != null) {
@@ -44,27 +44,27 @@ export default function getScottStockData() {
             });
     };
 
-    scottStock.product = function(x) {
+    stockFlux.product = function(x) {
         if (!arguments.length) {
             return product;
         }
         product = x;
-        return scottStock;
+        return stockFlux;
     };
-    scottStock.start = function(x) {
+    stockFlux.start = function(x) {
         if (!arguments.length) {
             return start;
         }
         start = x;
-        return scottStock;
+        return stockFlux;
     };
-    scottStock.end = function(x) {
+    stockFlux.end = function(x) {
         if (!arguments.length) {
             return end;
         }
         end = x;
-        return scottStock;
+        return stockFlux;
     };
 
-    return scottStock;
+    return stockFlux;
 }

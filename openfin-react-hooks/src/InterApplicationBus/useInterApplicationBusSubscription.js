@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 export default (senderUuid, name = null, topic) => {
     const [data, setData] = useState(null);
-    const [isSubscribed, setIsSubscribed] = useState(false);
+    const [isSubscribed, setIsSubscribed] = useState(null);
     const [subscribeError, setSubscribeError] = useState(null);
 
     const onReceiveMessage = (...args) => {
