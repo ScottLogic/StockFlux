@@ -1,25 +1,25 @@
 .containerList {
-    overflow-y: hidden;
-    height: 220px;
-    margin: var(--margin-small);
-    margin-right: 0;
+    overflow-y: auto;
+    max-height: 330px;
+    background-color: #F7F7F7;
 }
 
 .input {
     height: 35px;
     width: 100%;
     outline: none;
-    background-color: transparent;
+    background-color: white;
     border: none;
-    border-bottom: 1px solid var(--clr-divider-light);
+    border-bottom: 1px solid var(--clr-split-light);
     padding-left: var(--padding-small);
-    font-size: var(--font-normal);
+    font-size: var(--font-large);
     font-weight: var(--font-weight-bold);
-    color: var(--text-grey);
+    color: var(--text-grey-darker);
 }
 
 .message {
     text-align: center;
-    color: var(--text-grey);
+    color: var(--text-grey-darker);
     font-weight: var(--font-weight-bold);
+    padding: var(--padding-medium) 0;
 }

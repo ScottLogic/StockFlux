@@ -10,10 +10,14 @@
         "url": "http://localhost:8050/index.html",
         "applicationIcon": "http://localhost:8050/favicon.ico",
         "autoShow": true,
-        "defaultWidth": 325,
-        "defaultHeight": 300,
+        "defaultHeight": 70,
+        "maxHeight": 400,
+        "defaultWidth": 400,
+        "minWidth": 400,
+        "maxWidth": 400,
         "resizable": false,
         "frame": false,
+        "alwaysOnTop": true,
         "contextMenu": true,
         "cornerRounding": {
             "height": 4,
@@ -25,7 +29,9 @@
             "name": "layouts",
             "config": {
                 "features": {
-                    "tab": true
+                    "tab": false,
+                    "dock": true,
+                    "snap": true
                 }
             }
         }
