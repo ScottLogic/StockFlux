@@ -68,3 +68,30 @@ export default function getStockFluxData() {
 
     return stockFlux;
 }
+
+export function stockFluxSearch(item) {
+    var url = 'https://bkep4zhkka.execute-api.eu-west-2.amazonaws.com/dev/securities/search/' + item;
+
+    return fetch(url, {
+        method: 'GET'
+    }).then(function(response) {
+        return response.json();
+      })
+      .then(function(stockData) {
+            if (stockData.success) {
+                return stockData.data.map(item => {
+                    return {
+                        code: item.symbol,
+                        name: item.name
+                    }
+                })
+            }
+            else if (!stockData.success) {
+              return [];
+          }
+        }
+    ).catch(function(error) {
+        console.log(error);
+        return [];
+    });
+}

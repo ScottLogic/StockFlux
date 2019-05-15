@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect, useReducer } from 'react';
-import { Quandl } from 'stockflux-core';
+import { StockFlux } from 'stockflux-core';
 import Components from 'stockflux-components';
 
 import SearchResult from './search-result';
@@ -14,6 +14,8 @@ const MIN_HEIGHT = 400;
 const TITLEBAR_HEIGHT = 35;
 const SEARCH_INPUT_HEIGHT = 35;
 const SEARCH_TIMEOUT_INTERVAL = 250;
+
+let latestRequest = null;
 
 const initialSearchState = {
     isSearching: false,
@@ -67,13 +69,16 @@ const App = () => {
     const listContainer = useRef(null);
 
     useEffect(() => {
-        const quandlSearch = async () => {
+        const stockFluxSearch = async () => {
             if (debouncedQuery) {
                 dispatch({ type: SEARCHING });
-
                 try {
-                    const quandlResults = await Quandl.search(debouncedQuery);
-                    dispatch({ type: SUCCESS, results: quandlResults });
+                    const currentRequest = StockFlux.stockFluxSearch(debouncedQuery).then((stockFluxResults) => {
+                        if (latestRequest === currentRequest) {
+                            dispatch({ type: SUCCESS, results: stockFluxResults });
+                        }
+                    });
+                    latestRequest = currentRequest;
                 } catch {
                     dispatch({ type: ERROR });
                 }
@@ -81,7 +86,7 @@ const App = () => {
                 dispatch({ type: INITIALISE });
             }
         };
-        quandlSearch();
+        stockFluxSearch();
     }, [debouncedQuery]);
 
     useEffect(() => {
