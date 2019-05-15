@@ -6,7 +6,7 @@
   },
   "startup_app": {
     "name": "stockflux-watchlist",
-    "uuid": "33aa9062-9eb0-4875-b819-c90f38ef03eb",
+    "uuid": "33aa9062-9eb0-4875-b819-c90f38ef0999",
     "url": "http://localhost:8052/index.html",
     "applicationIcon": "http://localhost:8052/favicon.ico",
     "autoShow": true,

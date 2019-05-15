@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import WatchlistCard from '../WatchlistCard/WatchlistCard';
 import Components from 'stockflux-components';
 import * as fdc3 from 'openfin-fdc3';
 import './Watchlist.css';
+
+let hasAddedListener = false;
 
 function Watchlist() {
   const [name, setName] = useState('');
@@ -10,13 +12,27 @@ function Watchlist() {
   const [dragOverIndex, setDragOverIndex] = useState(null);
   const [dragStartClientY, setDragStartClientY] = useState(null);
   const [cardHeight, setCardHeight] = useState(null);
-  const [watchlist, setWatchlist] = useState([
-    'AAPL',
-    'AAP',
-    'CC',
-    'MS',
-    'JPS'
-  ]);
+  const [watchlist, setWatchlist] = useState([]);
+
+  useEffect(() => {
+    const initialWatchlist = ['AAPL', 'AAP', 'CC', 'MS', 'JPS'];
+    const localStorageWatchlist = JSON.parse(localStorage.getItem('watchlist'));
+
+    /*
+     * Spreading the watchlist object below because it is possible
+     * to get the intent before watchlist is initialised
+     */
+    persistWatchlist([
+      ...(localStorageWatchlist || initialWatchlist),
+      ...watchlist
+    ]);
+  }, [watchlist]);
+
+  const persistWatchlist = tempWatchlist => {
+    const watchlistToPersist = [...new Set(tempWatchlist)];
+    setWatchlist(watchlistToPersist);
+    localStorage.setItem('watchlist', JSON.stringify(watchlistToPersist));
+  };
 
   const onIconClick = symbol => {
     return e => {
@@ -28,8 +44,11 @@ function Watchlist() {
   const onModalConfirmClick = symbol => {
     setUnwatchedSymbol(null);
     const symbolIndex = getSymbolIndex(symbol);
-    watchlist.splice(symbolIndex, 1);
-    setWatchlist(watchlist);
+    let tempwatchlist = [
+      ...watchlist.slice(0, symbolIndex),
+      ...watchlist.slice(symbolIndex + 1)
+    ];
+    persistWatchlist(tempwatchlist);
   };
 
   const onModalBackdropClick = e => {
@@ -95,9 +114,9 @@ function Watchlist() {
         0,
         symbol
       );
-      setWatchlist(tempWatchlist);
+      persistWatchlist(tempWatchlist);
     } else if (!watchlist.includes(symbol)) {
-      setWatchlist(watchlist.push(symbol));
+      persistWatchlist(watchlist.push(symbol));
     }
   };
 
@@ -115,6 +134,7 @@ function Watchlist() {
     setDragOverIndex(null);
     setDragStartClientY(null);
   };
+
   const bindings = {
     onModalConfirmClick: onModalConfirmClick,
     onModalBackdropClick: onModalBackdropClick,
@@ -122,6 +142,16 @@ function Watchlist() {
     resetDragState: resetDragState,
     onDropOutside: onDropOutside
   };
+
+  if (!hasAddedListener) {
+    fdc3.addIntentListener('WatchlistAdd', context => {
+      if (context) {
+        const newSymbol = context.id.default;
+        persistWatchlist([newSymbol, ...watchlist]);
+      }
+    });
+    hasAddedListener = true;
+  }
 
   return (
     <div
@@ -145,25 +175,26 @@ function Watchlist() {
           &nbsp;
         </div>
       </div>
-      <Components.ScrollWrapperY contentChanged={unwatchedSymbol}>
-        {watchlist.length === 0 && (
+      <Components.ScrollWrapperY>
+        {watchlist.length === 0 ? (
           <div className="no-watchlist">
-            <p>You have no watchlist stocks to display.</p>
-            <p>Use the search tab to add new stocks to the list.</p>
+            <p>You have no stocks to display.</p>
+            <p>Use stockflux search app to add new stocks to the list.</p>
           </div>
+        ) : (
+          watchlist.map((symbol, i) => (
+            <WatchlistCard
+              key={symbol}
+              symbol={symbol}
+              bindings={bindings}
+              isUnwatching={unwatchedSymbol === symbol}
+              dragOver={dragOverIndex === i}
+              dragOverBottom={
+                dragOverIndex === watchlist.length && i === watchlist.length - 1
+              }
+            />
+          ))
         )}
-        {watchlist.map((symbol, i) => (
-          <WatchlistCard
-            key={symbol}
-            symbol={symbol}
-            bindings={bindings}
-            isUnwatching={unwatchedSymbol === symbol}
-            dragOver={dragOverIndex === i}
-            dragOverBottom={
-              dragOverIndex === watchlist.length && i === watchlist.length - 1
-            }
-          />
-        ))}
       </Components.ScrollWrapperY>
     </div>
   );

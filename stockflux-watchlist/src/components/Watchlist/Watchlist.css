@@ -10,7 +10,6 @@ body {
   user-select: none;
   margin: 0;
   border: 1px solid var(--dark-background);
-  border-bottom: none;
 }
 
 .watchlist-name {
@@ -42,7 +41,8 @@ input#watchlist-name:focus {
 }
 
 .watchlist {
-  height: calc(100vh - var(--bottom-tab-height));
+  --cumulative-border-width: 3px;
+  height: calc(100vh - var(--bottom-tab-height) + var(--cumulative-border-width));
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -68,9 +68,10 @@ input#watchlist-name:focus {
 }
 
 .no-watchlist {
-  padding: 12px 15px 12px 20px;
+  --padding-almost-large: 12px;
+  padding: var(--padding-almost-large) var(--padding-large) var(--padding-almost-large) var(--padding-xlarge);
   color: var(--text-grey);
-  font-size: 10.5pt;
+  font-size: var(--font-medium);
   font-weight: var(--font-weight-normal);
 }
 
