@@ -4,6 +4,8 @@ import Components from 'stockflux-components';
 import * as fdc3 from 'openfin-fdc3';
 import './Watchlist.css';
 
+let hasAddedListener = false;
+
 function Watchlist() {
   const [name, setName] = useState('');
   const [unwatchedSymbol, setUnwatchedSymbol] = useState(null);
@@ -11,22 +13,20 @@ function Watchlist() {
   const [dragStartClientY, setDragStartClientY] = useState(null);
   const [cardHeight, setCardHeight] = useState(null);
   const [watchlist, setWatchlist] = useState([]);
-  const [contentChanged, setContentChanged] = useState(0);
 
   useEffect(() => {
     const initialWatchlist = ['AAPL', 'AAP', 'CC', 'MS', 'JPS'];
     const localStorageWatchlist = JSON.parse(localStorage.getItem('watchlist'));
-    const tempWatchlist =
-      !localStorageWatchlist || localStorageWatchlist.length === 0
-        ? initialWatchlist
-        : localStorageWatchlist;
+
     /*
      * Spreading the watchlist object below because it is possible
      * to get the intent before watchlist is initialised
      */
-    persistWatchlist([...tempWatchlist, ...watchlist]);
-    setContentChanged(contentChanged + 1);
-  }, [contentChanged, watchlist]);
+    persistWatchlist([
+      ...(localStorageWatchlist || initialWatchlist),
+      ...watchlist
+    ]);
+  }, [watchlist]);
 
   const persistWatchlist = tempWatchlist => {
     const watchlistToPersist = [...new Set(tempWatchlist)];
@@ -141,13 +141,14 @@ function Watchlist() {
     onDropOutside: onDropOutside
   };
 
-  if (!contentChanged) {
+  if (!hasAddedListener) {
     fdc3.addIntentListener('WatchlistAdd', context => {
       if (context) {
         const newSymbol = context.id.default;
         persistWatchlist([newSymbol, ...watchlist]);
       }
     });
+    hasAddedListener = true;
   }
 
   return (
@@ -172,9 +173,7 @@ function Watchlist() {
           &nbsp;
         </div>
       </div>
-      <Components.ScrollWrapperY
-        contentChanged={unwatchedSymbol || contentChanged}
-      >
+      <Components.ScrollWrapperY>
         {watchlist.length === 0 ? (
           <div className="no-watchlist">
             <p>You have no stocks to display.</p>

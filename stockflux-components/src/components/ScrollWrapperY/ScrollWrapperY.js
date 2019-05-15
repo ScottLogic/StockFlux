@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import './ScrollWrapperY.css';
 
-const ScrollWrapperY = props => {
+const ScrollWrapperY = ({ children }) => {
   const scrollWrapperRef = useRef(null);
 
   useEffect(() => {
@@ -12,10 +12,6 @@ const ScrollWrapperY = props => {
     };
   }, []);
 
-  useEffect(() => {
-    checkIfOverflowing();
-  }, [props.contentChanged]);
-
   const checkIfOverflowing = () => {
     const domElement = scrollWrapperRef.current;
     if (domElement)
@@ -25,9 +21,11 @@ const ScrollWrapperY = props => {
       );
   };
 
+  useEffect(checkIfOverflowing);
+
   return (
     <div className="scrollWrapperY" ref={scrollWrapperRef}>
-      {props.children}
+      {children}
     </div>
   );
 };

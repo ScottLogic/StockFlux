@@ -20,7 +20,7 @@
     "stockflux-core": "file:../stockflux-core"
   },
   "scripts": {
-    "start": "cross-env PORT=8052 react-scripts start",
+    "start": "cross-env BROWSER=none PORT=8052 react-scripts start",
     "launch": "openfin --launch --config ./public/app.dev.json",
     "build": "react-scripts build",
     "test": "react-scripts test",
