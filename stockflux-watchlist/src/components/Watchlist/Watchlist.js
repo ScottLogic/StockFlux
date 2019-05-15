@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import WatchlistCard from '../WatchlistCard/WatchlistCard';
 import Components from 'stockflux-components';
-
+import * as fdc3 from 'openfin-fdc3';
 import './Watchlist.css';
 
 function Watchlist() {
@@ -101,8 +101,14 @@ function Watchlist() {
     }
   };
 
-  const onDropOutside = (symbol, stockName, position) => {
-    // TODO: Spawn chart children windows
+  const onDropOutside = async function(symbol, stockName) {
+    await fdc3.raiseIntent(fdc3.Intents.VIEW_CHART, {
+      type: 'security',
+      name: symbol,
+      id: {
+        default: stockName
+      }
+    });
   };
 
   const resetDragState = () => {

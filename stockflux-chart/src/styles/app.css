@@ -73,3 +73,7 @@ body {
     position: relative;
     -webkit-user-drag: none;
 }
+
+.close, .close:hover {
+    opacity: 1;
+}

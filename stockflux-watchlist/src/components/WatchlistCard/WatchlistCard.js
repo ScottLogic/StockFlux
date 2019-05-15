@@ -80,14 +80,7 @@ function WatchlistCard(props) {
 
   const onDragEnd = e => {
     if (e.dataTransfer.dropEffect === 'none') {
-      const { screenX, screenY } = e;
-      const { clientX, offsetY } = dragging;
-      props.bindings.onDropOutside(props.symbol, stockData.name, {
-        screenX,
-        screenY,
-        clientX,
-        offsetY
-      });
+      props.bindings.onDropOutside(props.symbol, stockData.name);
     }
     setDragging({ isDragging: false });
   };
