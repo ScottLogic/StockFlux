@@ -1,7 +1,6 @@
 import React from 'react';
 import * as fdc3 from 'openfin-fdc3';
 import * as PropTypes from 'prop-types';
-import * as fdc3 from 'openfin-fdc3';
 
 import styles from './SearchResult.module.css';
 
