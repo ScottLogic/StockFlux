@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useRef, useState, useEffect, useReducer } from 'react';
 import { Quandl } from 'stockflux-core';
 import Components from 'stockflux-components';
 
@@ -10,6 +10,9 @@ const SUCCESS = 'success';
 const ERROR = 'error';
 const INITIALISE = 'initialise';
 
+const MIN_HEIGHT = 400;
+const TITLEBAR_HEIGHT = 35;
+const SEARCH_INPUT_HEIGHT = 35;
 const SEARCH_TIMEOUT_INTERVAL = 250;
 
 const initialSearchState = {
@@ -61,6 +64,7 @@ const App = () => {
     const [query, setQuery] = useState('');
     const [debouncedQuery, setDebouncedQuery] = useState(null);
     const { isSearching, results } = searchState;
+    const listContainer = useRef(null);
 
     useEffect(() => {
         const quandlSearch = async () => {
@@ -85,25 +89,31 @@ const App = () => {
         return () => clearTimeout(handler);
     }, [query]);
 
+    useEffect(() => {
+        (async () => {
+            const win = await window.fin.Window.getCurrent();
+            const bounds = await win.getBounds();
+            win.resizeTo(bounds.width, Math.min(listContainer.current.scrollHeight + TITLEBAR_HEIGHT + SEARCH_INPUT_HEIGHT, MIN_HEIGHT));
+        })();
+    });
+
     return (
         <>
             <Components.Titlebar />
             <input type="text" className={styles.input} onChange={event => setQuery(event.target.value)} placeholder="Enter stock name or symbol" />
-            <div className={styles.containerList}>
-                <Components.ScrollWrapperY contentChanged={results}>
-                    {!isSearching && results && results.length ?
-                        results.map(result => (
-                            <SearchResult
-                                key={result.code}
-                                code={result.code}
-                                name={result.name}
-                            />
-                            )) : 
-                        <div className={styles.message}>
-                            {getMessage(searchState, results)}
-                        </div>
-                    }
-                </Components.ScrollWrapperY>
+            <div className={styles.containerList} ref={listContainer}>
+                {!isSearching && results && results.length ?
+                    results.map(result => (
+                        <SearchResult
+                            key={result.code}
+                            code={result.code}
+                            name={result.name}
+                        />
+                    )) :
+                    <div className={styles.message}>
+                        {getMessage(searchState, results)}
+                    </div>
+                }
             </div>
         </>
     );
