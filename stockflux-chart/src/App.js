@@ -1,4 +1,4 @@
-import React, {useEffect,useState} from 'react';
+import React, {useState} from 'react';
 import * as fdc3 from 'openfin-fdc3';
 import Chart from './components/Chart';
 import Components from 'stockflux-components';
