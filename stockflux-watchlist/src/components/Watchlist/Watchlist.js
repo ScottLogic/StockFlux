@@ -44,8 +44,9 @@ function Watchlist() {
   const onModalConfirmClick = symbol => {
     setUnwatchedSymbol(null);
     const symbolIndex = getSymbolIndex(symbol);
-    watchlist.splice(symbolIndex, 1);
-    persistWatchlist(watchlist);
+    let tempwatchlist = watchlist;
+    tempwatchlist.splice(symbolIndex, 1);
+    persistWatchlist(tempwatchlist);
   };
 
   const onModalBackdropClick = e => {
