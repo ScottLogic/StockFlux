@@ -79,7 +79,6 @@ export function stockFluxSearch(item) {
       })
       .then(function(stockData) {
             if (stockData.success) {
-                console.log(stockData);
                 return stockData.data.map(item => {
                     return {
                         code: item.symbol,
