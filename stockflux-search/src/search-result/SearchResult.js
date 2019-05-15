@@ -1,13 +1,9 @@
 import React from 'react';
 import * as fdc3 from 'openfin-fdc3';
 import * as PropTypes from 'prop-types';
+import { Utils } from 'stockflux-core';
 
 import styles from './SearchResult.module.css';
-
-const format = name => {
-    const openBracketIndex = name.indexOf('(');
-    return openBracketIndex === -1 ? name : name.slice(0, openBracketIndex - 1);
-};
 
 const handleWatchlistAddClick = (code, name) => {
     fdc3.raiseIntent('WatchlistAdd', {
@@ -37,7 +33,7 @@ const handleChartAddClick = async (code, name) => {
 
 const SearchResult = ({ code, name }) => (
     <div className={styles.searchResult}>
-        <div className={styles.name}>{format(name)}</div>
+        <div className={styles.name}>{Utils.truncate(name)}</div>
         <div className={styles.subtitle}>{code}</div>
         <div className={styles.containerActions}>
             <button type="button" className={styles.buttonAction} onClick={() => handleWatchlistAddClick(code, name)}>Add to Watchlist</button>
