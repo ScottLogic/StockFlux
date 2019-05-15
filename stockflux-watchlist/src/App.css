@@ -20,13 +20,6 @@
   /*-----------------------------------*/
   --minichart-width: 145px;
   --minichart-height: 40px;
-
-  --clr-chart-teal: #37d8bc;
-  --clr-chart-fade: #307a71;
-  --clr-chart-stroke: var(--clr-chart-teal);
-
-  /* Theme Variables ------------------*/
-  /*-----------------------------------*/
   --chart-stroke: var(--chart-teal);
 
   /* Other ----------------------------*/
