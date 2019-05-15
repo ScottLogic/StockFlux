@@ -24,12 +24,14 @@
   --titlebar-height: 35px;
   --bottom-tab-height: 40px;
   --scrollbar-width: 12px;
+  --icons-size: 30px;
 
   /* transitions  */
   --icon-transition-duration: 0.5s;
 
   /* font-size */
   --font-normal: 12px;
+  --font-medium: 13px;
   --font-large: 14px;
   --font-xlarge: 16px;
   --font-xxlarge: 18px;
@@ -44,6 +46,7 @@
   --padding-small: 5px;
   --padding-medium: 10px;
   --padding-large: 15px;
+  --padding-xlarge: 20px;
 
   /* margin */
   --margin-small: 5px;

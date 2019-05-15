@@ -1,6 +1,6 @@
 .button-icon {
     display: inline-block;
-    width: 30px;
+    width: var(--icons-size);
     height: 100%;
     background-position: 50% 80%;
     background-repeat: no-repeat;
