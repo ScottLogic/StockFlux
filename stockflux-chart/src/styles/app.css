@@ -37,9 +37,9 @@ body {
     cursor: pointer;
 }
 
-/* .disable-transitions {
+.disable-transitions {
     transition: none !important;
-} */
+}
 
 .disable-pointer {
     pointer-events: none;
