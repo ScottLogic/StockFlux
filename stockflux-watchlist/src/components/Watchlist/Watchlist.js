@@ -44,8 +44,10 @@ function Watchlist() {
   const onModalConfirmClick = symbol => {
     setUnwatchedSymbol(null);
     const symbolIndex = getSymbolIndex(symbol);
-    let tempwatchlist = watchlist;
-    tempwatchlist.splice(symbolIndex, 1);
+    let tempwatchlist = [
+      ...watchlist.slice(0, symbolIndex),
+      ...watchlist.slice(symbolIndex + 1)
+    ];
     persistWatchlist(tempwatchlist);
   };
 
