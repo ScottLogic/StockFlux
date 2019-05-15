@@ -11,30 +11,25 @@ function Watchlist() {
   const [dragStartClientY, setDragStartClientY] = useState(null);
   const [cardHeight, setCardHeight] = useState(null);
   const [watchlist, setWatchlist] = useState([]);
-  const [isInitialised, setIsInitialised] = useState(false);
+  const [contentChanged, setContentChanged] = useState(0);
 
   useEffect(() => {
-    setIsInitialised(false);
     const initialWatchlist = ['AAPL', 'AAP', 'CC', 'MS', 'JPS'];
     const localStorageWatchlist = JSON.parse(localStorage.getItem('watchlist'));
     const tempWatchlist =
       !localStorageWatchlist || localStorageWatchlist.length === 0
         ? initialWatchlist
         : localStorageWatchlist;
-    persistWatchlist(tempWatchlist);
-    setIsInitialised(true);
-  }, []);
+    /*
+     * Spreading the watchlist object below because it is possible
+     * to get the intent before watchlist is initialised
+     */
+    persistWatchlist([...tempWatchlist, ...watchlist]);
+    setContentChanged(contentChanged + 1);
+  }, [contentChanged, watchlist]);
 
-  useEffect(() => {
-    fdc3.addIntentListener('WatchlistAdd', context => {
-      if (context && context.name) {
-        const newSymbol = context.name;
-        persistWatchlist([newSymbol, ...watchlist]);
-      }
-    });
-  }, [watchlist]);
-
-  const persistWatchlist = watchlistToPersist => {
+  const persistWatchlist = tempWatchlist => {
+    const watchlistToPersist = [...new Set(tempWatchlist)];
     setWatchlist(watchlistToPersist);
     localStorage.setItem('watchlist', JSON.stringify(watchlistToPersist));
   };
@@ -136,6 +131,7 @@ function Watchlist() {
     setDragOverIndex(null);
     setDragStartClientY(null);
   };
+
   const bindings = {
     onModalConfirmClick: onModalConfirmClick,
     onModalBackdropClick: onModalBackdropClick,
@@ -143,6 +139,15 @@ function Watchlist() {
     resetDragState: resetDragState,
     onDropOutside: onDropOutside
   };
+
+  if (!contentChanged) {
+    fdc3.addIntentListener('WatchlistAdd', context => {
+      if (context) {
+        const newSymbol = context.id.default;
+        persistWatchlist([newSymbol, ...watchlist]);
+      }
+    });
+  }
 
   return (
     <div
@@ -167,7 +172,7 @@ function Watchlist() {
         </div>
       </div>
       <Components.ScrollWrapperY
-        contentChanged={unwatchedSymbol || isInitialised}
+        contentChanged={unwatchedSymbol || contentChanged}
       >
         {watchlist.length === 0 ? (
           <div className="no-watchlist">
