@@ -25,22 +25,24 @@ const WatchlistCard = props => {
 
   useEffect(() => {
     StockFlux.getMiniChartData(props.symbol).then(response => {
-      const data = response.data[0];
-      const stockName = response.name;
-      let tempStockData = { name: stockName };
+      if (response.data) {
+        const data = response.data[0];
+        const stockName = response.name;
+        let tempStockData = { name: stockName };
 
-      if (data) {
-        tempStockData = {
-          name: getName(stockName),
-          price: getPrice(data.close),
-          delta: getDelta(data.close - data.open),
-          percentage: getPercentage(
-            ((data.close - data.open) / data.open) * 100
-          )
-        };
+        if (data) {
+          tempStockData = {
+            name: getName(stockName),
+            price: getPrice(data.close),
+            delta: getDelta(data.close - data.open),
+            percentage: getPercentage(
+              ((data.close - data.open) / data.open) * 100
+            )
+          };
+        }
+        setStockData(tempStockData);
+        setChartData(response.data);
       }
-      setStockData(tempStockData);
-      setChartData(response.data);
     });
   }, [props.symbol]);
 
@@ -146,7 +148,7 @@ const WatchlistCard = props => {
   ) : (
     <></>
   );
-}
+};
 
 WatchlistCard.propTypes = {
   symbol: PropTypes.string.isRequired,
