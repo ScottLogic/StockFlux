@@ -16,7 +16,7 @@ let latestListener;
 const getDistinctElementArray = array => [...new Set(array)];
 
 const Watchlist = () => {
-  const [name, setName] = useState('');
+  const [name, setName] = Components.useLocalStorage('name', '');
   const [dragOverIndex, setDragOverIndex] = useState(null);
   const [unwatchedSymbol, setUnwatchedSymbol] = useState(null);
   const [watchlist, setWatchlist] = Components.useLocalStorage('watchlist', [
