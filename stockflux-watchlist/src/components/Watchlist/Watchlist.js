@@ -105,7 +105,7 @@ const Watchlist = () => {
         {watchlist.length === 0 ? (
           <div className="no-watchlist">
             <p>You have no stocks to display.</p>
-            <p>Use stockflux search app to add new stocks to the list.</p>
+            <p>Use StockFlux Search app to add new stocks to the list.</p>
           </div>
         ) : (
           watchlist.map((symbol, i) => (
