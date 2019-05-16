@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import WatchlistCard from '../WatchlistCard/WatchlistCard';
 import Components from 'stockflux-components';
 import * as fdc3 from 'openfin-fdc3';
-
 import {
-  dragOverIndex,
   onDragStart,
   onDragOver,
   resetDragState,
@@ -13,32 +11,21 @@ import {
 } from '../WatchlistCard/WatchlistCard.Dragging';
 import './Watchlist.css';
 
-let hasAddedListener = false;
+let latestListener;
 
-function Watchlist() {
+const getDistinctElementArray = array => [...new Set(array)];
+
+const Watchlist = () => {
   const [name, setName] = useState('');
+  const [dragOverIndex, setDragOverIndex] = useState(null);
   const [unwatchedSymbol, setUnwatchedSymbol] = useState(null);
-  const [watchlist, setWatchlist] = useState([]);
-
-  useEffect(() => {
-    const initialWatchlist = ['AAPL', 'AAP', 'CC', 'MS', 'JPS'];
-    const localStorageWatchlist = JSON.parse(localStorage.getItem('watchlist'));
-
-    /*
-     * Spreading the watchlist object below because it is possible
-     * to get the intent before watchlist is initialised
-     */
-    persistWatchlist([
-      ...(localStorageWatchlist || initialWatchlist),
-      ...watchlist
-    ]);
-  }, [watchlist]);
-
-  const persistWatchlist = tempWatchlist => {
-    const watchlistToPersist = [...new Set(tempWatchlist)];
-    setWatchlist(watchlistToPersist);
-    localStorage.setItem('watchlist', JSON.stringify(watchlistToPersist));
-  };
+  const [watchlist, setWatchlist] = Components.useLocalStorage('watchlist', [
+    'AAPL',
+    'AAP',
+    'CC',
+    'MS',
+    'JPS'
+  ]);
 
   const onIconClick = symbol => {
     return e => {
@@ -54,7 +41,7 @@ function Watchlist() {
       ...watchlist.slice(0, symbolIndex),
       ...watchlist.slice(symbolIndex + 1)
     ];
-    persistWatchlist(tempwatchlist);
+    setWatchlist(tempwatchlist);
   };
 
   const onModalBackdropClick = e => {
@@ -72,23 +59,32 @@ function Watchlist() {
     onDropOutside: onDropOutside
   };
 
-  if (!hasAddedListener) {
-    fdc3.addIntentListener('WatchlistAdd', context => {
-      if (context) {
-        const newSymbol = context.id.default;
-        persistWatchlist([newSymbol, ...watchlist]);
-      }
-    });
-    hasAddedListener = true;
-  }
+  /*
+   * This is a temorary solution for
+   * 1) not being able to unsubscribe intentListeners
+   * 2) not being able to addIntentListener in useEffect due to the race condition
+   * 3) being forced to create a new intentListener every render (memory leak)
+   * This works due to us manually using only the latest intentListener
+   */
+  const currentListener = fdc3.addIntentListener('WatchlistAdd', context => {
+    if (context && currentListener === latestListener) {
+      const newSymbol = context.id.default;
+      setWatchlist(getDistinctElementArray([newSymbol, ...watchlist]));
+    }
+  });
+  latestListener = currentListener;
 
   return (
     <div
       className="watchlist"
-      onDragStart={e => onDragStart(e, watchlist)}
-      onDragOver={e => onDragOver(e, watchlist)}
-      onDragEnd={resetDragState}
-      onDrop={e => onDrop(e, watchlist, getSymbolIndex, persistWatchlist)}
+      onDragStart={e => onDragStart(e, watchlist, setDragOverIndex)}
+      onDragOver={e =>
+        onDragOver(e, watchlist, dragOverIndex, setDragOverIndex)
+      }
+      onDragEnd={() => resetDragState(setDragOverIndex)}
+      onDrop={e =>
+        onDrop(e, watchlist, getSymbolIndex, setWatchlist, dragOverIndex)
+      }
     >
       <div className="header">
         <span className="watchlist-name">
@@ -127,6 +123,6 @@ function Watchlist() {
       </Components.ScrollWrapperY>
     </div>
   );
-}
+};
 
 export default Watchlist;

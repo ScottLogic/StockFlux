@@ -16,7 +16,7 @@ import {
 } from 'd3fc';
 import './Minichart.css';
 
-function Minichart(props) {
+const Minichart = props => {
   const [shouldShowChart, setShouldShowChart] = useState(false);
   useEffect(() => {
     setShouldShowChart(props.chartData.length >= 2);
