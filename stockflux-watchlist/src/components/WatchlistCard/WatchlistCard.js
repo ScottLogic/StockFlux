@@ -8,7 +8,7 @@ import { StockFlux } from 'stockflux-core';
 import currentWindowService from '../../services/currentWindowService';
 import './WatchlistCard.css';
 
-function WatchlistCard(props) {
+const WatchlistCard = props => {
   const [dragging, setDragging] = useState({
     isDragging: false,
     clientX: null,

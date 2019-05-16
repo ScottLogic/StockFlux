@@ -1,6 +1,5 @@
 import * as fdc3 from 'openfin-fdc3';
 
-export let dragOverIndex = null;
 let dragStartClientY = null;
 let cardHeight = null;
 
@@ -14,15 +13,15 @@ const getSymbolFromDataTransfer = types => {
   return undefined;
 };
 
-export const onDragStart = (e, watchlist) => {
-  dragOverIndex = watchlist.indexOf(
-    getSymbolFromDataTransfer(e.dataTransfer.types)
+export const onDragStart = (e, watchlist, setDragOverIndex) => {
+  setDragOverIndex(
+    watchlist.indexOf(getSymbolFromDataTransfer(e.dataTransfer.types))
   );
   cardHeight = e.target.getBoundingClientRect().height;
   dragStartClientY = e.nativeEvent.clientY;
 };
 
-export const onDragOver = (e, watchlist) => {
+export const onDragOver = (e, watchlist, dragOverIndex, setDragOverIndex) => {
   if (dragStartClientY) {
     const dragOverIndexOffset = Math.ceil(
       ((e.nativeEvent.clientY - dragStartClientY) / (cardHeight / 2) + 1) / 2
@@ -36,16 +35,22 @@ export const onDragOver = (e, watchlist) => {
       nextDragOverIndex -= 1;
     }
     if (watchlist[nextDragOverIndex] && nextDragOverIndex !== dragOverIndex) {
-      dragOverIndex = nextDragOverIndex;
+      setDragOverIndex(nextDragOverIndex);
     } else if (nextDragOverIndex >= watchlist.length) {
-      dragOverIndex = watchlist.length;
+      setDragOverIndex(watchlist.length);
     }
   }
 
   e.preventDefault();
 };
 
-export const onDrop = (e, watchlist, getSymbolIndex, persistWatchlist) => {
+export const onDrop = (
+  e,
+  watchlist,
+  getSymbolIndex,
+  setWatchlist,
+  dragOverIndex
+) => {
   const symbol = getSymbolFromDataTransfer(e.dataTransfer.types);
 
   if (dragStartClientY) {
@@ -60,9 +65,9 @@ export const onDrop = (e, watchlist, getSymbolIndex, persistWatchlist) => {
       0,
       symbol
     );
-    persistWatchlist(tempWatchlist);
+    setWatchlist(tempWatchlist);
   } else if (!watchlist.includes(symbol)) {
-    persistWatchlist(watchlist.push(symbol));
+    setWatchlist(watchlist.push(symbol));
   }
 };
 
@@ -76,7 +81,7 @@ export const onDropOutside = async function(symbol, stockName) {
   });
 };
 
-export const resetDragState = () => {
-  dragOverIndex = null;
+export const resetDragState = setDragOverIndex => {
+  setDragOverIndex(null);
   dragStartClientY = null;
 };

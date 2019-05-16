@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import { modalDimensions } from './ModalDimensions';
 import './UnwatchConfirmation.css';
 
-function UnwatchConfirmation(props) {
+const UnwatchConfirmation = props => {
   const shouldPositionModalAboveStar = starTopPos => {
     const { offset, height } = modalDimensions;
     const modalBottom = starTopPos + offset + height;
@@ -60,7 +60,7 @@ function UnwatchConfirmation(props) {
       </div>
     </div>
   );
-}
+};
 UnwatchConfirmation.propTypes = {
   onModalBackdropClick: PropTypes.func.isRequired,
   onModalConfirmClick: PropTypes.func.isRequired
