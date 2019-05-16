@@ -1,7 +1,8 @@
 import { search, getStockData, apiKey, dataset } from './services/QuandlService';
-import { stockFluxSearch } from './services/StockFluxService';
+import { stockFluxSearch, getStockFluxData, getMiniChartData } from './services/StockFluxService';
 import { truncate } from './utils/formatters';
 
+// remove when Quandl is removed from bitflux
 export const Quandl = {
   search,
   getStockData,
@@ -14,5 +15,7 @@ export const Utils = {
 };
 
 export const StockFlux = {
-  stockFluxSearch
+  stockFluxSearch,
+  getStockFluxData,
+  getMiniChartData
 };

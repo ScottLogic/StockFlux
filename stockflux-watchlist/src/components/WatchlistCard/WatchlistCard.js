@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { truncate } from '../../services/formatters';
 import Minichart from '../Minichart/Minichart';
 import Confirmation from './UnwatchConfirmation';
-import { Quandl } from 'stockflux-core';
+import { StockFlux } from 'stockflux-core';
 import currentWindowService from '../../services/currentWindowService';
 import './WatchlistCard.css';
 
@@ -24,10 +24,9 @@ function WatchlistCard(props) {
   });
 
   useEffect(() => {
-    Quandl.getStockData(props.symbol).then(response => {
-      const data = response.stockData.data[0];
-
-      const stockName = response.dataset.name;
+    StockFlux.getMiniChartData(props.symbol).then(response => {
+      const data = response.data[0];
+      const stockName = response.name;
       let tempStockData = { name: stockName };
 
       if (data) {
@@ -41,7 +40,7 @@ function WatchlistCard(props) {
         };
       }
       setStockData(tempStockData);
-      setChartData(response.stockData.data);
+      setChartData(response.data);
     });
   }, [props.symbol]);
 

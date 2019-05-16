@@ -2,7 +2,7 @@ import moment from 'moment';
 import fetch from 'isomorphic-fetch';
 
 // written in the same structure as d3fc-financial-feed
-export default function getStockFluxData() {
+export function getStockFluxData() {
     var product,
         start,
         end;
@@ -94,4 +94,39 @@ export function stockFluxSearch(item) {
         console.log(error);
         return [];
     });
+}
+
+export function getMiniChartData(symbol) {
+
+    // change to use endpoint from app.dev.json
+    var url = 'https://bkep4zhkka.execute-api.eu-west-2.amazonaws.com/dev/securities/' + symbol;
+
+    return fetch(url, {
+            method: 'GET'
+        }).then(function(response) {
+            return response.json();
+            })
+            .then(function(stockData) {
+                if (stockData.success) {
+                    return {
+                        data: stockData.data.ohlc.map(function(item) {
+                            return {
+                                open: item.open,
+                                close: item.close,
+                                high: item.high,
+                                low: item.low,
+                                volume: item.volume,
+                                date: new Date(item.date)
+                            }
+                        }),
+                        name: stockData.data.name
+                    }
+                } else if (!stockData.success) {
+                    return [];
+                }
+            }
+        ).catch(function(error) {
+            console.log(error);
+            return [];
+        });
 }
