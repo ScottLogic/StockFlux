@@ -1,6 +1,6 @@
 #loading-status-message {
     position: absolute;
-    top: var(--head-height);
+    top: -20px;
     right: 0;
     bottom: 0;
     left: 0;

@@ -22,8 +22,10 @@ import './styles/BitFlux/legend.css';
 import './styles/BitFlux/closeLine.css';
 import './styles/BitFlux/loading.css';
 import './styles/BitFlux/notification.css';
-import './styles/app.css';
 import './styles/BitFlux/sprite.css';
+import './styles/BitFlux/spinner.css';
+
+import './styles/app.css';
 
 let isListening = false;
 
