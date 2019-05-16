@@ -13,9 +13,6 @@
   --middle-background: #28313D;
   --dark-background: #1A212A;
 
-  --clr-split-dark: #323A48;
-  --clr-split-light: #EFEFEF;
-
   /* dimensions */
   --expanded-width: 230px;
   --toolbar-height: 50px;
@@ -24,7 +21,6 @@
   --titlebar-height: 35px;
   --bottom-tab-height: 40px;
   --scrollbar-width: 12px;
-  --icons-size: 30px;
 
   /* transitions  */
   --icon-transition-duration: 0.5s;
@@ -54,5 +50,5 @@
   --margin-large: 15px;
 
   --clr-divider-dark: var(--dark-background);
-  --clr-divider-light: var(--clr-split-dark);
+  --clr-divider-light: #323A48;
 }
