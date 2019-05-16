@@ -1,5 +1,5 @@
 .searchResult {
-    border-bottom: 1px solid var(--clr-split-light);
+    border-bottom: 1px solid var(--clr-divider-dark);
     color: var(--text-grey);
     margin-right: 0;
     padding: var(--padding-small) 0 var(--padding-small) var(--padding-small);
@@ -7,7 +7,7 @@
 }
 
 .searchResult:hover {
-    background-color: var(--clr-split-light)
+    background-color: var(--light-background);
 }
 
 .searchResult:last-child {
@@ -19,13 +19,13 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: var(--text-grey-darker);
+    color: var(--text-grey-dark);
 }
 
 .subtitle {
     font-size: var(--font-xxxlarge);
     font-weight: var(--font-weight-bolder);
-    color: var(--text-grey-darkest);
+    color: var(--text-grey);
 }
 
 .containerActions {
@@ -37,9 +37,9 @@
     background-color: transparent;
     cursor: pointer;
     outline: none;
-    color: var(--text-grey-darker);
+    color: var(--text-grey-dark);
 }
 
 .buttonAction:hover {
-    color: var(--text-grey-darkest);
+    color: var(--text-grey-darker);
 }
