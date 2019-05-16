@@ -94,6 +94,7 @@ const Watchlist = () => {
             placeholder="My Watchlist"
             value={name}
             onChange={e => setName(e.target.value)}
+            title={name}
           />
         </span>
         <div className="icon star-tab" title="Star Tab">
