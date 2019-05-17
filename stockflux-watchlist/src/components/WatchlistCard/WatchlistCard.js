@@ -4,10 +4,9 @@ import classNames from 'classnames';
 import { truncate } from '../../services/formatters';
 import Minichart from '../Minichart/Minichart';
 import Confirmation from './UnwatchConfirmation';
-import { StockFlux } from 'stockflux-core';
+import { StockFlux, Intents } from 'stockflux-core';
 import currentWindowService from '../../services/currentWindowService';
 import './WatchlistCard.css';
-import { viewChart } from '../../intents/viewChart';
 
 const WatchlistCard = props => {
   const [dragging, setDragging] = useState({
@@ -99,7 +98,7 @@ const WatchlistCard = props => {
       draggable={!props.isUnwatching}
       onDragStart={onDragStart(props.symbol)}
       onDragEnd={onDragEnd}
-      onClick={() => viewChart(props.symbol, stockData.name)}
+      onClick={() => Intents.viewChart(props.symbol, stockData.name)}
     >
       <div className="drop-target">
         <div className="card darkens default-background" draggable="false">
