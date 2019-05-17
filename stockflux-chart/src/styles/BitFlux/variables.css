@@ -135,11 +135,6 @@
 
 --error-alert-width: 400px;
 
---spinner-colour: var(--primary-white);
---spinner-size: 50px;
---spinner-thickness: 7px;
---spinner-animation-duration: 0.6s;
-
 --hide: ~'none !important';
 --show: flex;
 

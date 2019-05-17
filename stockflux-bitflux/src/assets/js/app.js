@@ -214,7 +214,7 @@ export default function() {
     }
 
     function loading(isLoading, error) {
-        var spinner = '<div class="spinner"></div>';
+        var spinner = '<div class="spinner large" />';
         var obscure = arguments.length > 1 || isLoading;
 
         var errorMessage = '';
