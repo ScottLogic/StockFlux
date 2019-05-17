@@ -1,4 +1,4 @@
-import * as fdc3 from 'openfin-fdc3';
+import { Intents } from 'stockflux-core';
 
 let dragStartClientY = null;
 let cardHeight = null;
@@ -72,13 +72,7 @@ export const onDrop = (
 };
 
 export const onDropOutside = async function(symbol, stockName) {
-  await fdc3.raiseIntent(fdc3.Intents.VIEW_CHART, {
-    type: 'security',
-    name: symbol,
-    id: {
-      default: stockName
-    }
-  });
+  Intents.viewChart(symbol, stockName);
 };
 
 export const resetDragState = setDragOverIndex => {

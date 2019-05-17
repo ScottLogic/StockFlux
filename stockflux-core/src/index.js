@@ -1,6 +1,16 @@
-import { search, getStockData, apiKey, dataset } from './services/QuandlService';
-import { stockFluxSearch, getStockFluxData, getMiniChartData } from './services/StockFluxService';
+import {
+  search,
+  getStockData,
+  apiKey,
+  dataset
+} from './services/QuandlService';
+import {
+  stockFluxSearch,
+  getStockFluxData,
+  getMiniChartData
+} from './services/StockFluxService';
 import { truncate } from './utils/formatters';
+import { viewChart } from './intents/viewChart';
 
 // remove when Quandl is removed from bitflux
 export const Quandl = {
@@ -18,4 +28,8 @@ export const StockFlux = {
   stockFluxSearch,
   getStockFluxData,
   getMiniChartData
+};
+
+export const Intents = {
+  viewChart
 };

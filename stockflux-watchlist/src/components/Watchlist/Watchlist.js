@@ -16,7 +16,7 @@ let latestListener;
 const getDistinctElementArray = array => [...new Set(array)];
 
 const Watchlist = () => {
-  const [name, setName] = useState('');
+  const [name, setName] = Components.useLocalStorage('name', '');
   const [dragOverIndex, setDragOverIndex] = useState(null);
   const [unwatchedSymbol, setUnwatchedSymbol] = useState(null);
   const [watchlist, setWatchlist] = Components.useLocalStorage('watchlist', [
@@ -94,6 +94,7 @@ const Watchlist = () => {
             placeholder="My Watchlist"
             value={name}
             onChange={e => setName(e.target.value)}
+            title={name}
           />
         </span>
         <div className="icon star-tab" title="Star Tab">
@@ -104,7 +105,7 @@ const Watchlist = () => {
         {watchlist.length === 0 ? (
           <div className="no-watchlist">
             <p>You have no stocks to display.</p>
-            <p>Use stockflux search app to add new stocks to the list.</p>
+            <p>Use StockFlux Search app to add new stocks to the list.</p>
           </div>
         ) : (
           watchlist.map((symbol, i) => (

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { truncate } from '../../services/formatters';
 import Minichart from '../Minichart/Minichart';
 import Confirmation from './UnwatchConfirmation';
-import { StockFlux } from 'stockflux-core';
+import { StockFlux, Intents } from 'stockflux-core';
 import currentWindowService from '../../services/currentWindowService';
 import './WatchlistCard.css';
 
@@ -25,22 +25,24 @@ const WatchlistCard = props => {
 
   useEffect(() => {
     StockFlux.getMiniChartData(props.symbol).then(response => {
-      const data = response.data[0];
-      const stockName = response.name;
-      let tempStockData = { name: stockName };
+      if (response.data) {
+        const data = response.data[0];
+        const stockName = response.name;
+        let tempStockData = { name: stockName };
 
-      if (data) {
-        tempStockData = {
-          name: getName(stockName),
-          price: getPrice(data.close),
-          delta: getDelta(data.close - data.open),
-          percentage: getPercentage(
-            ((data.close - data.open) / data.open) * 100
-          )
-        };
+        if (data) {
+          tempStockData = {
+            name: getName(stockName),
+            price: getPrice(data.close),
+            delta: getDelta(data.close - data.open),
+            percentage: getPercentage(
+              ((data.close - data.open) / data.open) * 100
+            )
+          };
+        }
+        setStockData(tempStockData);
+        setChartData(response.data);
       }
-      setStockData(tempStockData);
-      setChartData(response.data);
     });
   }, [props.symbol]);
 
@@ -96,6 +98,7 @@ const WatchlistCard = props => {
       draggable={!props.isUnwatching}
       onDragStart={onDragStart(props.symbol)}
       onDragEnd={onDragEnd}
+      onClick={() => Intents.viewChart(props.symbol, stockData.name)}
     >
       <div className="drop-target">
         <div className="card darkens default-background" draggable="false">
@@ -146,7 +149,7 @@ const WatchlistCard = props => {
   ) : (
     <></>
   );
-}
+};
 
 WatchlistCard.propTypes = {
   symbol: PropTypes.string.isRequired,
