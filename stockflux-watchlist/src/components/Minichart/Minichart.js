@@ -50,7 +50,7 @@ const Minichart = props => {
     </svg>
   ) : (
     <div className="minichart minichart-error">
-      {props.fetchError || 'Fetching Data...'}
+      {props.fetchError || 'Fetching security data...'}
     </div>
   );
 };
