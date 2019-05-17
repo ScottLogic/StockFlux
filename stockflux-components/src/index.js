@@ -1,7 +1,6 @@
 import Titlebar from './components/titlebar/Titlebar';
-import ScrollWrapperY from './components/ScrollWrapperY/ScrollWrapperY';
+import ScrollWrapperY from './components/scroll-wrapper-y/ScrollWrapperY';
 import { Spinner, LargeSpinner } from './components/spinner/Spinner';
-import useLocalStorage from './custom-hooks/LocalStorageHook';
 
 import './styles/button-icon.css';
 import './styles/icon.css';
@@ -12,8 +11,6 @@ import './index.css';
 export default {
   Titlebar,
   ScrollWrapperY,
-  // useLocalStorageHook should be moved to stockflux-core
-  useLocalStorage,
   Spinner,
   LargeSpinner
 };
