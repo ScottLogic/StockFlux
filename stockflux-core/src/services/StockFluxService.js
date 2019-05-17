@@ -17,7 +17,7 @@ export function getStockFluxData() {
             params.push('/' + moment(end).format('YYYY-MM-DD'));
         }
         // change to AWS endpoint
-        var url = 'https://bkep4zhkka.execute-api.eu-west-2.amazonaws.com/dev/ohlc/' + product + '/2016-01-01';
+        var url = 'https://lf467ndb08.execute-api.eu-west-2.amazonaws.com/dev/api/ohlc/' + product + '/2016-01-01';
         fetch(url, {
                 method: 'GET'
             }).then(function(response) {
@@ -70,7 +70,7 @@ export function getStockFluxData() {
 }
 
 export function stockFluxSearch(item) {
-    var url = 'https://bkep4zhkka.execute-api.eu-west-2.amazonaws.com/dev/securities/search/' + item;
+    var url = 'https://lf467ndb08.execute-api.eu-west-2.amazonaws.com/dev/api/securities/search/' + item;
 
     return fetch(url, {
         method: 'GET'
@@ -97,9 +97,8 @@ export function stockFluxSearch(item) {
 }
 
 export function getMiniChartData(symbol) {
-
     // change to use endpoint from app.dev.json
-    var url = 'https://bkep4zhkka.execute-api.eu-west-2.amazonaws.com/dev/securities/' + symbol;
+    var url = 'https://lf467ndb08.execute-api.eu-west-2.amazonaws.com/dev/api/securities/' + symbol;
 
     return fetch(url, {
         method: 'GET'
