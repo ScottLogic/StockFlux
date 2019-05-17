@@ -9,9 +9,9 @@ export const viewChart = async function(symbol, stockName) {
         fdc3.Intents.VIEW_CHART,
         {
           type: 'security',
-          name: code,
+          name: symbol,
           id: {
-            default: name
+            default: stockName
           }
         },
         chart.name
