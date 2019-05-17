@@ -102,30 +102,35 @@ export function getMiniChartData(symbol) {
     var url = 'https://bkep4zhkka.execute-api.eu-west-2.amazonaws.com/dev/securities/' + symbol;
 
     return fetch(url, {
-            method: 'GET'
-        }).then(function(response) {
+        method: 'GET'
+    })
+        .then(function(response) {
             return response.json();
-            })
-            .then(function(stockData) {
-                if (stockData.success) {
-                    return {
-                        data: stockData.data.ohlc.map(function(item) {
-                            return {
-                                open: item.open,
-                                close: item.close,
-                                high: item.high,
-                                low: item.low,
-                                volume: item.volume,
-                                date: new Date(item.date)
-                            }
-                        }),
-                        name: stockData.data.name
-                    }
-                } else if (!stockData.success) {
-                    return [];
-                }
+        })
+        .then(function(stockData) {
+            if (stockData.success) {
+                return {
+                    success: true,
+                    data: stockData.data.ohlc.map(function(item) {
+                        return {
+                            open: item.open,
+                            close: item.close,
+                            high: item.high,
+                            low: item.low,
+                            volume: item.volume,
+                            date: new Date(item.date)
+                        };
+                    }),
+                    name: stockData.data.name
+                };
+            } else if (!stockData.success && stockData.error) {
+                return {
+                    success: false,
+                    error: stockData.error.messages[0]
+                };
             }
-        ).catch(function(error) {
+        })
+        .catch(function(error) {
             console.log(error);
             return [];
         });

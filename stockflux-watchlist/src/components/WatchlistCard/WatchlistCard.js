@@ -16,6 +16,7 @@ const WatchlistCard = props => {
   });
   const [starTop, setStarTop] = useState(0);
   const [chartData, setChartData] = useState([]);
+  const [fetchError, setFetchError] = useState('');
   const [stockData, setStockData] = useState({
     name: 'N/A',
     price: 0,
@@ -25,7 +26,7 @@ const WatchlistCard = props => {
 
   useEffect(() => {
     StockFlux.getMiniChartData(props.symbol).then(response => {
-      if (response.data) {
+      if (response.success) {
         const data = response.data[0];
         const stockName = response.name;
         let tempStockData = { name: stockName };
@@ -42,6 +43,8 @@ const WatchlistCard = props => {
         }
         setStockData(tempStockData);
         setChartData(response.data);
+      } else {
+        setFetchError(response.error);
       }
     });
   }, [props.symbol]);
@@ -119,7 +122,11 @@ const WatchlistCard = props => {
             <div className="symbol">{props.symbol}</div>
           </div>
           <div className="card-bottom">
-            <Minichart symbol={props.symbol} chartData={chartData} />
+            <Minichart
+              symbol={props.symbol}
+              chartData={chartData}
+              fetchError={fetchError}
+            />
             <div className="details">
               {<div className="price">{stockData.price || 'N/A'}</div>}
               {<div className="delta">{stockData.delta || ''}</div>}
