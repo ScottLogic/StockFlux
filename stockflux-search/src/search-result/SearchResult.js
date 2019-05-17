@@ -1,7 +1,7 @@
 import React from 'react';
 import * as fdc3 from 'openfin-fdc3';
 import * as PropTypes from 'prop-types';
-import { Utils } from 'stockflux-core';
+import { Utils, Intents } from 'stockflux-core';
 
 import styles from './SearchResult.module.css';
 
@@ -16,20 +16,8 @@ const handleWatchlistAddClick = (code, name) => {
 };
 
 const handleChartAddClick = async (code, name) => {
-    const availableApps = await fdc3.findIntent(fdc3.Intents.VIEW_CHART);
-    if (availableApps && availableApps.apps) {
-        const chart = availableApps.apps.find(app => app.appId === 'chart');
-        if (chart) {
-            fdc3.raiseIntent(fdc3.Intents.VIEW_CHART, {
-                type: 'security',
-                name: code,
-                id: {
-                  default: name
-                }
-            }, chart.name);
-        }
-    }
-}
+    Intents.viewChart(code, name);
+};
 
 const SearchResult = ({ code, name }) => (
     <div className={styles.searchResult}>
