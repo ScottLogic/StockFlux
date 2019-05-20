@@ -1,0 +1,36 @@
+.toolbar {
+    display: flex;
+  flex: wrap;
+  align-items: center;
+}
+
+.left .toolbar,
+.right .toolbar {
+  flex-direction: column;
+}
+
+.toolbar button {
+  background: none;
+  color: var(--text-teal-light);
+  border: solid 1px var(--text-teal);
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+  margin: 0 5px;
+  outline: none;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toolbar button:disabled {
+  color: var(--light-background);
+  border: solid 1px var(--light-background);
+}
+
+.left .toolbar button,
+.right .toolbar button {
+  margin: 5px 0;
+}
