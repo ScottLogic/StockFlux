@@ -3,7 +3,7 @@ import cx from 'classnames';
 import "stockflux-components";
 import { WindowHooks, Constants } from 'openfin-react-hooks';
 import { FaChevronUp, FaChevronLeft, FaChevronRight, FaCog } from 'react-icons/fa';
-import Shortcuts from './Shortcuts';
+import AppShortcuts from './AppShortcuts';
 import FreeTextSearch from './FreeTextSearch';
 import ToolBar from './ToolBar';
 import './App.css';
@@ -13,7 +13,7 @@ export default () => {
 
   return (
     <div className={cx('app', windowState.edge)}>
-      <Shortcuts />
+      <AppShortcuts />
       <FreeTextSearch />
       <ToolBar tools={[
         {

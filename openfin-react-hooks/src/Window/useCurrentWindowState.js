@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import withOpenFin from '../withOpenFin';
 
 export const ScreenEdge = {
   NONE: 'none',
@@ -14,13 +15,6 @@ const defaultState = {
 const barHeight = 50;
 const barWidth = 50;
 const animationDuration = 250;
-
-const withOpenFin = () => {
-  if (!window || !window.fin) {
-    throw new Error('This React hook requires the OpenFin API');
-  }
-  return window.fin;
-};
 
 const getEdgeLocation = (edge, { primaryMonitor: { availableRect } }) => ({
   position: {
@@ -70,7 +64,6 @@ export default (currentWindowState = defaultState) => {
     }
   };
 
-  console.log(windowState);
   return [windowState, {
     lockTop: () => setEdge(ScreenEdge.TOP),
     lockLeft: () => setEdge(ScreenEdge.LEFT),
