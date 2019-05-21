@@ -1,0 +1,43 @@
+body {
+  background-color: rgb(40, 49, 61);
+  height: calc(100vh - 2px);
+  width: calc(100vw - 2px);
+  border: 1px solid #45d6bc;
+  padding: 0;
+  margin: 0;
+  border-radius: 7px;
+  display: flex;
+  overflow: hidden;
+  z-index: 10
+}
+
+span#message,
+span#symbol,
+p#info {
+  color: lightgray;
+  font-family: "Roboto", sans-serif;
+}
+
+p#info {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  margin: 0;
+  padding: 9px;
+}
+
+span#message {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 14px;
+}
+
+span#symbol {
+  padding-left: 15px;
+  color: #45d6bc;
+  font-weight: 700;
+}
+
+hr {
+  width: 100vw;
+  margin-top: 0;
+}

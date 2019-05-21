@@ -3,6 +3,7 @@ import WatchlistCard from '../watchlist-card/WatchlistCard';
 import Components from 'stockflux-components';
 import { StockFluxHooks } from 'stockflux-core';
 import * as fdc3 from 'openfin-fdc3';
+import { showCustomNotification } from '../notifications/Notification';
 import {
   onDragStart,
   onDragOver,
@@ -67,7 +68,22 @@ const Watchlist = () => {
   const currentListener = fdc3.addIntentListener('WatchlistAdd', context => {
     if (context && currentListener === latestListener) {
       const newSymbol = context.id.default;
+      const alreadyInWatchlist = watchlist.includes(newSymbol);
       setWatchlist(getDistinctElementArray([newSymbol, ...watchlist]));
+      if (alreadyInWatchlist) {
+        showCustomNotification({
+          message: {
+            symbol: newSymbol,
+            messageText: ' moved to the top of watchlist ' + name
+          }
+        });
+      } else
+        showCustomNotification({
+          message: {
+            symbol: newSymbol,
+            messageText: ' added to the watchlist ' + name
+          }
+        });
     }
   });
   latestListener = currentListener;
