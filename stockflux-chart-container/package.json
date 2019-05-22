@@ -1,0 +1,38 @@
+{
+  "name": "container",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "openfin-fdc3": "^0.1.1",
+    "openfin-layouts": "^1.0.3",
+    "openfin-react-hooks": "file:../openfin-react-hooks",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.1"
+  },
+  "homepage": "./",
+  "scripts": {
+    "start": "cross-env BROWSER=none PORT=8055 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0"
+  }
+}

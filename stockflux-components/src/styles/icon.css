@@ -1,4 +1,4 @@
-.icon {
+.stockflux-icon {
   height: 19px;
   margin-top: auto;
   margin-bottom: auto;
@@ -10,17 +10,17 @@
   display: inline-block;
 }
 
-.icon.star-tab {
+.stockflux-icon.star-tab {
   background-image: url('../images/star_tab.png');
 }
 
-.icon.arrow-up {
+.stockflux-icon.arrow-up {
   background-image: url('../images/arrow_up.png');
   width: 20px;
   height: 10px;
 }
 
-.icon.arrow-down {
+.stockflux-icon.arrow-down {
   background-image: url('../images/arrow_down.png');
   width: 20px;
   height: 10px;
