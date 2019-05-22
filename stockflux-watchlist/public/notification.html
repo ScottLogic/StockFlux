@@ -6,10 +6,13 @@
     <link rel="stylesheet" type="text/css" href="notification.css" />
   </head>
   <body class="notification">
+    <div class="notification-icon">
+      <img id="icon" src="CardIcon.png" alt="Notification Icon" />
+    </div>
     <div id="notification-content">
-      <p id="info">WATCHLIST CHANGED</p>
+      <p id="title">WATCHLIST<span id="watchlist-name"></span>UPDATED</p>
       <hr />
-      <p>
+      <p id="info">
         <span id="symbol">SYMBOL</span>
         <span id="message">message</span>
       </p>
