@@ -51,6 +51,7 @@ span#watchlist-name {
 span#symbol {
   padding-left: 9px;
   font-weight: 700;
+  letter-spacing: 1px
 }
 
 hr {

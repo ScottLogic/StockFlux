@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { truncate } from '../../services/formatters';
-import Minichart from '../Minichart/Minichart';
+import Minichart from '../minichart/Minichart';
 import Confirmation from './UnwatchConfirmation';
 import { StockFlux, Intents } from 'stockflux-core';
 import currentWindowService from '../../services/currentWindowService';
