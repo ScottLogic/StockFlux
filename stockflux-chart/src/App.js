@@ -5,7 +5,6 @@ import {InterApplicationBusHooks} from 'openfin-react-hooks';
 
 import 'stockflux-bitflux/node_modules/d3fc/dist/d3fc.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'stockflux-components/src/components/spinner/Spinner.css';
 
 import './styles/BitFlux/primary.css';
 import './styles/BitFlux/variables.css';
