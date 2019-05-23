@@ -14,7 +14,10 @@
         "minWidth": 1000,
         "minHeight": 600,
         "frame": false,
-        "contextMenu": true
+        "contextMenu": true,
+        "customData": {
+            "apiBaseUrl": "https://lf467ndb08.execute-api.eu-west-2.amazonaws.com/dev/api"
+        }
     },
     "services": [
         {

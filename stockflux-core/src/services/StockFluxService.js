@@ -16,33 +16,37 @@ export function getStockFluxData() {
         if (end != null) {
             params.push('/' + moment(end).format('YYYY-MM-DD'));
         }
-        // change to AWS endpoint
-        var url = 'https://lf467ndb08.execute-api.eu-west-2.amazonaws.com/dev/api/ohlc/' + product + '/2016-01-01';
-        fetch(url, {
+        window.fin.Window.getCurrent().then(function(win) {
+            return win.getOptions();
+        }).then(function(options) {
+            return options.customData.apiBaseUrl;
+        }).then(function(api) {
+            // change to AWS endpoint
+            var url = api + '/ohlc/' + product + '/2016-01-01';
+            fetch(url, {
                 method: 'GET'
             }).then(function(response) {
                 return response.json();
-              })
-              .then(function(stockData) {
-                  if (stockData.success) {
-                      cb(undefined, stockData.data.map(function(item) {
-                          return {
-                              open: item.open,
-                              close: item.close,
-                              high: item.high,
-                              low: item.low,
-                              volume: item.volume,
-                              date: new Date(item.date)
-                          };
-                      }))
-                  } else if (!stockData.success) {
-                      cb(stockData);
-                  }
+            }).then(function(stockData) {
+                if (stockData.success) {
+                    cb(undefined, stockData.data.map(function(item) {
+                        return {
+                            open: item.open,
+                            close: item.close,
+                            high: item.high,
+                            low: item.low,
+                            volume: item.volume,
+                            date: new Date(item.date)
+                        };
+                    }))
+                } else if (!stockData.success) {
+                    cb(stockData);
                 }
-            ).catch(function(error) {
+            }).catch(function(error) {
                 cb(error);
             });
-    };
+        }
+    )};
 
     stockFlux.product = function(x) {
         if (!arguments.length) {
@@ -70,67 +74,72 @@ export function getStockFluxData() {
 }
 
 export function stockFluxSearch(item) {
-    var url = 'https://lf467ndb08.execute-api.eu-west-2.amazonaws.com/dev/api/securities/search/' + item;
 
-    return fetch(url, {
-        method: 'GET'
-    }).then(function(response) {
-        return response.json();
-      })
-      .then(function(stockData) {
-            if (stockData.success) {
-                return stockData.data.map(item => {
-                    return {
-                        code: item.symbol,
-                        name: item.name
+    return window.fin.Window.getCurrent().then(function(win) {
+            return win.getOptions();
+        }).then(function(options) {
+            return options.customData.apiBaseUrl;
+        }).then(function(api) {
+            var url = api + '/securities/search/' + item;
+            return fetch(url, {
+                method: 'GET'
+            }).then(function(response) {
+                return response.json();
+            }).then(function(stockData) {
+                    if (stockData.success) {
+                        return stockData.data.map(item => {
+                            return {
+                                code: item.symbol,
+                                name: item.name
+                            }
+                        })
                     }
-                })
-            }
-            else if (!stockData.success) {
-              return [];
-          }
-        }
-    ).catch(function(error) {
-        console.log(error);
-        return [];
-    });
+                    else if (!stockData.success) {
+                        return [];
+                    }
+                }
+            ).catch(function(error) {
+                console.error(error);
+                return [];
+            });
+        });
 }
 
 export function getMiniChartData(symbol) {
-    // change to use endpoint from app.dev.json
-    var url = 'https://lf467ndb08.execute-api.eu-west-2.amazonaws.com/dev/api/securities/' + symbol;
-
-    return fetch(url, {
-        method: 'GET'
-    })
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(stockData) {
-            if (stockData.success) {
-                return {
-                    success: true,
-                    data: stockData.data.ohlc.map(function(item) {
+    return window.fin.Window.getCurrent().then(function(win) {
+            return win.getOptions();
+        }).then(function(options) {
+            return options.customData.apiBaseUrl;
+        }).then(function(api) {
+            var url = api + '/securities/' + symbol;
+            return fetch(url, {
+                    method: 'GET'
+                }).then(function(response) {
+                    return response.json();
+                }).then(function(stockData) {
+                    if (stockData.success) {
                         return {
-                            open: item.open,
-                            close: item.close,
-                            high: item.high,
-                            low: item.low,
-                            volume: item.volume,
-                            date: new Date(item.date)
+                            data: stockData.data.ohlc.map(function(item) {
+                                return {
+                                    open: item.open,
+                                    close: item.close,
+                                    high: item.high,
+                                    low: item.low,
+                                    volume: item.volume,
+                                    date: new Date(item.date)
+                                }
+                            }),
+                            name: stockData.data.name
+                        }
+                    } else if (!stockData.success && stockData.error) {
+                        return {
+                            success: false,
+                            error: stockData.error.messages[0]
                         };
-                    }),
-                    name: stockData.data.name
-                };
-            } else if (!stockData.success && stockData.error) {
-                return {
-                    success: false,
-                    error: stockData.error.messages[0]
-                };
-            }
-        })
-        .catch(function(error) {
-            console.log(error);
-            return [];
+                    }
+                }).catch(function(error) {
+                    console.error(error);
+                    return [];
+                });
         });
 }

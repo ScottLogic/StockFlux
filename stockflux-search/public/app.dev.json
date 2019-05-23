@@ -22,6 +22,9 @@
         "cornerRounding": {
             "height": 4,
             "width": 4
+        },
+        "customData": {
+            "apiBaseUrl": "https://lf467ndb08.execute-api.eu-west-2.amazonaws.com/dev/api"
         }
     },
     "services": [
