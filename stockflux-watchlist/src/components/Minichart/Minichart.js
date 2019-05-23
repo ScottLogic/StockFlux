@@ -19,7 +19,9 @@ import './Minichart.css';
 const Minichart = props => {
   const [shouldShowChart, setShouldShowChart] = useState(false);
   useEffect(() => {
-    setShouldShowChart(props.chartData.length >= 2);
+    setShouldShowChart(
+      !props.fetchError && props.chartData && props.chartData.length >= 2
+    );
     // There needs to be 2 data points to draw the minichart
     // if there's not enough, show an error.
     if (shouldShowChart) {
@@ -29,7 +31,7 @@ const Minichart = props => {
       const multi = getMulti(props.symbol, data);
       container.datum(data).call(multi);
     }
-  }, [props.chartData, props.symbol, shouldShowChart]);
+  }, [props.chartData, props.fetchError, props.symbol, shouldShowChart]);
 
   return shouldShowChart ? (
     <svg className="minichart" id={`${props.symbol}chart`}>
@@ -48,10 +50,11 @@ const Minichart = props => {
     </svg>
   ) : (
     <div className="minichart minichart-error">
-      Not enough data to show minichart
+      {props.fetchError || 'Fetching security data...'}
     </div>
   );
-}
+};
+
 const getInnerDimensions = () => {
   const {
     WIDTH,
@@ -150,6 +153,7 @@ const getMulti = (symbol, chartData) => {
 
 Minichart.propTypes = {
   chartData: PropTypes.array,
+  fetchError: PropTypes.string.isRequired,
   symbol: PropTypes.string.isRequired
 };
 

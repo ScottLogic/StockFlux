@@ -74,6 +74,7 @@ export function getStockFluxData() {
 }
 
 export function stockFluxSearch(item) {
+
     return window.fin.Window.getCurrent().then(function(win) {
             return win.getOptions();
         }).then(function(options) {
@@ -130,8 +131,11 @@ export function getMiniChartData(symbol) {
                             }),
                             name: stockData.data.name
                         }
-                    } else if (!stockData.success) {
-                        return [];
+                    } else if (!stockData.success && stockData.error) {
+                        return {
+                            success: false,
+                            error: stockData.error.messages[0]
+                        };
                     }
                 }).catch(function(error) {
                     console.error(error);
