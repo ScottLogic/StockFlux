@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import WatchlistCard from '../WatchlistCard/WatchlistCard';
+import WatchlistCard from '../watchlist-card/WatchlistCard';
 import Components from 'stockflux-components';
+import { StockFluxHooks } from 'stockflux-core';
 import * as fdc3 from 'openfin-fdc3';
 import {
   onDragStart,
@@ -8,7 +9,7 @@ import {
   resetDragState,
   onDrop,
   onDropOutside
-} from '../WatchlistCard/WatchlistCard.Dragging';
+} from '../watchlist-card/WatchlistCard.Dragging';
 import './Watchlist.css';
 
 let latestListener;
@@ -16,16 +17,13 @@ let latestListener;
 const getDistinctElementArray = array => [...new Set(array)];
 
 const Watchlist = () => {
-  const [name, setName] = Components.useLocalStorage('name', '');
+  const [name, setName] = StockFluxHooks.useLocalStorage('name', '');
   const [dragOverIndex, setDragOverIndex] = useState(null);
   const [unwatchedSymbol, setUnwatchedSymbol] = useState(null);
-  const [watchlist, setWatchlist] = Components.useLocalStorage('watchlist', [
-    'AAPL',
-    'AAP',
-    'CC',
-    'MS',
-    'JPS'
-  ]);
+  const [watchlist, setWatchlist] = StockFluxHooks.useLocalStorage(
+    'watchlist',
+    ['AAPL', 'AAP', 'CC', 'MS', 'JPS']
+  );
 
   const onIconClick = symbol => {
     return e => {
