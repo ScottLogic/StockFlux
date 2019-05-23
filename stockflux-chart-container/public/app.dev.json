@@ -7,7 +7,7 @@
       "name": "stockflux-chart-container",
       "uuid": "stockflux-chart-container",
       "url": "http://localhost:8051/index.html",
-      "applicationIcon": "{fqdn}/artifacts/stockflux-chart/favicon.ico",
+      "applicationIcon": "{fqdn}/artifacts/stockflux-chart-container/favicon.ico",
       "autoShow": true,
       "defaultWidth": 1280,
       "defaultHeight": 720,
@@ -31,9 +31,9 @@
     ],
     "shortcut": {
       "company": "ScottLogic",
-      "description": "Hosts StockFlux Chart as an OpenFin application.",
-      "name": "StockFlux Chart",
-      "icon": "{fqdn}/artifacts/stockflux-chart/v0.0.1/favicon.ico"
+      "description": "Hosts StockFlux Chart Container as an OpenFin application.",
+      "name": "StockFlux Chart Container",
+      "icon": "{fqdn}/artifacts/stockflux-chart-container/v0.0.1/favicon.ico"
     },
-    "splashScreenImage": "{fqdn}/artifacts/stockflux-chart/v0.0.1/splashscreen.png"
+    "splashScreenImage": "{fqdn}/artifacts/stockflux-chart-container/v0.0.1/splashscreen.png"
 }

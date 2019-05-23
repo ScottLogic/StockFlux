@@ -8,11 +8,10 @@ function App() {
   const [content, setContent] = useState(undefined);
   const [windows, setWindows] = useState([]);
 
-  const createWindow = async (context) => {
+  const createWindow = async (context, windowName) => {
     const winOption = {
-        name: 'container-' + context.name,
-        // change to aws version of the chart
-        url: 'http://localhost:8051/index.html',
+        name: windowName,
+        url: 'https://lf467ndb08.execute-api.eu-west-2.amazonaws.com/dev/artifacts/stockflux-chart/v0.0.1/index.html',
         autoShow: true,
         defaultWidth: 1280,
         defaultHeight: 720,
@@ -30,8 +29,8 @@ function App() {
 
   const currentListener = fdc3.addIntentListener("ViewChart", context => {
     if (context && currentListener === latestListener) {
-      createWindow(context).then(chartWindow => {
-        let windowName = 'container-' + context.name;
+      const windowName = 'container-' + context.name;
+      createWindow(context, windowName).then(chartWindow => {
         setWindows([...windows, windowName]);
         setContent({
           symbol: context.name,
