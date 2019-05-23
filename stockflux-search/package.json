@@ -17,6 +17,7 @@
     "stockflux-core": "file:../stockflux-core",
     "throat": "4.1.0"
   },
+  "homepage": "./",
   "scripts": {
     "start": "cross-env BROWSER=none PORT=8050 react-scripts start",
     "launch": "openfin --launch --config ./public/app.dev.json",

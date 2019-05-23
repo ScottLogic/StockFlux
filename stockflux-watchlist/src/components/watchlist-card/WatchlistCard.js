@@ -136,8 +136,8 @@ const WatchlistCard = props => {
                   <>
                     <div
                       className={classNames({
-                        'icon arrow-up': stockData.percentage > 0,
-                        'icon arrow-down': stockData.percentage < 0
+                        'stockflux-icon arrow-up': stockData.percentage > 0,
+                        'stockflux-icon arrow-down': stockData.percentage < 0
                       })}
                       title="Stock Arrow"
                       draggable="false"
