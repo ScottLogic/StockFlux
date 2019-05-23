@@ -26,7 +26,7 @@ const WatchlistCard = props => {
 
   useEffect(() => {
     StockFlux.getMiniChartData(props.symbol).then(response => {
-      if (response.success) {
+      if (response.data) {
         const data = response.data[0];
         const stockName = response.name;
         let tempStockData = { name: stockName };

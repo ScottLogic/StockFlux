@@ -109,7 +109,7 @@ const Watchlist = () => {
             title={name}
           />
         </span>
-        <div className="icon star-tab" title="Star Tab">
+        <div className="stockflux-icon star-tab" title="Star Tab">
           &nbsp;
         </div>
       </div>
