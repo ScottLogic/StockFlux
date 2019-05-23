@@ -4,6 +4,7 @@ import { scaleLinear, scaleTime } from 'd3-scale';
 import { select } from 'd3-selection';
 import { minichartDimensions } from './constants';
 import moment from 'moment';
+import Components from 'stockflux-components';
 import {
   extentDate,
   extentLinear,
@@ -50,7 +51,7 @@ const Minichart = props => {
     </svg>
   ) : (
     <div className="minichart minichart-error">
-      {props.fetchError || 'Fetching security data...'}
+      {props.fetchError || <Components.Spinner />}
     </div>
   );
 };
