@@ -76,26 +76,14 @@ const Watchlist = () => {
 
   const displayNotification = newSymbol => {
     const alreadyInWatchlist = watchlist.includes(newSymbol);
-    const watchlistName = name.slice().toUpperCase();
-    if (alreadyInWatchlist) {
-      showNotification({
-        message: {
-          symbol: newSymbol,
-          watchlistName,
-          alreadyInWatchlist,
-          messageText: ' moved to the top'
-        }
-      });
-    } else {
-      showNotification({
-        message: {
-          symbol: newSymbol,
-          watchlistName,
-          alreadyInWatchlist,
-          messageText: ' added to the top'
-        }
-      });
-    }
+    showNotification({
+      message: {
+        symbol: newSymbol,
+        watchlistName: name.toUpperCase(),
+        alreadyInWatchlist,
+        messageText: `${alreadyInWatchlist ? ' moved' : ' added'} to the top`
+      }
+    });
   };
 
   return (
