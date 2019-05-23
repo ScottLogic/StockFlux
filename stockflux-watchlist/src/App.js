@@ -1,5 +1,5 @@
 import React from 'react';
-import Watchlist from './components/watchlist/Watchlist';
+import Watchlist from './components/Watchlist/Watchlist';
 import Components from 'stockflux-components';
 import './App.css';
 

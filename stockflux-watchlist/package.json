@@ -19,6 +19,7 @@
     "stockflux-components": "file:../stockflux-components",
     "stockflux-core": "file:../stockflux-core"
   },
+  "homepage": "./",
   "scripts": {
     "start": "cross-env BROWSER=none PORT=8052 react-scripts start",
     "launch": "openfin --launch --config ./public/app.dev.json",

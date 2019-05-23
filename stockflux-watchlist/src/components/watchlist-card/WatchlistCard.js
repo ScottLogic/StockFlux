@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { truncate } from '../../services/formatters';
-import Minichart from '../minichart/Minichart';
+import Minichart from '../Minichart/Minichart';
 import Confirmation from './UnwatchConfirmation';
 import { StockFlux, Intents } from 'stockflux-core';
 import currentWindowService from '../../services/currentWindowService';
@@ -26,7 +26,7 @@ const WatchlistCard = props => {
 
   useEffect(() => {
     StockFlux.getMiniChartData(props.symbol).then(response => {
-      if (response.success) {
+      if (response.data) {
         const data = response.data[0];
         const stockName = response.name;
         let tempStockData = { name: stockName };
