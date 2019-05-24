@@ -3,11 +3,12 @@ import * as fdc3 from 'openfin-fdc3';
 import {InterApplicationBusHooks} from 'openfin-react-hooks';
 
 let latestListener;
+let currentListener;
+let windows = [];
 
 function App() {
   const [content, setContent] = useState(undefined);
-  const [windows, setWindows] = useState([]);
-
+  
   const createWindow = async (context, windowName) => {
     const winOption = {
         name: windowName,
@@ -27,23 +28,32 @@ function App() {
     return await window.fin.Window.create(winOption);
   }
 
-  const currentListener = fdc3.addIntentListener("ViewChart", context => {
+  const handler = (context) => {
     if (context && currentListener === latestListener) {
       const windowName = 'container-' + context.name;
-      createWindow(context, windowName).then(chartWindow => {
-        setWindows([...windows, windowName]);
-        setContent({
-          symbol: context.name,
-          name: context.id.default
+      if (!windows.find(window => window === windowName)) {
+        createWindow(context, windowName).then(chartWindow => {
+          windows = [...windows, windowName];
+          setContent({
+            symbol: context.name,
+            name: context.id.default
+          });
+          chartWindow.addListener("closed", () => {
+            if (wasFinalChartWindow(windowName)) {
+              window.fin.Window.getCurrentSync().close(true);
+            }
+          })
         });
-        chartWindow.addListener("closed", () => {
-          let newWindows = [...windows];
-          newWindows.splice(newWindows.indexOf(windowName));
-          setWindows(newWindows);
-        })
-      });
+      }
     }
-  });
+  }
+  
+  const wasFinalChartWindow = (windowName) => {
+    windows = windows.filter(name => name !== windowName);
+    return windows.length === 0 ? true : false;
+  }
+
+  currentListener = fdc3.addIntentListener("ViewChart", context => handler(context));
 
   latestListener = currentListener;
 
