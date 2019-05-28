@@ -39,8 +39,8 @@ function App() {
             name: context.id.default
           });
           chartWindow.addListener("closed", () => {
-            if (wasFinalChartWindow(windowName)) {
-              window.fin.Window.getCurrentSync().close(true);
+            if (removeWindow(windowName)) {
+              closeParentContainer();
             }
           })
         });
@@ -48,9 +48,13 @@ function App() {
     }
   }
   
-  const wasFinalChartWindow = (windowName) => {
+  const removeWindow = (windowName) => {
     windows = windows.filter(name => name !== windowName);
-    return windows.length === 0 ? true : false;
+    return windows.length === 0;
+  }
+  
+  const closeParentContainer = () => {
+    window.fin.Window.getCurrentSync().close(true);
   }
 
   currentListener = fdc3.addIntentListener("ViewChart", context => handler(context));
