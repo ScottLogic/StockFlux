@@ -1,0 +1,30 @@
+.newsitem {
+    display: flex;
+    height: 70px;
+    border-bottom: 1px solid hotpink;
+    color: white;
+    cursor: pointer;
+}
+
+.item-source {   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+}
+
+.item-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 5px 0;
+}
+
+.item-headline {
+    font-size: 18px;
+    text-transform: capitalize;
+}
+
+.item-content {
+    text-overflow: ellipsis;
+}

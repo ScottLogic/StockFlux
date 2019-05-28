@@ -1,0 +1,19 @@
+:root {
+  --chart-teal: #37d8bc;
+}
+
+.stockflux-news {
+  overflow-y: auto;
+  max-height: 330px;
+  background-color: var(--middle-background);
+}
+
+.stockflux-header {
+  justify-content: center;
+  font-size: var(--font-large);
+  color: var(--text-grey-lighter);
+  font-weight: var(--font-weight-bold);
+  padding: 10px;
+  display: flex;
+  border-bottom: 1px solid var(--chart-teal);
+}
