@@ -10,9 +10,10 @@ function App() {
   const [content, setContent] = useState(undefined);
   
   const createWindow = async (context, windowName) => {
+    const parentWindowOptions = await window.fin.Window.getCurrentSync().getOptions();
     const winOption = {
         name: windowName,
-        url: 'https://lf467ndb08.execute-api.eu-west-2.amazonaws.com/dev/artifacts/stockflux-chart/v0.0.1/index.html',
+        url: parentWindowOptions.customData.chartEntryPointUrl,
         autoShow: true,
         defaultWidth: 850,
         defaultHeight: 500,
@@ -22,7 +23,7 @@ function App() {
         contextMenu: true,
         customData: {
           symbol: context.name,
-          apiBaseUrl: 'https://lf467ndb08.execute-api.eu-west-2.amazonaws.com/dev/api'
+          apiBaseUrl: parentWindowOptions.customData.apiBaseUrl
         }
     };
     return await window.fin.Window.create(winOption);
