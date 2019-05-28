@@ -6,7 +6,7 @@ body {
   background-color: rgb(40, 49, 61);
   font-family: 'Roboto', sans-serif;
   overflow: hidden;
-  height: 400px;
+  height: 398px;
 }
 
 ::-webkit-scrollbar {
@@ -87,6 +87,9 @@ input {
   height: 10px;
   margin: 5px;
   width: 374px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
 }
 
 div.child {
@@ -101,6 +104,7 @@ div#container {
 
 div#searchbar-container {
   flex: 0 0 auto;
+  border-bottom: 1px solid #1A212A;
 }
 
 div#results-container {
@@ -108,6 +112,14 @@ div#results-container {
   position: relative;
   overflow-y: auto;
 }
+
+div#results-container p {
+  text-align: center;
+  color: #aeb1b5;
+  font-size: 14px;
+  margin-top: calc(50vh - 30px);
+}
+
 .search-hidden {
   visibility: hidden;
 }

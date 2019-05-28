@@ -9,7 +9,7 @@ import { FaSearch } from 'react-icons/fa';
 import { StockFlux } from 'stockflux-core';
 import SearchResult from './search-result';
 import ReactDOMServer from 'react-dom/server';
-import DOCK_POSITION from './DockPosition';
+import DOCK_POSITION from '../DockPosition';
 import { WindowHooks, InterApplicationBusHooks } from 'openfin-react-hooks';
 import './FreeTextSearch.css';
 
@@ -22,6 +22,7 @@ const SEARCH_TIMEOUT_INTERVAL = 250;
 const SEARCH_LIST_WIDTH = 407;
 const SEARCH_LIST_HEIGHT = 400;
 const LAUNCHER_WIDTH = 50;
+const NO_MATCHES_HTML = <p>Sorry, no matches found.</p>;
 
 let latestRequest = null;
 
@@ -86,22 +87,16 @@ const Search = props => {
     'search-request'
   );
 
-  const populateResultsWindow = useCallback(
-    html => {
-      if (resultsWindow && resultsWindow.getWebWindow) {
-        const webWindow = resultsWindow.getWebWindow();
-        if (webWindow && webWindow.document)
-          if (props.dockedTo === DOCK_POSITION.TOP) {
-            webWindow.document.body.innerHTML = html;
-          } else {
-            webWindow.document.getElementById(
-              'results-container'
-            ).innerHTML = html;
-          }
-      }
-    },
-    [props.dockedTo]
-  );
+  const populateResultsContainer = useCallback(html => {
+    let finalHtml = ReactDOMServer.renderToStaticMarkup(html);
+    if (resultsWindow && resultsWindow.getWebWindow) {
+      const webWindow = resultsWindow.getWebWindow();
+      if (webWindow && webWindow.document)
+        webWindow.document.getElementById(
+          'results-container'
+        ).innerHTML = finalHtml;
+    }
+  }, []);
 
   const getWidth = () => {
     let width;
@@ -170,8 +165,7 @@ const Search = props => {
       if (props.dockedTo !== DOCK_POSITION.TOP) {
         win
           .getWebWindow()
-          .document.getElementById('searchbar-container')
-          .classList.remove('search-hidden');
+          .document.getElementById('searchbar-container').hidden = false;
       }
     });
   }, [getChildWindowPosition, props.dockedTo]);
@@ -209,29 +203,37 @@ const Search = props => {
   }, [debouncedQuery]);
 
   useEffect(() => {
-    closeChildWindow();
+    if (resultsWindow) {
+      closeChildWindow();
+    }
   }, [props.dockedTo]);
 
   const closeChildWindow = () => {
-    if (resultsWindow) {
-      resultsWindow.close();
-      resultsWindow = null;
-    }
+    resultsWindow.close();
+    resultsWindow = null;
+  };
+
+  const resetInputField = () => {
+    if (searchInputRef.current) searchInputRef.current.value = '';
   };
 
   const handleOnInputChange = useCallback(
-    (event, isNewWindowNeeded) => {
+    event => {
       setQuery(event.target.value);
-      if (isNewWindowNeeded) createWindow().catch(err => console.log(err));
-      if (event.target.value === '') {
+      if (event.target.value === '' && resultsWindow) {
         closeChildWindow();
-      }
+      } else if (!resultsWindow) createWindow().catch(err => console.log(err));
     },
     [createWindow]
   );
 
   const handleSearchClick = useCallback(async () => {
-    createWindow().catch(err => console.log(err));
+    if (resultsWindow) {
+      closeChildWindow();
+      resetInputField();
+    } else {
+      createWindow().catch(err => console.log(err));
+    }
   }, [createWindow]);
 
   useEffect(() => {
@@ -243,21 +245,14 @@ const Search = props => {
   }, [query]);
 
   useEffect(() => {
-    if (results) {
-      const html =
-        !isSearching &&
-        results &&
-        results.length &&
-        results.map(result => (
-          <SearchResult
-            key={result.code}
-            code={result.code}
-            name={result.name}
-          />
-        ));
-      populateResultsWindow(ReactDOMServer.renderToStaticMarkup(html));
+    let html = null;
+    if (!isSearching && results && results.length) {
+      html = results.map(result => (
+        <SearchResult key={result.code} code={result.code} name={result.name} />
+      ));
     }
-  }, [isSearching, populateResultsWindow, props.dockedTo, results]);
+    populateResultsContainer(html ? html : NO_MATCHES_HTML);
+  }, [isSearching, populateResultsContainer, props.dockedTo, results]);
 
   if (!subscribeError && isSubscribed) {
     if (data && debouncedQuery !== data[0]) setDebouncedQuery(data[0]);
@@ -267,7 +262,7 @@ const Search = props => {
     <div className="free-text-search">
       {props.dockedTo === DOCK_POSITION.TOP && (
         <input
-          onChange={event => handleOnInputChange(event, true)}
+          onInput={event => handleOnInputChange(event)}
           placeholder="Search"
           ref={searchInputRef}
         />

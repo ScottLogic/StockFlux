@@ -9,7 +9,7 @@ import {
   FaCog
 } from 'react-icons/fa';
 import AppShortcuts from './AppShortcuts';
-import FreeTextSearch from './FreeTextSearch';
+import FreeTextSearch from './free-text-search/FreeTextSearch';
 import ToolBar from './ToolBar';
 import DOCK_POSITION from './DockPosition';
 import './App.css';

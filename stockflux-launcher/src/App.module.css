@@ -1,25 +1,25 @@
 .containerList {
-    overflow-y: auto;
-    max-height: 330px;
-    background-color: var(--middle-background);
+  overflow-y: auto;
+  max-height: 330px;
+  background-color: var(--middle-background);
 }
 
 .input {
-    height: 35px;
-    width: 100%;
-    outline: none;
-    background-color: var(--middle-background);
-    border: none;
-    border-bottom: 1px solid var(--clr-divider-dark);
-    padding-left: var(--padding-small);
-    font-size: var(--font-large);
-    font-weight: var(--font-weight-bold);
-    color: var(--text-grey-dark);
+  height: 35px;
+  width: 100%;
+  outline: none;
+  background-color: var(--middle-background);
+  border: none;
+  border-bottom: 1px solid var(--clr-divider-dark);
+  padding-left: var(--padding-small);
+  font-size: var(--font-large);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-grey-dark);
 }
 
 .message {
-    text-align: center;
-    color: var(--text-grey-dark);
-    font-weight: var(--font-weight-bold);
-    padding: var(--padding-medium) 0;
+  text-align: center;
+  color: var(--text-grey-dark);
+  font-weight: var(--font-weight-bold);
+  padding: var(--padding-medium) 0;
 }
