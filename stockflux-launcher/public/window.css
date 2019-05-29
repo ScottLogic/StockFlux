@@ -118,6 +118,8 @@ div#results-container p {
   color: #aeb1b5;
   font-size: 14px;
   margin-top: calc(50vh - 30px);
+  padding: 0 35px;
+  line-height: 1.5;
 }
 
 .search-hidden {
