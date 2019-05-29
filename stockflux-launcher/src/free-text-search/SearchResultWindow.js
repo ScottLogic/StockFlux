@@ -1,5 +1,5 @@
+import { Constants } from 'openfin-react-hooks';
 import ReactDOMServer from 'react-dom/server';
-import DOCK_POSITION from '../DockPosition';
 
 const RESULTS_WINDOW_NAME = 'child-window-search-results';
 const SEARCH_RESULTS_WIDTH = 407;
@@ -32,17 +32,17 @@ const getResultsWindowPosition = (
 ) => {
   let left, top;
   switch (dockedTo) {
-    case DOCK_POSITION.TOP:
+    case Constants.ScreenEdge.TOP:
       top = LAUNCHER_WIDTH;
       left =
         getSearchButtonX(searchButtonRef) -
         getLauncherInputWidth(searchInputRef);
       break;
-    case DOCK_POSITION.LEFT:
+    case Constants.ScreenEdge.LEFT:
       top = getSearchButtonY(searchButtonRef);
       left = LAUNCHER_WIDTH;
       break;
-    case DOCK_POSITION.RIGHT:
+    case Constants.ScreenEdge.RIGHT:
       top = getSearchButtonY(searchButtonRef);
       left =
         windowBounds &&
@@ -84,7 +84,7 @@ const spawnWindow = async (
   // eslint-disable-next-line no-undef
   await fin.Window.create(childWindow).then(win => {
     setResultsWindow(win);
-    if (dockedTo !== DOCK_POSITION.TOP) {
+    if (dockedTo !== Constants.ScreenEdge.TOP) {
       win
         .getWebWindow()
         .document.getElementById('searchbar-container').hidden = false;

@@ -8,8 +8,11 @@ import React, {
 import { FaSearch } from 'react-icons/fa';
 import { StockFlux } from 'stockflux-core';
 import SearchResult from './search-result';
-import DOCK_POSITION from '../DockPosition';
-import { InterApplicationBusHooks, WindowHooks } from 'openfin-react-hooks';
+import {
+  InterApplicationBusHooks,
+  WindowHooks,
+  Constants
+} from 'openfin-react-hooks';
 import { createWindow, populateResultsContainer } from './SearchResultWindow';
 import './FreeTextSearch.css';
 
@@ -106,7 +109,8 @@ const Search = props => {
   const handleSearchClick = useCallback(async () => {
     if (resultsWindow) {
       closeResultsWindow();
-      if (props.dockedTo === DOCK_POSITION.TOP) resetLauncherInputField();
+      if (props.dockedTo === Constants.ScreenEdge.TOP)
+        resetLauncherInputField();
     } else {
       createWindow(
         searchButtonRef,
@@ -195,7 +199,8 @@ const Search = props => {
 
   return (
     <div className="free-text-search">
-      {props.dockedTo === DOCK_POSITION.TOP && (
+      {(props.dockedTo === Constants.ScreenEdge.TOP ||
+        props.dockedTo === Constants.ScreenEdge.NONE) && (
         <input
           onInput={event => handleOnInputChange(event)}
           placeholder="Search"
