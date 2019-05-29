@@ -3,13 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "date-fns": "^1.30.1",
+    "isomorphic-fetch": "^2.2.1",
+    "moment": "^2.24.0",
+    "openfin-fdc3": "^0.1.1",
+    "openfin-layouts": "^1.0.0",
+    "openfin-react-hooks": "file:../openfin-react-hooks",
+    "prop-types": "15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1",
-    "prop-types": "15.7.2",
-    "openfin-layouts": "^1.0.0",
-    "openfin-react-hooks": "file:../openfin-react-hooks",
-    "stockflux-components": "file:../stockflux-components"
+    "stockflux-components": "file:../stockflux-components",
+    "stockflux-core": "file:../stockflux-core",
+    "throat": "^5.0.0"
   },
   "devDependencies": {
     "cross-env": "^5.2.0"

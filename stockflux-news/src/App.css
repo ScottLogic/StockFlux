@@ -3,17 +3,32 @@
 }
 
 .stockflux-news {
-  overflow-y: auto;
-  max-height: 330px;
+  height: 100%;
   background-color: var(--middle-background);
 }
 
 .stockflux-header {
   justify-content: center;
+  font-size: var(--font-xxlarge);
+  color: var(--text-grey-lighter);
+  font-weight: var(--font-weight-bolder);
+  padding: 10px;
+  display: flex;
+  height: 20px;
+}
+
+.newsitems-container {
+  border-top: 1px solid var(--chart-teal);
+  overflow-y: auto;
+  max-height: 330px;
+}
+
+.no-articles {
+  padding: 10px;
+  display: flex;
+  height: 20px;
+  justify-content: center;
   font-size: var(--font-large);
   color: var(--text-grey-lighter);
   font-weight: var(--font-weight-bold);
-  padding: 10px;
-  display: flex;
-  border-bottom: 1px solid var(--chart-teal);
 }

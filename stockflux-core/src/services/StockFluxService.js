@@ -143,3 +143,21 @@ export function getMiniChartData(symbol) {
                 });
         });
 }
+
+export function getSymbolNews(symbol) {
+    return window.fin.Window.getCurrent().then(function(win) {
+        return win.getOptions();
+    }).then(function(options) {
+        return options.customData.apiBaseUrl;
+    }).then(function(api) {
+        var url = api + '/news/' + symbol;
+        return fetch(url, {
+            method: 'GET'
+        }).then(function(response) {
+            return response.json();
+        }).catch(function(error) {
+            console.error(error);
+            return [];
+        });
+    });
+}

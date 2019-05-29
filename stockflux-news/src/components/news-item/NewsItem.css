@@ -16,15 +16,27 @@
 .item-content {
     display: flex;
     flex: 1;
+    flex-wrap: nowrap;
     flex-direction: column;
     padding: 5px 0;
+    width: 80%;
+    justify-content: space-between;
 }
 
 .item-headline {
-    font-size: 18px;
+    font-size: var(--font-xlarge);
     text-transform: capitalize;
+    font-weight: var(--font-weight-bold);
 }
 
-.item-content {
+.item-summary, .item-headline {
+    flex-basis: 100%;
+    overflow: hidden;
+    min-width: 0;
     text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.item-summary {
+    font-size: var(--font-large);
 }

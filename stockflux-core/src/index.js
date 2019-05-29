@@ -7,11 +7,13 @@ import {
 import {
   stockFluxSearch,
   getStockFluxData,
-  getMiniChartData
+  getMiniChartData,
+  getSymbolNews
 } from './services/StockFluxService';
 import { truncate } from './utils/formatters';
 import useLocalStorage from './custom-hooks/LocalStorageHook';
 import { viewChart } from './intents/viewChart';
+import { viewNews } from './intents/viewNews';
 
 // remove when Quandl is removed from bitflux
 export const Quandl = {
@@ -28,11 +30,13 @@ export const Utils = {
 export const StockFlux = {
   stockFluxSearch,
   getStockFluxData,
-  getMiniChartData
+  getMiniChartData,
+  getSymbolNews
 };
 
 export const Intents = {
-  viewChart
+  viewChart,
+  viewNews
 };
 
 export const StockFluxHooks = {
