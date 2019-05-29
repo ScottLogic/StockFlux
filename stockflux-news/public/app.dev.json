@@ -1,0 +1,45 @@
+{
+    "devtools_port": 9091,
+    "runtime": {
+        "arguments": "--enable-aggressive-domstorage-flushing",
+        "version": "10.66.39.43"
+    },
+    "startup_app": {
+        "name": "stockflux-news",
+        "uuid": "stockflux-news",
+        "url": "http://localhost:8056/index.html",
+        "applicationIcon": "http://localhost:8056/favicon.ico",
+        "autoShow": true,
+        "maxHeight": 400,
+        "defaultWidth": 400,
+        "minWidth": 400,
+        "maxWidth": 400,
+        "resizable": false,
+        "frame": false,
+        "contextMenu": true,
+        "cornerRounding": {
+            "height": 4,
+            "width": 4
+        },
+        "customData": {
+            "apiBaseUrl": "https://d2v92tgq94yxaa.cloudfront.net/api"
+        }
+    },
+    "services": [
+        {
+            "name": "layouts",
+            "config": {
+                "features": {
+                    "tab": false
+                }
+            }
+        }
+    ],
+    "shortcut": {
+        "company": "ScottLogic",
+        "description": "Hosts StockFlux News as an OpenFin application.",
+        "name": "StockFlux News",
+        "icon": "http://localhost:8056/favicon.ico"
+    },
+    "splashScreenImage": "http://localhost:8056/splashscreen.png"
+}
