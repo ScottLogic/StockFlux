@@ -8,10 +8,16 @@
 
 .source {   
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 20%;
     padding: 0 5px;
+}
+
+.source svg {
+    height: 18px;
+    width: 18px;
 }
 
 .content {

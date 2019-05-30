@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaNewspaper } from 'react-icons/fa';
 import * as PropTypes from 'prop-types';
 
 import styles from './NewsItem.module.css';
@@ -25,7 +26,7 @@ const handleNewsItemClick = (link) => {
 
 const NewsItem = ({headline, source, copy, link}) => (
     <div className={styles.newsitem}>
-        <div className={styles.source}>{source}</div>
+        <div className={styles.source}><FaNewspaper/>{source}</div>
         <div className={styles.content} onClick={() => handleNewsItemClick(link)}>
             <div className={styles.headline}>{headline}</div>
             <div className={styles.summary}>{copy}</div>
