@@ -19,11 +19,16 @@ const handleChartAddClick = async (code, name) => {
     Intents.viewChart(code, name);
 };
 
+const handleViewNewsClick = async (code) => {
+    Intents.viewNews(code);
+}
+
 const SearchResult = ({ code, name }) => (
     <div className={styles.searchResult}>
         <div className={styles.name}>{Utils.truncate(name)}</div>
         <div className={styles.subtitle}>{code}</div>
         <div className={styles.containerActions}>
+            <button type="button" className={styles.buttonAction} onClick={() => handleViewNewsClick(code)}>View News</button>
             <button type="button" className={styles.buttonAction} onClick={() => handleWatchlistAddClick(code, name)}>Add to Watchlist</button>
             <button type="button" className={styles.buttonAction} onClick={() => handleChartAddClick(code, name)}>Add to Chart</button>
         </div>
