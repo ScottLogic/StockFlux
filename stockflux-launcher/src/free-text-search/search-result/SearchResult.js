@@ -13,10 +13,6 @@ const handleWatchlistAddClick = (code, name) => {
   });
 };
 
-const handleChartAddClick = async (code, name) => {
-  Intents.viewChart(code, name);
-};
-
 const SearchResult = ({ code, name }) => (
   <div className="searchResult">
     <div className="name">{Utils.truncate(name)}</div>
@@ -32,7 +28,7 @@ const SearchResult = ({ code, name }) => (
       <button
         type="button"
         className="buttonAction"
-        onClick={() => handleChartAddClick(code, name)}
+        onClick={() => Intents.viewChart(code, name)}
       >
         Add to Chart
       </button>
