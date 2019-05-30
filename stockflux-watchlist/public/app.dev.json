@@ -2,7 +2,7 @@
   "devtools_port": 9090,
   "runtime": {
     "arguments": "--enable-aggressive-domstorage-flushing",
-    "version": "10.66.39.43"
+    "version": "11.69.42.14"
   },
   "startup_app": {
     "name": "stockflux-watchlist",
@@ -18,7 +18,7 @@
     "frame": false,
     "contextMenu": true,
     "customData": {
-        "apiBaseUrl": "https://lf467ndb08.execute-api.eu-west-2.amazonaws.com/dev/api"
+      "apiBaseUrl": "https://lf467ndb08.execute-api.eu-west-2.amazonaws.com/dev/api"
     }
   },
   "services": [

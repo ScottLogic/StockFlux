@@ -8,7 +8,7 @@ export default ({ tools }) => {
         <button
           key={index}
           onClick={() => tool.onClick()}
-          disabled={tool.disabled ? tool.disabled() : false}
+          disabled={tool.disabled ? tool.disabled : false}
         >
           {tool.label}
         </button>

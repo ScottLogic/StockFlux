@@ -74,12 +74,16 @@ const spawnWindow = async (
     name: RESULTS_WINDOW_NAME,
     defaultWidth: SEARCH_RESULTS_WIDTH,
     defaultHeight: SEARCH_RESULTS_HEIGHT,
-    url: 'window.html',
+    url: 'searchResultsWindow.html',
     frame: false,
     autoShow: true,
     defaultTop,
     defaultLeft,
-    saveWindowState: false
+    saveWindowState: false,
+    showTaskbarIcon: false,
+    backgroundColor: '#28313D',
+    waitForPageLoad: true,
+    alwaysOnTop: true
   };
   // eslint-disable-next-line no-undef
   await fin.Window.create(childWindow).then(win => {

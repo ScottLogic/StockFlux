@@ -9,17 +9,24 @@ import { FaSearch } from 'react-icons/fa';
 import { StockFlux } from 'stockflux-core';
 import SearchResult from './search-result';
 import {
+  createWindow,
+  populateResultsContainer
+} from './search-result/SearchResultsWindowPosition';
+import {
+  searchReducer,
+  initialSearchState,
+  SEARCHING,
+  SUCCESS,
+  ERROR,
+  INITIALISE
+} from './search-result/SearchReducer';
+import {
   InterApplicationBusHooks,
   WindowHooks,
   Constants
 } from 'openfin-react-hooks';
-import { createWindow, populateResultsContainer } from './SearchResultWindow';
 import './FreeTextSearch.css';
 
-const SEARCHING = 'searching';
-const SUCCESS = 'success';
-const ERROR = 'error';
-const INITIALISE = 'initialise';
 const SEARCH_TIMEOUT_INTERVAL = 250;
 const NO_MATCHES_HTML = <p>Sorry, no matches found.</p>;
 const INITIAL_MESSAGE_HTML = (
@@ -31,38 +38,6 @@ const INITIAL_MESSAGE_HTML = (
 
 let latestRequest = null;
 let resultsWindow = null;
-
-const initialSearchState = {
-  isSearching: false,
-  hasErrors: false
-};
-
-const searchReducer = (state, { type, results }) => {
-  switch (type) {
-    case SEARCHING:
-      return {
-        ...state,
-        hasErrors: false,
-        isSearching: true
-      };
-    case SUCCESS:
-      return {
-        ...state,
-        isSearching: false,
-        results
-      };
-    case ERROR:
-      return {
-        ...state,
-        hasErrors: true,
-        isSearching: false
-      };
-    case INITIALISE:
-      return initialSearchState;
-    default:
-      throw new Error();
-  }
-};
 
 const Search = props => {
   const [searchState, dispatch] = useReducer(searchReducer, initialSearchState);
@@ -103,10 +78,16 @@ const Search = props => {
           setResultsWindow
         ).catch(err => console.error(err));
     },
-    [closeResultsWindow, props.dockedTo, windowState.bounds]
+    [
+      searchButtonRef,
+      searchInputRef,
+      closeResultsWindow,
+      props.dockedTo,
+      windowState.bounds
+    ]
   );
 
-  const handleSearchClick = useCallback(async () => {
+  const handleSearchClick = useCallback(() => {
     if (resultsWindow) {
       closeResultsWindow();
       if (props.dockedTo === Constants.ScreenEdge.TOP)
@@ -120,10 +101,16 @@ const Search = props => {
         setResultsWindow
       ).catch(err => console.error(err));
     }
-  }, [closeResultsWindow, props.dockedTo, windowState.bounds]);
+  }, [
+    searchButtonRef,
+    searchInputRef,
+    closeResultsWindow,
+    props.dockedTo,
+    windowState.bounds
+  ]);
 
   useEffect(() => {
-    const stockFluxSearch = async () => {
+    const stockFluxSearch = () => {
       if (debouncedQuery) {
         dispatch({ type: SEARCHING });
         try {
@@ -177,11 +164,13 @@ const Search = props => {
     }
   }, [debouncedQuery, isSearching, props.dockedTo, results]);
 
-  window.fin.Window.getCurrentSync()
-    .getOptions()
-    .then(options => {
-      setParentUuid(options.uuid);
-    });
+  useEffect(() => {
+    window.fin.Window.getCurrentSync()
+      .getOptions()
+      .then(options => {
+        setParentUuid(options.uuid);
+      });
+  }, []);
 
   const {
     data,
