@@ -16,9 +16,6 @@ import './App.css';
 export default () => {
   const [windowState, windowActions] = WindowHooks.useCurrentWindowState();
 
-  console.log('screen edge', windowState);
-  console.log('windowActions', windowActions);
-
   return (
     <div className={cx('app', windowState.edge)}>
       <AppShortcuts />
