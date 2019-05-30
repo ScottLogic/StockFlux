@@ -14,6 +14,11 @@ const handleNewsItemClick = (link) => {
         minHeight: 500,
         frame: true,
         contextMenu: true,
+        api: {
+            iframe: {
+                sameOriginInjection: false
+            }
+        }
     };
     window.fin.Window.create(winOption);
 }
