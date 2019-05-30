@@ -1,7 +1,7 @@
 .newsitem {
     display: flex;
     height: 70px;
-    border-bottom: 1px solid hotpink;
+    border-bottom: 1px solid var(--chart-teal);
     color: white;
     cursor: pointer;
 }
@@ -11,15 +11,15 @@
     align-items: center;
     justify-content: center;
     width: 20%;
+    padding: 0 5px;
 }
 
 .content {
     display: flex;
-    flex: 1;
     flex-wrap: nowrap;
     flex-direction: column;
     padding: 5px 0;
-    width: 80%;
+    width: 75%;
     justify-content: space-between;
 }
 

@@ -4,7 +4,6 @@ export const viewNews = async function(symbol) {
   const availableApps = await fdc3.findIntent('ViewNews');
   if (availableApps && availableApps.apps) {
     const newsApp = availableApps.apps.find(app => app.appId === 'stockflux-news');
-    console.log(newsApp, availableApps);
     if (newsApp) {
       await fdc3.raiseIntent(
         'ViewNews',

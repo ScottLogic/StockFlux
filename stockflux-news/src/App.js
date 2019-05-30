@@ -1,4 +1,4 @@
-import React, {useRef, useState, useEffect} from 'react';
+import React, {useRef, useState, useEffect, useReducer} from 'react';
 import * as fdc3 from 'openfin-fdc3';
 import Components from 'stockflux-components';
 import NewsItem from './components/news-item/NewsItem';
@@ -7,16 +7,55 @@ import styles from './App.module.css';
 
 let latestListener;
 
+const SEARCHING = 'searching';
+const SUCCESS = 'success';
+const ERROR = 'error';
+
 const MIN_HEIGHT = 400;
 const TITLEBAR_HEIGHT = 35;
-const SYMBOL_HEADER_HEIGHT = 41;
+const SYMBOL_HEADER_HEIGHT = 40;
+const SPINNER_CONTAINER_HEIGHT = 60;
+
+const initialSearchState = {
+  isSearching: false,
+  hasErrors: false,
+  results: []
+};
 
 function App() {
 
+  const searchReducer = (state, { type, results }) => {
+    switch (type) {
+        case SEARCHING:
+            return {
+                ...state,
+                hasErrors: false,
+                isSearching: true,
+                results: []
+            };
+        case SUCCESS:
+            return {
+                ...state,
+                isSearching: false,
+                results
+            };
+        case ERROR:
+            return {
+                ...state,
+                hasErrors: true,
+                isSearching: false,
+                results: []
+            };
+        default:
+            throw new Error();
+      }
+    };
+
+  const [searchState, dispatch] = useReducer(searchReducer, initialSearchState);
   const [symbol, setSymbol] = useState(null);
-  const [articles, setArticles] = useState([]);
   const listContainer = useRef(null);
 
+  const { isSearching, results } = searchState;
     /*
    * This is a temorary solution for
    * 1) not being able to unsubscribe intentListeners
@@ -33,7 +72,10 @@ function App() {
 
   useEffect(() => {
     if (symbol) {
-      StockFlux.getSymbolNews(symbol).then(setArticles);
+      dispatch({ type: SEARCHING });
+      StockFlux.getSymbolNews(symbol).then((results) => {
+        dispatch({type: SUCCESS, results});
+      }).catch(() => dispatch({ type: ERROR }));
     }
   }, [symbol]);
 
@@ -41,26 +83,39 @@ function App() {
     (async () => {
         const win = await window.fin.Window.getCurrent();
         const bounds = await win.getBounds();
-        win.resizeTo(bounds.width, Math.min(listContainer.current.scrollHeight + TITLEBAR_HEIGHT + SYMBOL_HEADER_HEIGHT, MIN_HEIGHT));
+        if (results.length === 0 && isSearching) {
+          win.resizeTo(bounds.width, Math.min(SPINNER_CONTAINER_HEIGHT + TITLEBAR_HEIGHT + SYMBOL_HEADER_HEIGHT, MIN_HEIGHT));
+        } else {
+          win.resizeTo(bounds.width, Math.min(listContainer.current.scrollHeight + TITLEBAR_HEIGHT + SYMBOL_HEADER_HEIGHT - results.length, MIN_HEIGHT));
+        }
     })();
   });
 
   return (
-    <div className={styles.stockfluxnews}> 
+    <div className={styles.stockfluxNews}> 
       <Components.Titlebar />
       <div className={styles.header}>
           {symbol}
       </div>
-      <div className={styles.container} ref={listContainer}>
-          {articles.length > 0 ? articles.map((newsItem, index) => 
+      <Components.ScrollWrapperY>
+        <div className={styles.container} ref={listContainer}>
+        {isSearching ? (
+          <div className={styles.spinContainer}>
+            <Components.Spinner />
+          </div>
+        ) : 
+          (results.length > 0 ? results.map((newsItem, index) => 
             <NewsItem key={index} headline={newsItem.title} source={newsItem.source} 
                       copy={newsItem.summary} link={newsItem.url} />
           ) : (
-            <div className={styles.noarticles}>
+            <div className={styles.noArticles}>
               Sorry, no news stories found for that symbol.
             </div>
-          )}
-      </div>
+            )
+          )
+        }
+        </div>
+      </Components.ScrollWrapperY>
     </div>
   );
 }

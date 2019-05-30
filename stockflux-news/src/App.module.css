@@ -1,8 +1,4 @@
-:root {
-  --chart-teal: #37d8bc;
-}
-
-.stockfluxnews {
+.stockfluxNews {
   height: 100%;
   background-color: var(--middle-background);
 }
@@ -23,7 +19,7 @@
   max-height: 330px;
 }
 
-.noarticles {
+.noArticles {
   padding: 10px;
   display: flex;
   height: 20px;
@@ -31,4 +27,9 @@
   font-size: var(--font-large);
   color: var(--text-grey-lighter);
   font-weight: var(--font-weight-bold);
+}
+
+.spinContainer {
+  padding: 10px 0;
+  height: 46px;
 }
