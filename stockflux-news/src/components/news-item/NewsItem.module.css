@@ -6,14 +6,14 @@
     cursor: pointer;
 }
 
-.item-source {   
+.source {   
     display: flex;
     align-items: center;
     justify-content: center;
     width: 20%;
 }
 
-.item-content {
+.content {
     display: flex;
     flex: 1;
     flex-wrap: nowrap;
@@ -23,13 +23,13 @@
     justify-content: space-between;
 }
 
-.item-headline {
+.headline {
     font-size: var(--font-xlarge);
     text-transform: capitalize;
     font-weight: var(--font-weight-bold);
 }
 
-.item-summary, .item-headline {
+.summary, .headline {
     flex-basis: 100%;
     overflow: hidden;
     min-width: 0;
@@ -37,6 +37,6 @@
     white-space: nowrap;
 }
 
-.item-summary {
+.summary {
     font-size: var(--font-large);
 }

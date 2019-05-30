@@ -1,7 +1,7 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
 
-import './NewsItem.css';
+import styles from './NewsItem.module.css';
 
 const handleNewsItemClick = (link) => {
     const winOption = {
@@ -19,11 +19,11 @@ const handleNewsItemClick = (link) => {
 }
 
 const NewsItem = ({headline, source, copy, link}) => (
-    <div className="newsitem">
-        <div className="item-source">{source}</div>
-        <div className="item-content" onClick={() => handleNewsItemClick(link)}>
-            <div className="item-headline">{headline}</div>
-            <div className="item-summary">{copy}</div>
+    <div className={styles.newsitem}>
+        <div className={styles.source}>{source}</div>
+        <div className={styles.content} onClick={() => handleNewsItemClick(link)}>
+            <div className={styles.headline}>{headline}</div>
+            <div className={styles.summary}>{copy}</div>
         </div>
     </div>
 );

@@ -3,7 +3,7 @@ import * as fdc3 from 'openfin-fdc3';
 import Components from 'stockflux-components';
 import NewsItem from './components/news-item/NewsItem';
 import { StockFlux } from 'stockflux-core';
-import './App.css';
+import styles from './App.module.css';
 
 let latestListener;
 
@@ -46,17 +46,17 @@ function App() {
   });
 
   return (
-    <div className="stockflux-news">
+    <div className={styles.stockfluxnews}> 
       <Components.Titlebar />
-      <div className="stockflux-header">
+      <div className={styles.header}>
           {symbol}
       </div>
-      <div className="newsitems-container" ref={listContainer}>
+      <div className={styles.container} ref={listContainer}>
           {articles.length > 0 ? articles.map((newsItem, index) => 
             <NewsItem key={index} headline={newsItem.title} source={newsItem.source} 
                       copy={newsItem.summary} link={newsItem.url} />
           ) : (
-            <div className="no-articles">
+            <div className={styles.noarticles}>
               Sorry, no news stories found for that symbol.
             </div>
           )}

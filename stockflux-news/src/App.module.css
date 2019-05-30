@@ -2,12 +2,12 @@
   --chart-teal: #37d8bc;
 }
 
-.stockflux-news {
+.stockfluxnews {
   height: 100%;
   background-color: var(--middle-background);
 }
 
-.stockflux-header {
+.header {
   justify-content: center;
   font-size: var(--font-xxlarge);
   color: var(--text-grey-lighter);
@@ -17,13 +17,13 @@
   height: 20px;
 }
 
-.newsitems-container {
+.container {
   border-top: 1px solid var(--chart-teal);
   overflow-y: auto;
   max-height: 330px;
 }
 
-.no-articles {
+.noarticles {
   padding: 10px;
   display: flex;
   height: 20px;
