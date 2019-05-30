@@ -84,7 +84,10 @@ const spawnWindow = async (
   // eslint-disable-next-line no-undef
   await fin.Window.create(childWindow).then(win => {
     setResultsWindow(win);
-    if (dockedTo !== Constants.ScreenEdge.TOP) {
+    if (
+      dockedTo === Constants.ScreenEdge.LEFT ||
+      dockedTo === Constants.ScreenEdge.RIGHT
+    ) {
       win
         .getWebWindow()
         .document.getElementById('searchbar-container').hidden = false;
