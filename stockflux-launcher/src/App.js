@@ -6,7 +6,6 @@ import {
   FaChevronUp,
   FaChevronLeft,
   FaChevronRight,
-  FaCog
 } from 'react-icons/fa';
 import AppShortcuts from './app-shortcuts/AppShortcuts';
 import FreeTextSearch from './free-text-search/FreeTextSearch';
@@ -26,10 +25,6 @@ export default () => {
       <FreeTextSearch dockedTo={windowState.edge} />
       <ToolBar
         tools={[
-          {
-            label: <FaCog />,
-            onClick: () => {}
-          },
           {
             label: <FaChevronUp />,
             onClick: () => {
