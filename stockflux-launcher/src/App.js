@@ -14,43 +14,34 @@ import CloseButton from './toolbar/CloseButton';
 import './App.css';
 
 export default () => {
-  const [windowState, windowActions] = WindowHooks.useCurrentWindowState();
+  const [edge, windowActions] = WindowHooks.useDockWindow(Constants.ScreenEdge.TOP, window.fin.Window.getCurrentSync(),
+      true, { dockedWidth: 50, dockedHeight: 50 });
 
   return (
-    <div className={cx('app', windowState.edge)}>
-      {(windowState.edge === Constants.ScreenEdge.LEFT ||
-        windowState.edge === Constants.ScreenEdge.RIGHT) &&
-        CloseButton}
+    <div className={cx('app', edge)}>
+      {(edge === Constants.ScreenEdge.LEFT || edge === Constants.ScreenEdge.RIGHT) && CloseButton}
       <AppShortcuts />
-      <FreeTextSearch dockedTo={windowState.edge} />
+      <FreeTextSearch dockedTo={edge} />
       <ToolBar
         tools={[
           {
             label: <FaChevronUp />,
-            onClick: () => {
-              windowActions.lockTop();
-            },
-            disabled: windowState.edge === Constants.ScreenEdge.TOP
+            onClick: windowActions.dockTop,
+            disabled: edge === Constants.ScreenEdge.TOP
           },
           {
             label: <FaChevronLeft />,
-            onClick: () => {
-              windowActions.lockLeft();
-            },
-            disabled: windowState.edge === Constants.ScreenEdge.LEFT
+            onClick: windowActions.dockLeft,
+            disabled: edge === Constants.ScreenEdge.LEFT
           },
           {
             label: <FaChevronRight />,
-            onClick: () => {
-              windowActions.lockRight();
-            },
-            disabled: windowState.edge === Constants.ScreenEdge.RIGHT
+            onClick: windowActions.dockRight,
+            disabled: edge === Constants.ScreenEdge.RIGHT
           }
         ]}
       />
-      {(windowState.edge === Constants.ScreenEdge.TOP ||
-        windowState.edge === Constants.ScreenEdge.NONE) &&
-        CloseButton}
+      {(edge === Constants.ScreenEdge.TOP || edge === Constants.ScreenEdge.NONE) && CloseButton}
     </div>
   );
 };
