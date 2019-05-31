@@ -1,5 +1,6 @@
 import React from 'react';
 import * as fdc3 from 'openfin-fdc3';
+import { FaChartLine, FaRegListAlt  } from 'react-icons/fa'
 import * as PropTypes from 'prop-types';
 import { Utils, Intents } from 'stockflux-core';
 
@@ -23,14 +24,14 @@ const SearchResult = ({ code, name }) => (
         className="buttonAction"
         onClick={() => handleWatchlistAddClick(code, name)}
       >
-        Add to Watchlist
+        <FaRegListAlt className="buttonIcon"/>
       </button>
       <button
         type="button"
         className="buttonAction"
         onClick={() => Intents.viewChart(code, name)}
       >
-        Add to Chart
+        <FaChartLine className="buttonIcon"/>
       </button>
     </div>
   </div>
