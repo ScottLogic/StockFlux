@@ -63,6 +63,11 @@ body {
   color: #95989C;
 }
 
+.buttonIcon {
+  height: 20px;
+  width: 20px;
+}
+
 .buttonAction:hover {
   color: #7B7E82;
 }
