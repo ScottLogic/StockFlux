@@ -1,32 +1,13 @@
-import React, {
-  useState,
-  useReducer,
-  useEffect,
-  useRef,
-  useCallback
-} from 'react';
+import React, { useState, useReducer, useEffect, useRef, useCallback } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { StockFlux } from 'stockflux-core';
 import SearchResult from './search-result';
-import {
-  createWindow,
-  populateResultsContainer
-} from './search-result/SearchResultsWindowPosition';
-import {
-  reducer,
-  initialSearchState,
-  SEARCHING,
-  SUCCESS,
-  ERROR,
-  INITIALISE
-} from './FreeTextSearch.reducer';
-import {
-  InterApplicationBusHooks,
-  WindowHooks,
-  Constants
-} from 'openfin-react-hooks';
+import { reducer, initialSearchState, SEARCHING, SUCCESS, ERROR, INITIALISE } from './FreeTextSearch.reducer';
+import { InterApplicationBusHooks, WindowHooks, Constants } from 'openfin-react-hooks';
 import './FreeTextSearch.css';
 import MESSAGES from "./FreeTextSearch.messages";
+import launchSearchResultsWindow from "./search-result/SearchResults.launcher";
+import populateSearchResultsWindow from './search-result/SearchResults.populater';
 
 const SEARCH_TIMEOUT_INTERVAL = 250;
 
@@ -53,12 +34,13 @@ const FreeTextSearch = ({ dockedTo }) => {
   const handleOnInputChange = useCallback(
     event => {
       setQuery(event.target.value);
-      if (event.target.value !== null && event.target.value.length === 0) {
+      if (event.target.value !== null && event.target.value === "") {
         closeResultsWindow();
-      } else if (!resultsWindow)
-        createWindow(searchButtonRef, searchInputRef, dockedTo, windowState.bounds)
+      } else if (!resultsWindow) {
+        launchSearchResultsWindow(searchButtonRef, searchInputRef, dockedTo, windowState.bounds)
             .then(win => resultsWindow = win)
             .catch(err => console.error(err));
+      }
     },
     [searchButtonRef, searchInputRef, dockedTo, windowState.bounds]
   );
@@ -70,7 +52,7 @@ const FreeTextSearch = ({ dockedTo }) => {
         searchInputRef.current.value = '';
       }
     } else {
-      createWindow(searchButtonRef, searchInputRef, dockedTo, windowState.bounds)
+      launchSearchResultsWindow(searchButtonRef, searchInputRef, dockedTo, windowState.bounds)
           .then(win => resultsWindow = win)
           .catch(err => console.error(err));
     }
@@ -100,6 +82,7 @@ const FreeTextSearch = ({ dockedTo }) => {
   }, [debouncedQuery]);
 
   useEffect(() => {
+    setQuery("");
     closeResultsWindow();
   }, [dockedTo]);
 
@@ -109,8 +92,14 @@ const FreeTextSearch = ({ dockedTo }) => {
   }, [query]);
 
   useEffect(() => {
+    if (!resultsWindow) {
+      return;
+    }
+
+    console.log("populate effect", results);
+
     if (isSearching) {
-      populateResultsContainer(MESSAGES.SEARCHING, resultsWindow);
+      populateSearchResultsWindow(MESSAGES.SEARCHING, resultsWindow);
     } else if (results && results.length) {
       const html = results.map(result => (
         <SearchResult
@@ -119,12 +108,9 @@ const FreeTextSearch = ({ dockedTo }) => {
           name={result.name}
         />
       ));
-      populateResultsContainer(html, resultsWindow);
+      populateSearchResultsWindow(html, resultsWindow);
     } else {
-      populateResultsContainer(
-        debouncedQuery ? MESSAGES.NO_MATCHES : MESSAGES.INITIAL,
-        resultsWindow
-      );
+      populateSearchResultsWindow(debouncedQuery ? MESSAGES.NO_MATCHES : MESSAGES.INITIAL, resultsWindow);
     }
   }, [debouncedQuery, isSearching, results]);
 
@@ -143,8 +129,7 @@ const FreeTextSearch = ({ dockedTo }) => {
 
   return (
     <div className="free-text-search">
-      {(dockedTo === Constants.ScreenEdge.TOP ||
-        dockedTo === Constants.ScreenEdge.NONE) && (
+      {(dockedTo === Constants.ScreenEdge.TOP || dockedTo === Constants.ScreenEdge.NONE) && (
         <input
           onInput={event => handleOnInputChange(event)}
           placeholder="Search"
