@@ -2,25 +2,12 @@ import { Constants } from 'openfin-react-hooks';
 import ReactDOMServer from 'react-dom/server';
 
 const RESULTS_WINDOW_NAME = 'child-window-search-results';
-const SEARCH_RESULTS_WIDTH = 407;
-const SEARCH_RESULTS_HEIGHT = 400;
-const LAUNCHER_WIDTH = 50;
+const DEFAULT_LAUNCHER_SIZE = 50;
+const DEFAULT_SEARCH_RESULTS_SIZE = 400;
 
-const getLauncherInputWidth = searchInputRef => {
-  if (searchInputRef.current) {
-    return searchInputRef.current.getBoundingClientRect().width;
-  }
-};
-
-const getSearchButtonY = searchButtonRef => {
-  if (searchButtonRef.current) {
-    return parseInt(searchButtonRef.current.getBoundingClientRect().y);
-  }
-};
-
-const getSearchButtonX = searchButtonRef => {
-  if (searchButtonRef.current) {
-    return parseInt(searchButtonRef.current.getBoundingClientRect().x);
+const getRect = ref => {
+  if (ref.current) {
+    return ref.current.getBoundingClientRect();
   }
 };
 
@@ -30,30 +17,39 @@ const getResultsWindowPosition = (
   dockedTo,
   windowBounds
 ) => {
-  let left, top;
+  const searchButtonRect = getRect(searchButtonRef);
   switch (dockedTo) {
     case Constants.ScreenEdge.TOP:
-      top = LAUNCHER_WIDTH;
-      left =
-        getSearchButtonX(searchButtonRef) -
-        getLauncherInputWidth(searchInputRef);
-      break;
+      const searchInputRect = getRect(searchInputRef);
+      return {
+        defaultTop: DEFAULT_LAUNCHER_SIZE,
+        defaultLeft: parseInt(searchInputRect.left),
+        defaultWidth: parseInt(searchInputRect.width),
+        defaultHeight: DEFAULT_SEARCH_RESULTS_SIZE
+      };
     case Constants.ScreenEdge.LEFT:
-      top = getSearchButtonY(searchButtonRef);
-      left = LAUNCHER_WIDTH;
-      break;
+      return {
+        defaultTop: parseInt(searchButtonRect.top),
+        defaultLeft: DEFAULT_LAUNCHER_SIZE,
+        defaultWidth: DEFAULT_SEARCH_RESULTS_SIZE,
+        defaultHeight: parseInt(searchButtonRect.bottom)
+      };
     case Constants.ScreenEdge.RIGHT:
-      top = getSearchButtonY(searchButtonRef);
-      left =
-        windowBounds &&
-        windowBounds.width - LAUNCHER_WIDTH - SEARCH_RESULTS_WIDTH;
-      break;
+      return {
+        defaultTop: parseInt(searchButtonRect.top),
+        defaultLeft: windowBounds.left - DEFAULT_SEARCH_RESULTS_SIZE,
+        defaultWidth: DEFAULT_SEARCH_RESULTS_SIZE,
+        defaultHeight: parseInt(searchButtonRect.bottom)
+      };
     default:
-      top = 50;
-      left = 600;
+      return {
+        defaultTop: 0,
+        defaultLeft: 0,
+        defaultWidth: DEFAULT_SEARCH_RESULTS_SIZE,
+        defaultHeight: DEFAULT_SEARCH_RESULTS_SIZE,
+      };
       break;
   }
-  return { defaultTop: parseInt(top), defaultLeft: parseInt(left) };
 };
 
 const spawnWindow = async (
@@ -63,7 +59,7 @@ const spawnWindow = async (
   windowBounds,
   setResultsWindow
 ) => {
-  const { defaultTop, defaultLeft } = getResultsWindowPosition(
+  const { defaultTop, defaultLeft, defaultWidth, defaultHeight } = getResultsWindowPosition(
     searchButtonRef,
     searchInputRef,
     dockedTo,
@@ -72,8 +68,8 @@ const spawnWindow = async (
 
   const childWindow = {
     name: RESULTS_WINDOW_NAME,
-    defaultWidth: SEARCH_RESULTS_WIDTH,
-    defaultHeight: SEARCH_RESULTS_HEIGHT,
+    defaultWidth,
+    defaultHeight,
     url: 'searchResultsWindow.html',
     frame: false,
     autoShow: true,
@@ -85,8 +81,7 @@ const spawnWindow = async (
     waitForPageLoad: true,
     alwaysOnTop: true
   };
-  // eslint-disable-next-line no-undef
-  await fin.Window.create(childWindow).then(win => {
+  await window.fin.Window.create(childWindow).then(win => {
     setResultsWindow(win);
     if (
       dockedTo === Constants.ScreenEdge.LEFT ||
@@ -106,8 +101,7 @@ export const createWindow = async (
   windowBounds,
   setResultsWindow
 ) => {
-  // eslint-disable-next-line no-undef
-  fin.desktop.System.getAllWindows(function(windowInfoList) {
+  window.fin.desktop.System.getAllWindows(function(windowInfoList) {
     if (windowInfoList[0].childWindows.length === 0) {
       spawnWindow(
         searchButtonRef,
