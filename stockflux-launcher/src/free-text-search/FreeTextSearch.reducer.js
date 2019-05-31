@@ -8,7 +8,7 @@ export const initialSearchState = {
   hasErrors: false
 };
 
-export const searchReducer = (state, { type, results }) => {
+export const reducer = (state, { type, results }) => {
   switch (type) {
     case SEARCHING:
       return {

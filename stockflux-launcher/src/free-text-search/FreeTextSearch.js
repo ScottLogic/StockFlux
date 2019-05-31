@@ -13,13 +13,13 @@ import {
   populateResultsContainer
 } from './search-result/SearchResultsWindowPosition';
 import {
-  searchReducer,
+  reducer,
   initialSearchState,
   SEARCHING,
   SUCCESS,
   ERROR,
   INITIALISE
-} from './search-result/SearchReducer';
+} from './FreeTextSearch.reducer';
 import {
   InterApplicationBusHooks,
   WindowHooks,
@@ -39,8 +39,8 @@ const INITIAL_MESSAGE_HTML = (
 let latestRequest = null;
 let resultsWindow = null;
 
-const Search = props => {
-  const [searchState, dispatch] = useReducer(searchReducer, initialSearchState);
+const FreeTextSearch = props => {
+  const [searchState, dispatch] = useReducer(reducer, initialSearchState);
   const [parentUuid, setParentUuid] = useState(null);
   const [query, setQuery] = useState(null);
   const [windowState] = WindowHooks.useCurrentWindowState();
@@ -202,4 +202,4 @@ const Search = props => {
     </div>
   );
 };
-export default Search;
+export default FreeTextSearch;
