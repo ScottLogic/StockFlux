@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppDirectoryHooks } from 'openfin-react-hooks';
-import AppShortcut from './AppShortcut';
+import AppShortcut from './app-shortcut/AppShortcut';
 import './AppShortcuts.css';
 
 const fixedAppIdPrefix = 'stockflux-';

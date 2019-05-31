@@ -1,12 +1,6 @@
 import { useEffect, useState } from 'react';
+import { ScreenEdge } from '../constants';
 import withOpenFin from '../withOpenFin';
-
-export const ScreenEdge = {
-  NONE: 'none',
-  TOP: 'top',
-  LEFT: 'left',
-  RIGHT: 'right'
-};
 
 const defaultState = {
   edge: ScreenEdge.NONE

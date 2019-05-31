@@ -1,40 +1,47 @@
 import React from 'react';
 import cx from 'classnames';
-import "stockflux-components";
+import 'stockflux-components';
 import { WindowHooks, Constants } from 'openfin-react-hooks';
-import { FaChevronUp, FaChevronLeft, FaChevronRight, FaCog } from 'react-icons/fa';
-import AppShortcuts from './AppShortcuts';
-import FreeTextSearch from './FreeTextSearch';
-import ToolBar from './ToolBar';
+import {
+  FaChevronUp,
+  FaChevronLeft,
+  FaChevronRight,
+} from 'react-icons/fa';
+import AppShortcuts from './app-shortcuts/AppShortcuts';
+import FreeTextSearch from './free-text-search/FreeTextSearch';
+import ToolBar from './toolbar/ToolBar';
+import CloseButton from './toolbar/CloseButton';
 import './App.css';
 
 export default () => {
-  const [windowState, windowActions] = WindowHooks.useCurrentWindowState();
+  const [edge, windowActions] = WindowHooks.useDockWindow(Constants.ScreenEdge.TOP, window.fin.Window.getCurrentSync(),
+      true, { dockedWidth: 50, dockedHeight: 50 });
 
   return (
-    <div className={cx('app', windowState.edge)}>
+    <div className={cx('app', edge)}>
+      {(edge === Constants.ScreenEdge.LEFT || edge === Constants.ScreenEdge.RIGHT) && CloseButton}
       <AppShortcuts />
-      <FreeTextSearch />
-      <ToolBar tools={[
-        {
-          label: <FaCog />
-        },
-        {
-          label: <FaChevronUp />,
-          onClick: windowActions.lockTop,
-          disabled: () => windowState.edge === Constants.ScreenEdge.TOP
-        },
-        {
-          label: <FaChevronLeft />,
-          onClick: windowActions.lockLeft,
-          disabled: () => windowState.edge === Constants.ScreenEdge.LEFT
-        },
-        {
-          label: <FaChevronRight />,
-          onClick: windowActions.lockRight,
-          disabled: () => windowState.edge === Constants.ScreenEdge.RIGHT
-        }
-      ]} />
+      <FreeTextSearch dockedTo={edge} />
+      <ToolBar
+        tools={[
+          {
+            label: <FaChevronUp />,
+            onClick: windowActions.dockTop,
+            disabled: edge === Constants.ScreenEdge.TOP
+          },
+          {
+            label: <FaChevronLeft />,
+            onClick: windowActions.dockLeft,
+            disabled: edge === Constants.ScreenEdge.LEFT
+          },
+          {
+            label: <FaChevronRight />,
+            onClick: windowActions.dockRight,
+            disabled: edge === Constants.ScreenEdge.RIGHT
+          }
+        ]}
+      />
+      {(edge === Constants.ScreenEdge.TOP || edge === Constants.ScreenEdge.NONE) && CloseButton}
     </div>
   );
 };

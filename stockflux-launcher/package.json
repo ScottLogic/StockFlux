@@ -20,7 +20,7 @@
     "throat": "4.1.0"
   },
   "scripts": {
-    "start": "cross-env BROWSER=none PORT=8050 react-scripts start",
+    "start": "cross-env BROWSER=none PORT=8053 react-scripts start",
     "launch": "openfin --launch --config ./public/app.dev.json",
     "build": "react-scripts build",
     "test": "react-scripts test",

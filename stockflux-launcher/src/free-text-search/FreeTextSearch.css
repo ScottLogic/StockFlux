@@ -1,7 +1,6 @@
 .free-text-search {
   flex: 1;
   display: flex;
-  flex: wrap;
   justify-content: center;
   align-items: center;
 }
@@ -40,7 +39,6 @@
   margin: 0 5px;
   outline: none;
   cursor: pointer;
-
   display: flex;
   justify-content: center;
   align-items: center;

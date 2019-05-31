@@ -2,13 +2,13 @@
     "devtools_port": 9091,
     "runtime": {
         "arguments": "--enable-aggressive-domstorage-flushing",
-        "version": "10.66.39.43"
+        "version": "11.69.42.14"
     },
     "startup_app": {
         "name": "stockflux-launcher",
         "uuid": "stockflux-launcher",
-        "url": "http://localhost:8050/index.html",
-        "applicationIcon": "http://localhost:8050/favicon.ico",
+        "url": "http://localhost:8053/index.html",
+        "applicationIcon": "http://localhost:8053/favicon.ico",
         "autoShow": true,
         "defaultHeight": 70,
         "defaultWidth": 800,
@@ -35,7 +35,7 @@
         "company": "ScottLogic",
         "description": "Hosts StockFlux App Launcher as an OpenFin application.",
         "name": "StockFlux App Launcher",
-        "icon": "http://localhost:8050/favicon.ico"
+        "icon": "http://localhost:8053/favicon.ico"
     },
-    "splashScreenImage": "http://localhost:8050/splashscreen.png"
+    "splashScreenImage": "http://localhost:8053/splashscreen.png"
 }
