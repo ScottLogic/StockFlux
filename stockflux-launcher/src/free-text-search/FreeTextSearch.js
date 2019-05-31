@@ -126,7 +126,7 @@ const FreeTextSearch = ({ dockedTo }) => {
   const { data, subscribeError, isSubscribed } = InterApplicationBusHooks.useSubscription(
     parentUuid ? parentUuid : '*', '', 'search-request');
 
-  if (!subscribeError && isSubscribed && data && debouncedQuery !== data[0]) {
+  if (!subscribeError && isSubscribed && data && debouncedQuery !== data[0] && dockedTo !== Constants.ScreenEdge.TOP) {
     setDebouncedQuery(data[0]);
   }
 
