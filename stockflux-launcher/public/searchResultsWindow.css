@@ -1,12 +1,15 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500);
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   border: 1px solid #1A212A;
-  background-color: rgb(40, 49, 61);
+  background-color: #28313D;
   font-family: 'Roboto', sans-serif;
   overflow: hidden;
-  height: 398px;
 }
 
 ::-webkit-scrollbar {
@@ -85,16 +88,10 @@ input {
   color: #aeb1b5;
   border: none;
   border-radius: 20px;
-  min-width: 250px;
-  padding: 10px;
-  margin: 0 5px;
+  padding: 5px 10px;
   outline: none;
-  height: 10px;
   margin: 5px;
-  width: 374px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 12px;
-  font-weight: 300;
+  width: calc(100% - 10px);
 }
 
 div.child {
@@ -108,7 +105,6 @@ div#container {
 }
 
 div#searchbar-container {
-  flex: 0 0 auto;
   border-bottom: 1px solid #1A212A;
 }
 
