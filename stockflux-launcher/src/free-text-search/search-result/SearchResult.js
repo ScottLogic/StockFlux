@@ -1,6 +1,6 @@
 import React from 'react';
 import * as fdc3 from 'openfin-fdc3';
-import { FaChartLine, FaRegListAlt  } from 'react-icons/fa'
+import { FaChartLine, FaRegListAlt, FaNewspaper  } from 'react-icons/fa'
 import * as PropTypes from 'prop-types';
 import { Utils, Intents } from 'stockflux-core';
 
@@ -14,11 +14,22 @@ const handleWatchlistAddClick = (code, name) => {
   });
 };
 
+const handleViewNewsClick = async (code) => {
+  Intents.viewNews(code);
+}
+
 const SearchResult = ({ code, name }) => (
   <div className="searchResult">
     <div className="name">{Utils.truncate(name)}</div>
     <div className="subtitle">{code}</div>
     <div className="containerActions">
+      <button
+        type="button"
+        className="buttonAction"
+        onClick={() => handleViewNewsClick(code)}
+      >
+        <FaNewspaper className="buttonIcon"/>
+      </button>
       <button
         type="button"
         className="buttonAction"
