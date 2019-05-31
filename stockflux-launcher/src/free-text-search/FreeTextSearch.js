@@ -26,16 +26,9 @@ import {
   Constants
 } from 'openfin-react-hooks';
 import './FreeTextSearch.css';
+import MESSAGES from "./FreeTextSearch.messages";
 
 const SEARCH_TIMEOUT_INTERVAL = 250;
-const SEARCHING_HTML = <p>Searching...</p>;
-const NO_MATCHES_HTML = <p>Sorry, no matches found.</p>;
-const INITIAL_MESSAGE_HTML = (
-  <p>
-    Use the input field above to search for instruments or click on the search
-    icon to close the search.
-  </p>
-);
 
 let latestRequest = null;
 let resultsWindow = null;
@@ -147,7 +140,7 @@ const FreeTextSearch = props => {
 
   useEffect(() => {
     if (isSearching) {
-      populateResultsContainer(SEARCHING_HTML, resultsWindow);
+      populateResultsContainer(MESSAGES.SEARCHING, resultsWindow);
     } else if (results && results.length) {
       const html = results.map(result => (
         <SearchResult
@@ -159,7 +152,7 @@ const FreeTextSearch = props => {
       populateResultsContainer(html, resultsWindow);
     } else {
       populateResultsContainer(
-        debouncedQuery ? NO_MATCHES_HTML : INITIAL_MESSAGE_HTML,
+        debouncedQuery ? MESSAGES.NO_MATCHES : MESSAGES.INITIAL,
         resultsWindow
       );
     }
