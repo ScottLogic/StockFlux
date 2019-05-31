@@ -28,6 +28,7 @@ import {
 import './FreeTextSearch.css';
 
 const SEARCH_TIMEOUT_INTERVAL = 250;
+const SEARCHING_HTML = <p>Searching...</p>;
 const NO_MATCHES_HTML = <p>Sorry, no matches found.</p>;
 const INITIAL_MESSAGE_HTML = (
   <p>
@@ -145,24 +146,24 @@ const FreeTextSearch = props => {
   }, [query]);
 
   useEffect(() => {
-    if (!isSearching && debouncedQuery !== null) {
-      if (results && results.length && debouncedQuery.length !== 0) {
-        const html = results.map(result => (
-          <SearchResult
-            key={result.code}
-            code={result.code}
-            name={result.name}
-          />
-        ));
-        populateResultsContainer(html, resultsWindow);
-      } else {
-        populateResultsContainer(
-          debouncedQuery.length === 0 ? INITIAL_MESSAGE_HTML : NO_MATCHES_HTML,
-          resultsWindow
-        );
-      }
+    if (isSearching) {
+      populateResultsContainer(SEARCHING_HTML, resultsWindow);
+    } else if (results && results.length) {
+      const html = results.map(result => (
+        <SearchResult
+          key={result.code}
+          code={result.code}
+          name={result.name}
+        />
+      ));
+      populateResultsContainer(html, resultsWindow);
+    } else {
+      populateResultsContainer(
+        debouncedQuery ? NO_MATCHES_HTML : INITIAL_MESSAGE_HTML,
+        resultsWindow
+      );
     }
-  }, [debouncedQuery, isSearching, props.dockedTo, results]);
+  }, [debouncedQuery, isSearching, results]);
 
   useEffect(() => {
     window.fin.Window.getCurrentSync()
