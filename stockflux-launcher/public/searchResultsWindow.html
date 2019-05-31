@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="stylesheet" type="text/css" href="searchResultsWindow.css" />
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script src="searchResultsWindowHandler.js"></script>
+    <div id="container">
+      <div id="searchbar-container" class="free-text-search" hidden>
+        <input
+          type="text"
+          oninput="onChange(this.value)"
+          placeholder="Search"
+        />
+      </div>
+      <div id="results-container">
+        <p>Use the input field above to search for instruments.</p>
+      </div>
+    </div>
+  </body>
+</html>

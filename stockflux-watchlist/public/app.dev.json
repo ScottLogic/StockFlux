@@ -1,24 +1,32 @@
 {
-    "devtools_port": 9090,
-    "runtime": {
-        "arguments": "--enable-aggressive-domstorage-flushing",
-        "version": "10.66.39.43"
-    },
-    "startup_app": {
-        "name": "stockflux-watchlist",
-        "uuid": "33aa9062-9eb0-4875-b819-c90f38ef0999",
-        "url": "http://localhost:8052/index.html",
-        "applicationIcon": "http://localhost:8052/favicon.ico",
-        "autoShow": true,
-        "defaultWidth": 230,
-        "defaultHeight": 600,
-        "maxWidth": 230,
-        "minWidth": 230,
-        "minHeight": 300,
-        "frame": false,
-        "contextMenu": true,
-        "customData": {
-            "apiBaseUrl": "https://lf467ndb08.execute-api.eu-west-2.amazonaws.com/dev/api"
+  "devtools_port": 9090,
+  "runtime": {
+    "arguments": "--enable-aggressive-domstorage-flushing",
+    "version": "11.69.42.14"
+  },
+  "startup_app": {
+    "name": "stockflux-watchlist",
+    "uuid": "33aa9062-9eb0-4875-b819-c90f38ef0999",
+    "url": "http://localhost:8052/index.html",
+    "applicationIcon": "http://localhost:8052/favicon.ico",
+    "autoShow": true,
+    "defaultWidth": 230,
+    "defaultHeight": 600,
+    "maxWidth": 230,
+    "minWidth": 230,
+    "minHeight": 300,
+    "frame": false,
+    "contextMenu": true,
+    "customData": {
+      "apiBaseUrl": "https://lf467ndb08.execute-api.eu-west-2.amazonaws.com/dev/api"
+    }
+  },
+  "services": [
+    {
+      "name": "layouts",
+      "config": {
+        "features": {
+          "tab": false
         }
     },
     "services": [
