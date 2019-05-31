@@ -12,6 +12,7 @@ import populateSearchResultsWindow from './search-result/SearchResults.populater
 const SEARCH_TIMEOUT_INTERVAL = 250;
 
 let latestRequest = null;
+let isCreatingResultWindow = false;
 let resultsWindow = null;
 
 const closeResultsWindow = () => {
@@ -36,10 +37,12 @@ const FreeTextSearch = ({ dockedTo }) => {
       setQuery(event.target.value);
       if (event.target.value !== null && event.target.value === "") {
         closeResultsWindow();
-      } else if (!resultsWindow) {
+      } else if (!resultsWindow && !isCreatingResultWindow) {
+        isCreatingResultWindow = true;
         launchSearchResultsWindow(searchButtonRef, searchInputRef, dockedTo, windowState.bounds)
             .then(win => resultsWindow = win)
-            .catch(err => console.error(err));
+            .catch(err => console.error(err))
+            .finally(() => isCreatingResultWindow = false);
       }
     },
     [searchButtonRef, searchInputRef, dockedTo, windowState.bounds]
@@ -51,12 +54,19 @@ const FreeTextSearch = ({ dockedTo }) => {
       if (dockedTo === Constants.ScreenEdge.TOP) {
         searchInputRef.current.value = '';
       }
-    } else {
+    } else if(!isCreatingResultWindow) {
+      isCreatingResultWindow = true;
       launchSearchResultsWindow(searchButtonRef, searchInputRef, dockedTo, windowState.bounds)
           .then(win => resultsWindow = win)
-          .catch(err => console.error(err));
+          .catch(err => console.error(err))
+          .finally(() => isCreatingResultWindow = false);
     }
   }, [searchButtonRef, searchInputRef, dockedTo, windowState.bounds]);
+
+  useEffect(() => {
+    closeResultsWindow();
+    setQuery("");
+  }, [dockedTo]);
 
   useEffect(() => {
     const stockFluxSearch = () => {
@@ -80,11 +90,6 @@ const FreeTextSearch = ({ dockedTo }) => {
     };
     stockFluxSearch();
   }, [debouncedQuery]);
-
-  useEffect(() => {
-    setQuery("");
-    closeResultsWindow();
-  }, [dockedTo]);
 
   useEffect(() => {
     const handler = setTimeout(() => setDebouncedQuery(query), SEARCH_TIMEOUT_INTERVAL);
