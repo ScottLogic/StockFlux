@@ -96,8 +96,6 @@ const FreeTextSearch = ({ dockedTo }) => {
       return;
     }
 
-    console.log("populate effect", results);
-
     if (isSearching) {
       populateSearchResultsWindow(MESSAGES.SEARCHING, resultsWindow);
     } else if (results && results.length) {
