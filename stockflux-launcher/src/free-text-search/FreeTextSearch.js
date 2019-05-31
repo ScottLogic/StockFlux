@@ -33,6 +33,13 @@ const SEARCH_TIMEOUT_INTERVAL = 250;
 let latestRequest = null;
 let resultsWindow = null;
 
+const closeResultsWindow = () => {
+  if (resultsWindow) {
+    resultsWindow.close();
+    resultsWindow = null;
+  }
+};
+
 const FreeTextSearch = props => {
   const [searchState, dispatch] = useReducer(reducer, initialSearchState);
   const [parentUuid, setParentUuid] = useState(null);
@@ -43,65 +50,31 @@ const FreeTextSearch = props => {
   const searchButtonRef = useRef(null);
   const searchInputRef = useRef(null);
 
-  const setResultsWindow = newReference => {
-    resultsWindow = newReference;
-  };
-
-  const resetLauncherInputField = () => {
-    if (searchInputRef.current) searchInputRef.current.value = '';
-  };
-
-  const closeResultsWindow = useCallback(() => {
-    if (resultsWindow) {
-      resultsWindow.close();
-      setResultsWindow(null);
-    }
-  }, []);
-
   const handleOnInputChange = useCallback(
     event => {
       setQuery(event.target.value);
       if (event.target.value !== null && event.target.value.length === 0) {
         closeResultsWindow();
       } else if (!resultsWindow)
-        createWindow(
-          searchButtonRef,
-          searchInputRef,
-          props.dockedTo,
-          windowState.bounds,
-          setResultsWindow
-        ).catch(err => console.error(err));
+        createWindow(searchButtonRef, searchInputRef, props.dockedTo, windowState.bounds)
+            .then(win => resultsWindow = win)
+            .catch(err => console.error(err));
     },
-    [
-      searchButtonRef,
-      searchInputRef,
-      closeResultsWindow,
-      props.dockedTo,
-      windowState.bounds
-    ]
+    [searchButtonRef, searchInputRef, props.dockedTo, windowState.bounds]
   );
 
   const handleSearchClick = useCallback(() => {
     if (resultsWindow) {
       closeResultsWindow();
-      if (props.dockedTo === Constants.ScreenEdge.TOP)
-        resetLauncherInputField();
+      if (props.dockedTo === Constants.ScreenEdge.TOP) {
+        searchInputRef.current.value = '';
+      }
     } else {
-      createWindow(
-        searchButtonRef,
-        searchInputRef,
-        props.dockedTo,
-        windowState.bounds,
-        setResultsWindow
-      ).catch(err => console.error(err));
+      createWindow(searchButtonRef, searchInputRef, props.dockedTo, windowState.bounds)
+          .then(win => resultsWindow = win)
+          .catch(err => console.error(err));
     }
-  }, [
-    searchButtonRef,
-    searchInputRef,
-    closeResultsWindow,
-    props.dockedTo,
-    windowState.bounds
-  ]);
+  }, [searchButtonRef, searchInputRef, props.dockedTo, windowState.bounds]);
 
   useEffect(() => {
     const stockFluxSearch = () => {
@@ -128,13 +101,10 @@ const FreeTextSearch = props => {
 
   useEffect(() => {
     closeResultsWindow();
-  }, [closeResultsWindow, props.dockedTo]);
+  }, [props.dockedTo]);
 
   useEffect(() => {
-    const handler = setTimeout(
-      () => setDebouncedQuery(query),
-      SEARCH_TIMEOUT_INTERVAL
-    );
+    const handler = setTimeout(() => setDebouncedQuery(query), SEARCH_TIMEOUT_INTERVAL);
     return () => clearTimeout(handler);
   }, [query]);
 
@@ -166,15 +136,8 @@ const FreeTextSearch = props => {
       });
   }, []);
 
-  const {
-    data,
-    subscribeError,
-    isSubscribed
-  } = InterApplicationBusHooks.useSubscription(
-    parentUuid ? parentUuid : '*',
-    '',
-    'search-request'
-  );
+  const { data, subscribeError, isSubscribed } = InterApplicationBusHooks.useSubscription(
+    parentUuid ? parentUuid : '*', '', 'search-request');
 
   if (!subscribeError && isSubscribed) {
     if (data && debouncedQuery !== data[0]) setDebouncedQuery(data[0]);
