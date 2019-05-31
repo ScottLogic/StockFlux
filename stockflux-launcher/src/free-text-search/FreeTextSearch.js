@@ -40,7 +40,7 @@ const closeResultsWindow = () => {
   }
 };
 
-const FreeTextSearch = props => {
+const FreeTextSearch = ({ dockedTo }) => {
   const [searchState, dispatch] = useReducer(reducer, initialSearchState);
   const [parentUuid, setParentUuid] = useState(null);
   const [query, setQuery] = useState(null);
@@ -56,25 +56,25 @@ const FreeTextSearch = props => {
       if (event.target.value !== null && event.target.value.length === 0) {
         closeResultsWindow();
       } else if (!resultsWindow)
-        createWindow(searchButtonRef, searchInputRef, props.dockedTo, windowState.bounds)
+        createWindow(searchButtonRef, searchInputRef, dockedTo, windowState.bounds)
             .then(win => resultsWindow = win)
             .catch(err => console.error(err));
     },
-    [searchButtonRef, searchInputRef, props.dockedTo, windowState.bounds]
+    [searchButtonRef, searchInputRef, dockedTo, windowState.bounds]
   );
 
   const handleSearchClick = useCallback(() => {
     if (resultsWindow) {
       closeResultsWindow();
-      if (props.dockedTo === Constants.ScreenEdge.TOP) {
+      if (dockedTo === Constants.ScreenEdge.TOP) {
         searchInputRef.current.value = '';
       }
     } else {
-      createWindow(searchButtonRef, searchInputRef, props.dockedTo, windowState.bounds)
+      createWindow(searchButtonRef, searchInputRef, dockedTo, windowState.bounds)
           .then(win => resultsWindow = win)
           .catch(err => console.error(err));
     }
-  }, [searchButtonRef, searchInputRef, props.dockedTo, windowState.bounds]);
+  }, [searchButtonRef, searchInputRef, dockedTo, windowState.bounds]);
 
   useEffect(() => {
     const stockFluxSearch = () => {
@@ -101,7 +101,7 @@ const FreeTextSearch = props => {
 
   useEffect(() => {
     closeResultsWindow();
-  }, [props.dockedTo]);
+  }, [dockedTo]);
 
   useEffect(() => {
     const handler = setTimeout(() => setDebouncedQuery(query), SEARCH_TIMEOUT_INTERVAL);
@@ -131,22 +131,20 @@ const FreeTextSearch = props => {
   useEffect(() => {
     window.fin.Window.getCurrentSync()
       .getOptions()
-      .then(options => {
-        setParentUuid(options.uuid);
-      });
+      .then(options => setParentUuid(options.uuid));
   }, []);
 
   const { data, subscribeError, isSubscribed } = InterApplicationBusHooks.useSubscription(
     parentUuid ? parentUuid : '*', '', 'search-request');
 
-  if (!subscribeError && isSubscribed) {
-    if (data && debouncedQuery !== data[0]) setDebouncedQuery(data[0]);
+  if (!subscribeError && isSubscribed && data && debouncedQuery !== data[0]) {
+    setDebouncedQuery(data[0]);
   }
 
   return (
     <div className="free-text-search">
-      {(props.dockedTo === Constants.ScreenEdge.TOP ||
-        props.dockedTo === Constants.ScreenEdge.NONE) && (
+      {(dockedTo === Constants.ScreenEdge.TOP ||
+        dockedTo === Constants.ScreenEdge.NONE) && (
         <input
           onInput={event => handleOnInputChange(event)}
           placeholder="Search"
