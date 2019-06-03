@@ -60,8 +60,11 @@ jobs:
             cd ~/stockflux/stockflux-launcher
             npm ci
             npm run build
+      - persist_to_workspace:
+          root: ~/stockflux
+          paths: .
   deploy:
-    working_directory: ~/project
+    working_directory: ~/stockflux
     docker:
       - image: circleci/python:2.7-jessie
     steps:
