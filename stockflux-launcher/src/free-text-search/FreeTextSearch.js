@@ -1,6 +1,6 @@
 import React, { useState, useReducer, useEffect, useRef, useCallback } from 'react';
 import { FaSearch } from 'react-icons/fa';
-import { StockFlux } from 'stockflux-core';
+import { Intents, StockFlux } from 'stockflux-core';
 import SearchResult from './search-result';
 import { reducer, initialSearchState, SEARCHING, SUCCESS, ERROR, INITIALISE } from './FreeTextSearch.reducer';
 import { InterApplicationBusHooks, WindowHooks, Constants } from 'openfin-react-hooks';
@@ -121,6 +121,24 @@ const FreeTextSearch = ({ dockedTo }) => {
     window.fin.Window.getCurrentSync()
       .getOptions()
       .then(options => setParentUuid(options.uuid));
+  }, []);
+
+  useEffect(() => {
+    window.fin.InterApplicationBus.subscribe({ uuid: window.fin.Window.me.uuid }, 'intent-request', (message) => {
+      switch (message.type) {
+        case 'news-view':
+          Intents.viewNews(message.code);
+          break;
+        case 'watchlist-add':
+          Intents.addWatchlist(message.code, message.name);
+          break;
+        case 'chart-add':
+          Intents.viewChart(message.code, message.name);
+          break;
+        default:
+          break;
+      }
+    });
   }, []);
 
   const { data, subscribeError, isSubscribed } = InterApplicationBusHooks.useSubscription(
