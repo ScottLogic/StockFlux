@@ -8,6 +8,13 @@ workflows:
       - deploy:
           requires:
             - install_and_build
+          filters:
+            branches:
+              only: 
+                - dev
+                - cra-wip
+
+
 
 jobs:
   install_and_build:
