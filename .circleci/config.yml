@@ -72,17 +72,17 @@ jobs:
           command: sudo pip install awscli --user --upgrade
       - run:
           name: Upload chart
-          command: aws s3 sync stockflux-chart/build s3://stockflux-public/artifacts/stockflux-chart/v0.0.1/ --delete
+          command: ~/.local/bin/aws s3 sync stockflux-chart/build s3://stockflux-public/artifacts/stockflux-chart/v0.0.1/ --delete
       - run:
           name: Upload chart-container
-          command: aws s3 sync stockflux-chart-container/build s3://stockflux-public/artifacts/stockflux-chart-container/v0.0.1/ --delete
+          command: ~/.local/bin/aws s3 sync stockflux-chart-container/build s3://stockflux-public/artifacts/stockflux-chart-container/v0.0.1/ --delete
       - run:
           name: Upload news
-          command: aws s3 sync stockflux-news/build s3://stockflux-public/artifacts/stockflux-news/v0.0.1/ --delete
+          command: ~/.local/bin/aws s3 sync stockflux-news/build s3://stockflux-public/artifacts/stockflux-news/v0.0.1/ --delete
       - run:
           name: Upload watchlist
-          command: aws s3 sync stockflux-watchlist/build s3://stockflux-public/artifacts/stockflux-watchlist/v0.0.1/ --delete
+          command: ~/.local/bin/aws s3 sync stockflux-watchlist/build s3://stockflux-public/artifacts/stockflux-watchlist/v0.0.1/ --delete
       - run:
           name: Upload launcher
-          command: aws s3 sync stockflux-launcher/build s3://stockflux-public/artifacts/stockflux-launcher/v0.0.1/ --delete
+          command: ~/.local/bin/aws s3 sync stockflux-launcher/build s3://stockflux-public/artifacts/stockflux-launcher/v0.0.1/ --delete
 
