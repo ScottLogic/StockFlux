@@ -10,7 +10,7 @@ workflows:
             - install_and_build
 
 jobs:
-  install:
+  install_and_build:
     working_directory: ~/stockflux
     docker:
       - image: circleci/node:10.15.1
