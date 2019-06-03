@@ -6,8 +6,8 @@ workflows:
     jobs:
       - install_and_build
       - deploy:
-        requires:
-          - install_and_build
+          requires:
+            - install_and_build
 
 jobs:
   install:
