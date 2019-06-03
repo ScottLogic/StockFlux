@@ -27,7 +27,7 @@ jobs:
           name: Build BitFlux
           command: |
             cd ~/stockflux/stockflux-bitflux
-            npm install grunt-cli
+            npm install -g grunt-cli
             npm install
             grunt build:module
       - run:
