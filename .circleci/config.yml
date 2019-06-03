@@ -63,7 +63,7 @@ jobs:
   deploy:
     working_directory: ~/project
     docker:
-      - image: circleci/python:3.7.2
+      - image: circleci/python:2.7-jessie
     steps:
       - attach_workspace:
           at: ~/stockflux
