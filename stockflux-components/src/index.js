@@ -1,4 +1,4 @@
-import Titlebar from './components/titlebar/Titlebar';
+import Titlebar from './components/Titlebar/Titlebar';
 import ScrollWrapperY from './components/scroll-wrapper-y/ScrollWrapperY';
 import { Spinner, LargeSpinner } from './components/spinner/Spinner';
 

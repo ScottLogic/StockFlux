@@ -1,0 +1,91 @@
+version: 2
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - install_and_build
+      - deploy:
+          requires:
+            - install_and_build
+
+jobs:
+  install_and_build:
+    working_directory: ~/stockflux
+    docker:
+      - image: circleci/node:10.15.1
+    steps:
+      - checkout:
+          path: ~/stockflux
+      - run:
+          name: Build Components
+          command: |
+            cd ~/stockflux/stockflux-components
+            npm install
+            npm run build
+      - run:
+          name: Build BitFlux
+          command: |
+            cd ~/stockflux/stockflux-bitflux
+            sudo npm install -g grunt-cli
+            npm install
+            grunt build:module
+      - run:
+          name: Build Chart
+          command: |
+            cd ~/stockflux/stockflux-chart
+            npm ci
+            npm run build
+      - run:
+          name: Build Chart Container
+          command: |
+            cd ~/stockflux/stockflux-chart-container
+            npm ci
+            npm run build
+      - run:
+          name: Build News
+          command: |
+            cd ~/stockflux/stockflux-news
+            npm ci
+            npm run build
+      - run:
+          name: Build Watchlist
+          command: |
+            cd ~/stockflux/stockflux-watchlist
+            npm ci
+            npm run build
+      - run:
+          name: Build launcher
+          command: |
+            cd ~/stockflux/stockflux-launcher
+            npm ci
+            npm run build
+      - persist_to_workspace:
+          root: ~/stockflux
+          paths: .
+  deploy:
+    working_directory: ~/stockflux
+    docker:
+      - image: circleci/python:2.7-jessie
+    steps:
+      - attach_workspace:
+          at: ~/stockflux
+      - run:
+          name: Install AWS CLI
+          command: pip install awscli --user --upgrade
+      - run:
+          name: Upload chart
+          command: ~/.local/bin/aws s3 sync stockflux-chart/build s3://stockflux-public/artifacts/stockflux-chart/v0.0.1/ --delete
+      - run:
+          name: Upload chart-container
+          command: ~/.local/bin/aws s3 sync stockflux-chart-container/build s3://stockflux-public/artifacts/stockflux-chart-container/v0.0.1/ --delete
+      - run:
+          name: Upload news
+          command: ~/.local/bin/aws s3 sync stockflux-news/build s3://stockflux-public/artifacts/stockflux-news/v0.0.1/ --delete
+      - run:
+          name: Upload watchlist
+          command: ~/.local/bin/aws s3 sync stockflux-watchlist/build s3://stockflux-public/artifacts/stockflux-watchlist/v0.0.1/ --delete
+      - run:
+          name: Upload launcher
+          command: ~/.local/bin/aws s3 sync stockflux-launcher/build s3://stockflux-public/artifacts/stockflux-launcher/v0.0.1/ --delete
+
