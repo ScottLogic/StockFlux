@@ -8,10 +8,9 @@ workflows:
       - deploy:
         requires:
           - install_and_build
-        branches:
-          ignore:
-            - dev
-            - master
+        filters:
+          branches:
+            ignore: dev
 
 jobs:
   install:
