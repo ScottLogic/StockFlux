@@ -19,6 +19,8 @@ function App() {
         defaultHeight: 500,
         minWidth: 850,
         minHeight: 500,
+        defaultTop: 80,
+        saveWindowState: false,
         frame: false,
         contextMenu: true,
         customData: {
