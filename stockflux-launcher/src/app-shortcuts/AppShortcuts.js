@@ -3,7 +3,7 @@ import { AppDirectoryHooks } from 'openfin-react-hooks';
 import AppShortcut from './app-shortcut/AppShortcut';
 import './AppShortcuts.css';
 
-const fixedAppIdPrefix = 'stockflux-';
+const fixedAppIdPrefix = 'stockflux-watchlist';
 
 export default () => {
   const apps = AppDirectoryHooks.useAppSearch('*@stockflux.scottlogic.com');

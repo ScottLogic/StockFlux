@@ -3,7 +3,7 @@ import { WindowHooks } from '..';
 
 const defaultWindowOptions = {
   customData: {
-    apiBaseUrl: 'https://lf467ndb08.execute-api.eu-west-2.amazonaws.com/dev/api'
+    apiBaseUrl: 'https://d2v92tgq94yxaa.cloudfront.net/api'
   }
 };
 
