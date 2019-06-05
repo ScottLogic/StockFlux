@@ -28,6 +28,7 @@ jobs:
           name: Build Core
           command: |
             cd ~/stockflux/stockflux-core
+            npm install
             npm run build
       - run:
           name: Build Components
