@@ -1,4 +1,5 @@
-export default function(historicFeed, historicNotificationFormatter, streamingFeed, streamingNotificationFormatter, discontinuityProvider) {
+export default function(historicFeed, historicNotificationFormatter, streamingFeed, streamingNotificationFormatter,
+                        discontinuityProvider) {
     return {
         historicFeed: historicFeed,
         historicNotificationFormatter: historicNotificationFormatter,

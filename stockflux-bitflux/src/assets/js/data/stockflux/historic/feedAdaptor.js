@@ -1,9 +1,9 @@
 import d3 from 'd3';
 import fcRebind from 'd3fc-rebind';
-import {getStockFluxData} from 'stockflux-core/src/services/StockFluxService';
+import {StockFlux} from 'stockflux-core';
 
 export default function() {
-    var historicFeed = getStockFluxData(),
+    var historicFeed = StockFlux.getStockFluxData(),
         granularity,
         candles;
 
