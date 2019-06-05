@@ -97,8 +97,7 @@ export function stockFluxSearch(item) {
                         return [];
                     }
                 }
-            ).catch(function(error) {
-                console.error(error);
+            ).catch(function() {
                 return [];
             });
         });
@@ -136,8 +135,7 @@ export function getMiniChartData(symbol) {
                             error: stockData.error.messages[0]
                         };
                     }
-                }).catch(function(error) {
-                    console.error(error);
+                }).catch(function() {
                     return [];
                 });
         });
@@ -154,8 +152,7 @@ export function getSymbolNews(symbol) {
             method: 'GET'
         }).then(function(response) {
             return response.json();
-        }).catch(function(error) {
-            console.error(error);
+        }).catch(function() {
             return [];
         });
     });
