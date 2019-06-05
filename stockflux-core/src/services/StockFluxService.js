@@ -1,5 +1,4 @@
 import moment from 'moment';
-import fetch from 'isomorphic-fetch';
 
 // written in the same structure as d3fc-financial-feed
 export function getStockFluxData() {
@@ -9,7 +8,7 @@ export function getStockFluxData() {
 
     var stockFlux = function(cb) {
         var params = [];
-        // defaulting data to 2016-01-01 as currently UI has no influence over dates 
+        // defaulting data to 2016-01-01 as currently UI has no influence over dates
         if (start != null) {
             params.push('/' + moment(start).format('YYYY-MM-DD'));
         }
