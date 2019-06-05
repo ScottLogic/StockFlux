@@ -35,7 +35,6 @@ module.exports = {
     externals: {
         'date-fns': 'date-fns',
         react: 'react',
-        moment: 'moment',
         throat: 'throat',
         'openfin-fdc3': 'openfin-fdc3'
     }

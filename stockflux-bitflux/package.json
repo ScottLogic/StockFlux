@@ -47,7 +47,6 @@
     "eslint": "^5.16.0",
     "eslint-loader": "^2.1.2",
     "file-loader": "^4.0.0",
-    "moment": "^2.24.0",
     "openfin-fdc3": "^0.1.1",
     "react": "^16.8.6",
     "style-loader": "^0.23.1",

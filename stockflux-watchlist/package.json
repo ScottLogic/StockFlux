@@ -9,7 +9,6 @@
     "d3fc": "^14.0.21",
     "date-fns": "1.30.1",
     "isomorphic-fetch": "^2.2.1",
-    "moment": "^2.24.0",
     "openfin-fdc3": "^0.1.1",
     "openfin-layouts": "^1.0.0",
     "openfin-react-hooks": "file:../openfin-react-hooks",
