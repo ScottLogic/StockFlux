@@ -5,26 +5,6 @@ import {InterApplicationBusHooks} from 'openfin-react-hooks';
 
 import 'stockflux-bitflux/node_modules/d3fc/dist/d3fc.css';
 import 'bootstrap/dist/css/bootstrap.css';
-
-import './styles/BitFlux/primary.css';
-import './styles/BitFlux/variables.css';
-import './styles/BitFlux/base.css';
-import './styles/BitFlux/flex.css';
-import './styles/BitFlux/menu.css';
-import './styles/BitFlux/selectors.css';
-import './styles/BitFlux/dropdown.css';
-import './styles/BitFlux/axis.css';
-import './styles/BitFlux/overlay.css';
-import './styles/BitFlux/navigator.css';
-import './styles/BitFlux/charts.css';
-import './styles/BitFlux/head.css';
-import './styles/BitFlux/secondary.css';
-import './styles/BitFlux/legend.css';
-import './styles/BitFlux/closeLine.css';
-import './styles/BitFlux/loading.css';
-import './styles/BitFlux/notification.css';
-import './styles/BitFlux/sprite.css';
-
 import './styles/app.css';
 
 const App = () => {
