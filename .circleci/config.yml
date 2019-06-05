@@ -39,6 +39,7 @@ jobs:
       - run:
           name: Build BitFlux
           command: |
+            cd ~/stockflux/stockflux-bitflux
             npm install
             npm run build
       - run:
