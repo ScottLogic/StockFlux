@@ -34,7 +34,9 @@
     "stockflux-core": "file:../stockflux-core",
     "seedrandom": "^2.4.2"
   },
-  "deprecated": false,
+  "browserslist": [
+    "chrome 68"
+  ],
   "devDependencies": {
     "babel-plugin-transform-es2015-modules-commonjs": "^6.8.0",
     "babelify": "^7.3.0",
