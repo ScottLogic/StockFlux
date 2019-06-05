@@ -3,8 +3,6 @@ import Chart from './components/Chart';
 import Components from 'stockflux-components';
 import {InterApplicationBusHooks} from 'openfin-react-hooks';
 
-import 'stockflux-bitflux/node_modules/d3fc/dist/d3fc.css';
-import 'bootstrap/dist/css/bootstrap.css';
 import './styles/app.css';
 
 const App = () => {
@@ -12,7 +10,7 @@ const App = () => {
     const [parentUuid, setParentUuid] = useState(null);
     const [listenerSymbol, setListenerSymbol] = useState(null);
     const [name, setName] = useState(null);
-    
+
     window.fin.Window.getCurrentSync().getOptions().then((options) => {
         if (listenerSymbol !== options.customData.symbol) {
             setListenerSymbol(options.customData.symbol);
@@ -31,7 +29,7 @@ const App = () => {
         }
     }
 
-    return ( 
+    return (
         <>
             <div className='main'>
                 <div className='main-content'>
