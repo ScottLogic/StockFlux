@@ -1,11 +1,11 @@
 import React, {useRef, useState, useEffect, useReducer} from 'react';
-import * as fdc3 from 'openfin-fdc3';
 import Components from 'stockflux-components';
-import NewsItem from './components/news-item/NewsItem';
 import { StockFlux } from 'stockflux-core';
-import styles from './App.module.css';
+import {InterApplicationBusHooks} from 'openfin-react-hooks';
 
-let latestListener;
+import NewsItem from './components/news-item/NewsItem';
+
+import styles from './App.module.css';
 
 const SEARCHING = 'searching';
 const SUCCESS = 'success';
@@ -53,22 +53,25 @@ function App() {
 
   const [searchState, dispatch] = useReducer(searchReducer, initialSearchState);
   const [symbol, setSymbol] = useState(null);
+  const [parentUuid, setParentUuid] = useState(null);
+  const [listenerSymbol, setListenerSymbol] = useState(null);
   const listContainer = useRef(null);
 
   const { isSearching, results } = searchState;
-    /*
-   * This is a temorary solution for
-   * 1) not being able to unsubscribe intentListeners
-   * 2) not being able to addIntentListener in useEffect due to the race condition
-   * 3) being forced to create a new intentListener every render (memory leak)
-   * This works due to us manually using only the latest intentListener
-   */
-  const currentListener = fdc3.addIntentListener('ViewNews', context => {
-    if (context && currentListener === latestListener) {
-      setSymbol(context.name);
+
+  window.fin.Window.getCurrentSync().getOptions().then((options) => {
+    if (listenerSymbol !== options.customData.symbol) {
+        setListenerSymbol(options.customData.symbol);
+        setParentUuid(options.uuid);
     }
   });
-  latestListener = currentListener; 
+  const { data } = InterApplicationBusHooks.useSubscription(parentUuid ? parentUuid : '*', '', 'stockFluxNews:'+listenerSymbol);
+
+  if (data && data.length > 0 && data[0]) {
+      if (data[0].symbol && symbol !== data[0].symbol) {
+        setSymbol(data[0].symbol);
+      }
+  }
 
   useEffect(() => {
     if (symbol) {

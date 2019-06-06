@@ -40,7 +40,7 @@ const App = () => {
         }
     });
 
-    const { data } = InterApplicationBusHooks.useSubscription(parentUuid ? parentUuid : '*', '', 'stockFlux:'+listenerSymbol);
+    const { data } = InterApplicationBusHooks.useSubscription(parentUuid ? parentUuid : '*', '', 'stockFluxChart:'+listenerSymbol);
 
     if (data && data.length > 0 && data[0]) {
         if (data[0].symbol && symbol !== data[0].symbol) {
