@@ -13,6 +13,8 @@ const handleNewsItemClick = (link) => {
         defaultHeight: 800,
         minWidth: 850,
         minHeight: 500,
+        defaultTop: 80,
+        saveWindowState: false,
         frame: true,
         contextMenu: true,
         api: {

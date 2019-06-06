@@ -2,23 +2,29 @@ import React, {useState} from 'react';
 import * as fdc3 from 'openfin-fdc3';
 import {InterApplicationBusHooks} from 'openfin-react-hooks';
 
-let latestListener;
-let currentListener;
-let windows = [];
+let latestChartListener;
+let currentChartListener;
+
+let latestNewsListener;
+let currentNewsListener;
+
+let chartWindows = [];
+let newsWindows = [];
 
 function App() {
   const [content, setContent] = useState(undefined);
-  
-  const createWindow = async (context, windowName) => {
+  const [newsContent, setNewsContent] = useState(undefined);
+
+  const createWindow = async (context, windowName, isChart) => {
     const parentWindowOptions = await window.fin.Window.getCurrentSync().getOptions();
     const winOption = {
         name: windowName,
-        url: parentWindowOptions.customData.chartEntryPointUrl,
+        url: isChart ? parentWindowOptions.customData.chartEntryPointUrl : parentWindowOptions.customData.newsEntryPointUrl,
         autoShow: true,
-        defaultWidth: 850,
-        defaultHeight: 500,
-        minWidth: 850,
-        minHeight: 500,
+        defaultWidth: isChart ? 850 : 400,
+        defaultHeight: isChart ? 500 : 135,
+        minWidth: isChart ? 850 : 400,
+        minHeight: isChart ? 500 : 135,
         defaultTop: 80,
         saveWindowState: false,
         frame: false,
@@ -31,17 +37,24 @@ function App() {
     return await window.fin.Window.create(winOption);
   }
 
-  const handler = (context) => {
+  const windowHandler = (context, windows, currentListener, latestListener, isChart) => {
     if (context && currentListener === latestListener) {
-      const windowName = 'container-' + context.name;
+      const windowName = (isChart ? 'chart-' : 'news-') + context.name;
       if (!windows.find(window => window === windowName)) {
-        createWindow(context, windowName).then(chartWindow => {
-          windows = [...windows, windowName];
-          setContent({
-            symbol: context.name,
-            name: context.id.default
-          });
-          chartWindow.addListener("closed", () => {
+        createWindow(context, windowName, isChart).then(window => {
+          if (isChart) {
+            chartWindows = [...windows, windowName];
+            setContent({
+              symbol: context.name,
+              name: context.id.default
+            });
+          } else {
+            newsWindows = [...windows, windowName];
+            setNewsContent({
+              symbol: context.name,
+            });
+          }
+          window.addListener("closed", () => {
             if (removeWindow(windowName)) {
               closeParentContainer();
             }
@@ -52,19 +65,30 @@ function App() {
   }
   
   const removeWindow = (windowName) => {
-    windows = windows.filter(name => name !== windowName);
-    return windows.length === 0;
+    if (windowName.includes('chart')) {
+      chartWindows = chartWindows.filter(name => name !== windowName);
+    }
+    if (windowName.includes('news')) {
+      newsWindows = newsWindows.filter(name => name !== windowName);
+    }
+    return chartWindows.length === 0 && newsWindows.length === 0;
   }
   
   const closeParentContainer = () => {
     window.fin.Window.getCurrentSync().close(true);
   }
 
-  currentListener = fdc3.addIntentListener("ViewChart", context => handler(context));
+  currentChartListener = fdc3.addIntentListener("ViewChart", context => {
+    windowHandler(context, chartWindows, currentChartListener, latestChartListener, true);
+  });
+  InterApplicationBusHooks.usePublish('stockFluxChart:' + (content ? content.symbol : ''), content);
+  latestChartListener = currentChartListener;
 
-  latestListener = currentListener;
-
-  InterApplicationBusHooks.usePublish('stockFlux:' + (content ? content.symbol : ''), content);
+  currentNewsListener = fdc3.addIntentListener("ViewNews", context => {
+    windowHandler(context, newsWindows, currentNewsListener, latestNewsListener, false);
+  });
+  InterApplicationBusHooks.usePublish('stockFluxNews:' + (newsContent ? newsContent.symbol : ''), newsContent);
+  latestNewsListener = currentNewsListener;
 
   return (
     <></>
