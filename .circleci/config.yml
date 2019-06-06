@@ -28,13 +28,13 @@ jobs:
           name: Build Core
           command: |
             cd ~/stockflux/stockflux-core
-            npm install
+            npm ci
             npm run build
       - run:
           name: Build Components
           command: |
             cd ~/stockflux/stockflux-components
-            npm install
+            npm ci
             npm run build
       - run:
           name: Build BitFlux
@@ -46,7 +46,7 @@ jobs:
           name: Build Chart
           command: |
             cd ~/stockflux/stockflux-chart
-            npm ci
+            sudo npm install
             npm run build
       - run:
           name: Build Chart Container
