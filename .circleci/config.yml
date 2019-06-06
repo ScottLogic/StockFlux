@@ -14,8 +14,6 @@ workflows:
                 - dev
                 - cra-wip
 
-
-
 jobs:
   install_and_build:
     working_directory: ~/stockflux
@@ -46,7 +44,7 @@ jobs:
           name: Build Chart
           command: |
             cd ~/stockflux/stockflux-chart
-            sudo npm install
+            npm ci
             npm run build
       - run:
           name: Build Chart Container
