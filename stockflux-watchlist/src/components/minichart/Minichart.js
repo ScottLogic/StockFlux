@@ -3,7 +3,6 @@ import * as PropTypes from 'prop-types';
 import { scaleLinear, scaleTime } from 'd3-scale';
 import { select } from 'd3-selection';
 import { minichartDimensions } from './constants';
-import moment from 'moment';
 import Components from 'stockflux-components';
 import {
   extentDate,
@@ -124,8 +123,7 @@ const getPoint = () => {
 const getTrimmedData = chartData => {
   return chartData.slice().map(d => {
     const datum = d;
-    const date = moment(d.date);
-    datum.date = date.toDate();
+    datum.date = new Date(d.date);
     return datum;
   });
 };

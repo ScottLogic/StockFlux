@@ -2,27 +2,27 @@ const path = require('path');
 
 module.exports = {
     mode: 'production',
-    entry: path.resolve('src', 'index.js'),
+    entry: path.resolve('src', 'assets', 'js', 'bitflux.js'),
     output: {
-        filename: 'index.js',
+        filename: 'bitflux.js',
         path: path.resolve(__dirname, 'dist'),
-        library: 'stockflux-components',
+        library: 'stockflux-bitflux',
         libraryTarget: 'umd'
     },
     module: {
         rules: [
             {
-                test: /\.jsx?$/,
+                test: /\.js$/,
                 include: [
                     path.resolve(__dirname, 'src')
                 ],
                 enforce: 'pre',
                 use: [
                     { loader: 'eslint-loader' }
-                ],
+                ]
             },
             {
-                test: /\.jsx?$/,
+                test: /\.js$/,
                 include: [
                     path.resolve(__dirname, 'src')
                 ],
@@ -33,7 +33,9 @@ module.exports = {
             {
                 test: /\.css$/,
                 include: [
-                    path.resolve(__dirname, 'src')
+                    path.resolve(__dirname, 'src'),
+                    path.resolve(__dirname, 'node_modules', 'bootstrap'),
+                    path.resolve(__dirname, 'node_modules', 'd3fc')
                 ],
                 use: [
                     { loader: 'style-loader' },
@@ -41,19 +43,27 @@ module.exports = {
                 ]
             },
             {
-                test: /\.png$/,
+                test: /\.svg$/,
                 include: [
-                    path.resolve(__dirname, 'src')
+                    path.resolve(__dirname, 'src'),
+                    path.resolve(__dirname, 'node_modules', 'bootstrap'),
                 ],
                 use: [
                     { loader: 'url-loader' }
                 ]
+            },
+            {
+                test: /\.(woff(2)?|ttf|eot)$/,
+                include: [
+                    path.resolve(__dirname, 'node_modules', 'bootstrap'),
+                ],
+                use: [
+                    { loader: 'file-loader' }
+                ]
             }
-        ],
+        ]
     },
-    externals: {
-        react: 'react',
-        'openfin-react-hooks': 'openfin-react-hooks',
-        'openfin-layouts': 'openfin-layouts',
-    }
+    resolve: {
+        symlinks: false
+    },
 };

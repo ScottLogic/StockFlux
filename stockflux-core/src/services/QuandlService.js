@@ -1,10 +1,14 @@
 import { format, subDays } from 'date-fns';
 import throat from 'throat';
 
-// eslint-disable-next-line
-function exor(a, b) { let r = ''; for (let i = 0; i < a.length; i += 1) { r += String.fromCharCode(a.charCodeAt(i) ^ b.charCodeAt(i)); } return btoa(r); }
-// eslint-disable-next-line
-function dxor(a, b) { let r = ''; const c = atob(a); for (let i = 0; i < c.length; i += 1) { r += String.fromCharCode(c.charCodeAt(i) ^ b.charCodeAt(i)); } return r; }
+function dxor(a, b) {
+    let r = '';
+    const c = atob(a);
+    for (let i = 0; i < c.length; i += 1) {
+        r += String.fromCharCode(c.charCodeAt(i) ^ b.charCodeAt(i));
+    }
+    return r;
+}
 
 const DEPLOY_KEY = Boolean(process.env.TRAVIS === 'true'
     && process.env.TRAVIS_SECURE_ENV_VARS === 'true'

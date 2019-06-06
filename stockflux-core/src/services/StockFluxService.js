@@ -1,5 +1,4 @@
-import moment from 'moment';
-import fetch from 'isomorphic-fetch';
+import {format} from 'date-fns';
 
 // written in the same structure as d3fc-financial-feed
 export function getStockFluxData() {
@@ -9,12 +8,12 @@ export function getStockFluxData() {
 
     var stockFlux = function(cb) {
         var params = [];
-        // defaulting data to 2016-01-01 as currently UI has no influence over dates 
+        // defaulting data to 2016-01-01 as currently UI has no influence over dates
         if (start != null) {
-            params.push('/' + moment(start).format('YYYY-MM-DD'));
+            params.push('/' + format(start, 'YYYY-MM-DD'));
         }
         if (end != null) {
-            params.push('/' + moment(end).format('YYYY-MM-DD'));
+            params.push('/' + format(end, 'YYYY-MM-DD'));
         }
         window.fin.Window.getCurrent().then(function(win) {
             return win.getOptions();
@@ -98,8 +97,7 @@ export function stockFluxSearch(item) {
                         return [];
                     }
                 }
-            ).catch(function(error) {
-                console.error(error);
+            ).catch(function() {
                 return [];
             });
         });
@@ -137,8 +135,7 @@ export function getMiniChartData(symbol) {
                             error: stockData.error.messages[0]
                         };
                     }
-                }).catch(function(error) {
-                    console.error(error);
+                }).catch(function() {
                     return [];
                 });
         });
@@ -155,8 +152,7 @@ export function getSymbolNews(symbol) {
             method: 'GET'
         }).then(function(response) {
             return response.json();
-        }).catch(function(error) {
-            console.error(error);
+        }).catch(function() {
             return [];
         });
     });

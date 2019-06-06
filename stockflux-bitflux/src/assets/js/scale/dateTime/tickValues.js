@@ -99,7 +99,8 @@ export default function() {
                 method = tickIntervalForMultiYearInterval(extent, adjustedCount);
             }
         } else {
-            var intervalIndex = i > 0 && target / intervals[i - 1].duration < intervals[i].duration / target ? i - 1 : i;
+            var intervalIndex = i > 0 && target / intervals[i - 1].duration < intervals[i].duration / target ?
+                i - 1 : i;
             while (span / intervals[intervalIndex].duration > count && intervalIndex < intervals.length - 1) {
                 intervalIndex += 1;
             }
@@ -119,7 +120,8 @@ export default function() {
         var interval = method.interval,
             step = method.step;
 
-        var calculatedTicks = interval.range(extent[0], new Date(+extent[1] + 1), Math.max(1, step)); // inclusive upper bound
+        // inclusive upper bound
+        var calculatedTicks = interval.range(extent[0], new Date(+extent[1] + 1), Math.max(1, step));
         calculatedTicks.method = [interval, step];
         calculatedTicks.format = method.format;
 

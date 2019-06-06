@@ -192,7 +192,8 @@ export default function() {
         sources: sources,
         selectors: initialiseSelectors(),
         navReset: model.chart.navigationReset(),
-        headMenu: model.menu.head([ products.stockFlux, products.generated, products.quandl], products.generated, periods.day1),
+        headMenu: model.menu.head([ products.stockFlux, products.generated, products.quandl], products.generated,
+            periods.day1),
         overlay: model.menu.overlay([ products.stockFlux, products.generated, products.quandl], products.generated),
         notificationMessages: model.notification.messages(),
         charts: initialiseCharts()
