@@ -13,6 +13,7 @@
     justify-content: center;
     width: 20%;
     padding: 0 5px;
+    text-align: center;
 }
 
 .source svg {
