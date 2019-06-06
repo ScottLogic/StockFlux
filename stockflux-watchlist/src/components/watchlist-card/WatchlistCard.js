@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { truncate } from '../../services/formatters';
 import Minichart from '../minichart/Minichart';
 import Confirmation from './UnwatchConfirmation';
-import { StockFlux, Intents } from 'stockflux-core';
+import { StockFlux, Intents, Utils } from 'stockflux-core';
 import currentWindowService from '../../services/currentWindowService';
 import './WatchlistCard.css';
 
@@ -59,7 +58,7 @@ const WatchlistCard = props => {
     return !isNaN(+percentage) ? (+percentage).toFixed(2) : null;
   };
   const getName = name => {
-    return name ? truncate(name) : '';
+    return name ? Utils.truncate(name) : '';
   };
 
   const onIconClick = e => {
