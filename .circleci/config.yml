@@ -10,11 +10,9 @@ workflows:
             - install_and_build
           filters:
             branches:
-              only: 
+              only:
                 - dev
                 - cra-wip
-
-
 
 jobs:
   install_and_build:
@@ -25,18 +23,23 @@ jobs:
       - checkout:
           path: ~/stockflux
       - run:
+          name: Build Core
+          command: |
+            cd ~/stockflux/stockflux-core
+            npm ci
+            npm run build
+      - run:
           name: Build Components
           command: |
             cd ~/stockflux/stockflux-components
-            npm install
+            npm ci
             npm run build
       - run:
           name: Build BitFlux
           command: |
             cd ~/stockflux/stockflux-bitflux
-            sudo npm install -g grunt-cli
-            npm install
-            grunt build:module
+            npm ci
+            npm run build
       - run:
           name: Build Chart
           command: |

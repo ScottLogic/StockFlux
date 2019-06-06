@@ -15,9 +15,9 @@ export default function() {
         .attr('class', function(d) {
             return 'secondary-container secondary-' + d.valueString;
         })
+        // Issue with elements being regenerated due to data being overwritten. See:
+        // https://github.com/ScottLogic/d3fc/blob/0327890d48c9de73a41d901df02bac88dc83e398/src/series/multi.js#L26-L36
         .key(function(d) {
-            // Issue with elements being regenerated due to data being overwritten. See:
-            // https://github.com/ScottLogic/d3fc/blob/0327890d48c9de73a41d901df02bac88dc83e398/src/series/multi.js#L26-L36
             return key(this.__secondaryChart__ || d);
         });
 

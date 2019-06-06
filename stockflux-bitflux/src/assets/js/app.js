@@ -403,7 +403,9 @@ export default function() {
     }
 
     function onNotificationClose(id) {
-        model.notificationMessages.messages = model.notificationMessages.messages.filter(function(message) { return message.id !== id; });
+        model.notificationMessages.messages = model.notificationMessages.messages.filter(function(message) {
+            return message.id !== id;
+        });
         render();
     }
 
@@ -420,8 +422,10 @@ export default function() {
         } else {
             var defaultPeriods = [model.periods.hour1, model.periods.day1];
             var productPeriodOverrides = d3.map();
-            productPeriodOverrides.set('BTC-USD', [model.periods.minute1, model.periods.minute5, model.periods.hour1, model.periods.day1]);
-            var formattedProducts = formatGdaxProducts(bitcoinProducts, model.sources.bitcoin, defaultPeriods, productPeriodOverrides);
+            productPeriodOverrides.set('BTC-USD',
+                [model.periods.minute1, model.periods.minute5, model.periods.hour1, model.periods.day1]);
+            var formattedProducts = formatGdaxProducts(bitcoinProducts, model.sources.bitcoin, defaultPeriods,
+                productPeriodOverrides);
             model.headMenu.products = model.headMenu.products.concat(formattedProducts);
             model.overlay.products = model.headMenu.products;
         }
@@ -438,7 +442,8 @@ export default function() {
     };
 
     app.changeQuandlProduct = function(productString) {
-        var product = dataModel.product(productString, productString, [model.periods.day1], model.sources.quandl, '.3s');
+        var product = dataModel.product(productString, productString, [model.periods.day1],
+            model.sources.quandl, '.3s');
         var existsInHeadMenuProducts = model.headMenu.products.some(function(p) { return p.id === product.id; });
         var existsInOverlayProducts = model.overlay.products.some(function(p) { return p.id === product.id; });
 
@@ -458,7 +463,8 @@ export default function() {
     };
 
     app.changeStockFluxProduct = function(productString) {
-        var product = dataModel.product(productString, productString, [model.periods.day1], model.sources.stockFlux, '.3s');
+        var product = dataModel.product(productString, productString, [model.periods.day1],
+            model.sources.stockFlux, '.3s');
         var existsInHeadMenuProducts = model.headMenu.products.some(function(p) { return p.id === product.id; });
         var existsInOverlayProducts = model.overlay.products.some(function(p) { return p.id === product.id; });
 
@@ -505,7 +511,9 @@ export default function() {
         }
 
         model.selectors.indicatorSelector.options.forEach(function(indicator) {
-            indicator.isSelected = x.some(function(indicatorValueStringToShow) { return indicatorValueStringToShow === indicator.valueString; });
+            indicator.isSelected = x.some(function(indicatorValueStringToShow) {
+                return indicatorValueStringToShow === indicator.valueString;
+            });
         });
 
         updatePrimaryChartIndicators();

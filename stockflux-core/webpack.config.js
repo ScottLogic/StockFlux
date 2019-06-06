@@ -6,13 +6,13 @@ module.exports = {
     output: {
         filename: 'index.js',
         path: path.resolve(__dirname, 'dist'),
-        library: 'stockflux-components',
+        library: 'stockflux-core',
         libraryTarget: 'umd'
     },
     module: {
         rules: [
             {
-                test: /\.jsx?$/,
+                test: /\.js$/,
                 include: [
                     path.resolve(__dirname, 'src')
                 ],
@@ -22,38 +22,20 @@ module.exports = {
                 ],
             },
             {
-                test: /\.jsx?$/,
+                test: /\.js$/,
                 include: [
                     path.resolve(__dirname, 'src')
                 ],
                 use: [
                     { loader: 'babel-loader' }
                 ]
-            },
-            {
-                test: /\.css$/,
-                include: [
-                    path.resolve(__dirname, 'src')
-                ],
-                use: [
-                    { loader: 'style-loader' },
-                    { loader: 'css-loader' }
-                ]
-            },
-            {
-                test: /\.png$/,
-                include: [
-                    path.resolve(__dirname, 'src')
-                ],
-                use: [
-                    { loader: 'url-loader' }
-                ]
             }
         ],
     },
     externals: {
+        'date-fns': 'date-fns',
         react: 'react',
-        'openfin-react-hooks': 'openfin-react-hooks',
-        'openfin-layouts': 'openfin-layouts',
+        throat: 'throat',
+        'openfin-fdc3': 'openfin-fdc3'
     }
 };
