@@ -44,9 +44,9 @@ jobs:
             npm ci
             npm run build
       - run:
-          name: Build Chart Container
+          name: Build Container
           command: |
-            cd ~/stockflux/stockflux-chart-container
+            cd ~/stockflux/stockflux-container
             npm ci
             npm run build
       - run:
@@ -84,8 +84,8 @@ jobs:
           name: Upload chart
           command: ~/.local/bin/aws s3 sync stockflux-chart/build s3://stockflux-public/artifacts/stockflux-chart/v0.0.1/ --delete
       - run:
-          name: Upload chart-container
-          command: ~/.local/bin/aws s3 sync stockflux-chart-container/build s3://stockflux-public/artifacts/stockflux-chart-container/v0.0.1/ --delete
+          name: Upload container
+          command: ~/.local/bin/aws s3 sync stockflux-container/build s3://stockflux-public/artifacts/stockflux-container/v0.0.1/ --delete
       - run:
           name: Upload news
           command: ~/.local/bin/aws s3 sync stockflux-news/build s3://stockflux-public/artifacts/stockflux-news/v0.0.1/ --delete
