@@ -12,7 +12,6 @@ workflows:
             branches:
               only:
                 - dev
-                - cra-wip
 
 jobs:
   install_and_build:
