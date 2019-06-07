@@ -1,0 +1,40 @@
+{
+    "runtime": {
+      "arguments": "--enable-aggressive-domstorage-flushing",
+      "version": "9.61.38.40"
+    },
+    "startup_app": {
+      "name": "stockflux-container",
+      "uuid": "stockflux-container",
+      "url": "http://localhost:8055/index.html",
+      "applicationIcon": "{fqdn}/artifacts/stockflux-container/favicon.ico",
+      "autoShow": true,
+      "defaultWidth": 1280,
+      "defaultHeight": 720,
+      "minWidth": 1000,
+      "minHeight": 600,
+      "frame": false,
+      "contextMenu": true,
+      "customData": {
+        "apiBaseUrl": "https://d2v92tgq94yxaa.cloudfront.net/api",
+        "chartEntryPointUrl": "http://localhost:8051/index.html"
+      }
+    },
+    "services": [
+      {
+        "name": "layouts",
+        "config": {
+          "features": {
+            "tab": false
+          }
+        }
+      }
+    ],
+    "shortcut": {
+      "company": "ScottLogic",
+      "description": "Hosts StockFlux Chart Container as an OpenFin application.",
+      "name": "StockFlux Chart Container",
+      "icon": "{fqdn}/artifacts/stockflux-container/v0.0.1/favicon.ico"
+    },
+    "splashScreenImage": "{fqdn}/artifacts/stockflux-container/v0.0.1/splashscreen.png"
+}

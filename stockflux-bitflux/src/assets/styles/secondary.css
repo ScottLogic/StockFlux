@@ -1,0 +1,62 @@
+#secondaries-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#secondaries-container .secondary-container {
+    flex: 1;
+    height: 100%;
+    width: 100%;
+}
+  
+#secondaries-container .background {
+    stroke: var(--gridline-colour);
+}
+
+#secondaries-container .annotations .annotation line {
+    stroke: var(--gridline-colour);
+    stroke-dasharray: 8;
+}
+
+#secondaries-container .x-axis path {
+    stroke: var(--gridline-colour);
+}
+  
+#secondaries-container .right-handle text {
+    display: none;
+}
+  
+#secondaries-container .right-handle .indicator {
+    stroke: var(--rsi-line-colour);
+    stroke-width: var(--stroke-width);
+}
+  
+#secondaries-container .secondary-rsi .rsi {
+    stroke: var(--rsi-line-colour);
+}
+  
+#secondaries-container .secondary-macd .macd-divergence .bar {
+    stroke: var(--primary-blue);
+    fill: var(--secondary-grey);
+}
+  
+#secondaries-container .secondary-macd .macd-signal .line {
+    stroke: var(--macd-signal-line-colour);
+    stroke-width: var(--stroke-width);
+}
+  
+#secondaries-container .secondary-macd .macd .line {
+    stroke: var(--macd-line-colour);
+    stroke-width: var(--stroke-width);
+}
+#secondaries-container .secondary-macd .zero .annotation line {
+    visibility: hidden;
+}
+  
+#secondaries-container .secondary-volume .bar {
+    stroke: var(--primary-blue);
+    fill: var(--secondary-grey);
+}
+  

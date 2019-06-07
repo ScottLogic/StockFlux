@@ -1,0 +1,57 @@
+{
+  "name": "stockflux-bitflux",
+  "version": "1.8.1",
+  "description": "A financial charting application built upon d3fc and designed to showcase how to develop against d3fc.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scottlogic/BitFlux.git"
+  },
+  "author": "Scott Logic",
+  "keywords": [
+    "d3",
+    "financial",
+    "components",
+    "charts"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/scottlogic/BitFlux/issues"
+  },
+  "homepage": "https://github.com/scottlogic/BitFlux#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "d3": "^3.5.16",
+    "d3-fetch": "^1.1.0",
+    "d3fc": "^10.0.0",
+    "d3fc-financial-feed": "^3.0.0",
+    "d3fc-rebind": "^3.0.1",
+    "jquery": "^2.2.0",
+    "stockflux-core": "file:../stockflux-core",
+    "seedrandom": "^2.4.2"
+  },
+  "browserslist": [
+    "chrome 68"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^2.1.1",
+    "date-fns": "^1.30.1",
+    "eslint": "^5.16.0",
+    "eslint-loader": "^2.1.2",
+    "file-loader": "^4.0.0",
+    "openfin-fdc3": "^0.1.1",
+    "react": "^16.8.6",
+    "style-loader": "^0.23.1",
+    "throat": "^5.0.0",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2"
+  }
+}

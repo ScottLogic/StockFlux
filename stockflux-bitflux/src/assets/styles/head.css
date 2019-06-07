@@ -1,0 +1,94 @@
+.head-row {
+    user-select: none;
+    background-color: var(--background-colour);
+    height: var(--head-height);
+}
+
+.head-row .head-sub-row {
+    display: flex;
+    align-items: center;
+}
+  
+.head-row .head-sub-row #product-dropdown {
+    flex-grow: 1;
+}
+  
+.head-row .head-sub-row #product-dropdown button {
+    border: none !important;
+}
+  
+.head-row .head-sub-row #period-selector {
+    display: flex;
+    justify-content: flex-end;
+    align-self: flex-end;
+    flex-grow: 1;
+    padding-right: var(--y-axis-width);
+}
+
+.head-row .head-sub-row #period-selector ul {
+    list-style: none;
+    float: right;
+    margin: 0;
+}
+
+.head-row .head-sub-row #period-selector li {
+    display: inline-block;
+    border: 1px solid var(--gridline-colour);
+    border-bottom: 0;
+    margin-left: -1px;
+    width: 56px;
+    line-height: 15px;
+    text-align: center;
+}
+  
+.head-row .head-sub-row #period-selector li:first-child {
+    margin-left: 0;
+}
+
+.head-row .head-sub-row #period-selector li.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.head-row .head-sub-row #period-selector li.active a {
+    color: var(--primary-white);
+}
+
+.head-row .head-sub-row #period-selector a {
+    color: var(--period-selector-font-colour);
+    text-decoration: none;
+    padding: 3px;
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-base);
+    line-height: var(--line-height-base);
+    display: block;
+}
+  
+.head-row .head-sub-row .selectors {
+    position: initial;
+    display: none;
+    flex-grow: 1;
+}
+  
+.head-row .head-sub-row #mobile-product-dropdown button {
+    height: 34px;
+}
+  
+.head-row .head-sub-row #mobile-period-selector {
+    display: none;
+    align-self: center;
+    margin-right: 12px;
+    margin-left: auto;
+}
+
+.head-row .head-sub-row #mobile-period-selector button {
+    height: 34px;
+    font-size: var(--font-size-small);
+}
+  
+.head-row .head-sub-row .delete-button {
+    display: none;
+    align-self: center;
+    margin-right: 12px;
+    cursor: pointer;
+}
+  

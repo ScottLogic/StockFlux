@@ -1,0 +1,17 @@
+#loading-status-message {
+    position: absolute;
+    top: -20px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(26, 33, 42, 0.6);
+    z-index: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#loading-status-message .content {
+    width: var(--error-alert-width);
+    max-width: 100%;   
+}

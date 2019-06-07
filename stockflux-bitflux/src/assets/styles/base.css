@@ -1,0 +1,52 @@
+html, body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background: var(--background-colour);
+    fill: var(--primary-white);
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-base);
+    line-height: var(--line-height-base);
+    height: 100%;
+    min-width: var(--min-width-supported);
+}
+
+svg {
+    shape-rendering: crispEdges;
+}
+
+path.line {
+    shape-rendering: auto;
+}
+
+text {
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-base);
+    line-height: var(--line-height-base);
+}
+
+#app-container {
+    max-width: var(--container-lg);
+    height: 100%;
+    margin: 0 auto;
+}
+
+.container,
+.container-fluid {
+    height: 100%;
+    background: var(--background-colour);
+}
+
+.row {
+    width: 100%;
+}
+
+[class*="col-"] {
+    height: 100%;
+}
+
+.cartesian-chart .axes-container {
+    overflow: visible;
+}
+.cartesian-chart .background {
+    fill: var(--background-colour);
+}

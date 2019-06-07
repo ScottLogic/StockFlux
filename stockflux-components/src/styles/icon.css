@@ -1,0 +1,27 @@
+.stockflux-icon {
+  height: 19px;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 30px;
+  background-position: 50% 80%;
+  background-repeat: no-repeat;
+  transition: 0.5s all;
+  cursor: default;
+  display: inline-block;
+}
+
+.stockflux-icon.star-tab {
+  background-image: url('../images/star_tab.png');
+}
+
+.stockflux-icon.arrow-up {
+  background-image: url('../images/arrow_up.png');
+  width: 20px;
+  height: 10px;
+}
+
+.stockflux-icon.arrow-down {
+  background-image: url('../images/arrow_down.png');
+  width: 20px;
+  height: 10px;
+}
