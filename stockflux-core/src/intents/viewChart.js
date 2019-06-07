@@ -1,5 +1,8 @@
 import * as fdc3 from 'openfin-fdc3';
 
+const defaultName = 'Apple Inc.';
+const defaultSymbol = 'AAPL';
+
 export default async (symbol, stockName) => {
     const availableApps = await fdc3.findIntent(fdc3.Intents.VIEW_CHART);
     if (availableApps && availableApps.apps) {
@@ -9,9 +12,9 @@ export default async (symbol, stockName) => {
                 fdc3.Intents.VIEW_CHART,
                 {
                     type: 'security',
-                    name: symbol,
+                    name: symbol || defaultSymbol,
                     id: {
-                        default: stockName
+                        default: stockName || defaultName
                     }
                 },
                 chart.name
