@@ -1,5 +1,7 @@
 import * as fdc3 from 'openfin-fdc3';
 
+const defaultSymbol = 'AAPL';
+
 export default async (symbol) => {
     const availableApps = await fdc3.findIntent('ViewNews');
     if (availableApps && availableApps.apps) {
@@ -9,7 +11,7 @@ export default async (symbol) => {
                 'ViewNews',
                 {
                     type: 'news',
-                    name: symbol
+                    name: symbol || defaultSymbol
                 },
                 newsApp.name
             );

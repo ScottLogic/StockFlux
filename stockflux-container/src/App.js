@@ -28,6 +28,7 @@ function App() {
         defaultTop: 80,
         saveWindowState: false,
         frame: false,
+        resizable: isChart,
         contextMenu: true,
         customData: {
           symbol: context.name,
