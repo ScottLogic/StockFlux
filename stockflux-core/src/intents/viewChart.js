@@ -13,8 +13,9 @@ export default async (symbol, stockName) => {
                 {
                     type: 'security',
                     name: symbol || defaultSymbol,
+                    appName: 'stockflux-chart',
                     id: {
-                        default: stockName || defaultName
+                        default: stockName || defaultName,
                     }
                 },
                 chart.name
