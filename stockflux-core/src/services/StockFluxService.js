@@ -2,12 +2,12 @@ import {format} from 'date-fns';
 
 // written in the same structure as d3fc-financial-feed
 export function getStockFluxData() {
-    var product,
+    let product,
         start,
         end;
 
-    var stockFlux = function(cb) {
-        var params = [];
+    const stockFlux = (cb) => {
+        const params = [];
         // defaulting data to 2016-01-01 as currently UI has no influence over dates
         if (start != null) {
             params.push('/' + format(start, 'YYYY-MM-DD'));
@@ -15,53 +15,52 @@ export function getStockFluxData() {
         if (end != null) {
             params.push('/' + format(end, 'YYYY-MM-DD'));
         }
-        window.fin.Window.getCurrent().then(function(win) {
+        window.fin.Window.getCurrent().then((win) => {
             return win.getOptions();
-        }).then(function(options) {
+        }).then((options) => {
             return options.customData.apiBaseUrl;
-        }).then(function(api) {
-            // change to AWS endpoint
-            var url = api + '/ohlc/' + product + '/2016-01-01';
+        }).then((api) => {
+            const url = `${api}/ohlc/${product}/2016-01-01`;
             fetch(url, {
                 method: 'GET'
-            }).then(function(response) {
+            }).then((response) => {
                 return response.json();
-            }).then(function(stockData) {
+            }).then((stockData) => {
                 if (stockData.success) {
-                    cb(undefined, stockData.data.map(function(item) {
-                        return {
+                    cb(undefined, stockData.data.map((item) => (
+                        {
                             open: item.open,
                             close: item.close,
                             high: item.high,
                             low: item.low,
                             volume: item.volume,
                             date: new Date(item.date)
-                        };
-                    }))
+                        }
+                    )))
                 } else if (!stockData.success) {
                     cb(stockData);
                 }
-            }).catch(function(error) {
+            }).catch((error) => {
                 cb(error);
             });
         }
     )};
 
-    stockFlux.product = function(x) {
+    stockFlux.product = (x) => {
         if (!arguments.length) {
             return product;
         }
         product = x;
         return stockFlux;
     };
-    stockFlux.start = function(x) {
+    stockFlux.start = (x) => {
         if (!arguments.length) {
             return start;
         }
         start = x;
         return stockFlux;
     };
-    stockFlux.end = function(x) {
+    stockFlux.end = (x) => {
         if (!arguments.length) {
             return end;
         }
@@ -99,15 +98,15 @@ export async function getMiniChartData(symbol) {
                         volume: item.volume,
                         date: new Date(item.date)
                     }
-                    )),
-                    name: stockData.data.name
-                }
-            } else if (!stockData.success && stockData.error) {
-                return {
-                    success: false,
-                    error: stockData.error.messages[0]
-                };
+                )),
+                name: stockData.data.name
             }
+        } else if (!stockData.success && stockData.error) {
+            return {
+                success: false,
+                error: stockData.error.messages[0]
+            };
+        }
     } catch(e) {
         return {
             success: false,
@@ -118,7 +117,7 @@ export async function getMiniChartData(symbol) {
 
 async function getWindowOptions() {
     const currentWindow = await window.fin.Window.getCurrent();
-    return await currentWindow.getOptions();
+    return currentWindow.getOptions();
 }
 
 export async function getSymbolNews(symbol) {
