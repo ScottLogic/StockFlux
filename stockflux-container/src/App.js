@@ -1,94 +1,78 @@
-import React, {useState} from 'react';
+import React from 'react';
 import * as fdc3 from 'openfin-fdc3';
-import {InterApplicationBusHooks} from 'openfin-react-hooks';
 
 let latestChartListener;
-let currentChartListener;
 
 let latestNewsListener;
-let currentNewsListener;
 
-let chartWindows = [];
-let newsWindows = [];
+let windows = [];
 
 function App() {
-  const [content, setContent] = useState(undefined);
-  const [newsContent, setNewsContent] = useState(undefined);
+  const { InterApplicationBus } = window.fin;
 
-  const createWindow = async (context, windowName, isChart) => {
+  const createWindow = async (context, windowName) => {
     const parentWindowOptions = await window.fin.Window.getCurrentSync().getOptions();
+    const manifestOptions = await fetch(`${parentWindowOptions.customData.apiBaseUrl}/apps/v1/${context.appName}/app.json`, {
+      method: 'GET',
+    });
+    const windowOptions = await manifestOptions.json();
     const winOption = {
-        name: windowName,
-        url: isChart ? parentWindowOptions.customData.chartEntryPointUrl : parentWindowOptions.customData.newsEntryPointUrl,
-        autoShow: true,
-        defaultWidth: isChart ? 850 : 400,
-        defaultHeight: isChart ? 500 : 135,
-        minWidth: isChart ? 850 : 400,
-        minHeight: isChart ? 500 : 135,
-        defaultTop: 80,
-        saveWindowState: false,
-        frame: false,
-        resizable: isChart,
-        contextMenu: true,
-        customData: {
-          symbol: context.name,
-          apiBaseUrl: parentWindowOptions.customData.apiBaseUrl
-        }
+      ...windowOptions.startup_app,
+      // uuid must match that of the parent window
+      uuid: "stockflux-container",
+      name: windowName,
+      customData: {
+        symbol: context.name,
+        apiBaseUrl: parentWindowOptions.customData.apiBaseUrl
+      }
     };
     return await window.fin.Window.create(winOption);
   }
 
-  const windowHandler = (context, windows, currentListener, latestListener, isChart) => {
+  const windowHandler = async (context, currentListener, latestListener, isChart) => {
     if (context && currentListener === latestListener) {
-      const windowName = (isChart ? 'chart-' : 'news-') + context.name;
+      const windowName = context.appName + '-' + context.name;
       if (!windows.find(window => window === windowName)) {
-        createWindow(context, windowName, isChart).then(window => {
-          if (isChart) {
-            chartWindows = [...windows, windowName];
-            setContent({
-              symbol: context.name,
-              name: context.id.default
-            });
-          } else {
-            newsWindows = [...windows, windowName];
-            setNewsContent({
-              symbol: context.name,
-            });
-          }
-          window.addListener("closed", () => {
-            if (removeWindow(windowName)) {
-              closeParentContainer();
+          const window = await createWindow(context, windowName);
+          if (window) {
+            windows = [...windows, windowName];
+            if (isChart) {
+              InterApplicationBus.publish('stockFluxChart:' + context.symbol, {
+                symbol: context.name,
+                name: context.id.default
+              });
+            } else {
+              InterApplicationBus.publish('stockFluxNews:' + context.symbol, {
+                symbol: context.name,
+              });
             }
-          })
-        });
+            window.addListener("closed", () => {
+              if (removeWindow(windowName)) {
+                closeParentContainer();
+              }
+            })
+          }
       }
     }
   }
   
   const removeWindow = (windowName) => {
-    if (windowName.includes('chart')) {
-      chartWindows = chartWindows.filter(name => name !== windowName);
-    }
-    if (windowName.includes('news')) {
-      newsWindows = newsWindows.filter(name => name !== windowName);
-    }
-    return chartWindows.length === 0 && newsWindows.length === 0;
+    windows = windows.filter(name => name !== windowName);
+    return windows.length === 0;
   }
   
   const closeParentContainer = () => {
     window.fin.Window.getCurrentSync().close(true);
   }
 
-  currentChartListener = fdc3.addIntentListener("ViewChart", context => {
-    windowHandler(context, chartWindows, currentChartListener, latestChartListener, true);
+  const currentChartListener = fdc3.addIntentListener("ViewChart", context => {
+    windowHandler(context, currentChartListener, latestChartListener, true);
   });
-  InterApplicationBusHooks.usePublish('stockFluxChart:' + (content ? content.symbol : ''), content);
   latestChartListener = currentChartListener;
-
-  currentNewsListener = fdc3.addIntentListener("ViewNews", context => {
-    windowHandler(context, newsWindows, currentNewsListener, latestNewsListener, false);
+  
+  const currentNewsListener = fdc3.addIntentListener("ViewNews", context => {
+    windowHandler(context, currentNewsListener, latestNewsListener, false);
   });
-  InterApplicationBusHooks.usePublish('stockFluxNews:' + (newsContent ? newsContent.symbol : ''), newsContent);
   latestNewsListener = currentNewsListener;
 
   return (

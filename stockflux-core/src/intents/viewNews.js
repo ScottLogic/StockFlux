@@ -11,7 +11,8 @@ export default async (symbol) => {
                 'ViewNews',
                 {
                     type: 'news',
-                    name: symbol || defaultSymbol
+                    name: symbol || defaultSymbol,
+                    appName: 'stockflux-news'
                 },
                 newsApp.name
             );
