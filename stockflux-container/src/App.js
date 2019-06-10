@@ -1,18 +1,17 @@
 import React, {useState} from 'react';
 import * as fdc3 from 'openfin-fdc3';
-import {InterApplicationBusHooks} from 'openfin-react-hooks';
 
 let latestChartListener;
-let currentChartListener;
 
 let latestNewsListener;
-let currentNewsListener;
 
 let windows = [];
 
 function App() {
   const [content, setContent] = useState(undefined);
   const [newsContent, setNewsContent] = useState(undefined);
+
+  const { InterApplicationBus } = window.fin;
 
   const createWindow = async (context, windowName) => {
     const parentWindowOptions = await window.fin.Window.getCurrentSync().getOptions();
@@ -39,7 +38,7 @@ function App() {
       if (!windows.find(window => window === windowName)) {
           const window = await createWindow(context, windowName);
           if (window) {
-
+            windows = [...windows, windowName];
             if (isChart) {
               setContent({
                 symbol: context.name,
@@ -50,9 +49,6 @@ function App() {
                 symbol: context.name,
               });
             }
-
-            windows = [...windows, windowName];
-            
             window.addListener("closed", () => {
               if (removeWindow(windowName)) {
                 closeParentContainer();
@@ -72,17 +68,23 @@ function App() {
     window.fin.Window.getCurrentSync().close(true);
   }
 
-  currentChartListener = fdc3.addIntentListener("ViewChart", context => {
+  const currentChartListener = fdc3.addIntentListener("ViewChart", context => {
     windowHandler(context, currentChartListener, latestChartListener, true);
   });
   latestChartListener = currentChartListener;
-  InterApplicationBusHooks.usePublish('stockFluxChart:' + (content ? content.symbol : ''), content);
 
-  currentNewsListener = fdc3.addIntentListener("ViewNews", context => {
+  if (InterApplicationBus && content && content.symbol) {
+    InterApplicationBus.publish('stockFluxChart:' + content.symbol, content)
+  }
+  
+  const currentNewsListener = fdc3.addIntentListener("ViewNews", context => {
     windowHandler(context, currentNewsListener, latestNewsListener, false);
   });
   latestNewsListener = currentNewsListener;
-  InterApplicationBusHooks.usePublish('stockFluxNews:' + (newsContent ? newsContent.symbol : ''), newsContent);
+  
+  if (InterApplicationBus && newsContent && newsContent.symbol) {
+    InterApplicationBus.publish('stockFluxNews:' + newsContent.symbol, newsContent)
+  }
 
   return (
     <></>
