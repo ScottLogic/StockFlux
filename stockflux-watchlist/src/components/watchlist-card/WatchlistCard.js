@@ -23,28 +23,31 @@ const WatchlistCard = props => {
     percentage: 0
   });
 
-  useEffect(async () => {
-    const miniChartData = await StockFlux.getMiniChartData(props.symbol);
-    if (miniChartData.data) {
-      const data = miniChartData.data[0];
-      const stockName = miniChartData.name;
-      let tempStockData = { name: stockName };
+  useEffect(() => {
+    const populateChart = async () => {
+      const miniChartData = await StockFlux.getMiniChartData(props.symbol);
+      if (miniChartData.data) {
+        const data = miniChartData.data[0];
+        const stockName = miniChartData.name;
+        let tempStockData = { name: stockName };
 
-      if (data) {
-        tempStockData = {
-          name: getName(stockName),
-          price: getPrice(data.close),
-          delta: getDelta(data.close - data.open),
-          percentage: getPercentage(
-            ((data.close - data.open) / data.open) * 100
-          )
-        };
+        if (data) {
+          tempStockData = {
+            name: getName(stockName),
+            price: getPrice(data.close),
+            delta: getDelta(data.close - data.open),
+            percentage: getPercentage(
+              ((data.close - data.open) / data.open) * 100
+            )
+          };
+        }
+        setStockData(tempStockData);
+        setChartData(miniChartData.data);
+      } else {
+        setFetchError(miniChartData.error);
       }
-      setStockData(tempStockData);
-      setChartData(miniChartData.data);
-    } else {
-      setFetchError(miniChartData.error);
     }
+    populateChart();
   }, [props.symbol]);
 
   const getPrice = price => {
