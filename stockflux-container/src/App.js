@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import * as fdc3 from 'openfin-fdc3';
 
 let latestChartListener;
@@ -8,9 +8,6 @@ let latestNewsListener;
 let windows = [];
 
 function App() {
-  const [content, setContent] = useState(undefined);
-  const [newsContent, setNewsContent] = useState(undefined);
-
   const { InterApplicationBus } = window.fin;
 
   const createWindow = async (context, windowName) => {
@@ -40,12 +37,12 @@ function App() {
           if (window) {
             windows = [...windows, windowName];
             if (isChart) {
-              setContent({
+              InterApplicationBus.publish('stockFluxChart:' + context.symbol, {
                 symbol: context.name,
                 name: context.id.default
               });
             } else {
-              setNewsContent({
+              InterApplicationBus.publish('stockFluxNews:' + context.symbol, {
                 symbol: context.name,
               });
             }
@@ -72,19 +69,11 @@ function App() {
     windowHandler(context, currentChartListener, latestChartListener, true);
   });
   latestChartListener = currentChartListener;
-
-  if (InterApplicationBus && content && content.symbol) {
-    InterApplicationBus.publish('stockFluxChart:' + content.symbol, content)
-  }
   
   const currentNewsListener = fdc3.addIntentListener("ViewNews", context => {
     windowHandler(context, currentNewsListener, latestNewsListener, false);
   });
   latestNewsListener = currentNewsListener;
-  
-  if (InterApplicationBus && newsContent && newsContent.symbol) {
-    InterApplicationBus.publish('stockFluxNews:' + newsContent.symbol, newsContent)
-  }
 
   return (
     <></>
