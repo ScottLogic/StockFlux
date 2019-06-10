@@ -74,34 +74,45 @@ export function getStockFluxData() {
 
 export async function stockFluxSearch(item) {
     const options = await getWindowOptions()
-    const res = await fetch(`${options.customData.apiBaseUrl}/securities/search/${item}`, {method: 'GET'});
-    const stockData = await res.json();
-    return stockData.success ? stockData.data.map(item => ({code: item.symbol, name: item.name})) : [];
+    try {
+        const res = await fetch(`${options.customData.apiBaseUrl}/securities/search/${item}`, {method: 'GET'});
+        const stockData = await res.json();
+        return stockData.success ? stockData.data.map(item => ({code: item.symbol, name: item.name})) : [];
+    } catch (e) {
+        return [];
+    }
 }
 
 export async function getMiniChartData(symbol) {
     const options = await getWindowOptions();
-    const res = await fetch(`${options.customData.apiBaseUrl}/securities/${symbol}`, {method: 'GET'});
-    const stockData = await res.json();
-    if (stockData.success) {
-        return {
-            data: stockData.data.ohlc.map((item) => (
-                {
-                    open: item.open,
-                    close: item.close,
-                    high: item.high,
-                    low: item.low,
-                    volume: item.volume,
-                    date: new Date(item.date)
+    try {
+        const res = await fetch(`${options.customData.apiBaseUrl}/securities/${symbol}`, {method: 'GET'});
+        const stockData = await res.json();
+        if (stockData.success) {
+            return {
+                data: stockData.data.ohlc.map((item) => (
+                    {
+                        open: item.open,
+                        close: item.close,
+                        high: item.high,
+                        low: item.low,
+                        volume: item.volume,
+                        date: new Date(item.date)
+                    }
+                    )),
+                    name: stockData.data.name
                 }
-            )),
-            name: stockData.data.name
-        }
-    } else if (!stockData.success && stockData.error) {
+            } else if (!stockData.success && stockData.error) {
+                return {
+                    success: false,
+                    error: stockData.error.messages[0]
+                };
+            }
+    } catch(e) {
         return {
             success: false,
-            error: stockData.error.messages[0]
-        };
+            error: 'Request failed. ' + e
+        }
     }
 }
 
@@ -110,19 +121,12 @@ async function getWindowOptions() {
     return await currentWindow.getOptions();
 }
 
-export function getSymbolNews(symbol) {
-    return window.fin.Window.getCurrent().then(function(win) {
-        return win.getOptions();
-    }).then(function(options) {
-        return options.customData.apiBaseUrl;
-    }).then(function(api) {
-        var url = api + '/news/' + symbol;
-        return fetch(url, {
-            method: 'GET'
-        }).then(function(response) {
-            return response.json();
-        }).catch(function() {
-            return [];
-        });
-    });
+export async function getSymbolNews(symbol) {
+    const options = await getWindowOptions();
+    try {
+        const res = await fetch(`${options.customData.apiBaseUrl}/news/${symbol}`, {method: 'GET'});
+        return res.json();
+    } catch(e) {
+        return [];
+    }
 }

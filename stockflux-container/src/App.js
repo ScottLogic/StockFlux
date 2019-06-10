@@ -37,12 +37,12 @@ function App() {
           if (window) {
             windows = [...windows, windowName];
             if (isChart) {
-              InterApplicationBus.publish('stockFluxChart:' + context.symbol, {
+              InterApplicationBus.publish('stockFluxChart:' + context.name, {
                 symbol: context.name,
                 name: context.id.default
               });
             } else {
-              InterApplicationBus.publish('stockFluxNews:' + context.symbol, {
+              InterApplicationBus.publish('stockFluxNews:' + context.name, {
                 symbol: context.name,
               });
             }
