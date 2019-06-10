@@ -73,49 +73,41 @@ export function getStockFluxData() {
 }
 
 export async function stockFluxSearch(item) {
-    const currentWindow = await window.fin.Window.getCurrent();
-    const options = await currentWindow.getOptions();
+    const options = await getWindowOptions()
     const res = await fetch(`${options.customData.apiBaseUrl}/securities/search/${item}`, {method: 'GET'});
     const stockData = await res.json();
     return stockData.success ? stockData.data.map(item => ({code: item.symbol, name: item.name})) : [];
 }
 
-export function getMiniChartData(symbol) {
-    return window.fin.Window.getCurrent().then(function(win) {
-            return win.getOptions();
-        }).then(function(options) {
-            return options.customData.apiBaseUrl;
-        }).then(function(api) {
-            var url = api + '/securities/' + symbol;
-            return fetch(url, {
-                    method: 'GET'
-                }).then(function(response) {
-                    return response.json();
-                }).then(function(stockData) {
-                    if (stockData.success) {
-                        return {
-                            data: stockData.data.ohlc.map(function(item) {
-                                return {
-                                    open: item.open,
-                                    close: item.close,
-                                    high: item.high,
-                                    low: item.low,
-                                    volume: item.volume,
-                                    date: new Date(item.date)
-                                }
-                            }),
-                            name: stockData.data.name
-                        }
-                    } else if (!stockData.success && stockData.error) {
-                        return {
-                            success: false,
-                            error: stockData.error.messages[0]
-                        };
-                    }
-                }).catch(function() {
-                    return [];
-                });
-        });
+export async function getMiniChartData(symbol) {
+    const options = await getWindowOptions();
+    const res = await fetch(`${options.customData.apiBaseUrl}/securities/${symbol}`, {method: 'GET'});
+    const stockData = await res.json();
+    if (stockData.success) {
+        return {
+            data: stockData.data.ohlc.map((item) => (
+                {
+                    open: item.open,
+                    close: item.close,
+                    high: item.high,
+                    low: item.low,
+                    volume: item.volume,
+                    date: new Date(item.date)
+                }
+            )),
+            name: stockData.data.name
+        }
+    } else if (!stockData.success && stockData.error) {
+        return {
+            success: false,
+            error: stockData.error.messages[0]
+        };
+    }
+}
+
+async function getWindowOptions() {
+    const currentWindow = await window.fin.Window.getCurrent();
+    return await currentWindow.getOptions();
 }
 
 export function getSymbolNews(symbol) {
