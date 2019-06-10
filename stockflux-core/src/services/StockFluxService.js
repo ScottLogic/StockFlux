@@ -72,35 +72,12 @@ export function getStockFluxData() {
     return stockFlux;
 }
 
-export function stockFluxSearch(item) {
-
-    return window.fin.Window.getCurrent().then(function(win) {
-            return win.getOptions();
-        }).then(function(options) {
-            return options.customData.apiBaseUrl;
-        }).then(function(api) {
-            var url = api + '/securities/search/' + item;
-            return fetch(url, {
-                method: 'GET'
-            }).then(function(response) {
-                return response.json();
-            }).then(function(stockData) {
-                    if (stockData.success) {
-                        return stockData.data.map(item => {
-                            return {
-                                code: item.symbol,
-                                name: item.name
-                            }
-                        })
-                    }
-                    else if (!stockData.success) {
-                        return [];
-                    }
-                }
-            ).catch(function() {
-                return [];
-            });
-        });
+export async function stockFluxSearch(item) {
+    const currentWindow = await window.fin.Window.getCurrent();
+    const options = await currentWindow.getOptions();
+    const res = await fetch(`${options.customData.apiBaseUrl}/securities/search/${item}`, {method: 'GET'});
+    const stockData = await res.json();
+    return stockData.success ? stockData.data.map(item => ({code: item.symbol, name: item.name})) : [];
 }
 
 export function getMiniChartData(symbol) {
