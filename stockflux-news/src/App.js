@@ -66,7 +66,6 @@ function App() {
     }
   });
   const { data } = InterApplicationBusHooks.useSubscription(parentUuid ? parentUuid : '*', '', 'stockFluxNews:'+listenerSymbol);
-
   if (data && data.length > 0 && data[0]) {
       if (data[0].symbol && symbol !== data[0].symbol) {
         setSymbol(data[0].symbol);

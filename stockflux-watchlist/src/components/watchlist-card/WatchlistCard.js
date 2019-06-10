@@ -24,10 +24,11 @@ const WatchlistCard = props => {
   });
 
   useEffect(() => {
-    StockFlux.getMiniChartData(props.symbol).then(response => {
-      if (response.data) {
-        const data = response.data[0];
-        const stockName = response.name;
+    const populateChart = async () => {
+      const miniChartData = await StockFlux.getMiniChartData(props.symbol);
+      if (miniChartData.data) {
+        const data = miniChartData.data[0];
+        const stockName = miniChartData.name;
         let tempStockData = { name: stockName };
 
         if (data) {
@@ -41,11 +42,12 @@ const WatchlistCard = props => {
           };
         }
         setStockData(tempStockData);
-        setChartData(response.data);
+        setChartData(miniChartData.data);
       } else {
-        setFetchError(response.error);
+        setFetchError(miniChartData.error);
       }
-    });
+    }
+    populateChart();
   }, [props.symbol]);
 
   const getPrice = price => {
