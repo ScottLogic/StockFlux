@@ -2,7 +2,7 @@ import {format} from 'date-fns';
 
 // written in the same structure as d3fc-financial-feed
 export function getStockFluxData() {
-    let product,
+    var product,
         start,
         end;
 
