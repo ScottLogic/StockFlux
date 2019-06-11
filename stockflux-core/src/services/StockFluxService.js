@@ -2,12 +2,12 @@ import {format} from 'date-fns';
 
 // written in the same structure as d3fc-financial-feed
 export function getStockFluxData() {
-    let product,
+    var product,
         start,
         end;
 
-    let stockFlux = (cb) => {
-        const params = [];
+    var stockFlux = function(cb) {
+        var params = [];
         // defaulting data to 2016-01-01 as currently UI has no influence over dates
         if (start != null) {
             params.push('/' + format(start, 'YYYY-MM-DD'));
@@ -15,20 +15,20 @@ export function getStockFluxData() {
         if (end != null) {
             params.push('/' + format(end, 'YYYY-MM-DD'));
         }
-        window.fin.Window.getCurrent().then((win) => {
+        window.fin.Window.getCurrent().then(function(win) {
             return win.getOptions();
-        }).then((options) => {
+        }).then(function(options) {
             return options.customData.apiBaseUrl;
-        }).then((api) => {
-            const url = `${api}/ohlc/${product}/2016-01-01`;
+        }).then(function(api) {
+            var url = `${api}/ohlc/${product}/2016-01-01`;
             fetch(url, {
                 method: 'GET'
-            }).then((response) => {
+            }).then(function(response) {
                 return response.json();
-            }).then((stockData) => {
+            }).then(function(stockData) {
                 if (stockData.success) {
-                    cb(undefined, stockData.data.map((item) => (
-                        {
+                    cb(undefined, stockData.data.map((item) => {
+                        return {
                             open: item.open,
                             close: item.close,
                             high: item.high,
@@ -36,31 +36,31 @@ export function getStockFluxData() {
                             volume: item.volume,
                             date: new Date(item.date)
                         }
-                    )))
+                    }));
                 } else if (!stockData.success) {
                     cb(stockData);
                 }
-            }).catch((error) => {
+            }).catch(function(error) {
                 cb(error);
             });
         }
     )};
 
-    stockFlux.product = (x) => {
+    stockFlux.product = function(x) {
         if (!arguments.length) {
             return product;
         }
         product = x;
         return stockFlux;
     };
-    stockFlux.start = (x) => {
+    stockFlux.start = function(x) {
         if (!arguments.length) {
             return start;
         }
         start = x;
         return stockFlux;
     };
-    stockFlux.end = (x) => {
+    stockFlux.end = function(x) {
         if (!arguments.length) {
             return end;
         }
