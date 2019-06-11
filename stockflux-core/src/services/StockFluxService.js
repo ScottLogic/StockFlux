@@ -6,7 +6,7 @@ export function getStockFluxData() {
         start,
         end;
 
-    let stockFlux = (cb) => {
+    var stockFlux = (cb) => {
         const params = [];
         // defaulting data to 2016-01-01 as currently UI has no influence over dates
         if (start != null) {
