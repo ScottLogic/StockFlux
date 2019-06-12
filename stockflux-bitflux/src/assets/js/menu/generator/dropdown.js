@@ -34,6 +34,25 @@ export default function() {
         var config = model.config;
 
         var button = buttonDataJoin(selection, [model.options]);
+        
+        button.enter().on({'click': function() {
+            const menu = d3.select(this.parentNode).select('.dropdown-menu');
+            const namespace = this.parentNode.classList.value.replace(/\s/g, ',');
+            if (menu.classed('show')) {
+                menu.classed('show', false);
+            } else {
+                menu.classed('show', true);
+                let initClick = true;
+                d3.select("body").on(`click.${namespace}`, function() {
+                    if (initClick) {
+                        initClick = false;
+                    } else if (menu.classed('show')) {
+                        menu.classed('show', false);
+                        d3.select("body").on(`click.${namespace}`, null);
+                    }
+                });
+            }
+        }});
 
         if (config.icon) {
             var dropdownButtonIcon = button.selectAll('.icon')
