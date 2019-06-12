@@ -1,8 +1,6 @@
 import app from './app';
 
 import 'd3fc/dist/d3fc.css';
-import 'jquery/src/jquery';
-import 'bootstrap/js/dropdown.js';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import '../styles/axis.css';
