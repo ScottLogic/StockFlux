@@ -128,16 +128,16 @@ const FreeTextSearch = ({ dockedTo }) => {
       switch (message.type) {
         case 'news-view':
           Intents.viewNews(message.code);
-          break;
         case 'watchlist-add':
           Intents.addWatchlist(message.code, message.name);
-          break;
         case 'chart-add':
           Intents.viewChart(message.code, message.name);
-          break;
         default:
           break;
       }
+      closeResultsWindow();
+      searchInputRef.current.value = '';
+      searchInputRef.current.blur();
     });
   }, []);
 
