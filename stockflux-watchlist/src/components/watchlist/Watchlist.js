@@ -86,6 +86,10 @@ const Watchlist = () => {
     });
   };
 
+  const removeFromWatchList = (symbol) => {
+    setWatchlist(watchlist.filter(item => item != symbol));
+  }
+
   return (
     <div
       className="watchlist"
@@ -130,6 +134,7 @@ const Watchlist = () => {
               dragOverBottom={
                 dragOverIndex === watchlist.length && i === watchlist.length - 1
               }
+              removeFromWatchList={removeFromWatchList}
             />
           ))
         )}
