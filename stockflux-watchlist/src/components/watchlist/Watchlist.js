@@ -87,7 +87,7 @@ const Watchlist = () => {
   };
 
   const removeFromWatchList = (symbol) => {
-    setWatchlist(watchlist.filter(item => item != symbol));
+    setWatchlist(watchlist.filter(item => item !== symbol));
   }
 
   return (
