@@ -80,9 +80,18 @@
   height: 50%;
 }
 
+.remove-symbol {
+  padding-right: 7px;
+}
+
 .remove-symbol svg {
   height: 28px;
   width: 15px;
+}
+
+.news-symbol svg {
+  height: 28px;
+  width: 20px;
 }
 
 .minichartWrapper {

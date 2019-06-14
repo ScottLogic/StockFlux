@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FaRegTrashAlt } from 'react-icons/fa';
+import { FaRegTrashAlt, FaNewspaper } from 'react-icons/fa';
 import Minichart from '../minichart/Minichart';
 import Confirmation from './UnwatchConfirmation';
 import { StockFlux, Intents, Utils } from 'stockflux-core';
@@ -122,6 +122,11 @@ const WatchlistCard = props => {
                 } 
               >
                 <FaRegTrashAlt />
+              </div>
+              <div className="news-symbol" onClick={(e) => {
+                Intents.viewNews(props.symbol)
+              }}>
+                <FaNewspaper />
               </div>
               {props.isUnwatching && (
                 <Confirmation
