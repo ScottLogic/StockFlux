@@ -1,15 +1,16 @@
 import React, {useState} from 'react';
 import Chart from './components/Chart';
 import Components from 'stockflux-components';
+import { StockFluxHooks } from 'stockflux-core';
 import {InterApplicationBusHooks} from 'openfin-react-hooks';
 
 import './styles/app.css';
 
 const App = () => {
-    const [symbol, setSymbol] = useState(null);
+    const [symbol, setSymbol] = StockFluxHooks.useLocalStorage('chartSymbol', null);
     const [parentUuid, setParentUuid] = useState(null);
     const [listenerSymbol, setListenerSymbol] = useState(null);
-    const [name, setName] = useState(null);
+    const [name, setName] = StockFluxHooks.useLocalStorage('chartName', null);
 
     window.fin.Window.getCurrentSync().getOptions().then((options) => {
         if (listenerSymbol !== options.customData.symbol) {
