@@ -15,7 +15,7 @@ const Chart = ({chart, symbol, getData}) => {
         if (symbol && getData) {
             getData(symbol);
         }
-    }, [symbol]);
+    }, [symbol, getData, chart]);
 
     return (
         <div ref={showcaseContainer} id = "showcase-container" />
