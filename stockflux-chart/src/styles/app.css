@@ -51,11 +51,13 @@ body {
     top: 5px;
     left: 20px;
     z-index: 10;
-    display: inline-block;
+    display: flex;
+    flex-direction: row;
 }
 #showcase-title .code, 
 #showcase-title .name {
     display: inline-block;
+    padding-right: 10px;
 }
   
 #showcase-title .code {
@@ -64,6 +66,20 @@ body {
   
 #showcase-title  .name {
     font: 14px var(--font-weight-normal);
+}
+
+.chart-nav-icons {
+    display: flex;
+    flex-direction: row;
+}
+
+.chart-news-icon svg, .chart-watchlist-icon svg {
+    fill: var(--chart-teal);
+    padding-right: 10px;
+    height: 20px;
+    width: 30px;
+    shape-rendering: initial;
+    cursor: pointer;
 }
 
 .no-favourites-image {

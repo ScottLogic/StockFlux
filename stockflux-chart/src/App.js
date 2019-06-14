@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import Chart from './components/Chart';
 import Components from 'stockflux-components';
+import { Intents } from 'stockflux-core';
+import { FaNewspaper, FaRegListAlt } from 'react-icons/fa';
 import {InterApplicationBusHooks} from 'openfin-react-hooks';
 
 import './styles/app.css';
@@ -29,13 +31,38 @@ const App = () => {
         }
     }
 
+    const onNewsClick = () => {
+        if (symbol) {
+            Intents.viewNews(symbol);
+        }
+    }
+
+    const onWatchlistClick = () => {
+        if (symbol && name) {
+            Intents.addWatchlist(symbol, name);
+        }
+    }
+
     return (
         <>
             <div className='main'>
                 <div className='main-content'>
                     <Components.Titlebar />
                     <div id="showcase-title">
-                        <div className="code">{symbol}</div> <div className="name">{name ? name : 'Generated Data'}</div>
+                        <div className="code">
+                            {symbol}
+                        </div> 
+                        <div className="name">
+                            {name ? name : 'Generated Data'}
+                        </div>
+                        <div className="chart-nav-icons">
+                            <div className="chart-news-icon" onClick={onNewsClick}>
+                                <FaNewspaper />
+                            </div>
+                            <div className="chart-watchlist-icon" onClick={onWatchlistClick}>
+                                <FaRegListAlt />
+                            </div>
+                        </div>
                     </div>
                     <Chart symbol={symbol}/>
                 </div>
