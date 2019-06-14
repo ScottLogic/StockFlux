@@ -49,7 +49,7 @@ body {
     color: var(--chart-teal);
     position: relative;
     top: 5px;
-    left: 20px;
+    left: 25px;
     z-index: 10;
     display: flex;
     flex-direction: row;
@@ -73,13 +73,18 @@ body {
     flex-direction: row;
 }
 
-.chart-news-icon svg, .chart-watchlist-icon svg {
+.chart-nav-icon svg {
     fill: var(--chart-teal);
     padding-right: 10px;
     height: 20px;
     width: 30px;
     shape-rendering: initial;
     cursor: pointer;
+}
+
+.chart-nav-icon.icon-disabled svg {
+    cursor: not-allowed;
+    opacity: 0.4;
 }
 
 .no-favourites-image {
