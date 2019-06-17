@@ -74,6 +74,6 @@ body {
     -webkit-user-drag: none;
 }
 
-.close, .close:hover {
+.close.button-icon, .close.button-icon:hover {
     opacity: 1;
 }
