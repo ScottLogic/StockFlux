@@ -123,17 +123,26 @@ const FreeTextSearch = ({ dockedTo }) => {
       .then(options => setParentUuid(options.uuid));
   }, []);
 
+  const closeAndClearSearch = () => {
+    closeResultsWindow();
+    searchInputRef.current.value = '';
+    searchInputRef.current.blur();
+  }
+
   useEffect(() => {
     window.fin.InterApplicationBus.subscribe({ uuid: window.fin.Window.me.uuid }, 'intent-request', (message) => {
       switch (message.type) {
         case 'news-view':
           Intents.viewNews(message.code);
+          closeAndClearSearch();
           break;
         case 'watchlist-add':
           Intents.addWatchlist(message.code, message.name);
+          closeAndClearSearch();
           break;
         case 'chart-add':
           Intents.viewChart(message.code, message.name);
+          closeAndClearSearch();
           break;
         default:
           break;
