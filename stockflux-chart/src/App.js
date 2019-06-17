@@ -1,10 +1,16 @@
 import React, {useState} from 'react';
 import Chart from './components/Chart';
 import Components from 'stockflux-components';
-import { StockFluxHooks } from 'stockflux-core';
+import { Intents, StockFluxHooks } from 'stockflux-core';
+import { FaNewspaper, FaRegListAlt, FaSyncAlt } from 'react-icons/fa';
 import {InterApplicationBusHooks} from 'openfin-react-hooks';
+import bitflux from 'stockflux-bitflux/dist/bitflux';
 
 import './styles/app.css';
+
+const chart = bitflux.app();
+chart.periodsOfDataToFetch(1200);
+chart.proportionOfDataToDisplayByDefault(112/1200);
 
 const App = () => {
     const [symbol, setSymbol] = StockFluxHooks.useLocalStorage('chartSymbol', null);
@@ -30,15 +36,51 @@ const App = () => {
         }
     }
 
+    const onNewsClick = () => {
+        if (symbol) {
+            Intents.viewNews(symbol);
+        }
+    }
+
+    const onWatchlistClick = () => {
+        if (symbol && name) {
+            Intents.addWatchlist(symbol, name);
+        }
+    }
+
+    const getData = (symbol) => {
+        if (symbol) {
+            chart.changeStockFluxProduct(symbol);
+        }
+    }
+
     return (
         <>
             <div className='main'>
                 <div className='main-content'>
                     <Components.Titlebar />
                     <div id="showcase-title">
-                        <div className="code">{symbol}</div> <div className="name">{name ? name : 'Generated Data'}</div>
+                        {symbol && (
+                            <div className="code">
+                                {symbol}
+                            </div> 
+                        )}
+                        <div className="name">
+                            {name ? name : 'Generated Data'}
+                        </div>
+                        <div className="chart-nav-icons">
+                            <div className={"chart-nav-icon" + (symbol ? '' : ' icon-disabled')} onClick={onNewsClick}>
+                                <FaNewspaper />
+                            </div>
+                            <div className={"chart-nav-icon" + (symbol ? '' : ' icon-disabled')} onClick={onWatchlistClick}>
+                                <FaRegListAlt />
+                            </div>
+                            <div className={"chart-nav-icon" + (symbol ? '' : ' icon-disabled')} onClick={() => getData(symbol)}>
+                                <FaSyncAlt />
+                            </div>
+                        </div>
                     </div>
-                    <Chart symbol={symbol}/>
+                    <Chart getData={getData} chart={chart} symbol={symbol}/>
                 </div>
             </div>
         </>
