@@ -17,7 +17,7 @@ body {
   margin-bottom: auto;
 }
 
-input[type="text"]#watchlist-name {
+.watchlist-name {
   background-color: inherit;
   padding: 5px;
   padding-right: 0;
@@ -30,14 +30,6 @@ input[type="text"]#watchlist-name {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-input#watchlist-name::placeholder {
-  color: var(--text-grey);
-}
-
-input#watchlist-name:focus {
-  outline: none;
 }
 
 .watchlist {

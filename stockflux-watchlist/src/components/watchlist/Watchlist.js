@@ -104,18 +104,8 @@ const Watchlist = () => {
     >
       <div className="header">
         <span className="watchlist-name">
-          <input
-            id="watchlist-name"
-            type="text"
-            placeholder="My Watchlist"
-            value={name}
-            onChange={e => setName(e.target.value)}
-            title={name}
-          />
+          My Watchlist
         </span>
-        <div className="stockflux-icon star-tab" title="Star Tab">
-          &nbsp;
-        </div>
       </div>
       <Components.ScrollWrapperY>
         {watchlist.length === 0 ? (

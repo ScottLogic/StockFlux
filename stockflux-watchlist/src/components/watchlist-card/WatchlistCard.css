@@ -75,12 +75,7 @@
   padding-right: 3px;
 }
 
-.button-icon.star {
-  padding: var(--padding-small);
-  height: 50%;
-}
-
-.remove-symbol {
+.news-symbol {
   padding-right: 7px;
 }
 
@@ -113,5 +108,5 @@
 }
 
 .details-container {
-  width: 75%;
+  width: 70%;
 }
