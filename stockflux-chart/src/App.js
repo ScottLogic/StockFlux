@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Chart from './components/Chart';
 import Components from 'stockflux-components';
-import { Intents } from 'stockflux-core';
+import { Intents, StockFluxHooks } from 'stockflux-core';
 import { FaNewspaper, FaRegListAlt, FaSyncAlt } from 'react-icons/fa';
 import {InterApplicationBusHooks} from 'openfin-react-hooks';
 import bitflux from 'stockflux-bitflux/dist/bitflux';
@@ -13,10 +13,10 @@ chart.periodsOfDataToFetch(1200);
 chart.proportionOfDataToDisplayByDefault(112/1200);
 
 const App = () => {
-    const [symbol, setSymbol] = useState(null);
+    const [symbol, setSymbol] = StockFluxHooks.useLocalStorage('chartSymbol', null);
     const [parentUuid, setParentUuid] = useState(null);
     const [listenerSymbol, setListenerSymbol] = useState(null);
-    const [name, setName] = useState(null);
+    const [name, setName] = StockFluxHooks.useLocalStorage('chartName', null);
 
     window.fin.Window.getCurrentSync().getOptions().then((options) => {
         if (listenerSymbol !== options.customData.symbol) {
