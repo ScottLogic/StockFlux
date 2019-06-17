@@ -18,7 +18,6 @@ let latestListener;
 const getDistinctElementArray = array => [...new Set(array)];
 
 const Watchlist = () => {
-  const [name, setName] = StockFluxHooks.useLocalStorage('name', '');
   const [dragOverIndex, setDragOverIndex] = useState(null);
   const [unwatchedSymbol, setUnwatchedSymbol] = useState(null);
   const [watchlist, setWatchlist] = StockFluxHooks.useLocalStorage(
@@ -79,7 +78,7 @@ const Watchlist = () => {
     showNotification({
       message: {
         symbol: newSymbol,
-        watchlistName: name.toUpperCase(),
+        watchlistName: "My Watchlist",
         alreadyInWatchlist,
         messageText: `${alreadyInWatchlist ? ' moved' : ' added'} to the top`
       }
