@@ -18,6 +18,9 @@
 
 .card-top {
   padding-left: var(--padding-medium);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .card-top .name {
@@ -72,10 +75,18 @@
   padding-right: 3px;
 }
 
-.button-icon.star {
-  float: right;
-  padding: var(--padding-small);
-  margin-right: 0;
+.news-symbol {
+  padding-right: 7px;
+}
+
+.remove-symbol svg {
+  height: 28px;
+  width: 15px;
+}
+
+.news-symbol svg {
+  height: 28px;
+  width: 20px;
 }
 
 .minichartWrapper {
@@ -90,4 +101,12 @@
 
 .default-background {
   background: var(--middle-background);
+}
+
+.icons {
+  display: flex;
+}
+
+.details-container {
+  width: 70%;
 }

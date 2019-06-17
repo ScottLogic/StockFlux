@@ -18,7 +18,6 @@ let latestListener;
 const getDistinctElementArray = array => [...new Set(array)];
 
 const Watchlist = () => {
-  const [name, setName] = StockFluxHooks.useLocalStorage('name', '');
   const [dragOverIndex, setDragOverIndex] = useState(null);
   const [unwatchedSymbol, setUnwatchedSymbol] = useState(null);
   const [watchlist, setWatchlist] = StockFluxHooks.useLocalStorage(
@@ -79,12 +78,16 @@ const Watchlist = () => {
     showNotification({
       message: {
         symbol: newSymbol,
-        watchlistName: name.toUpperCase(),
+        watchlistName: "My Watchlist",
         alreadyInWatchlist,
         messageText: `${alreadyInWatchlist ? ' moved' : ' added'} to the top`
       }
     });
   };
+
+  const removeFromWatchList = (symbol) => {
+    setWatchlist(watchlist.filter(item => item !== symbol));
+  }
 
   return (
     <div
@@ -100,18 +103,8 @@ const Watchlist = () => {
     >
       <div className="header">
         <span className="watchlist-name">
-          <input
-            id="watchlist-name"
-            type="text"
-            placeholder="My Watchlist"
-            value={name}
-            onChange={e => setName(e.target.value)}
-            title={name}
-          />
+          My Watchlist
         </span>
-        <div className="stockflux-icon star-tab" title="Star Tab">
-          &nbsp;
-        </div>
       </div>
       <Components.ScrollWrapperY>
         {watchlist.length === 0 ? (
@@ -130,6 +123,7 @@ const Watchlist = () => {
               dragOverBottom={
                 dragOverIndex === watchlist.length && i === watchlist.length - 1
               }
+              removeFromWatchList={removeFromWatchList}
             />
           ))
         )}

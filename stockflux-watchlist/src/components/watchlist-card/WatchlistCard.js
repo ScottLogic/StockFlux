@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { FaTimes, FaNewspaper } from 'react-icons/fa';
 import Minichart from '../minichart/Minichart';
-import Confirmation from './UnwatchConfirmation';
 import { StockFlux, Intents, Utils } from 'stockflux-core';
 import currentWindowService from '../../services/currentWindowService';
 import './WatchlistCard.css';
@@ -13,7 +13,6 @@ const WatchlistCard = props => {
     clientX: null,
     offsetY: null
   });
-  const [starTop, setStarTop] = useState(0);
   const [chartData, setChartData] = useState([]);
   const [fetchError, setFetchError] = useState('');
   const [stockData, setStockData] = useState({
@@ -63,12 +62,6 @@ const WatchlistCard = props => {
     return name ? Utils.truncate(name) : '';
   };
 
-  const onIconClick = e => {
-    setStarTop(e.target.getBoundingClientRect().top);
-    props.bindings.onIconClick(props.symbol)(e);
-    e.stopPropagation();
-  };
-
   const onDragStart = symbol => {
     return e => {
       const symbolData = { symbol: symbol };
@@ -107,20 +100,24 @@ const WatchlistCard = props => {
       <div className="drop-target">
         <div className="card darkens default-background" draggable="false">
           <div className="card-top">
-            <div className="button-icon star active" onClick={onIconClick}>
-              &nbsp;
+            <div className="details-container">
+              <div className="name">{stockData.name}</div>
+              <div className="symbol">{props.symbol}</div>
             </div>
-            {props.isUnwatching && (
-              <Confirmation
-                starTop={starTop}
-                onModalBackdropClick={props.bindings.onModalBackdropClick}
-                onModalConfirmClick={() =>
-                  props.bindings.onModalConfirmClick(props.symbol)
-                }
-              />
-            )}
-            <div className="name">{stockData.name}</div>
-            <div className="symbol">{props.symbol}</div>
+            <div className="icons">
+              <div className="news-symbol" onClick={(e) => {
+                Intents.viewNews(props.symbol)
+              }}>
+                <FaNewspaper />
+              </div>
+              <div className="remove-symbol" onClick={(e) => {
+                  e.stopPropagation();
+                  props.removeFromWatchList(props.symbol)}
+                } 
+              >
+                <FaTimes />
+              </div>
+            </div>
           </div>
           <div className="card-bottom">
             <Minichart
@@ -166,7 +163,8 @@ WatchlistCard.propTypes = {
     onModalConfirmClick: PropTypes.func.isRequired,
     onModalBackdropClick: PropTypes.func.isRequired
   }).isRequired,
-  isUnwatching: PropTypes.bool.isRequired
+  isUnwatching: PropTypes.bool.isRequired,
+  removeFromWatchList: PropTypes.func.isRequired
 };
 
 export default WatchlistCard;
