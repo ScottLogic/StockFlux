@@ -9,6 +9,7 @@ export default ({ tools }) => {
           key={index}
           onClick={() => tool.onClick()}
           disabled={!!tool.disabled}
+          className={tool.className ? tool.className : ''}
         >
           {tool.label}
         </button>
