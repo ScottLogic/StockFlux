@@ -14,23 +14,23 @@ import ToolBar from './toolbar/ToolBar';
 import CloseButton from './toolbar/CloseButton';
 import './App.css';
 
-const isLauncherHorizontal = (edge) => {
-  return edge === Constants.ScreenEdge.TOP;
-}
+const isLauncherHorizontal = edge => edge === Constants.ScreenEdge.TOP;
 
 export default () => {
   const [edge, windowActions] = WindowHooks.useDockWindow(Constants.ScreenEdge.TOP, window.fin.Window.getCurrentSync(),
       true, { dockedWidth: 50, dockedHeight: 50 });
 
   const prevEdgeRef = useRef();
-      useEffect(() => {
-        prevEdgeRef.current = edge;
+  useEffect(() => {
+    prevEdgeRef.current = edge;
   });
   const prevEdge = prevEdgeRef.current;    
 
+  const edgeToBeChecked = edge === Constants.ScreenEdge.NONE ? prevEdge : edge;
+
   return (
-    <div className={cx('app', edge === Constants.ScreenEdge.NONE ? prevEdge : edge)} >
-      {!isLauncherHorizontal(edge === Constants.ScreenEdge.NONE ? prevEdge : edge) && CloseButton}
+    <div className={cx('app', edgeToBeChecked)} >
+      {!isLauncherHorizontal(edgeToBeChecked) && CloseButton}
       <AppShortcuts />
       <FreeTextSearch dockedTo={edge} />
       <ToolBar
@@ -56,7 +56,7 @@ export default () => {
           }
         ]}
       />
-      {isLauncherHorizontal(edge === Constants.ScreenEdge.NONE ? prevEdge : edge) && CloseButton}
+      {isLauncherHorizontal(edgeToBeChecked) && CloseButton}
     </div>
   );
 };
