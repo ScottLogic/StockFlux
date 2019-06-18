@@ -31,3 +31,7 @@ html {
 .left {
   border-right: solid 1px var(--text-teal);
 }
+
+.drag-handle {
+  -webkit-app-region: drag;
+}
