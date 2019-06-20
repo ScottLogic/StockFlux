@@ -13,11 +13,15 @@
   --lightest-background: #79818B;
   --lighter-background: #606872;
   --light-background: #464E58;
+
   --middle-background: #28313D;
+  --middle-background-light: #424B57;
+  --middle-background-lighter: #5B6470;
+
   --dark-background: #1A212A;
 
   --chart-teal: #37d8bc;
-  
+
   /* dimensions */
   --expanded-width: 230px;
   --toolbar-height: 50px;
