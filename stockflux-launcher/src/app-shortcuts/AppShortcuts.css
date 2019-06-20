@@ -1,10 +1,10 @@
 .app-shortcuts {
   display: flex;
-flex: wrap;
-align-items: center;
+  align-items: center;
 }
 
 .left .app-shortcuts,
 .right .app-shortcuts {
-flex-direction: column;
+  flex-direction: column;
+}
 }

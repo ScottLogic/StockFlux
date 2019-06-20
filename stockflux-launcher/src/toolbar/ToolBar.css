@@ -1,6 +1,5 @@
 .toolbar {
   display: flex;
-  flex: wrap;
   align-items: center;
 }
 
@@ -21,7 +20,6 @@
   cursor: pointer;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .toolbar button:disabled {
@@ -32,9 +30,4 @@
 .left .toolbar button,
 .right .toolbar button {
   margin: 5px 0;
-}
-
-.close {
-  padding: 5px;
-  margin: 5px;
 }
