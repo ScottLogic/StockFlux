@@ -6,7 +6,11 @@
     cursor: pointer;
 }
 
-.source {   
+.newsitem:hover {
+    background-color: var(--middle-background-light);
+}
+
+.source {
     display: flex;
     flex-direction: column;
     align-items: center;
