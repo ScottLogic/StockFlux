@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FaTimes, FaNewspaper } from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
 import Minichart from '../minichart/Minichart';
 import Components from 'stockflux-components';
 import { StockFlux, Intents, Utils } from 'stockflux-core';
@@ -114,7 +114,7 @@ const WatchlistCard = props => {
               <div className="remove-symbol" onClick={(e) => {
                   e.stopPropagation();
                   props.removeFromWatchList(props.symbol)}
-                } 
+                }
               >
                 <FaTimes />
               </div>
