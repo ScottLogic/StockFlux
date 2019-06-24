@@ -1,9 +1,12 @@
 .newsitem {
     display: flex;
-    height: 70px;
-    border-bottom: 1px solid var(--chart-teal);
+    height: var(--newsitem-height);
     color: white;
     cursor: pointer;
+}
+
+.newsitem:not(:first-child) {
+    border-top: 1px solid var(--chart-teal);
 }
 
 .newsitem:hover {
@@ -29,9 +32,8 @@
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
-    padding: 5px 0;
+    padding-top: 10px;
     width: 75%;
-    justify-content: space-between;
 }
 
 .headline {

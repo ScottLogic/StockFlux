@@ -10,19 +10,19 @@
   font-weight: var(--font-weight-bolder);
   padding: 10px;
   display: flex;
-  height: 20px;
+  height: var(--header-height);
+  border-bottom: 1px solid var(--chart-teal);
 }
 
 .container {
-  border-top: 1px solid var(--chart-teal);
-  overflow-y: auto;
-  max-height: 330px;
+  max-height: 700px;
+  height: calc(100vh - (var(--header-height) + var(--titlebar-height)));
 }
 
 .noArticles {
   padding: 10px;
   display: flex;
-  height: 20px;
+  height: var(--no-article-height);
   justify-content: center;
   font-size: var(--font-large);
   color: var(--text-grey-lighter);
