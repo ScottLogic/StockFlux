@@ -30,5 +30,7 @@
   "scripts": {
     "build": "webpack"
   },
-  "dependencies": {}
+  "dependencies": {
+    "react-svg-loader": "^3.0.3"
+  }
 }

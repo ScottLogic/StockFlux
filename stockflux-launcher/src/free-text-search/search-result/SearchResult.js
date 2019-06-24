@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaChartLine, FaRegListAlt, FaNewspaper  } from 'react-icons/fa'
+import Components from 'stockflux-components';
 import * as PropTypes from 'prop-types';
 import { Utils } from 'stockflux-core';
 
@@ -10,13 +10,13 @@ const SearchResult = ({ code, name }) => (
     <div className="subtitle">{code}</div>
     <div className="containerActions">
       <button type="button" className="buttonAction newsView">
-        <FaNewspaper className="buttonIcon" />
+        <Components.News className="buttonIcon" />
       </button>
       <button type="button" className="buttonAction watchlistAdd">
-        <FaRegListAlt className="buttonIcon" />
+        <Components.Watchlist className="buttonIcon" />
       </button>
       <button type="button" className="buttonAction chartView">
-        <FaChartLine className="buttonIcon" />
+        <Components.Chart className="buttonIcon" />
       </button>
     </div>
   </div>
