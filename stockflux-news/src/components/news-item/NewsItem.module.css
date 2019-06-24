@@ -1,18 +1,12 @@
 .newsitem {
     display: flex;
-    height: 70px;
+    height: var(--newsitem-height);
     color: white;
     cursor: pointer;
 }
 
-.newsitem:after {
-    content: '';
-    width: 100%;
-    background: var(--chart-teal);
-    display: block;
-    height: 1px;
-    margin-top: 69px;
-    position: absolute;
+.newsitem:not(:first-child) {
+    border-top: 1px solid var(--chart-teal);
 }
 
 .newsitem:hover {
@@ -38,9 +32,8 @@
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
-    padding: 5px 0;
+    padding-top: 10px;
     width: 75%;
-    justify-content: space-between;
 }
 
 .headline {
