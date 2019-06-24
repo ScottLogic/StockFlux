@@ -1,10 +1,17 @@
 .app-shortcuts {
   display: flex;
-flex: wrap;
-align-items: center;
+  align-items: center;
 }
 
 .left .app-shortcuts,
 .right .app-shortcuts {
-flex-direction: column;
+  flex-direction: column;
+}
+
+.app-shortcuts > .app-shortcut:hover {
+  background-color: var(--middle-background-light);
+}
+
+.app-shortcuts > .app-shortcut:active {
+  background-color: var(--middle-background-lighter);
 }

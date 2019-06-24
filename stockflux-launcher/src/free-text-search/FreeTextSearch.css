@@ -43,3 +43,11 @@
   justify-content: center;
   align-items: center;
 }
+
+.free-text-search button:hover {
+  background-color: var(--middle-background-light);
+}
+
+.free-text-search button:active {
+  background-color: var(--middle-background-lighter);
+}

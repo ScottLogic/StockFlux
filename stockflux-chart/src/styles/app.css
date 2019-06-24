@@ -7,9 +7,7 @@ body {
     margin: 0;
     padding: 0;
 }
-.main-content {
-    margin-left: var(--sidebar-width);
-}
+
 .main {
     background-color: var(--dark-background);
     padding: 0;
@@ -54,16 +52,16 @@ body {
     display: flex;
     flex-direction: row;
 }
-#showcase-title .code, 
+#showcase-title .code,
 #showcase-title .name {
     display: inline-block;
     padding-right: 10px;
 }
-  
+
 #showcase-title .code {
     font: 18px var(--font-weight-bolder);
 }
-  
+
 #showcase-title  .name {
     font: 14px var(--font-weight-normal);
 }
@@ -78,8 +76,12 @@ body {
     padding-right: 10px;
     height: 20px;
     width: 30px;
-    shape-rendering: initial;
+    shape-rendering: geometricprecision;
     cursor: pointer;
+}
+
+.chart-nav-icon:not(.icon-disabled):hover svg {
+    fill: var(--chart-teal-lighter);
 }
 
 .chart-nav-icon.icon-disabled svg {

@@ -79,6 +79,11 @@
   padding-right: 7px;
 }
 
+.news-symbol:hover svg,
+.remove-symbol:hover svg {
+  color: #999999;
+}
+
 .remove-symbol svg {
   height: 28px;
   width: 15px;
@@ -91,12 +96,6 @@
 
 .minichartWrapper {
   flex: 1;
-}
-
-.hover-area {
-  background-color: var(--fav-split-color);
-  width: var(--card-width);
-  height: 1px;
 }
 
 .default-background {

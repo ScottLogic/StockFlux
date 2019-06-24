@@ -13,3 +13,11 @@
   padding: 5px;
   margin: 5px;
 }
+
+.close:hover {
+  background-color: var(--middle-background-light);
+}
+
+.close:active {
+  background-color: var(--middle-background-lighter);
+}

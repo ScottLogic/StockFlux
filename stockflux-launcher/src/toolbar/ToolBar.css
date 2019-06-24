@@ -1,6 +1,5 @@
 .toolbar {
   display: flex;
-  flex: wrap;
   align-items: center;
 }
 
@@ -21,7 +20,6 @@
   cursor: pointer;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .toolbar button:disabled {
@@ -29,12 +27,15 @@
   border: solid 1px var(--light-background);
 }
 
+.toolbar button:not(:disabled):hover {
+  background-color: var(--middle-background-light);
+}
+
+.toolbar button:not(:disabled):active {
+  background-color: var(--middle-background-lighter);
+}
+
 .left .toolbar button,
 .right .toolbar button {
   margin: 5px 0;
-}
-
-.close {
-  padding: 5px;
-  margin: 5px;
 }
