@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Chart from './components/Chart';
 import Components from 'stockflux-components';
 import { Intents, StockFluxHooks } from 'stockflux-core';
-import { FaNewspaper, FaRegListAlt, FaSyncAlt } from 'react-icons/fa';
+import { FaSyncAlt } from 'react-icons/fa';
 import {InterApplicationBusHooks} from 'openfin-react-hooks';
 import bitflux from 'stockflux-bitflux/dist/bitflux';
 
@@ -70,10 +70,10 @@ const App = () => {
                         </div>
                         <div className="chart-nav-icons">
                             <div className={"chart-nav-icon" + (symbol ? '' : ' icon-disabled')} onClick={onNewsClick}>
-                                <FaNewspaper />
+                                <Components.News />
                             </div>
                             <div className={"chart-nav-icon" + (symbol ? '' : ' icon-disabled')} onClick={onWatchlistClick}>
-                                <FaRegListAlt />
+                                <Components.Watchlist />
                             </div>
                             <div className={"chart-nav-icon" + (symbol ? '' : ' icon-disabled')} onClick={() => getData(symbol)}>
                                 <FaSyncAlt />
