@@ -11,7 +11,7 @@ workflows:
           filters:
             branches:
               only:
-                - dev
+                - master
 
 jobs:
   install_and_build:
