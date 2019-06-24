@@ -88,7 +88,7 @@ function App() {
         if (results.length === 0 && isSearching) {
           win.resizeTo(bounds.width, Math.min(SPINNER_CONTAINER_HEIGHT + TITLEBAR_HEIGHT + SYMBOL_HEADER_HEIGHT, MIN_HEIGHT));
         } else {
-          win.resizeTo(bounds.width, Math.min(listContainer.current.scrollHeight + TITLEBAR_HEIGHT + SYMBOL_HEADER_HEIGHT - results.length, MIN_HEIGHT));
+          win.resizeTo(bounds.width, Math.min(listContainer.current.scrollHeight + TITLEBAR_HEIGHT + SYMBOL_HEADER_HEIGHT, MIN_HEIGHT));
         }
     })();
   });

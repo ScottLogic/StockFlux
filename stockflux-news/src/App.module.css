@@ -14,9 +14,18 @@
 }
 
 .container {
-  border-top: 1px solid var(--chart-teal);
-  overflow-y: auto;
-  max-height: 330px;
+  max-height: 700px;
+  height: calc(100vh - 75px);
+}
+
+.header:after {
+  content: '';
+  width: 100%;
+  background: var(--chart-teal);
+  display: block;
+  height: 1px;
+  margin-top: 30px;
+  position: absolute;
 }
 
 .noArticles {

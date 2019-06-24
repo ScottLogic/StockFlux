@@ -1,9 +1,18 @@
 .newsitem {
     display: flex;
     height: 70px;
-    border-bottom: 1px solid var(--chart-teal);
     color: white;
     cursor: pointer;
+}
+
+.newsitem:after {
+    content: '';
+    width: 100%;
+    background: var(--chart-teal);
+    display: block;
+    height: 1px;
+    margin-top: 69px;
+    position: absolute;
 }
 
 .newsitem:hover {
