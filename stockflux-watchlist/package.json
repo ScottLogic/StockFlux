@@ -1,0 +1,39 @@
+{
+  "name": "stockflux-watchlist",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "d3-scale": "^2.1.2",
+    "d3-selection": "^1.3.2",
+    "d3fc": "^14.0.21",
+    "date-fns": "1.30.1",
+    "openfin-fdc3": "^0.1.1",
+    "openfin-layouts": "^1.0.0",
+    "openfin-react-hooks": "file:../openfin-react-hooks",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-icons": "^3.7.0",
+    "react-scripts": "^3.0.0",
+    "stockflux-components": "file:../stockflux-components",
+    "stockflux-core": "file:../stockflux-core"
+  },
+  "homepage": "./",
+  "scripts": {
+    "start": "cross-env BROWSER=none PORT=8052 react-scripts start",
+    "launch": "openfin --launch --config ./public/app.dev.json",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    "chrome 68"
+  ],
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "openfin-cli": "^2.0.8"
+  }
+}

@@ -1,0 +1,41 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+}
+
+.left .toolbar,
+.right .toolbar {
+  flex-direction: column;
+}
+
+.toolbar button {
+  background: none;
+  color: var(--text-teal-light);
+  border: solid 1px var(--text-teal);
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+  margin: 0 5px;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+.toolbar button:disabled {
+  color: var(--light-background);
+  border: solid 1px var(--light-background);
+}
+
+.toolbar button:not(:disabled):hover {
+  background-color: var(--middle-background-light);
+}
+
+.toolbar button:not(:disabled):active {
+  background-color: var(--middle-background-lighter);
+}
+
+.left .toolbar button,
+.right .toolbar button {
+  margin: 5px 0;
+}

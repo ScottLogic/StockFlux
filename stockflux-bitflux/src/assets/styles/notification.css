@@ -1,0 +1,25 @@
+#notifications {
+    position: fixed;
+    top: calc(var(--head-height) + 10px);
+    right: var(--notification-spacing);
+    margin-left: var(--notification-spacing);
+    z-index: 1000;
+}
+
+#notifications .messages {
+    max-width: var(--notification-max-width);
+}
+
+#notifications .messages .alert {
+    animation: enter var(--notification-enter-animation-duration) cubic-bezier(0.25, 0.1, 0.25, 1);
+    @keyframes enter {
+        0% {
+            opacity: 0;
+            transform: perspective(var(--notification-max-width)) rotateX(90deg);
+        }
+        100% {
+            opacity: 1;
+            transform: perspective(var(--notification-max-width)) rotateX(0deg);
+        }
+    }
+}

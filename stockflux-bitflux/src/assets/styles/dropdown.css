@@ -1,0 +1,87 @@
+.dropdown .dropdown-toggle {
+    background-image: none;
+    background-color: var(--background-colour);
+    outline: none;
+    box-shadow: none;
+    border: 1px solid var(--dropdown-button-border-color);
+    border-radius: 2px;
+    color: var(--selector-font-colour);
+    font-size: var(--font-size-small);
+    margin-right: 12px;
+    padding-left: 6px;
+    padding-right: 6px;
+
+    @media only screen and (max-width : var(--text-shrink-threshold-width)) {
+        font-size: var(--font-size-tiny) !important;
+        margin-right: 6px;
+    };
+}
+
+.dropdown button.dropdown-toggle {
+    cursor: pointer;
+}
+  
+.dropdown .dropdown-menu {
+    -webkit-border-radius: 2px 2px 2px 2px;
+    -moz-border-radius: 2px 2px 2px 2px;
+    border-radius: 2px 2px 2px 2px;
+    background-color: var(--dropdown-colour);
+    cursor: pointer;
+    padding: 0;
+}
+
+.dropdown .dropdown-menu> li > a {
+    color: var(--font-colour);
+    font-size: var(--font-size-small);
+  
+    @media only screen and (max-width : var(--screen-md)) { 
+        font-size: var(--font-size-tiny); 
+    };
+}
+
+.dropdown .dropdown-menu> li > a:hover,
+.dropdown .dropdown-menu> li > a:focus {
+    background: none;
+}
+  
+.dropdown .dropdown-menu > li {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+  
+    @media only screen and (max-width : var(--screen-md)) {
+        padding-top: 6px;
+        padding-bottom: 6px;
+    };
+}
+  
+.dropdown .dropdown-menu > li:hover,
+.dropdown .dropdown-menu > li:focus {
+    border: var(--dropdown-hover-border);
+}
+  
+.dropdown .dropdown-menu > li.selected {
+    background: var(--dropdown-selected-background);
+    box-shadow: var(--dropdown-selected-li-shadow);
+}
+  
+.dropdown .caret {
+    margin-left: 10px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid var(--caret-colour);
+}
+
+.product-dropdown .dropdown-toggle {
+    color: var(--font-colour);
+    font-size: var(--font-size-huge);
+    font-weight: var(--font-weight-base);
+    line-height: var(--line-height-base);
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+.product-dropdown .dropdown-menu {
+    text-align: center;
+}

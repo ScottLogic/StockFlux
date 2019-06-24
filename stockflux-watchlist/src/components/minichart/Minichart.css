@@ -1,0 +1,44 @@
+.overflow,
+.minichart,
+.minichart svg {
+  overflow: visible;
+}
+
+.minichart {
+  position: absolute;
+  padding-top: 3px;
+  width: var(--minichart-width);
+  height: var(--minichart-height);
+}
+
+g {
+  fill: var(--middle-background);
+}
+
+path.line {
+  stroke: var(--chart-stroke);
+}
+
+.point {
+  fill: var(--chart-stroke);
+  stroke: var(--chart-stroke);
+}
+
+.top {
+  stop-color: var(--chart-stroke);
+  stop-opacity: 0.5;
+}
+
+.bottom {
+  stop-color: var(--chart-stroke);
+  stop-opacity: 0;
+}
+
+.minichart-error {
+  padding: 5px 3px;
+  font-size: var(--font-normal);
+  font-weight: var(--font-weight-normal);
+  color: var(--clr-white);
+  padding-left: var(--padding-medium);
+  width: 160px;
+}
