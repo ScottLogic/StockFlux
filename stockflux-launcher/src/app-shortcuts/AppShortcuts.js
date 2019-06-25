@@ -4,7 +4,7 @@ import AppShortcut from './app-shortcut/AppShortcut';
 import './AppShortcuts.css';
 
 export default () => {
-  const apps = AppDirectoryHooks.useAppSearch('*@stockflux.scottlogic.com');
+  const apps = AppDirectoryHooks.useAppSearch();
 
   return (
     <div className="app-shortcuts">
