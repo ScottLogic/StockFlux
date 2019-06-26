@@ -26,7 +26,7 @@ const WatchlistCard = props => {
   useEffect(() => {
     const populateChart = async () => {
       const miniChartData = await StockFlux.getMiniChartData(props.symbol);
-      if (miniChartData.data) {
+      if (miniChartData && miniChartData.data) {
         const data = miniChartData.data[0];
         const stockName = miniChartData.name;
         let tempStockData = { name: stockName };
@@ -44,7 +44,7 @@ const WatchlistCard = props => {
         setStockData(tempStockData);
         setChartData(miniChartData.data);
       } else {
-        setFetchError(miniChartData.error);
+        miniChartData ? setFetchError(miniChartData.error) : setFetchError('Error: data returned was undefined');
       }
     }
     populateChart();
@@ -96,7 +96,6 @@ const WatchlistCard = props => {
       draggable={!props.isUnwatching}
       onDragStart={onDragStart(props.symbol)}
       onDragEnd={onDragEnd}
-      onClick={() => Intents.viewChart(props.symbol, stockData.name)}
     >
       <div className="drop-target">
         <div className="card darkens default-background" draggable="false">
@@ -120,7 +119,10 @@ const WatchlistCard = props => {
               </div>
             </div>
           </div>
-          <div className="card-bottom">
+          <div 
+              className="card-bottom" 
+              onClick={() => Intents.viewChart(props.symbol, stockData.name)}
+          >
             <Minichart
               symbol={props.symbol}
               chartData={chartData}
