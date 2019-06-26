@@ -21,8 +21,12 @@ cd stockflux-watchlist
 npm install
 ```
 
-To start the StockFlux Watchlist:
-`npm start`
+To start and launch the StockFlux Watchlist:
+
+```
+npm start
+npm run launch
+```
 
 To launch other StockFlux apps locally read the `README.md` files in the project folders.
 
