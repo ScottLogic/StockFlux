@@ -5,9 +5,19 @@ Watchlist is an app containing the list of symbols the user is watching. These s
 
 ### Opening Watchlist App
 
--   The watchlist app can be launched/opened through the launcher app by clicking on StockFlux-watchlist app icon in the top left corner of the launcher.
--   It can be launched/opened through the launcher's search: search for a symbol, then when the list of symbols is loaded click on watchlist-icon of a particular symbol and that wymbol will be added to the watchlist subsequently openning the watchlist window.
--   It can be launched/opened on its own by doing `npm start` inside the `stockflux-watchlist` folder.
+-   The watchlist app can be launched through the launcher app by clicking on StockFlux-watchlist app icon in the top left corner of the launcher.
+-   It can be launched through the launcher's search: search for a symbol, then when the list of symbols is loaded click on watchlist-icon of a particular symbol and that wymbol will be added to the watchlist subsequently openning the watchlist window.
+-   It can be launched locally. To do this folow these steps:
+
+```
+cd stockflux-core
+npm run build
+cd stockflux-components
+npm run build
+cd stockflux-watchlist
+npm install
+npm start
+```
 
 ### Watchlist Card Functionality
 
