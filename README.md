@@ -111,6 +111,10 @@ Once this change has been made you can run the service start launching applicati
 
 The FDC3 service will be ran from port `3923`
 
+#### Sample App Directory
+
+To run your own sample app directory please refer to the readme in the [Stockflux-Cloud repository](https://github.com/ScottLogic/StockFlux-Cloud).
+
 #### AWS Hosted Version
 
 The application suite and it's APIs are all hosted on AWS. The standalone Openfin Installer can be found [here](https://install.openfin.co/download/?os=win&config=https%3A%2F%2Fd2v92tgq94yxaa.cloudfront.net%2Fapi%2Fapps%2Fv1%2Fstockflux-launcher%2Fapp.json&fileName=stockflux-installer&unzipped=true)
@@ -126,7 +130,3 @@ The installer requires no dependencies or prior configuration to be ran.
 The Application make use of the [Intents API](https://fdc3.finos.org/docs/1.0/intents-intro) and the [InterApplicationBus](https://developer.openfin.co/jsdocs/stable/fin.desktop.InterApplicationBus.html) to launch each other and pass messages. The Chart and News applications are not launched via intents as we allow the user to launch multiple of them. The Container application registers their intents and creates child windows when called.
 
 ![communications](./communication-dependencies.png)
-
-### Sample App Directory
-
-- point to cloud readme
