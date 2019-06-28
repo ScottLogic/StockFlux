@@ -1,10 +1,23 @@
-import React from 'react';
-import { AppDirectoryHooks } from 'openfin-react-hooks';
+import React, { useEffect, useState } from 'react';
 import AppShortcut from './app-shortcut/AppShortcut';
 import './AppShortcuts.css';
 
 export default () => {
-  const apps = AppDirectoryHooks.useAppSearch();
+  const [apps, setApps] = useState([]);
+
+  useEffect(() => {
+    const options = {
+      method: 'GET',
+    };
+
+    window.fin.Window.getCurrent()
+        .then(window => window.getOptions())
+        .then(options => options.customData.apiBaseUrl)
+        .then(baseUrl => fetch(`${baseUrl}/apps/v1`, options))
+        .then(response => response.json())
+        .then(results => setApps(results))
+        .catch(console.error);
+  }, []);
 
   return (
     <div className="app-shortcuts">

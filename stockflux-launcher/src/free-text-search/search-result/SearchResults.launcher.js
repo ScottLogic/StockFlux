@@ -1,5 +1,5 @@
 import getWindowPosition from './SearchResults.positioner';
-import { Constants } from 'openfin-react-hooks';
+import { ScreenEdge } from 'openfin-react-hooks';
 
 export default async (searchButtonRef, searchInputRef, dockedTo, windowBounds) => {
     const { defaultTop, defaultLeft, defaultWidth, defaultHeight } = getWindowPosition(
@@ -23,7 +23,7 @@ export default async (searchButtonRef, searchInputRef, dockedTo, windowBounds) =
 
     const win = await window.fin.Window.create(childWindow);
 
-    if (dockedTo === Constants.ScreenEdge.LEFT || dockedTo === Constants.ScreenEdge.RIGHT) {
+    if (dockedTo === ScreenEdge.LEFT || dockedTo === ScreenEdge.RIGHT) {
         win.getWebWindow().document.getElementById('searchbar-container').hidden = false;
     }
 
