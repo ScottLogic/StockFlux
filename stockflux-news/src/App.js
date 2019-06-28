@@ -1,11 +1,13 @@
 import React, {useRef, useState, useEffect, useReducer} from 'react';
 import Components from 'stockflux-components';
 import { StockFlux, StockFluxHooks } from 'stockflux-core';
-import {InterApplicationBusHooks} from 'openfin-react-hooks';
+import { useInterApplicationBusSubscribe } from 'openfin-react-hooks';
 
 import NewsItem from './components/news-item/NewsItem';
 
 import styles from './App.module.css';
+
+const ALL = { uuid: '*' };
 
 const SEARCHING = 'searching';
 const SUCCESS = 'success';
@@ -62,10 +64,10 @@ function App() {
   window.fin.Window.getCurrentSync().getOptions().then((options) => {
     if (listenerSymbol !== options.customData.symbol) {
         setListenerSymbol(options.customData.symbol);
-        setParentUuid(options.uuid);
+        setParentUuid({ uuid: options.uuid });
     }
   });
-  const { data } = InterApplicationBusHooks.useSubscription(parentUuid ? parentUuid : '*', '', 'stockFluxNews:'+listenerSymbol);
+  const { data } = useInterApplicationBusSubscribe(parentUuid ? parentUuid : ALL, 'stockFluxNews:'+listenerSymbol);
   if (data && data.length > 0 && data[0]) {
       if (data[0].symbol && symbol !== data[0].symbol) {
         setSymbol(data[0].symbol);
@@ -94,7 +96,7 @@ function App() {
   });
 
   return (
-    <div className={styles.stockfluxNews}> 
+    <div className={styles.stockfluxNews}>
       <Components.Titlebar />
       <div className={styles.header}>
           {symbol}
@@ -105,9 +107,9 @@ function App() {
           <div className={styles.spinContainer}>
             <Components.Spinner />
           </div>
-        ) : 
-          (results.length > 0 ? results.map((newsItem, index) => 
-            <NewsItem key={index} headline={newsItem.title} source={newsItem.source} 
+        ) :
+          (results.length > 0 ? results.map((newsItem, index) =>
+            <NewsItem key={index} headline={newsItem.title} source={newsItem.source}
                       copy={newsItem.summary} link={newsItem.url} />
           ) : (
             <div className={styles.noArticles}>
