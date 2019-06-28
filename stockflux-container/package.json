@@ -5,7 +5,6 @@
   "dependencies": {
     "openfin-fdc3": "^0.1.1",
     "openfin-layouts": "^1.0.3",
-    "openfin-react-hooks": "file:../openfin-react-hooks",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
