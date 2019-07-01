@@ -1,4 +1,4 @@
-import {format} from 'date-fns';
+import {format, subYears} from 'date-fns';
 
 // written in the same structure as d3fc-financial-feed
 export function getStockFluxData() {
@@ -8,7 +8,7 @@ export function getStockFluxData() {
 
     var stockFlux = function(cb) {
         var params = [];
-        // defaulting data to 2016-01-01 as currently UI has no influence over dates
+        // defaulting data to minus 2 years from current date as currently UI has no influence over dates
         if (start != null) {
             params.push('/' + format(start, 'YYYY-MM-DD'));
         }
@@ -20,7 +20,8 @@ export function getStockFluxData() {
         }).then(function(options) {
             return options.customData.apiBaseUrl;
         }).then(function(api) {
-            var url = `${api}/ohlc/${product}/2016-01-01`;
+            var today = format(subYears(new Date(), 2), 'YYYY-MM-DD');
+            var url = `${api}/ohlc/${product}/${today}`;
             fetch(url, {
                 method: 'GET'
             }).then(function(response) {
