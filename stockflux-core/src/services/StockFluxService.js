@@ -20,8 +20,8 @@ export function getStockFluxData() {
         }).then(function(options) {
             return options.customData.apiBaseUrl;
         }).then(function(api) {
-            var today = format(subYears(new Date(), 2), 'YYYY-MM-DD');
-            var url = `${api}/ohlc/${product}/${today}`;
+            var todayMinusTwoYear = format(subYears(new Date(), 2), 'YYYY-MM-DD');
+            var url = `${api}/ohlc/${product}/${todayMinusTwoYear}`;
             fetch(url, {
                 method: 'GET'
             }).then(function(response) {
