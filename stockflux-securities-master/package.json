@@ -5,13 +5,19 @@
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "openfin-fdc3": "^0.1.1",
+    "openfin-layouts": "^1.0.0",
+    "openfin-react-hooks": "^1.0.1",
+    "stockflux-core": "file:../stockflux-core",
+    "stockflux-components": "file:../stockflux-components"
   },
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start": "cross-env BROWSER=none PORT=8057 react-scripts start",
+    "launch": "openfin --launch --config ./public/app.dev.json"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -27,5 +33,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "openfin-cli": "^2.0.8"
   }
 }
