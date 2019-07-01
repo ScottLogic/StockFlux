@@ -28,13 +28,12 @@ const App = () => {
     });
 
     const { data } = useInterApplicationBusSubscribe(parentUuid ? parentUuid : ALL, 'stockFluxChart:'+listenerSymbol);
-
-    if (data && data.length > 0 && data[0]) {
-        if (data[0].symbol && symbol !== data[0].symbol) {
-            setSymbol(data[0].symbol);
+    if (data && data.message) {
+        if (data.message.symbol && symbol !== data.message.symbol) {
+            setSymbol(data.message.symbol);
         }
-        if (data[0].name && name !== data[0].name) {
-            setName(data[0].name);
+        if (data.message.name && name !== data.message.name) {
+            setName(data.message.name);
         }
     }
 

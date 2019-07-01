@@ -68,9 +68,9 @@ function App() {
     }
   });
   const { data } = useInterApplicationBusSubscribe(parentUuid ? parentUuid : ALL, 'stockFluxNews:'+listenerSymbol);
-  if (data && data.length > 0 && data[0]) {
-      if (data[0].symbol && symbol !== data[0].symbol) {
-        setSymbol(data[0].symbol);
+  if (data && data.message) {
+      if (data.message.symbol && symbol !== data.message.symbol) {
+        setSymbol(data.message.symbol);
       }
   }
 
