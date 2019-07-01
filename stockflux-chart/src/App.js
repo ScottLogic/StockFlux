@@ -3,10 +3,12 @@ import Chart from './components/Chart';
 import Components from 'stockflux-components';
 import { Intents, StockFluxHooks } from 'stockflux-core';
 import { FaSyncAlt } from 'react-icons/fa';
-import {InterApplicationBusHooks} from 'openfin-react-hooks';
+import {useInterApplicationBusSubscribe} from 'openfin-react-hooks';
 import bitflux from 'stockflux-bitflux/dist/bitflux';
 
 import './styles/app.css';
+
+const ALL = { uuid: '*' };
 
 const chart = bitflux.app();
 chart.periodsOfDataToFetch(1200);
@@ -21,18 +23,17 @@ const App = () => {
     window.fin.Window.getCurrentSync().getOptions().then((options) => {
         if (listenerSymbol !== options.customData.symbol) {
             setListenerSymbol(options.customData.symbol);
-            setParentUuid(options.uuid);
+            setParentUuid({ uuid: options.uuid });
         }
     });
 
-    const { data } = InterApplicationBusHooks.useSubscription(parentUuid ? parentUuid : '*', '', 'stockFluxChart:'+listenerSymbol);
-
-    if (data && data.length > 0 && data[0]) {
-        if (data[0].symbol && symbol !== data[0].symbol) {
-            setSymbol(data[0].symbol);
+    const { data } = useInterApplicationBusSubscribe(parentUuid ? parentUuid : ALL, 'stockFluxChart:'+listenerSymbol);
+    if (data && data.message) {
+        if (data.message.symbol && symbol !== data.message.symbol) {
+            setSymbol(data.message.symbol);
         }
-        if (data[0].name && name !== data[0].name) {
-            setName(data[0].name);
+        if (data.message.name && name !== data.message.name) {
+            setName(data.message.name);
         }
     }
 
@@ -63,7 +64,7 @@ const App = () => {
                         {symbol && (
                             <div className="code">
                                 {symbol}
-                            </div> 
+                            </div>
                         )}
                         <div className="name">
                             {name ? name : 'Generated Data'}

@@ -3,12 +3,14 @@ import { FaSearch } from 'react-icons/fa';
 import { Intents, StockFlux } from 'stockflux-core';
 import SearchResult from './search-result';
 import { reducer, initialSearchState, SEARCHING, SUCCESS, ERROR, INITIALISE } from './FreeTextSearch.reducer';
-import { InterApplicationBusHooks, WindowHooks, Constants } from 'openfin-react-hooks';
+import { ScreenEdge, useBounds, useInterApplicationBusSubscribe } from 'openfin-react-hooks';
 import './FreeTextSearch.css';
 import MESSAGES from "./FreeTextSearch.messages";
 import launchSearchResultsWindow from "./search-result/SearchResults.launcher";
 import populateSearchResultsWindow from './search-result/SearchResults.populater';
 
+const ALL = { uuid: '*' };
+const IDENTITY = { uuid: window.fin.Window.me.uuid };
 const SEARCH_TIMEOUT_INTERVAL = 250;
 
 let latestRequest = null;
@@ -26,7 +28,7 @@ const FreeTextSearch = ({ dockedTo }) => {
   const [searchState, dispatch] = useReducer(reducer, initialSearchState);
   const [parentUuid, setParentUuid] = useState(null);
   const [query, setQuery] = useState(null);
-  const [windowState] = WindowHooks.useCurrentWindowState();
+  const bounds = useBounds();
   const [debouncedQuery, setDebouncedQuery] = useState(null);
   const { isSearching, results } = searchState;
   const searchButtonRef = useRef(null);
@@ -39,29 +41,29 @@ const FreeTextSearch = ({ dockedTo }) => {
         closeResultsWindow();
       } else if (!resultsWindow && !isCreatingResultWindow) {
         isCreatingResultWindow = true;
-        launchSearchResultsWindow(searchButtonRef, searchInputRef, dockedTo, windowState.bounds)
+        launchSearchResultsWindow(searchButtonRef, searchInputRef, dockedTo, bounds)
             .then(win => resultsWindow = win)
             .catch(err => console.error(err))
             .finally(() => isCreatingResultWindow = false);
       }
     },
-    [searchButtonRef, searchInputRef, dockedTo, windowState.bounds]
+    [searchButtonRef, searchInputRef, dockedTo, bounds]
   );
 
   const handleSearchClick = useCallback(() => {
     if (resultsWindow) {
       closeResultsWindow();
-      if (dockedTo === Constants.ScreenEdge.TOP) {
+      if (dockedTo === ScreenEdge.TOP) {
         searchInputRef.current.value = '';
       }
     } else if(!isCreatingResultWindow) {
       isCreatingResultWindow = true;
-      launchSearchResultsWindow(searchButtonRef, searchInputRef, dockedTo, windowState.bounds)
+      launchSearchResultsWindow(searchButtonRef, searchInputRef, dockedTo, bounds)
           .then(win => resultsWindow = win)
           .catch(err => console.error(err))
           .finally(() => isCreatingResultWindow = false);
     }
-  }, [searchButtonRef, searchInputRef, dockedTo, windowState.bounds]);
+  }, [searchButtonRef, searchInputRef, dockedTo, bounds]);
 
   useEffect(() => {
     closeResultsWindow();
@@ -120,7 +122,7 @@ const FreeTextSearch = ({ dockedTo }) => {
   useEffect(() => {
     window.fin.Window.getCurrentSync()
       .getOptions()
-      .then(options => setParentUuid(options.uuid));
+      .then(options => setParentUuid({ uuid: options.uuid }));
   }, []);
 
   const closeAndClearSearch = () => {
@@ -130,7 +132,7 @@ const FreeTextSearch = ({ dockedTo }) => {
   }
 
   useEffect(() => {
-    window.fin.InterApplicationBus.subscribe({ uuid: window.fin.Window.me.uuid }, 'intent-request', (message) => {
+    window.fin.InterApplicationBus.subscribe(IDENTITY, 'intent-request', (message) => {
       switch (message.type) {
         case 'news-view':
           Intents.viewNews(message.code);
@@ -150,16 +152,16 @@ const FreeTextSearch = ({ dockedTo }) => {
     });
   }, []);
 
-  const { data, subscribeError, isSubscribed } = InterApplicationBusHooks.useSubscription(
-    parentUuid ? parentUuid : '*', '', 'search-request');
+  const { data, subscribeError, isSubscribed } = useInterApplicationBusSubscribe(
+    parentUuid ? parentUuid : ALL, 'search-request');
 
-  if (!subscribeError && isSubscribed && data && debouncedQuery !== data[0] && dockedTo !== Constants.ScreenEdge.TOP) {
-    setDebouncedQuery(data[0]);
+  if (!subscribeError && isSubscribed && data && debouncedQuery !== data.message && dockedTo !== ScreenEdge.TOP) {
+    setDebouncedQuery(data.message);
   }
 
   return (
     <div className="free-text-search">
-      {(dockedTo === Constants.ScreenEdge.TOP || dockedTo === Constants.ScreenEdge.NONE) && (
+      {(dockedTo === ScreenEdge.TOP || dockedTo === ScreenEdge.NONE) && (
         <input
           onInput={event => handleOnInputChange(event)}
           placeholder="Search"

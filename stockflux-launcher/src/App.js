@@ -1,7 +1,7 @@
 import React, {useRef, useEffect} from 'react';
 import cx from 'classnames';
 import 'stockflux-components';
-import { WindowHooks, Constants } from 'openfin-react-hooks';
+import { useDockWindow, ScreenEdge } from 'openfin-react-hooks';
 import {
   FaChevronUp,
   FaChevronLeft,
@@ -14,19 +14,19 @@ import ToolBar from './toolbar/ToolBar';
 import CloseButton from './toolbar/CloseButton';
 import './App.css';
 
-const isLauncherHorizontal = edge => edge === Constants.ScreenEdge.TOP;
+const isLauncherHorizontal = edge => edge === ScreenEdge.TOP;
 
 export default () => {
-  const [edge, windowActions] = WindowHooks.useDockWindow(Constants.ScreenEdge.TOP, window.fin.Window.getCurrentSync(),
+  const [edge, windowActions] = useDockWindow(ScreenEdge.TOP, window.fin.Window.getCurrentSync(),
       true, { dockedWidth: 50, dockedHeight: 50 });
 
   const prevEdgeRef = useRef();
   useEffect(() => {
     prevEdgeRef.current = edge;
   });
-  const prevEdge = prevEdgeRef.current;    
+  const prevEdge = prevEdgeRef.current;
 
-  const edgeToBeChecked = edge === Constants.ScreenEdge.NONE ? prevEdge : edge;
+  const edgeToBeChecked = edge === ScreenEdge.NONE ? prevEdge : edge;
 
   return (
     <div className={cx('app', edgeToBeChecked)} >
@@ -38,17 +38,17 @@ export default () => {
           {
             label: <FaChevronUp />,
             onClick: windowActions.dockTop,
-            disabled: edge === Constants.ScreenEdge.TOP
+            disabled: edge === ScreenEdge.TOP
           },
           {
             label: <FaChevronLeft />,
             onClick: windowActions.dockLeft,
-            disabled: edge === Constants.ScreenEdge.LEFT
+            disabled: edge === ScreenEdge.LEFT
           },
           {
             label: <FaChevronRight />,
             onClick: windowActions.dockRight,
-            disabled: edge === Constants.ScreenEdge.RIGHT
+            disabled: edge === ScreenEdge.RIGHT
           },
           {
             label: <FaRegHandRock />,
