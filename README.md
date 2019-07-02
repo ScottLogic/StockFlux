@@ -1,6 +1,24 @@
 # StockFlux
 
-Stockflux is a collection of applications, components and libraries designed to showcase the latest in Openfin and FDC3.
+Stockflux is a suite of applications, components and libraries developed by [Scott Logic](http://www.scottlogic.com) designed to showcase the latest in Openfin and FDC3.
+
+![main_screenshot](https://user-images.githubusercontent.com/2376919/60515108-d3ae6e00-9cd2-11e9-82b9-12a401a37a2f.png)
+
+Here are a few things to try:
+
+- Group and dock multiple apps together
+- Reposition the launcher with the controls in the right hand side of the launcher
+- Quickly launch any one of our Applications from the icons on the left hand side
+- Search for a symbol and:
+  - Add it to your watchlist
+  - View the last 2 years of OHLC data
+  - Read the latest news stories
+
+## Installing
+
+In order to install the Launcher application, download the StockFlux installer [here](https://install.openfin.co/download/?os=win&config=https%3A%2F%2Fd2v92tgq94yxaa.cloudfront.net%2Fapi%2Fapps%2Fv1%2Fstockflux-launcher%2Fapp.json&fileName=stockflux-installer&unzipped=true) and run the executable. If you haven't already installed an OpenFin application, this will install the required runtime. It'll also add the shortcut to StockFlux to your desktop and start menu.
+
+The project is deployed and hosted by AWS, so with each time the application is ran the latest released version will be used. This means no further installations will be needed to keep the installed project up to date.
 
 ## Applications
 
