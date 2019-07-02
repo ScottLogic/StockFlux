@@ -15,10 +15,14 @@
         "minHeight": 500,
         "defaultTop": 80,
         "saveWindowState": false,
-        "frame": true,
+        "frame": false,
         "contextMenu": true,
         "customData": {
             "apiBaseUrl": "https://d2v92tgq94yxaa.cloudfront.net/api"
+        },
+        "cornerRounding": {
+            "height": 4,
+            "width": 4
         }
     },
     "services": [

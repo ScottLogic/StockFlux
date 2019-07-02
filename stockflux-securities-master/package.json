@@ -12,6 +12,7 @@
     "stockflux-core": "file:../stockflux-core",
     "stockflux-components": "file:../stockflux-components"
   },
+  "homepage": "./",
   "scripts": {
     "build": "react-scripts build",
     "test": "react-scripts test",

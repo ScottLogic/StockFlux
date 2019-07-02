@@ -1,12 +1,14 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "stockflux-components";
+import Components from "stockflux-components";
 
-function App() {
+import "./App.css";
+
+export default () => {
   return (
-    <div className="App">
-      
+    <div>
+      <Components.Titlebar />
     </div>
+    
   );
-}
-
-export default App;
+};

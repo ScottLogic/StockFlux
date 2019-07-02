@@ -1,1 +1,17 @@
+body {
+  -webkit-user-select: none;
+}
 
+#app,
+.main,
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  background-color: var(--dark-background);
+  padding: 0;
+}
