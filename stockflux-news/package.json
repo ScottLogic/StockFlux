@@ -1,6 +1,6 @@
 {
   "name": "stockflux-news",
-  "version": "0.1.0",
+  "version": "13.0.0",
   "private": true,
   "dependencies": {
     "date-fns": "^1.30.1",

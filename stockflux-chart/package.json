@@ -1,6 +1,6 @@
 {
   "name": "stockflux-chart",
-  "version": "0.1.0",
+  "version": "13.0.0",
   "private": true,
   "dependencies": {
     "bootstrap": "^3.3.6",
