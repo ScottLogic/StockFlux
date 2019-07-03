@@ -1,6 +1,6 @@
 {
   "name": "stockflux-search",
-  "version": "0.1.0",
+  "version": "13.0.0",
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
