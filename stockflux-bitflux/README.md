@@ -1,6 +1,9 @@
 # StockFlux Bitflux
 
+***BitFlux has been deprecated and will be replaced directly by D3FC in future versions***
+
 **A cross-platform financial charting application to showcase the functionality of [d3fc](https://d3fc.io) components.**
+
 
 ## Initial Setup
 
