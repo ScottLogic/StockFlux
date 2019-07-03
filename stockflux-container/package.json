@@ -1,6 +1,6 @@
 {
   "name": "container",
-  "version": "0.1.0",
+  "version": "13.0.0",
   "private": true,
   "dependencies": {
     "openfin-fdc3": "^0.1.1",
