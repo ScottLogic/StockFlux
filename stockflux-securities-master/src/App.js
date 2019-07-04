@@ -11,6 +11,5 @@ export default () => {
       <Components.Titlebar />
       <SecuritiesTable />
     </div>
-    
   );
 };
