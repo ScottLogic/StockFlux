@@ -1,7 +1,13 @@
 body {
+  background-color: var(--middle-background);
+  font-family: var(--font-roboto-sans-serif);
+  color: var(--text-grey-lighter);
+  user-select: none;
+  margin: 0;
+  border: 1px solid var(--dark-background);
+  overflow-y: hidden;
   -webkit-user-select: none;
 }
-
 #app,
 .main,
 body,
