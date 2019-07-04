@@ -12,6 +12,7 @@
         "defaultWidth": 850,
         "defaultHeight": 500,
         "minWidth": 850,
+        "maxWidth": 850,
         "minHeight": 500,
         "defaultTop": 80,
         "saveWindowState": false,
