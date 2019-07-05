@@ -4,7 +4,7 @@ StockFlux Launcher is a part of StockFlux app suite intended to work with StockF
 
 ### Launching StockFlux Launcher app from the installer
 
-Download the [installer](https://install.openfin.co/download/?os=win&config=https%3A%2F%2Fd2v92tgq94yxaa.cloudfront.net%2Fapi%2Fapps%2Fv1%2Fstockflux-launcher%2Fapp.json&fileName=stockflux-installer&unzipped=true). After installing `StockFlux Launcher` icon should appear on the desktop. Double click it to open the StockFlux Launcher.
+Download the [installer](https://install.openfin.co/download/?os=win&config=https%3A%2F%2Fstockflux.scottlogic.com%2Fapi%2Fapps%2Fv1%2Fstockflux-launcher%2Fapp.json&fileName=stockflux&unzipped=true). After installing `StockFlux Launcher` icon should appear on the desktop. Double click it to open the StockFlux Launcher.
 
 ### Running locally
 
