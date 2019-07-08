@@ -26,14 +26,8 @@ const handleNewsItemClick = (link) => {
     window.fin.Window.create(winOption);
 }
 
-const timeToRead = (copy) => {
-    const textLength = copy.split(" ").length;
-    return textLength > 0 ? `${Math.ceil(textLength / 200)} min read` : ``; 
-}
-
 const articleDate = (unformattedDate) => {
     const date = new Date(unformattedDate);
-
     return !isToday(date) ? format(date, 'DD MMM') : format(date, 'h:mm A');
 }
 
@@ -45,7 +39,6 @@ const NewsItem = ({headline, source, copy, link, time}) => (
         </div>
         <div className="newsitem-meta">
             <div className="source">{source}</div>
-            <div className="time-to-read">{timeToRead(copy)}</div>
         </div>
         <div className="newsitem-content">
             <div className="summary">{copy}</div>
