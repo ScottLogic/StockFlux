@@ -39,7 +39,7 @@ const App = () => {
 
     const onNewsClick = () => {
         if (symbol) {
-            Intents.viewNews(symbol);
+            Intents.viewNews(symbol, name);
         }
     }
 

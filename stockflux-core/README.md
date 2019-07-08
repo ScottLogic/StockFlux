@@ -95,7 +95,7 @@ The context a listener will recieve will be in the following format:
 To view news for a symbol with the intent `ViewNews`:
 
 ```javascript
-Intents.viewNews(symbol);
+Intents.viewNews(symbol, name);
 ```
 
 The context a listener will recieve will be in the following format:

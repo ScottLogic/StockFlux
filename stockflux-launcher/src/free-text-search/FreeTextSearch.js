@@ -135,7 +135,7 @@ const FreeTextSearch = ({ dockedTo }) => {
     window.fin.InterApplicationBus.subscribe(IDENTITY, 'intent-request', (message) => {
       switch (message.type) {
         case 'news-view':
-          Intents.viewNews(message.code);
+          Intents.viewNews(message.code, message.name);
           closeAndClearSearch();
           break;
         case 'watchlist-add':

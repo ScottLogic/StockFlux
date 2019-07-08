@@ -44,6 +44,7 @@ function App() {
             } else {
               InterApplicationBus.publish('stockFluxNews:' + context.name, {
                 symbol: context.name,
+                name: context.companyName
               });
             }
             window.addListener("closed", () => {
