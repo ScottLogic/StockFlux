@@ -5,7 +5,7 @@ import { useInterApplicationBusSubscribe } from 'openfin-react-hooks';
 
 import NewsItem from './components/news-item/NewsItem';
 
-import styles from './App.module.css';
+import './App.css';
 
 const ALL = { uuid: '*' };
 
@@ -55,6 +55,7 @@ function App() {
 
   const [searchState, dispatch] = useReducer(searchReducer, initialSearchState);
   const [symbol, setSymbol] = StockFluxHooks.useLocalStorage('newsSymbol', null);
+  const [name, setName] = StockFluxHooks.useLocalStorage('newsName', null);
   const [parentUuid, setParentUuid] = useState(null);
   const [listenerSymbol, setListenerSymbol] = useState(null);
   const listContainer = useRef(null);
@@ -72,6 +73,10 @@ function App() {
       if (data.message.symbol && symbol !== data.message.symbol) {
         setSymbol(data.message.symbol);
       }
+      if (data.message.name && name !== data.message.name) {
+        setName(data.message.name);
+      }
+      
   }
 
   useEffect(() => {
@@ -96,23 +101,23 @@ function App() {
   });
 
   return (
-    <div className={styles.stockfluxNews}>
+    <div className="stockflux-news">
       <Components.Titlebar />
-      <div className={styles.header}>
-          {symbol}
+      <div className="header">
+          {symbol} {name} News
       </div>
       <Components.ScrollWrapperY>
-        <div className={styles.container} ref={listContainer}>
+        <div className="container" ref={listContainer}>
         {isSearching ? (
-          <div className={styles.spinContainer}>
+          <div className="spin-container">
             <Components.Spinner />
           </div>
         ) :
           (results.length > 0 ? results.map((newsItem, index) =>
             <NewsItem key={index} headline={newsItem.title} source={newsItem.source}
-                      copy={newsItem.summary} link={newsItem.url} />
+                      copy={newsItem.summary} link={newsItem.url} time={newsItem.time} />
           ) : (
-            <div className={styles.noArticles}>
+            <div className="no-articles">
               Sorry, no news stories found for that symbol.
             </div>
             )

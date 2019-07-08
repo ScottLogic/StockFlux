@@ -106,7 +106,7 @@ const WatchlistCard = props => {
             </div>
             <div className="icons">
               <div className="news-symbol" onClick={(e) => {
-                Intents.viewNews(props.symbol)
+                Intents.viewNews(props.symbol, stockData.name)
               }}>
                 <Components.News />
               </div>
