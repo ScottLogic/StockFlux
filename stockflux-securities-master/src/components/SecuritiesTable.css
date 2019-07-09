@@ -64,12 +64,16 @@
   border-left: 1px solid var(--clr-divider-light);
 }
 
+.spinner-container,
 .no-securities-container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   height: var(--table-body-height);
+}
+
+.no-securities-container{
   text-align: center;
   border-bottom: 1px solid var(--clr-divider-light);
 }
@@ -97,13 +101,5 @@
   outline: none;
   color: var(--text-grey-darkest);
   border-color: var(--text-grey-darkest);
-}
-
-.spinner-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  height: var(--table-body-height);
 }
 

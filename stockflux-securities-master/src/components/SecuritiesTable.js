@@ -24,8 +24,7 @@ const SecuritiesTable = () => {
   }, []);
 
   return (
-    <div className="securities-container">
-      <>
+    <div className="securities-container">   
         <div className="securities-title">My Securities Table</div>
         <div className="header-container">
           <div className="securities-table-header">Exchange</div>
@@ -48,8 +47,7 @@ const SecuritiesTable = () => {
                   </div>
                 ))}
               </Components.ScrollWrapperY>
-            ) : (
-              <>
+            ) : (              
                 <div className="no-securities-container">
                   <div className="no-securities-message">
                     You have no securities to show
@@ -58,11 +56,9 @@ const SecuritiesTable = () => {
                     <button>Click to add security</button>
                   </div>
                 </div>
-              </>
             )}
           </div>
         )}
-      </>
     </div>
   );
 };
