@@ -1,5 +1,6 @@
 import getWindowPosition from './SearchResults.positioner';
 import { ScreenEdge } from 'openfin-react-hooks';
+import {OpenfinApiHelpers} from 'stockflux-core';
 
 export default async (searchButtonRef, searchInputRef, dockedTo, windowBounds) => {
     const { defaultTop, defaultLeft, defaultWidth, defaultHeight } = getWindowPosition(
@@ -21,7 +22,7 @@ export default async (searchButtonRef, searchInputRef, dockedTo, windowBounds) =
         alwaysOnTop: true
     };
 
-    const win = await window.fin.Window.create(childWindow);
+    const win = await OpenfinApiHelpers.createWindow(childWindow);
 
     if (dockedTo === ScreenEdge.LEFT || dockedTo === ScreenEdge.RIGHT) {
         win.getWebWindow().document.getElementById('searchbar-container').hidden = false;

@@ -1,6 +1,7 @@
 import React from 'react';
 import {format, isToday} from 'date-fns';
 import * as PropTypes from 'prop-types';
+import {OpenfinApiHelpers} from 'stockflux-core';
 
 import './NewsItem.css';
 
@@ -23,7 +24,7 @@ const handleNewsItemClick = (link) => {
             }
         }
     };
-    window.fin.Window.create(winOption);
+    OpenfinApiHelpers.create(winOption);
 }
 
 const articleDate = (unformattedDate) => {

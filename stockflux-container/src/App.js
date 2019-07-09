@@ -1,6 +1,7 @@
 import React from 'react';
 import * as fdc3 from 'openfin-fdc3';
 import { useOptions } from 'openfin-react-hooks';
+import { OpenfinApiHelpers } from 'stockflux-core';
 
 let latestChartListener;
 
@@ -17,17 +18,25 @@ function App() {
       method: 'GET',
     });
     const windowOptions = await manifestOptions.json();
-    const winOption = {
+    const winOptions = {
       ...windowOptions.startup_app,
       // uuid must match that of the parent window
       uuid: "stockflux-container",
       name: windowName,
       customData: {
         symbol: context.name,
-        apiBaseUrl: parentWindowOptions.customData.apiBaseUrl
+        apiBaseUrl: options.customData.apiBaseUrl
       }
     };
-    return await window.fin.Window.create(winOption);
+
+    OpenfinApiHelpers.createWindow(winOptions)
+      .then(win => {
+        return win
+      })
+      .catch((error) => {
+        console.error('Error! Window could not be created. ', error);
+        return undefined;
+      });
   }
 
   const windowHandler = async (context, currentListener, latestListener, isChart) => {
