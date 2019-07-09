@@ -11,7 +11,7 @@ async function getSecuritiesData() {
 const SecuritiesTable = () => {
   const [securitiesData, setSecuritiesData] = useState([]);
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);
