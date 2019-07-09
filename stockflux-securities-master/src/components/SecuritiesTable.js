@@ -34,7 +34,7 @@ const SecuritiesTable = () => {
           <div className="securities-table-header">Name</div>
         </div>
         {isLoading ? (
-          <Components.LargeSpinner />
+          <div className="spinner-container"><Components.LargeSpinner /></div>
         ) : (
           <div className="table-body">
             {securitiesData.length > 0 ? (

@@ -65,10 +65,13 @@
 }
 
 .no-securities-container {
-  border-bottom: 1px solid var(--clr-divider-light);
-  margin-top: calc(var(--table-body-height) * 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   height: var(--table-body-height);
   text-align: center;
+  border-bottom: 1px solid var(--clr-divider-light);
 }
 
 .no-securities-message {
@@ -96,6 +99,11 @@
   border-color: var(--text-grey-darkest);
 }
 
-.spinner {
-  margin-top: 30vh;
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: var(--table-body-height);
 }
+
