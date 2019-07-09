@@ -21,43 +21,49 @@ const SecuritiesTable = () => {
     });
     getSecuritiesData().catch(() => {
       setIsLoading(false);
-    })
+    });
   }, []);
 
   return (
     <div className="securities-container">
-        <>
-          <div className="securities-title">My Securities Table</div>
-          <div className="header-container">
-            <div className="securities-table-header">Exchange</div>
-            <div className="securities-table-header">Symbol</div>
-            <div className="securities-table-header">Name</div>
-          </div>
-          {isLoading ? <Components.LargeSpinner /> :
+      <>
+        <div className="securities-title">My Securities Table</div>
+        <div className="header-container">
+          <div className="securities-table-header">Exchange</div>
+          <div className="securities-table-header">Symbol</div>
+          <div className="securities-table-header">Name</div>
+        </div>
+        {isLoading ? (
+          <Components.LargeSpinner />
+        ) : (
           <div className="table-body">
-          {securitiesData.length > 0 ? (
-            <Components.ScrollWrapperY>
-              {securitiesData.map((item, index) => (
-                <div key={index} className="securities-table-row">
-                  <div className="securities-exchange-data">
-                    {item.securityId}
+            {securitiesData.length > 0 ? (
+              <Components.ScrollWrapperY>
+                {securitiesData.map((item, index) => (
+                  <div key={index} className="securities-table-row">
+                    <div className="securities-exchange-data">
+                      {item.securityId}
+                    </div>
+                    <div className="securities-symbol-data">{item.symbol}</div>
+                    <div className="securities-name-data">{item.name}</div>
                   </div>
-                  <div className="securities-symbol-data">{item.symbol}</div>
-                  <div className="securities-name-data">{item.name}</div>
+                ))}
+              </Components.ScrollWrapperY>
+            ) : (
+              <>
+                <div className="no-securities-container">
+                  <div className="no-securities-message">
+                    You have no securities to show
+                  </div>
+                  <div className="add-security-button">
+                    <button>Click to add security</button>
+                  </div>
                 </div>
-              ))}
-            </Components.ScrollWrapperY>
-          ) : (
-            <>
-            <div className="no-securities-container">
-              <div className="no-securities-message">You have no securities to show</div>
-              <div className="add-security-button"><button>Click to add security</button></div>
-            </div>
-            </>
-          )}
+              </>
+            )}
           </div>
-        }
-        </>
+        )}
+      </>
     </div>
   );
 };
