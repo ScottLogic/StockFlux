@@ -1,7 +1,7 @@
 import React, {useRef, useState, useEffect, useReducer} from 'react';
 import Components from 'stockflux-components';
 import { StockFlux, StockFluxHooks } from 'stockflux-core';
-import { useInterApplicationBusSubscribe } from 'openfin-react-hooks';
+import { useInterApplicationBusSubscribe, useOptions } from 'openfin-react-hooks';
 
 import NewsItem from './components/news-item/NewsItem';
 
@@ -58,16 +58,16 @@ function App() {
   const [name, setName] = StockFluxHooks.useLocalStorage('newsName', null);
   const [parentUuid, setParentUuid] = useState(null);
   const [listenerSymbol, setListenerSymbol] = useState(null);
+  const [options] = useOptions();
   const listContainer = useRef(null);
 
   const { isSearching, results } = searchState;
+  
+  if (options && listenerSymbol !== options.customData.symbol) {
+      setListenerSymbol(options.customData.symbol);
+      setParentUuid({ uuid: options.uuid });
+  }
 
-  window.fin.Window.getCurrentSync().getOptions().then((options) => {
-    if (listenerSymbol !== options.customData.symbol) {
-        setListenerSymbol(options.customData.symbol);
-        setParentUuid({ uuid: options.uuid });
-    }
-  });
   const { data } = useInterApplicationBusSubscribe(parentUuid ? parentUuid : ALL, 'stockFluxNews:'+listenerSymbol);
   if (data && data.message) {
       if (data.message.symbol && symbol !== data.message.symbol) {
