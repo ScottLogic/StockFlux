@@ -31,7 +31,7 @@ function App() {
 
     OpenfinApiHelpers.createWindow(winOptions)
       .then(win => {
-        return win
+        return win;
       })
       .catch((error) => {
         console.error('Error! Window could not be created. ', error);

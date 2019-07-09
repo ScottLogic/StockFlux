@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import {OpenfinApiHelpers} from 'stockflux-core';
+
 import AppShortcut from './app-shortcut/AppShortcut';
 import './AppShortcuts.css';
 
@@ -10,7 +12,7 @@ export default () => {
       method: 'GET',
     };
 
-    window.fin.Window.getCurrent()
+    OpenfinApiHelpers.getCurrentWindow()
         .then(window => window.getOptions())
         .then(options => options.customData.apiBaseUrl)
         .then(baseUrl => fetch(`${baseUrl}/apps/v1`, options))

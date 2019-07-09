@@ -69,5 +69,7 @@ module.exports = {
         react: 'react',
         'openfin-react-hooks': 'openfin-react-hooks',
         'openfin-layouts': 'openfin-layouts',
+        "date-fns": "date-fns",
+        "openfin-fdc3": "openfin-fdc3",
     }
 };

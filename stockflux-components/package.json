@@ -4,6 +4,8 @@
   "private": true,
   "main": "./dist/index.js",
   "devDependencies": {
+    "date-fns": "^1.30.1",
+    "openfin-fdc3": "^0.1.1",
     "@babel/cli": "^7.4.3",
     "@babel/core": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
@@ -18,6 +20,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-hooks": "^1.5.0",
+    "stockflux-core": "file:../stockflux-core",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.30.0",
