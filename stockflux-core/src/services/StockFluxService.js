@@ -1,4 +1,5 @@
 import {format, subYears} from 'date-fns';
+import {getCurrentWindow} from '../openfin-api-utils/openfinApiHelpers';
 
 // written in the same structure as d3fc-financial-feed
 export function getStockFluxData() {
@@ -15,7 +16,7 @@ export function getStockFluxData() {
         if (end != null) {
             params.push('/' + format(end, 'YYYY-MM-DD'));
         }
-        window.fin.Window.getCurrent().then(function(win) {
+        getCurrentWindow().then(function(win) {
             return win.getOptions();
         }).then(function(options) {
             return options.customData.apiBaseUrl;
@@ -117,7 +118,7 @@ export async function getMiniChartData(symbol) {
 }
 
 async function getWindowOptions() {
-    const currentWindow = await window.fin.Window.getCurrent();
+    const currentWindow = await getCurrentWindow();
     return currentWindow.getOptions();
 }
 

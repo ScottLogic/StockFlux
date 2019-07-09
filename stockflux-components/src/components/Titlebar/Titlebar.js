@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { useDocked } from 'openfin-react-hooks';
 import { snapAndDock } from 'openfin-layouts';
+import { OpenfinApiHelpers } from 'stockflux-core';
 
 import './Titlebar.css';
 
@@ -8,12 +9,12 @@ export default () => {
   const isDocked = useDocked();
 
   const onMinimizeClick = useCallback(async () => {
-    const currentWindow = await window.fin.Window.getCurrent();
+    const currentWindow = await OpenfinApiHelpers.getCurrentWindow();
     currentWindow.minimize();
   }, []);
 
   const onCloseClick = useCallback(async () => {
-    const currentWindow = await window.fin.Window.getCurrent();
+    const currentWindow = await OpenfinApiHelpers.getCurrentWindow();
     currentWindow.close();
   }, []);
 

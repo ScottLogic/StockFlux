@@ -1,7 +1,7 @@
 import { stockFluxSearch, getStockFluxData, getMiniChartData, getSymbolNews } from './services/StockFluxService';
 import { truncate } from './utils/formatters';
-import { createWindow } from './openfin-api-utils/openfinApiHelpers';
-import {useLocalStorage} from './custom-hooks';
+import { createWindow, getCurrentWindow } from './openfin-api-utils/openfinApiHelpers';
+import  useLocalStorage from './custom-hooks/LocalStorageHook';
 import { addWatchlist, viewChart, viewNews, viewWatchlist } from './intents';
 
 export const Utils = {
@@ -9,7 +9,8 @@ export const Utils = {
 };
 
 export const OpenfinApiHelpers = {
-  createWindow
+  createWindow,
+  getCurrentWindow
 };
 
 export const StockFlux = {

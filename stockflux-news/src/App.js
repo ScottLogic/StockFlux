@@ -1,6 +1,6 @@
 import React, {useRef, useState, useEffect, useReducer} from 'react';
 import Components from 'stockflux-components';
-import { StockFlux, StockFluxHooks } from 'stockflux-core';
+import { StockFlux, StockFluxHooks, OpenfinApiHelpers } from 'stockflux-core';
 import { useInterApplicationBusSubscribe, useOptions } from 'openfin-react-hooks';
 
 import NewsItem from './components/news-item/NewsItem';
@@ -90,7 +90,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
-        const win = await window.fin.Window.getCurrent();
+        const win = await OpenfinApiHelpers.getCurrentWindow();
         const bounds = await win.getBounds();
         if (results.length === 0 && isSearching) {
           win.resizeTo(bounds.width, Math.min(SPINNER_CONTAINER_HEIGHT + TITLEBAR_HEIGHT + SYMBOL_HEADER_HEIGHT, MIN_HEIGHT));
