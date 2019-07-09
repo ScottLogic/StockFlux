@@ -1,5 +1,6 @@
 import React from 'react';
 import * as fdc3 from 'openfin-fdc3';
+import { useOptions } from 'openfin-react-hooks';
 
 let latestChartListener;
 
@@ -9,10 +10,10 @@ let windows = [];
 
 function App() {
   const { InterApplicationBus } = window.fin;
+  const [options] = useOptions();
 
   const createWindow = async (context, windowName) => {
-    const parentWindowOptions = await window.fin.Window.getCurrentSync().getOptions();
-    const manifestOptions = await fetch(`${parentWindowOptions.customData.apiBaseUrl}/apps/v1/${context.appName}/app.json`, {
+    const manifestOptions = await fetch(`${options.customData.apiBaseUrl}/apps/v1/${context.appName}/app.json`, {
       method: 'GET',
     });
     const windowOptions = await manifestOptions.json();
@@ -30,7 +31,7 @@ function App() {
   }
 
   const windowHandler = async (context, currentListener, latestListener, isChart) => {
-    if (context && currentListener === latestListener) {
+    if (options && context && currentListener === latestListener) {
       const windowName = context.appName + '-' + context.name;
       if (!windows.find(window => window === windowName)) {
           const window = await createWindow(context, windowName);

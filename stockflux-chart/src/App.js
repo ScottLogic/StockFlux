@@ -3,7 +3,7 @@ import Chart from './components/Chart';
 import Components from 'stockflux-components';
 import { Intents, StockFluxHooks } from 'stockflux-core';
 import { FaSyncAlt } from 'react-icons/fa';
-import {useInterApplicationBusSubscribe} from 'openfin-react-hooks';
+import {useInterApplicationBusSubscribe, useOptions} from 'openfin-react-hooks';
 import bitflux from 'stockflux-bitflux/dist/bitflux';
 
 import './styles/app.css';
@@ -19,13 +19,12 @@ const App = () => {
     const [parentUuid, setParentUuid] = useState(null);
     const [listenerSymbol, setListenerSymbol] = useState(null);
     const [name, setName] = StockFluxHooks.useLocalStorage('chartName', null);
+    const [options] = useOptions();
 
-    window.fin.Window.getCurrentSync().getOptions().then((options) => {
-        if (listenerSymbol !== options.customData.symbol) {
-            setListenerSymbol(options.customData.symbol);
-            setParentUuid({ uuid: options.uuid });
-        }
-    });
+    if (options && listenerSymbol !== options.customData.symbol) {
+        setListenerSymbol(options.customData.symbol);
+        setParentUuid({ uuid: options.uuid });
+    }
 
     const { data } = useInterApplicationBusSubscribe(parentUuid ? parentUuid : ALL, 'stockFluxChart:'+listenerSymbol);
     if (data && data.message) {
