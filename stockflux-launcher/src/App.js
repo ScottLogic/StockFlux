@@ -1,6 +1,7 @@
 import React, {useRef, useEffect} from 'react';
 import cx from 'classnames';
 import 'stockflux-components';
+import {OpenfinApiHelpers} from 'stockflux-core';
 import { useDockWindow, ScreenEdge } from 'openfin-react-hooks';
 import {
   FaChevronUp,
@@ -17,7 +18,7 @@ import './App.css';
 const isLauncherHorizontal = edge => edge === ScreenEdge.TOP;
 
 export default () => {
-  const [edge, windowActions] = useDockWindow(ScreenEdge.TOP, window.fin.Window.getCurrentSync(),
+  const [edge, windowActions] = useDockWindow(ScreenEdge.TOP, OpenfinApiHelpers.getCurrentWindowSync(),
       true, { dockedWidth: 50, dockedHeight: 50 });
 
   const prevEdgeRef = useRef();

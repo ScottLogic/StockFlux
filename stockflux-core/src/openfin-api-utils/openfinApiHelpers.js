@@ -5,3 +5,7 @@ export const createWindow = async windowOptions => {
 export const getCurrentWindow = async () => {
     return await window.fin.Window.getCurrent();
 }
+
+export const getCurrentWindowSync = () => {
+    return window.fin.Window.getCurrentSync();
+}

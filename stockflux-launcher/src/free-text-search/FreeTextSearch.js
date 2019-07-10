@@ -8,9 +8,9 @@ import './FreeTextSearch.css';
 import MESSAGES from "./FreeTextSearch.messages";
 import launchSearchResultsWindow from "./search-result/SearchResults.launcher";
 import populateSearchResultsWindow from './search-result/SearchResults.populater';
+import { OpenfinApiHelpers } from 'stockflux-core/src';
 
 const ALL = { uuid: '*' };
-const IDENTITY = { uuid: window.fin.Window.me.uuid };
 const SEARCH_TIMEOUT_INTERVAL = 250;
 
 let latestRequest = null;
@@ -120,7 +120,7 @@ const FreeTextSearch = ({ dockedTo }) => {
   }, [debouncedQuery, isSearching, results]);
 
   useEffect(() => {
-    window.fin.Window.getCurrentSync()
+    OpenfinApiHelpers.getCurrentWindowSync()
       .getOptions()
       .then(options => setParentUuid({ uuid: options.uuid }));
   }, []);
@@ -132,25 +132,27 @@ const FreeTextSearch = ({ dockedTo }) => {
   }
 
   useEffect(() => {
-    window.fin.InterApplicationBus.subscribe(IDENTITY, 'intent-request', (message) => {
-      switch (message.type) {
-        case 'news-view':
-          Intents.viewNews(message.code, message.name);
-          closeAndClearSearch();
-          break;
-        case 'watchlist-add':
-          Intents.addWatchlist(message.code, message.name);
-          closeAndClearSearch();
-          break;
-        case 'chart-add':
-          Intents.viewChart(message.code, message.name);
-          closeAndClearSearch();
-          break;
-        default:
-          break;
-      }
-    });
-  }, []);
+    if (parentUuid) {
+      window.fin.InterApplicationBus.subscribe(parentUuid, 'intent-request', (message) => {
+        switch (message.type) {
+          case 'news-view':
+            Intents.viewNews(message.code, message.name);
+            closeAndClearSearch();
+            break;
+          case 'watchlist-add':
+            Intents.addWatchlist(message.code, message.name);
+            closeAndClearSearch();
+            break;
+          case 'chart-add':
+            Intents.viewChart(message.code, message.name);
+            closeAndClearSearch();
+            break;
+          default:
+            break;
+        }
+      });
+    }
+  }, [parentUuid]);
 
   const { data, subscribeError, isSubscribed } = useInterApplicationBusSubscribe(
     parentUuid ? parentUuid : ALL, 'search-request');
