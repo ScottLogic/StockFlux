@@ -18,7 +18,7 @@ function App() {
       method: 'GET',
     });
     const windowOptions = await manifestOptions.json();
-    const winOptions = {
+    const childWindowOptions = {
       ...windowOptions.startup_app,
       // uuid must match that of the parent window
       uuid: "stockflux-container",
@@ -29,7 +29,7 @@ function App() {
       }
     };
 
-    OpenfinApiHelpers.createWindow(winOptions)
+    OpenfinApiHelpers.createWindow(childWindowOptions)
       .then(win => {
         return win;
       })
