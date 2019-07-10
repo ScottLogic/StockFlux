@@ -1,6 +1,6 @@
 import getWindowPosition from './SearchResults.positioner';
 import { ScreenEdge } from 'openfin-react-hooks';
-import {OpenfinApiHelpers} from 'stockflux-core';
+import { OpenfinApiHelpers } from 'stockflux-core';
 
 export default async (searchButtonRef, searchInputRef, dockedTo, windowBounds) => {
     const { defaultTop, defaultLeft, defaultWidth, defaultHeight } = getWindowPosition(

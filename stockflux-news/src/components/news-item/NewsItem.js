@@ -1,7 +1,7 @@
 import React from 'react';
-import {format, isToday} from 'date-fns';
+import { format, isToday } from 'date-fns';
 import * as PropTypes from 'prop-types';
-import {OpenfinApiHelpers} from 'stockflux-core';
+import { OpenfinApiHelpers } from 'stockflux-core';
 
 import './NewsItem.css';
 

@@ -1,6 +1,6 @@
 import d3 from 'd3';
 import fcRebind from 'd3fc-rebind';
-import {StockFlux} from 'stockflux-core';
+import { StockFlux } from 'stockflux-core';
 
 export default function() {
     var historicFeed = StockFlux.getStockFluxData(),

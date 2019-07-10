@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {OpenfinApiHelpers} from 'stockflux-core';
+import { OpenfinApiHelpers } from 'stockflux-core';
 
 import AppShortcut from './app-shortcut/AppShortcut';
 import './AppShortcuts.css';
