@@ -139,3 +139,11 @@ jobs:
               stockflux-launcher/build \
               "s3://$BUCKET/artifacts/stockflux-launcher/$STOCKFLUX_VERSION/" \
               --delete
+      - run:
+          name: Tag GitHub with new version
+          command: |
+            STOCKFLUX_VERSION=$(cat ~/stockflux/version)
+            rm ~/stockflux/version
+            git tag "v$STOCKFLUX_VERSION"
+            git push --tags
+          
