@@ -73,7 +73,7 @@ function App() {
   }
   
   const closeParentContainer = () => {
-    window.fin.Window.getCurrentSync().close(true);
+    OpenfinApiHelpers.getCurrentWindowSync().close(true);
   }
 
   const currentChartListener = fdc3.addIntentListener("ViewChart", context => {
