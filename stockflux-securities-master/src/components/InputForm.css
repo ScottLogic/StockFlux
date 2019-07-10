@@ -1,0 +1,16 @@
+.input-form-title {
+  padding: var(--padding-large) 0 var(--padding-large) var(--padding-medium);
+  font-weight: var(--font-weight-bolder);
+  margin-left: var(--padding-small);
+  font-size: var(--font-xxxlarge);
+}
+
+.back-button {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  padding: var(--padding-large) 0 var(--padding-large) var(--padding-medium);
+  font-weight: var(--font-weight-bolder);
+  margin-left: var(--padding-small);
+  font-size: var(--font-xxxlarge);
+}
