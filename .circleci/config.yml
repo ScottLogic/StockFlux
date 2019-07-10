@@ -12,6 +12,8 @@ workflows:
             branches:
               only:
                 - master
+                - dev
+                - deployment
 
 jobs:
   install_and_build:
@@ -72,29 +74,68 @@ jobs:
       - persist_to_workspace:
           root: ~/stockflux
           paths: .
+
   deploy:
     working_directory: ~/stockflux
     docker:
-      - image: circleci/python:2.7-jessie
+      - image: circleci/python:3.7.2
     steps:
       - attach_workspace:
           at: ~/stockflux
+      - add_ssh_keys:
+          fingerprints:
+            - "c0:8e:08:b5:f4:88:56:57:0d:29:88:38:ce:24:95:c4"
+            - "16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48" # GitHub RSA
+            - "ad:1c:08:a4:40:e3:6f:9c:f5:66:26:5d:4b:33:5d:8c" # GitHub DSA
+      - run:
+          name: Add GitHub SSH fingerprints to known hosts
+          command: |
+            # https://serverfault.com/questions/447028/non-interactive-git-clone-ssh-fingerprint-prompt
+            # Grabbed GitHub's public key by running ssh-keyscan github.com
+            # locally and directing it to the github_key file. Adding this key
+            # to known hosts (creating it if it doesn't exist) prevents the
+            # prompt that warns about the authenticity of the host when trying
+            # to push tags, that causes the build to hang until it times out.
+            cd ~/stockflux/.circleci
+            mkdir -p ~/.ssh
+            touch ~/.ssh/known_hosts
+            echo $(cat github_key) >> ~/.ssh/known_hosts
+      - run:
+          name: Version package.json files
+          command: |
+            cd .circleci
+            echo $(python version.py \
+              stockflux-launcher \
+              stockflux-container \
+              stockflux-chart \
+              stockflux-news \
+              stockflux-watchlist) >> ~/stockflux/version
       - run:
           name: Install AWS CLI
           command: pip install awscli --user --upgrade
       - run:
-          name: Upload chart
-          command: ~/.local/bin/aws s3 sync stockflux-chart/build "s3://stockflux-public-$CIRCLE_BRANCH/artifacts/stockflux-chart/13.0.0/" --delete
-      - run:
-          name: Upload container
-          command: ~/.local/bin/aws s3 sync stockflux-container/build "s3://stockflux-public-$CIRCLE_BRANCH/artifacts/stockflux-container/13.0.0/" --delete
-      - run:
-          name: Upload news
-          command: ~/.local/bin/aws s3 sync stockflux-news/build "s3://stockflux-public-$CIRCLE_BRANCH/artifacts/stockflux-news/13.0.0/" --delete
-      - run:
-          name: Upload watchlist
-          command: ~/.local/bin/aws s3 sync stockflux-watchlist/build "s3://stockflux-public-$CIRCLE_BRANCH/artifacts/stockflux-watchlist/13.0.0/" --delete
-      - run:
-          name: Upload launcher
-          command: ~/.local/bin/aws s3 sync stockflux-launcher/build "s3://stockflux-public-$CIRCLE_BRANCH/artifacts/stockflux-launcher/13.0.0/" --delete
-
+          name: Upload Artifacts to S3
+          command: |
+            cd ~/stockflux
+            STOCKFLUX_VERSION=$(cat ~/stockflux/version)
+            BUCKET="stockflux-public-$CIRCLE_BRANCH"
+            ~/.local/bin/aws s3 sync \
+              stockflux-chart/build \
+              "s3://$BUCKET/artifacts/stockflux-chart/$STOCKFLUX_VERSION/" \
+              --delete
+            ~/.local/bin/aws s3 sync \
+              stockflux-container/build \
+              "s3://$BUCKET/artifacts/stockflux-container/$STOCKFLUX_VERSION/" \
+              --delete
+            ~/.local/bin/aws s3 sync \
+              stockflux-news/build \
+              "s3://$BUCKET/artifacts/stockflux-news/$STOCKFLUX_VERSION/" \
+              --delete
+            ~/.local/bin/aws s3 sync \
+              stockflux-watchlist/build \
+              "s3://$BUCKET/artifacts/stockflux-watchlist/$STOCKFLUX_VERSION/" \
+              --delete
+            ~/.local/bin/aws s3 sync \
+              stockflux-launcher/build \
+              "s3://$BUCKET/artifacts/stockflux-launcher/$STOCKFLUX_VERSION/" \
+              --delete
