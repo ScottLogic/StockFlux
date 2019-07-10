@@ -1,5 +1,5 @@
-import {format, subYears} from 'date-fns';
-import {getCurrentWindow} from '../openfin-api-utils/openfinApiHelpers';
+import { format, subYears } from 'date-fns';
+import { getCurrentWindow } from '../openfin-api-utils/openfinApiHelpers';
 
 // written in the same structure as d3fc-financial-feed
 export function getStockFluxData() {

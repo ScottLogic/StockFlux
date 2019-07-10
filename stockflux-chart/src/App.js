@@ -3,7 +3,7 @@ import Chart from './components/Chart';
 import Components from 'stockflux-components';
 import { Intents, StockFluxHooks } from 'stockflux-core';
 import { FaSyncAlt } from 'react-icons/fa';
-import {useInterApplicationBusSubscribe, useOptions} from 'openfin-react-hooks';
+import { useInterApplicationBusSubscribe, useOptions } from 'openfin-react-hooks';
 import bitflux from 'stockflux-bitflux/dist/bitflux';
 
 import './styles/app.css';
