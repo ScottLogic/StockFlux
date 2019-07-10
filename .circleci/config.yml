@@ -84,7 +84,7 @@ jobs:
           at: ~/stockflux
       - add_ssh_keys:
           fingerprints:
-            - "c0:8e:08:b5:f4:88:56:57:0d:29:88:38:ce:24:95:c4"
+            - "e1:6c:ab:38:9e:8f:ed:f1:60:4a:c7:b1:23:33:0c:07"
             - "16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48" # GitHub RSA
             - "ad:1c:08:a4:40:e3:6f:9c:f5:66:26:5d:4b:33:5d:8c" # GitHub DSA
       - run:
