@@ -13,7 +13,6 @@ workflows:
               only:
                 - master
                 - dev
-                - deployment
 
 jobs:
   install_and_build:
