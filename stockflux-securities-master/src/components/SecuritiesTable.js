@@ -4,6 +4,7 @@ import "./SecuritiesTable.css";
 import { Link } from "react-router-dom";
 
 async function getSecuritiesData() {
+  //temperarily using local host, will need to change to the AWS location
   const response = await fetch("http://ws00128:3001/securities");
   const securities = await response.json();
   return securities;
