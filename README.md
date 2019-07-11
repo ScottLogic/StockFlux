@@ -123,7 +123,7 @@ If you are running the app directory locally, by default, it will be found at:
 
 The AWS hosted version is at:
 
-`https://d2v92tgq94yxaa.cloudfront.net/api/apps/v1`
+`https://stockflux.scottlogic.com/api/apps/v1`
 
 Once this change has been made you can run the service start launching applications from it.
 

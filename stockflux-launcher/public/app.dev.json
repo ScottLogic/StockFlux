@@ -27,7 +27,7 @@
             "width": 0
         },
         "customData": {
-            "apiBaseUrl": "https://lf467ndb08.execute-api.eu-west-2.amazonaws.com/dev/api"
+            "apiBaseUrl": "https://d3capoqa8f983r.cloudfront.net/api"
         }
     },
     "services": [],
