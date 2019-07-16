@@ -17,6 +17,7 @@ const InputForm = () => {
       isShown: isShownRef.current,
       isVisible: isVisibleRef.current
     };
+    console.log(securityObject);
   };
 
   return (
@@ -87,7 +88,7 @@ const InputForm = () => {
         </div>
       </form>
 
-      <Link to="/home">
+      <Link to="/">
         <div className="back-button">
           <button>
             <span className="material-icons">arrow_back</span>

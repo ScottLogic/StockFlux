@@ -64,6 +64,7 @@
   border-left: 1px solid var(--clr-divider-light);
 }
 
+.securities-error-message,
 .spinner-container,
 .no-securities-container {
   display: flex;
@@ -101,5 +102,10 @@
   outline: none;
   color: var(--text-grey-darkest);
   border-color: var(--text-grey-darkest);
+}
+
+.securities-error-message {
+  color: red;
+  font-size: var(--font-xxxlarge);
 }
 

@@ -15,15 +15,21 @@ const SecuritiesTable = () => {
 
   const [isLoading, setIsLoading] = useState(true);
 
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const timeoutMessage = "Error, unable to get securities data. Please try again!";
+
   useEffect(() => {
     setIsLoading(true);
     getSecuritiesData()
       .then(securities => {
         setIsLoading(false);
         setSecuritiesData(securities);
+        setErrorMessage(null)
       })
       .catch(() => {
         setIsLoading(false);
+        setErrorMessage(timeoutMessage);
       });
   }, []);
 
@@ -39,7 +45,11 @@ const SecuritiesTable = () => {
         <div className="spinner-container">
           <Components.LargeSpinner />
         </div>
-      ) : (
+      ) : errorMessage ? (
+        <div className="securities-error-message">
+          {errorMessage}
+        </div>
+        ) : (
         <div className="table-body">
           {securitiesData.length > 0 ? (
             <Components.ScrollWrapperY>
