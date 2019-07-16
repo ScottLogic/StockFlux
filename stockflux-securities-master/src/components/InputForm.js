@@ -8,6 +8,7 @@ const InputForm = () => {
   const [symbol, setSymbol] = useState('');
   const [isShown, setIsShown] = useState(false);
   const [isEnabled, setIsEnabled] = useState(false);
+  
 
   const submitForm = () => {
     const securityObject = {
