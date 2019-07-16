@@ -2,14 +2,22 @@ import React from "react";
 import "stockflux-components";
 import Components from "stockflux-components";
 import SecuritiesTable from "./components/SecuritiesTable";
+import InputForm from "./components/InputForm";
+import { Redirect, Route, Switch } from "react-router-dom";
 
 import "./App.css";
 
-export default () => {
+const App = () => {
   return (
     <div>
       <Components.Titlebar />
-      <SecuritiesTable />
+      <Switch>
+        <Route exact path="/" component={SecuritiesTable} />
+        <Route exact path="/inputform" component={InputForm} />
+        <Redirect to="/" />
+      </Switch>
     </div>
   );
 };
+
+export default App;
