@@ -22,7 +22,7 @@
 .header-container,
 .securities-table-row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .securities-table-row:last-child > div {
@@ -55,6 +55,7 @@
   padding-right: 0;
 }
 
+.securities-row-options,
 .securities-table-header,
 .securities-exchange-data,
 .securities-symbol-data,
@@ -97,15 +98,24 @@
   font-size: var(--font-xxxlarge);
   text-align: center;
 }
-
+.securities-edit-button > button:focus,
+.securities-delete-button > button:focus,
 .add-security-button > button:focus {
   outline: none;
-  color: var(--text-grey-darkest);
-  border-color: var(--text-grey-darkest);
 }
 
 .securities-error-message {
   color: red;
   font-size: var(--font-xxxlarge);
+}
+.securities-edit-button > button,
+.securities-delete-button > button {
+  border: none;
+  background: none;
+  color: var(--text-teal-light);
+}
+
+.securities-row-options {
+  display: flex;
 }
 

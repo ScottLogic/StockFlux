@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./InputForm.css";
 
-const InputForm = () => {
+const InputForm = ({ securityId }) => {
   const [name, setName] = useState("");
   const [exchange, setExchange] = useState("");
   const [symbol, setSymbol] = useState("");
@@ -30,7 +30,7 @@ const InputForm = () => {
 
   return (
     <div className="input-form-container">
-      <div className="input-form-title">Create a Security</div>
+      <div className="input-form-title">{securityId ? "Edit Security" : "Create a Security"}</div>
       <form className="input-form-body" onSubmit={submitForm}>
         <div className="input-row">
           <label className="input-label" htmlFor="name-input">
