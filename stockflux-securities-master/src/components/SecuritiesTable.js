@@ -2,13 +2,7 @@ import React, { useEffect, useState } from "react";
 import Components from "stockflux-components";
 import "./SecuritiesTable.css";
 import { Link } from "react-router-dom";
-
-async function getSecuritiesData() {
-  //temporarily using local host, will need to change to the AWS location
-  const response = await fetch("http://localhost:3001/securities");
-  const securities = await response.json();
-  return securities;
-}
+import { getSecuritiesData } from "../services/SecuritiesService";
 
 
 const SecuritiesTable = () => {
@@ -26,7 +20,7 @@ const SecuritiesTable = () => {
       .then(securities => {
         setIsLoading(false);
         setSecuritiesData(securities);
-        setErrorMessage(null)
+        setErrorMessage(null);
       })
       .catch(() => {
         setIsLoading(false);
