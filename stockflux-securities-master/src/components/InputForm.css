@@ -104,11 +104,19 @@
   width: 280px;
 }
 
-.input-submit-button > button:focus {
+.input-submit-button.in-progress > button {
   outline: none;
   color: var(--text-grey-darkest);
   border-color: var(--text-grey-darkest);
 }
+
+.input-submit-button > button:focus {
+  outline: none;
+}
+
+
+
+
 
 .back-button {
   position: fixed;
