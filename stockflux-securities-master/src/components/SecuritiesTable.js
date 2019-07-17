@@ -19,11 +19,10 @@ const SecuritiesTable = () => {
     getSecuritiesData()
       .then(securities => {
         setIsLoading(false);
-        setSecuritiesData(securities);
+        setSecuritiesData([]);
         setErrorMessage(null);
       })
-      .catch((e) => {
-        console.log(e);
+      .catch(() => {
         setIsLoading(false);
         setErrorMessage(timeoutMessage);
       });

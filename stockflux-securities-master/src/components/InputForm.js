@@ -93,9 +93,7 @@ const InputForm = () => {
         </div>
         <div className="input-submit-button-container">
           <div
-            className={
-              (inProgress ? "in-progress " : "") + "input-submit-button"
-            }
+            className={(inProgress ? "in-progress " : "") + "input-submit-button"}
           >
             <button>Create</button>
           </div>
