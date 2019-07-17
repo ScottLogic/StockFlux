@@ -19,7 +19,7 @@ const SecuritiesTable = () => {
     getSecuritiesData()
       .then(securities => {
         setIsLoading(false);
-        setSecuritiesData([]);
+        setSecuritiesData(securities);
         setErrorMessage(null);
       })
       .catch(() => {
