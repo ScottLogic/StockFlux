@@ -1,0 +1,12 @@
+.add-security-button > button {
+    border: solid 1px var(--text-teal);
+    background: none;
+    font-family: var(--font-roboto-sans-serif);
+    color: var(--text-teal-light);
+    font-weight: var(--font-weight-bolder);
+    border-radius: 25px;
+    height: 50px;
+    width: 250px;
+    font-size: var(--font-xxxlarge);
+    text-align: center;
+  }

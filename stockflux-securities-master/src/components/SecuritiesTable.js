@@ -3,6 +3,7 @@ import Components from "stockflux-components";
 import "./SecuritiesTable.css";
 import { Link } from "react-router-dom";
 import { getSecuritiesData } from "../services/SecuritiesService";
+import AddSecurityButton from "./AddSecurityButton";
 
 const SecuritiesTable = () => {
   const [securitiesData, setSecuritiesData] = useState([]);
@@ -45,8 +46,10 @@ const SecuritiesTable = () => {
           {errorMessage}
         </div>
         ) : (
-        <div className="table-body">
+        <div>>
           {securitiesData.length > 0 ? (
+            <>
+            <div className="table-body">
             <Components.ScrollWrapperY>
               {securitiesData.map((item, index) => (
                 <div key={index} className="securities-table-row">
@@ -62,14 +65,18 @@ const SecuritiesTable = () => {
                 </div>
               ))}
             </Components.ScrollWrapperY>
+            </div>
+            <div className="add-security-button-container"><AddSecurityButton /></div>
+            </>
           ) : (
+            <div className="table-body">
+
             <div className="no-securities-container">
               <div className="no-securities-message">
                 You have no securities to show
               </div>
-              <Link to="/inputform">
-                <div className="add-security-button"><button>Click to add security</button></div>
-              </Link>
+              <AddSecurityButton />
+            </div>
             </div>
           )}
         </div>
