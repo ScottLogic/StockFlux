@@ -4,7 +4,7 @@ import "./SecuritiesTable.css";
 import { Link } from "react-router-dom";
 import { getSecuritiesData } from "../services/SecuritiesService";
 import AddSecurityButton from "./AddSecurityButton";
-import ErrorDisplayer from "./ErrorDisplayer";
+import ErrorMessage from "./ErrorMessage";
 
 const SecuritiesTable = () => {
   const [securitiesData, setSecuritiesData] = useState([]);
@@ -13,7 +13,8 @@ const SecuritiesTable = () => {
 
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const timeoutMessage = "Error, unable to get securities data. Please try again!";
+  const timeoutMessage =
+    "Error, unable to get securities data. Please try again!";
 
   useEffect(() => {
     setIsLoading(true);
@@ -34,7 +35,9 @@ const SecuritiesTable = () => {
       <div className="securities-title-container">
         <div className="securities-title">Securities</div>
         <div className="add-securities-button-above-table">
-          {securitiesData.length > 0  && !errorMessage && <AddSecurityButton size="small"/>}
+          {securitiesData.length > 0 && !errorMessage && (
+            <AddSecurityButton size="small" />
+          )}
         </div>
       </div>
       <div className="header-container">
@@ -48,7 +51,7 @@ const SecuritiesTable = () => {
           <Components.LargeSpinner />
         </div>
       ) : errorMessage ? (
-        <ErrorDisplayer errorMessage={errorMessage} />
+        <ErrorMessage errorMessage={errorMessage} />
       ) : (
         <div className="table-body">
           {securitiesData.length > 0 ? (
@@ -82,7 +85,7 @@ const SecuritiesTable = () => {
               <div className="no-securities-message">
                 You have no securities to show
               </div>
-              <AddSecurityButton size="large"/>
+              <AddSecurityButton size="large" />
             </div>
           )}
         </div>
