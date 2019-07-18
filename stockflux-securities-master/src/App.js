@@ -8,11 +8,13 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import "./App.css";
 
 const App = () => {
+
   return (
     <div>
       <Components.Titlebar />
       <Switch>
         <Route exact path="/" component={SecuritiesTable} />
+        <Route exact path="/inputform/:securityId" component={InputForm} />
         <Route exact path="/inputform" component={InputForm} />
         <Redirect to="/" />
       </Switch>

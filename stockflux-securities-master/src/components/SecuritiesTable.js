@@ -3,7 +3,8 @@ import Components from "stockflux-components";
 import "./SecuritiesTable.css";
 import { Link } from "react-router-dom";
 import { getSecuritiesData } from "../services/SecuritiesService";
-
+import AddSecurityButton from "./AddSecurityButton";
+import ErrorMessage from "./ErrorMessage";
 
 const SecuritiesTable = () => {
   const [securitiesData, setSecuritiesData] = useState([]);
@@ -12,7 +13,8 @@ const SecuritiesTable = () => {
 
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const timeoutMessage = "Error, unable to get securities data. Please try again!";
+  const timeoutMessage =
+    "Error, unable to get securities data. Please try again!";
 
   useEffect(() => {
     setIsLoading(true);
@@ -30,21 +32,27 @@ const SecuritiesTable = () => {
 
   return (
     <div className="securities-container">
-      <div className="securities-title">My Securities Table</div>
+      <div className="securities-title-container">
+        <div className="securities-title">Securities</div>
+        <div className="add-securities-button-above-table">
+          {securitiesData.length > 0 && !errorMessage && (
+            <AddSecurityButton size="small" />
+          )}
+        </div>
+      </div>
       <div className="header-container">
         <div className="securities-table-header">Exchange</div>
         <div className="securities-table-header">Symbol</div>
         <div className="securities-table-header">Name</div>
+        <div className="securities-table-header">Edit / Delete</div>
       </div>
       {isLoading ? (
         <div className="spinner-container">
           <Components.LargeSpinner />
         </div>
       ) : errorMessage ? (
-        <div className="securities-error-message">
-          {errorMessage}
-        </div>
-        ) : (
+        <ErrorMessage errorMessage={errorMessage} />
+      ) : (
         <div className="table-body">
           {securitiesData.length > 0 ? (
             <Components.ScrollWrapperY>
@@ -55,6 +63,20 @@ const SecuritiesTable = () => {
                   </div>
                   <div className="securities-symbol-data">{item.symbol}</div>
                   <div className="securities-name-data">{item.name}</div>
+                  <div className="securities-row-options">
+                    <Link to={`/inputform/${item.securityId}`}>
+                      <div className="securities-edit-button">
+                        <button>
+                          <span className="material-icons">edit</span>
+                        </button>
+                      </div>
+                    </Link>
+                    <div className="securities-delete-button">
+                      <button disabled>
+                        <span className="material-icons">delete</span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
               ))}
             </Components.ScrollWrapperY>
@@ -63,9 +85,7 @@ const SecuritiesTable = () => {
               <div className="no-securities-message">
                 You have no securities to show
               </div>
-              <Link to="/inputform">
-                <div className="add-security-button"><button>Click to add security</button></div>
-              </Link>
+              <AddSecurityButton size="large" />
             </div>
           )}
         </div>
