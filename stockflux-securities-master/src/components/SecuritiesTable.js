@@ -4,6 +4,7 @@ import "./SecuritiesTable.css";
 import { Link } from "react-router-dom";
 import { getSecuritiesData } from "../services/SecuritiesService";
 import AddSecurityButton from "./AddSecurityButton";
+import ErrorDisplayer from "./ErrorDisplayer";
 
 const SecuritiesTable = () => {
   const [securitiesData, setSecuritiesData] = useState([]);
@@ -47,7 +48,7 @@ const SecuritiesTable = () => {
           <Components.LargeSpinner />
         </div>
       ) : errorMessage ? (
-        <div className="securities-error-message">{errorMessage}</div>
+        <ErrorDisplayer errorMessage={errorMessage} />
       ) : (
         <div className="table-body">
           {securitiesData.length > 0 ? (
