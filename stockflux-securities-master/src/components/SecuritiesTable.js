@@ -30,7 +30,12 @@ const SecuritiesTable = () => {
 
   return (
     <div className="securities-container">
-      <div className="securities-title">My Securities Table</div>
+      <div className="securities-title-container">
+        <div className="securities-title">My Securities Table</div>
+        <div className="add-securities-button-above-table">
+          {securitiesData.length > 0 && <AddSecurityButton />}
+        </div>
+      </div>
       <div className="header-container">
         <div className="securities-table-header">Exchange</div>
         <div className="securities-table-header">Symbol</div>
@@ -42,14 +47,10 @@ const SecuritiesTable = () => {
           <Components.LargeSpinner />
         </div>
       ) : errorMessage ? (
-        <div className="securities-error-message">
-          {errorMessage}
-        </div>
-        ) : (
-        <div>>
+        <div className="securities-error-message">{errorMessage}</div>
+      ) : (
+        <div className="table-body">
           {securitiesData.length > 0 ? (
-            <>
-            <div className="table-body">
             <Components.ScrollWrapperY>
               {securitiesData.map((item, index) => (
                 <div key={index} className="securities-table-row">
@@ -59,24 +60,28 @@ const SecuritiesTable = () => {
                   <div className="securities-symbol-data">{item.symbol}</div>
                   <div className="securities-name-data">{item.name}</div>
                   <div className="securities-row-options">
-                  <Link to="/inputform/edit"><div className="securities-edit-button"><button><span className="material-icons">edit</span></button></div></Link>
-                  <div className="securities-delete-button"><button><span className="material-icons">delete</span></button></div>
+                    <Link to="/inputform/edit">
+                      <div className="securities-edit-button">
+                        <button>
+                          <span className="material-icons">edit</span>
+                        </button>
+                      </div>
+                    </Link>
+                    <div className="securities-delete-button">
+                      <button disabled>
+                        <span className="material-icons">delete</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}
             </Components.ScrollWrapperY>
-            </div>
-            <div className="add-security-button-container"><AddSecurityButton /></div>
-            </>
           ) : (
-            <div className="table-body">
-
             <div className="no-securities-container">
               <div className="no-securities-message">
                 You have no securities to show
               </div>
               <AddSecurityButton />
-            </div>
             </div>
           )}
         </div>

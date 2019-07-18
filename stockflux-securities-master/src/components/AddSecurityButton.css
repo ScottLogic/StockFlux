@@ -10,3 +10,7 @@
     font-size: var(--font-xxxlarge);
     text-align: center;
   }
+
+.add-security-button > button:hover {
+  color: var(--text-teal);
+  }

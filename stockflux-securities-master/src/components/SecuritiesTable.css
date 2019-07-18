@@ -8,11 +8,22 @@
   font-weight: var(--font-weight-normal);
 }
 
+.securities-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--margin-medium);
+}
+
 .securities-title {
   padding: var(--padding-large) 0 var(--padding-large) var(--padding-medium);
   font-weight: var(--font-weight-bolder);
   margin-left: var(--padding-small);
   font-size: var(--font-xxxlarge);
+}
+
+.add-securities-button-above-table {
+  margin: var(--margin-small) var(--margin-medium) var(--margin-small) 0;
 }
 
 .header-container {
@@ -103,12 +114,12 @@
   color: var(--text-teal-light);
 }
 
+.securities-edit-button > button:hover,
+.securities-delete-button > button:hover {
+  color: var(--text-teal);
+}
+
 .securities-row-options {
   display: flex;
 }
 
-.add-security-button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: var(--margin-medium);
-}
