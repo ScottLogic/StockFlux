@@ -107,6 +107,7 @@
   color: red;
   font-size: var(--font-xxxlarge);
 }
+
 .securities-edit-button > button,
 .securities-delete-button > button {
   border: none;
