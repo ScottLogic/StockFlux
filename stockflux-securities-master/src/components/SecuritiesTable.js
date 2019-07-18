@@ -60,7 +60,7 @@ const SecuritiesTable = () => {
                   <div className="securities-symbol-data">{item.symbol}</div>
                   <div className="securities-name-data">{item.name}</div>
                   <div className="securities-row-options">
-                    <Link to="/inputform/edit">
+                    <Link to={`/inputform/${item.securityId}`}>
                       <div className="securities-edit-button">
                         <button>
                           <span className="material-icons">edit</span>

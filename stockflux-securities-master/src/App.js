@@ -10,21 +10,14 @@ import "./App.css";
 const App = () => {
 
   //hard coded prop to be replaced with securities object to be edited
-  const props = {
-    securityId: "FOO:BAR"
-  };
 
   return (
     <div>
       <Components.Titlebar />
       <Switch>
         <Route exact path="/" component={SecuritiesTable} />
-        <Route
-          exact
-          path="/inputform/edit"
-          render={routeProps => <InputForm {...routeProps} {...props} />}
-        />
-        <Route exact path="/inputform" component={InputForm} />
+        <Route path="/inputform/:securityId" component={InputForm} />
+        <Route exact path="/inputform/" component={InputForm} />
         <Redirect to="/" />
       </Switch>
     </div>
