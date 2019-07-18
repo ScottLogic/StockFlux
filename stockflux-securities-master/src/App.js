@@ -14,7 +14,7 @@ const App = () => {
       <Components.Titlebar />
       <Switch>
         <Route exact path="/" component={SecuritiesTable} />
-        <Route path="/inputform/:securityId" component={InputForm} />
+        <Route exact path="/inputform/:securityId" component={InputForm} />
         <Route exact path="/inputform/" component={InputForm} />
         <Redirect to="/" />
       </Switch>
