@@ -15,7 +15,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={SecuritiesTable} />
         <Route exact path="/inputform/:securityId" component={InputForm} />
-        <Route exact path="/inputform/" component={InputForm} />
+        <Route exact path="/inputform" component={InputForm} />
         <Redirect to="/" />
       </Switch>
     </div>

@@ -31,9 +31,9 @@ const SecuritiesTable = () => {
   return (
     <div className="securities-container">
       <div className="securities-title-container">
-        <div className="securities-title">My Securities Table</div>
+        <div className="securities-title">Securities</div>
         <div className="add-securities-button-above-table">
-          {securitiesData.length > 0 && <AddSecurityButton />}
+          {securitiesData.length > 0  && !errorMessage && <AddSecurityButton size="small"/>}
         </div>
       </div>
       <div className="header-container">
@@ -81,7 +81,7 @@ const SecuritiesTable = () => {
               <div className="no-securities-message">
                 You have no securities to show
               </div>
-              <AddSecurityButton />
+              <AddSecurityButton size="large"/>
             </div>
           )}
         </div>
