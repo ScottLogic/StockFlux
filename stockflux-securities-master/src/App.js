@@ -9,8 +9,6 @@ import "./App.css";
 
 const App = () => {
 
-  //hard coded prop to be replaced with securities object to be edited
-
   return (
     <div>
       <Components.Titlebar />
