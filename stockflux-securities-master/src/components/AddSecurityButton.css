@@ -1,12 +1,12 @@
 .add-security-button-small > button,
 .add-security-button-large > button {
-    border: solid 1px var(--text-teal);
-    background: none;
-    font-family: var(--font-roboto-sans-serif);
-    color: var(--text-teal-light);
-    font-weight: var(--font-weight-bolder);
-    border-radius: 25px;
-    text-align: center;
+  border: solid 1px var(--text-teal);
+  background: none;
+  font-family: var(--font-roboto-sans-serif);
+  color: var(--text-teal-light);
+  font-weight: var(--font-weight-bolder);
+  border-radius: 25px;
+  text-align: center;
 }
 
 .add-security-button-small > button:hover,
@@ -24,4 +24,9 @@
   height: 50px;
   width: 250px;
   font-size: var(--font-xxxlarge);
+}
+
+.add-security-button-small > button:focus,
+.add-security-button-large > button:focus {
+  outline: none;
 }

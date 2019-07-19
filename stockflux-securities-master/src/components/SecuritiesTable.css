@@ -86,7 +86,7 @@
   height: var(--table-body-height);
 }
 
-.no-securities-container{
+.no-securities-container {
   text-align: center;
   border-bottom: 1px solid var(--clr-divider-light);
 }
@@ -98,8 +98,7 @@
 }
 
 .securities-edit-button > button:focus,
-.securities-delete-button > button:focus,
-.add-security-button > button:focus {
+.securities-delete-button > button:focus {
   outline: none;
 }
 
