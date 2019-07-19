@@ -69,22 +69,12 @@ const InputForm = ({ match }) => {
       ) : (
         <form className="input-form-body" onSubmit={submitForm}>
           <div className="input-row">
-            <label className="input-label" htmlFor="name-input">
-              Name
-            </label>
-            <input
-              className="input-form-input"
-              id="name-input"
-              value={name}
-              onChange={event => setName(event.target.value)}
-            />
-          </div>
-          <div className="input-row">
             <label className="input-label" htmlFor="exchange-input">
               Exchange
             </label>
             <input
-              className="input-form-input"
+              className={`input-form-input${match.params.securityId &&
+                "-read-only"}`}
               id="exchange-input"
               value={exchange}
               readOnly={match.params.securityId}
@@ -96,11 +86,23 @@ const InputForm = ({ match }) => {
               Symbol
             </label>
             <input
-              className="input-form-input"
+              className={`input-form-input${match.params.securityId &&
+                "-read-only"}`}
               id="symbol-input"
               value={symbol}
               readOnly={match.params.securityId}
               onChange={event => setSymbol(event.target.value)}
+            />
+          </div>
+          <div className="input-row">
+            <label className="input-label" htmlFor="name-input">
+              Name
+            </label>
+            <input
+              className="input-form-input"
+              id="name-input"
+              value={name}
+              onChange={event => setName(event.target.value)}
             />
           </div>
           <div className="input-checkbox-container">
