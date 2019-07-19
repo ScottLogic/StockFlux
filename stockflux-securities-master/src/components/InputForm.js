@@ -73,8 +73,9 @@ const InputForm = ({ match }) => {
               Exchange
             </label>
             <input
-              className={`input-form-input${match.params.securityId &&
-                "-read-only"}`}
+              className={`input-form-input${
+                match.params.securityId ? "-read-only" : ""
+              }`}
               id="exchange-input"
               value={exchange}
               readOnly={match.params.securityId}
@@ -86,8 +87,9 @@ const InputForm = ({ match }) => {
               Symbol
             </label>
             <input
-              className={`input-form-input${match.params.securityId &&
-                "-read-only"}`}
+              className={`input-form-input${
+                match.params.securityId ? "-read-only" : ""
+              }`}
               id="symbol-input"
               value={symbol}
               readOnly={match.params.securityId}
