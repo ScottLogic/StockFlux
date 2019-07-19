@@ -78,7 +78,7 @@ const InputForm = ({ match }) => {
               }`}
               id="exchange-input"
               value={exchange}
-              readOnly={match.params.securityId}
+              readOnly={!!match.params.securityId}
               onChange={event => setExchange(event.target.value)}
             />
           </div>
@@ -92,7 +92,7 @@ const InputForm = ({ match }) => {
               }`}
               id="symbol-input"
               value={symbol}
-              readOnly={match.params.securityId}
+              readOnly={!!match.params.securityId}
               onChange={event => setSymbol(event.target.value)}
             />
           </div>
