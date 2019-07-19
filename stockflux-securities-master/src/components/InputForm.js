@@ -5,6 +5,7 @@ import "./InputForm.css";
 import { getSecurity } from "../services/SecuritiesService";
 import ErrorMessage from "./ErrorMessage";
 import TextField from "./reusableComponents/TextField";
+import ToggleSwitch from "./reusableComponents/ToggleSwitch";
 
 const InputForm = ({ match }) => {
   const [name, setName] = useState("");
@@ -102,32 +103,26 @@ const InputForm = ({ match }) => {
             />
           </div>
           <div className="input-checkbox-container">
-            <label className="input-label" htmlFor="is-shown-toggle">
+            <label className="input-label" htmlFor="visible-toggle">
               Visible
             </label>
-            <input
-              className="input-form-toggle"
-              id="visible-toggle"
+            <ToggleSwitch
               value={visible}
+              id="visible-toggle"
               checked={visible}
-              type="checkbox"
               onChange={() => setVisible(!visible)}
             />
-            <label className="toggle-switch" htmlFor="visible-toggle" />
           </div>
           <div className="input-checkbox-container">
-            <label className="input-label" htmlFor="is-enabled-toggle">
+            <label className="input-label" htmlFor="enabled-toggle">
               Enabled
             </label>
-            <input
-              className="input-form-toggle"
-              id="enabled-toggle"
+            <ToggleSwitch
               value={enabled}
+              id="enabled-toggle"
               checked={enabled}
-              type="checkbox"
               onChange={() => setEnabled(!enabled)}
             />
-            <label className="toggle-switch" htmlFor="enabled-toggle" />
           </div>
           <div className="input-submit-button-container">
             <div

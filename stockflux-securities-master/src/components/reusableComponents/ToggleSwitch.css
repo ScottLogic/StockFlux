@@ -1,0 +1,35 @@
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  background-color: var(--dark-background);
+  border: solid 1px var(--text-teal);
+  border-radius: 20px;
+  transition: all 0.3s;
+  margin-left: var(--margin-small);
+}
+
+.toggle-switch::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--text-teal-light);
+  top: 1px;
+  left: 1px;
+  transition: all 0.3s;
+}
+
+.input-form-toggle:checked + .toggle-switch::after {
+  left: 20px;
+}
+
+.input-form-toggle:checked + .toggle-switch {
+  background-color: var(--text-teal);
+}
+
+.input-form-toggle {
+  display: none;
+}

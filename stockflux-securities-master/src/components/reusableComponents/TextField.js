@@ -6,9 +6,9 @@ const TextField = ({ value, id, onChange, readOnly }) => {
     <input
       value={value}
       id={id}
-      onChange={onChange}
       readOnly={readOnly}
       className={"input-form-input" + (readOnly ? " read-only" : "")}
+      onChange={onChange}
     />
   );
 };
