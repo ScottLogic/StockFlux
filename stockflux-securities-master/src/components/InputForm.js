@@ -44,11 +44,11 @@ const InputForm = ({ match }) => {
     setInProgress(true);
 
     const securityObject = {
-      name: name,
-      exchange: exchange,
-      symbol: symbol,
-      visible: visible,
-      enabled: enabled
+      name,
+      exchange,
+      symbol,
+      visible,
+      enabled
     };
 
     // call service
