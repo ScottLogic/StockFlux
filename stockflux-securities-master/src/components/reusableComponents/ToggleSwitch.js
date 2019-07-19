@@ -1,7 +1,7 @@
 import React from "react";
 import "./ToggleSwitch.css";
 
-const TextField = ({ value, id, checked, onChange }) => {
+const ToggleSwitch = ({ value, id, checked, onChange }) => {
   return (
     <div>
       <input
@@ -17,4 +17,4 @@ const TextField = ({ value, id, checked, onChange }) => {
   );
 };
 
-export default TextField;
+export default ToggleSwitch;
