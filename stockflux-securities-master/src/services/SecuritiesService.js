@@ -5,7 +5,18 @@ async function getWindowOptions() {
 
 export async function getSecuritiesData() {
   const options = await getWindowOptions();
-  const response = await fetch(`${options.customData.apiBaseUrl}/securities-v2`);
+  const response = await fetch(
+    `${options.customData.apiBaseUrl}/securities-v2`
+  );
   const securities = await response.json();
   return securities;
-}
+};
+
+export async function getSecurity(securityId) {
+  const options = await getWindowOptions();
+  const response = await fetch(
+    `${options.customData.apiBaseUrl}/securities-v2/${securityId}`
+  );
+  const security = await response.json();
+  return security;
+};
