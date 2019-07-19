@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import "./InputForm.css";
 import { getSecurity } from "../services/SecuritiesService";
 import ErrorMessage from "./ErrorMessage";
-import TextField from "./reusableComponents/TextField";
-import ToggleSwitch from "./reusableComponents/ToggleSwitch";
+import TextField from "./TextField";
+import ToggleSwitch from "./ToggleSwitch";
 
 const InputForm = ({ match }) => {
   const [name, setName] = useState("");
