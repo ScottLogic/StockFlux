@@ -111,7 +111,6 @@ const InputForm = ({ match }) => {
               id="visible-toggle"
               checked={visible}
               onChange={() => setVisible(!visible)}
-              className="testClass"
             />
           </div>
           <div className="input-checkbox-container">
