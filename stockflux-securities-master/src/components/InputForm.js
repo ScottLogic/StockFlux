@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import "./InputForm.css";
 import { getSecurity } from "../services/SecuritiesService";
 import ErrorMessage from "./ErrorMessage";
+import TextField from "./TextField";
+import ToggleSwitch from "./ToggleSwitch";
 
 const InputForm = ({ match }) => {
   const [name, setName] = useState("");
@@ -72,11 +74,7 @@ const InputForm = ({ match }) => {
             <label className="input-label" htmlFor="exchange-input">
               Exchange
             </label>
-            <input
-              className={
-                (match.params.securityId ? "read-only " : "") +
-                "input-form-input"
-              }
+            <TextField
               id="exchange-input"
               value={exchange}
               readOnly={!!match.params.securityId}
@@ -87,11 +85,7 @@ const InputForm = ({ match }) => {
             <label className="input-label" htmlFor="symbol-input">
               Symbol
             </label>
-            <input
-              className={
-                (match.params.securityId ? "read-only " : "") +
-                "input-form-input"
-              }
+            <TextField
               id="symbol-input"
               value={symbol}
               readOnly={!!match.params.securityId}
@@ -102,40 +96,31 @@ const InputForm = ({ match }) => {
             <label className="input-label" htmlFor="name-input">
               Name
             </label>
-            <input
-              className="input-form-input"
+            <TextField
               id="name-input"
               value={name}
               onChange={event => setName(event.target.value)}
             />
           </div>
           <div className="input-checkbox-container">
-            <label className="input-label" htmlFor="is-shown-toggle">
-              Is Shown
+            <label className="input-label" htmlFor="visible-toggle">
+              Visible
             </label>
-            <input
-              className="input-form-toggle"
+            <ToggleSwitch
               id="visible-toggle"
-              value={visible}
               checked={visible}
-              type="checkbox"
-              onChange={() => setVisible(!visible)}
+              onChange={event => setVisible(event.target.checked)}
             />
-            <label className="toggle-switch" htmlFor="visible-toggle" />
           </div>
           <div className="input-checkbox-container">
-            <label className="input-label" htmlFor="is-enabled-toggle">
-              Is Enabled
+            <label className="input-label" htmlFor="enabled-toggle">
+              Enabled
             </label>
-            <input
-              className="input-form-toggle"
+            <ToggleSwitch
               id="enabled-toggle"
-              value={enabled}
               checked={enabled}
-              type="checkbox"
-              onChange={() => setEnabled(!enabled)}
+              onChange={event => setEnabled(event.target.checked)}
             />
-            <label className="toggle-switch" htmlFor="enabled-toggle" />
           </div>
           <div className="input-submit-button-container">
             <div

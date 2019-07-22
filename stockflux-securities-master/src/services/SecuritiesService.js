@@ -10,7 +10,7 @@ export async function getSecuritiesData() {
   );
   const securities = await response.json();
   return securities;
-};
+}
 
 export async function getSecurity(securityId) {
   const options = await getWindowOptions();
@@ -19,4 +19,4 @@ export async function getSecurity(securityId) {
   );
   const security = await response.json();
   return security;
-};
+}
