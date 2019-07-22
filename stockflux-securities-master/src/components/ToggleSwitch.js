@@ -1,5 +1,6 @@
 import React from "react";
 import "./ToggleSwitch.css";
+import PropTypes from "prop-types";
 
 const ToggleSwitch = ({ onChange, id, value, className, ...props }) => {
   return (
@@ -15,6 +16,13 @@ const ToggleSwitch = ({ onChange, id, value, className, ...props }) => {
       <label className={`toggle-switch ${className}`} htmlFor={id} />
     </>
   );
+};
+
+ToggleSwitch.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  value: PropTypes.bool.isRequired,
+  className: PropTypes.string
 };
 
 export default ToggleSwitch;
