@@ -107,10 +107,9 @@ const InputForm = ({ match }) => {
               Visible
             </label>
             <ToggleSwitch
-              value={visible}
               id="visible-toggle"
               checked={visible}
-              onChange={() => setVisible(!visible)}
+              onChange={event => setVisible(event.target.checked)}
             />
           </div>
           <div className="input-checkbox-container">
@@ -118,10 +117,9 @@ const InputForm = ({ match }) => {
               Enabled
             </label>
             <ToggleSwitch
-              value={enabled}
               id="enabled-toggle"
               checked={enabled}
-              onChange={() => setEnabled(!enabled)}
+              onChange={event => setEnabled(event.target.checked)}
             />
           </div>
           <div className="input-submit-button-container">

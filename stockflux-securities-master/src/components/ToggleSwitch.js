@@ -2,16 +2,15 @@ import React from "react";
 import "./ToggleSwitch.css";
 import PropTypes from "prop-types";
 
-const ToggleSwitch = ({ onChange, id, value, className, ...props }) => {
+const ToggleSwitch = ({ id, checked, className, ...props }) => {
   return (
     <>
       <input
         {...props}
-        value={value}
-        id={id}
         type="checkbox"
+        checked={checked}
         className="input-form-toggle"
-        onChange={onChange}
+        id={id}
       />
       <label className={`toggle-switch ${className}`} htmlFor={id} />
     </>
@@ -19,9 +18,8 @@ const ToggleSwitch = ({ onChange, id, value, className, ...props }) => {
 };
 
 ToggleSwitch.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
-  value: PropTypes.bool.isRequired,
+  id: PropTypes.any.isRequired,
+  checked: PropTypes.bool,
   className: PropTypes.string
 };
 
