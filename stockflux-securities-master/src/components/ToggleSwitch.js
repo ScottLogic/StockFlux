@@ -1,16 +1,18 @@
 import React from "react";
 import "./ToggleSwitch.css";
 
-const ToggleSwitch = props => {
+const ToggleSwitch = ({ onChange, id, value, className, ...props }) => {
   return (
     <>
       <input
         {...props}
+        value={value}
+        id={id}
         type="checkbox"
-        className={"input-form-toggle" + ` ${props.className}`}
-        onChange={props.onChange}
+        className="input-form-toggle"
+        onChange={onChange}
       />
-      <label className="toggle-switch" htmlFor={props.id} />
+      <label className={`toggle-switch ${className}`} htmlFor={id} />
     </>
   );
 };
