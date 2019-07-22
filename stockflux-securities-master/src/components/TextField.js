@@ -15,9 +15,7 @@ const TextField = ({ readOnly, className, ...props }) => {
 };
 
 TextField.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
   readOnly: PropTypes.bool,
   className: PropTypes.string
 };
