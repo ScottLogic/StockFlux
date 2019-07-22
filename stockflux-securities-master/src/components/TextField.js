@@ -1,16 +1,15 @@
 import React from "react";
 import "./TextField.css";
 
-const TextField = ({ value, id, onChange, readOnly, className }) => {
+const TextField = props => {
   return (
     <input
-      value={value}
-      id={id}
-      readOnly={readOnly}
+      {...props}
       className={
-        "input-form-input" + (readOnly ? " read-only" : "") + ` ${className}`
+        "input-form-input" +
+        (props.readOnly ? " read-only" : "") +
+        ` ${props.className}`
       }
-      onChange={onChange}
     />
   );
 };
