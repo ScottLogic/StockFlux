@@ -33,13 +33,12 @@ export async function postSecurity(security) {
       body: JSON.stringify(security)
     }
   );
-  if (response.status === 201) {
-    const responseJSON = await response.json();
-    return responseJSON;
-  } else if (response.status === 400) {
+  if (response.status >= 200 && response.status <= 299) {
+    return await response.json();
+  } else if (response.status >= 400 && response.status <= 499) {
     const responseJSON = await response.json();
     throw new Error(responseJSON.messages);
-  } else if (response.status === 500) {
+  } else if (response.status >= 500) {
     throw new Error("Something went wrong, please try again later");
   } else {
     throw new Error("Unknown error occured, please try again later");
