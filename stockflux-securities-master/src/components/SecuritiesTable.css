@@ -76,7 +76,7 @@
   border-left: 1px solid var(--clr-divider-light);
 }
 
-.securities-error-message,
+.securities-error-message-container,
 .spinner-container,
 .no-securities-container {
   display: flex;

@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 400px;
+  margin-top: var(--margin-large);
 }
 
 .input-form-body {
@@ -46,7 +46,7 @@
 .input-submit-button-container {
   display: flex;
   justify-content: center;
-  margin-top: var(--margin-medium);
+  margin: var(--margin-medium) 0 var(--margin-large) 0;
 }
 
 .input-submit-button > button {
@@ -74,6 +74,11 @@
 
 .input-submit-button > button:focus {
   outline: none;
+}
+
+.security-sending-message-container {
+  display: flex;
+  justify-content: center;
 }
 
 .back-button {

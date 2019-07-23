@@ -1,0 +1,9 @@
+.securities-success-message {
+  color: greenyellow;
+  font-size: var(--font-xxxlarge);
+}
+
+.securities-error-message {
+  color: red;
+  font-size: var(--font-xxxlarge);
+}

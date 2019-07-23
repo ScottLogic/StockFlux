@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import Components from "stockflux-components";
 import { Link } from "react-router-dom";
 import "./InputForm.css";
-import { getSecurity } from "../services/SecuritiesService";
-import ErrorMessage from "./ErrorMessage";
+import { getSecurity, postSecurity } from "../services/SecuritiesService";
+import Message from "./Message";
 import TextField from "./TextField";
 import ToggleSwitch from "./ToggleSwitch";
 
@@ -16,6 +16,8 @@ const InputForm = ({ match }) => {
   const [inProgress, setInProgress] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [sendingMessages, setSendingMessages] = useState([]);
+  const [sendingSuccess, setSendingSuccess] = useState(true);
 
   const setSecurityState = security => {
     setName(security.name);
@@ -36,6 +38,7 @@ const InputForm = ({ match }) => {
         })
         .catch(() => {
           setIsLoading(false);
+          setSendingSuccess(false);
           setErrorMessage("Error, cannot get security");
         });
     }
@@ -44,19 +47,32 @@ const InputForm = ({ match }) => {
   const submitForm = event => {
     event.preventDefault();
     setInProgress(true);
-
     const securityObject = {
-      name,
       exchange,
       symbol,
+      name,
       visible,
       enabled
     };
 
-    // call service
+    postSecurity(securityObject)
+      .then(() => {
+        setSendingSuccess(true);
+        setSendingMessages(["Security was successfully created"]);
+        setSecurityState({
+          exchange: "",
+          symbol: "",
+          name: "",
+          visible: false,
+          enabled: false
+        });
+      })
+      .catch(err => {
+        setSendingSuccess(false);
+        setSendingMessages(err.message.split(".,"));
+      });
 
     setInProgress(false);
-    console.log(securityObject);
   };
 
   return (
@@ -64,10 +80,11 @@ const InputForm = ({ match }) => {
       <div className="input-form-title">
         {match.params.securityId ? "Edit Security" : "Create a Security"}
       </div>
+
       {isLoading ? (
         <Components.LargeSpinner />
       ) : errorMessage ? (
-        <ErrorMessage errorMessage={errorMessage} />
+        <Message message={errorMessage} type="error" />
       ) : (
         <form className="input-form-body" onSubmit={submitForm}>
           <div className="input-row">
@@ -133,6 +150,18 @@ const InputForm = ({ match }) => {
           </div>
         </form>
       )}
+      <ul>
+        {sendingMessages.map(message => {
+          return (
+            <li>
+              <Message
+                message={inProgress ? "In Progress" : message}
+                type={sendingSuccess ? "success" : "error"}
+              />
+            </li>
+          );
+        })}
+      </ul>
 
       <Link to="/">
         <div className="back-button">
