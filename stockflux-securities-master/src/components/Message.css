@@ -1,9 +1,11 @@
-.securities-success-message {
-  color: greenyellow;
+.securities-message {
   font-size: var(--font-xxxlarge);
 }
 
-.securities-error-message {
+.error {
   color: red;
-  font-size: var(--font-xxxlarge);
+}
+
+.success {
+  color: greenyellow;
 }
