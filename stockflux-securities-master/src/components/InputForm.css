@@ -76,11 +76,6 @@
   outline: none;
 }
 
-.security-sending-message-container {
-  display: flex;
-  justify-content: center;
-}
-
 .back-button {
   position: fixed;
   top: 30px;
