@@ -1,11 +1,16 @@
-.securities-message {
-  font-size: var(--font-xxxlarge);
+.securities-alert-container {
+  margin: var(--margin-medium);
 }
 
-.error {
+.securities-alert {
+  font-size: var(--font-xxxlarge);
+  margin: var(--margin-small);
+}
+
+.securities-alert.error {
   color: red;
 }
 
-.success {
+.securities-alert.success {
   color: greenyellow;
 }

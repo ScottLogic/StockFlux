@@ -156,11 +156,9 @@ const InputForm = ({ match }) => {
           </div>
         </form>
       )}
-      <ul>
-        {messages.content && !inProgress && (
-          <Alert type={messages.type} messages={messages.content} />
-        )}
-      </ul>
+      {messages.content && !inProgress && (
+        <Alert type={messages.type} messages={messages.content} />
+      )}
 
       <Link to="/">
         <div className="back-button">

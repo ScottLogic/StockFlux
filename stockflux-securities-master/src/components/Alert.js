@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Alert.css";
 
-const Alert = ({ messages, type }) => {
+const Alert = ({ messages, type, className }) => {
   const [messagesArray, setMessagesArray] = useState([]);
 
   useEffect(() => {
@@ -11,11 +11,11 @@ const Alert = ({ messages, type }) => {
   }, []);
 
   return (
-    <ul>
+    <ul className={`securities-alert-container ${className}`}>
       {messagesArray.map((message, index) => {
         return (
-          <li key={index}>
-            <div className={`securities-message ${type}`}>{message}</div>
+          <li className={`securities-alert ${type}`} key={index}>
+            {message}
           </li>
         );
       })}
