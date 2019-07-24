@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import Components from "stockflux-components";
 import { Link } from "react-router-dom";
 import "./InputForm.css";
-import { getSecurity, postSecurity } from "../services/SecuritiesService";
+import {
+  getSecurity,
+  postSecurity,
+  ValidationError
+} from "../services/SecuritiesService";
 import Message from "./Message";
 import TextField from "./TextField";
 import ToggleSwitch from "./ToggleSwitch";
@@ -15,9 +19,7 @@ const InputForm = ({ match }) => {
   const [enabled, setEnabled] = useState(false);
   const [inProgress, setInProgress] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [sendingMessages, setSendingMessages] = useState([]);
-  const [sendingSuccess, setSendingSuccess] = useState(true);
+  const [messages, setMessages] = useState({ type: "success", content: null });
 
   const setSecurityState = security => {
     setName(security.name);
@@ -33,13 +35,15 @@ const InputForm = ({ match }) => {
       getSecurity(match.params.securityId)
         .then(security => {
           setIsLoading(false);
-          setErrorMessage(null);
+          setMessages({ type: "success", content: null });
           setSecurityState(security);
         })
         .catch(() => {
           setIsLoading(false);
-          setSendingSuccess(false);
-          setErrorMessage("Error, cannot get security");
+          setMessages({
+            type: "error",
+            content: ["Error, cannot get security"]
+          });
         });
     }
   }, []);
@@ -56,35 +60,28 @@ const InputForm = ({ match }) => {
     };
 
     postSecurity(securityObject)
-      .then(response => {
-        console.log(response);
-
-        if (response.status >= 200 && response.status <= 299) {
-          setSendingSuccess(true);
-          setSendingMessages(["Security was successfully created"]);
-          setSecurityState({
-            exchange: "",
-            symbol: "",
-            name: "",
-            visible: false,
-            enabled: false
-          });
-        } else if (response.status >= 400 && response.status <= 499) {
-          setSendingSuccess(false);
-          setSendingMessages(response.messages);
-        } else if (response.status >= 500) {
-          throw new Error("Something went wrong, please try again later");
-        } else {
-          throw new Error("Unknown error occured, please try again later");
-        }
+      .then(() => {
+        setMessages({
+          type: "success",
+          content: ["Security was successfully created"]
+        });
+        setSecurityState({
+          exchange: "",
+          symbol: "",
+          name: "",
+          visible: false,
+          enabled: false
+        });
+        setInProgress(false);
       })
-
       .catch(err => {
-        setSendingSuccess(false);
-        setSendingMessages(err.message.split(".,"));
+        if (err instanceof ValidationError) {
+          setMessages({ type: "error", content: err.messages });
+        } else {
+          setMessages({ type: "error", content: err.message });
+        }
+        setInProgress(false);
       });
-
-    setInProgress(false);
   };
 
   return (
@@ -92,11 +89,8 @@ const InputForm = ({ match }) => {
       <div className="input-form-title">
         {match.params.securityId ? "Edit Security" : "Create a Security"}
       </div>
-
       {isLoading ? (
         <Components.LargeSpinner />
-      ) : errorMessage ? (
-        <Message message={errorMessage} type="error" />
       ) : (
         <form className="input-form-body" onSubmit={submitForm}>
           <div className="input-row">
@@ -163,16 +157,15 @@ const InputForm = ({ match }) => {
         </form>
       )}
       <ul>
-        {sendingMessages.map(message => {
-          return (
-            <li>
-              <Message
-                message={inProgress ? "In Progress" : message}
-                type={sendingSuccess ? "success" : "error"}
-              />
-            </li>
-          );
-        })}
+        {messages.content &&
+          !inProgress &&
+          messages.content.map((message, index) => {
+            return (
+              <li key={index}>
+                <Message message={message} type={messages.type} />
+              </li>
+            );
+          })}
       </ul>
 
       <Link to="/">

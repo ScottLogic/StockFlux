@@ -22,19 +22,30 @@ export async function getSecurity(securityId) {
 }
 
 export async function postSecurity(security) {
+  const fetchOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(security)
+  };
+
   const options = await getWindowOptions();
   const response = await fetch(
     `${options.customData.apiBaseUrl}/securities-v2`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(security)
-    }
+    fetchOptions
   );
+  const json = await response.json();
 
-  const responseJSON = await response.json();
-  const responseObject = { ...responseJSON, status: response.status };
-  return responseObject;
+  if (response.ok) {
+    return json;
+  }
+  throw new ValidationError(json.messages);
+}
+
+export class ValidationError extends Error {
+  constructor(messages) {
+    super("Validation failed");
+    this.messages = messages;
+  }
 }
