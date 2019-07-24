@@ -17,9 +17,8 @@ const InputForm = ({ match }) => {
   const [symbol, setSymbol] = useState("");
   const [visible, setVisible] = useState(false);
   const [enabled, setEnabled] = useState(false);
-  const [inProgress, setInProgress] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [messages, setMessages] = useState({ type: "success", content: null });
+  const [contextOrState, setContextOrState] = useState(null);
+  const [messages, setMessages] = useState(null);
 
   const setSecurityState = security => {
     setName(security.name);
@@ -31,26 +30,22 @@ const InputForm = ({ match }) => {
 
   useEffect(() => {
     if (match.params.securityId) {
-      setIsLoading(true);
+      setContextOrState("loading");
       getSecurity(match.params.securityId)
         .then(security => {
-          setIsLoading(false);
-          setMessages({ type: "success", content: null });
+          setContextOrState(null);
           setSecurityState(security);
         })
         .catch(() => {
-          setIsLoading(false);
-          setMessages({
-            type: "error",
-            content: ["Error, cannot get security"]
-          });
+          setContextOrState("error");
+          setMessages(["Error, cannot get security"]);
         });
     }
   }, []);
 
   const submitForm = event => {
     event.preventDefault();
-    setInProgress(true);
+    setContextOrState("sending");
     const securityObject = {
       exchange,
       symbol,
@@ -61,10 +56,8 @@ const InputForm = ({ match }) => {
 
     postSecurity(securityObject)
       .then(() => {
-        setMessages({
-          type: "success",
-          content: ["Security was successfully created"]
-        });
+        setMessages(["Security was successfully created"]);
+        setContextOrState("success");
         setSecurityState({
           exchange: "",
           symbol: "",
@@ -72,15 +65,15 @@ const InputForm = ({ match }) => {
           visible: false,
           enabled: false
         });
-        setInProgress(false);
+        setContextOrState("success");
       })
       .catch(err => {
         if (err instanceof ValidationError) {
-          setMessages({ type: "error", content: err.messages });
+          setMessages(err.messages);
         } else {
-          setMessages({ type: "error", content: err.message });
+          setMessages(err.message);
         }
-        setInProgress(false);
+        setContextOrState("error");
       });
   };
 
@@ -89,7 +82,7 @@ const InputForm = ({ match }) => {
       <div className="input-form-title">
         {match.params.securityId ? "Edit Security" : "Create a Security"}
       </div>
-      {isLoading ? (
+      {contextOrState === "loading" ? (
         <Components.LargeSpinner />
       ) : (
         <form className="input-form-body" onSubmit={submitForm}>
@@ -148,7 +141,8 @@ const InputForm = ({ match }) => {
           <div className="input-submit-button-container">
             <div
               className={
-                (inProgress ? "in-progress " : "") + "input-submit-button"
+                (contextOrState === "sending" ? "in-progress " : "") +
+                "input-submit-button"
               }
             >
               <button>{match.params.securityId ? "Edit" : "Create"}</button>
@@ -156,8 +150,8 @@ const InputForm = ({ match }) => {
           </div>
         </form>
       )}
-      {messages.content && !inProgress && (
-        <Alert type={messages.type} messages={messages.content} />
+      {!!messages && contextOrState !== "sending" && (
+        <Alert type={contextOrState} messages={messages} />
       )}
 
       <Link to="/">
