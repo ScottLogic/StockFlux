@@ -20,6 +20,13 @@ const InputForm = ({ match }) => {
   const [contextOrState, setContextOrState] = useState(null);
   const [messages, setMessages] = useState(null);
 
+  const stateEnum = {
+    loading: "loading",
+    sending: "sending",
+    error: "error",
+    success: "success"
+  };
+
   const setSecurityState = security => {
     setName(security.name);
     setExchange(security.exchange);
@@ -30,14 +37,14 @@ const InputForm = ({ match }) => {
 
   useEffect(() => {
     if (match.params.securityId) {
-      setContextOrState("loading");
+      setContextOrState(stateEnum.loading);
       getSecurity(match.params.securityId)
         .then(security => {
           setContextOrState(null);
           setSecurityState(security);
         })
         .catch(() => {
-          setContextOrState("error");
+          setContextOrState(stateEnum.error);
           setMessages(["Error, cannot get security"]);
         });
     }
@@ -45,7 +52,7 @@ const InputForm = ({ match }) => {
 
   const submitForm = event => {
     event.preventDefault();
-    setContextOrState("sending");
+    setContextOrState(stateEnum.sending);
     const securityObject = {
       exchange,
       symbol,
@@ -57,7 +64,7 @@ const InputForm = ({ match }) => {
     postSecurity(securityObject)
       .then(() => {
         setMessages(["Security was successfully created"]);
-        setContextOrState("success");
+        setContextOrState(stateEnum.success);
         setSecurityState({
           exchange: "",
           symbol: "",
@@ -65,7 +72,7 @@ const InputForm = ({ match }) => {
           visible: false,
           enabled: false
         });
-        setContextOrState("success");
+        setContextOrState(stateEnum.success);
       })
       .catch(err => {
         if (err instanceof ValidationError) {
@@ -73,7 +80,7 @@ const InputForm = ({ match }) => {
         } else {
           setMessages(err.message);
         }
-        setContextOrState("error");
+        setContextOrState(stateEnum.error);
       });
   };
 
@@ -82,7 +89,7 @@ const InputForm = ({ match }) => {
       <div className="input-form-title">
         {match.params.securityId ? "Edit Security" : "Create a Security"}
       </div>
-      {contextOrState === "loading" ? (
+      {contextOrState === stateEnum.loading ? (
         <Components.LargeSpinner />
       ) : (
         <form className="input-form-body" onSubmit={submitForm}>
@@ -141,7 +148,7 @@ const InputForm = ({ match }) => {
           <div className="input-submit-button-container">
             <div
               className={
-                (contextOrState === "sending" ? "in-progress " : "") +
+                (contextOrState === stateEnum.sending ? "in-progress " : "") +
                 "input-submit-button"
               }
             >
@@ -150,7 +157,7 @@ const InputForm = ({ match }) => {
           </div>
         </form>
       )}
-      {!!messages && contextOrState !== "sending" && (
+      {!!messages && contextOrState !== stateEnum.sending && (
         <Alert type={contextOrState} messages={messages} />
       )}
 
