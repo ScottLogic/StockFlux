@@ -56,17 +56,29 @@ const InputForm = ({ match }) => {
     };
 
     postSecurity(securityObject)
-      .then(() => {
-        setSendingSuccess(true);
-        setSendingMessages(["Security was successfully created"]);
-        setSecurityState({
-          exchange: "",
-          symbol: "",
-          name: "",
-          visible: false,
-          enabled: false
-        });
+      .then(response => {
+        console.log(response);
+
+        if (response.status >= 200 && response.status <= 299) {
+          setSendingSuccess(true);
+          setSendingMessages(["Security was successfully created"]);
+          setSecurityState({
+            exchange: "",
+            symbol: "",
+            name: "",
+            visible: false,
+            enabled: false
+          });
+        } else if (response.status >= 400 && response.status <= 499) {
+          setSendingSuccess(false);
+          setSendingMessages(response.messages);
+        } else if (response.status >= 500) {
+          throw new Error("Something went wrong, please try again later");
+        } else {
+          throw new Error("Unknown error occured, please try again later");
+        }
       })
+
       .catch(err => {
         setSendingSuccess(false);
         setSendingMessages(err.message.split(".,"));
