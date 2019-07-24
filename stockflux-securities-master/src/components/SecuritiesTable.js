@@ -48,7 +48,7 @@ const SecuritiesTable = () => {
           <Components.LargeSpinner />
         </div>
       ) : errorMessage ? (
-        <div className="securities-error-message-container">
+        <div className="securities-message-container">
           <Alert messages={errorMessage} type="error" />
         </div>
       ) : (
