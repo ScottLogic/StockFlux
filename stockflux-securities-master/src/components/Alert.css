@@ -8,9 +8,9 @@
 }
 
 .securities-alert.error {
-  color: red;
+  color: var(--error-red);
 }
 
 .securities-alert.success {
-  color: greenyellow;
+  color: var(--success-green);
 }

@@ -9,7 +9,7 @@ import Alert from "./Alert";
 const SecuritiesTable = () => {
   const [securitiesData, setSecuritiesData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState([null]);
   const timeoutMessage =
     "Error, unable to get securities data. Please try again!";
 
@@ -23,7 +23,7 @@ const SecuritiesTable = () => {
       })
       .catch(() => {
         setIsLoading(false);
-        setErrorMessage(timeoutMessage);
+        setErrorMessage([timeoutMessage]);
       });
   }, []);
 
