@@ -7,7 +7,7 @@ import {
   postSecurity,
   ValidationError
 } from "../services/SecuritiesService";
-import Message from "./Message";
+import Alert from "./Alert";
 import TextField from "./TextField";
 import ToggleSwitch from "./ToggleSwitch";
 
@@ -157,15 +157,9 @@ const InputForm = ({ match }) => {
         </form>
       )}
       <ul>
-        {messages.content &&
-          !inProgress &&
-          messages.content.map((message, index) => {
-            return (
-              <li key={index}>
-                <Message message={message} type={messages.type} />
-              </li>
-            );
-          })}
+        {messages.content && !inProgress && (
+          <Alert type={messages.type} messages={messages.content} />
+        )}
       </ul>
 
       <Link to="/">

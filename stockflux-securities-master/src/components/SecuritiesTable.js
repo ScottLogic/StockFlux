@@ -4,7 +4,7 @@ import "./SecuritiesTable.css";
 import { Link } from "react-router-dom";
 import { getSecuritiesData } from "../services/SecuritiesService";
 import AddSecurityButton from "./AddSecurityButton";
-import Message from "./Message";
+import Alert from "./Alert";
 
 const SecuritiesTable = () => {
   const [securitiesData, setSecuritiesData] = useState([]);
@@ -49,7 +49,7 @@ const SecuritiesTable = () => {
         </div>
       ) : errorMessage ? (
         <div className="securities-error-message-container">
-          <Message message={errorMessage} type="error" />
+          <Alert messages={errorMessage} type="error" />
         </div>
       ) : (
         <div className="table-body">
