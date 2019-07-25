@@ -21,7 +21,7 @@ Alert.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
   ]).isRequired,
-  type: PropTypes.oneOf(["error", "success"]),
+  type: PropTypes.oneOf(["error", "success"]).isRequired,
   className: PropTypes.string
 };
 

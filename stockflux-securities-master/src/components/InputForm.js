@@ -158,9 +158,11 @@ const InputForm = ({ match }) => {
           </div>
         </form>
       )}
-      {!!messages && formState !== stateEnum.sending && (
-        <Alert type={formState} messages={messages} />
-      )}
+      {!!messages &&
+        formState !== stateEnum.sending &&
+        (formState === stateEnum.error || formState === stateEnum.success) && (
+          <Alert type={formState} messages={messages} />
+        )}
 
       <Link to="/">
         <div className="back-button">
