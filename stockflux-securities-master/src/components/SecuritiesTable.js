@@ -9,7 +9,7 @@ import Alert from "./Alert";
 const SecuritiesTable = () => {
   const [securitiesData, setSecuritiesData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [errorMessages, setErrorMessages] = useState(null);
+  const [errorMessages, setErrorMessages] = useState([]);
   const timeoutMessage =
     "Error, unable to get securities data. Please try again!";
 
@@ -19,7 +19,7 @@ const SecuritiesTable = () => {
       .then(securities => {
         setIsLoading(false);
         setSecuritiesData(securities);
-        setErrorMessages(null);
+        setErrorMessages([]);
       })
       .catch(() => {
         setIsLoading(false);
@@ -32,7 +32,7 @@ const SecuritiesTable = () => {
       <div className="securities-title-container">
         <div className="securities-title">Securities</div>
         <div className="add-securities-button-above-table">
-          {securitiesData.length > 0 && !errorMessages && (
+          {securitiesData.length > 0 && errorMessages.length === 0 && (
             <AddSecurityButton size="small" />
           )}
         </div>
@@ -47,7 +47,7 @@ const SecuritiesTable = () => {
         <div className="spinner-container">
           <Components.LargeSpinner />
         </div>
-      ) : errorMessages ? (
+      ) : errorMessages.length > 0 ? (
         <div className="securities-message-container">
           <Alert messages={errorMessages} type="error" />
         </div>
