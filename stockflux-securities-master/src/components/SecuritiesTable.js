@@ -29,7 +29,6 @@ const SecuritiesTable = () => {
 
   return (
     <div className="securities-container">
-      {console.log("securities data: ", securitiesData)}
       <div className="securities-title-container">
         <div className="securities-title">Securities</div>
         <div className="add-securities-button-above-table">
