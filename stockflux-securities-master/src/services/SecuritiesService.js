@@ -60,7 +60,7 @@ export async function updateSecurity(securityId, security) {
   };
   const options = await getWindowOptions();
   const response = await fetch(
-    `${options.customData.apiBaseUrl}/securities-vs${securityId}`,
+    `${options.customData.apiBaseUrl}/securities-vs/${securityId}`,
     fetchOptions
   );
   const json = await response.json;
