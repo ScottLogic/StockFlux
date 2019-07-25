@@ -18,7 +18,7 @@ const InputForm = ({ match }) => {
   const [visible, setVisible] = useState(false);
   const [enabled, setEnabled] = useState(false);
   const [contextOrState, setContextOrState] = useState(null);
-  const [messages, setMessages] = useState(null);
+  const [messages, setMessages] = useState([]);
 
   const stateEnum = {
     loading: "loading",
@@ -42,6 +42,7 @@ const InputForm = ({ match }) => {
         .then(security => {
           setContextOrState(null);
           setSecurityState(security);
+          setMessages([]);
         })
         .catch(() => {
           setContextOrState(stateEnum.error);
@@ -78,7 +79,7 @@ const InputForm = ({ match }) => {
         if (err instanceof ValidationError) {
           setMessages(err.messages);
         } else {
-          setMessages(err.message);
+          setMessages([err.message]);
         }
         setContextOrState(stateEnum.error);
       });
