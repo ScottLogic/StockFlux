@@ -32,7 +32,7 @@ const SecuritiesTable = () => {
       <div className="securities-title-container">
         <div className="securities-title">Securities</div>
         <div className="add-securities-button-above-table">
-          {securitiesData.length > 0 && !errorMessages && (
+          {securitiesData.length > 0 && errorMessages.length === 0 && (
             <AddSecurityButton size="small" />
           )}
         </div>
@@ -47,7 +47,7 @@ const SecuritiesTable = () => {
         <div className="spinner-container">
           <Components.LargeSpinner />
         </div>
-      ) : errorMessages ? (
+      ) : errorMessages.length > 0 ? (
         <div className="securities-message-container">
           <Alert messages={errorMessages} type="error" />
         </div>
