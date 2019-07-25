@@ -5,6 +5,7 @@ import "./InputForm.css";
 import {
   getSecurity,
   postSecurity,
+  updateSecurity,
   ValidationError
 } from "../services/SecuritiesService";
 import Alert from "./Alert";
@@ -63,26 +64,42 @@ const InputForm = ({ match }) => {
       enabled
     };
 
-    postSecurity(securityObject)
-      .then(() => {
-        setMessages(["Security was successfully created"]);
-        setFormState(stateEnum.success);
-        setSecurityState({
-          exchange: "",
-          symbol: "",
-          name: "",
-          visible: false,
-          enabled: false
+    if (match.params.securityId) {
+      updateSecurity(match.params.securityId)
+        .then(() => {
+          setMessages(["Security was successfully updated"]);
+          setFormState(stateEnum.success);
+        })
+        .catch(err => {
+          if (err instanceof ValidationError) {
+            setMessages(err.messages);
+          } else {
+            setMessages([err.message]);
+          }
+          setFormState(stateEnum.error);
         });
-      })
-      .catch(err => {
-        if (err instanceof ValidationError) {
-          setMessages(err.messages);
-        } else {
-          setMessages([err.message]);
-        }
-        setFormState(stateEnum.error);
-      });
+    } else {
+      postSecurity(securityObject)
+        .then(() => {
+          setMessages(["Security was successfully created"]);
+          setFormState(stateEnum.success);
+          setSecurityState({
+            exchange: "",
+            symbol: "",
+            name: "",
+            visible: false,
+            enabled: false
+          });
+        })
+        .catch(err => {
+          if (err instanceof ValidationError) {
+            setMessages(err.messages);
+          } else {
+            setMessages([err.message]);
+          }
+          setFormState(stateEnum.error);
+        });
+    }
   };
 
   return (

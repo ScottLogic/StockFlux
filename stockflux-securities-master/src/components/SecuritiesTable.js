@@ -9,7 +9,7 @@ import Alert from "./Alert";
 const SecuritiesTable = () => {
   const [securitiesData, setSecuritiesData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [errorMessages, setErrorMessages] = useState([]);
+  const [errorMessages, setErrorMessages] = useState(null);
   const timeoutMessage =
     "Error, unable to get securities data. Please try again!";
 
@@ -19,7 +19,7 @@ const SecuritiesTable = () => {
       .then(securities => {
         setIsLoading(false);
         setSecuritiesData(securities);
-        setErrorMessages([]);
+        setErrorMessages(null);
       })
       .catch(() => {
         setIsLoading(false);
@@ -29,6 +29,7 @@ const SecuritiesTable = () => {
 
   return (
     <div className="securities-container">
+      {console.log("securities data: ", securitiesData)}
       <div className="securities-title-container">
         <div className="securities-title">Securities</div>
         <div className="add-securities-button-above-table">
