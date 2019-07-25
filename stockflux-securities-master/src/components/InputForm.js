@@ -17,7 +17,7 @@ const InputForm = ({ match }) => {
   const [symbol, setSymbol] = useState("");
   const [visible, setVisible] = useState(false);
   const [enabled, setEnabled] = useState(false);
-  const [contextOrState, setContextOrState] = useState(null);
+  const [formState, setFormState] = useState(null);
   const [messages, setMessages] = useState([]);
 
   const stateEnum = {
@@ -37,15 +37,15 @@ const InputForm = ({ match }) => {
 
   useEffect(() => {
     if (match.params.securityId) {
-      setContextOrState(stateEnum.loading);
+      setFormState(stateEnum.loading);
       getSecurity(match.params.securityId)
         .then(security => {
-          setContextOrState(null);
+          setFormState(null);
           setSecurityState(security);
           setMessages([]);
         })
         .catch(() => {
-          setContextOrState(stateEnum.error);
+          setFormState(stateEnum.error);
           setMessages(["Error, cannot get security"]);
         });
     }
@@ -53,7 +53,8 @@ const InputForm = ({ match }) => {
 
   const submitForm = event => {
     event.preventDefault();
-    setContextOrState(stateEnum.sending);
+    setFormState(stateEnum.sending);
+    setMessages([]);
     const securityObject = {
       exchange,
       symbol,
@@ -65,7 +66,7 @@ const InputForm = ({ match }) => {
     postSecurity(securityObject)
       .then(() => {
         setMessages(["Security was successfully created"]);
-        setContextOrState(stateEnum.success);
+        setFormState(stateEnum.success);
         setSecurityState({
           exchange: "",
           symbol: "",
@@ -80,7 +81,7 @@ const InputForm = ({ match }) => {
         } else {
           setMessages([err.message]);
         }
-        setContextOrState(stateEnum.error);
+        setFormState(stateEnum.error);
       });
   };
 
@@ -89,7 +90,7 @@ const InputForm = ({ match }) => {
       <div className="input-form-title">
         {match.params.securityId ? "Edit Security" : "Create a Security"}
       </div>
-      {contextOrState === stateEnum.loading ? (
+      {formState === stateEnum.loading ? (
         <Components.LargeSpinner />
       ) : (
         <form className="input-form-body" onSubmit={submitForm}>
@@ -148,7 +149,7 @@ const InputForm = ({ match }) => {
           <div className="input-submit-button-container">
             <div
               className={
-                (contextOrState === stateEnum.sending ? "in-progress " : "") +
+                (formState === stateEnum.sending ? "in-progress " : "") +
                 "input-submit-button"
               }
             >
@@ -157,8 +158,8 @@ const InputForm = ({ match }) => {
           </div>
         </form>
       )}
-      {!!messages && contextOrState !== stateEnum.sending && (
-        <Alert type={contextOrState} messages={messages} />
+      {!!messages && formState !== stateEnum.sending && (
+        <Alert type={formState} messages={messages} />
       )}
 
       <Link to="/">
