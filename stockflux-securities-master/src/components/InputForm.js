@@ -2,8 +2,12 @@ import React, { useState, useEffect } from "react";
 import Components from "stockflux-components";
 import { Link } from "react-router-dom";
 import "./InputForm.css";
-import { getSecurity } from "../services/SecuritiesService";
-import ErrorMessage from "./ErrorMessage";
+import {
+  getSecurity,
+  postSecurity,
+  ValidationError
+} from "../services/SecuritiesService";
+import Alert from "./Alert";
 import TextField from "./TextField";
 import ToggleSwitch from "./ToggleSwitch";
 
@@ -13,9 +17,15 @@ const InputForm = ({ match }) => {
   const [symbol, setSymbol] = useState("");
   const [visible, setVisible] = useState(false);
   const [enabled, setEnabled] = useState(false);
-  const [inProgress, setInProgress] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [formState, setFormState] = useState(null);
+  const [messages, setMessages] = useState([]);
+
+  const stateEnum = {
+    loading: "loading",
+    sending: "sending",
+    error: "error",
+    success: "success"
+  };
 
   const setSecurityState = security => {
     setName(security.name);
@@ -27,36 +37,52 @@ const InputForm = ({ match }) => {
 
   useEffect(() => {
     if (match.params.securityId) {
-      setIsLoading(true);
+      setFormState(stateEnum.loading);
       getSecurity(match.params.securityId)
         .then(security => {
-          setIsLoading(false);
-          setErrorMessage(null);
+          setFormState(null);
           setSecurityState(security);
+          setMessages([]);
         })
         .catch(() => {
-          setIsLoading(false);
-          setErrorMessage("Error, cannot get security");
+          setFormState(stateEnum.error);
+          setMessages(["Error, cannot get security"]);
         });
     }
   }, []);
 
   const submitForm = event => {
     event.preventDefault();
-    setInProgress(true);
-
+    setFormState(stateEnum.sending);
+    setMessages([]);
     const securityObject = {
-      name,
       exchange,
       symbol,
+      name,
       visible,
       enabled
     };
 
-    // call service
-
-    setInProgress(false);
-    console.log(securityObject);
+    postSecurity(securityObject)
+      .then(() => {
+        setMessages(["Security was successfully created"]);
+        setFormState(stateEnum.success);
+        setSecurityState({
+          exchange: "",
+          symbol: "",
+          name: "",
+          visible: false,
+          enabled: false
+        });
+      })
+      .catch(err => {
+        if (err instanceof ValidationError) {
+          setMessages(err.messages);
+        } else {
+          setMessages([err.message]);
+        }
+        setFormState(stateEnum.error);
+      });
   };
 
   return (
@@ -64,10 +90,8 @@ const InputForm = ({ match }) => {
       <div className="input-form-title">
         {match.params.securityId ? "Edit Security" : "Create a Security"}
       </div>
-      {isLoading ? (
+      {formState === stateEnum.loading ? (
         <Components.LargeSpinner />
-      ) : errorMessage ? (
-        <ErrorMessage errorMessage={errorMessage} />
       ) : (
         <form className="input-form-body" onSubmit={submitForm}>
           <div className="input-row">
@@ -125,7 +149,8 @@ const InputForm = ({ match }) => {
           <div className="input-submit-button-container">
             <div
               className={
-                (inProgress ? "in-progress " : "") + "input-submit-button"
+                (formState === stateEnum.sending ? "in-progress " : "") +
+                "input-submit-button"
               }
             >
               <button>{match.params.securityId ? "Edit" : "Create"}</button>
@@ -133,6 +158,10 @@ const InputForm = ({ match }) => {
           </div>
         </form>
       )}
+      {!!messages &&
+        (formState === stateEnum.error || formState === stateEnum.success) && (
+          <Alert type={formState} messages={messages} />
+        )}
 
       <Link to="/">
         <div className="back-button">
