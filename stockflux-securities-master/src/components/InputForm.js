@@ -159,7 +159,6 @@ const InputForm = ({ match }) => {
         </form>
       )}
       {!!messages &&
-        formState !== stateEnum.sending &&
         (formState === stateEnum.error || formState === stateEnum.success) && (
           <Alert type={formState} messages={messages} />
         )}
