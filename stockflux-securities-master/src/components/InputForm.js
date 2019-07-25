@@ -73,7 +73,6 @@ const InputForm = ({ match }) => {
           visible: false,
           enabled: false
         });
-        setContextOrState(stateEnum.success);
       })
       .catch(err => {
         if (err instanceof ValidationError) {
