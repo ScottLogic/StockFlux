@@ -35,7 +35,7 @@ export default () => {
              (e.g. "news", "watchlist", "chart"), capitalizing the first letter and
              appending "Shortcut" at the end
           */
-          const ShortcutButton =
+          const AppShortcut =
             Components[
               app.appId
                 .split('stockflux-')[1]
@@ -44,7 +44,7 @@ export default () => {
                 app.appId.slice(11) +
                 'Shortcut'
             ];
-          return <ShortcutButton key={app.appId} app={app} />;
+          return <AppShortcut key={app.appId} app={app} />;
         })}
     </div>
   );
