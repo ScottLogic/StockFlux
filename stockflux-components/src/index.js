@@ -24,4 +24,5 @@ export default {
   Watchlist,
   WatchlistShortcut,
   ChartShortcut,
+  NewsShortcut
 };

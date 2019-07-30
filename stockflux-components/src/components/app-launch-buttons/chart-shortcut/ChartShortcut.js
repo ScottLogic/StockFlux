@@ -8,8 +8,8 @@ const ChartShortcut = ({ symbol, name }) => {
     <div
       className="app-shortcut"
       onClick={() => {
-        if (symbol && name) Intents.viewNews(symbol, name);
-        else Intents.viewNews();
+        if (symbol && name) Intents.viewChart(symbol, name);
+        else Intents.viewChart();
       }}
     >
       <ChartIcon />
