@@ -5,6 +5,7 @@ import News from './components/icons/news.svg';
 import Chart from './components/icons/chart.svg';
 import Watchlist from './components/icons/watchlist.svg';
 import WatchlistShortcut from './components/app-launch-buttons/watchlist-shortcut/WatchlistShortcut';
+import ChartShortcut from './components/app-launch-buttons/chart-shortcut/ChartShortcut';
 
 import './styles/button-icon.css';
 import './styles/icon.css';
@@ -20,5 +21,6 @@ export default {
   News,
   Chart,
   Watchlist,
-  WatchlistShortcut
+  WatchlistShortcut,
+  ChartShortcut,
 };
