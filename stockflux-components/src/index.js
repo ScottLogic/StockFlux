@@ -4,6 +4,7 @@ import { Spinner, LargeSpinner } from './components/spinner/Spinner';
 import News from './components/icons/news.svg';
 import Chart from './components/icons/chart.svg';
 import Watchlist from './components/icons/watchlist.svg';
+import WatchlistShortcut from './components/app-launch-buttons/watchlist-shortcut/WatchlistShortcut';
 
 import './styles/button-icon.css';
 import './styles/icon.css';
@@ -18,5 +19,6 @@ export default {
   LargeSpinner,
   News,
   Chart,
-  Watchlist
+  Watchlist,
+  WatchlistShortcut
 };
