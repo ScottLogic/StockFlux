@@ -3,12 +3,14 @@ import { Intents } from 'stockflux-core';
 import WatchlistIcon from '../../icons/watchlist.svg';
 import '../AppShortcut.css';
 
-const WatchlistShortcut = () => {
+const WatchlistShortcut = ({ symbol, name }) => {
   return (
     <div
-      className="app-shortcut"
+      className="app-shortcut watchlist-shortcut"
       onClick={() => {
-        Intents.viewWatchlist();
+        symbol && name
+          ? Intents.addToWatchlist(symbol, name)
+          : Intents.viewWatchlist();
       }}
     >
       <WatchlistIcon />
