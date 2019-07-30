@@ -3,7 +3,10 @@ import Chart from './components/Chart';
 import Components from 'stockflux-components';
 import { StockFluxHooks } from 'stockflux-core';
 import { FaSyncAlt } from 'react-icons/fa';
-import { useInterApplicationBusSubscribe, useOptions } from 'openfin-react-hooks';
+import {
+  useInterApplicationBusSubscribe,
+  useOptions
+} from 'openfin-react-hooks';
 import bitflux from 'stockflux-bitflux/dist/bitflux';
 
 import './styles/app.css';
@@ -65,7 +68,7 @@ const App = () => {
               <div
                 className={'chart-nav-icon' + (symbol ? '' : ' icon-disabled')}
               >
-                <Components.WatchlistShortcut />
+                <Components.WatchlistShortcut symbol name />
               </div>
               <div
                 className={'chart-nav-icon' + (symbol ? '' : ' icon-disabled')}
