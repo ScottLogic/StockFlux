@@ -15,3 +15,21 @@
 .app-shortcuts > .app-shortcut:active {
   background-color: var(--middle-background-lighter);
 }
+
+.app-shortcut {
+  margin: 5px;
+  background: none;
+  color: var(--text-teal-light);
+  border: solid 1px var(--text-teal);
+  border-radius: 20px;
+  outline: none;
+  background-color: #1a212a;
+
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}

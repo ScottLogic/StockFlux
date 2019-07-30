@@ -6,10 +6,9 @@ import '../AppShortcut.css';
 const ChartShortcut = ({ symbol, name }) => {
   return (
     <div
-      className="app-shortcut"
+      className="app-shortcut chart-shortcut"
       onClick={() => {
-        if (symbol && name) Intents.viewChart(symbol, name);
-        else Intents.viewChart();
+        symbol && name ? Intents.viewChart(symbol, name) : Intents.viewChart();
       }}
     >
       <ChartIcon />

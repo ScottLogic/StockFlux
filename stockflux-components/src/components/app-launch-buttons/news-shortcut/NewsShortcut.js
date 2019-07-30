@@ -6,9 +6,9 @@ import '../AppShortcut.css';
 const NewsShortcut = ({ symbol, name }) => {
   return (
     <div
-      className="app-shortcut"
+      className="app-shortcut news-shortcut"
       onClick={() => {
-        Intents.viewNews(symbol, name);
+        symbol && name ? Intents.viewNews(symbol, name) : Intents.viewNews();
       }}
     >
       <NewsIcon />
