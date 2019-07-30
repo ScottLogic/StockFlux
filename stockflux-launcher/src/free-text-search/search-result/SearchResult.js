@@ -10,13 +10,13 @@ const SearchResult = ({ code, name }) => (
     <div className="subtitle">{code}</div>
     <div className="containerActions">
       <button type="button" className="buttonAction newsView">
-        <Components.NewsShortcut className="buttonIcon" />
+        <Components.NewsShortcut />
       </button>
       <button type="button" className="buttonAction watchlistAdd">
-        <Components.WatchlistShortcut className="buttonIcon" />
+        <Components.WatchlistShortcut />
       </button>
       <button type="button" className="buttonAction chartView">
-        <Components.ChartShortcut className="buttonIcon" />
+        <Components.ChartShortcut />
       </button>
     </div>
   </div>
