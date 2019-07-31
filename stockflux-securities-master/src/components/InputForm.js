@@ -13,20 +13,22 @@ import TextField from "./TextField";
 import ToggleSwitch from "./ToggleSwitch";
 
 const InputForm = ({ match }) => {
-  const [name, setName] = useState("");
-  const [exchange, setExchange] = useState("");
-  const [symbol, setSymbol] = useState("");
-  const [visible, setVisible] = useState(false);
-  const [enabled, setEnabled] = useState(false);
-  const [formState, setFormState] = useState(null);
-  const [messages, setMessages] = useState([]);
-
   const stateEnum = {
     loading: "loading",
     sending: "sending",
     error: "error",
     success: "success"
   };
+
+  const [name, setName] = useState("");
+  const [exchange, setExchange] = useState("");
+  const [symbol, setSymbol] = useState("");
+  const [visible, setVisible] = useState(false);
+  const [enabled, setEnabled] = useState(false);
+  const [formState, setFormState] = useState(
+    match.params.securityId ? stateEnum.loading : null
+  );
+  const [messages, setMessages] = useState([]);
 
   const setSecurityState = security => {
     setName(security.name);
