@@ -9,7 +9,7 @@
 .input-form-body {
   display: flex;
   flex-direction: column;
-  height: 300px;
+  height: var(--input-form-height);
 }
 
 .input-form-title {
@@ -21,7 +21,7 @@
 
 .input-form-spinner-container {
   display: flex;
-  height: 300px;
+  height: var(--input-form-height);
 }
 
 .input-checkbox-container,
