@@ -4,15 +4,19 @@ import PropTypes from "prop-types";
 
 const Alert = ({ messages, type, className }) => {
   return (
-    <ul className={`securities-alert-container ${className}`}>
-      {(Array.isArray(messages) ? messages : [messages]).map(
-        (message, index) => (
-          <li className={`securities-alert ${type}`} key={index}>
-            {message}
-          </li>
-        )
+    <div className={`securities-alert-container ${className}`}>
+      {Array.isArray(messages) && messages.length > 1 ? (
+        <ul>
+          {messages.map((message, index) => (
+            <li className={`securities-alert ${type}`} key={index}>
+              {message}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div className={`securities-alert ${type}`}>{messages}</div>
       )}
-    </ul>
+    </div>
   );
 };
 

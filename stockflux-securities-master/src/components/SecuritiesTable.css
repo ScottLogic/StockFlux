@@ -107,6 +107,7 @@
   border: none;
   background: none;
   color: var(--text-teal-light);
+  cursor: pointer;
 }
 
 .securities-edit-button > button:hover,

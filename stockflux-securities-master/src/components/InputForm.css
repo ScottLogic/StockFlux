@@ -60,6 +60,7 @@
   font-size: var(--font-xxlarge);
   height: 40px;
   width: 280px;
+  cursor: pointer;
 }
 
 .input-submit-button.in-progress > button {
@@ -94,6 +95,7 @@
   border-radius: 20px;
   height: 30px;
   width: 70px;
+  cursor: pointer;
 }
 
 .back-button > button:hover {
