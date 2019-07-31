@@ -5,9 +5,9 @@ import "./InputForm.css";
 import {
   getSecurity,
   postSecurity,
-  updateSecurity,
-  ValidationError
+  updateSecurity
 } from "../services/SecuritiesService";
+import ValidationError from "../services/ValidationError";
 import Alert from "./Alert";
 import TextField from "./TextField";
 import ToggleSwitch from "./ToggleSwitch";
@@ -172,7 +172,7 @@ const InputForm = ({ match }) => {
                 "input-submit-button"
               }
             >
-              <button>{match.params.securityId ? "Edit" : "Create"}</button>
+              <button>{match.params.securityId ? "Save" : "Create"}</button>
             </div>
           </div>
         </form>

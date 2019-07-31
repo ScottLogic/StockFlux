@@ -1,9 +1,4 @@
-export class ValidationError extends Error {
-  constructor(messages) {
-    super("Validation failed");
-    this.messages = messages;
-  }
-}
+import ValidationError from "./ValidationError";
 
 async function getWindowOptions() {
   const currentWindow = await window.fin.Window.getCurrent();
