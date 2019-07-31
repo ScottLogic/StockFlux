@@ -110,7 +110,9 @@ const InputForm = ({ match }) => {
         {match.params.securityId ? "Edit Security" : "Create a Security"}
       </div>
       {formState === stateEnum.loading ? (
-        <Components.LargeSpinner />
+        <div className="input-form-spinner-container">
+          <Components.LargeSpinner />
+        </div>
       ) : (
         <form className="input-form-body" onSubmit={submitForm}>
           <div className="input-row">
