@@ -65,7 +65,7 @@ const InputForm = ({ match }) => {
     };
 
     if (match.params.securityId) {
-      updateSecurity(match.params.securityId)
+      updateSecurity(match.params.securityId, securityObject)
         .then(() => {
           setMessages(["Security was successfully updated"]);
           setFormState(stateEnum.success);

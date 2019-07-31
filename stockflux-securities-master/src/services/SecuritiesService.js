@@ -1,3 +1,6 @@
+import { promises } from "dns";
+import { watchFile } from "fs";
+
 export class ValidationError extends Error {
   constructor(messages) {
     super("Validation failed");
@@ -60,10 +63,10 @@ export async function updateSecurity(securityId, security) {
   };
   const options = await getWindowOptions();
   const response = await fetch(
-    `${options.customData.apiBaseUrl}/securities-vs/${securityId}`,
+    `${options.customData.apiBaseUrl}/securities-v2/${securityId}`,
     fetchOptions
   );
-  const json = await response.json;
+  const json = await response.json();
   if (response.ok) {
     return json;
   }
