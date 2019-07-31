@@ -16,10 +16,7 @@ export default () => {
       .then(options => options.customData.apiBaseUrl)
       .then(baseUrl => fetch(`${baseUrl}/apps/v1`, options))
       .then(response => response.json())
-      .then(results => {
-        console.log('results', results);
-        setApps(results);
-      })
+      .then(results => setApps(results))
       .catch(console.error);
   }, []);
 
