@@ -7,6 +7,7 @@
   font-weight: var(--font-weight-bolder);
   border-radius: 25px;
   text-align: center;
+  cursor: pointer;
 }
 
 .add-security-button-small > button:hover,
