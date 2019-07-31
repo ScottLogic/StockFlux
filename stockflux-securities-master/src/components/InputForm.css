@@ -9,6 +9,7 @@
 .input-form-body {
   display: flex;
   flex-direction: column;
+  height: 300px;
 }
 
 .input-form-title {
@@ -16,6 +17,11 @@
   font-weight: var(--font-weight-bolder);
   margin-left: var(--margin-small);
   font-size: var(--font-xxxlarge);
+}
+
+.input-form-spinner-container {
+  display: flex;
+  height: 300px;
 }
 
 .input-checkbox-container,
