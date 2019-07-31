@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import Components from "stockflux-components";
 import "./SecuritiesTable.css";
 import { Link } from "react-router-dom";
-import { getSecuritiesData } from "../services/SecuritiesService";
+import {
+  getSecuritiesData,
+  deleteSecurity
+} from "../services/SecuritiesService";
 import AddSecurityButton from "./AddSecurityButton";
 import Alert from "./Alert";
 
@@ -71,7 +74,7 @@ const SecuritiesTable = () => {
                       </div>
                     </Link>
                     <div className="securities-delete-button">
-                      <button disabled>
+                      <button onCLick={() => deleteSecurity(item.securityId)}>
                         <span className="material-icons">delete</span>
                       </button>
                     </div>

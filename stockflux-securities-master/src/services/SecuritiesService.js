@@ -69,3 +69,19 @@ export async function updateSecurity(securityId, security) {
   }
   throw new ValidationError(json.messages);
 }
+
+export async function deleteSecurity(securityId) {
+  const fetchOptions = {
+    method: "DELETE"
+  };
+  const options = await getWindowOptions();
+  const response = await fetch(
+    `${options.customData.apiBaseUrl}/securities-v2/${securityId}`,
+    fetchOptions
+  );
+  const json = await response.json();
+  if (response.ok) {
+    return json;
+  }
+  throw new ValidationError(json.messages);
+}
