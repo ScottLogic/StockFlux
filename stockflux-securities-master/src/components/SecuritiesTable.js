@@ -10,7 +10,7 @@ import ValidationError from "../services/ValidationError";
 import AddSecurityButton from "./AddSecurityButton";
 import Alert from "./Alert";
 
-const SecuritiesTable = () => {
+const SecuritiesTable = ({ match }) => {
   const stateEnum = {
     loading: "loading",
     deleting: "deleting",
@@ -22,22 +22,51 @@ const SecuritiesTable = () => {
   const [messages, setMessages] = useState([]);
   const [tableState, setTableState] = useState(stateEnum.loading);
 
+  const errorHandler = err => {
+    setTableState(stateEnum.error);
+    if (err instanceof ValidationError) {
+      setMessages(err.messages);
+    } else {
+      setMessages([err.message]);
+    }
+  };
+
   useEffect(() => {
     setTableState(stateEnum.loading);
-    getSecuritiesData()
-      .then(securities => {
-        setSecuritiesData(securities);
-        setTableState(stateEnum.success);
-        setMessages([]);
-      })
-      .catch(err => {
-        setTableState(stateEnum.error);
-        if (err instanceof ValidationError) {
-          setMessages(err.messages);
-        } else {
-          setMessages([err.message]);
-        }
-      });
+    if (match.params.securityId) {
+      deleteSecurity(match.params.securityId)
+        .then(response => {
+          getSecuritiesData()
+            .then(securities => {
+              setSecuritiesData(securities);
+              setTableState(stateEnum.success);
+              setMessages([response.message]);
+            })
+            .catch(err => {
+              errorHandler(err);
+            });
+        })
+        .catch(err => {
+          getSecuritiesData()
+            .then(securities => {
+              setSecuritiesData(securities);
+            })
+            .catch(err => {
+              errorHandler(err);
+            });
+          errorHandler(err);
+        });
+    } else {
+      getSecuritiesData()
+        .then(securities => {
+          setSecuritiesData(securities);
+          setTableState(stateEnum.success);
+          setMessages([]);
+        })
+        .catch(err => {
+          errorHandler(err);
+        });
+    }
   }, []);
 
   const onClickDelete = securityId => {
@@ -52,22 +81,12 @@ const SecuritiesTable = () => {
             setMessages([response.message]);
           })
           .catch(err => {
-            setTableState(stateEnum.error);
             setSecuritiesData([]);
-            if (err instanceof ValidationError) {
-              setMessages(err.messages);
-            } else {
-              setMessages([err.message]);
-            }
+            errorHandler(err);
           });
       })
       .catch(err => {
-        setTableState(stateEnum.error);
-        if (err instanceof ValidationError) {
-          setMessages(err.messages);
-        } else {
-          setMessages([err.message]);
-        }
+        errorHandler(err);
       });
   };
 
@@ -104,7 +123,7 @@ const SecuritiesTable = () => {
                 {securitiesData.map((item, index) => (
                   <div key={index} className="securities-table-row">
                     <div className="securities-exchange-data">
-                      {item.securityId}
+                      {item.exchange}
                     </div>
                     <div className="securities-symbol-data">{item.symbol}</div>
                     <div className="securities-name-data">{item.name}</div>

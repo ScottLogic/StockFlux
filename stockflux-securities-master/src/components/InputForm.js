@@ -114,7 +114,7 @@ const InputForm = ({ match }) => {
           <Components.LargeSpinner />
         </div>
       ) : (
-        <form className="input-form-body" onSubmit={submitForm}>
+        <div className="input-form-body">
           <div className="input-row">
             <label className="input-label" htmlFor="exchange-input">
               Exchange
@@ -167,17 +167,26 @@ const InputForm = ({ match }) => {
               onChange={event => setEnabled(event.target.checked)}
             />
           </div>
-          <div className="input-submit-button-container">
+          <div className="input-buttons-container">
             <div
               className={
                 (formState === stateEnum.sending ? "in-progress " : "") +
                 "input-submit-button"
               }
             >
-              <button>{match.params.securityId ? "Save" : "Create"}</button>
+              <button onClick={submitForm}>
+                {match.params.securityId ? "Save" : "Create"}
+              </button>
             </div>
+            {match.params.securityId && (
+              <Link to={`/table/${match.params.securityId}`}>
+                <div className="input-delete-button">
+                  <button>Delete</button>
+                </div>
+              </Link>
+            )}
           </div>
-        </form>
+        </div>
       )}
       {!!messages &&
         (formState === stateEnum.error || formState === stateEnum.success) && (
