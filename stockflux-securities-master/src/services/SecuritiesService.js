@@ -19,8 +19,12 @@ export async function getSecurity(securityId) {
   const response = await fetch(
     `${options.customData.apiBaseUrl}/securities-v2/${securityId}`
   );
-  const security = await response.json();
-  return security;
+  const json = await response.json();
+
+  if (response.ok) {
+    return json;
+  }
+  throw new ValidationError(json.messages);
 }
 
 export async function postSecurity(security) {

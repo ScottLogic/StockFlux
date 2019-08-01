@@ -76,7 +76,15 @@
   border-left: 1px solid var(--clr-divider-light);
 }
 
-.securities-message-container,
+.table-deleting-spinner-container,
+.securities-message-container {
+  margin-top: var(--margin-large);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.securities-message-container.no-securities,
 .spinner-container,
 .no-securities-container {
   display: flex;
