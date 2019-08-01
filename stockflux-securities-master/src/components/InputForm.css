@@ -9,6 +9,7 @@
 .input-form-body {
   display: flex;
   flex-direction: column;
+  height: var(--input-form-height);
 }
 
 .input-form-title {
@@ -16,6 +17,13 @@
   font-weight: var(--font-weight-bolder);
   margin-left: var(--margin-small);
   font-size: var(--font-xxxlarge);
+}
+
+.input-form-spinner-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .input-checkbox-container,
@@ -60,6 +68,7 @@
   font-size: var(--font-xxlarge);
   height: 40px;
   width: 280px;
+  cursor: pointer;
 }
 
 .input-submit-button.in-progress > button {
@@ -94,6 +103,7 @@
   border-radius: 20px;
   height: 30px;
   width: 70px;
+  cursor: pointer;
 }
 
 .back-button > button:hover {

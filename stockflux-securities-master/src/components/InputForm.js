@@ -5,27 +5,30 @@ import "./InputForm.css";
 import {
   getSecurity,
   postSecurity,
-  ValidationError
+  updateSecurity
 } from "../services/SecuritiesService";
+import ValidationError from "../services/ValidationError";
 import Alert from "./Alert";
 import TextField from "./TextField";
 import ToggleSwitch from "./ToggleSwitch";
 
 const InputForm = ({ match }) => {
-  const [name, setName] = useState("");
-  const [exchange, setExchange] = useState("");
-  const [symbol, setSymbol] = useState("");
-  const [visible, setVisible] = useState(false);
-  const [enabled, setEnabled] = useState(false);
-  const [formState, setFormState] = useState(null);
-  const [messages, setMessages] = useState([]);
-
   const stateEnum = {
     loading: "loading",
     sending: "sending",
     error: "error",
     success: "success"
   };
+
+  const [name, setName] = useState("");
+  const [exchange, setExchange] = useState("");
+  const [symbol, setSymbol] = useState("");
+  const [visible, setVisible] = useState(false);
+  const [enabled, setEnabled] = useState(false);
+  const [formState, setFormState] = useState(
+    match.params.securityId ? stateEnum.loading : null
+  );
+  const [messages, setMessages] = useState([]);
 
   const setSecurityState = security => {
     setName(security.name);
@@ -63,26 +66,42 @@ const InputForm = ({ match }) => {
       enabled
     };
 
-    postSecurity(securityObject)
-      .then(() => {
-        setMessages(["Security was successfully created"]);
-        setFormState(stateEnum.success);
-        setSecurityState({
-          exchange: "",
-          symbol: "",
-          name: "",
-          visible: false,
-          enabled: false
+    if (match.params.securityId) {
+      updateSecurity(match.params.securityId, securityObject)
+        .then(() => {
+          setMessages(["Security was successfully updated"]);
+          setFormState(stateEnum.success);
+        })
+        .catch(err => {
+          if (err instanceof ValidationError) {
+            setMessages(err.messages);
+          } else {
+            setMessages([err.message]);
+          }
+          setFormState(stateEnum.error);
         });
-      })
-      .catch(err => {
-        if (err instanceof ValidationError) {
-          setMessages(err.messages);
-        } else {
-          setMessages([err.message]);
-        }
-        setFormState(stateEnum.error);
-      });
+    } else {
+      postSecurity(securityObject)
+        .then(() => {
+          setMessages(["Security was successfully created"]);
+          setFormState(stateEnum.success);
+          setSecurityState({
+            exchange: "",
+            symbol: "",
+            name: "",
+            visible: false,
+            enabled: false
+          });
+        })
+        .catch(err => {
+          if (err instanceof ValidationError) {
+            setMessages(err.messages);
+          } else {
+            setMessages([err.message]);
+          }
+          setFormState(stateEnum.error);
+        });
+    }
   };
 
   return (
@@ -91,7 +110,9 @@ const InputForm = ({ match }) => {
         {match.params.securityId ? "Edit Security" : "Create a Security"}
       </div>
       {formState === stateEnum.loading ? (
-        <Components.LargeSpinner />
+        <div className="input-form-spinner-container">
+          <Components.LargeSpinner />
+        </div>
       ) : (
         <form className="input-form-body" onSubmit={submitForm}>
           <div className="input-row">
@@ -153,7 +174,7 @@ const InputForm = ({ match }) => {
                 "input-submit-button"
               }
             >
-              <button>{match.params.securityId ? "Edit" : "Create"}</button>
+              <button>{match.params.securityId ? "Save" : "Create"}</button>
             </div>
           </div>
         </form>
