@@ -20,8 +20,10 @@
 }
 
 .input-form-spinner-container {
-  display: flex;
-  height: var(--input-form-height);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .input-checkbox-container,
