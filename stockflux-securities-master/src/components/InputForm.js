@@ -5,14 +5,15 @@ import "./InputForm.css";
 import {
   getSecurity,
   postSecurity,
-  updateSecurity
+  updateSecurity,
+  deleteSecurity
 } from "../services/SecuritiesService";
 import ValidationError from "../services/ValidationError";
 import Alert from "./Alert";
 import TextField from "./TextField";
 import ToggleSwitch from "./ToggleSwitch";
 
-const InputForm = ({ match }) => {
+const InputForm = ({ match, history }) => {
   const stateEnum = {
     loading: "loading",
     sending: "sending",
@@ -54,6 +55,15 @@ const InputForm = ({ match }) => {
     }
   }, []);
 
+  const errorHandler = err => {
+    if (err instanceof ValidationError) {
+      setMessages(err.messages);
+    } else {
+      setMessages([err.message]);
+    }
+    setFormState(stateEnum.error);
+  };
+
   const submitForm = event => {
     event.preventDefault();
     setFormState(stateEnum.sending);
@@ -73,12 +83,7 @@ const InputForm = ({ match }) => {
           setFormState(stateEnum.success);
         })
         .catch(err => {
-          if (err instanceof ValidationError) {
-            setMessages(err.messages);
-          } else {
-            setMessages([err.message]);
-          }
-          setFormState(stateEnum.error);
+          errorHandler(err);
         });
     } else {
       postSecurity(securityObject)
@@ -94,14 +99,19 @@ const InputForm = ({ match }) => {
           });
         })
         .catch(err => {
-          if (err instanceof ValidationError) {
-            setMessages(err.messages);
-          } else {
-            setMessages([err.message]);
-          }
-          setFormState(stateEnum.error);
+          errorHandler(err);
         });
     }
+  };
+
+  const onClickDelete = () => {
+    deleteSecurity(match.params.securityId)
+      .then(() => {
+        history.push("/");
+      })
+      .catch(err => {
+        errorHandler(err);
+      });
   };
 
   return (
@@ -177,11 +187,11 @@ const InputForm = ({ match }) => {
               <button>{match.params.securityId ? "Save" : "Create"}</button>
             </div>
             {match.params.securityId && (
-              <Link to={`/table/${match.params.securityId}`}>
-                <div className="input-delete-button">
-                  <button type="button">Delete</button>
-                </div>
-              </Link>
+              <div className="input-delete-button">
+                <button onClick={onClickDelete} type="button">
+                  Delete
+                </button>
+              </div>
             )}
           </div>
         </form>

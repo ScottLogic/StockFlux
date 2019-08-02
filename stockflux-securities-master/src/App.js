@@ -12,7 +12,6 @@ const App = () => {
     <div>
       <Components.Titlebar />
       <Switch>
-        <Route exact path="/table/:securityId" component={SecuritiesTable} />
         <Route exact path="/" component={SecuritiesTable} />
         <Route exact path="/inputform/:securityId" component={InputForm} />
         <Route exact path="/inputform" component={InputForm} />

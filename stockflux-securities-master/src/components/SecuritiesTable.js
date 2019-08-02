@@ -10,7 +10,7 @@ import ValidationError from "../services/ValidationError";
 import AddSecurityButton from "./AddSecurityButton";
 import Alert from "./Alert";
 
-const SecuritiesTable = ({ match }) => {
+const SecuritiesTable = () => {
   const stateEnum = {
     loading: "loading",
     deleting: "deleting",
@@ -33,40 +33,15 @@ const SecuritiesTable = ({ match }) => {
 
   useEffect(() => {
     setTableState(stateEnum.loading);
-    if (match.params.securityId) {
-      deleteSecurity(match.params.securityId)
-        .then(response => {
-          getSecuritiesData()
-            .then(securities => {
-              setSecuritiesData(securities);
-              setTableState(stateEnum.success);
-              setMessages([response.message]);
-            })
-            .catch(err => {
-              errorHandler(err);
-            });
-        })
-        .catch(err => {
-          getSecuritiesData()
-            .then(securities => {
-              setSecuritiesData(securities);
-            })
-            .catch(err => {
-              errorHandler(err);
-            });
-          errorHandler(err);
-        });
-    } else {
-      getSecuritiesData()
-        .then(securities => {
-          setSecuritiesData(securities);
-          setTableState(stateEnum.success);
-          setMessages([]);
-        })
-        .catch(err => {
-          errorHandler(err);
-        });
-    }
+    getSecuritiesData()
+      .then(securities => {
+        setSecuritiesData(securities);
+        setTableState(stateEnum.success);
+        setMessages([]);
+      })
+      .catch(err => {
+        errorHandler(err);
+      });
   }, []);
 
   const onClickDelete = securityId => {
