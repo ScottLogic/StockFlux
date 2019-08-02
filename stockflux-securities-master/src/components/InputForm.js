@@ -114,7 +114,7 @@ const InputForm = ({ match }) => {
           <Components.LargeSpinner />
         </div>
       ) : (
-        <div className="input-form-body">
+        <form className="input-form-body" onSubmit={submitForm}>
           <div className="input-row">
             <label className="input-label" htmlFor="exchange-input">
               Exchange
@@ -174,19 +174,17 @@ const InputForm = ({ match }) => {
                 "input-submit-button"
               }
             >
-              <button onClick={submitForm}>
-                {match.params.securityId ? "Save" : "Create"}
-              </button>
+              <button>{match.params.securityId ? "Save" : "Create"}</button>
             </div>
             {match.params.securityId && (
               <Link to={`/table/${match.params.securityId}`}>
                 <div className="input-delete-button">
-                  <button>Delete</button>
+                  <button type="button">Delete</button>
                 </div>
               </Link>
             )}
           </div>
-        </div>
+        </form>
       )}
       {!!messages &&
         (formState === stateEnum.error || formState === stateEnum.success) && (
