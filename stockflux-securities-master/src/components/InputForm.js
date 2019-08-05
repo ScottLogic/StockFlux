@@ -12,6 +12,7 @@ import ValidationError from "../services/ValidationError";
 import Alert from "./Alert";
 import TextField from "./TextField";
 import ToggleSwitch from "./ToggleSwitch";
+import Button from "./Button";
 
 const InputForm = ({ match, history }) => {
   const stateEnum = {
@@ -178,20 +179,22 @@ const InputForm = ({ match, history }) => {
             />
           </div>
           <div className="input-buttons-container">
-            <div
+            <Button
+              size="large"
+              text={match.params.securityId ? "Save" : "Create"}
               className={
                 (formState === stateEnum.sending ? "in-progress " : "") +
                 "input-submit-button"
               }
-            >
-              <button>{match.params.securityId ? "Save" : "Create"}</button>
-            </div>
+            />
             {match.params.securityId && (
-              <div className="input-delete-button">
-                <button onClick={onClickDelete} type="button">
-                  Delete
-                </button>
-              </div>
+              <Button
+                size="large"
+                text="Delete"
+                onClick={onClickDelete}
+                type="button"
+                className="input-delete-button"
+              />
             )}
           </div>
         </form>

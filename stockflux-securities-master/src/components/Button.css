@@ -1,0 +1,32 @@
+.button-container.small > button,
+.button-container.large > button {
+  border: solid 1px var(--text-teal);
+  font-family: var(--font-roboto-sans-serif);
+  color: var(--text-teal-light);
+  font-weight: var(--font-weight-bolder);
+  border-radius: 25px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.button-container.small > button:hover,
+.button-container.large > button:hover {
+  color: var(--text-teal);
+}
+
+.button-container.small > button {
+  height: 30px;
+  width: 180px;
+  font-size: var(--font-xlarge);
+}
+
+.button-container.large > button {
+  height: 40px;
+  width: 280px;
+  font-size: var(--font-xxxlarge);
+}
+
+.button-container.small > button:focus,
+.button-container.large > button:focus {
+  outline: none;
+}

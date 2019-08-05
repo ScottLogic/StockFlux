@@ -61,33 +61,14 @@
 .input-delete-button > button,
 .input-submit-button > button {
   background-color: var(--dark-background);
-  border: solid 1px var(--text-teal);
-  border-radius: 25px;
-  font-family: var(--font-roboto-sans-serif);
-  color: var(--text-teal-light);
-  font-weight: var(--font-weight-bold);
   margin-top: var(--margin-medium);
   margin-left: var(--margin-small);
-  font-size: var(--font-xxlarge);
-  height: 40px;
-  width: 280px;
-  cursor: pointer;
 }
 
 .input-submit-button.in-progress > button {
   outline: none;
   color: var(--text-grey-darkest);
   border-color: var(--text-grey-darkest);
-}
-
-.input-delete-button > button:hover,
-.input-submit-button > button:hover {
-  color: var(--text-teal);
-}
-
-.input-delete-button > button:focus,
-.input-submit-button > button:focus {
-  outline: none;
 }
 
 .back-button {
