@@ -1,0 +1,31 @@
+.tool-tip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tool-tip-container .tool-tip-message {
+  visibility: hidden;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: var(--padding-small) var(--padding-medium);
+  position: absolute;
+  top: 0px;
+  right: 105%;
+}
+
+.tool-tip-container .tool-tip-message:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tool-tip-container:hover .tool-tip-message {
+  visibility: visible;
+}

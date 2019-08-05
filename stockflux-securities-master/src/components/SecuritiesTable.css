@@ -33,7 +33,7 @@
 .header-container,
 .securities-table-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 0.5fr;
+  grid-template-columns: 1fr 1fr 1fr 0.8fr;
 }
 
 .securities-table-row:last-child > div {
@@ -105,17 +105,21 @@
   padding: var(--margin-medium) var(--margin-medium);
 }
 
-.securities-edit-button > button:focus,
-.securities-delete-button > button:focus {
-  outline: none;
-}
-
+.securities-enabled-button > button,
+.securities-visibility-button > button,
 .securities-edit-button > button,
 .securities-delete-button > button {
   border: none;
   background: none;
   color: var(--text-teal-light);
   cursor: pointer;
+}
+
+.securities-enabled-button > button:focus,
+.securities-visibility-button > button:focus,
+.securities-edit-button > button:focus,
+.securities-delete-button > button:focus {
+  outline: none;
 }
 
 .securities-edit-button > button:hover,

@@ -4,11 +4,13 @@ import "./SecuritiesTable.css";
 import { Link } from "react-router-dom";
 import {
   getSecuritiesData,
-  deleteSecurity
+  deleteSecurity,
+  patchSecurity
 } from "../services/SecuritiesService";
 import ValidationError from "../services/ValidationError";
 import AddSecurityButton from "./AddSecurityButton";
 import Alert from "./Alert";
+import ToolTip from "./ToolTip";
 
 const SecuritiesTable = () => {
   const stateEnum = {
@@ -77,7 +79,7 @@ const SecuritiesTable = () => {
         <div className="securities-table-header">Exchange</div>
         <div className="securities-table-header">Symbol</div>
         <div className="securities-table-header">Name</div>
-        <div className="securities-table-header">Edit / Delete</div>
+        <div className="securities-table-header">Options</div>
       </div>
       {tableState === stateEnum.loading ? (
         <div className="spinner-container">
@@ -115,6 +117,24 @@ const SecuritiesTable = () => {
                           <span className="material-icons">delete</span>
                         </button>
                       </div>
+                      <ToolTip message="visibility">
+                        <div className="securities-visibility-button">
+                          <button>
+                            <span className="material-icons">
+                              {item.visible ? "visibility" : "visibility_off"}
+                            </span>
+                          </button>
+                        </div>
+                      </ToolTip>
+                      <ToolTip message="enabled?">
+                        <div className="securities-enabled-button">
+                          <button>
+                            <span className="material-icons">
+                              {item.enabled ? "done" : "clear"}
+                            </span>
+                          </button>
+                        </div>
+                      </ToolTip>
                     </div>
                   </div>
                 ))}
