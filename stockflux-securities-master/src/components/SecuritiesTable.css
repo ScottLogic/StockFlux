@@ -115,6 +115,11 @@
   cursor: pointer;
 }
 
+.securities-enabled-button.greyed-out > button,
+.securities-visibility-button.greyed-out > button {
+  color: var(--text-grey-dark);
+}
+
 .securities-enabled-button > button:focus,
 .securities-visibility-button > button:focus,
 .securities-edit-button > button:focus,

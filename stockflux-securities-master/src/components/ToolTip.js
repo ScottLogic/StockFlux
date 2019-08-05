@@ -14,8 +14,8 @@ const ToolTip = ({ children, message }) => {
 ToolTip.propTypes = {
   message: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.numberl,
-    propTypes.symbol
+    PropTypes.number,
+    PropTypes.symbol
   ])
 };
 

@@ -118,7 +118,11 @@ const SecuritiesTable = () => {
                         </button>
                       </div>
                       <ToolTip message="visibility">
-                        <div className="securities-visibility-button">
+                        <div
+                          className={`securities-visibility-button ${
+                            item.visible ? "" : "greyed-out"
+                          }`}
+                        >
                           <button>
                             <span className="material-icons">
                               {item.visible ? "visibility" : "visibility_off"}
@@ -127,7 +131,11 @@ const SecuritiesTable = () => {
                         </div>
                       </ToolTip>
                       <ToolTip message="enabled?">
-                        <div className="securities-enabled-button">
+                        <div
+                          className={`securities-enabled-button ${
+                            item.enabled ? "" : "greyed-out"
+                          }`}
+                        >
                           <button>
                             <span className="material-icons">
                               {item.enabled ? "done" : "clear"}
