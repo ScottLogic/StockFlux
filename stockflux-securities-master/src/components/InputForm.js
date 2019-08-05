@@ -13,22 +13,16 @@ import Alert from "./Alert";
 import TextField from "./TextField";
 import ToggleSwitch from "./ToggleSwitch";
 import Button from "./Button";
+import { inputFormEnum } from "../enums";
 
 const InputForm = ({ match, history }) => {
-  const stateEnum = {
-    loading: "loading",
-    sending: "sending",
-    error: "error",
-    success: "success"
-  };
-
   const [name, setName] = useState("");
   const [exchange, setExchange] = useState("");
   const [symbol, setSymbol] = useState("");
   const [visible, setVisible] = useState(false);
   const [enabled, setEnabled] = useState(false);
   const [formState, setFormState] = useState(
-    match.params.securityId ? stateEnum.loading : null
+    match.params.securityId ? inputFormEnum.loading : null
   );
   const [messages, setMessages] = useState([]);
 
@@ -42,7 +36,7 @@ const InputForm = ({ match, history }) => {
 
   useEffect(() => {
     if (match.params.securityId) {
-      setFormState(stateEnum.loading);
+      setFormState(inputFormEnum.loading);
       getSecurity(match.params.securityId)
         .then(security => {
           setFormState(null);
@@ -50,7 +44,7 @@ const InputForm = ({ match, history }) => {
           setMessages([]);
         })
         .catch(() => {
-          setFormState(stateEnum.error);
+          setFormState(inputFormEnum.error);
           setMessages(["Error, cannot get security"]);
         });
     }
@@ -62,12 +56,12 @@ const InputForm = ({ match, history }) => {
     } else {
       setMessages([err.message]);
     }
-    setFormState(stateEnum.error);
+    setFormState(inputFormEnum.error);
   };
 
   const submitForm = event => {
     event.preventDefault();
-    setFormState(stateEnum.sending);
+    setFormState(inputFormEnum.sending);
     setMessages([]);
     const securityObject = {
       exchange,
@@ -81,7 +75,7 @@ const InputForm = ({ match, history }) => {
       updateSecurity(match.params.securityId, securityObject)
         .then(() => {
           setMessages(["Security was successfully updated"]);
-          setFormState(stateEnum.success);
+          setFormState(inputFormEnum.success);
         })
         .catch(err => {
           errorHandler(err);
@@ -90,7 +84,7 @@ const InputForm = ({ match, history }) => {
       postSecurity(securityObject)
         .then(() => {
           setMessages(["Security was successfully created"]);
-          setFormState(stateEnum.success);
+          setFormState(inputFormEnum.success);
           setSecurityState({
             exchange: "",
             symbol: "",
@@ -120,7 +114,7 @@ const InputForm = ({ match, history }) => {
       <div className="input-form-title">
         {match.params.securityId ? "Edit Security" : "Create a Security"}
       </div>
-      {formState === stateEnum.loading ? (
+      {formState === inputFormEnum.loading ? (
         <div className="input-form-spinner-container">
           <Components.LargeSpinner />
         </div>
@@ -183,7 +177,7 @@ const InputForm = ({ match, history }) => {
               size="large"
               text={match.params.securityId ? "Save" : "Create"}
               className={
-                (formState === stateEnum.sending ? "in-progress " : "") +
+                (formState === inputFormEnum.sending ? "in-progress " : "") +
                 "input-submit-button"
               }
             />
@@ -200,7 +194,8 @@ const InputForm = ({ match, history }) => {
         </form>
       )}
       {!!messages &&
-        (formState === stateEnum.error || formState === stateEnum.success) && (
+        (formState === inputFormEnum.error ||
+          formState === inputFormEnum.success) && (
           <Alert type={formState} messages={messages} />
         )}
 

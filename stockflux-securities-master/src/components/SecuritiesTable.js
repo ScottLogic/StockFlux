@@ -9,21 +9,16 @@ import {
 import ValidationError from "../services/ValidationError";
 import AddSecurityButton from "./AddSecurityButton";
 import Alert from "./Alert";
+import TableBody from "./TableBody";
+import { tableEnum } from "../enums";
 
 const SecuritiesTable = () => {
-  const stateEnum = {
-    loading: "loading",
-    deleting: "deleting",
-    error: "error",
-    success: "success"
-  };
-
   const [securitiesData, setSecuritiesData] = useState([]);
   const [messages, setMessages] = useState([]);
-  const [tableState, setTableState] = useState(stateEnum.loading);
+  const [tableState, setTableState] = useState(tableEnum.loading);
 
   const errorHandler = err => {
-    setTableState(stateEnum.error);
+    setTableState(tableEnum.error);
     if (err instanceof ValidationError) {
       setMessages(err.messages);
     } else {
@@ -31,34 +26,30 @@ const SecuritiesTable = () => {
     }
   };
 
-  useEffect(() => {
-    setTableState(stateEnum.loading);
+  const getSecuritiesHandler = messages => {
     getSecuritiesData()
       .then(securities => {
         setSecuritiesData(securities);
-        setTableState(stateEnum.success);
-        setMessages([]);
+        setTableState(tableEnum.success);
+        setMessages(messages);
       })
       .catch(err => {
+        setSecuritiesData([]);
         errorHandler(err);
       });
+  };
+
+  useEffect(() => {
+    setTableState(tableEnum.loading);
+    getSecuritiesHandler([]);
   }, []);
 
   const onClickDelete = securityId => {
-    setTableState(stateEnum.deleting);
+    setTableState(tableEnum.deleting);
     setMessages([]);
     deleteSecurity(securityId)
       .then(response => {
-        getSecuritiesData()
-          .then(securities => {
-            setSecuritiesData(securities);
-            setTableState(stateEnum.success);
-            setMessages([response.message]);
-          })
-          .catch(err => {
-            setSecuritiesData([]);
-            errorHandler(err);
-          });
+        getSecuritiesHandler([response.message]);
       })
       .catch(err => {
         errorHandler(err);
@@ -79,51 +70,20 @@ const SecuritiesTable = () => {
         <div className="securities-table-header">Name</div>
         <div className="securities-table-header">Edit / Delete</div>
       </div>
-      {tableState === stateEnum.loading ? (
+      {tableState === tableEnum.loading ? (
         <div className="spinner-container">
           <Components.LargeSpinner />
         </div>
       ) : (
         <>
-          <div className="table-body">
-            {securitiesData.length === 0 && tableState !== stateEnum.error ? (
-              <div className="no-securities-container">
-                <div className="no-securities-message">
-                  You have no securities to show
-                </div>
-                <AddSecurityButton size="large" />
-              </div>
-            ) : (
-              <Components.ScrollWrapperY>
-                {securitiesData.map((item, index) => (
-                  <div key={index} className="securities-table-row">
-                    <div className="securities-exchange-data">
-                      {item.exchange}
-                    </div>
-                    <div className="securities-symbol-data">{item.symbol}</div>
-                    <div className="securities-name-data">{item.name}</div>
-                    <div className="securities-row-options">
-                      <Link to={`/inputform/${item.securityId}`}>
-                        <div className="securities-edit-button">
-                          <button>
-                            <span className="material-icons">edit</span>
-                          </button>
-                        </div>
-                      </Link>
-                      <div className="securities-delete-button">
-                        <button onClick={() => onClickDelete(item.securityId)}>
-                          <span className="material-icons">delete</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </Components.ScrollWrapperY>
-            )}
-          </div>
+          <TableBody
+            securitiesData={securitiesData}
+            tableState={tableState}
+            onClickDelete={onClickDelete}
+          />
           {messages.length > 0 &&
-            (tableState === stateEnum.success ||
-              tableState === stateEnum.error) && (
+            (tableState === tableEnum.success ||
+              tableState === tableEnum.error) && (
               <div
                 className={`securities-message-container ${
                   securitiesData.length === 0 ? "no-securities" : ""
@@ -132,7 +92,7 @@ const SecuritiesTable = () => {
                 <Alert messages={messages} type={tableState} />
               </div>
             )}
-          {tableState === stateEnum.deleting && (
+          {tableState === tableEnum.deleting && (
             <div className="table-deleting-spinner-container">
               <Components.Spinner />
             </div>
