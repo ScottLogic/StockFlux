@@ -11,7 +11,7 @@ const Button = ({ text, size, className, ...props }) => {
 };
 
 Button.propTypes = {
-  size: PropTypes.oneOf(["small", "large"]).isRequired,
+  size: PropTypes.oneOf(["extraSmall", "small", "large"]).isRequired,
   className: PropTypes.string
 };
 

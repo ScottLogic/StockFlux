@@ -13,6 +13,7 @@ import Alert from "./Alert";
 import TextField from "./TextField";
 import ToggleSwitch from "./ToggleSwitch";
 import Button from "./Button";
+import ConfirmationButton from "./ConfirmationButton";
 import { inputFormEnum } from "../enums";
 
 const InputForm = ({ match, history }) => {
@@ -182,9 +183,10 @@ const InputForm = ({ match, history }) => {
               }
             />
             {match.params.securityId && (
-              <Button
+              <ConfirmationButton
                 size="large"
                 text="Delete"
+                confirmationText="Are you sure you want to delete this security?"
                 onClick={onClickDelete}
                 type="button"
                 className="input-delete-button"

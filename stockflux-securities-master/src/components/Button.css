@@ -1,17 +1,26 @@
+.button-container.extraSmall > button,
 .button-container.small > button,
 .button-container.large > button {
   border: solid 1px var(--text-teal);
   font-family: var(--font-roboto-sans-serif);
   color: var(--text-teal-light);
+  background-color: var(--dark-background);
   font-weight: var(--font-weight-bolder);
   border-radius: 25px;
   text-align: center;
   cursor: pointer;
 }
 
+.button-container.extraSmall > button:hover,
 .button-container.small > button:hover,
 .button-container.large > button:hover {
   color: var(--text-teal);
+}
+
+.button-container.extraSmall > button {
+  height: 30px;
+  width: 130px;
+  font-size: var(--font-large);
 }
 
 .button-container.small > button {
@@ -26,6 +35,7 @@
   font-size: var(--font-xxxlarge);
 }
 
+.button-container.extraSmall > button:focus,
 .button-container.small > button:focus,
 .button-container.large > button:focus {
   outline: none;
