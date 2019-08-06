@@ -103,7 +103,7 @@ const InputForm = ({ match, history }) => {
   const onClickDelete = () => {
     deleteSecurity(match.params.securityId)
       .then(response => {
-        history.push(`/${response.message}`);
+        history.push(`/securities/${response.message}`);
       })
       .catch(err => {
         errorHandler(err);
