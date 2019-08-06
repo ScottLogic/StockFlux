@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Components from "stockflux-components";
 import "./SecuritiesTable.css";
-import { Link } from "react-router-dom";
 import {
   getSecuritiesData,
   deleteSecurity
 } from "../services/SecuritiesService";
 import ValidationError from "../services/ValidationError";
-import AddSecurityButton from "./AddSecurityButton";
+import AddSecurityButton from "./ButtonAddSecurity";
 import Alert from "./Alert";
 import TableBody from "./TableBody";
 import { tableEnum } from "../enums";

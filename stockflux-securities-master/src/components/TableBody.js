@@ -4,7 +4,7 @@ import Components from "stockflux-components";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { tableEnum } from "../enums";
-import AddSecurityButton from "./AddSecurityButton";
+import AddSecurityButton from "./ButtonAddSecurity";
 
 const TableBody = ({ securitiesData, tableState, onClickDelete }) => {
   return (
