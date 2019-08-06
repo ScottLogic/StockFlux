@@ -1,7 +1,3 @@
-:root {
-  --table-body-height: 400px;
-}
-
 .securities-container {
   overflow: hidden;
   font-size: var(--font-normal);
@@ -30,23 +26,14 @@
   border-top: 1px solid var(--clr-divider-dark);
 }
 
-.header-container,
-.securities-table-row {
+.header-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 0.8fr;
-}
-
-.securities-table-row:last-child > div {
-  border-bottom: none;
 }
 
 .securities-table-header {
   font-size: var(--font-xlarge);
   font-weight: var(--font-weight-bolder);
-}
-
-.table-body {
-  border-bottom: 1px solid var(--clr-divider-dark);
 }
 
 .securities-exchange-data {
@@ -61,16 +48,7 @@
   grid-column: 3;
 }
 
-/* overrides the default shifting of the scroll component */
-.table-body .scrollPaddingRight:hover {
-  padding-right: 0;
-}
-
-.securities-row-options,
-.securities-table-header,
-.securities-exchange-data,
-.securities-symbol-data,
-.securities-name-data {
+.securities-table-header {
   padding: var(--margin-medium) var(--margin-large);
   border-bottom: 1px solid var(--clr-divider-light);
   border-left: 1px solid var(--clr-divider-light);
@@ -85,53 +63,10 @@
 }
 
 .securities-message-container.no-securities,
-.spinner-container,
-.no-securities-container {
+.spinner-container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: var(--table-body-height);
-}
-
-.no-securities-container {
-  text-align: center;
-  border-bottom: 1px solid var(--clr-divider-light);
-}
-
-.no-securities-message {
-  font-weight: var(--font-weight-bolder);
-  font-size: var(--font-xxxlarge);
-  padding: var(--margin-medium) var(--margin-medium);
-}
-
-.securities-enabled-button > button,
-.securities-visibility-button > button,
-.securities-edit-button > button,
-.securities-delete-button > button {
-  border: none;
-  background: none;
-  color: var(--text-teal-light);
-  cursor: pointer;
-}
-
-.securities-enabled-button.greyed-out > button,
-.securities-visibility-button.greyed-out > button {
-  color: var(--text-grey-dark);
-}
-
-.securities-enabled-button > button:focus,
-.securities-visibility-button > button:focus,
-.securities-edit-button > button:focus,
-.securities-delete-button > button:focus {
-  outline: none;
-}
-
-.securities-edit-button > button:hover,
-.securities-delete-button > button:hover {
-  color: var(--text-teal);
-}
-
-.securities-row-options {
-  display: flex;
+  height: 400px;
 }

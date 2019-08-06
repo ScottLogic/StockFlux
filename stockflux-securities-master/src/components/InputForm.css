@@ -9,7 +9,6 @@
 .input-form-body {
   display: flex;
   flex-direction: column;
-  height: var(--input-form-height);
 }
 
 .input-form-title {
@@ -30,8 +29,7 @@
 .input-row {
   display: flex;
   flex-direction: row;
-  margin: var(--margin-small);
-  width: 285px;
+  margin: var(--margin-small) 0;
   align-items: center;
 }
 
@@ -42,15 +40,6 @@
   flex-basis: 80px;
 }
 
-.input-form {
-  font-size: var(--font-large);
-  font-weight: var(--font-weight-normal);
-  background-color: var(--dark-background);
-  border-radius: 25px;
-  padding: var(--padding-small) var(--padding-medium);
-  margin: var(--margin-small);
-}
-
 .input-buttons-container {
   display: flex;
   flex-direction: column;
@@ -58,36 +47,15 @@
   margin: var(--margin-medium) 0 var(--margin-large) 0;
 }
 
-.input-delete-button > button,
-.input-submit-button > button {
-  background-color: var(--dark-background);
-  border: solid 1px var(--text-teal);
-  border-radius: 25px;
-  font-family: var(--font-roboto-sans-serif);
-  color: var(--text-teal-light);
-  font-weight: var(--font-weight-bold);
-  margin-top: var(--margin-medium);
-  margin-left: var(--margin-small);
-  font-size: var(--font-xxlarge);
-  height: 40px;
-  width: 280px;
-  cursor: pointer;
+.input-delete-button,
+.input-submit-button {
+  margin: var(--margin-small) 0;
 }
 
 .input-submit-button.in-progress > button {
   outline: none;
   color: var(--text-grey-darkest);
   border-color: var(--text-grey-darkest);
-}
-
-.input-delete-button > button:hover,
-.input-submit-button > button:hover {
-  color: var(--text-teal);
-}
-
-.input-delete-button > button:focus,
-.input-submit-button > button:focus {
-  outline: none;
 }
 
 .back-button {

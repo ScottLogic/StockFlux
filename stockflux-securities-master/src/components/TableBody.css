@@ -1,0 +1,68 @@
+.table-body {
+  border-bottom: 1px solid var(--clr-divider-dark);
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  max-height: 400px;
+}
+
+/* overrides the default shifting of the scroll component */
+.table-body .scrollPaddingRight:hover {
+  padding-right: 0;
+}
+
+.no-securities-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 400px;
+  text-align: center;
+  border-bottom: 1px solid var(--clr-divider-light);
+}
+
+.no-securities-message {
+  font-weight: var(--font-weight-bolder);
+  font-size: var(--font-xxxlarge);
+  padding: var(--margin-medium) var(--margin-medium);
+}
+
+.securities-table-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 0.5fr;
+}
+
+.securities-table-row:last-child > div {
+  border-bottom: none;
+}
+
+.securities-row-options,
+.securities-exchange-data,
+.securities-symbol-data,
+.securities-name-data {
+  padding: var(--margin-medium) var(--margin-large);
+  border-bottom: 1px solid var(--clr-divider-light);
+  border-left: 1px solid var(--clr-divider-light);
+}
+
+.securities-edit-button > button:focus,
+.securities-delete-button > button:focus {
+  outline: none;
+}
+
+.securities-edit-button > button,
+.securities-delete-button > button {
+  border: none;
+  background: none;
+  color: var(--text-teal-light);
+  cursor: pointer;
+}
+
+.securities-edit-button > button:hover,
+.securities-delete-button > button:hover {
+  color: var(--text-teal);
+}
+
+.securities-row-options {
+  display: flex;
+}
