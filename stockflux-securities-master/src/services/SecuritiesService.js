@@ -78,9 +78,9 @@ export async function deleteSecurity(securityId) {
     `${options.customData.apiBaseUrl}/securities-v2/${securityId}`,
     fetchOptions
   );
-  const json = await response.json();
   if (response.ok) {
-    return json;
+    return { message: "Security Successfully Deleted" };
   }
+  const json = await response.json();
   throw new ValidationError(json.messages);
 }
