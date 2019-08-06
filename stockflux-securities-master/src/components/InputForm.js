@@ -102,8 +102,8 @@ const InputForm = ({ match, history }) => {
 
   const onClickDelete = () => {
     deleteSecurity(match.params.securityId)
-      .then(() => {
-        history.push("/");
+      .then(response => {
+        history.push(`/${response.message}`);
       })
       .catch(err => {
         errorHandler(err);

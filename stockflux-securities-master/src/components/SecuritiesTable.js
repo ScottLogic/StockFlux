@@ -12,7 +12,7 @@ import Alert from "./Alert";
 import TableBody from "./TableBody";
 import { tableEnum } from "../enums";
 
-const SecuritiesTable = () => {
+const SecuritiesTable = ({ match }) => {
   const [securitiesData, setSecuritiesData] = useState([]);
   const [messages, setMessages] = useState([]);
   const [tableState, setTableState] = useState(tableEnum.loading);
@@ -41,7 +41,7 @@ const SecuritiesTable = () => {
 
   useEffect(() => {
     setTableState(tableEnum.loading);
-    getSecuritiesHandler([]);
+    getSecuritiesHandler(!!match.params.message ? [match.params.message] : []);
   }, []);
 
   const onClickDelete = securityId => {

@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./AddSecurityButton.css";
 import Button from "./Button";
 
 const AddSecuritiesButton = ({ size }) => {
