@@ -1,6 +1,7 @@
 export const tableEnum = {
   loading: "loading",
   deleting: "deleting",
+  updating: "updating",
   error: "error",
   success: "success"
 };

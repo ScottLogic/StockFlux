@@ -57,6 +57,7 @@ const SecuritiesTable = ({ match }) => {
   };
 
   const patchSecurityHandler = (securityId, updates) => {
+    setTableState(tableEnum.updating);
     patchSecurity(securityId, updates)
       .then(response => {
         const newSecuritiesData = [];
@@ -68,6 +69,8 @@ const SecuritiesTable = ({ match }) => {
           }
         });
         setSecuritiesData(newSecuritiesData);
+        setTableState(tableEnum.success);
+        setMessages([response.message]);
       })
       .catch(err => {
         errorHandler(err);
@@ -111,7 +114,8 @@ const SecuritiesTable = ({ match }) => {
                 <Alert messages={messages} type={tableState} />
               </div>
             )}
-          {tableState === tableEnum.deleting && (
+          {(tableState === tableEnum.deleting ||
+            tableState == tableEnum.updating) && (
             <div className="table-deleting-spinner-container">
               <Components.Spinner />
             </div>

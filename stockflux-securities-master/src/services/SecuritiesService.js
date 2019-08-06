@@ -102,7 +102,7 @@ export async function patchSecurity(securityId, updates) {
 
   const json = await response.json();
   if (response.ok) {
-    return json;
+    return { message: "Security Updated" };
   }
   throw new ValidationError(response.messages);
 }
