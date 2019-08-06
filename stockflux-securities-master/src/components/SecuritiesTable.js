@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Components from "stockflux-components";
 import "./SecuritiesTable.css";
-import { Link } from "react-router-dom";
 import {
   getSecuritiesData,
   deleteSecurity,
@@ -10,7 +9,6 @@ import {
 import ValidationError from "../services/ValidationError";
 import AddSecurityButton from "./AddSecurityButton";
 import Alert from "./Alert";
-import ToolTip from "./ToolTip";
 import TableBody from "./TableBody";
 import { tableEnum } from "../enums";
 
@@ -58,6 +56,24 @@ const SecuritiesTable = ({ match }) => {
       });
   };
 
+  const patchSecurityHandler = (securityId, updates) => {
+    patchSecurity(securityId, updates)
+      .then(response => {
+        const newSecuritiesData = [];
+        securitiesData.forEach(item => {
+          if (item.securityId === securityId) {
+            newSecuritiesData.push({ ...item, ...updates });
+          } else {
+            newSecuritiesData.push(item);
+          }
+        });
+        setSecuritiesData(newSecuritiesData);
+      })
+      .catch(err => {
+        errorHandler(err);
+      });
+  };
+
   return (
     <div className="securities-container">
       <div className="securities-title-container">
@@ -82,6 +98,7 @@ const SecuritiesTable = ({ match }) => {
             securitiesData={securitiesData}
             tableState={tableState}
             onClickDelete={onClickDelete}
+            patchSecurityHandler={patchSecurityHandler}
           />
           {messages.length > 0 &&
             (tableState === tableEnum.success ||

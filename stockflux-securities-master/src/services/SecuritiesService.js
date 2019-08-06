@@ -85,40 +85,24 @@ export async function deleteSecurity(securityId) {
   throw new ValidationError(json.messages);
 }
 
-export async function patchSecurity(securityId, security) {
+export async function patchSecurity(securityId, updates) {
   const fetchOptions = {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify(security)
+    body: JSON.stringify(updates)
   };
   const options = await getWindowOptions();
-  // const response = await fetch(
-  //   `${options.customData.apiBaseUrl}/securities-v2/${securityId}`,
-  //   fetchOptions
-  // );
 
-  const response = await mockPatchRequest(securityId, security);
-  const json = await response.json;
+  const response = await fetch(
+    `${options.customData.apiBaseUrl}/securities-v2/${securityId}`,
+    fetchOptions
+  );
+
+  const json = await response.json();
   if (response.ok) {
     return json;
   }
-  throw new ValidationError(json.messages);
-}
-
-async function mockPatchRequest(securityId, security) {
-  const success = Math.random() > 0.5;
-  return new Promise(resolve => {
-    setTimeout(() => {
-      if (success) {
-        resolve({
-          json: { ...security, securityId },
-          ok: true
-        });
-      } else {
-        resolve({ messages: ["Failed to update security"], ok: false });
-      }
-    }, 1000);
-  });
+  throw new ValidationError(response.messages);
 }
