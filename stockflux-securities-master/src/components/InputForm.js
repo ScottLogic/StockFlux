@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Components from "stockflux-components";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "./InputForm.css";
 import {
   getSecurity,
@@ -26,6 +26,7 @@ const InputForm = ({ match, history }) => {
     match.params.securityId ? inputFormEnum.loading : null
   );
   const [messages, setMessages] = useState([]);
+  const [redirect, setRedirect] = useState(false);
 
   const setSecurityState = security => {
     setName(security.name);
@@ -102,12 +103,28 @@ const InputForm = ({ match, history }) => {
 
   const onClickDelete = () => {
     deleteSecurity(match.params.securityId)
-      .then(response => {
-        history.push(`/securities/${response.message}`);
+      .then(() => {
+        setFormState(inputFormEnum.success);
+        setMessages(["Security Successfully Deleted"]);
+        setRedirect(true);
       })
       .catch(err => {
         errorHandler(err);
       });
+  };
+
+  const renderRedirect = () => {
+    if (redirect) {
+      return (
+        <Redirect
+          push
+          to={{
+            pathname: "/",
+            state: { messages }
+          }}
+        />
+      );
+    }
   };
 
   return (
@@ -192,6 +209,7 @@ const InputForm = ({ match, history }) => {
                 className="input-delete-button"
               />
             )}
+            {renderRedirect()}
           </div>
         </form>
       )}

@@ -11,7 +11,7 @@ const ConfirmationButton = ({
   ...props
 }) => {
   const [clickedStatus, setClickedStatus] = useState(false);
-  
+
   return (
     <div className={`confirmation-button-container ${className}`}>
       {!clickedStatus ? (
@@ -28,16 +28,16 @@ const ConfirmationButton = ({
           </div>
           <div className="yes-no-button-container">
             <Button
-            {...props}
+              {...props}
               text="Yes"
-              size="extraSmall"
+              size="extra-small"
               onClick={onClick}
               className="yes-button"
               type="button"
             />
             <Button
               text="No"
-              size="extraSmall"
+              size="extra-small"
               onClick={() => setClickedStatus(false)}
               className="no-button"
               type="button"

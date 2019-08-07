@@ -4,14 +4,14 @@ import PropTypes from "prop-types";
 
 const Button = ({ text, size, className, ...props }) => {
   return (
-    <div className={`button-container ${size} ${className}`}>
-      <button {...props}>{text}</button>
-    </div>
+    <button className={`button-container ${size} ${className}`} {...props}>
+      {text}
+    </button>
   );
 };
 
 Button.propTypes = {
-  size: PropTypes.oneOf(["extraSmall", "small", "large"]).isRequired,
+  size: PropTypes.oneOf(["extra-small", "small", "large"]).isRequired,
   className: PropTypes.string
 };
 

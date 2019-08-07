@@ -50,7 +50,7 @@ const tableBody = (onClickDelete, securitiesData, tableState) => {
   );
 };
 
-const SecuritiesTable = ({ match }) => {
+const SecuritiesTable = ({ location }) => {
   const [securitiesData, setSecuritiesData] = useState([]);
   const [messages, setMessages] = useState([]);
   const [tableState, setTableState] = useState(tableEnum.loading);
@@ -79,7 +79,7 @@ const SecuritiesTable = ({ match }) => {
 
   useEffect(() => {
     setTableState(tableEnum.loading);
-    getSecuritiesHandler(!!match.params.message ? [match.params.message] : []);
+    getSecuritiesHandler(!!location.state ? location.state.messages : []);
   }, []);
 
   const onClickDelete = securityId => {

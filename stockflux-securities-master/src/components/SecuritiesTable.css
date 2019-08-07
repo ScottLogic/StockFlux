@@ -67,6 +67,7 @@
   justify-content: center;
 }
 
+.no-securities-container,
 .securities-message-container.no-securities,
 .spinner-container {
   display: flex;
@@ -90,11 +91,6 @@
 }
 
 .no-securities-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  height: 400px;
   text-align: center;
   border-bottom: 1px solid var(--clr-divider-light);
 }
