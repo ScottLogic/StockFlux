@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Components from "stockflux-components";
+import { Link } from "react-router-dom";
 import "./SecuritiesTable.css";
 import {
   getSecuritiesData,
@@ -8,8 +9,46 @@ import {
 import ValidationError from "../services/ValidationError";
 import AddSecurityButton from "./ButtonAddSecurity";
 import Alert from "./Alert";
-import TableBody from "./TableBody";
 import { tableEnum } from "../enums";
+
+const tableBody = (onClickDelete, securitiesData, tableState) => {
+  return (
+    <div className="table-body">
+      {securitiesData.length === 0 && tableState !== tableEnum.error ? (
+        <div className="no-securities-container">
+          <div className="no-securities-message">
+            You have no securities to show
+          </div>
+          <AddSecurityButton size="large" />
+        </div>
+      ) : (
+        <Components.ScrollWrapperY>
+          {securitiesData.map((item, index) => (
+            <div key={index} className="securities-table-row">
+              <div className="securities-exchange-data">{item.exchange}</div>
+              <div className="securities-symbol-data">{item.symbol}</div>
+              <div className="securities-name-data">{item.name}</div>
+              <div className="securities-row-options">
+                <Link to={`/inputform/${item.securityId}`}>
+                  <div className="securities-edit-button">
+                    <button>
+                      <span className="material-icons">edit</span>
+                    </button>
+                  </div>
+                </Link>
+                <div className="securities-delete-button">
+                  <button onClick={() => onClickDelete(item.securityId)}>
+                    <span className="material-icons">delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </Components.ScrollWrapperY>
+      )}
+    </div>
+  );
+};
 
 const SecuritiesTable = ({ match }) => {
   const [securitiesData, setSecuritiesData] = useState([]);
@@ -75,11 +114,7 @@ const SecuritiesTable = ({ match }) => {
         </div>
       ) : (
         <>
-          <TableBody
-            securitiesData={securitiesData}
-            tableState={tableState}
-            onClickDelete={onClickDelete}
-          />
+          {tableBody(onClickDelete, securitiesData, tableState)}
           {messages.length > 0 &&
             (tableState === tableEnum.success ||
               tableState === tableEnum.error) && (
