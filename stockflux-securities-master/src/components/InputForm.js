@@ -50,7 +50,7 @@ const InputForm = ({ match, history }) => {
           setMessages(["Error, cannot get security"]);
         });
     }
-  }, []);
+  }, [match.params.securityId]);
 
   const errorHandler = err => {
     if (err instanceof ValidationError) {

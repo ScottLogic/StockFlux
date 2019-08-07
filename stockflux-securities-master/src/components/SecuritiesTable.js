@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Components from "stockflux-components";
 import { Link } from "react-router-dom";
 import "./SecuritiesTable.css";
@@ -64,7 +64,7 @@ const SecuritiesTable = ({ location }) => {
     }
   };
 
-  const getSecuritiesHandler = messages => {
+  const getSecuritiesHandler = useCallback(messages => {
     getSecuritiesData()
       .then(securities => {
         setSecuritiesData(securities);
@@ -75,12 +75,12 @@ const SecuritiesTable = ({ location }) => {
         setSecuritiesData([]);
         errorHandler(err);
       });
-  };
+  }, []);
 
   useEffect(() => {
     setTableState(tableEnum.loading);
     getSecuritiesHandler(!!location.state ? location.state.messages : []);
-  }, []);
+  }, [getSecuritiesHandler, location.state]);
 
   const onClickDelete = securityId => {
     setTableState(tableEnum.deleting);
