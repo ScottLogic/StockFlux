@@ -25,10 +25,10 @@ const tableBody = (onClickDelete, securitiesData, tableState) => {
         <Components.ScrollWrapperY>
           {securitiesData.map((item, index) => (
             <div key={index} className="securities-table-row">
-              <div className="securities-exchange-data">{item.exchange}</div>
-              <div className="securities-symbol-data">{item.symbol}</div>
-              <div className="securities-name-data">{item.name}</div>
-              <div className="securities-row-options">
+              <div className="securities-table-cell">{item.exchange}</div>
+              <div className="securities-table-cell">{item.symbol}</div>
+              <div className="securities-table-cell">{item.name}</div>
+              <div className="securities-table-cell">
                 <Link to={`/inputform/${item.securityId}`}>
                   <div className="securities-edit-button">
                     <button>
@@ -96,17 +96,17 @@ const SecuritiesTable = ({ location }) => {
 
   return (
     <div className="securities-container">
-      <div className="securities-title-container">
-        <div className="securities-title">Securities</div>
+      <div className="securities-header-container">
+        <h1 className="securities-title">Securities</h1>
         <div className="add-securities-button-above-table">
           {securitiesData.length > 0 && <AddSecurityButton size="small" />}
         </div>
       </div>
-      <div className="header-container">
-        <div className="securities-table-header">Exchange</div>
-        <div className="securities-table-header">Symbol</div>
-        <div className="securities-table-header">Name</div>
-        <div className="securities-table-header">Edit / Delete</div>
+      <div className="heading-container">
+        <h2 className="securities-table-heading">Exchange</h2>
+        <h2 className="securities-table-heading">Symbol</h2>
+        <h2 className="securities-table-heading">Name</h2>
+        <h2 className="securities-table-heading">Edit / Delete</h2>
       </div>
       {tableState === tableEnum.loading ? (
         <div className="spinner-container">

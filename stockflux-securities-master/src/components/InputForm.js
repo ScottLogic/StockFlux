@@ -129,9 +129,9 @@ const InputForm = ({ match, history }) => {
 
   return (
     <div className="input-form-container">
-      <div className="input-form-title">
+      <h1 className="input-form-title">
         {match.params.securityId ? "Edit Security" : "Create a Security"}
-      </div>
+      </h1>
       {formState === inputFormEnum.loading ? (
         <div className="input-form-spinner-container">
           <Components.LargeSpinner />

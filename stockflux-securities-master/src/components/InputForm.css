@@ -14,7 +14,7 @@
 .input-form-title {
   padding: var(--padding-large);
   font-weight: var(--font-weight-bolder);
-  margin-left: var(--margin-small);
+  margin: var(--margin-small);
   font-size: var(--font-xxxlarge);
 }
 
