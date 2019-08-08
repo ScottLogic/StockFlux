@@ -1,6 +1,4 @@
-.button-container.extra-small,
-.button-container.small,
-.button-container.large {
+.button-container {
   border: solid 1px var(--text-teal);
   font-family: var(--font-roboto-sans-serif);
   color: var(--text-teal-light);
@@ -11,9 +9,7 @@
   cursor: pointer;
 }
 
-.button-container.extra-small:hover,
-.button-container.small:hover,
-.button-container.large:hover {
+.button-container:hover {
   color: var(--text-teal);
 }
 
@@ -35,8 +31,6 @@
   font-size: var(--font-xxxlarge);
 }
 
-.button-container.extra-small:focus,
-.button-container.small:focus,
-.button-container.large:focus {
+.button-container:focus {
   outline: none;
 }
