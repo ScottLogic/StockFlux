@@ -30,13 +30,13 @@ const tableBody = (onClickDelete, securitiesData, tableState) => {
               <div className="securities-table-cell">{item.name}</div>
               <div className="securities-table-cell">
                 <Link to={`/inputform/${item.securityId}`}>
-                  <div className="securities-edit-button">
+                  <div className="securities-table-button">
                     <button>
                       <span className="material-icons">edit</span>
                     </button>
                   </div>
                 </Link>
-                <div className="securities-delete-button">
+                <div className="securities-table-button">
                   <button onClick={() => onClickDelete(item.securityId)}>
                     <span className="material-icons">delete</span>
                   </button>

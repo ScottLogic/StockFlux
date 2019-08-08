@@ -44,6 +44,10 @@
   border-left: 1px solid var(--clr-divider-light);
 }
 
+.securities-table-cell {
+  display: flex;
+}
+
 .table-deleting-spinner-container,
 .securities-message-container {
   margin-top: var(--margin-large);
@@ -90,24 +94,17 @@
   border-bottom: none;
 }
 
-.securities-edit-button > button:focus,
-.securities-delete-button > button:focus {
+.securities-table-button > button:focus {
   outline: none;
 }
 
-.securities-edit-button > button,
-.securities-delete-button > button {
+.securities-table-button > button {
   border: none;
   background: none;
   color: var(--text-teal-light);
   cursor: pointer;
 }
 
-.securities-edit-button > button:hover,
-.securities-delete-button > button:hover {
+.securities-table-button > button:hover {
   color: var(--text-teal);
-}
-
-.securities-table-cell {
-  display: flex;
 }
