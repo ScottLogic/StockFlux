@@ -11,9 +11,9 @@
   cursor: pointer;
 }
 
-.button-container.extra-small > button:hover,
-.button-container.small > button:hover,
-.button-container.large > button:hover {
+.button-container.extra-small:hover,
+.button-container.small:hover,
+.button-container.large:hover {
   color: var(--text-teal);
 }
 

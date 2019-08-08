@@ -11,6 +11,7 @@
   margin-bottom: var(--margin-medium);
 }
 
+.no-securities-message,
 .securities-title {
   margin: var(--margin-large) 0 var(--margin-large) var(--margin-large);
   font-weight: var(--font-weight-bolder);
@@ -84,27 +85,21 @@
   border-bottom: 1px solid var(--clr-divider-light);
 }
 
-.no-securities-message {
-  font-weight: var(--font-weight-bolder);
-  font-size: var(--font-xxxlarge);
-  padding: var(--margin-medium) var(--margin-medium);
-}
-
 .securities-table-row:last-child > div {
   border-bottom: none;
 }
 
-.securities-table-button > button:focus {
+.securities-table-button:focus {
   outline: none;
 }
 
-.securities-table-button > button {
+.securities-table-button {
   border: none;
   background: none;
   color: var(--text-teal-light);
   cursor: pointer;
 }
 
-.securities-table-button > button:hover {
+.securities-table-button :hover {
   color: var(--text-teal);
 }
