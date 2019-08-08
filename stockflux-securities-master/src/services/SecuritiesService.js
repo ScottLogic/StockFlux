@@ -79,8 +79,9 @@ export async function deleteSecurity(securityId) {
     fetchOptions
   );
   if (response.ok) {
-    return { message: "Security Successfully Deleted" };
+    return response;
   }
+
   const json = await response.json();
   throw new ValidationError(json.messages);
 }

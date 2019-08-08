@@ -128,8 +128,8 @@ const SecuritiesTable = ({ location }) => {
     setState(TableState.deleting);
     setMessages([]);
     deleteSecurity(securityId)
-      .then(response => {
-        getSecuritiesHandler([response.message]);
+      .then(() => {
+        getSecuritiesHandler(["Security Successfully Deleted"]);
       })
       .catch(err => {
         errorHandler(err);
