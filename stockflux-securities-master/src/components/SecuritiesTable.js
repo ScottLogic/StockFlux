@@ -139,18 +139,8 @@ const SecuritiesTable = ({ location }) => {
   const patchSecurityHandler = (securityId, updates) => {
     setState(TableState.updating);
     patchSecurity(securityId, updates)
-      .then(response => {
-        const newSecuritiesData = [];
-        securitiesData.forEach(item => {
-          if (item.securityId === securityId) {
-            newSecuritiesData.push({ ...item, ...updates });
-          } else {
-            newSecuritiesData.push(item);
-          }
-        });
-        setSecuritiesData(newSecuritiesData);
-        setState(TableState.success);
-        setMessages([response.message]);
+      .then(() => {
+        getSecuritiesHandler(["Security Updated"]);
       })
       .catch(err => {
         errorHandler(err);

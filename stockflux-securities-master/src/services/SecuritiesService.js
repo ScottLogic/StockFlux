@@ -101,9 +101,10 @@ export async function patchSecurity(securityId, updates) {
     fetchOptions
   );
 
-  const json = await response.json();
   if (response.ok) {
-    return { message: "Security Updated" };
+    return;
   }
-  throw new ValidationError(response.messages);
+
+  const json = await response.json();
+  throw new ValidationError(json.messages);
 }
