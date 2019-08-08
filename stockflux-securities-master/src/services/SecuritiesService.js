@@ -79,7 +79,7 @@ export async function deleteSecurity(securityId) {
     fetchOptions
   );
   if (response.ok) {
-    return response;
+    return;
   }
 
   const json = await response.json();
