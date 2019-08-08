@@ -11,12 +11,11 @@
   margin: var(--margin-large) 0 var(--margin-medium) 0;
 }
 
-.yes-no-button-container {
+.confirmation-option-button-container {
   display: flex;
   flex-direction: row;
 }
 
-.yes-button,
-.no-button {
+.confirmation-option-button {
   margin: var(--margin-small);
 }

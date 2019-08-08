@@ -1,4 +1,4 @@
-export const tableEnum = {
+export const TableState = {
   loading: "loading",
   deleting: "deleting",
   updating: "updating",
@@ -6,7 +6,7 @@ export const tableEnum = {
   success: "success"
 };
 
-export const inputFormEnum = {
+export const InputFormState = {
   loading: "loading",
   sending: "sending",
   error: "error",

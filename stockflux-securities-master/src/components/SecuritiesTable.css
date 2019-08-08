@@ -4,17 +4,17 @@
   font-weight: var(--font-weight-normal);
 }
 
-.securities-title-container {
+.securities-header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: var(--margin-medium);
 }
 
+.no-securities-message,
 .securities-title {
-  padding: var(--padding-large) 0 var(--padding-large) var(--padding-medium);
+  margin: var(--margin-large) 0 var(--margin-large) var(--margin-large);
   font-weight: var(--font-weight-bolder);
-  margin-left: var(--padding-small);
   font-size: var(--font-xxxlarge);
 }
 
@@ -22,36 +22,31 @@
   margin: var(--margin-small) var(--margin-medium) var(--margin-small) 0;
 }
 
-.header-container {
+.heading-container {
   border-top: 1px solid var(--clr-divider-dark);
 }
 
-.header-container {
+.securities-table-row,
+.heading-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 0.8fr;
 }
 
-.securities-table-header {
+.securities-table-heading {
+  margin: 0;
   font-size: var(--font-xlarge);
   font-weight: var(--font-weight-bolder);
 }
 
-.securities-exchange-data {
-  grid-column: 1;
-}
-
-.securities-symbol-data {
-  grid-column: 2;
-}
-
-.securities-name-data {
-  grid-column: 3;
-}
-
-.securities-table-header {
-  padding: var(--margin-medium) var(--margin-large);
+.securities-table-cell,
+.securities-table-heading {
+  padding: var(--padding-medium) var(--padding-large);
   border-bottom: 1px solid var(--clr-divider-light);
   border-left: 1px solid var(--clr-divider-light);
+}
+
+.securities-table-cell {
+  display: flex;
 }
 
 .table-deleting-spinner-container,
@@ -62,6 +57,7 @@
   justify-content: center;
 }
 
+.no-securities-container,
 .securities-message-container.no-securities,
 .spinner-container {
   display: flex;
@@ -69,4 +65,45 @@
   justify-content: center;
   flex-direction: column;
   height: 400px;
+}
+
+.table-body {
+  border-bottom: 1px solid var(--clr-divider-dark);
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  max-height: 400px;
+}
+
+/* overrides the default shifting of the scroll component */
+.table-body .scrollPaddingRight:hover {
+  padding-right: 0;
+}
+
+.no-securities-container {
+  text-align: center;
+  border-bottom: 1px solid var(--clr-divider-light);
+}
+
+.securities-table-row:last-child > div {
+  border-bottom: none;
+}
+
+.securities-table-button:focus {
+  outline: none;
+}
+
+.securities-table-button {
+  border: none;
+  background: none;
+  color: var(--text-teal-light);
+  cursor: pointer;
+}
+
+.securities-table-button:hover {
+  color: var(--text-teal);
+}
+
+.securities-table-button.greyed-out {
+  color: var(--text-grey-dark);
 }

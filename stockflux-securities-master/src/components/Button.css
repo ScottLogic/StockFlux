@@ -1,6 +1,6 @@
-.button-container.extraSmall > button,
-.button-container.small > button,
-.button-container.large > button {
+.button-container.extra-small,
+.button-container.small,
+.button-container.large {
   border: solid 1px var(--text-teal);
   font-family: var(--font-roboto-sans-serif);
   color: var(--text-teal-light);
@@ -11,32 +11,32 @@
   cursor: pointer;
 }
 
-.button-container.extraSmall > button:hover,
-.button-container.small > button:hover,
-.button-container.large > button:hover {
+.button-container.extra-small:hover,
+.button-container.small:hover,
+.button-container.large:hover {
   color: var(--text-teal);
 }
 
-.button-container.extraSmall > button {
+.button-container.extra-small {
   height: 30px;
   width: 130px;
   font-size: var(--font-large);
 }
 
-.button-container.small > button {
+.button-container.small {
   height: 30px;
   width: 180px;
   font-size: var(--font-xlarge);
 }
 
-.button-container.large > button {
+.button-container.large {
   height: 40px;
   width: 280px;
   font-size: var(--font-xxxlarge);
 }
 
-.button-container.extraSmall > button:focus,
-.button-container.small > button:focus,
-.button-container.large > button:focus {
+.button-container.extra-small:focus,
+.button-container.small:focus,
+.button-container.large:focus {
   outline: none;
 }

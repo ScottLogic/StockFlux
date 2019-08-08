@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Button from "./Button";
 
-const AddSecuritiesButton = ({ size }) => {
+const ButtonAddSecurity = ({ size }) => {
   return (
     <Link to="/inputform">
       <Button
@@ -14,4 +14,4 @@ const AddSecuritiesButton = ({ size }) => {
   );
 };
 
-export default AddSecuritiesButton;
+export default ButtonAddSecurity;
