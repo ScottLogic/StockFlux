@@ -1,45 +1,40 @@
 import React, { useState } from "react";
-import "./ConfirmationButton.css";
+import "./Confirmation.css";
 import Button from "./Button";
 
-const ConfirmationButton = ({
-  text,
-  confirmationText,
-  size,
-  onClick,
-  className,
-  ...props
-}) => {
+const Confirmation = ({ children, confirmationText, className, ...props }) => {
   const [clickedStatus, setClickedStatus] = useState(false);
 
   return (
-    <div className={`confirmation-button-container ${className}`}>
+    <div {...props} className={`confirmation-button-container ${className}`}>
       {!clickedStatus ? (
-        <Button
+        <div
           {...props}
-          onClick={() => setClickedStatus(true)}
-          text={text}
-          size={size}
-        />
+          onClickCapture={event => {
+            event.stopPropagation();
+            setClickedStatus(true);
+          }}
+        >
+          {children}
+        </div>
       ) : (
         <>
           <div className="confirmation-message-container">
             {confirmationText}
           </div>
-          <div className="yes-no-button-container">
+          <div className="confirmation-option-button-container">
             <Button
-              {...props}
               text="Yes"
               size="extra-small"
-              onClick={onClick}
-              className="yes-button"
+              onClick={children.props.onClick}
+              className="confirmation-option-button"
               type="button"
             />
             <Button
               text="No"
               size="extra-small"
               onClick={() => setClickedStatus(false)}
-              className="no-button"
+              className="confirmation-option-button"
               type="button"
             />
           </div>
@@ -49,4 +44,4 @@ const ConfirmationButton = ({
   );
 };
 
-export default ConfirmationButton;
+export default Confirmation;

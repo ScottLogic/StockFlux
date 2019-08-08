@@ -13,7 +13,7 @@ import Alert from "./Alert";
 import TextField from "./TextField";
 import ToggleSwitch from "./ToggleSwitch";
 import Button from "./Button";
-import ConfirmationButton from "./ConfirmationButton";
+import Confirmation from "./Confirmation";
 import { InputFormState } from "../enums";
 
 const InputForm = ({ match }) => {
@@ -200,14 +200,15 @@ const InputForm = ({ match }) => {
               }
             />
             {match.params.securityId && (
-              <ConfirmationButton
-                size="large"
-                text="Delete"
-                confirmationText="Are you sure you want to delete this security?"
-                onClick={onClickDelete}
-                type="button"
-                className="input-delete-button"
-              />
+              <Confirmation confirmationText="Are you sure you want to delete this security?">
+                <Button
+                  type="button"
+                  className="input-delete-button"
+                  text="Delete"
+                  size="large"
+                  onClick={onClickDelete}
+                />
+              </Confirmation>
             )}
             {renderRedirect()}
           </div>
