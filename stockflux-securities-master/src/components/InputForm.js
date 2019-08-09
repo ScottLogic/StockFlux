@@ -2,12 +2,7 @@ import React, { useState, useEffect } from "react";
 import Components from "stockflux-components";
 import { Link, Redirect } from "react-router-dom";
 import "./InputForm.css";
-import {
-  getSecurity,
-  postSecurity,
-  updateSecurity,
-  deleteSecurity
-} from "../services/SecuritiesService";
+import * as service from "../services/SecuritiesService";
 import ValidationError from "../services/ValidationError";
 import Alert from "./Alert";
 import TextField from "./TextField";
@@ -39,7 +34,8 @@ const InputForm = ({ match }) => {
   useEffect(() => {
     if (match.params.securityId) {
       setState(InputFormState.LOADING);
-      getSecurity(match.params.securityId)
+      service
+        .getSecurity(match.params.securityId)
         .then(security => {
           setState(null);
           setSecurityState(security);
@@ -52,7 +48,7 @@ const InputForm = ({ match }) => {
     }
   }, [match.params.securityId]);
 
-  const errorHandler = err => {
+  const handleError = err => {
     if (err instanceof ValidationError) {
       setMessages(err.messages);
     } else {
@@ -74,16 +70,18 @@ const InputForm = ({ match }) => {
     };
 
     if (match.params.securityId) {
-      updateSecurity(match.params.securityId, securityObject)
+      service
+        .updateSecurity(match.params.securityId, securityObject)
         .then(() => {
           setMessages(["Security was successfully updated"]);
           setState(InputFormState.SUCCESS);
         })
         .catch(err => {
-          errorHandler(err);
+          handleError(err);
         });
     } else {
-      postSecurity(securityObject)
+      service
+        .postSecurity(securityObject)
         .then(() => {
           setMessages(["Security was successfully created"]);
           setState(InputFormState.SUCCESS);
@@ -96,23 +94,35 @@ const InputForm = ({ match }) => {
           });
         })
         .catch(err => {
-          errorHandler(err);
+          handleError(err);
         });
     }
   };
 
-  const onClickDelete = () => {
-    deleteSecurity(match.params.securityId)
+  const deleteSecurity = () => {
+    service
+      .deleteSecurity(match.params.securityId)
       .then(() => {
         setState(InputFormState.SUCCESS);
         setMessages(["Security Successfully Deleted"]);
         setRedirect(true);
       })
       .catch(err => {
-        errorHandler(err);
+        handleError(err);
       });
   };
 
+  if (redirect) {
+    return (
+      <Redirect
+        push
+        to={{
+          pathname: "/",
+          state: { messages }
+        }}
+      />
+    );
+  }
   return (
     <div className="input-form-container">
       <h1 className="input-form-title">
@@ -192,18 +202,9 @@ const InputForm = ({ match }) => {
                   className="input-delete-button"
                   text="Delete"
                   size="large"
-                  onClick={onClickDelete}
+                  onClick={deleteSecurity}
                 />
               </Confirmation>
-            )}
-            {redirect && (
-              <Redirect
-                push
-                to={{
-                  pathname: "/",
-                  state: { messages }
-                }}
-              />
             )}
           </div>
         </form>
@@ -213,7 +214,6 @@ const InputForm = ({ match }) => {
           state === InputFormState.SUCCESS) && (
           <Alert type={state} messages={messages} />
         )}
-
       <Link to="/">
         <div className="back-button">
           <button>
