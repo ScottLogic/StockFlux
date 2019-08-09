@@ -11,50 +11,6 @@ import Alert from "./Alert";
 import { TableState } from "../enums";
 import Button from "./Button";
 
-const tableBody = (onClickDelete, securitiesData, state) => {
-  return (
-    <div className="table-body">
-      {securitiesData.length === 0 && state !== TableState.ERROR ? (
-        <div className="no-securities-container">
-          <div className="no-securities-message">
-            You have no securities to show
-          </div>
-          <Link to="/inputform">
-            <Button
-              text="Add Security"
-              size="large"
-              className="add-securities-button"
-            />
-          </Link>
-        </div>
-      ) : (
-        <Components.ScrollWrapperY>
-          {securitiesData.map((item, index) => (
-            <div key={index} className="securities-table-row">
-              <div className="securities-table-cell">{item.exchange}</div>
-              <div className="securities-table-cell">{item.symbol}</div>
-              <div className="securities-table-cell">{item.name}</div>
-              <div className="securities-table-cell">
-                <Link to={`/inputform/${item.securityId}`}>
-                  <button className="securities-table-button">
-                    <span className="material-icons">edit</span>
-                  </button>
-                </Link>
-                <button
-                  className="securities-table-button"
-                  onClick={() => onClickDelete(item.securityId)}
-                >
-                  <span className="material-icons">delete</span>
-                </button>
-              </div>
-            </div>
-          ))}
-        </Components.ScrollWrapperY>
-      )}
-    </div>
-  );
-};
-
 const SecuritiesTable = ({ location }) => {
   const [securitiesData, setSecuritiesData] = useState([]);
   const [messages, setMessages] = useState([]);
@@ -99,6 +55,50 @@ const SecuritiesTable = ({ location }) => {
       });
   };
 
+  const tableBody = () => {
+    return (
+      <div className="table-body">
+        {securitiesData.length === 0 && state !== TableState.ERROR ? (
+          <div className="no-securities-container">
+            <div className="no-securities-message">
+              You have no securities to show
+            </div>
+            <Link to="/inputform">
+              <Button
+                text="Add Security"
+                size="large"
+                className="add-securities-button"
+              />
+            </Link>
+          </div>
+        ) : (
+          <Components.ScrollWrapperY>
+            {securitiesData.map((item, index) => (
+              <div key={index} className="securities-table-row">
+                <div className="securities-table-cell">{item.exchange}</div>
+                <div className="securities-table-cell">{item.symbol}</div>
+                <div className="securities-table-cell">{item.name}</div>
+                <div className="securities-table-cell">
+                  <Link to={`/inputform/${item.securityId}`}>
+                    <button className="securities-table-button">
+                      <span className="material-icons">edit</span>
+                    </button>
+                  </Link>
+                  <button
+                    className="securities-table-button"
+                    onClick={() => onClickDelete(item.securityId)}
+                  >
+                    <span className="material-icons">delete</span>
+                  </button>
+                </div>
+              </div>
+            ))}
+          </Components.ScrollWrapperY>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className="securities-container">
       <div className="securities-header-container">
@@ -127,7 +127,7 @@ const SecuritiesTable = ({ location }) => {
         </div>
       ) : (
         <>
-          {tableBody(onClickDelete, securitiesData, state)}
+          {tableBody()}
           {messages.length > 0 &&
             (state === TableState.SUCCESS || state === TableState.ERROR) && (
               <div
