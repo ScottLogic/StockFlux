@@ -2,10 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import Components from "stockflux-components";
 import { Link } from "react-router-dom";
 import "./SecuritiesTable.css";
-import {
-  getSecuritiesData,
-  deleteSecurity
-} from "../services/SecuritiesService";
+import * as service from "../services/SecuritiesService";
 import ValidationError from "../services/ValidationError";
 import Alert from "./Alert";
 import { TableState } from "../enums";
@@ -16,7 +13,7 @@ const SecuritiesTable = ({ location }) => {
   const [messages, setMessages] = useState([]);
   const [state, setState] = useState(TableState.LOADING);
 
-  const errorHandler = err => {
+  const handleError = err => {
     setState(TableState.ERROR);
     if (err instanceof ValidationError) {
       setMessages(err.messages);
@@ -25,8 +22,9 @@ const SecuritiesTable = ({ location }) => {
     }
   };
 
-  const getSecuritiesHandler = useCallback(messages => {
-    getSecuritiesData()
+  const loadSecurities = useCallback(messages => {
+    service
+      .getSecuritiesData()
       .then(securities => {
         setSecuritiesData(securities);
         setState(TableState.SUCCESS);
@@ -34,24 +32,25 @@ const SecuritiesTable = ({ location }) => {
       })
       .catch(err => {
         setSecuritiesData([]);
-        errorHandler(err);
+        handleError(err);
       });
   }, []);
 
   useEffect(() => {
     setState(TableState.LOADING);
-    getSecuritiesHandler(!!location.state ? location.state.messages : []);
-  }, [getSecuritiesHandler, location.state]);
+    loadSecurities(!!location.state ? location.state.messages : []);
+  }, [loadSecurities, location.state]);
 
-  const onClickDelete = securityId => {
+  const deleteSecurity = securityId => {
     setState(TableState.DELETING);
     setMessages([]);
-    deleteSecurity(securityId)
+    service
+      .deleteSecurity(securityId)
       .then(() => {
-        getSecuritiesHandler(["Security Successfully Deleted"]);
+        loadSecurities(["Security Successfully Deleted"]);
       })
       .catch(err => {
-        errorHandler(err);
+        handleError(err);
       });
   };
 
@@ -86,7 +85,7 @@ const SecuritiesTable = ({ location }) => {
                   </Link>
                   <button
                     className="securities-table-button"
-                    onClick={() => onClickDelete(item.securityId)}
+                    onClick={() => deleteSecurity(item.securityId)}
                   >
                     <span className="material-icons">delete</span>
                   </button>
