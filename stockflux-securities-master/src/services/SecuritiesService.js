@@ -95,12 +95,10 @@ export async function patchSecurity(securityId, updates) {
     body: JSON.stringify(updates)
   };
   const options = await getWindowOptions();
-
   const response = await fetch(
     `${options.customData.apiBaseUrl}/securities-v2/${securityId}`,
     fetchOptions
   );
-
   if (response.ok) {
     return;
   }
