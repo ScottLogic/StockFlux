@@ -100,6 +100,6 @@
   cursor: pointer;
 }
 
-.securities-table-button :hover {
+.securities-table-button:hover {
   color: var(--text-teal);
 }
