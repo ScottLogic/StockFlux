@@ -13,91 +13,6 @@ import { TableState } from "../enums";
 import ToolTip from "./ToolTip";
 import Button from "./Button";
 
-const tableBody = (
-  onClickDelete,
-  securitiesData,
-  state,
-  patchSecurityHandler
-) => {
-  return (
-    <div className="table-body">
-      {securitiesData.length === 0 && state !== TableState.ERROR ? (
-        <div className="no-securities-container">
-          <div className="no-securities-message">
-            You have no securities to show
-          </div>
-          <Link to="/inputform">
-            <Button
-              text="Add Security"
-              size="large"
-              className="add-securities-button"
-            />
-          </Link>
-        </div>
-      ) : (
-        <Components.ScrollWrapperY>
-          {securitiesData.map((item, index) => (
-            <div key={index} className="securities-table-row">
-              <div className="securities-table-cell">{item.exchange}</div>
-              <div className="securities-table-cell">{item.symbol}</div>
-              <div className="securities-table-cell">{item.name}</div>
-              <div className="securities-table-cell">
-                <ToolTip message="Edit">
-                  <Link to={`/inputform/${item.securityId}`}>
-                    <button className="securities-table-button">
-                      <span className="material-icons">edit</span>
-                    </button>
-                  </Link>
-                </ToolTip>
-                <ToolTip message="Delete">
-                  <button
-                    className="securities-table-button"
-                    onClick={() => onClickDelete(item.securityId)}
-                  >
-                    <span className="material-icons">delete</span>
-                  </button>
-                </ToolTip>
-                <ToolTip message="Visibility">
-                  <button
-                    className={`securities-table-button ${
-                      item.visible ? "" : "greyed-out"
-                    }`}
-                    onClick={() =>
-                      patchSecurityHandler(item.securityId, {
-                        visible: !item.visible
-                      })
-                    }
-                  >
-                    <span className="material-icons">
-                      {item.visible ? "visibility" : "visibility_off"}
-                    </span>
-                  </button>
-                </ToolTip>
-                <ToolTip message="Enabled?">
-                  <button
-                    className={`securities-table-button ${
-                      item.enabled ? "" : "greyed-out"
-                    }`}
-                    onClick={() =>
-                      patchSecurityHandler(item.securityId, {
-                        enabled: !item.enabled
-                      })
-                    }
-                  >
-                    <span className="material-icons">
-                      {item.enabled ? "done" : "clear"}
-                    </span>
-                  </button>
-                </ToolTip>
-              </div>
-            </div>
-          ))}
-        </Components.ScrollWrapperY>
-      )}
-    </div>
-  );
-};
-
 const SecuritiesTable = ({ location }) => {
   const [securitiesData, setSecuritiesData] = useState([]);
   const [messages, setMessages] = useState([]);
@@ -153,6 +68,86 @@ const SecuritiesTable = ({ location }) => {
       });
   };
 
+  const tableBody = () => {
+    return (
+      <div className="table-body">
+        {securitiesData.length === 0 && state !== TableState.ERROR ? (
+          <div className="no-securities-container">
+            <div className="no-securities-message">
+              You have no securities to show
+            </div>
+            <Link to="/inputform">
+              <Button
+                text="Add Security"
+                size="large"
+                className="add-securities-button"
+              />
+            </Link>
+          </div>
+        ) : (
+          <Components.ScrollWrapperY>
+            {securitiesData.map((item, index) => (
+              <div key={index} className="securities-table-row">
+                <div className="securities-table-cell">{item.exchange}</div>
+                <div className="securities-table-cell">{item.symbol}</div>
+                <div className="securities-table-cell">{item.name}</div>
+                <div className="securities-table-cell">
+                  <ToolTip message="Edit">
+                    <Link to={`/inputform/${item.securityId}`}>
+                      <button className="securities-table-button">
+                        <span className="material-icons">edit</span>
+                      </button>
+                    </Link>
+                  </ToolTip>
+                  <ToolTip message="Delete">
+                    <button
+                      className="securities-table-button"
+                      onClick={() => onClickDelete(item.securityId)}
+                    >
+                      <span className="material-icons">delete</span>
+                    </button>
+                  </ToolTip>
+                  <ToolTip message="Visibility">
+                    <button
+                      className={`securities-table-button ${
+                        item.visible ? "" : "greyed-out"
+                      }`}
+                      onClick={() =>
+                        patchSecurityHandler(item.securityId, {
+                          visible: !item.visible
+                        })
+                      }
+                    >
+                      <span className="material-icons">
+                        {item.visible ? "visibility" : "visibility_off"}
+                      </span>
+                    </button>
+                  </ToolTip>
+                  <ToolTip message="Enabled?">
+                    <button
+                      className={`securities-table-button ${
+                        item.enabled ? "" : "greyed-out"
+                      }`}
+                      onClick={() =>
+                        patchSecurityHandler(item.securityId, {
+                          enabled: !item.enabled
+                        })
+                      }
+                    >
+                      <span className="material-icons">
+                        {item.enabled ? "done" : "clear"}
+                      </span>
+                    </button>
+                  </ToolTip>
+                </div>
+              </div>
+            ))}
+          </Components.ScrollWrapperY>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className="securities-container">
       <div className="securities-header-container">
@@ -181,12 +176,7 @@ const SecuritiesTable = ({ location }) => {
         </div>
       ) : (
         <>
-          {tableBody(
-            onClickDelete,
-            securitiesData,
-            state,
-            patchSecurityHandler
-          )}
+          {tableBody()}
           {messages.length > 0 &&
             (state === TableState.SUCCESS || state === TableState.ERROR) && (
               <div
