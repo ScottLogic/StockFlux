@@ -1,14 +1,14 @@
 export const TableState = {
-  loading: "loading",
-  deleting: "deleting",
-  updating: "updating",
-  error: "error",
-  success: "success"
+  LOADING: "loading",
+  DELETING: "deleting",
+  UPDATING: "updating",
+  ERROR: "error",
+  SUCCESS: "success"
 };
 
 export const InputFormState = {
-  loading: "loading",
-  sending: "sending",
-  error: "error",
-  success: "success"
+  LOADING: "loading",
+  SENDING: "sending",
+  ERROR: "error",
+  SUCCESS: "success"
 };
