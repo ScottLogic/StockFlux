@@ -57,12 +57,13 @@ const SecuritiesTable = ({ location }) => {
 
   const patchSecurityHandler = (securityId, updates) => {
     setState(TableState.UPDATING);
-    patchSecurity(securityId, updates)
+    service
+      .patchSecurity(securityId, updates)
       .then(() => {
-        getSecuritiesHandler(["Security Updated"]);
+        loadSecurities(["Security Updated"]);
       })
       .catch(err => {
-        errorHandler(err);
+        handleError(err);
       });
   };
 
