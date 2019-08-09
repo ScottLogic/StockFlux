@@ -23,7 +23,7 @@ const InputForm = ({ match }) => {
   const [visible, setVisible] = useState(false);
   const [enabled, setEnabled] = useState(false);
   const [state, setState] = useState(
-    match.params.securityId ? InputFormState.loading : null
+    match.params.securityId ? InputFormState.LOADING : null
   );
   const [messages, setMessages] = useState([]);
   const [redirect, setRedirect] = useState(false);
@@ -38,7 +38,7 @@ const InputForm = ({ match }) => {
 
   useEffect(() => {
     if (match.params.securityId) {
-      setState(InputFormState.loading);
+      setState(InputFormState.LOADING);
       getSecurity(match.params.securityId)
         .then(security => {
           setState(null);
@@ -46,7 +46,7 @@ const InputForm = ({ match }) => {
           setMessages([]);
         })
         .catch(() => {
-          setState(InputFormState.error);
+          setState(InputFormState.ERROR);
           setMessages(["Error, cannot get security"]);
         });
     }
@@ -58,12 +58,12 @@ const InputForm = ({ match }) => {
     } else {
       setMessages([err.message]);
     }
-    setState(InputFormState.error);
+    setState(InputFormState.ERROR);
   };
 
   const submitForm = event => {
     event.preventDefault();
-    setState(InputFormState.sending);
+    setState(InputFormState.SENDING);
     setMessages([]);
     const securityObject = {
       exchange,
@@ -77,7 +77,7 @@ const InputForm = ({ match }) => {
       updateSecurity(match.params.securityId, securityObject)
         .then(() => {
           setMessages(["Security was successfully updated"]);
-          setState(InputFormState.success);
+          setState(InputFormState.SUCCESS);
         })
         .catch(err => {
           errorHandler(err);
@@ -86,7 +86,7 @@ const InputForm = ({ match }) => {
       postSecurity(securityObject)
         .then(() => {
           setMessages(["Security was successfully created"]);
-          setState(InputFormState.success);
+          setState(InputFormState.SUCCESS);
           setSecurityState({
             exchange: "",
             symbol: "",
@@ -104,7 +104,7 @@ const InputForm = ({ match }) => {
   const onClickDelete = () => {
     deleteSecurity(match.params.securityId)
       .then(() => {
-        setState(InputFormState.success);
+        setState(InputFormState.SUCCESS);
         setMessages(["Security Successfully Deleted"]);
         setRedirect(true);
       })
@@ -113,26 +113,12 @@ const InputForm = ({ match }) => {
       });
   };
 
-  const renderRedirect = () => {
-    if (redirect) {
-      return (
-        <Redirect
-          push
-          to={{
-            pathname: "/",
-            state: { messages }
-          }}
-        />
-      );
-    }
-  };
-
   return (
     <div className="input-form-container">
       <h1 className="input-form-title">
         {match.params.securityId ? "Edit Security" : "Create a Security"}
       </h1>
-      {state === InputFormState.loading ? (
+      {state === InputFormState.LOADING ? (
         <div className="input-form-spinner-container">
           <Components.LargeSpinner />
         </div>
@@ -195,7 +181,7 @@ const InputForm = ({ match }) => {
               size="large"
               text={match.params.securityId ? "Save" : "Create"}
               className={
-                (state === InputFormState.sending ? "in-progress " : "") +
+                (state === InputFormState.SENDING ? "in-progress " : "") +
                 "input-submit-button"
               }
             />
@@ -210,13 +196,21 @@ const InputForm = ({ match }) => {
                 />
               </Confirmation>
             )}
-            {renderRedirect()}
+            {redirect && (
+              <Redirect
+                push
+                to={{
+                  pathname: "/",
+                  state: { messages }
+                }}
+              />
+            )}
           </div>
         </form>
       )}
       {!!messages &&
-        (state === InputFormState.error ||
-          state === InputFormState.success) && (
+        (state === InputFormState.ERROR ||
+          state === InputFormState.SUCCESS) && (
           <Alert type={state} messages={messages} />
         )}
 

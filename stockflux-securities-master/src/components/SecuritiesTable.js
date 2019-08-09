@@ -7,19 +7,25 @@ import {
   deleteSecurity
 } from "../services/SecuritiesService";
 import ValidationError from "../services/ValidationError";
-import AddSecurityButton from "./ButtonAddSecurity";
 import Alert from "./Alert";
 import { TableState } from "../enums";
+import Button from "./Button";
 
-const tableBody = (onClickDelete, securitiesData, tableState) => {
+const tableBody = (onClickDelete, securitiesData, state) => {
   return (
     <div className="table-body">
-      {securitiesData.length === 0 && tableState !== TableState.error ? (
+      {securitiesData.length === 0 && state !== TableState.ERROR ? (
         <div className="no-securities-container">
           <div className="no-securities-message">
             You have no securities to show
           </div>
-          <AddSecurityButton size="large" />
+          <Link to="/inputform">
+            <Button
+              text="Add Security"
+              size="large"
+              className="add-securities-button"
+            />
+          </Link>
         </div>
       ) : (
         <Components.ScrollWrapperY>
@@ -52,10 +58,10 @@ const tableBody = (onClickDelete, securitiesData, tableState) => {
 const SecuritiesTable = ({ location }) => {
   const [securitiesData, setSecuritiesData] = useState([]);
   const [messages, setMessages] = useState([]);
-  const [state, setState] = useState(TableState.loading);
+  const [state, setState] = useState(TableState.LOADING);
 
   const errorHandler = err => {
-    setState(TableState.error);
+    setState(TableState.ERROR);
     if (err instanceof ValidationError) {
       setMessages(err.messages);
     } else {
@@ -67,7 +73,7 @@ const SecuritiesTable = ({ location }) => {
     getSecuritiesData()
       .then(securities => {
         setSecuritiesData(securities);
-        setState(TableState.success);
+        setState(TableState.SUCCESS);
         setMessages(messages);
       })
       .catch(err => {
@@ -77,12 +83,12 @@ const SecuritiesTable = ({ location }) => {
   }, []);
 
   useEffect(() => {
-    setState(TableState.loading);
+    setState(TableState.LOADING);
     getSecuritiesHandler(!!location.state ? location.state.messages : []);
   }, [getSecuritiesHandler, location.state]);
 
   const onClickDelete = securityId => {
-    setState(TableState.deleting);
+    setState(TableState.DELETING);
     setMessages([]);
     deleteSecurity(securityId)
       .then(() => {
@@ -98,7 +104,15 @@ const SecuritiesTable = ({ location }) => {
       <div className="securities-header-container">
         <h1 className="securities-title">Securities</h1>
         <div className="add-securities-button-above-table">
-          {securitiesData.length > 0 && <AddSecurityButton size="small" />}
+          {securitiesData.length > 0 && (
+            <Link to="/inputform">
+              <Button
+                text="Add Security"
+                size="small"
+                className="add-securities-button"
+              />
+            </Link>
+          )}
         </div>
       </div>
       <div className="heading-container">
@@ -107,7 +121,7 @@ const SecuritiesTable = ({ location }) => {
         <h2 className="securities-table-heading">Name</h2>
         <h2 className="securities-table-heading">Edit / Delete</h2>
       </div>
-      {state === TableState.loading ? (
+      {state === TableState.LOADING ? (
         <div className="spinner-container">
           <Components.LargeSpinner />
         </div>
@@ -115,8 +129,7 @@ const SecuritiesTable = ({ location }) => {
         <>
           {tableBody(onClickDelete, securitiesData, state)}
           {messages.length > 0 &&
-            (state === TableState.success ||
-              state === TableState.error) && (
+            (state === TableState.SUCCESS || state === TableState.ERROR) && (
               <div
                 className={`securities-message-container ${
                   securitiesData.length === 0 ? "no-securities" : ""
@@ -125,7 +138,7 @@ const SecuritiesTable = ({ location }) => {
                 <Alert messages={messages} type={state} />
               </div>
             )}
-          {state === TableState.deleting && (
+          {state === TableState.DELETING && (
             <div className="table-deleting-spinner-container">
               <Components.Spinner />
             </div>
