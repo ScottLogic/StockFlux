@@ -186,7 +186,7 @@ const SecuritiesTable = ({ location }) => {
                 <Alert messages={messages} type={state} />
               </div>
             )}
-          {(state === TableState.DELETING || state == TableState.UPDATING) && (
+          {(state === TableState.DELETING || state === TableState.UPDATING) && (
             <div className="table-deleting-spinner-container">
               <Components.Spinner />
             </div>
