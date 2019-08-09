@@ -1,93 +1,148 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Components from "stockflux-components";
-import "./SecuritiesTable.css";
 import { Link } from "react-router-dom";
-import { getSecuritiesData } from "../services/SecuritiesService";
-import AddSecurityButton from "./AddSecurityButton";
+import "./SecuritiesTable.css";
+import * as service from "../services/SecuritiesService";
+import ValidationError from "../services/ValidationError";
 import Alert from "./Alert";
+import { TableState } from "../enums";
+import Button from "./Button";
 
-const SecuritiesTable = () => {
+const SecuritiesTable = ({ location }) => {
   const [securitiesData, setSecuritiesData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [errorMessages, setErrorMessages] = useState([]);
-  const timeoutMessage =
-    "Error, unable to get securities data. Please try again!";
+  const [messages, setMessages] = useState([]);
+  const [state, setState] = useState(TableState.LOADING);
 
-  useEffect(() => {
-    setIsLoading(true);
-    getSecuritiesData()
+  const handleError = err => {
+    setState(TableState.ERROR);
+    if (err instanceof ValidationError) {
+      setMessages(err.messages);
+    } else {
+      setMessages([err.message]);
+    }
+  };
+
+  const loadSecurities = useCallback(messages => {
+    service
+      .getSecuritiesData()
       .then(securities => {
-        setIsLoading(false);
         setSecuritiesData(securities);
-        setErrorMessages([]);
+        setState(TableState.SUCCESS);
+        setMessages(messages);
       })
-      .catch(() => {
-        setIsLoading(false);
-        setErrorMessages([timeoutMessage]);
+      .catch(err => {
+        setSecuritiesData([]);
+        handleError(err);
       });
   }, []);
 
+  useEffect(() => {
+    setState(TableState.LOADING);
+    loadSecurities(!!location.state ? location.state.messages : []);
+  }, [loadSecurities, location.state]);
+
+  const deleteSecurity = securityId => {
+    setState(TableState.DELETING);
+    setMessages([]);
+    service
+      .deleteSecurity(securityId)
+      .then(() => {
+        loadSecurities(["Security Successfully Deleted"]);
+      })
+      .catch(err => {
+        handleError(err);
+      });
+  };
+
+  const tableBody = () => {
+    return (
+      <div className="table-body">
+        {securitiesData.length === 0 && state !== TableState.ERROR ? (
+          <div className="no-securities-container">
+            <div className="no-securities-message">
+              You have no securities to show
+            </div>
+            <Link to="/inputform">
+              <Button
+                text="Add Security"
+                size="large"
+                className="add-securities-button"
+              />
+            </Link>
+          </div>
+        ) : (
+          <Components.ScrollWrapperY>
+            {securitiesData.map((item, index) => (
+              <div key={index} className="securities-table-row">
+                <div className="securities-table-cell">{item.exchange}</div>
+                <div className="securities-table-cell">{item.symbol}</div>
+                <div className="securities-table-cell">{item.name}</div>
+                <div className="securities-table-cell">
+                  <Link to={`/inputform/${item.securityId}`}>
+                    <button className="securities-table-button">
+                      <span className="material-icons">edit</span>
+                    </button>
+                  </Link>
+                  <button
+                    className="securities-table-button"
+                    onClick={() => deleteSecurity(item.securityId)}
+                  >
+                    <span className="material-icons">delete</span>
+                  </button>
+                </div>
+              </div>
+            ))}
+          </Components.ScrollWrapperY>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className="securities-container">
-      <div className="securities-title-container">
-        <div className="securities-title">Securities</div>
+      <div className="securities-header-container">
+        <h1 className="securities-title">Securities</h1>
         <div className="add-securities-button-above-table">
-          {securitiesData.length > 0 && errorMessages.length === 0 && (
-            <AddSecurityButton size="small" />
+          {securitiesData.length > 0 && (
+            <Link to="/inputform">
+              <Button
+                text="Add Security"
+                size="small"
+                className="add-securities-button"
+              />
+            </Link>
           )}
         </div>
       </div>
-      <div className="header-container">
-        <div className="securities-table-header">Exchange</div>
-        <div className="securities-table-header">Symbol</div>
-        <div className="securities-table-header">Name</div>
-        <div className="securities-table-header">Edit / Delete</div>
+      <div className="heading-container">
+        <h2 className="securities-table-heading">Exchange</h2>
+        <h2 className="securities-table-heading">Symbol</h2>
+        <h2 className="securities-table-heading">Name</h2>
+        <h2 className="securities-table-heading">Edit / Delete</h2>
       </div>
-      {isLoading ? (
+      {state === TableState.LOADING ? (
         <div className="spinner-container">
           <Components.LargeSpinner />
         </div>
-      ) : errorMessages.length > 0 ? (
-        <div className="securities-message-container">
-          <Alert messages={errorMessages} type="error" />
-        </div>
       ) : (
-        <div className="table-body">
-          {securitiesData.length > 0 ? (
-            <Components.ScrollWrapperY>
-              {securitiesData.map((item, index) => (
-                <div key={index} className="securities-table-row">
-                  <div className="securities-exchange-data">
-                    {item.securityId}
-                  </div>
-                  <div className="securities-symbol-data">{item.symbol}</div>
-                  <div className="securities-name-data">{item.name}</div>
-                  <div className="securities-row-options">
-                    <Link to={`/inputform/${item.securityId}`}>
-                      <div className="securities-edit-button">
-                        <button>
-                          <span className="material-icons">edit</span>
-                        </button>
-                      </div>
-                    </Link>
-                    <div className="securities-delete-button">
-                      <button disabled>
-                        <span className="material-icons">delete</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </Components.ScrollWrapperY>
-          ) : (
-            <div className="no-securities-container">
-              <div className="no-securities-message">
-                You have no securities to show
+        <>
+          {tableBody()}
+          {messages.length > 0 &&
+            (state === TableState.SUCCESS || state === TableState.ERROR) && (
+              <div
+                className={`securities-message-container ${
+                  securitiesData.length === 0 ? "no-securities" : ""
+                }`}
+              >
+                <Alert messages={messages} type={state} />
               </div>
-              <AddSecurityButton size="large" />
+            )}
+          {state === TableState.DELETING && (
+            <div className="table-deleting-spinner-container">
+              <Components.Spinner />
             </div>
           )}
-        </div>
+        </>
       )}
     </div>
   );

@@ -1,34 +1,27 @@
 import React, { useState, useEffect } from "react";
 import Components from "stockflux-components";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "./InputForm.css";
-import {
-  getSecurity,
-  postSecurity,
-  updateSecurity
-} from "../services/SecuritiesService";
+import * as service from "../services/SecuritiesService";
 import ValidationError from "../services/ValidationError";
 import Alert from "./Alert";
 import TextField from "./TextField";
 import ToggleSwitch from "./ToggleSwitch";
+import Button from "./Button";
+import Confirmation from "./Confirmation";
+import { InputFormState } from "../enums";
 
 const InputForm = ({ match }) => {
-  const stateEnum = {
-    loading: "loading",
-    sending: "sending",
-    error: "error",
-    success: "success"
-  };
-
   const [name, setName] = useState("");
   const [exchange, setExchange] = useState("");
   const [symbol, setSymbol] = useState("");
   const [visible, setVisible] = useState(false);
   const [enabled, setEnabled] = useState(false);
-  const [formState, setFormState] = useState(
-    match.params.securityId ? stateEnum.loading : null
+  const [state, setState] = useState(
+    match.params.securityId ? InputFormState.LOADING : null
   );
   const [messages, setMessages] = useState([]);
+  const [redirect, setRedirect] = useState(false);
 
   const setSecurityState = security => {
     setName(security.name);
@@ -40,23 +33,33 @@ const InputForm = ({ match }) => {
 
   useEffect(() => {
     if (match.params.securityId) {
-      setFormState(stateEnum.loading);
-      getSecurity(match.params.securityId)
+      setState(InputFormState.LOADING);
+      service
+        .getSecurity(match.params.securityId)
         .then(security => {
-          setFormState(null);
+          setState(null);
           setSecurityState(security);
           setMessages([]);
         })
         .catch(() => {
-          setFormState(stateEnum.error);
+          setState(InputFormState.ERROR);
           setMessages(["Error, cannot get security"]);
         });
     }
-  }, []);
+  }, [match.params.securityId]);
+
+  const handleError = err => {
+    if (err instanceof ValidationError) {
+      setMessages(err.messages);
+    } else {
+      setMessages([err.message]);
+    }
+    setState(InputFormState.ERROR);
+  };
 
   const submitForm = event => {
     event.preventDefault();
-    setFormState(stateEnum.sending);
+    setState(InputFormState.SENDING);
     setMessages([]);
     const securityObject = {
       exchange,
@@ -67,24 +70,21 @@ const InputForm = ({ match }) => {
     };
 
     if (match.params.securityId) {
-      updateSecurity(match.params.securityId, securityObject)
+      service
+        .updateSecurity(match.params.securityId, securityObject)
         .then(() => {
           setMessages(["Security was successfully updated"]);
-          setFormState(stateEnum.success);
+          setState(InputFormState.SUCCESS);
         })
         .catch(err => {
-          if (err instanceof ValidationError) {
-            setMessages(err.messages);
-          } else {
-            setMessages([err.message]);
-          }
-          setFormState(stateEnum.error);
+          handleError(err);
         });
     } else {
-      postSecurity(securityObject)
+      service
+        .postSecurity(securityObject)
         .then(() => {
           setMessages(["Security was successfully created"]);
-          setFormState(stateEnum.success);
+          setState(InputFormState.SUCCESS);
           setSecurityState({
             exchange: "",
             symbol: "",
@@ -94,22 +94,41 @@ const InputForm = ({ match }) => {
           });
         })
         .catch(err => {
-          if (err instanceof ValidationError) {
-            setMessages(err.messages);
-          } else {
-            setMessages([err.message]);
-          }
-          setFormState(stateEnum.error);
+          handleError(err);
         });
     }
   };
 
+  const deleteSecurity = () => {
+    service
+      .deleteSecurity(match.params.securityId)
+      .then(() => {
+        setState(InputFormState.SUCCESS);
+        setMessages(["Security Successfully Deleted"]);
+        setRedirect(true);
+      })
+      .catch(err => {
+        handleError(err);
+      });
+  };
+
+  if (redirect) {
+    return (
+      <Redirect
+        push
+        to={{
+          pathname: "/",
+          state: { messages }
+        }}
+      />
+    );
+  }
   return (
     <div className="input-form-container">
-      <div className="input-form-title">
+      <h1 className="input-form-title">
         {match.params.securityId ? "Edit Security" : "Create a Security"}
-      </div>
-      {formState === stateEnum.loading ? (
+      </h1>
+      {state === InputFormState.LOADING ? (
         <div className="input-form-spinner-container">
           <Components.LargeSpinner />
         </div>
@@ -167,23 +186,34 @@ const InputForm = ({ match }) => {
               onChange={event => setEnabled(event.target.checked)}
             />
           </div>
-          <div className="input-submit-button-container">
-            <div
+          <div className="input-buttons-container">
+            <Button
+              size="large"
+              text={match.params.securityId ? "Save" : "Create"}
               className={
-                (formState === stateEnum.sending ? "in-progress " : "") +
+                (state === InputFormState.SENDING ? "in-progress " : "") +
                 "input-submit-button"
               }
-            >
-              <button>{match.params.securityId ? "Save" : "Create"}</button>
-            </div>
+            />
+            {match.params.securityId && (
+              <Confirmation confirmationText="Are you sure you want to delete this security?">
+                <Button
+                  type="button"
+                  className="input-delete-button"
+                  text="Delete"
+                  size="large"
+                  onClick={deleteSecurity}
+                />
+              </Confirmation>
+            )}
           </div>
         </form>
       )}
       {!!messages &&
-        (formState === stateEnum.error || formState === stateEnum.success) && (
-          <Alert type={formState} messages={messages} />
+        (state === InputFormState.ERROR ||
+          state === InputFormState.SUCCESS) && (
+          <Alert type={state} messages={messages} />
         )}
-
       <Link to="/">
         <div className="back-button">
           <button>
