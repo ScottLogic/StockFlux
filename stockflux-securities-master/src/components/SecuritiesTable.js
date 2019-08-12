@@ -8,6 +8,8 @@ import Alert from "./Alert";
 import { TableState } from "../enums";
 import ToolTip from "./ToolTip";
 import Button from "./Button";
+import { FaPen, FaTrashAlt, FaEye, FaEyeSlash } from "react-icons/fa";
+import { MdClose, MdCheck } from "react-icons/md";
 
 const SecuritiesTable = ({ location }) => {
   const [securitiesData, setSecuritiesData] = useState([]);
@@ -94,7 +96,7 @@ const SecuritiesTable = ({ location }) => {
                   <ToolTip message="Edit">
                     <Link to={`/inputform/${item.securityId}`}>
                       <button className="securities-table-button">
-                        <span className="material-icons">edit</span>
+                        <FaPen size={20} />
                       </button>
                     </Link>
                   </ToolTip>
@@ -103,10 +105,10 @@ const SecuritiesTable = ({ location }) => {
                       className="securities-table-button"
                       onClick={() => deleteSecurity(item.securityId)}
                     >
-                      <span className="material-icons">delete</span>
+                      <FaTrashAlt size={20} />
                     </button>
                   </ToolTip>
-                  <ToolTip message="Visibility">
+                  <ToolTip message={item.visible ? "Hide" : "Show"}>
                     <button
                       className={`securities-table-button ${
                         item.visible ? "" : "greyed-out"
@@ -117,12 +119,14 @@ const SecuritiesTable = ({ location }) => {
                         })
                       }
                     >
-                      <span className="material-icons">
-                        {item.visible ? "visibility" : "visibility_off"}
-                      </span>
+                      {item.visible ? (
+                        <FaEye size={20} />
+                      ) : (
+                        <FaEyeSlash size={20} />
+                      )}
                     </button>
                   </ToolTip>
-                  <ToolTip message="Enabled?">
+                  <ToolTip message={item.enabled ? "Disable" : "Enable"}>
                     <button
                       className={`securities-table-button ${
                         item.enabled ? "" : "greyed-out"
@@ -133,9 +137,11 @@ const SecuritiesTable = ({ location }) => {
                         })
                       }
                     >
-                      <span className="material-icons">
-                        {item.enabled ? "done" : "clear"}
-                      </span>
+                      {item.enabled ? (
+                        <MdCheck size={20} />
+                      ) : (
+                        <MdClose size={20} />
+                      )}
                     </button>
                   </ToolTip>
                 </div>

@@ -10,7 +10,6 @@
   text-align: center;
   border-radius: 6px;
   padding: var(--padding-small) var(--padding-medium);
-  margin-right: var(--margin-medium);
   position: absolute;
   top: 0px;
   right: 105%;
@@ -29,4 +28,8 @@
 
 .tool-tip-container:hover .tool-tip-message {
   visibility: visible;
+}
+
+.tool-tip-container:hover .tool-tip-message:hover {
+  visibility: hidden;
 }
