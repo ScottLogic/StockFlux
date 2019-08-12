@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useReducer } from "react";
 import Components from "stockflux-components";
 import { Link } from "react-router-dom";
 import "./SecuritiesTable.css";
@@ -10,18 +10,19 @@ import ToolTip from "./ToolTip";
 import Button from "./Button";
 import { FaPen, FaTrashAlt, FaEye, FaEyeSlash } from "react-icons/fa";
 import { MdClose, MdCheck } from "react-icons/md";
+import {securitiesTableReducer, initialTableState} from "../reducers/securitiesTableReducer";
 
 const SecuritiesTable = ({ location }) => {
+  
   const [securitiesData, setSecuritiesData] = useState([]);
-  const [messages, setMessages] = useState([]);
-  const [state, setState] = useState(TableState.LOADING);
+  const [state, dispatch] = useReducer(securitiesTableReducer, initialTableState);
 
   const handleError = err => {
-    setState(TableState.ERROR);
+    dispatch({type: "error"});
     if (err instanceof ValidationError) {
-      setMessages(err.messages);
+      dispatch({type: "error", messages: err.messages});
     } else {
-      setMessages([err.message]);
+      dispatch({type: "error", messages: [err.message]});
     }
   };
 
@@ -30,8 +31,7 @@ const SecuritiesTable = ({ location }) => {
       .getSecuritiesData()
       .then(securities => {
         setSecuritiesData(securities);
-        setState(TableState.SUCCESS);
-        setMessages(messages);
+        dispatch({type: TableState.SUCCESS, messages: messages});
       })
       .catch(err => {
         setSecuritiesData([]);
@@ -40,13 +40,12 @@ const SecuritiesTable = ({ location }) => {
   }, []);
 
   useEffect(() => {
-    setState(TableState.LOADING);
+    dispatch({type: TableState.LOADING});
     loadSecurities(!!location.state ? location.state.messages : []);
   }, [loadSecurities, location.state]);
 
   const deleteSecurity = securityId => {
-    setState(TableState.DELETING);
-    setMessages([]);
+    dispatch({type: TableState.DELETING, messages: []});
     service
       .deleteSecurity(securityId)
       .then(() => {
@@ -58,7 +57,7 @@ const SecuritiesTable = ({ location }) => {
   };
 
   const patchSecurityHandler = (securityId, updates) => {
-    setState(TableState.UPDATING);
+    dispatch({type: TableState.UPDATING});
     service
       .patchSecurity(securityId, updates)
       .then(() => {
@@ -72,7 +71,7 @@ const SecuritiesTable = ({ location }) => {
   const tableBody = () => {
     return (
       <div className="table-body">
-        {securitiesData.length === 0 && state !== TableState.ERROR ? (
+        {securitiesData.length === 0 && !state.hasErrors ? (
           <div className="no-securities-container">
             <div className="no-securities-message">
               You have no securities to show
@@ -175,24 +174,24 @@ const SecuritiesTable = ({ location }) => {
         <h2 className="securities-table-heading">Name</h2>
         <h2 className="securities-table-heading">Edit / Delete</h2>
       </div>
-      {state === TableState.LOADING ? (
+      {state.fetchStatus === TableState.LOADING ? (
         <div className="spinner-container">
           <Components.LargeSpinner />
         </div>
       ) : (
         <>
           {tableBody()}
-          {messages.length > 0 &&
-            (state === TableState.SUCCESS || state === TableState.ERROR) && (
+          {state.messages.length > 0 &&
+            (!state.fetchStatus) && (
               <div
                 className={`securities-message-container ${
                   securitiesData.length === 0 ? "no-securities" : ""
                 }`}
               >
-                <Alert messages={messages} type={state} />
+                <Alert messages={state.messages} type={state.hasErrors ? "error" : "success"} />
               </div>
             )}
-          {(state === TableState.DELETING || state === TableState.UPDATING) && (
+          {(state.fetchStatus === TableState.DELETING || state.fetchStatus === TableState.UPDATING) && (
             <div className="table-deleting-spinner-container">
               <Components.Spinner />
             </div>

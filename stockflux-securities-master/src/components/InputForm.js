@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import Components from "stockflux-components";
 import { Link, Redirect } from "react-router-dom";
 import "./InputForm.css";
@@ -10,6 +10,7 @@ import ToggleSwitch from "./ToggleSwitch";
 import Button from "./Button";
 import Confirmation from "./Confirmation";
 import { InputFormState } from "../enums";
+import { inputFormReducer } from "../reducers/inputFormReducer";
 
 const InputForm = ({ match }) => {
   const [name, setName] = useState("");
@@ -17,11 +18,16 @@ const InputForm = ({ match }) => {
   const [symbol, setSymbol] = useState("");
   const [visible, setVisible] = useState(false);
   const [enabled, setEnabled] = useState(false);
-  const [state, setState] = useState(
-    match.params.securityId ? InputFormState.LOADING : null
-  );
-  const [messages, setMessages] = useState([]);
+
   const [redirect, setRedirect] = useState(false);
+
+  const initialFormState = {
+    fetchStatus: match.params.securityId ? InputFormState.LOADING : null,
+    hasErrors: false,
+    messages: []
+  };
+
+  const [state, dispatch] = useReducer(inputFormReducer, initialFormState);
 
   const setSecurityState = security => {
     setName(security.name);
@@ -33,34 +39,33 @@ const InputForm = ({ match }) => {
 
   useEffect(() => {
     if (match.params.securityId) {
-      setState(InputFormState.LOADING);
+      dispatch({ type: InputFormState.LOADING });
       service
         .getSecurity(match.params.securityId)
         .then(security => {
-          setState(null);
+          dispatch({ type: InputFormState.SUCCESS, messages: [] });
           setSecurityState(security);
-          setMessages([]);
         })
         .catch(() => {
-          setState(InputFormState.ERROR);
-          setMessages(["Error, cannot get security"]);
+          dispatch({
+            type: InputFormState.ERROR,
+            messages: ["Error, cannot get security"]
+          });
         });
     }
   }, [match.params.securityId]);
 
   const handleError = err => {
     if (err instanceof ValidationError) {
-      setMessages(err.messages);
+      dispatch({ type: InputFormState.ERROR, messages: err.messages });
     } else {
-      setMessages([err.message]);
+      dispatch({ type: InputFormState.ERROR, messages: [err.message] });
     }
-    setState(InputFormState.ERROR);
   };
 
   const submitForm = event => {
     event.preventDefault();
-    setState(InputFormState.SENDING);
-    setMessages([]);
+    dispatch({ type: InputFormState.SENDING });
     const securityObject = {
       exchange,
       symbol,
@@ -73,8 +78,10 @@ const InputForm = ({ match }) => {
       service
         .updateSecurity(match.params.securityId, securityObject)
         .then(() => {
-          setMessages(["Security was successfully updated"]);
-          setState(InputFormState.SUCCESS);
+          dispatch({
+            type: InputFormState.SUCCESS,
+            messages: ["Security was successfully updated"]
+          });
         })
         .catch(err => {
           handleError(err);
@@ -83,8 +90,10 @@ const InputForm = ({ match }) => {
       service
         .postSecurity(securityObject)
         .then(() => {
-          setMessages(["Security was successfully created"]);
-          setState(InputFormState.SUCCESS);
+          dispatch({
+            type: InputFormState.SUCCESS,
+            messages: ["Security was successfully created"]
+          });
           setSecurityState({
             exchange: "",
             symbol: "",
@@ -103,8 +112,11 @@ const InputForm = ({ match }) => {
     service
       .deleteSecurity(match.params.securityId)
       .then(() => {
-        setState(InputFormState.SUCCESS);
-        setMessages(["Security Successfully Deleted"]);
+        dispatch({
+          type: InputFormState.SUCCESS,
+          messages: ["Security Successfully Deleted"]
+        });
+
         setRedirect(true);
       })
       .catch(err => {
@@ -118,7 +130,7 @@ const InputForm = ({ match }) => {
         push
         to={{
           pathname: "/",
-          state: { messages }
+          state: { messages: state.messages }
         }}
       />
     );
@@ -128,7 +140,7 @@ const InputForm = ({ match }) => {
       <h1 className="input-form-title">
         {match.params.securityId ? "Edit Security" : "Create a Security"}
       </h1>
-      {state === InputFormState.LOADING ? (
+      {state.fetchStatus === InputFormState.LOADING ? (
         <div className="input-form-spinner-container">
           <Components.LargeSpinner />
         </div>
@@ -191,8 +203,9 @@ const InputForm = ({ match }) => {
               size="large"
               text={match.params.securityId ? "Save" : "Create"}
               className={
-                (state === InputFormState.SENDING ? "in-progress " : "") +
-                "input-submit-button"
+                (state.fetchStatus === InputFormState.SENDING
+                  ? "in-progress "
+                  : "") + "input-submit-button"
               }
             />
             {match.params.securityId && (
@@ -209,11 +222,12 @@ const InputForm = ({ match }) => {
           </div>
         </form>
       )}
-      {!!messages &&
-        (state === InputFormState.ERROR ||
-          state === InputFormState.SUCCESS) && (
-          <Alert type={state} messages={messages} />
-        )}
+      {!!state.messages && !state.fetchStatus && (
+        <Alert
+          type={state.hasErrors ? "error" : "success"}
+          messages={state.messages}
+        />
+      )}
       <Link to="/">
         <div className="back-button">
           <button>
