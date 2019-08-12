@@ -8,20 +8,20 @@ export const initialTableState = {
 
 export function securitiesTableReducer(state, action) {
   switch (action.type) {
-    case "loading":
+    case TableState.LOADING:
       return { ...state, fetchStatus: TableState.LOADING, messages: [] };
-    case "deleting":
+    case TableState.DELETING:
       return { ...state, fetchStatus: TableState.DELETING, messages: [] };
-    case "updating":
+    case TableState.UPDATING:
       return { ...state, fetchStatus: TableState.UPDATING, messages: [] };
-    case "error":
+    case TableState.ERROR:
       return {
         ...state,
         fetchStatus: null,
         hasErrors: true,
         messages: action.messages
       };
-    case "success":
+    case TableState.SUCCESS:
       return {
         ...state,
         fetchStatus: null,

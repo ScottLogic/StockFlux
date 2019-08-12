@@ -1,19 +1,19 @@
-import { TableState } from "../enums";
+import { InputFormState } from "../enums";
 
 export function inputFormReducer(state, action) {
   switch (action.type) {
-    case "loading":
-      return { ...state, fetchStatus: TableState.LOADING, messages: [] };
-    case "sending":
-      return { ...state, fetchStatus: TableState.SENDING, messages: [] };
-    case "error":
+    case InputFormState.LOADING:
+      return { ...state, fetchStatus: InputFormState.LOADING, messages: [] };
+    case InputFormState.LOADING:
+      return { ...state, fetchStatus: InputFormState.SENDING, messages: [] };
+    case InputFormState.ERROR:
       return {
         ...state,
         fetchStatus: null,
         hasErrors: true,
         messages: action.messages
       };
-    case "success":
+    case InputFormState.SUCCESS:
       return {
         ...state,
         fetchStatus: null,
