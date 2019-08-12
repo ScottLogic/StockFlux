@@ -4,7 +4,10 @@ import PropTypes from "prop-types";
 
 const Button = ({ text, size, className, ...props }) => {
   return (
-    <button className={`button-container ${size} ${className}`} {...props}>
+    <button
+      className={`button-container ${size} ${className ? className : ""}`}
+      {...props}
+    >
       {text}
     </button>
   );

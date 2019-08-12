@@ -100,7 +100,7 @@ export async function patchSecurity(securityId, updates) {
     fetchOptions
   );
   if (response.ok) {
-    return;
+    return response;
   }
 
   const json = await response.json();

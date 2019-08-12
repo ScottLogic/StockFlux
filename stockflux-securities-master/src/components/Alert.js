@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 const Alert = ({ messages, type, className }) => {
   return (
-    <div className={`securities-alert-container ${className}`}>
+    <div className={`securities-alert-container ${className ? className : ""}`}>
       {Array.isArray(messages) && messages.length > 1 ? (
         <ul>
           {messages.map((message, index) => (

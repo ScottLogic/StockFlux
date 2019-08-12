@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 const ToolTip = ({ children, message, className }) => {
   return (
-    <div className={`tool-tip-container ${className}`}>
+    <div className={`tool-tip-container ${className ? className : ""}`}>
       {children}
       <span className="tool-tip-message">{message}</span>
     </div>

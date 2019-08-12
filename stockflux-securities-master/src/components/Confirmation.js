@@ -6,7 +6,10 @@ const Confirmation = ({ children, confirmationText, className, ...props }) => {
   const [clickedStatus, setClickedStatus] = useState(false);
 
   return (
-    <div {...props} className={`confirmation-button-container ${className}`}>
+    <div
+      {...props}
+      className={`confirmation-button-container ${className ? className : ""}`}
+    >
       {!clickedStatus ? (
         <div
           {...props}
