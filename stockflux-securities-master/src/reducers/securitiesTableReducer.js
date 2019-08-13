@@ -32,14 +32,14 @@ export function securitiesTableReducer(state, action) {
     case TableState.ERROR:
       return {
         ...state,
-        fetchStatus: null,
+        fetchStatus: TableState.COMPLETED,
         hasErrors: true,
         messages: action.messages
       };
     case TableState.SUCCESS:
       return {
         ...state,
-        fetchStatus: null,
+        fetchStatus: TableState.COMPLETED,
         hasErrors: false,
         messages: action.messages
       };

@@ -4,7 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import "./InputForm.css";
 import * as service from "../services/SecuritiesService";
 import ValidationError from "../services/ValidationError";
-import Alert, {AlertType} from "./Alert";
+import Alert, { AlertType } from "./Alert";
 import TextField from "./TextField";
 import ToggleSwitch from "./ToggleSwitch";
 import Button, { ButtonSize } from "./Button";
@@ -22,7 +22,9 @@ const InputForm = ({ match }) => {
   const [redirect, setRedirect] = useState(false);
 
   const initialFormState = {
-    fetchStatus: match.params.securityId ? InputFormState.LOADING : null,
+    fetchStatus: match.params.securityId
+      ? InputFormState.LOADING
+      : InputFormState.COMPLETED,
     hasErrors: false,
     messages: []
   };
@@ -222,7 +224,7 @@ const InputForm = ({ match }) => {
           </div>
         </form>
       )}
-      {!!state.messages && !state.fetchStatus && (
+      {!!state.messages && (
         <Alert
           type={state.hasErrors ? AlertType.ERROR : AlertType.SUCCESS}
           messages={state.messages}

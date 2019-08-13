@@ -2,6 +2,7 @@ export const TableState = {
   LOADING: "loading",
   DELETING: "deleting",
   UPDATING: "updating",
+  COMPLETED: "completed",
   ERROR: "error",
   SUCCESS: "success"
 };
@@ -9,6 +10,7 @@ export const TableState = {
 export const InputFormState = {
   LOADING: "loading",
   SENDING: "sending",
+  COMPLETED: "completed",
   ERROR: "error",
   SUCCESS: "success"
 };

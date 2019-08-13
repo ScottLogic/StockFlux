@@ -186,7 +186,7 @@ const SecuritiesTable = ({ location }) => {
       ) : (
         <>
           {tableBody()}
-          {state.messages.length > 0 && !state.fetchStatus && (
+          {state.messages.length > 0 && (
             <div
               className={`securities-message-container ${
                 securitiesData.length === 0 ? "no-securities" : ""

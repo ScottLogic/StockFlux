@@ -19,14 +19,14 @@ export function inputFormReducer(state, action) {
     case InputFormState.ERROR:
       return {
         ...state,
-        fetchStatus: null,
+        fetchStatus: InputFormState.COMPLETED,
         hasErrors: true,
         messages: action.messages
       };
     case InputFormState.SUCCESS:
       return {
         ...state,
-        fetchStatus: null,
+        fetchStatus: InputFormState.COMPLETED,
         hasErrors: false,
         messages: action.messages
       };
