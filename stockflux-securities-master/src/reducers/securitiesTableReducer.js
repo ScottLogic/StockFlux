@@ -15,13 +15,6 @@ export function securitiesTableReducer(state, action) {
         hasErrors: false,
         messages: []
       };
-    case TableState.DELETING:
-      return {
-        ...state,
-        fetchStatus: TableState.DELETING,
-        hasErrors: false,
-        messages: []
-      };
     case TableState.UPDATING:
       return {
         ...state,

@@ -2,22 +2,16 @@ import React from "react";
 import "./TextField.css";
 import PropTypes from "prop-types";
 
-const TextField = ({ readOnly, className, ...props }) => {
+const TextField = ({ readOnly, id, value, onChange }) => {
   return (
-    <input
-      {...props}
-      readOnly={readOnly}
-      className={`input-form-input${readOnly ? " read-only" : ""}${
-        className ? ` ${className}` : ""
-      }`}
-    />
+    <input readOnly={readOnly} id={id} value={value} onChange={onChange} className={`input-form-input ${readOnly ? "read-only" : ""}`} />
   );
 };
 
 TextField.propTypes = {
-  onChange: PropTypes.func,
   readOnly: PropTypes.bool,
-  className: PropTypes.string
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default TextField;

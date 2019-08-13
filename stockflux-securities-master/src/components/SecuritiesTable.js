@@ -50,7 +50,7 @@ const SecuritiesTable = ({ location }) => {
   }, [loadSecurities, location.state]);
 
   const deleteSecurity = securityId => {
-    dispatch({ type: TableState.DELETING, messages: [] });
+    dispatch({ type: TableState.UPDATING });
     service
       .deleteSecurity(securityId)
       .then(() => {
@@ -198,8 +198,7 @@ const SecuritiesTable = ({ location }) => {
               />
             </div>
           )}
-          {(state.fetchStatus === TableState.DELETING ||
-            state.fetchStatus === TableState.UPDATING) && (
+          {state.fetchStatus === TableState.UPDATING && (
             <div className="table-deleting-spinner-container">
               <Components.Spinner />
             </div>

@@ -1,6 +1,5 @@
 export const TableState = {
   LOADING: "loading",
-  DELETING: "deleting",
   UPDATING: "updating",
   COMPLETED: "completed",
   ERROR: "error",
