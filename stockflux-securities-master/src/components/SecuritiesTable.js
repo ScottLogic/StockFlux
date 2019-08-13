@@ -4,25 +4,30 @@ import { Link } from "react-router-dom";
 import "./SecuritiesTable.css";
 import * as service from "../services/SecuritiesService";
 import ValidationError from "../services/ValidationError";
-import Alert from "./Alert";
+import Alert, { AlertType } from "./Alert";
 import { TableState } from "../enums";
 import ToolTip from "./ToolTip";
-import Button from "./Button";
+import Button, { ButtonSize } from "./Button";
 import { FaPen, FaTrashAlt, FaEye, FaEyeSlash } from "react-icons/fa";
 import { MdClose, MdCheck } from "react-icons/md";
-import {securitiesTableReducer, initialTableState} from "../reducers/securitiesTableReducer";
+import {
+  securitiesTableReducer,
+  initialTableState
+} from "../reducers/securitiesTableReducer";
 
 const SecuritiesTable = ({ location }) => {
-  
   const [securitiesData, setSecuritiesData] = useState([]);
-  const [state, dispatch] = useReducer(securitiesTableReducer, initialTableState);
+  const [state, dispatch] = useReducer(
+    securitiesTableReducer,
+    initialTableState
+  );
 
   const handleError = err => {
-    dispatch({type: "error"});
+    dispatch({ type: "error" });
     if (err instanceof ValidationError) {
-      dispatch({type: "error", messages: err.messages});
+      dispatch({ type: "error", messages: err.messages });
     } else {
-      dispatch({type: "error", messages: [err.message]});
+      dispatch({ type: "error", messages: [err.message] });
     }
   };
 
@@ -31,7 +36,7 @@ const SecuritiesTable = ({ location }) => {
       .getSecuritiesData()
       .then(securities => {
         setSecuritiesData(securities);
-        dispatch({type: TableState.SUCCESS, messages: messages});
+        dispatch({ type: TableState.SUCCESS, messages: messages });
       })
       .catch(err => {
         setSecuritiesData([]);
@@ -40,12 +45,12 @@ const SecuritiesTable = ({ location }) => {
   }, []);
 
   useEffect(() => {
-    dispatch({type: TableState.LOADING});
+    dispatch({ type: TableState.LOADING });
     loadSecurities(!!location.state ? location.state.messages : []);
   }, [loadSecurities, location.state]);
 
   const deleteSecurity = securityId => {
-    dispatch({type: TableState.DELETING, messages: []});
+    dispatch({ type: TableState.DELETING, messages: [] });
     service
       .deleteSecurity(securityId)
       .then(() => {
@@ -57,7 +62,7 @@ const SecuritiesTable = ({ location }) => {
   };
 
   const patchSecurityHandler = (securityId, updates) => {
-    dispatch({type: TableState.UPDATING});
+    dispatch({ type: TableState.UPDATING });
     service
       .patchSecurity(securityId, updates)
       .then(() => {
@@ -79,7 +84,7 @@ const SecuritiesTable = ({ location }) => {
             <Link to="/inputform">
               <Button
                 text="Add Security"
-                size="large"
+                size={ButtonSize.LARGE}
                 className="add-securities-button"
               />
             </Link>
@@ -161,7 +166,7 @@ const SecuritiesTable = ({ location }) => {
             <Link to="/inputform">
               <Button
                 text="Add Security"
-                size="small"
+                size={ButtonSize.SMALL}
                 className="add-securities-button"
               />
             </Link>
@@ -181,17 +186,20 @@ const SecuritiesTable = ({ location }) => {
       ) : (
         <>
           {tableBody()}
-          {state.messages.length > 0 &&
-            (!state.fetchStatus) && (
-              <div
-                className={`securities-message-container ${
-                  securitiesData.length === 0 ? "no-securities" : ""
-                }`}
-              >
-                <Alert messages={state.messages} type={state.hasErrors ? "error" : "success"} />
-              </div>
-            )}
-          {(state.fetchStatus === TableState.DELETING || state.fetchStatus === TableState.UPDATING) && (
+          {state.messages.length > 0 && !state.fetchStatus && (
+            <div
+              className={`securities-message-container ${
+                securitiesData.length === 0 ? "no-securities" : ""
+              }`}
+            >
+              <Alert
+                messages={state.messages}
+                type={state.hasErrors ? AlertType.ERROR : AlertType.SUCCESS}
+              />
+            </div>
+          )}
+          {(state.fetchStatus === TableState.DELETING ||
+            state.fetchStatus === TableState.UPDATING) && (
             <div className="table-deleting-spinner-container">
               <Components.Spinner />
             </div>

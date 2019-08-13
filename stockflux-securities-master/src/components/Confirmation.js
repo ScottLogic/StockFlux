@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import "./Confirmation.css";
-import Button from "./Button";
+import Button, { ButtonSize } from "./Button";
+import PropTypes from "prop-types";
 
-const Confirmation = ({ children, confirmationText, className, ...props }) => {
+const Confirmation = ({ children, confirmationText }) => {
   const [clickedStatus, setClickedStatus] = useState(false);
 
   return (
-    <div
-      {...props}
-      className={`confirmation-button-container ${className ? className : ""}`}
-    >
+    <div className="confirmation-button-container">
       {!clickedStatus ? (
         <div
-          {...props}
           onClickCapture={event => {
             event.stopPropagation();
             setClickedStatus(true);
@@ -28,14 +25,14 @@ const Confirmation = ({ children, confirmationText, className, ...props }) => {
           <div className="confirmation-option-button-container">
             <Button
               text="Yes"
-              size="extra-small"
+              size={ButtonSize.EXTRA_SMALL}
               onClick={children.props.onClick}
               className="confirmation-option-button"
               type="button"
             />
             <Button
               text="No"
-              size="extra-small"
+              size={ButtonSize.EXTRA_SMALL}
               onClick={() => setClickedStatus(false)}
               className="confirmation-option-button"
               type="button"
@@ -45,6 +42,10 @@ const Confirmation = ({ children, confirmationText, className, ...props }) => {
       )}
     </div>
   );
+};
+
+Confirmation.propTypes = {
+  confirmationText: PropTypes.string.isRequired
 };
 
 export default Confirmation;

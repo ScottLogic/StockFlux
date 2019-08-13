@@ -4,10 +4,10 @@ import { Link, Redirect } from "react-router-dom";
 import "./InputForm.css";
 import * as service from "../services/SecuritiesService";
 import ValidationError from "../services/ValidationError";
-import Alert from "./Alert";
+import Alert, {AlertType} from "./Alert";
 import TextField from "./TextField";
 import ToggleSwitch from "./ToggleSwitch";
-import Button from "./Button";
+import Button, { ButtonSize } from "./Button";
 import Confirmation from "./Confirmation";
 import { InputFormState } from "../enums";
 import { inputFormReducer } from "../reducers/inputFormReducer";
@@ -200,7 +200,7 @@ const InputForm = ({ match }) => {
           </div>
           <div className="input-buttons-container">
             <Button
-              size="large"
+              size={ButtonSize.LARGE}
               text={match.params.securityId ? "Save" : "Create"}
               className={
                 (state.fetchStatus === InputFormState.SENDING
@@ -214,7 +214,7 @@ const InputForm = ({ match }) => {
                   type="button"
                   className="input-delete-button"
                   text="Delete"
-                  size="large"
+                  size={ButtonSize.LARGE}
                   onClick={deleteSecurity}
                 />
               </Confirmation>
@@ -224,7 +224,7 @@ const InputForm = ({ match }) => {
       )}
       {!!state.messages && !state.fetchStatus && (
         <Alert
-          type={state.hasErrors ? "error" : "success"}
+          type={state.hasErrors ? AlertType.ERROR : AlertType.SUCCESS}
           messages={state.messages}
         />
       )}
