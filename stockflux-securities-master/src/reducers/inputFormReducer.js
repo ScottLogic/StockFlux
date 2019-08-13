@@ -3,9 +3,19 @@ import { InputFormState } from "../enums";
 export function inputFormReducer(state, action) {
   switch (action.type) {
     case InputFormState.LOADING:
-      return { ...state, fetchStatus: InputFormState.LOADING, messages: [] };
+      return {
+        ...state,
+        fetchStatus: InputFormState.LOADING,
+        hasErrors: false,
+        messages: []
+      };
     case InputFormState.SENDING:
-      return { ...state, fetchStatus: InputFormState.SENDING, messages: [] };
+      return {
+        ...state,
+        fetchStatus: InputFormState.SENDING,
+        hasErrors: false,
+        messages: []
+      };
     case InputFormState.ERROR:
       return {
         ...state,
