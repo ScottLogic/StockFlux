@@ -9,11 +9,26 @@ export const initialTableState = {
 export function securitiesTableReducer(state, action) {
   switch (action.type) {
     case TableState.LOADING:
-      return { ...state, fetchStatus: TableState.LOADING, messages: [] };
+      return {
+        ...state,
+        fetchStatus: TableState.LOADING,
+        hasErrors: false,
+        messages: []
+      };
     case TableState.DELETING:
-      return { ...state, fetchStatus: TableState.DELETING, messages: [] };
+      return {
+        ...state,
+        fetchStatus: TableState.DELETING,
+        hasErrors: false,
+        messages: []
+      };
     case TableState.UPDATING:
-      return { ...state, fetchStatus: TableState.UPDATING, messages: [] };
+      return {
+        ...state,
+        fetchStatus: TableState.UPDATING,
+        hasErrors: false,
+        messages: []
+      };
     case TableState.ERROR:
       return {
         ...state,
@@ -28,5 +43,7 @@ export function securitiesTableReducer(state, action) {
         hasErrors: false,
         messages: action.messages
       };
+    default:
+      throw new Error("Action Not Defined");
   }
 }

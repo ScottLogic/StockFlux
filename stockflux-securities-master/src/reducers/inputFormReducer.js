@@ -4,7 +4,7 @@ export function inputFormReducer(state, action) {
   switch (action.type) {
     case InputFormState.LOADING:
       return { ...state, fetchStatus: InputFormState.LOADING, messages: [] };
-    case InputFormState.LOADING:
+    case InputFormState.SENDING:
       return { ...state, fetchStatus: InputFormState.SENDING, messages: [] };
     case InputFormState.ERROR:
       return {
@@ -20,5 +20,7 @@ export function inputFormReducer(state, action) {
         hasErrors: false,
         messages: action.messages
       };
+    default:
+      throw new Error("Action Not Defined");
   }
 }
