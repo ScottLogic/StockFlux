@@ -14,19 +14,17 @@ AlertType.ERROR = new AlertType("error");
 AlertType.SUCCESS = new AlertType("success");
 
 const Alert = ({ messages, type }) => (
-  <div className="securities-alert-container">
+  <>
     {Array.isArray(messages) && messages.length > 1 ? (
-      <ul>
+      <ul className={`securities-alert-list ${type.valueOf()}`}>
         {messages.map((message, index) => (
-          <li className={`securities-alert ${type.valueOf()}`} key={index}>
-            {message}
-          </li>
+          <li key={index}>{message}</li>
         ))}
       </ul>
     ) : (
       <div className={`securities-alert ${type.valueOf()}`}>{messages}</div>
     )}
-  </div>
+  </>
 );
 
 Alert.propTypes = {

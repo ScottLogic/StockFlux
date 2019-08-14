@@ -31,9 +31,9 @@ const SecuritiesTable = ({ location }) => {
 
   const handleError = err => {
     if (err instanceof ValidationError) {
-      dispatch({ type: "error", messages: err.messages });
+      dispatch({ type: TableState.ERROR, messages: err.messages });
     } else {
-      dispatch({ type: "error", messages: [err.message] });
+      dispatch({ type: TableState.ERROR, messages: [err.message] });
     }
   };
 
@@ -67,7 +67,7 @@ const SecuritiesTable = ({ location }) => {
       });
   };
 
-  const patchSecurityHandler = (securityId, updates) => {
+  const patchSecurity = (securityId, updates) => {
     dispatch({ type: TableState.UPDATING });
     service
       .patchSecurity(securityId, updates)
@@ -123,7 +123,7 @@ const SecuritiesTable = ({ location }) => {
                       className={`securities-table-button ${!item.visible &&
                         "greyed-out"}`}
                       onClick={() =>
-                        patchSecurityHandler(item.securityId, {
+                        patchSecurity(item.securityId, {
                           visible: !item.visible
                         })
                       }
@@ -140,7 +140,7 @@ const SecuritiesTable = ({ location }) => {
                       className={`securities-table-button ${!item.enabled &&
                         "greyed-out"}`}
                       onClick={() =>
-                        patchSecurityHandler(item.securityId, {
+                        patchSecurity(item.securityId, {
                           enabled: !item.enabled
                         })
                       }

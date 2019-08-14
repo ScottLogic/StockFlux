@@ -51,7 +51,7 @@
 
 .table-deleting-spinner-container,
 .securities-message-container {
-  margin: var(--margin-small) 0px;
+  margin: var(--margin-medium) 0;
   display: flex;
   align-items: center;
   justify-content: center;

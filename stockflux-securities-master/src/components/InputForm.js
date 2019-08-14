@@ -222,7 +222,7 @@ const InputForm = ({ match }) => {
           </div>
         </form>
       )}
-      {!!state.messages && (
+      {state.messages.length > 0 && (
         <Alert
           type={state.hasErrors ? AlertType.ERROR : AlertType.SUCCESS}
           messages={state.messages}
