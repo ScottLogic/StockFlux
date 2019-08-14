@@ -8,8 +8,14 @@ import Alert, { AlertType } from "./Alert";
 import { TableState } from "../enums";
 import ToolTip from "./ToolTip";
 import Button, { ButtonSize } from "./Button";
-import { FaPen, FaTrashAlt, FaEye, FaEyeSlash } from "react-icons/fa";
-import { MdClose, MdCheck } from "react-icons/md";
+import {
+  FaPen,
+  FaTrashAlt,
+  FaEye,
+  FaEyeSlash,
+  FaCheck,
+  FaTimes
+} from "react-icons/fa";
 import {
   securitiesTableReducer,
   initialTableState
@@ -140,9 +146,9 @@ const SecuritiesTable = ({ location }) => {
                       }
                     >
                       {item.enabled ? (
-                        <MdCheck size={20} />
+                        <FaCheck size={20} />
                       ) : (
-                        <MdClose size={20} />
+                        <FaTimes size={20} />
                       )}
                     </button>
                   </ToolTip>
