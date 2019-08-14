@@ -52,7 +52,7 @@
   margin: var(--margin-small) 0;
 }
 
-.input-submit-button.in-progress > button {
+.input-submit-button.in-progress {
   outline: none;
   color: var(--text-grey-darkest);
   border-color: var(--text-grey-darkest);

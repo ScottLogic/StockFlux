@@ -14,6 +14,7 @@ import {
   securitiesTableReducer,
   initialTableState
 } from "../reducers/securitiesTableReducer";
+import PropTypes from "prop-types";
 
 const SecuritiesTable = ({ location }) => {
   const [securitiesData, setSecuritiesData] = useState([]);
@@ -23,7 +24,6 @@ const SecuritiesTable = ({ location }) => {
   );
 
   const handleError = err => {
-    dispatch({ type: "error" });
     if (err instanceof ValidationError) {
       dispatch({ type: "error", messages: err.messages });
     } else {
@@ -114,9 +114,8 @@ const SecuritiesTable = ({ location }) => {
                   </ToolTip>
                   <ToolTip message={item.visible ? "Hide" : "Show"}>
                     <button
-                      className={`securities-table-button ${
-                        item.visible ? "" : "greyed-out"
-                      }`}
+                      className={`securities-table-button ${!item.visible &&
+                        "greyed-out"}`}
                       onClick={() =>
                         patchSecurityHandler(item.securityId, {
                           visible: !item.visible
@@ -132,9 +131,8 @@ const SecuritiesTable = ({ location }) => {
                   </ToolTip>
                   <ToolTip message={item.enabled ? "Disable" : "Enable"}>
                     <button
-                      className={`securities-table-button ${
-                        item.enabled ? "" : "greyed-out"
-                      }`}
+                      className={`securities-table-button ${!item.enabled &&
+                        "greyed-out"}`}
                       onClick={() =>
                         patchSecurityHandler(item.securityId, {
                           enabled: !item.enabled
@@ -188,9 +186,8 @@ const SecuritiesTable = ({ location }) => {
           {tableBody()}
           {state.messages.length > 0 && (
             <div
-              className={`securities-message-container ${
-                securitiesData.length === 0 ? "no-securities" : ""
-              }`}
+              className={`securities-message-container ${securitiesData.length ===
+                0 && "no-securities"}`}
             >
               <Alert
                 messages={state.messages}
@@ -207,6 +204,10 @@ const SecuritiesTable = ({ location }) => {
       )}
     </div>
   );
+};
+
+SecuritiesTable.propTypes = {
+  location: PropTypes.object.isRequired
 };
 
 export default SecuritiesTable;

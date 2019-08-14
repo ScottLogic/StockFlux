@@ -11,6 +11,7 @@ import Button, { ButtonSize } from "./Button";
 import Confirmation from "./Confirmation";
 import { InputFormState } from "../enums";
 import { inputFormReducer } from "../reducers/inputFormReducer";
+import PropTypes from "prop-types";
 
 const InputForm = ({ match }) => {
   const [name, setName] = useState("");
@@ -204,11 +205,8 @@ const InputForm = ({ match }) => {
             <Button
               size={ButtonSize.LARGE}
               text={match.params.securityId ? "Save" : "Create"}
-              className={
-                (state.fetchStatus === InputFormState.SENDING
-                  ? "in-progress "
-                  : "") + "input-submit-button"
-              }
+              className={`input-submit-button ${state.fetchStatus ===
+                InputFormState.SENDING && " in-progress"}`}
             />
             {match.params.securityId && (
               <Confirmation confirmationText="Are you sure you want to delete this security?">
@@ -239,6 +237,10 @@ const InputForm = ({ match }) => {
       </Link>
     </div>
   );
+};
+
+InputForm.propTypes = {
+  match: PropTypes.object.isRequired
 };
 
 export default InputForm;
