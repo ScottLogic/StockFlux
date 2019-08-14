@@ -59,11 +59,10 @@ const InputForm = ({ match }) => {
   }, [match.params.securityId]);
 
   const handleError = err => {
-    if (err instanceof ValidationError) {
-      dispatch({ type: InputFormState.ERROR, messages: err.messages });
-    } else {
-      dispatch({ type: InputFormState.ERROR, messages: [err.message] });
-    }
+    dispatch({
+      type: InputFormState.ERROR,
+      messages: err instanceof ValidationError ? err.messages : [err.message]
+    });
   };
 
   const submitForm = event => {

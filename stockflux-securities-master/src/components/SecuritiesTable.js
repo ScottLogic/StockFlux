@@ -30,11 +30,10 @@ const SecuritiesTable = ({ location }) => {
   );
 
   const handleError = err => {
-    if (err instanceof ValidationError) {
-      dispatch({ type: TableState.ERROR, messages: err.messages });
-    } else {
-      dispatch({ type: TableState.ERROR, messages: [err.message] });
-    }
+    dispatch({
+      type: TableState.ERROR,
+      messages: err instanceof ValidationError ? err.messages : [err.message]
+    });
   };
 
   const loadSecurities = useCallback(messages => {
