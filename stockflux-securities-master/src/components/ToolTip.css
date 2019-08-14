@@ -18,9 +18,8 @@
 .tool-tip-container .tool-tip-message:after {
   content: " ";
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 100%;
-  margin-top: -5px;
   border-width: 5px;
   border-style: solid;
   border-color: transparent transparent transparent var(--dark-background);
