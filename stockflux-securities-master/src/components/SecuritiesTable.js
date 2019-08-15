@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useReducer } from "react";
+import React, { useEffect, useCallback, useReducer } from "react";
 import Components from "stockflux-components";
 import { Link } from "react-router-dom";
 import "./SecuritiesTable.css";
@@ -20,43 +20,48 @@ import {
   securitiesTableReducer,
   initialTableState
 } from "../reducers/securitiesTableReducer";
+import {
+  tableLoading,
+  tableUpdating,
+  tableError,
+  tableSuccess,
+  setSecuritiesData
+} from "../actions/securitiesTableActions";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 
 const SecuritiesTable = ({ location }) => {
-  const [securitiesData, setSecuritiesData] = useState([]);
   const [state, dispatch] = useReducer(
     securitiesTableReducer,
     initialTableState
   );
 
   const handleError = err => {
-    dispatch({
-      type: TableState.ERROR,
-      messages: err instanceof ValidationError ? err.messages : [err.message]
-    });
+    const message =
+      err instanceof ValidationError ? err.messages : [err.message];
+    dispatch(tableError(message));
   };
 
   const loadSecurities = useCallback(messages => {
     service
       .getSecuritiesData()
       .then(securities => {
-        setSecuritiesData(securities);
-        dispatch({ type: TableState.SUCCESS, messages: messages });
+        dispatch(setSecuritiesData(securities));
+        dispatch(tableSuccess(messages));
       })
       .catch(err => {
-        setSecuritiesData([]);
+        dispatch(setSecuritiesData([]));
         handleError(err);
       });
   }, []);
 
   useEffect(() => {
-    dispatch({ type: TableState.LOADING });
+    dispatch(tableLoading());
     loadSecurities(!!location.state ? location.state.messages : []);
   }, [loadSecurities, location.state]);
 
   const deleteSecurity = securityId => {
-    dispatch({ type: TableState.UPDATING });
+    dispatch(tableUpdating());
     service
       .deleteSecurity(securityId)
       .then(() => {
@@ -66,7 +71,7 @@ const SecuritiesTable = ({ location }) => {
   };
 
   const patchSecurity = (securityId, updates) => {
-    dispatch({ type: TableState.UPDATING });
+    dispatch(tableUpdating());
     service
       .patchSecurity(securityId, updates)
       .then(() => {
@@ -78,7 +83,7 @@ const SecuritiesTable = ({ location }) => {
   const tableBody = () => {
     return (
       <div className="table-body">
-        {securitiesData.length === 0 && !state.hasErrors ? (
+        {state.securitiesData.length === 0 && !state.hasErrors ? (
           <div className="no-securities-container">
             <div className="no-securities-message">
               You have no securities to show
@@ -93,7 +98,7 @@ const SecuritiesTable = ({ location }) => {
           </div>
         ) : (
           <Components.ScrollWrapperY>
-            {securitiesData.map((item, index) => (
+            {state.securitiesData.map((item, index) => (
               <div key={index} className="securities-table-row">
                 <div className="securities-table-cell">{item.exchange}</div>
                 <div className="securities-table-cell">{item.symbol}</div>
@@ -164,7 +169,7 @@ const SecuritiesTable = ({ location }) => {
       <div className="securities-header-container">
         <h1 className="securities-title">Securities</h1>
         <div className="add-securities-button-above-table">
-          {securitiesData.length > 0 && (
+          {state.securitiesData.length > 0 && (
             <Link to="/inputform">
               <Button
                 text="Add Security"
@@ -190,8 +195,9 @@ const SecuritiesTable = ({ location }) => {
           {tableBody()}
           {state.messages.length > 0 && (
             <div
-              className={`securities-message-container ${securitiesData.length ===
-                0 && "no-securities"}`}
+              className={classNames("securities-message-container", {
+                "no-securities": state.securitiesData.length === 0
+              })}
             >
               <Alert
                 messages={state.messages}

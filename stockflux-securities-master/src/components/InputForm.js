@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import Components from "stockflux-components";
 import { Link, Redirect } from "react-router-dom";
 import "./InputForm.css";
@@ -13,88 +13,83 @@ import { InputFormState } from "../enums";
 import { inputFormReducer } from "../reducers/inputFormReducer";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import {
+  formLoading,
+  formSending,
+  formError,
+  formSuccess,
+  setName,
+  setExchange,
+  setSymbol,
+  setVisible,
+  setEnabled,
+  setRedirect
+} from "../actions/inputFormActions";
 
 const InputForm = ({ match }) => {
-  const [name, setName] = useState("");
-  const [exchange, setExchange] = useState("");
-  const [symbol, setSymbol] = useState("");
-  const [visible, setVisible] = useState(false);
-  const [enabled, setEnabled] = useState(false);
-
-  const [redirect, setRedirect] = useState(false);
-
   const initialFormState = {
     fetchStatus: match.params.securityId
       ? InputFormState.LOADING
       : InputFormState.COMPLETED,
     hasErrors: false,
-    messages: []
+    messages: [],
+    security: {
+      name: "",
+      exchange: "",
+      symbol: "",
+      visible: false,
+      enabled: false
+    },
+    redirect: false
   };
 
   const [state, dispatch] = useReducer(inputFormReducer, initialFormState);
 
   const setSecurityState = security => {
-    setName(security.name);
-    setExchange(security.exchange);
-    setSymbol(security.symbol);
-    setVisible(security.visible);
-    setEnabled(security.enabled);
+    dispatch(setName(security.name));
+    dispatch(setExchange(security.exchange));
+    dispatch(setSymbol(security.symbol));
+    dispatch(setVisible(security.visible));
+    dispatch(setEnabled(security.enabled));
   };
 
   useEffect(() => {
     if (match.params.securityId) {
-      dispatch({ type: InputFormState.LOADING });
+      dispatch(formLoading());
       service
         .getSecurity(match.params.securityId)
         .then(security => {
-          dispatch({ type: InputFormState.SUCCESS, messages: [] });
+          dispatch(formSuccess([]));
           setSecurityState(security);
         })
         .catch(() => {
-          dispatch({
-            type: InputFormState.ERROR,
-            messages: ["Error, cannot get security"]
-          });
+          dispatch(formError(["Error, cannot get security"]));
         });
     }
   }, [match.params.securityId]);
 
   const handleError = err => {
-    dispatch({
-      type: InputFormState.ERROR,
-      messages: err instanceof ValidationError ? err.messages : [err.message]
-    });
+    const message =
+      err instanceof ValidationError ? err.messages : [err.message];
+    dispatch(formError(message));
   };
 
   const submitForm = event => {
     event.preventDefault();
-    dispatch({ type: InputFormState.SENDING });
-    const securityObject = {
-      exchange,
-      symbol,
-      name,
-      visible,
-      enabled
-    };
+    dispatch(formSending());
 
     if (match.params.securityId) {
       service
-        .updateSecurity(match.params.securityId, securityObject)
+        .updateSecurity(match.params.securityId, state.security)
         .then(() => {
-          dispatch({
-            type: InputFormState.SUCCESS,
-            messages: ["Security was successfully updated"]
-          });
+          dispatch(formSuccess(["Security was successfully updated"]));
         })
         .catch(handleError);
     } else {
       service
-        .postSecurity(securityObject)
+        .postSecurity(state.security)
         .then(() => {
-          dispatch({
-            type: InputFormState.SUCCESS,
-            messages: ["Security was successfully created"]
-          });
+          dispatch(formSuccess(["Security was successfully created"]));
           setSecurityState({
             exchange: "",
             symbol: "",
@@ -111,17 +106,13 @@ const InputForm = ({ match }) => {
     service
       .deleteSecurity(match.params.securityId)
       .then(() => {
-        dispatch({
-          type: InputFormState.SUCCESS,
-          messages: ["Security Successfully Deleted"]
-        });
-
-        setRedirect(true);
+        dispatch(formSuccess(["Security was successfully deleted"]));
+        dispatch(setRedirect(true));
       })
       .catch(handleError);
   };
 
-  if (redirect) {
+  if (state.redirect) {
     return (
       <Redirect
         push
@@ -149,9 +140,9 @@ const InputForm = ({ match }) => {
             </label>
             <TextField
               id="exchange-input"
-              value={exchange}
+              value={state.security.exchange}
               readOnly={!!match.params.securityId}
-              onChange={event => setExchange(event.target.value)}
+              onChange={event => dispatch(setExchange(event.target.value))}
             />
           </div>
           <div className="input-row">
@@ -160,9 +151,9 @@ const InputForm = ({ match }) => {
             </label>
             <TextField
               id="symbol-input"
-              value={symbol}
+              value={state.security.symbol}
               readOnly={!!match.params.securityId}
-              onChange={event => setSymbol(event.target.value)}
+              onChange={event => dispatch(setSymbol(event.target.value))}
             />
           </div>
           <div className="input-row">
@@ -171,8 +162,8 @@ const InputForm = ({ match }) => {
             </label>
             <TextField
               id="name-input"
-              value={name}
-              onChange={event => setName(event.target.value)}
+              value={state.security.name}
+              onChange={event => dispatch(setName(event.target.value))}
             />
           </div>
           <div className="input-checkbox-container">
@@ -181,8 +172,8 @@ const InputForm = ({ match }) => {
             </label>
             <ToggleSwitch
               id="visible-toggle"
-              checked={visible}
-              onChange={event => setVisible(event.target.checked)}
+              checked={state.security.visible}
+              onChange={event => dispatch(setVisible(event.target.checked))}
             />
           </div>
           <div className="input-checkbox-container">
@@ -191,8 +182,8 @@ const InputForm = ({ match }) => {
             </label>
             <ToggleSwitch
               id="enabled-toggle"
-              checked={enabled}
-              onChange={event => setEnabled(event.target.checked)}
+              checked={state.security.enabled}
+              onChange={event => dispatch(setEnabled(event.target.checked))}
             />
           </div>
           <div className="input-buttons-container">

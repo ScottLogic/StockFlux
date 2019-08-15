@@ -26,7 +26,8 @@ const Button = ({ text, size, className, type, onClick }) => (
 
 Button.propTypes = {
   size: PropTypes.instanceOf(ButtonSize).isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
+  onClick: PropTypes.func
 };
 
 export default Button;
