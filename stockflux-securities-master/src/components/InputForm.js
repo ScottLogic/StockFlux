@@ -12,6 +12,7 @@ import Confirmation from "./Confirmation";
 import { InputFormState } from "../enums";
 import { inputFormReducer } from "../reducers/inputFormReducer";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 
 const InputForm = ({ match }) => {
   const [name, setName] = useState("");
@@ -85,9 +86,7 @@ const InputForm = ({ match }) => {
             messages: ["Security was successfully updated"]
           });
         })
-        .catch(err => {
-          handleError(err);
-        });
+        .catch(handleError);
     } else {
       service
         .postSecurity(securityObject)
@@ -104,9 +103,7 @@ const InputForm = ({ match }) => {
             enabled: false
           });
         })
-        .catch(err => {
-          handleError(err);
-        });
+        .catch(handleError);
     }
   };
 
@@ -121,9 +118,7 @@ const InputForm = ({ match }) => {
 
         setRedirect(true);
       })
-      .catch(err => {
-        handleError(err);
-      });
+      .catch(handleError);
   };
 
   if (redirect) {
@@ -204,8 +199,9 @@ const InputForm = ({ match }) => {
             <Button
               size={ButtonSize.LARGE}
               text={match.params.securityId ? "Save" : "Create"}
-              className={`input-submit-button ${state.fetchStatus ===
-                InputFormState.SENDING && " in-progress"}`}
+              className={classNames("input-submit-button", {
+                "in-progress": state.fetchStatus == InputFormState.SENDING
+              })}
             />
             {match.params.securityId && (
               <Confirmation confirmationText="Are you sure you want to delete this security?">

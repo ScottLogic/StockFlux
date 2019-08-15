@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "classnames": "^2.2.6",
     "openfin-fdc3": "^0.1.1",
     "openfin-layouts": "^1.0.0",
     "openfin-react-hooks": "^1.0.1",

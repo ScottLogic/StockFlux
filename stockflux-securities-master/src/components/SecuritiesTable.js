@@ -21,6 +21,7 @@ import {
   initialTableState
 } from "../reducers/securitiesTableReducer";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 
 const SecuritiesTable = ({ location }) => {
   const [securitiesData, setSecuritiesData] = useState([]);
@@ -61,9 +62,7 @@ const SecuritiesTable = ({ location }) => {
       .then(() => {
         loadSecurities(["Security Successfully Deleted"]);
       })
-      .catch(err => {
-        handleError(err);
-      });
+      .catch(handleError);
   };
 
   const patchSecurity = (securityId, updates) => {
@@ -73,9 +72,7 @@ const SecuritiesTable = ({ location }) => {
       .then(() => {
         loadSecurities(["Security Updated"]);
       })
-      .catch(err => {
-        handleError(err);
-      });
+      .catch(handleError);
   };
 
   const tableBody = () => {
@@ -119,8 +116,9 @@ const SecuritiesTable = ({ location }) => {
                   </ToolTip>
                   <ToolTip message={item.visible ? "Hide" : "Show"}>
                     <button
-                      className={`securities-table-button ${!item.visible &&
-                        "greyed-out"}`}
+                      className={classNames("securities-table-button", {
+                        "greyed-out": !item.visible
+                      })}
                       onClick={() =>
                         patchSecurity(item.securityId, {
                           visible: !item.visible
@@ -136,8 +134,9 @@ const SecuritiesTable = ({ location }) => {
                   </ToolTip>
                   <ToolTip message={item.enabled ? "Disable" : "Enable"}>
                     <button
-                      className={`securities-table-button ${!item.enabled &&
-                        "greyed-out"}`}
+                      className={classNames("securities-table-button", {
+                        "greyed-out": !item.enabled
+                      })}
                       onClick={() =>
                         patchSecurity(item.securityId, {
                           enabled: !item.enabled
