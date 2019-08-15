@@ -32,7 +32,7 @@ Alert.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
   ]).isRequired,
-  type: PropTypes.instanceOf(AlertType).isRequired
+  type: PropTypes.oneOf([AlertType.SUCCESS, AlertType.ERROR]).isRequired
 };
 
 export default Alert;

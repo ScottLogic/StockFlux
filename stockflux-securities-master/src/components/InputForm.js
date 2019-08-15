@@ -191,7 +191,7 @@ const InputForm = ({ match }) => {
               size={ButtonSize.LARGE}
               text={match.params.securityId ? "Save" : "Create"}
               className={classNames("input-submit-button", {
-                "in-progress": state.fetchStatus == InputFormState.SENDING
+                "in-progress": state.fetchStatus === InputFormState.SENDING
               })}
             />
             {match.params.securityId && (
