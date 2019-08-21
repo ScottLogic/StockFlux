@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Confirmation.css";
-import Button, { ButtonSize } from "./Button";
+import Button, { ButtonSize } from "../button/Button";
 import PropTypes from "prop-types";
 
 const Confirmation = ({ children, confirmationText }) => {

@@ -2,12 +2,12 @@ import React, { useEffect, useCallback, useReducer } from "react";
 import Components from "stockflux-components";
 import { Link } from "react-router-dom";
 import "./SecuritiesTable.css";
-import * as service from "../services/SecuritiesService";
-import ValidationError from "../services/ValidationError";
-import Alert, { AlertType } from "./Alert";
-import { TableState } from "../enums";
-import ToolTip from "./ToolTip";
-import Button, { ButtonSize } from "./Button";
+import * as service from "../../services/SecuritiesService";
+import ValidationError from "../../services/ValidationError";
+import Alert, { AlertType } from "../alert/Alert";
+import { TableState } from "../../enums";
+import ToolTip from "../tool-tip/ToolTip";
+import Button, { ButtonSize } from "../button/Button";
 import {
   FaPen,
   FaTrashAlt,
@@ -19,14 +19,14 @@ import {
 import {
   securitiesTableReducer,
   initialTableState
-} from "../reducers/securitiesTableReducer";
+} from "../../reducers/securitiesTableReducer";
 import {
   tableLoading,
   tableUpdating,
   tableError,
   tableSuccess,
   setSecuritiesData
-} from "../actions/securitiesTableActions";
+} from "../../actions/securitiesTableActions";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 

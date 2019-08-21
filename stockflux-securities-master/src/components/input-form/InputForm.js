@@ -2,15 +2,15 @@ import React, { useEffect, useReducer } from "react";
 import Components from "stockflux-components";
 import { Link, Redirect } from "react-router-dom";
 import "./InputForm.css";
-import * as service from "../services/SecuritiesService";
-import ValidationError from "../services/ValidationError";
-import Alert, { AlertType } from "./Alert";
-import TextField from "./TextField";
-import ToggleSwitch from "./ToggleSwitch";
-import Button, { ButtonSize } from "./Button";
-import Confirmation from "./Confirmation";
-import { InputFormState } from "../enums";
-import { inputFormReducer } from "../reducers/inputFormReducer";
+import * as service from "../../services/SecuritiesService";
+import ValidationError from "../../services/ValidationError";
+import Alert, { AlertType } from "../alert/Alert";
+import TextField from "../formControls/text-field/TextField";
+import ToggleSwitch from "../formControls/toggle-switch/ToggleSwitch";
+import Button, { ButtonSize } from "../button/Button";
+import Confirmation from "../confirmation/Confirmation";
+import { InputFormState } from "../../enums";
+import { inputFormReducer } from "../../reducers/inputFormReducer";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import {
@@ -24,7 +24,7 @@ import {
   setVisible,
   setEnabled,
   setRedirect
-} from "../actions/inputFormActions";
+} from "../../actions/inputFormActions";
 
 const InputForm = ({ match }) => {
   const initialFormState = {
@@ -192,7 +192,9 @@ const InputForm = ({ match }) => {
               className={classNames("input-submit-button", {
                 "in-progress": state.fetchStatus === InputFormState.SENDING
               })}
-            >{match.params.securityId ? "Save" : "Create"}</Button>
+            >
+              {match.params.securityId ? "Save" : "Create"}
+            </Button>
             {match.params.securityId && (
               <Confirmation confirmationText="Are you sure you want to delete this security?">
                 <Button
@@ -200,7 +202,9 @@ const InputForm = ({ match }) => {
                   className="input-delete-button"
                   size={ButtonSize.LARGE}
                   onClick={deleteSecurity}
-                >Delete</Button>
+                >
+                  Delete
+                </Button>
               </Confirmation>
             )}
           </div>
