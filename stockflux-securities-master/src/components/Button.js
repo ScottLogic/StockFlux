@@ -25,13 +25,13 @@ const Button = ({ children, size, className, type, onClick }) => (
 );
 
 Button.propTypes = {
-  type: PropTypes.string,
   size: PropTypes.oneOf([
     ButtonSize.EXTRA_SMALL,
     ButtonSize.SMALL,
     ButtonSize.LARGE
   ]).isRequired,
   className: PropTypes.string,
+  type: PropTypes.string,
   onClick: PropTypes.func
 };
 
