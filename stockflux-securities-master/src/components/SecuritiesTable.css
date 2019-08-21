@@ -29,7 +29,7 @@
 .securities-table-row,
 .heading-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 0.5fr;
+  grid-template-columns: 1fr 1fr 1fr 0.8fr;
 }
 
 .securities-table-heading {
@@ -51,7 +51,7 @@
 
 .table-deleting-spinner-container,
 .securities-message-container {
-  margin-top: var(--margin-large);
+  margin: var(--margin-medium) 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -102,4 +102,8 @@
 
 .securities-table-button:hover {
   color: var(--text-teal);
+}
+
+.securities-table-button.feature-off {
+  color: var(--text-grey-dark);
 }

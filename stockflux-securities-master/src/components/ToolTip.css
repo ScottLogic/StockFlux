@@ -1,0 +1,34 @@
+.tool-tip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tool-tip-container .tool-tip-message {
+  visibility: hidden;
+  background-color: var(--dark-background);
+  color: var(--text-grey-lighter);
+  text-align: center;
+  border-radius: 6px;
+  padding: var(--padding-small) var(--padding-medium);
+  position: absolute;
+  top: 0px;
+  right: 105%;
+}
+
+.tool-tip-container .tool-tip-message:after {
+  content: " ";
+  position: absolute;
+  top: 30%;
+  left: 100%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--dark-background);
+}
+
+.tool-tip-container:hover .tool-tip-message {
+  visibility: visible;
+}
+
+.tool-tip-container:hover .tool-tip-message:hover {
+  visibility: hidden;
+}

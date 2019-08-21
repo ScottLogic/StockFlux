@@ -1,90 +1,95 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
 import Components from "stockflux-components";
 import { Link, Redirect } from "react-router-dom";
 import "./InputForm.css";
 import * as service from "../services/SecuritiesService";
 import ValidationError from "../services/ValidationError";
-import Alert from "./Alert";
+import Alert, { AlertType } from "./Alert";
 import TextField from "./TextField";
 import ToggleSwitch from "./ToggleSwitch";
-import Button from "./Button";
+import Button, { ButtonSize } from "./Button";
 import Confirmation from "./Confirmation";
 import { InputFormState } from "../enums";
+import { inputFormReducer } from "../reducers/inputFormReducer";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import {
+  formLoading,
+  formSending,
+  formError,
+  formSuccess,
+  setName,
+  setExchange,
+  setSymbol,
+  setVisible,
+  setEnabled,
+  setRedirect
+} from "../actions/inputFormActions";
 
 const InputForm = ({ match }) => {
-  const [name, setName] = useState("");
-  const [exchange, setExchange] = useState("");
-  const [symbol, setSymbol] = useState("");
-  const [visible, setVisible] = useState(false);
-  const [enabled, setEnabled] = useState(false);
-  const [state, setState] = useState(
-    match.params.securityId ? InputFormState.LOADING : null
-  );
-  const [messages, setMessages] = useState([]);
-  const [redirect, setRedirect] = useState(false);
+  const initialFormState = {
+    fetchStatus: match.params.securityId
+      ? InputFormState.LOADING
+      : InputFormState.COMPLETED,
+    hasErrors: false,
+    messages: [],
+    security: {
+      name: "",
+      exchange: "",
+      symbol: "",
+      visible: false,
+      enabled: false
+    },
+    redirect: false
+  };
+
+  const [state, dispatch] = useReducer(inputFormReducer, initialFormState);
 
   const setSecurityState = security => {
-    setName(security.name);
-    setExchange(security.exchange);
-    setSymbol(security.symbol);
-    setVisible(security.visible);
-    setEnabled(security.enabled);
+    dispatch(setName(security.name));
+    dispatch(setExchange(security.exchange));
+    dispatch(setSymbol(security.symbol));
+    dispatch(setVisible(security.visible));
+    dispatch(setEnabled(security.enabled));
   };
 
   useEffect(() => {
     if (match.params.securityId) {
-      setState(InputFormState.LOADING);
+      dispatch(formLoading());
       service
         .getSecurity(match.params.securityId)
         .then(security => {
-          setState(null);
+          dispatch(formSuccess([]));
           setSecurityState(security);
-          setMessages([]);
         })
         .catch(() => {
-          setState(InputFormState.ERROR);
-          setMessages(["Error, cannot get security"]);
+          dispatch(formError(["Error, cannot get security"]));
         });
     }
   }, [match.params.securityId]);
 
   const handleError = err => {
-    if (err instanceof ValidationError) {
-      setMessages(err.messages);
-    } else {
-      setMessages([err.message]);
-    }
-    setState(InputFormState.ERROR);
+    const message =
+      err instanceof ValidationError ? err.messages : [err.message];
+    dispatch(formError(message));
   };
 
   const submitForm = event => {
     event.preventDefault();
-    setState(InputFormState.SENDING);
-    setMessages([]);
-    const securityObject = {
-      exchange,
-      symbol,
-      name,
-      visible,
-      enabled
-    };
+    dispatch(formSending());
 
     if (match.params.securityId) {
       service
-        .updateSecurity(match.params.securityId, securityObject)
+        .updateSecurity(match.params.securityId, state.security)
         .then(() => {
-          setMessages(["Security was successfully updated"]);
-          setState(InputFormState.SUCCESS);
+          dispatch(formSuccess(["Security was successfully updated"]));
         })
-        .catch(err => {
-          handleError(err);
-        });
+        .catch(handleError);
     } else {
       service
-        .postSecurity(securityObject)
+        .postSecurity(state.security)
         .then(() => {
-          setMessages(["Security was successfully created"]);
-          setState(InputFormState.SUCCESS);
+          dispatch(formSuccess(["Security was successfully created"]));
           setSecurityState({
             exchange: "",
             symbol: "",
@@ -93,9 +98,7 @@ const InputForm = ({ match }) => {
             enabled: false
           });
         })
-        .catch(err => {
-          handleError(err);
-        });
+        .catch(handleError);
     }
   };
 
@@ -103,22 +106,19 @@ const InputForm = ({ match }) => {
     service
       .deleteSecurity(match.params.securityId)
       .then(() => {
-        setState(InputFormState.SUCCESS);
-        setMessages(["Security Successfully Deleted"]);
-        setRedirect(true);
+        dispatch(formSuccess(["Security was successfully deleted"]));
+        dispatch(setRedirect(true));
       })
-      .catch(err => {
-        handleError(err);
-      });
+      .catch(handleError);
   };
 
-  if (redirect) {
+  if (state.redirect) {
     return (
       <Redirect
         push
         to={{
           pathname: "/",
-          state: { messages }
+          state: { messages: state.messages }
         }}
       />
     );
@@ -128,7 +128,7 @@ const InputForm = ({ match }) => {
       <h1 className="input-form-title">
         {match.params.securityId ? "Edit Security" : "Create a Security"}
       </h1>
-      {state === InputFormState.LOADING ? (
+      {state.fetchStatus === InputFormState.LOADING ? (
         <div className="input-form-spinner-container">
           <Components.LargeSpinner />
         </div>
@@ -140,9 +140,9 @@ const InputForm = ({ match }) => {
             </label>
             <TextField
               id="exchange-input"
-              value={exchange}
+              value={state.security.exchange}
               readOnly={!!match.params.securityId}
-              onChange={event => setExchange(event.target.value)}
+              onChange={event => dispatch(setExchange(event.target.value))}
             />
           </div>
           <div className="input-row">
@@ -151,9 +151,9 @@ const InputForm = ({ match }) => {
             </label>
             <TextField
               id="symbol-input"
-              value={symbol}
+              value={state.security.symbol}
               readOnly={!!match.params.securityId}
-              onChange={event => setSymbol(event.target.value)}
+              onChange={event => dispatch(setSymbol(event.target.value))}
             />
           </div>
           <div className="input-row">
@@ -162,8 +162,8 @@ const InputForm = ({ match }) => {
             </label>
             <TextField
               id="name-input"
-              value={name}
-              onChange={event => setName(event.target.value)}
+              value={state.security.name}
+              onChange={event => dispatch(setName(event.target.value))}
             />
           </div>
           <div className="input-checkbox-container">
@@ -172,8 +172,8 @@ const InputForm = ({ match }) => {
             </label>
             <ToggleSwitch
               id="visible-toggle"
-              checked={visible}
-              onChange={event => setVisible(event.target.checked)}
+              checked={state.security.visible}
+              onChange={event => dispatch(setVisible(event.target.checked))}
             />
           </div>
           <div className="input-checkbox-container">
@@ -182,38 +182,36 @@ const InputForm = ({ match }) => {
             </label>
             <ToggleSwitch
               id="enabled-toggle"
-              checked={enabled}
-              onChange={event => setEnabled(event.target.checked)}
+              checked={state.security.enabled}
+              onChange={event => dispatch(setEnabled(event.target.checked))}
             />
           </div>
           <div className="input-buttons-container">
             <Button
-              size="large"
-              text={match.params.securityId ? "Save" : "Create"}
-              className={
-                (state === InputFormState.SENDING ? "in-progress " : "") +
-                "input-submit-button"
-              }
-            />
+              size={ButtonSize.LARGE}
+              className={classNames("input-submit-button", {
+                "in-progress": state.fetchStatus === InputFormState.SENDING
+              })}
+            >{match.params.securityId ? "Save" : "Create"}</Button>
             {match.params.securityId && (
               <Confirmation confirmationText="Are you sure you want to delete this security?">
                 <Button
                   type="button"
                   className="input-delete-button"
-                  text="Delete"
-                  size="large"
+                  size={ButtonSize.LARGE}
                   onClick={deleteSecurity}
-                />
+                >Delete</Button>
               </Confirmation>
             )}
           </div>
         </form>
       )}
-      {!!messages &&
-        (state === InputFormState.ERROR ||
-          state === InputFormState.SUCCESS) && (
-          <Alert type={state} messages={messages} />
-        )}
+      {state.messages.length > 0 && (
+        <Alert
+          type={state.hasErrors ? AlertType.ERROR : AlertType.SUCCESS}
+          messages={state.messages}
+        />
+      )}
       <Link to="/">
         <div className="back-button">
           <button>
@@ -223,6 +221,10 @@ const InputForm = ({ match }) => {
       </Link>
     </div>
   );
+};
+
+InputForm.propTypes = {
+  match: PropTypes.object.isRequired
 };
 
 export default InputForm;

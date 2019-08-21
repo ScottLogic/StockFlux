@@ -1,16 +1,15 @@
-.securities-alert-container {
-  margin: var(--margin-medium);
-}
-
+.securities-alert-list > li,
 .securities-alert {
   font-size: var(--font-xlarge);
   margin: var(--margin-small);
 }
 
+.securities-alert-list.error > li,
 .securities-alert.error {
   color: var(--error-red);
 }
 
+.securities-alert-list.success > li,
 .securities-alert.success {
   color: var(--success-green);
 }

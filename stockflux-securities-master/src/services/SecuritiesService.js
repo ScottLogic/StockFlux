@@ -85,3 +85,24 @@ export async function deleteSecurity(securityId) {
   const json = await response.json();
   throw new ValidationError(json.messages);
 }
+
+export async function patchSecurity(securityId, updates) {
+  const fetchOptions = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(updates)
+  };
+  const options = await getWindowOptions();
+  const response = await fetch(
+    `${options.customData.apiBaseUrl}/securities-v2/${securityId}`,
+    fetchOptions
+  );
+  if (response.ok) {
+    return response;
+  }
+
+  const json = await response.json();
+  throw new ValidationError(json.messages);
+}

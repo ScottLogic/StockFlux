@@ -2,17 +2,37 @@ import React from "react";
 import "./Button.css";
 import PropTypes from "prop-types";
 
-const Button = ({ text, size, className, ...props }) => {
-  return (
-    <button className={`button-container ${size} ${className}`} {...props}>
-      {text}
-    </button>
-  );
+export function ButtonSize(value) {
+  this._value = value;
+}
+
+ButtonSize.prototype.valueOf = function() {
+  return this._value;
 };
 
+ButtonSize.EXTRA_SMALL = new ButtonSize("extra-small");
+ButtonSize.SMALL = new ButtonSize("small");
+ButtonSize.LARGE = new ButtonSize("large");
+
+const Button = ({ children, size, className, type, onClick }) => (
+  <button
+    type={type || "submit"}
+    className={`button-container ${size.valueOf()} ${className}`}
+    onClick={onClick}
+  >
+    {children}
+  </button>
+);
+
 Button.propTypes = {
-  size: PropTypes.oneOf(["extra-small", "small", "large"]).isRequired,
-  className: PropTypes.string
+  size: PropTypes.oneOf([
+    ButtonSize.EXTRA_SMALL,
+    ButtonSize.SMALL,
+    ButtonSize.LARGE
+  ]).isRequired,
+  className: PropTypes.string,
+  type: PropTypes.string,
+  onClick: PropTypes.func
 };
 
 export default Button;

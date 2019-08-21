@@ -1,94 +1,158 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useCallback, useReducer } from "react";
 import Components from "stockflux-components";
 import { Link } from "react-router-dom";
 import "./SecuritiesTable.css";
 import * as service from "../services/SecuritiesService";
 import ValidationError from "../services/ValidationError";
-import Alert from "./Alert";
+import Alert, { AlertType } from "./Alert";
 import { TableState } from "../enums";
-import Button from "./Button";
+import ToolTip from "./ToolTip";
+import Button, { ButtonSize } from "./Button";
+import {
+  FaPen,
+  FaTrashAlt,
+  FaEye,
+  FaEyeSlash,
+  FaCheck,
+  FaTimes
+} from "react-icons/fa";
+import {
+  securitiesTableReducer,
+  initialTableState
+} from "../reducers/securitiesTableReducer";
+import {
+  tableLoading,
+  tableUpdating,
+  tableError,
+  tableSuccess,
+  setSecuritiesData
+} from "../actions/securitiesTableActions";
+import PropTypes from "prop-types";
+import classNames from "classnames";
 
 const SecuritiesTable = ({ location }) => {
-  const [securitiesData, setSecuritiesData] = useState([]);
-  const [messages, setMessages] = useState([]);
-  const [state, setState] = useState(TableState.LOADING);
+  const [state, dispatch] = useReducer(
+    securitiesTableReducer,
+    initialTableState
+  );
 
   const handleError = err => {
-    setState(TableState.ERROR);
-    if (err instanceof ValidationError) {
-      setMessages(err.messages);
-    } else {
-      setMessages([err.message]);
-    }
+    const message =
+      err instanceof ValidationError ? err.messages : [err.message];
+    dispatch(tableError(message));
   };
 
   const loadSecurities = useCallback(messages => {
     service
       .getSecuritiesData()
       .then(securities => {
-        setSecuritiesData(securities);
-        setState(TableState.SUCCESS);
-        setMessages(messages);
+        dispatch(setSecuritiesData(securities));
+        dispatch(tableSuccess(messages));
       })
       .catch(err => {
-        setSecuritiesData([]);
+        dispatch(setSecuritiesData([]));
         handleError(err);
       });
   }, []);
 
   useEffect(() => {
-    setState(TableState.LOADING);
+    dispatch(tableLoading());
     loadSecurities(!!location.state ? location.state.messages : []);
   }, [loadSecurities, location.state]);
 
   const deleteSecurity = securityId => {
-    setState(TableState.DELETING);
-    setMessages([]);
+    dispatch(tableUpdating());
     service
       .deleteSecurity(securityId)
       .then(() => {
         loadSecurities(["Security Successfully Deleted"]);
       })
-      .catch(err => {
-        handleError(err);
-      });
+      .catch(handleError);
+  };
+
+  const patchSecurity = (securityId, updates) => {
+    dispatch(tableUpdating());
+    service
+      .patchSecurity(securityId, updates)
+      .then(() => {
+        loadSecurities(["Security Updated"]);
+      })
+      .catch(handleError);
   };
 
   const tableBody = () => {
     return (
       <div className="table-body">
-        {securitiesData.length === 0 && state !== TableState.ERROR ? (
+        {state.securitiesData.length === 0 && !state.hasErrors ? (
           <div className="no-securities-container">
             <div className="no-securities-message">
               You have no securities to show
             </div>
             <Link to="/inputform">
-              <Button
-                text="Add Security"
-                size="large"
-                className="add-securities-button"
-              />
+              <Button size={ButtonSize.LARGE} className="add-securities-button">
+                Add Security
+              </Button>
             </Link>
           </div>
         ) : (
           <Components.ScrollWrapperY>
-            {securitiesData.map((item, index) => (
+            {state.securitiesData.map((item, index) => (
               <div key={index} className="securities-table-row">
                 <div className="securities-table-cell">{item.exchange}</div>
                 <div className="securities-table-cell">{item.symbol}</div>
                 <div className="securities-table-cell">{item.name}</div>
                 <div className="securities-table-cell">
-                  <Link to={`/inputform/${item.securityId}`}>
-                    <button className="securities-table-button">
-                      <span className="material-icons">edit</span>
+                  <ToolTip message="Edit">
+                    <Link to={`/inputform/${item.securityId}`}>
+                      <button className="securities-table-button">
+                        <FaPen size={20} />
+                      </button>
+                    </Link>
+                  </ToolTip>
+                  <ToolTip message="Delete">
+                    <button
+                      className="securities-table-button"
+                      onClick={() => deleteSecurity(item.securityId)}
+                    >
+                      <FaTrashAlt size={20} />
                     </button>
-                  </Link>
-                  <button
-                    className="securities-table-button"
-                    onClick={() => deleteSecurity(item.securityId)}
-                  >
-                    <span className="material-icons">delete</span>
-                  </button>
+                  </ToolTip>
+                  <ToolTip message={item.visible ? "Hide" : "Show"}>
+                    <button
+                      className={classNames("securities-table-button", {
+                        "feature-off": !item.visible
+                      })}
+                      onClick={() =>
+                        patchSecurity(item.securityId, {
+                          visible: !item.visible
+                        })
+                      }
+                    >
+                      {item.visible ? (
+                        <FaEye size={20} />
+                      ) : (
+                        <FaEyeSlash size={20} />
+                      )}
+                    </button>
+                  </ToolTip>
+                  <ToolTip message={item.enabled ? "Disable" : "Enable"}>
+                    <button
+                      className={classNames("securities-table-button", {
+                        "feature-off": !item.enabled
+                      })}
+                      onClick={() =>
+                        patchSecurity(item.securityId, {
+                          enabled: !item.enabled
+                        })
+                      }
+                    >
+                      {item.enabled ? (
+                        <FaCheck size={20} />
+                      ) : (
+                        <FaTimes size={20} />
+                      )}
+                    </button>
+                  </ToolTip>
                 </div>
               </div>
             ))}
@@ -103,13 +167,11 @@ const SecuritiesTable = ({ location }) => {
       <div className="securities-header-container">
         <h1 className="securities-title">Securities</h1>
         <div className="add-securities-button-above-table">
-          {securitiesData.length > 0 && (
+          {state.securitiesData.length > 0 && (
             <Link to="/inputform">
-              <Button
-                text="Add Security"
-                size="small"
-                className="add-securities-button"
-              />
+              <Button size={ButtonSize.SMALL} className="add-securities-button">
+                Add Security
+              </Button>
             </Link>
           )}
         </div>
@@ -120,24 +182,26 @@ const SecuritiesTable = ({ location }) => {
         <h2 className="securities-table-heading">Name</h2>
         <h2 className="securities-table-heading">Edit / Delete</h2>
       </div>
-      {state === TableState.LOADING ? (
+      {state.fetchStatus === TableState.LOADING ? (
         <div className="spinner-container">
           <Components.LargeSpinner />
         </div>
       ) : (
         <>
           {tableBody()}
-          {messages.length > 0 &&
-            (state === TableState.SUCCESS || state === TableState.ERROR) && (
-              <div
-                className={`securities-message-container ${
-                  securitiesData.length === 0 ? "no-securities" : ""
-                }`}
-              >
-                <Alert messages={messages} type={state} />
-              </div>
-            )}
-          {state === TableState.DELETING && (
+          {state.messages.length > 0 && (
+            <div
+              className={classNames("securities-message-container", {
+                "no-securities": state.securitiesData.length === 0
+              })}
+            >
+              <Alert
+                messages={state.messages}
+                type={state.hasErrors ? AlertType.ERROR : AlertType.SUCCESS}
+              />
+            </div>
+          )}
+          {state.fetchStatus === TableState.UPDATING && (
             <div className="table-deleting-spinner-container">
               <Components.Spinner />
             </div>
@@ -146,6 +210,10 @@ const SecuritiesTable = ({ location }) => {
       )}
     </div>
   );
+};
+
+SecuritiesTable.propTypes = {
+  location: PropTypes.object.isRequired
 };
 
 export default SecuritiesTable;
