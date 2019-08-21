@@ -104,6 +104,6 @@
   color: var(--text-teal);
 }
 
-.securities-table-button.greyed-out {
+.securities-table-button.feature-off {
   color: var(--text-grey-dark);
 }

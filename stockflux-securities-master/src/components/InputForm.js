@@ -189,20 +189,18 @@ const InputForm = ({ match }) => {
           <div className="input-buttons-container">
             <Button
               size={ButtonSize.LARGE}
-              text={match.params.securityId ? "Save" : "Create"}
               className={classNames("input-submit-button", {
                 "in-progress": state.fetchStatus === InputFormState.SENDING
               })}
-            />
+            >{match.params.securityId ? "Save" : "Create"}</Button>
             {match.params.securityId && (
               <Confirmation confirmationText="Are you sure you want to delete this security?">
                 <Button
                   type="button"
                   className="input-delete-button"
-                  text="Delete"
                   size={ButtonSize.LARGE}
                   onClick={deleteSecurity}
-                />
+                >Delete</Button>
               </Confirmation>
             )}
           </div>

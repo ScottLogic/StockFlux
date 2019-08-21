@@ -24,19 +24,21 @@ const Confirmation = ({ children, confirmationText }) => {
           </div>
           <div className="confirmation-option-button-container">
             <Button
-              text="Yes"
               size={ButtonSize.EXTRA_SMALL}
               onClick={children.props.onClick}
               className="confirmation-option-button"
               type="button"
-            />
+            >
+              Yes
+            </Button>
             <Button
-              text="No"
               size={ButtonSize.EXTRA_SMALL}
               onClick={() => setClickedStatus(false)}
               className="confirmation-option-button"
               type="button"
-            />
+            >
+              No
+            </Button>
           </div>
         </>
       )}

@@ -14,17 +14,18 @@ ButtonSize.EXTRA_SMALL = new ButtonSize("extra-small");
 ButtonSize.SMALL = new ButtonSize("small");
 ButtonSize.LARGE = new ButtonSize("large");
 
-const Button = ({ text, size, className, type, onClick }) => (
+const Button = ({ children, size, className, type, onClick }) => (
   <button
     type={type || "submit"}
     className={`button-container ${size.valueOf()} ${className}`}
     onClick={onClick}
   >
-    {text}
+    {children}
   </button>
 );
 
 Button.propTypes = {
+  type: PropTypes.string,
   size: PropTypes.oneOf([
     ButtonSize.EXTRA_SMALL,
     ButtonSize.SMALL,

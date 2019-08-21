@@ -89,11 +89,9 @@ const SecuritiesTable = ({ location }) => {
               You have no securities to show
             </div>
             <Link to="/inputform">
-              <Button
-                text="Add Security"
-                size={ButtonSize.LARGE}
-                className="add-securities-button"
-              />
+              <Button size={ButtonSize.LARGE} className="add-securities-button">
+                Add Security
+              </Button>
             </Link>
           </div>
         ) : (
@@ -122,7 +120,7 @@ const SecuritiesTable = ({ location }) => {
                   <ToolTip message={item.visible ? "Hide" : "Show"}>
                     <button
                       className={classNames("securities-table-button", {
-                        "greyed-out": !item.visible
+                        "feature-off": !item.visible
                       })}
                       onClick={() =>
                         patchSecurity(item.securityId, {
@@ -140,7 +138,7 @@ const SecuritiesTable = ({ location }) => {
                   <ToolTip message={item.enabled ? "Disable" : "Enable"}>
                     <button
                       className={classNames("securities-table-button", {
-                        "greyed-out": !item.enabled
+                        "feature-off": !item.enabled
                       })}
                       onClick={() =>
                         patchSecurity(item.securityId, {
@@ -171,11 +169,9 @@ const SecuritiesTable = ({ location }) => {
         <div className="add-securities-button-above-table">
           {state.securitiesData.length > 0 && (
             <Link to="/inputform">
-              <Button
-                text="Add Security"
-                size={ButtonSize.SMALL}
-                className="add-securities-button"
-              />
+              <Button size={ButtonSize.SMALL} className="add-securities-button">
+                Add Security
+              </Button>
             </Link>
           )}
         </div>
