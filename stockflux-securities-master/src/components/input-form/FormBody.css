@@ -3,20 +3,6 @@
   flex-direction: column;
 }
 
-.input-row {
-  display: flex;
-  flex-direction: row;
-  margin: var(--margin-small) 0;
-  align-items: center;
-}
-
-.input-label {
-  font-size: var(--font-xlarge);
-  font-weight: var(--font-weight-bolder);
-  margin: var(--margin-small);
-  flex-basis: 80px;
-}
-
 .input-buttons-container {
   display: flex;
   flex-direction: column;

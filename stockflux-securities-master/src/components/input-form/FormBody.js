@@ -1,7 +1,5 @@
 import React from "react";
 import classNames from "classnames";
-import TextField from "../formControls/text-field/TextField";
-import ToggleSwitch from "../formControls/toggle-switch/ToggleSwitch";
 import Button, { ButtonSize } from "../button/Button";
 import Confirmation from "../confirmation/Confirmation";
 import {
@@ -14,6 +12,7 @@ import {
 import { InputFormState } from "../../enums";
 import "./FormBody.css";
 import PropTypes from "prop-types";
+import FormRow, { RowType } from "./FormRow";
 
 const FormBody = ({
   state,
@@ -24,58 +23,43 @@ const FormBody = ({
 }) => {
   return (
     <form className="input-form-body" onSubmit={submitForm}>
-      <div className="input-row">
-        <label className="input-label" htmlFor="exchange-input">
-          Exchange
-        </label>
-        <TextField
-          id="exchange-input"
-          value={state.security.exchange}
-          readOnly={!!securityId}
-          onChange={event => dispatch(setExchange(event.target.value))}
-        />
-      </div>
-      <div className="input-row">
-        <label className="input-label" htmlFor="symbol-input">
-          Symbol
-        </label>
-        <TextField
-          id="symbol-input"
-          value={state.security.symbol}
-          readOnly={!!securityId}
-          onChange={event => dispatch(setSymbol(event.target.value))}
-        />
-      </div>
-      <div className="input-row">
-        <label className="input-label" htmlFor="name-input">
-          Name
-        </label>
-        <TextField
-          id="name-input"
-          value={state.security.name}
-          onChange={event => dispatch(setName(event.target.value))}
-        />
-      </div>
-      <div className="input-row">
-        <label className="input-label" htmlFor="visible-toggle">
-          Visible
-        </label>
-        <ToggleSwitch
-          id="visible-toggle"
-          checked={state.security.visible}
-          onChange={event => dispatch(setVisible(event.target.checked))}
-        />
-      </div>
-      <div className="input-row">
-        <label className="input-label" htmlFor="enabled-toggle">
-          Enabled
-        </label>
-        <ToggleSwitch
-          id="enabled-toggle"
-          checked={state.security.enabled}
-          onChange={event => dispatch(setEnabled(event.target.checked))}
-        />
-      </div>
+      <FormRow
+        label="Exchange"
+        id="exchange-input"
+        value={state.security.exchange}
+        readOnly={!!securityId}
+        onChange={event => dispatch(setExchange(event.target.value))}
+        type={RowType.TEXT}
+      />
+      <FormRow
+        label="Symbol"
+        id="symbol-input"
+        value={state.security.symbol}
+        readOnly={!!securityId}
+        onChange={event => dispatch(setSymbol(event.target.value))}
+        type={RowType.TEXT}
+      />
+      <FormRow
+        label="Name"
+        id="name-input"
+        value={state.security.name}
+        onChange={event => dispatch(setName(event.target.value))}
+        type={RowType.TEXT}
+      />
+      <FormRow
+        label="Visible"
+        id="visible-toggle"
+        checked={state.security.visible}
+        onChange={event => dispatch(setVisible(event.target.checked))}
+        type={RowType.TOGGLE}
+      />
+      <FormRow
+        label="Enabled"
+        id="enabled-toggle"
+        checked={state.security.enabled}
+        onChange={event => dispatch(setEnabled(event.target.checked))}
+        type={RowType.TOGGLE}
+      />
       <div className="input-buttons-container">
         <Button
           size={ButtonSize.LARGE}

@@ -5,6 +5,9 @@ import PropTypes from "prop-types";
 
 const Confirmation = ({ children, confirmationText }) => {
   const [clickedStatus, setClickedStatus] = useState(false);
+  const handleClickNoButton = () => {
+    setClickedStatus(false);
+  };
 
   return (
     <div className="confirmation-button-container">
@@ -33,7 +36,7 @@ const Confirmation = ({ children, confirmationText }) => {
             </Button>
             <Button
               size={ButtonSize.EXTRA_SMALL}
-              onClick={() => setClickedStatus(false)}
+              onClick={handleClickNoButton}
               className="confirmation-option-button"
               type="button"
             >
