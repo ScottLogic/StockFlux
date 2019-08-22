@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import TextField from "../formControls/text-field/TextField";
-import ToggleSwitch from "../formControls/toggle-switch/ToggleSwitch";
+import TextField from "../form-controls/text-field/TextField";
+import ToggleSwitch from "../form-controls/toggle-switch/ToggleSwitch";
 import "./FormRow.css";
 
 export function RowType(value) {
