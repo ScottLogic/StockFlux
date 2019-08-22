@@ -6,16 +6,7 @@ import * as service from "../../services/SecuritiesService";
 import ValidationError from "../../services/ValidationError";
 import Alert, { AlertType } from "../alert/Alert";
 import { TableState } from "../../enums";
-import ToolTip from "../tool-tip/ToolTip";
 import Button, { ButtonSize } from "../button/Button";
-import {
-  FaPen,
-  FaTrashAlt,
-  FaEye,
-  FaEyeSlash,
-  FaCheck,
-  FaTimes
-} from "react-icons/fa";
 import {
   securitiesTableReducer,
   initialTableState
@@ -29,6 +20,7 @@ import {
 } from "../../actions/securitiesTableActions";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import TableBody from "./TableBody";
 
 const SecuritiesTable = ({ location }) => {
   const [state, dispatch] = useReducer(
@@ -80,88 +72,6 @@ const SecuritiesTable = ({ location }) => {
       .catch(handleError);
   };
 
-  const tableBody = () => {
-    return (
-      <div className="table-body">
-        {state.securitiesData.length === 0 && !state.hasErrors ? (
-          <div className="no-securities-container">
-            <div className="no-securities-message">
-              You have no securities to show
-            </div>
-            <Link to="/inputform">
-              <Button size={ButtonSize.LARGE} className="add-securities-button">
-                Add Security
-              </Button>
-            </Link>
-          </div>
-        ) : (
-          <Components.ScrollWrapperY>
-            {state.securitiesData.map((item, index) => (
-              <div key={index} className="securities-table-row">
-                <div className="securities-table-cell">{item.exchange}</div>
-                <div className="securities-table-cell">{item.symbol}</div>
-                <div className="securities-table-cell">{item.name}</div>
-                <div className="securities-table-cell">
-                  <ToolTip message="Edit">
-                    <Link to={`/inputform/${item.securityId}`}>
-                      <button className="securities-table-button">
-                        <FaPen size={20} />
-                      </button>
-                    </Link>
-                  </ToolTip>
-                  <ToolTip message="Delete">
-                    <button
-                      className="securities-table-button"
-                      onClick={() => deleteSecurity(item.securityId)}
-                    >
-                      <FaTrashAlt size={20} />
-                    </button>
-                  </ToolTip>
-                  <ToolTip message={item.visible ? "Hide" : "Show"}>
-                    <button
-                      className={classNames("securities-table-button", {
-                        "feature-off": !item.visible
-                      })}
-                      onClick={() =>
-                        patchSecurity(item.securityId, {
-                          visible: !item.visible
-                        })
-                      }
-                    >
-                      {item.visible ? (
-                        <FaEye size={20} />
-                      ) : (
-                        <FaEyeSlash size={20} />
-                      )}
-                    </button>
-                  </ToolTip>
-                  <ToolTip message={item.enabled ? "Disable" : "Enable"}>
-                    <button
-                      className={classNames("securities-table-button", {
-                        "feature-off": !item.enabled
-                      })}
-                      onClick={() =>
-                        patchSecurity(item.securityId, {
-                          enabled: !item.enabled
-                        })
-                      }
-                    >
-                      {item.enabled ? (
-                        <FaCheck size={20} />
-                      ) : (
-                        <FaTimes size={20} />
-                      )}
-                    </button>
-                  </ToolTip>
-                </div>
-              </div>
-            ))}
-          </Components.ScrollWrapperY>
-        )}
-      </div>
-    );
-  };
-
   return (
     <div className="securities-container">
       <div className="securities-header-container">
@@ -188,7 +98,11 @@ const SecuritiesTable = ({ location }) => {
         </div>
       ) : (
         <>
-          {tableBody()}
+          <TableBody
+            state={state}
+            deleteSecurity={deleteSecurity}
+            patchSecurity={patchSecurity}
+          />
           {state.messages.length > 0 && (
             <div
               className={classNames("securities-message-container", {
