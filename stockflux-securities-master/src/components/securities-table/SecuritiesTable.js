@@ -10,14 +10,14 @@ import Button, { ButtonSize } from "../button/Button";
 import {
   securitiesTableReducer,
   initialTableState
-} from "../../reducers/securitiesTableReducer";
+} from "../../reducers/securitiesTable";
 import {
   tableLoading,
   tableUpdating,
   tableError,
   tableSuccess,
   setSecuritiesData
-} from "../../actions/securitiesTableActions";
+} from "../../actions/securitiesTable";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import TableBody from "./TableBody";
@@ -73,9 +73,9 @@ const SecuritiesTable = ({ location }) => {
   };
 
   return (
-    <div className="securities-container">
-      <div className="securities-header-container">
-        <h1 className="securities-title">Securities</h1>
+    <div className="securities">
+      <div className="header">
+        <h1 className="title">Securities</h1>
         <div className="add-securities-button-above-table">
           {state.securitiesData.length > 0 && (
             <Link to="/inputform">
@@ -86,9 +86,9 @@ const SecuritiesTable = ({ location }) => {
           )}
         </div>
       </div>
-      <div className="heading-container">
+      <div className="headings">
         {["Exchange", "Symbol", "Name", "Options"].map(heading => (
-          <h2 key={heading} className={"securities-table-heading"}>
+          <h2 key={heading} className={"table-heading"}>
             {heading}
           </h2>
         ))}
@@ -106,7 +106,7 @@ const SecuritiesTable = ({ location }) => {
           />
           {state.messages.length > 0 && (
             <div
-              className={classNames("securities-message-container", {
+              className={classNames("messages-container", {
                 "no-securities": state.securitiesData.length === 0
               })}
             >

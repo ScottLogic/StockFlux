@@ -5,7 +5,7 @@
   align-items: center;
 }
 
-.input-label {
+.form-row .label {
   font-size: var(--font-xlarge);
   font-weight: var(--font-weight-bolder);
   margin: var(--margin-small);

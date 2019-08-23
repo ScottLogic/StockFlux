@@ -31,26 +31,28 @@ const TableRow = ({ item, deleteSecurity, patchSecurity }) => {
   };
 
   return (
-    <div className="securities-table-row">
-      {[item.exchange, item.symbol, item.name].map(cellData => (
-        <div className="securities-table-cell">{cellData}</div>
+    <div className="table-row">
+      {[item.exchange, item.symbol, item.name].map((cellData, index) => (
+        <div key={index} className="table-cell">
+          {cellData}
+        </div>
       ))}
-      <div className="securities-table-cell">
+      <div className="table-cell">
         <ToolTip message="Edit">
           <Link to={`/inputform/${item.securityId}`}>
-            <button className="securities-table-button">
+            <button className="table-button">
               <FaPen size={20} />
             </button>
           </Link>
         </ToolTip>
         <ToolTip message="Delete">
-          <button className="securities-table-button" onClick={handleDelete}>
+          <button className="table-button" onClick={handleDelete}>
             <FaTrashAlt size={20} />
           </button>
         </ToolTip>
         <ToolTip message={item.visible ? "Hide" : "Show"}>
           <button
-            className={classNames("securities-table-button", {
+            className={classNames("table-button", {
               "feature-off": !item.visible
             })}
             onClick={handleToggleVisible}
@@ -60,7 +62,7 @@ const TableRow = ({ item, deleteSecurity, patchSecurity }) => {
         </ToolTip>
         <ToolTip message={item.enabled ? "Disable" : "Enable"}>
           <button
-            className={classNames("securities-table-button", {
+            className={classNames("table-button", {
               "feature-off": !item.enabled
             })}
             onClick={handleToggleEnabled}

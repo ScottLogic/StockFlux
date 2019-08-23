@@ -6,7 +6,7 @@ import * as service from "../../services/SecuritiesService";
 import ValidationError from "../../services/ValidationError";
 import Alert, { AlertType } from "../alert/Alert";
 import { FetchState } from "../../enums";
-import { inputFormReducer } from "../../reducers/inputFormReducer";
+import { inputFormReducer } from "../../reducers/inputForm";
 import PropTypes from "prop-types";
 import {
   formLoading,
@@ -19,7 +19,7 @@ import {
   setVisible,
   setEnabled,
   setRedirect
-} from "../../actions/inputFormActions";
+} from "../../actions/inputForm";
 import { FaArrowLeft } from "react-icons/fa";
 import FormBody from "./FormBody";
 
@@ -121,12 +121,12 @@ const InputForm = ({ match }) => {
     );
   }
   return (
-    <div className="input-form-container">
-      <h1 className="input-form-title">
+    <div className="input-form">
+      <h1 className="title">
         {match.params.securityId ? "Edit Security" : "Create a Security"}
       </h1>
       {state.fetchStatus === FetchState.LOADING ? (
-        <div className="input-form-spinner-container">
+        <div className="spinner-container">
           <Components.LargeSpinner />
         </div>
       ) : (

@@ -1,4 +1,4 @@
-.input-form-container {
+.input-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,21 +6,21 @@
   margin-top: var(--margin-large);
 }
 
-.input-form-title {
+.input-form .title {
   padding: var(--padding-large);
   font-weight: var(--font-weight-bolder);
   margin: var(--margin-small);
   font-size: var(--font-xxxlarge);
 }
 
-.input-form-spinner-container {
+.input-form .spinner-container {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.back-button {
+.input-form .back-button {
   position: fixed;
   top: 30px;
   left: 0px;
@@ -29,7 +29,7 @@
   margin-left: var(--margin-small);
 }
 
-.back-button > button {
+.input-form .back-button > button {
   border: solid 1px var(--text-teal);
   background: none;
   font-family: var(--font-roboto-sans-serif);

@@ -13,8 +13,8 @@ RowType.TOGGLE = new RowType("toggle");
 
 const FormRow = ({ label, id, value, checked, readOnly, onChange, type }) => {
   return (
-    <div className="input-row">
-      <label className="input-label" htmlFor={id}>
+    <div className="form-row">
+      <label className="label" htmlFor={id}>
         {label}
       </label>
       {type === RowType.TEXT && (

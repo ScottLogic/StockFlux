@@ -8,7 +8,7 @@ import {
   setSymbol,
   setVisible,
   setEnabled
-} from "../../actions/inputFormActions";
+} from "../../actions/inputForm";
 import { FetchState } from "../../enums";
 import "./FormBody.css";
 import PropTypes from "prop-types";
@@ -22,7 +22,7 @@ const FormBody = ({
   deleteSecurity
 }) => {
   return (
-    <form className="input-form-body" onSubmit={submitForm}>
+    <form className="form-body" onSubmit={submitForm}>
       <FormRow
         label="Exchange"
         id="exchange-input"

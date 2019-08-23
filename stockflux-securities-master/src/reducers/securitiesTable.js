@@ -1,5 +1,5 @@
 import { FetchState } from "../enums";
-import * as actions from "../actions/securitiesTableActions";
+import * as actions from "../actions/securitiesTable";
 
 export const initialTableState = {
   fetchStatus: FetchState.LOADING,

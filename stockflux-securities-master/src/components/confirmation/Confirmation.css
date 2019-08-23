@@ -5,17 +5,17 @@
   justify-content: center;
 }
 
-.confirmation-message {
+.confirmation .message {
   font-size: var(--font-medium);
   font-weight: var(--font-weight-bold);
   margin: var(--margin-large) 0 var(--margin-medium) 0;
 }
 
-.confirmation-option-buttons {
+.confirmation .options-container {
   display: flex;
   flex-direction: row;
 }
 
-.confirmation-option-button {
+.confirmation .option-button {
   margin: var(--margin-small);
 }

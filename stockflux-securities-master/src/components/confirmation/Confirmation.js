@@ -22,12 +22,12 @@ const Confirmation = ({ children, confirmationText }) => {
         </div>
       ) : (
         <>
-          <div className="confirmation-message">{confirmationText}</div>
-          <div className="confirmation-option-buttons">
+          <div className="message">{confirmationText}</div>
+          <div className="options-container">
             <Button
               size={ButtonSize.EXTRA_SMALL}
               onClick={children.props.onClick}
-              className="confirmation-option-button"
+              className="option-button"
               type="button"
             >
               Yes
@@ -35,7 +35,7 @@ const Confirmation = ({ children, confirmationText }) => {
             <Button
               size={ButtonSize.EXTRA_SMALL}
               onClick={handleClickNoButton}
-              className="confirmation-option-button"
+              className="option-button"
               type="button"
             >
               No

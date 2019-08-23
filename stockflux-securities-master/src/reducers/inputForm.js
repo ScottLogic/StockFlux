@@ -1,5 +1,5 @@
 import { FetchState } from "../enums";
-import * as actions from "../actions/inputFormActions";
+import * as actions from "../actions/inputForm";
 
 export function inputFormReducer(state, action) {
   switch (action.type) {
