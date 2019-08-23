@@ -10,7 +10,7 @@ const Confirmation = ({ children, confirmationText }) => {
   };
 
   return (
-    <div className="confirmation-button-container">
+    <div className="confirmation">
       {!clickedStatus ? (
         <div
           onClickCapture={event => {
@@ -22,10 +22,8 @@ const Confirmation = ({ children, confirmationText }) => {
         </div>
       ) : (
         <>
-          <div className="confirmation-message-container">
-            {confirmationText}
-          </div>
-          <div className="confirmation-option-button-container">
+          <div className="confirmation-message">{confirmationText}</div>
+          <div className="confirmation-option-buttons">
             <Button
               size={ButtonSize.EXTRA_SMALL}
               onClick={children.props.onClick}

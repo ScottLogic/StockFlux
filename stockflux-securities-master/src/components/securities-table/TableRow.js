@@ -32,9 +32,9 @@ const TableRow = ({ item, deleteSecurity, patchSecurity }) => {
 
   return (
     <div className="securities-table-row">
-      <div className="securities-table-cell">{item.exchange}</div>
-      <div className="securities-table-cell">{item.symbol}</div>
-      <div className="securities-table-cell">{item.name}</div>
+      {[item.exchange, item.symbol, item.name].map(cellData => (
+        <div className="securities-table-cell">{cellData}</div>
+      ))}
       <div className="securities-table-cell">
         <ToolTip message="Edit">
           <Link to={`/inputform/${item.securityId}`}>
