@@ -5,7 +5,7 @@ import "./SecuritiesTable.css";
 import * as service from "../../services/SecuritiesService";
 import ValidationError from "../../services/ValidationError";
 import Alert, { AlertType } from "../alert/Alert";
-import { TableState } from "../../enums";
+import { FetchState } from "../../enums";
 import Button, { ButtonSize } from "../button/Button";
 import {
   securitiesTableReducer,
@@ -87,12 +87,13 @@ const SecuritiesTable = ({ location }) => {
         </div>
       </div>
       <div className="heading-container">
-        <h2 className="securities-table-heading">Exchange</h2>
-        <h2 className="securities-table-heading">Symbol</h2>
-        <h2 className="securities-table-heading">Name</h2>
-        <h2 className="securities-table-heading">Edit / Delete</h2>
+        {["Exchange", "Symbol", "Name", "Options"].map(heading => (
+          <h2 key={heading} className={"securities-table-heading"}>
+            {heading}
+          </h2>
+        ))}
       </div>
-      {state.fetchStatus === TableState.LOADING ? (
+      {state.fetchStatus === FetchState.LOADING ? (
         <div className="spinner-container">
           <Components.LargeSpinner />
         </div>
@@ -115,7 +116,7 @@ const SecuritiesTable = ({ location }) => {
               />
             </div>
           )}
-          {state.fetchStatus === TableState.UPDATING && (
+          {state.fetchStatus === FetchState.UPDATING && (
             <div className="table-deleting-spinner-container">
               <Components.Spinner />
             </div>

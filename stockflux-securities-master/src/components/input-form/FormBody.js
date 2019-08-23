@@ -9,7 +9,7 @@ import {
   setVisible,
   setEnabled
 } from "../../actions/inputFormActions";
-import { InputFormState } from "../../enums";
+import { FetchState } from "../../enums";
 import "./FormBody.css";
 import PropTypes from "prop-types";
 import FormRow, { RowType } from "./FormRow";
@@ -64,7 +64,7 @@ const FormBody = ({
         <Button
           size={ButtonSize.LARGE}
           className={classNames("input-submit-button", {
-            "in-progress": state.fetchStatus === InputFormState.SENDING
+            "in-progress": state.fetchStatus === FetchState.UPDATING
           })}
         >
           {securityId ? "Save" : "Create"}

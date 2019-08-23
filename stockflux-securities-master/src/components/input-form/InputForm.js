@@ -5,7 +5,7 @@ import "./InputForm.css";
 import * as service from "../../services/SecuritiesService";
 import ValidationError from "../../services/ValidationError";
 import Alert, { AlertType } from "../alert/Alert";
-import { InputFormState } from "../../enums";
+import { FetchState } from "../../enums";
 import { inputFormReducer } from "../../reducers/inputFormReducer";
 import PropTypes from "prop-types";
 import {
@@ -26,8 +26,8 @@ import FormBody from "./FormBody";
 const InputForm = ({ match }) => {
   const initialFormState = {
     fetchStatus: match.params.securityId
-      ? InputFormState.LOADING
-      : InputFormState.COMPLETED,
+      ? FetchState.LOADING
+      : FetchState.COMPLETED,
     hasErrors: false,
     messages: [],
     security: {
@@ -125,7 +125,7 @@ const InputForm = ({ match }) => {
       <h1 className="input-form-title">
         {match.params.securityId ? "Edit Security" : "Create a Security"}
       </h1>
-      {state.fetchStatus === InputFormState.LOADING ? (
+      {state.fetchStatus === FetchState.LOADING ? (
         <div className="input-form-spinner-container">
           <Components.LargeSpinner />
         </div>
