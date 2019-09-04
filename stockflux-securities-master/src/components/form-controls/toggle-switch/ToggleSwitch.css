@@ -20,15 +20,19 @@
   background-color: var(--text-teal-light);
   top: 1px;
   left: 1px;
+  opacity: 0.3;
   transition: all 0.3s;
 }
 
 .toggle:checked + .toggle-switch::after {
   left: 20px;
+  opacity: 1;
 }
 
 .toggle:checked + .toggle-switch {
   background-color: var(--text-teal);
+
+  opacity: 1;
 }
 
 .toggle {
