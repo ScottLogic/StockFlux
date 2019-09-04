@@ -6,7 +6,6 @@ import {
   setName,
   setExchange,
   setSymbol,
-  setVisible,
   setEnabled
 } from '../../actions/inputForm';
 import { FetchState } from '../../enums';
@@ -45,13 +44,6 @@ const FormBody = ({
         value={state.security.name}
         onChange={event => dispatch(setName(event.target.value))}
         type={RowType.TEXT}
-      />
-      <FormRow
-        label="Visible"
-        id="visible-toggle"
-        checked={state.security.visible}
-        onChange={event => dispatch(setVisible(event.target.checked))}
-        type={RowType.TOGGLE}
       />
       <FormRow
         label="Enabled"

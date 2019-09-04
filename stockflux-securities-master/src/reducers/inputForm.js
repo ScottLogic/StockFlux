@@ -46,11 +46,6 @@ export function inputFormReducer(state, action) {
         ...state,
         security: { ...state.security, symbol: action.payload }
       };
-    case actions.SET_VISIBLE:
-      return {
-        ...state,
-        security: { ...state.security, visible: action.payload }
-      };
     case actions.SET_ENABLED:
       return {
         ...state,

@@ -16,7 +16,6 @@ import {
   setName,
   setExchange,
   setSymbol,
-  setVisible,
   setEnabled,
   setRedirect
 } from "../../actions/inputForm";
@@ -34,7 +33,6 @@ const InputForm = ({ match }) => {
       name: "",
       exchange: "",
       symbol: "",
-      visible: false,
       enabled: false
     },
     redirect: false
@@ -46,7 +44,6 @@ const InputForm = ({ match }) => {
     dispatch(setName(security.name));
     dispatch(setExchange(security.exchange));
     dispatch(setSymbol(security.symbol));
-    dispatch(setVisible(security.visible));
     dispatch(setEnabled(security.enabled));
   };
 
@@ -91,7 +88,6 @@ const InputForm = ({ match }) => {
             exchange: "",
             symbol: "",
             name: "",
-            visible: false,
             enabled: false
           });
         })

@@ -5,7 +5,6 @@ export const FORM_SUCCESS = "FORM_SUCCESS";
 export const SET_NAME = "SET_NAME";
 export const SET_EXCHANGE = "SET_EXCHANGE";
 export const SET_SYMBOL = "SET_SYMBOL";
-export const SET_VISIBLE = "SET_VISIBLE";
 export const SET_ENABLED = "SET_ENABLED";
 export const SET_REDIRECT = "SET_REDIRECT";
 
@@ -40,11 +39,6 @@ export const setExchange = exchange => ({
 export const setSymbol = symbol => ({
   type: SET_SYMBOL,
   payload: symbol
-});
-
-export const setVisible = visible => ({
-  type: SET_VISIBLE,
-  payload: visible
 });
 
 export const setEnabled = enabled => ({

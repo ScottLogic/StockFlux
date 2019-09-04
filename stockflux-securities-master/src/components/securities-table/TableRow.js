@@ -1,27 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import classNames from "classnames";
-import ToolTip from "../tool-tip/ToolTip";
-import {
-  FaPen,
-  FaTrashAlt,
-  FaEye,
-  FaEyeSlash,
-  FaCheck,
-  FaTimes
-} from "react-icons/fa";
-import PropTypes from "prop-types";
-import "./TableRow.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import classNames from 'classnames';
+import ToolTip from '../tool-tip/ToolTip';
+import { FaPen, FaTrashAlt, FaCheck, FaTimes } from 'react-icons/fa';
+import PropTypes from 'prop-types';
+import './TableRow.css';
 
 const TableRow = ({ item, deleteSecurity, patchSecurity }) => {
   const handleDelete = () => {
     deleteSecurity(item.securityId);
-  };
-
-  const handleToggleVisible = () => {
-    patchSecurity(item.securityId, {
-      visible: !item.visible
-    });
   };
 
   const handleToggleEnabled = () => {
@@ -50,20 +37,10 @@ const TableRow = ({ item, deleteSecurity, patchSecurity }) => {
             <FaTrashAlt size={20} />
           </button>
         </ToolTip>
-        <ToolTip message={item.visible ? "Hide" : "Show"}>
+        <ToolTip message={item.enabled ? 'Disable' : 'Enable'}>
           <button
-            className={classNames("table-button", {
-              "feature-off": !item.visible
-            })}
-            onClick={handleToggleVisible}
-          >
-            {item.visible ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
-          </button>
-        </ToolTip>
-        <ToolTip message={item.enabled ? "Disable" : "Enable"}>
-          <button
-            className={classNames("table-button", {
-              "feature-off": !item.enabled
+            className={classNames('table-button', {
+              'feature-off': !item.enabled
             })}
             onClick={handleToggleEnabled}
           >
