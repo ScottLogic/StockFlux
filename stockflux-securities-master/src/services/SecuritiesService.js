@@ -1,4 +1,4 @@
-import ValidationError from "./ValidationError";
+import ValidationError from './ValidationError';
 
 async function getWindowOptions() {
   const currentWindow = await window.fin.Window.getCurrent();
@@ -8,7 +8,7 @@ async function getWindowOptions() {
 export async function getSecuritiesData() {
   const options = await getWindowOptions();
   const response = await fetch(
-    `${options.customData.apiBaseUrl}/securities-v2`
+    `${options.customData.apiBaseUrl}/admin/securities`
   );
   const securities = await response.json();
   return securities;
@@ -17,7 +17,7 @@ export async function getSecuritiesData() {
 export async function getSecurity(securityId) {
   const options = await getWindowOptions();
   const response = await fetch(
-    `${options.customData.apiBaseUrl}/securities-v2/${securityId}`
+    `${options.customData.apiBaseUrl}/admin/securities/${securityId}`
   );
   const json = await response.json();
 
@@ -29,16 +29,16 @@ export async function getSecurity(securityId) {
 
 export async function postSecurity(security) {
   const fetchOptions = {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(security)
   };
 
   const options = await getWindowOptions();
   const response = await fetch(
-    `${options.customData.apiBaseUrl}/securities-v2`,
+    `${options.customData.apiBaseUrl}/admin/securities`,
     fetchOptions
   );
   const json = await response.json();
@@ -51,15 +51,15 @@ export async function postSecurity(security) {
 
 export async function updateSecurity(securityId, security) {
   const fetchOptions = {
-    method: "PUT",
+    method: 'PUT',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(security)
   };
   const options = await getWindowOptions();
   const response = await fetch(
-    `${options.customData.apiBaseUrl}/securities-v2/${securityId}`,
+    `${options.customData.apiBaseUrl}/admin/securities/${securityId}`,
     fetchOptions
   );
   const json = await response.json();
@@ -71,11 +71,11 @@ export async function updateSecurity(securityId, security) {
 
 export async function deleteSecurity(securityId) {
   const fetchOptions = {
-    method: "DELETE"
+    method: 'DELETE'
   };
   const options = await getWindowOptions();
   const response = await fetch(
-    `${options.customData.apiBaseUrl}/securities-v2/${securityId}`,
+    `${options.customData.apiBaseUrl}/admin/securities/${securityId}`,
     fetchOptions
   );
   if (response.ok) {
@@ -88,15 +88,15 @@ export async function deleteSecurity(securityId) {
 
 export async function patchSecurity(securityId, updates) {
   const fetchOptions = {
-    method: "PATCH",
+    method: 'PATCH',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(updates)
   };
   const options = await getWindowOptions();
   const response = await fetch(
-    `${options.customData.apiBaseUrl}/securities-v2/${securityId}`,
+    `${options.customData.apiBaseUrl}/admin/securities/${securityId}`,
     fetchOptions
   );
   if (response.ok) {
