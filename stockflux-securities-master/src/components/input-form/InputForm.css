@@ -1,9 +1,9 @@
 .input-form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  margin-top: var(--margin-large);
+  margin: auto;
+  padding-bottom: 35px;
 }
 
 .input-form .title {

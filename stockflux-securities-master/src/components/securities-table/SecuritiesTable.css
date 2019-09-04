@@ -2,6 +2,7 @@
   overflow: hidden;
   font-size: var(--font-normal);
   font-weight: var(--font-weight-normal);
+  width: -webkit-fill-available;
 }
 
 .securities .header {
