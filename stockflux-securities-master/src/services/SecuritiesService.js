@@ -1,4 +1,4 @@
-import ValidationError from "./ValidationError";
+import ValidationError from './ValidationError';
 
 async function getWindowOptions() {
   const currentWindow = await window.fin.Window.getCurrent();
@@ -29,9 +29,9 @@ export async function getSecurity(securityId) {
 
 export async function postSecurity(security) {
   const fetchOptions = {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(security)
   };
@@ -51,9 +51,9 @@ export async function postSecurity(security) {
 
 export async function updateSecurity(securityId, security) {
   const fetchOptions = {
-    method: "PUT",
+    method: 'PUT',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(security)
   };
@@ -71,7 +71,7 @@ export async function updateSecurity(securityId, security) {
 
 export async function deleteSecurity(securityId) {
   const fetchOptions = {
-    method: "DELETE"
+    method: 'DELETE'
   };
   const options = await getWindowOptions();
   const response = await fetch(
@@ -88,9 +88,9 @@ export async function deleteSecurity(securityId) {
 
 export async function patchSecurity(securityId, updates) {
   const fetchOptions = {
-    method: "PATCH",
+    method: 'PATCH',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(updates)
   };
