@@ -8,7 +8,7 @@ async function getWindowOptions() {
 export async function getSecuritiesData() {
   const options = await getWindowOptions();
   const response = await fetch(
-    `${options.customData.apiBaseUrl}/securities-v2`
+    `${options.customData.apiBaseUrl}/admin/securities`
   );
   const securities = await response.json();
   return securities;
@@ -17,7 +17,7 @@ export async function getSecuritiesData() {
 export async function getSecurity(securityId) {
   const options = await getWindowOptions();
   const response = await fetch(
-    `${options.customData.apiBaseUrl}/securities-v2/${securityId}`
+    `${options.customData.apiBaseUrl}/admin/securities/${securityId}`
   );
   const json = await response.json();
 
@@ -38,7 +38,7 @@ export async function postSecurity(security) {
 
   const options = await getWindowOptions();
   const response = await fetch(
-    `${options.customData.apiBaseUrl}/securities-v2`,
+    `${options.customData.apiBaseUrl}/admin/securities`,
     fetchOptions
   );
   const json = await response.json();
@@ -59,7 +59,7 @@ export async function updateSecurity(securityId, security) {
   };
   const options = await getWindowOptions();
   const response = await fetch(
-    `${options.customData.apiBaseUrl}/securities-v2/${securityId}`,
+    `${options.customData.apiBaseUrl}/admin/securities/${securityId}`,
     fetchOptions
   );
   const json = await response.json();
@@ -75,7 +75,7 @@ export async function deleteSecurity(securityId) {
   };
   const options = await getWindowOptions();
   const response = await fetch(
-    `${options.customData.apiBaseUrl}/securities-v2/${securityId}`,
+    `${options.customData.apiBaseUrl}/admin/securities/${securityId}`,
     fetchOptions
   );
   if (response.ok) {
@@ -96,7 +96,7 @@ export async function patchSecurity(securityId, updates) {
   };
   const options = await getWindowOptions();
   const response = await fetch(
-    `${options.customData.apiBaseUrl}/securities-v2/${securityId}`,
+    `${options.customData.apiBaseUrl}/admin/securities/${securityId}`,
     fetchOptions
   );
   if (response.ok) {
