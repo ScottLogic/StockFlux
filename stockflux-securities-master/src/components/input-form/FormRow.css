@@ -1,0 +1,13 @@
+.form-row {
+  display: flex;
+  flex-direction: row;
+  margin: var(--margin-small) 0;
+  align-items: center;
+}
+
+.form-row .label {
+  font-size: var(--font-xlarge);
+  font-weight: var(--font-weight-bolder);
+  margin: var(--margin-small);
+  flex-basis: 80px;
+}

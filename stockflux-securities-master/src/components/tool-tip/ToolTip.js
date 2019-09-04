@@ -3,9 +3,9 @@ import "./ToolTip.css";
 import PropTypes from "prop-types";
 
 const ToolTip = ({ children, message }) => (
-  <div className="tool-tip-container">
+  <div className="tool-tip">
     {children}
-    <span className="tool-tip-message">{message}</span>
+    <span className="message">{message}</span>
   </div>
 );
 

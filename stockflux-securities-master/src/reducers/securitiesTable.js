@@ -1,8 +1,8 @@
-import { TableState } from "../enums";
-import * as actions from "../actions/securitiesTableActions";
+import { FetchState } from "../enums";
+import * as actions from "../actions/securitiesTable";
 
 export const initialTableState = {
-  fetchStatus: TableState.LOADING,
+  fetchStatus: FetchState.LOADING,
   hasErrors: false,
   messages: [],
   securitiesData: []
@@ -13,28 +13,28 @@ export function securitiesTableReducer(state, action) {
     case actions.TABLE_LOADING:
       return {
         ...state,
-        fetchStatus: TableState.LOADING,
+        fetchStatus: FetchState.LOADING,
         hasErrors: false,
         messages: []
       };
     case actions.TABLE_UPDATING:
       return {
         ...state,
-        fetchStatus: TableState.UPDATING,
+        fetchStatus: FetchState.UPDATING,
         hasErrors: false,
         messages: []
       };
     case actions.TABLE_ERROR:
       return {
         ...state,
-        fetchStatus: TableState.COMPLETED,
+        fetchStatus: FetchState.COMPLETED,
         hasErrors: true,
         messages: action.messages
       };
     case actions.TABLE_SUCCESS:
       return {
         ...state,
-        fetchStatus: TableState.COMPLETED,
+        fetchStatus: FetchState.COMPLETED,
         hasErrors: false,
         messages: action.messages
       };

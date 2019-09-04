@@ -1,9 +1,9 @@
-.tool-tip-container {
+.tool-tip {
   position: relative;
   display: inline-block;
 }
 
-.tool-tip-container .tool-tip-message {
+.tool-tip .message {
   visibility: hidden;
   background-color: var(--dark-background);
   color: var(--text-grey-lighter);
@@ -15,7 +15,7 @@
   right: 105%;
 }
 
-.tool-tip-container .tool-tip-message:after {
+.tool-tip .message:after {
   content: " ";
   position: absolute;
   top: 30%;
@@ -25,10 +25,10 @@
   border-color: transparent transparent transparent var(--dark-background);
 }
 
-.tool-tip-container:hover .tool-tip-message {
+.tool-tip:hover .message {
   visibility: visible;
 }
 
-.tool-tip-container:hover .tool-tip-message:hover {
+.tool-tip:hover .message:hover {
   visibility: hidden;
 }

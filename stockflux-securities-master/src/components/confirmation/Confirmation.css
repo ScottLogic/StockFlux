@@ -1,21 +1,21 @@
-.confirmation-button-container {
+.confirmation {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.confirmation-message-container {
+.confirmation .message {
   font-size: var(--font-medium);
   font-weight: var(--font-weight-bold);
   margin: var(--margin-large) 0 var(--margin-medium) 0;
 }
 
-.confirmation-option-button-container {
+.confirmation .options-container {
   display: flex;
   flex-direction: row;
 }
 
-.confirmation-option-button {
+.confirmation .option-button {
   margin: var(--margin-small);
 }
