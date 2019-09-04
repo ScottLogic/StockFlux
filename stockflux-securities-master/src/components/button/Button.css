@@ -1,4 +1,4 @@
-.button-container {
+button {
   border: solid 1px var(--text-teal);
   font-family: var(--font-roboto-sans-serif);
   color: var(--text-teal-light);
@@ -9,28 +9,28 @@
   cursor: pointer;
 }
 
-.button-container:hover {
+button:hover {
   color: var(--text-teal);
 }
 
-.button-container.extra-small {
+button.extra-small {
   height: 30px;
   width: 130px;
   font-size: var(--font-large);
 }
 
-.button-container.small {
+button.small {
   height: 30px;
   width: 180px;
   font-size: var(--font-xlarge);
 }
 
-.button-container.large {
+button.large {
   height: 40px;
   width: 280px;
   font-size: var(--font-xxxlarge);
 }
 
-.button-container:focus {
+button:focus {
   outline: none;
 }

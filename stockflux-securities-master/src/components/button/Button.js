@@ -17,7 +17,7 @@ ButtonSize.LARGE = new ButtonSize("large");
 const Button = ({ children, size, className, type, onClick }) => (
   <button
     type={type || "submit"}
-    className={`button-container ${size.valueOf()} ${className}`}
+    className={`${size.valueOf()} ${className}`}
     onClick={onClick}
   >
     {children}

@@ -7,12 +7,12 @@
   border: solid 1px var(--text-teal);
   border-radius: 20px;
   transition: all 0.3s;
-  margin-left: var(--margin-small);
+  margin: auto 145px auto var(--margin-small);
   cursor: pointer;
 }
 
 .toggle-switch::after {
-  content: "";
+  content: '';
   position: absolute;
   width: 18px;
   height: 18px;
@@ -23,14 +23,14 @@
   transition: all 0.3s;
 }
 
-.input-form-toggle:checked + .toggle-switch::after {
+.toggle:checked + .toggle-switch::after {
   left: 20px;
 }
 
-.input-form-toggle:checked + .toggle-switch {
+.toggle:checked + .toggle-switch {
   background-color: var(--text-teal);
 }
 
-.input-form-toggle {
+.toggle {
   display: none;
 }
