@@ -1,4 +1,4 @@
-.input-row {
+.form-row {
   display: flex;
   flex-direction: row;
   margin: var(--margin-small) 0;
