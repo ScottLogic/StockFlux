@@ -1,22 +1,20 @@
-import React from "react";
-import PropTypes from "prop-types";
-import TextField from "../form-controls/text-field/TextField";
-import ToggleSwitch from "../form-controls/toggle-switch/ToggleSwitch";
-import "./FormRow.css";
+import React from 'react';
+import PropTypes from 'prop-types';
+import TextField from '../form-controls/text-field/TextField';
+import ToggleSwitch from '../form-controls/toggle-switch/ToggleSwitch';
+import './FormRow.css';
 
 export function RowType(value) {
   this._value = value;
 }
 
-RowType.TEXT = new RowType("text");
-RowType.TOGGLE = new RowType("toggle");
+RowType.TEXT = new RowType('text');
+RowType.TOGGLE = new RowType('toggle');
 
 const FormRow = ({ label, id, value, checked, readOnly, onChange, type }) => {
   return (
     <div className="form-row">
-      <label className="label" htmlFor={id}>
-        {label}
-      </label>
+      <label htmlFor={id}>{label}</label>
       {type === RowType.TEXT && (
         <TextField
           id={id}

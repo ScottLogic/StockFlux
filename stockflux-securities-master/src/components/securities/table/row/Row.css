@@ -1,0 +1,34 @@
+.table-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 0.8fr;
+}
+
+.table-row:last-child > div {
+  border-bottom: none;
+}
+
+.table-row .table-cell {
+  padding: var(--padding-medium) var(--padding-large);
+  border-bottom: 1px solid var(--clr-divider-light);
+  border-left: 1px solid var(--clr-divider-light);
+  display: flex;
+}
+
+.table-row .table-button:focus {
+  outline: none;
+}
+
+.table-row .table-button {
+  border: none;
+  background: none;
+  color: var(--text-teal-light);
+  cursor: pointer;
+}
+
+.table-row .table-button:hover {
+  color: var(--text-teal);
+}
+
+.table-row .table-button.feature-off {
+  color: var(--text-grey-dark);
+}
