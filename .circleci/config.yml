@@ -22,6 +22,11 @@ jobs:
       - checkout:
           path: ~/stockflux
       - run:
+          name: Node.js and NPM versions
+          command: |
+            node -v
+            npm -v
+      - run:
           name: Build Core
           command: |
             cd ~/stockflux/stockflux-core
@@ -40,15 +45,15 @@ jobs:
             npm ci
             npm run build
       - run:
-          name: Build Chart
-          command: |
-            cd ~/stockflux/stockflux-chart
-            npm ci
-            npm run build
-      - run:
           name: Build Container
           command: |
             cd ~/stockflux/stockflux-container
+            npm ci
+            npm run build
+      - run:
+          name: Build Chart
+          command: |
+            cd ~/stockflux/stockflux-chart
             npm ci
             npm run build
       - run:
