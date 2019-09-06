@@ -10,25 +10,26 @@ button {
 }
 
 button:hover {
-  color: var(--text-teal);
+  color: #50f1d5;
+  border-color: #50f1d5;
 }
 
 button.extra-small {
   height: 30px;
   width: 130px;
-  font-size: var(--font-large);
+  font-size: var(--font-normal);
 }
 
 button.small {
   height: 30px;
-  width: 180px;
-  font-size: var(--font-xlarge);
+  width: 138px;
+  font-size: var(--font-normal);
 }
 
 button.large {
   height: 40px;
   width: 280px;
-  font-size: var(--font-xxxlarge);
+  font-size: var(--font-normal);
 }
 
 button:focus {

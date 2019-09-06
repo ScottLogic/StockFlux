@@ -1,35 +1,37 @@
-import { FetchState } from "../enums";
-import * as actions from "../actions/inputForm";
+import { FetchState } from '../enums';
+import * as actions from '../actions/inputForm';
+
+export const initialState = {
+  fetchStatus: FetchState.FETCHING,
+  error: false,
+  securities: []
+};
 
 export function inputFormReducer(state, action) {
   switch (action.type) {
-    case actions.FORM_LOADING:
+    case actions.FETCHING:
       return {
         ...state,
-        fetchStatus: FetchState.LOADING,
-        hasErrors: false,
-        messages: []
+        fetchStatus: FetchState.FETCHING,
+        error: false
       };
-    case actions.FORM_SENDING:
+    case actions.UPDATING:
       return {
         ...state,
         fetchStatus: FetchState.UPDATING,
-        hasErrors: false,
-        messages: []
+        error: false
       };
-    case actions.FORM_ERROR:
+    case actions.ERROR:
       return {
         ...state,
-        fetchStatus: FetchState.COMPLETED,
-        hasErrors: true,
-        messages: action.messages
+        fetchStatus: FetchState.ERROR,
+        error: true
       };
-    case actions.FORM_SUCCESS:
+    case actions.SUCCESS:
       return {
         ...state,
-        fetchStatus: FetchState.COMPLETED,
-        hasErrors: false,
-        messages: action.messages
+        fetchStatus: FetchState.SUCCESS,
+        error: false
       };
     case actions.SET_NAME:
       return {
@@ -58,6 +60,6 @@ export function inputFormReducer(state, action) {
       };
 
     default:
-      throw new Error("Action Not Defined");
+      throw new Error('Action Not Defined');
   }
 }

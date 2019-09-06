@@ -1,0 +1,19 @@
+thead th {
+  background-color: var(--dark-background);
+  /*#3c867d;*/
+}
+
+th {
+  margin: 0;
+  font-size: var(--font-normal);
+  font-weight: var(--font-weight-bolder);
+  padding: var(--padding-medium) var(--padding-large);
+  border-left: 1px solid var(--clr-divider-light);
+  cursor: default;
+  letter-spacing: 0.2px;
+  align-items: center;
+}
+
+th:first-child {
+  border-left: none;
+}

@@ -1,7 +1,6 @@
 export const FetchState = {
-  LOADING: "loading",
-  UPDATING: "updating",
-  COMPLETED: "completed",
-  ERROR: "error",
-  SUCCESS: "success"
+  FETCHING: 'FETCHING',
+  UPDATING: 'UPDATING',
+  ERROR: 'ERROR',
+  SUCCESS: 'SUCCESS'
 };

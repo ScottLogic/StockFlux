@@ -1,46 +1,4 @@
-.securities {
-  overflow: hidden;
+table {
   width: -webkit-fill-available;
-}
-
-.securities .title {
-  margin: var(--margin-large);
-  font-weight: var(--font-weight-bolder);
-  font-size: var(--font-xxxlarge);
-}
-
-.btn-add-security {
-  margin: var(--margin-small) var(--margin-medium);
-}
-
-.securities .headings {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 0.8fr;
-  border-top: 1px solid var(--clr-divider-dark);
-}
-
-.securities .table-heading {
-  margin: 0;
-  font-size: var(--font-xlarge);
-  font-weight: var(--font-weight-bolder);
-  padding: var(--padding-medium) var(--padding-large);
-  border-bottom: 1px solid var(--clr-divider-light);
-  border-left: 1px solid var(--clr-divider-light);
-}
-
-.table-deleting-spinner-container,
-.securities .messages-container {
-  margin: var(--margin-medium) 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.securities .messages-container.no-securities,
-.spinner-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  height: 400px;
+  border-collapse: collapse;
 }

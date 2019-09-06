@@ -2,12 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import Button, { ButtonSize } from '../button/Button';
 import Confirmation from '../confirmation/Confirmation';
-import {
-  setName,
-  setExchange,
-  setSymbol,
-  setEnabled
-} from '../../actions/inputForm';
+import { setName, setEnabled } from '../../actions/inputForm';
 import { FetchState } from '../../enums';
 import './FormBody.css';
 import PropTypes from 'prop-types';
@@ -22,22 +17,6 @@ const FormBody = ({
 }) => {
   return (
     <form onSubmit={submitForm}>
-      <FormRow
-        label="Exchange"
-        id="exchange-input"
-        value={state.security.exchange}
-        readOnly={!!securityId}
-        onChange={event => dispatch(setExchange(event.target.value))}
-        type={RowType.TEXT}
-      />
-      <FormRow
-        label="Symbol"
-        id="symbol-input"
-        value={state.security.symbol}
-        readOnly={!!securityId}
-        onChange={event => dispatch(setSymbol(event.target.value))}
-        type={RowType.TEXT}
-      />
       <FormRow
         label="Name"
         id="name-input"

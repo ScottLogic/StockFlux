@@ -3,3 +3,26 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.line {
+  width: -webkit-fill-available;
+  height: 1px;
+  background: -webkit-linear-gradient(
+    left,
+    rgb(40, 49, 61) 0%,
+    #37d8bc 3%,
+    #51f2d6 50%,
+    #37d8bc 97%,
+    rgb(40, 49, 61) 100%
+  );
+}
+
+.title {
+  margin: var(--margin-large);
+  font-weight: var(--font-weight-bolder);
+  font-size: var(--font-xxxlarge);
+}
+
+.btn-add-security {
+  margin: var(--margin-small) var(--margin-medium);
+}

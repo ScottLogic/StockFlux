@@ -1,41 +1,47 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Components from "stockflux-components";
-import PropTypes from "prop-types";
-import Button, { ButtonSize } from "../../../button/Button";
-import TableRow from "../row/Row";
-import "./Body.css";
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import Row from '../row/Row';
+import * as service from '../../../../services/SecuritiesService';
+import * as action from '../../../../actions/securities';
+import './Body.css';
 
-const TableBody = ({ state, deleteSecurity, patchSecurity }) => (
-  <div className="table-body">
-    {state.securitiesData.length === 0 && !state.hasErrors ? (
-      <div className="no-securities-container">
-        <div className="no-securities-message">
-          You have no securities to show
-        </div>
-        <Link to="/inputform">
-          <Button size={ButtonSize.LARGE}>Add Security</Button>
-        </Link>
-      </div>
-    ) : (
-      <Components.ScrollWrapperY>
-        {state.securitiesData.map(item => (
-          <TableRow
+const Body = ({ state, dispatch, location, fetchSecurities, handleError }) => {
+  const deleteSecurity = async securityId => {
+    dispatch(action.updating());
+    try {
+      await service.deleteSecurity(securityId);
+    } catch (err) {
+      dispatch(action.error(err));
+    }
+    await fetchSecurities();
+  };
+
+  const patchSecurity = async (securityId, updates) => {
+    dispatch(action.updating());
+    try {
+      await service.patchSecurity(securityId, updates);
+    } catch (err) {
+      dispatch(action.error(err));
+    }
+    await fetchSecurities();
+  };
+
+  return (
+    <tbody>
+        {state.securities.map(item => (
+          <Row
             key={item.securityId}
             item={item}
             deleteSecurity={deleteSecurity}
             patchSecurity={patchSecurity}
           />
         ))}
-      </Components.ScrollWrapperY>
-    )}
-  </div>
-);
-
-TableBody.propTypes = {
-  state: PropTypes.object.isRequired,
-  deleteSecurity: PropTypes.func.isRequired,
-  patchSecurity: PropTypes.func.isRequired
+    </tbody>
+  );
 };
 
-export default TableBody;
+Body.propTypes = {
+  state: PropTypes.object.isRequired
+};
+
+export default Body;

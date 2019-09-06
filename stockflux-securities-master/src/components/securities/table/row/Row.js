@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import classNames from 'classnames';
 import ToolTip from '../../../tool-tip/ToolTip';
 import { FaPen, FaTrashAlt, FaCheck, FaTimes } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import './Row.css';
 
-const TableRow = ({ item, deleteSecurity, patchSecurity }) => {
+const Row = ({ item, deleteSecurity, patchSecurity }) => {
   const handleDelete = () => {
     deleteSecurity(item.securityId);
   };
@@ -18,44 +17,39 @@ const TableRow = ({ item, deleteSecurity, patchSecurity }) => {
   };
 
   return (
-    <div className="table-row">
+    <tr>
       {[item.exchange, item.symbol, item.name].map((cellData, index) => (
-        <div key={index} className="table-cell">
-          {cellData}
-        </div>
+        <td key={index}>{cellData}</td>
       ))}
-      <div className="table-cell">
-        <ToolTip message="Edit">
-          <Link to={`/inputform/${item.securityId}`}>
-            <button className="table-button">
-              <FaPen size={20} />
+      <td>
+        <div className="buttons">
+          <ToolTip text="Edit">
+            <Link to={`/inputform/${item.securityId}`}>
+              <button>
+                <FaPen size={16} />
+              </button>
+            </Link>
+          </ToolTip>
+          <ToolTip text="Delete">
+            <button onClick={handleDelete}>
+              <FaTrashAlt size={16} />
             </button>
-          </Link>
-        </ToolTip>
-        <ToolTip message="Delete">
-          <button className="table-button" onClick={handleDelete}>
-            <FaTrashAlt size={20} />
-          </button>
-        </ToolTip>
-        <ToolTip message={item.enabled ? 'Disable' : 'Enable'}>
-          <button
-            className={classNames('table-button', {
-              'feature-off': !item.enabled
-            })}
-            onClick={handleToggleEnabled}
-          >
-            {item.enabled ? <FaCheck size={20} /> : <FaTimes size={20} />}
-          </button>
-        </ToolTip>
-      </div>
-    </div>
+          </ToolTip>
+          <ToolTip text={item.enabled ? 'Disable' : 'Enable'}>
+            <button onClick={handleToggleEnabled}>
+              {item.enabled ? <FaCheck size={17} /> : <FaTimes size={17} />}
+            </button>
+          </ToolTip>
+        </div>
+      </td>
+    </tr>
   );
 };
 
-TableRow.propTypes = {
+Row.propTypes = {
   item: PropTypes.object.isRequired,
   deleteSecurity: PropTypes.func.isRequired,
   patchSecurity: PropTypes.func.isRequired
 };
 
-export default TableRow;
+export default Row;

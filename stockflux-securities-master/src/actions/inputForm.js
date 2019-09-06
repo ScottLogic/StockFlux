@@ -1,28 +1,28 @@
-export const FORM_LOADING = "FORM_LOADING";
-export const FORM_SENDING = "FORM_SENDING";
-export const FORM_ERROR = "FORM_ERROR";
-export const FORM_SUCCESS = "FORM_SUCCESS";
-export const SET_NAME = "SET_NAME";
-export const SET_EXCHANGE = "SET_EXCHANGE";
-export const SET_SYMBOL = "SET_SYMBOL";
-export const SET_ENABLED = "SET_ENABLED";
-export const SET_REDIRECT = "SET_REDIRECT";
+export const FETCHING = 'FETCHING';
+export const UPDATING = 'UPDATING';
+export const ERROR = 'ERROR';
+export const SUCCESS = 'SUCCESS';
+export const SET_NAME = 'SET_NAME';
+export const SET_EXCHANGE = 'SET_EXCHANGE';
+export const SET_SYMBOL = 'SET_SYMBOL';
+export const SET_ENABLED = 'SET_ENABLED';
+export const SET_REDIRECT = 'SET_REDIRECT';
 
-export const formLoading = () => ({
-  type: FORM_LOADING
+export const fetching = () => ({
+  type: FETCHING
 });
 
-export const formSending = () => ({
-  type: FORM_SENDING
+export const updating = () => ({
+  type: UPDATING
 });
 
-export const formError = messages => ({
-  type: FORM_ERROR,
+export const error = messages => ({
+  type: ERROR,
   messages
 });
 
-export const formSuccess = messages => ({
-  type: FORM_SUCCESS,
+export const success = messages => ({
+  type: SUCCESS,
   messages
 });
 

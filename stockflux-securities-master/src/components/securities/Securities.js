@@ -1,14 +1,46 @@
-import React from 'React';
-import { PageHeader } from './page-header/PageHeader';
-import { Table } from './table/Table';
-import PropTypes from 'prop-types';
+import React, { useReducer, useEffect, useCallback } from 'react';
+import Components from 'stockflux-components';
+import PageHeader from './page-header/PageHeader';
+import * as service from '../../services/SecuritiesService';
+import Table from './table/Table';
+import { securitiesReducer, initialState } from '../../reducers/securities';
+import * as action from '../../actions/securities';
+import NoSecurities from './no-securities/NoSecurities';
+import './Securities.css';
 
-const Securities = () => {
+const Securities = ({ location }) => {
+  const [state, dispatch] = useReducer(securitiesReducer, initialState);
+
+  const fetchSecurities = async () => {
+    dispatch({ type: 'FETCHING' });
+    try {
+      const securities = await service.getSecurities();
+      dispatch(action.success(securities));
+    } catch (err) {
+      dispatch(action.error(err));
+    }
+  };
+
+  useEffect(() => {
+    fetchSecurities();
+  }, []);
+
   return (
-    <div className="securities">
-      <PageHeader />
-      <Table />
-    </div>
+    <>
+      <PageHeader numberOfSecurities={state.securities.length} />
+      {state.securities.length === 0 && !state.hasErrors ? (
+        <NoSecurities />
+      ) : (
+        <Components.ScrollWrapperY>
+          <Table
+            location={location}
+            dispatch={dispatch}
+            state={state}
+            fetchSecurities={fetchSecurities}
+          />
+        </Components.ScrollWrapperY>
+      )}
+    </>
   );
 };
 
