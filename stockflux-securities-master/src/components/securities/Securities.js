@@ -15,7 +15,14 @@ const Securities = ({ location }) => {
     dispatch({ type: 'FETCHING' });
     try {
       const securities = await service.getSecurities();
-      dispatch(action.success(securities));
+      dispatch(
+        action.success([
+          ...securities,
+          ...securities,
+          ...securities,
+          ...securities
+        ])
+      );
     } catch (err) {
       dispatch(action.error(err));
     }
@@ -31,14 +38,12 @@ const Securities = ({ location }) => {
       {state.securities.length === 0 && !state.hasErrors ? (
         <NoSecurities />
       ) : (
-        <Components.ScrollWrapperY>
-          <Table
-            location={location}
-            dispatch={dispatch}
-            state={state}
-            fetchSecurities={fetchSecurities}
-          />
-        </Components.ScrollWrapperY>
+            <Table
+              location={location}
+              dispatch={dispatch}
+              state={state}
+              fetchSecurities={fetchSecurities}
+            />
       )}
     </>
   );

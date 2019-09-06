@@ -15,7 +15,11 @@ const Table = props => {
           <Components.LargeSpinner />
         </div>
       ) : (
-        <Body {...props} />
+        <div className="scrollable-table-body">
+          <Components.ScrollWrapperY>
+            <Body {...props} />
+          </Components.ScrollWrapperY>
+        </div>
       )}
     </table>
   );
