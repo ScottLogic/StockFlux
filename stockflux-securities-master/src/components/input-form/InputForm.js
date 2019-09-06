@@ -22,7 +22,7 @@ const InputForm = ({ match }) => {
       name: '',
       exchange: '',
       symbol: '',
-      enabled: false
+      disabled: false
     },
     redirect: false
   };
@@ -33,7 +33,7 @@ const InputForm = ({ match }) => {
     dispatch(action.setName(security.name));
     dispatch(action.setExchange(security.exchange));
     dispatch(action.setSymbol(security.symbol));
-    dispatch(action.setEnabled(security.enabled));
+    dispatch(action.setDisabled(security.disabled));
   };
 
   useEffect(() => {
@@ -76,7 +76,7 @@ const InputForm = ({ match }) => {
             exchange: '',
             symbol: '',
             name: '',
-            enabled: false
+            disabled: true
           });
         })
         .catch(handleError);

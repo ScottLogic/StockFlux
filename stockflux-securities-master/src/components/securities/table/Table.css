@@ -1,8 +1,7 @@
-table {
+.table {
   width: -webkit-fill-available;
-  border-collapse: collapse;
 }
 
 .scrollable-table-body {
-  height: calc(600px - 54px - 35px - 36px);
+  max-height: calc(600px - 54px - 35px - 36px);
 }

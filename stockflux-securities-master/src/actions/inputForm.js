@@ -5,7 +5,7 @@ export const SUCCESS = 'SUCCESS';
 export const SET_NAME = 'SET_NAME';
 export const SET_EXCHANGE = 'SET_EXCHANGE';
 export const SET_SYMBOL = 'SET_SYMBOL';
-export const SET_ENABLED = 'SET_ENABLED';
+export const SET_DISABLED = 'SET_DISABLED';
 export const SET_REDIRECT = 'SET_REDIRECT';
 
 export const fetching = () => ({
@@ -41,9 +41,9 @@ export const setSymbol = symbol => ({
   payload: symbol
 });
 
-export const setEnabled = enabled => ({
-  type: SET_ENABLED,
-  payload: enabled
+export const setDisabled = disabled => ({
+  type: SET_DISABLED,
+  payload: disabled
 });
 
 export const setRedirect = redirect => ({

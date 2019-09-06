@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import Button, { ButtonSize } from '../button/Button';
 import Confirmation from '../confirmation/Confirmation';
-import { setName, setEnabled } from '../../actions/inputForm';
+import { setName, setDisabled } from '../../actions/inputForm';
 import { FetchState } from '../../enums';
 import './FormBody.css';
 import PropTypes from 'prop-types';
@@ -25,10 +25,10 @@ const FormBody = ({
         type={RowType.TEXT}
       />
       <FormRow
-        label="Enabled"
-        id="enabled-toggle"
-        checked={state.security.enabled}
-        onChange={event => dispatch(setEnabled(event.target.checked))}
+        label="Disabled"
+        id="disabled-toggle"
+        checked={state.security.disabled}
+        onChange={event => dispatch(setDisabled(event.target.checked))}
         type={RowType.TOGGLE}
       />
       <div className="input-buttons-container">

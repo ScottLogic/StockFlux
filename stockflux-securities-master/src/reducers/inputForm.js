@@ -48,10 +48,10 @@ export function inputFormReducer(state, action) {
         ...state,
         security: { ...state.security, symbol: action.payload }
       };
-    case actions.SET_ENABLED:
+    case actions.SET_DISABLED:
       return {
         ...state,
-        security: { ...state.security, enabled: action.payload }
+        security: { ...state.security, disabled: action.payload }
       };
     case actions.SET_REDIRECT:
       return {

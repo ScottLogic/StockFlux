@@ -8,20 +8,20 @@ import Head from './head/Head';
 
 const Table = props => {
   return (
-    <table>
+    <div className="table">
       <Head />
       {props.state.fetchStatus === FetchState.FETCHING ? (
         <div className="spinner-container">
           <Components.LargeSpinner />
         </div>
       ) : (
-        <div className="scrollable-table-body">
+        <span className="scrollable-table-body">
           <Components.ScrollWrapperY>
             <Body {...props} />
           </Components.ScrollWrapperY>
-        </div>
+        </span>
       )}
-    </table>
+    </div>
   );
 };
 

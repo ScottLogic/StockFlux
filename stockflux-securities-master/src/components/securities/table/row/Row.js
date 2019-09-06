@@ -10,18 +10,20 @@ const Row = ({ item, deleteSecurity, patchSecurity }) => {
     deleteSecurity(item.securityId);
   };
 
-  const handleToggleEnabled = () => {
+  const handleToggleDisabled = () => {
     patchSecurity(item.securityId, {
-      enabled: !item.enabled
+      disabled: !item.disabled
     });
   };
 
   return (
-    <tr>
+    <div className="tr">
       {[item.exchange, item.symbol, item.name].map((cellData, index) => (
-        <td key={index}>{cellData}</td>
+        <div className="td" key={index}>
+          {cellData}
+        </div>
       ))}
-      <td>
+      <div className="td">
         <div className="buttons">
           <ToolTip text="Edit">
             <Link to={`/inputform/${item.securityId}`}>
@@ -35,14 +37,14 @@ const Row = ({ item, deleteSecurity, patchSecurity }) => {
               <FaTrashAlt size={16} />
             </button>
           </ToolTip>
-          <ToolTip text={item.enabled ? 'Disable' : 'Enable'}>
-            <button onClick={handleToggleEnabled}>
-              {item.enabled ? <FaCheck size={17} /> : <FaTimes size={17} />}
+          <ToolTip text={item.disabled ? 'Enable' : 'Disable'}>
+            <button onClick={handleToggleDisabled}>
+              {item.disabled ? <FaCheck size={17} /> : <FaTimes size={17} />}
             </button>
           </ToolTip>
         </div>
-      </td>
-    </tr>
+      </div>
+    </div>
   );
 };
 
