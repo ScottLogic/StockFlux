@@ -68,12 +68,13 @@ jobs:
             cd ~/stockflux/stockflux-launcher
             npm ci
             npm run build
-      - run:
-          name: Build Chart
-          command: |
-            cd ~/stockflux/stockflux-chart
-            npm ci
-            npm run build
+      # - run:
+      #     name: Build Chart
+      #     command: |
+      #       cd ~/stockflux/stockflux-chart
+      #       npm ci
+      #       npm run build
+      - run: exit 1
       - persist_to_workspace:
           root: ~/stockflux
           paths: .
