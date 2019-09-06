@@ -27,16 +27,16 @@ const Body = ({ state, dispatch, location, fetchSecurities, handleError }) => {
   };
 
   return (
-    <tbody>
-        {state.securities.map(item => (
-          <Row
-            key={item.securityId}
-            item={item}
-            deleteSecurity={deleteSecurity}
-            patchSecurity={patchSecurity}
-          />
-        ))}
-    </tbody>
+    <div className="tbody scrollable-table-body">
+      {state.securities.map(item => (
+        <Row
+          key={item.securityId}
+          item={item}
+          deleteSecurity={deleteSecurity}
+          patchSecurity={patchSecurity}
+        />
+      ))}
+    </div>
   );
 };
 

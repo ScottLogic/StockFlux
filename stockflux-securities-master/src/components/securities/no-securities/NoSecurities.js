@@ -5,7 +5,7 @@ import './NoSecurities.css';
 
 const NoSecurities = () => (
   <div className="no-securities">
-    <p>You have no securities to show</p>
+    <p>Sorry, no securities to be displayed.</p>
     <Link to="/inputform">
       <Button size={ButtonSize.SMALL}>ADD SECURITY</Button>
     </Link>

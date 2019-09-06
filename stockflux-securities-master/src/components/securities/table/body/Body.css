@@ -1,3 +1,7 @@
-tbody {
+.tbody {
   display: grid;
+}
+.scrollable-table-body {
+  max-height: calc(600px - 54px - 35px - 36px - 4px);
+  overflow: overlay;
 }

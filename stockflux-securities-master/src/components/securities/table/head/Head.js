@@ -4,13 +4,15 @@ import './Head.css';
 const COLUMN_NAMES = ['Exchange', 'Symbol', 'Name', 'Options'];
 
 const TableHead = () => (
-  <thead>
-    <tr>
+  <div className="thead">
+    <div className="tr">
       {COLUMN_NAMES.map(heading => (
-        <th key={heading}>{heading}</th>
+        <div className="th" key={heading}>
+          {heading}
+        </div>
       ))}
-    </tr>
-  </thead>
+    </div>
+  </div>
 );
 
 export default TableHead;
