@@ -3,17 +3,33 @@ import { Link } from 'react-router-dom';
 import ToolTip from '../../../tool-tip/ToolTip';
 import { FaPen, FaTrashAlt, FaCheck, FaTimes } from 'react-icons/fa';
 import PropTypes from 'prop-types';
+import * as service from '../../../../services/SecuritiesService';
+import * as action from '../../../../actions/securities';
 import './Row.css';
 
-const Row = ({ item, deleteSecurity, patchSecurity }) => {
-  const handleDelete = () => {
-    deleteSecurity(item.securityId);
+const Row = ({ item, dispatch, fetchSecurities }) => {
+  const handleDelete = async () => {
+    dispatch(action.updating());
+    try {
+      await service.deleteSecurity(item.securityId);
+      dispatch(action.success());
+    } catch (err) {
+      dispatch(action.error(err));
+    }
+    await fetchSecurities();
   };
 
-  const handleToggleDisabled = () => {
-    patchSecurity(item.securityId, {
-      disabled: !item.disabled
-    });
+  const handlePatch = async () => {
+    dispatch(action.updating());
+    try {
+      await service.patchSecurity(item.securityId, {
+        enabled: item.disabled
+      });
+      dispatch(action.success());
+    } catch (err) {
+      dispatch(action.error(err));
+    }
+    await fetchSecurities();
   };
 
   return (
@@ -38,7 +54,7 @@ const Row = ({ item, deleteSecurity, patchSecurity }) => {
             </button>
           </ToolTip>
           <ToolTip text={item.disabled ? 'Enable' : 'Disable'}>
-            <button onClick={handleToggleDisabled}>
+            <button onClick={handlePatch}>
               {item.disabled ? <FaCheck size={17} /> : <FaTimes size={17} />}
             </button>
           </ToolTip>
@@ -50,8 +66,8 @@ const Row = ({ item, deleteSecurity, patchSecurity }) => {
 
 Row.propTypes = {
   item: PropTypes.object.isRequired,
-  deleteSecurity: PropTypes.func.isRequired,
-  patchSecurity: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
+  fetchSecurities: PropTypes.func.isRequired
 };
 
 export default Row;

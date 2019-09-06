@@ -1,5 +1,4 @@
 import { FetchState } from '../enums';
-import * as actionType from '../actions/securities';
 
 export const initialState = {
   fetchStatus: FetchState.FETCHING,
@@ -14,6 +13,12 @@ export function securitiesReducer(state, action) {
         fetchStatus: FetchState.FETCHING,
         error: false,
         securities: []
+      };
+    case FetchState.UPDATING:
+      return {
+        ...state,
+        fetchStatus: FetchState.UPDATING,
+        error: true
       };
     case FetchState.ERROR:
       return {
