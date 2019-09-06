@@ -51,12 +51,6 @@ jobs:
             npm ci
             npm run build
       - run:
-          name: Build Chart
-          command: |
-            cd ~/stockflux/stockflux-chart
-            npm ci
-            npm run build
-      - run:
           name: Build News
           command: |
             cd ~/stockflux/stockflux-news
@@ -69,9 +63,15 @@ jobs:
             npm ci
             npm run build
       - run:
-          name: Build launcher
+          name: Build Launcher
           command: |
             cd ~/stockflux/stockflux-launcher
+            npm ci
+            npm run build
+      - run:
+          name: Build Chart
+          command: |
+            cd ~/stockflux/stockflux-chart
             npm ci
             npm run build
       - persist_to_workspace:
