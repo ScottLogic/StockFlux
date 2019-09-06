@@ -17,7 +17,7 @@ jobs:
   install_and_build:
     working_directory: ~/stockflux
     docker:
-      - image: circleci/node:10.16.3
+      - image: circleci/node:10.15.1
     steps:
       - checkout:
           path: ~/stockflux
@@ -30,49 +30,49 @@ jobs:
           name: Build Core
           command: |
             cd ~/stockflux/stockflux-core
-            npm ci
+            npm install
             npm run build
       - run:
           name: Build Components
           command: |
             cd ~/stockflux/stockflux-components
-            npm ci
+            npm install
             npm run build
       - run:
           name: Build BitFlux
           command: |
             cd ~/stockflux/stockflux-bitflux
-            npm ci
+            npm install
             npm run build
       - run:
           name: Build Container
           command: |
             cd ~/stockflux/stockflux-container
-            npm ci
+            npm install
             npm run build
       - run:
           name: Build Chart
           command: |
             cd ~/stockflux/stockflux-chart
-            npm ci
+            npm install
             npm run build
       - run:
           name: Build News
           command: |
             cd ~/stockflux/stockflux-news
-            npm ci
+            npm install
             npm run build
       - run:
           name: Build Watchlist
           command: |
             cd ~/stockflux/stockflux-watchlist
-            npm ci
+            npm install
             npm run build
       - run:
           name: Build launcher
           command: |
             cd ~/stockflux/stockflux-launcher
-            npm ci
+            npm install
             npm run build
       - persist_to_workspace:
           root: ~/stockflux
