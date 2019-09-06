@@ -30,49 +30,49 @@ jobs:
           name: Build Core
           command: |
             cd ~/stockflux/stockflux-core
-            npm install
+            npm ci
             npm run build
       - run:
           name: Build Components
           command: |
             cd ~/stockflux/stockflux-components
-            npm install
+            npm ci
             npm run build
       - run:
           name: Build BitFlux
           command: |
             cd ~/stockflux/stockflux-bitflux
-            npm install
+            npm ci
             npm run build
       - run:
           name: Build Container
           command: |
             cd ~/stockflux/stockflux-container
-            npm install
+            npm ci
             npm run build
       - run:
           name: Build Chart
           command: |
             cd ~/stockflux/stockflux-chart
-            npm install
+            npm ci
             npm run build
       - run:
           name: Build News
           command: |
             cd ~/stockflux/stockflux-news
-            npm install
+            npm ci
             npm run build
       - run:
           name: Build Watchlist
           command: |
             cd ~/stockflux/stockflux-watchlist
-            npm install
+            npm ci
             npm run build
       - run:
           name: Build launcher
           command: |
             cd ~/stockflux/stockflux-launcher
-            npm install
+            npm ci
             npm run build
       - persist_to_workspace:
           root: ~/stockflux
