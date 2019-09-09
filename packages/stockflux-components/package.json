@@ -20,7 +20,7 @@
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^2.0.1",
     "openfin-fdc3": "^0.1.1",
-    "stockflux-core": "file:../stockflux-core",
+    "stockflux-core": "13.0.0",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.39.3",
