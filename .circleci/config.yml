@@ -23,7 +23,7 @@ jobs:
           path: ~/stockflux
       - run:
           name: Upgrade NPM to 6.10.2
-          command: npm i -g npm@6.10.2
+          command: sudo npm i -g npm@6.10.2
       - run:
           name: Node.js and NPM versions
           command: |
