@@ -22,19 +22,12 @@ StockFlux Watchlist can be launched from the launcher app:
 ### Running locally
 
 In order to launch the StockFlux Watchlist app locally, StockFlux Core and StockFlux Components have to be built first.
+Run the following commands in the root package to make lerna do the heavy lifting for you:
 
 ```bash
-cd stockflux-core
-npm run build
-cd stockflux-components
-npm run build
-```
-
-Then install StockFlux Watchlist dependencies.
-
-```bash
-cd stockflux-watchlist
 npm install
+npm run bootstrap
+npm run build
 ```
 
 To start and launch the StockFlux Watchlist:

@@ -6,20 +6,14 @@ The container ran in headless mode so you will not see a window running for the 
 ### Running locally
 
 In order to launch the StockFlux Container app locally, StockFlux Core and StockFlux Components have to be built first.
+Run the following commands in the root package to make lerna do the heavy lifting for you:
 
 ```bash
-cd stockflux-core
-npm run build
-cd stockflux-components
-npm run build
-```
-
-Then install StockFlux Container dependencies.
-
-```bash
-cd stockflux-container
 npm install
+npm run bootstrap
+npm run build
 ```
+
 
 To start and launch the StockFlux Container:
 

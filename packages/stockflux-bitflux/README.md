@@ -5,34 +5,6 @@
 **A cross-platform financial charting application to showcase the functionality of [d3fc](https://d3fc.io) components.**
 
 
-## Initial Setup
-
-- Download or clone this repository locally
-- Ensure [Node.js](https://nodejs.org/), which includes npm, is installed
-- Navigate to the root of your local copy of this project and install the dependencies:
-
-```bash
-npm install
-```
-
-- Perform an initial build:
-
-```bash
-npm run build
-```
-
-## Usage
-
-Like Core and Components it must be added to the `package.json`
-
- ```json
-"dependencies": {
-    "stockflux-bitflux": "file:../stockflux-bitflux",
-}
-```
-
-Before using the library you must perform the above Initial Setup steps
-
 ### Importing the library
 
 ```javascript

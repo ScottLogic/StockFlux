@@ -19,21 +19,12 @@ The user can view data over the period of 5 years. The chart allows the user to 
 ### Running locally
 
 In order to launch the StockFlux Chart app locally, StockFlux Core, StockFlux Components and Stockflux Bitflux have to be built first.
+Run the following commands in the root package to make lerna do the heavy lifting for you:
 
 ```bash
-cd stockflux-core
-npm run build
-cd stockflux-components
-npm run build
-cd stockflux-bitflux
-npm run build
-```
-
-Then install StockFlux Chart dependencies.
-
-```bash
-cd stockflux-chart
 npm install
+npm run bootstrap
+npm run build
 ```
 
 To start and launch the StockFlux Chart:
