@@ -22,8 +22,8 @@ jobs:
       - checkout:
           path: ~/stockflux
       - run:
-          name: Upgrade NPM to 6.9.0
-          command: sudo npm i -g npm@6.9.0
+          name: Upgrade NPM to 6.11.3
+          command: sudo npm i -g npm@6.11.3
       - run:
           name: Node.js and NPM versions
           command: |
