@@ -1,0 +1,12 @@
+button {
+  background-color: inherit;
+  color: var(--text-teal);
+  outline: none;
+  border-style: solid;
+  border-radius: 20px;
+  border: solid 2px var(--text-teal);
+}
+button:hover {
+  color: var(--text-teal-light);
+  border-color: var(--text-teal-light);
+}
