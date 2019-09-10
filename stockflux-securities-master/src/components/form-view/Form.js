@@ -12,11 +12,9 @@ import { inputFormReducer } from '../../reducers/inputForm';
 import { Redirect } from 'react-router-dom';
 import Components from 'stockflux-components';
 
-const Form = ({ securityId }) => {
+const Form = ({ securityId, setAlerts }) => {
   const initialFormState = {
     fetchStatus: securityId ? FetchState.FETCHING : FetchState.SUCCESS,
-    hasErrors: false,
-    messages: [],
     security: {
       name: '',
       exchange: '',
@@ -35,13 +33,7 @@ const Form = ({ securityId }) => {
         .getSecurity(securityId)
         .then(security => {
           dispatch(action.success([]));
-          const securityToBeStored = {
-            name: security.name,
-            exchange: security.exchange,
-            symbol: security.symbol,
-            disabled: !security.enabled
-          };
-          setSecurityState(securityToBeStored);
+          setSecurityState(security);
         })
         .catch(() => {
           dispatch(action.error(['Error, cannot get security']));
@@ -53,42 +45,65 @@ const Form = ({ securityId }) => {
     dispatch(action.setName(security.name));
     dispatch(action.setExchange(security.exchange));
     dispatch(action.setSymbol(security.symbol));
-    dispatch(action.setDisabled(security.disabled));
+    // TODO: Change `!security.enabled` to `security.disabled` once BE is updated
+    dispatch(action.setDisabled(!security.enabled));
   };
+
+  const submitEdit = securityId => {
+    service
+      .updateSecurity(securityId, getSecurityDTO())
+      .then(async response => {
+        if (response.status === 200) {
+          submitSuccess();
+        } else {
+          submitError();
+        }
+      });
+  };
+
+  const submitNew = () => {
+    service.postSecurity(getSecurityDTO()).then(async response => {
+      if (response.status === 201) {
+        submitSuccess();
+      } else {
+        await submitError(response);
+      }
+    });
+  };
+
+  const submitSuccess = () => {
+    dispatch(action.success());
+    dispatch(action.setRedirect(true));
+  };
+
+  const submitError = async response => {
+    dispatch(action.error());
+    const alerts = await response.json();
+    setAlerts(
+      alerts.messages.map(alertMessage => ({
+        message: alertMessage,
+        type: 'error'
+      }))
+    );
+  };
+
+  // TODO: Remove once BE is storing enabled as disabled
+  const getSecurityDTO = () => ({
+    name: state.security.name,
+    exchange: state.security.exchange,
+    symbol: state.security.symbol,
+    enabled: !state.security.disabled,
+    visible: true
+  });
 
   const submitForm = event => {
     event.preventDefault();
     dispatch(action.fetching());
-    const { name, exchange, symbol, disabled } = state.security;
-    const security = {
-      name,
-      exchange,
-      symbol,
-      enabled: !disabled,
-      visible: true
-    };
+
     if (securityId) {
-      service
-        .updateSecurity(securityId, security)
-        .then(() => {
-          dispatch(action.success());
-        })
-        .catch(action.error());
+      submitEdit(securityId);
     } else {
-      service
-        .postSecurity(security)
-        .then(() => {
-          dispatch(action.success());
-          setSecurityState({
-            exchange: '',
-            symbol: '',
-            name: '',
-            disabled: false
-          });
-        })
-        .catch(error => {
-          throw new Error(error);
-        });
+      submitNew();
     }
   };
 
@@ -98,8 +113,7 @@ const Form = ({ securityId }) => {
         <Redirect
           push
           to={{
-            pathname: '/',
-            state: { messages: state.messages }
+            pathname: '/'
           }}
         />
       );

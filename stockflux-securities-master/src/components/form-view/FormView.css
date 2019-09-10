@@ -52,3 +52,7 @@ button.delete:hover {
 button.back svg {
   margin: auto;
 }
+
+.alerts-container {
+  display: flex;
+}

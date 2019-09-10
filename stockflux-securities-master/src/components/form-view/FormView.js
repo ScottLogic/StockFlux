@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './FormView.css';
 import * as service from '../../services/SecuritiesService';
@@ -7,8 +7,10 @@ import { FaChevronLeft } from 'react-icons/fa';
 import Form from './Form';
 import Confirmation from '../confirmation/Confirmation';
 import { FaTrashAlt } from 'react-icons/fa';
+import Alerts from '../alerts/Alerts';
 
 const FormView = ({ match }) => {
+  const [alerts, setAlerts] = useState([]);
   const deleteSecurity = () => service.deleteSecurity(match.params.securityId);
   return (
     <>
@@ -18,9 +20,7 @@ const FormView = ({ match }) => {
             ? `Edit ${match.params.securityId}`
             : 'Create a Security'}
         </h1>
-        <Form
-          securityId={match.params.securityId}
-        />
+        <Form securityId={match.params.securityId} setAlerts={setAlerts} />
         <Link to="/">
           <button className="back">
             <FaChevronLeft size={20} />
@@ -38,6 +38,9 @@ const FormView = ({ match }) => {
           </button>
         </Confirmation>
       )}
+      <div className="alerts-container">
+        <Alerts alerts={alerts} />
+      </div>
     </>
   );
 };

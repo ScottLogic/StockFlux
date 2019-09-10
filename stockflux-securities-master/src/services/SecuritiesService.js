@@ -37,14 +37,10 @@ export async function postSecurity(security) {
   };
 
   const options = await getWindowOptions();
-  const response = await fetch(
+  return await fetch(
     `${options.customData.apiBaseUrl}/admin/securities`,
     fetchOptions
   );
-  if (response.status === 200) return await response.json();
-  else {
-    throw new Error('Something went wrong while posting security.');
-  }
 }
 
 export async function updateSecurity(securityId, security) {
@@ -56,16 +52,10 @@ export async function updateSecurity(securityId, security) {
     body: JSON.stringify(security)
   };
   const options = await getWindowOptions();
-  const response = await fetch(
+  return await fetch(
     `${options.customData.apiBaseUrl}/admin/securities/${securityId}`,
     fetchOptions
   );
-  if (response.status === 200) return await response.json();
-  else {
-    throw new Error(
-      `Something went wrong while updating security ${securityId}.`
-    );
-  }
 }
 
 export async function deleteSecurity(securityId) {
@@ -77,8 +67,7 @@ export async function deleteSecurity(securityId) {
     `${options.customData.apiBaseUrl}/admin/securities/${securityId}`,
     fetchOptions
   );
-  console.log(response);
-  if (response.status === 200 || response.status === 204) return;
+  if (response.status === 204) return;
   else {
     throw new Error(
       `Something went wrong while deleting security ${securityId}.`
