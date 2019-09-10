@@ -1,0 +1,4 @@
+.spinner-container {
+  min-height: calc(600px - 54px - 35px);
+  display: flex;
+}

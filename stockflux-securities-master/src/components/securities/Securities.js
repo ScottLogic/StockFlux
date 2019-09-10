@@ -6,6 +6,8 @@ import { securitiesReducer, initialState } from '../../reducers/securities';
 import * as action from '../../actions/securities';
 import HorizontalRule from '../horizontal-rule/HorizontalRule';
 import NoSecurities from './no-securities/NoSecurities';
+import Components from 'stockflux-components';
+import { FetchState } from '../../enums';
 import './Securities.css';
 
 const Securities = ({ location }) => {
@@ -24,7 +26,6 @@ const Securities = ({ location }) => {
         updated: security.updated,
         visible: security.visible
       }));
-      console.log('securities', securities);
       dispatch(action.success(securities));
     } catch (err) {
       dispatch(action.error(err));
@@ -37,9 +38,17 @@ const Securities = ({ location }) => {
 
   return (
     <>
-      <PageHeader numberOfSecurities={state.securities.length} />
+      <PageHeader
+        numberOfSecurities={(state.securities && state.securities.length) || 0}
+      />
       <HorizontalRule />
-      {state.securities.length === 0 && !state.hasErrors ? (
+      {state.fetchStatus === FetchState.FETCHING ? (
+        <div className="spinner-container">
+          <Components.Spinner />
+        </div>
+      ) : state.securities &&
+        state.securities.length === 0 &&
+        !state.hasErrors ? (
         <NoSecurities />
       ) : (
         <>

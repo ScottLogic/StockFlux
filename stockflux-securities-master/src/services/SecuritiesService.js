@@ -77,7 +77,8 @@ export async function deleteSecurity(securityId) {
     `${options.customData.apiBaseUrl}/admin/securities/${securityId}`,
     fetchOptions
   );
-  if (response.status === 200) return;
+  console.log(response);
+  if (response.status === 200 || response.status === 204) return;
   else {
     throw new Error(
       `Something went wrong while deleting security ${securityId}.`

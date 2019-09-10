@@ -34,9 +34,9 @@ const Row = ({ item, dispatch, fetchSecurities }) => {
 
   return (
     <div className="tr">
-      {[item.exchange, item.symbol, item.name].map((cellData, index) => (
+      {[item.exchange, item.symbol, item.name].map((cellDatum, index) => (
         <div className="td" key={index}>
-          {cellData}
+          {cellDatum}
         </div>
       ))}
       <div className="td">
