@@ -17,18 +17,10 @@ jobs:
   install_and_build:
     working_directory: ~/stockflux
     docker:
-      - image: circleci/node:10.16.3
+      - image: circleci/node:10.15.1
     steps:
       - checkout:
           path: ~/stockflux
-      - run:
-          name: Upgrade NPM to 6.11.3
-          command: sudo npm i -g npm@6.11.3
-      - run:
-          name: Node.js and NPM versions
-          command: |
-            node -v
-            npm -v
       - run:
           name: Build Core
           command: |
