@@ -5,7 +5,7 @@
     "lerna": "^3.16.4"
   },
   "scripts": {
-    "bootstrap": "lerna bootstrap --concurrency=2",
+    "bootstrap": "lerna bootstrap --concurrency 1",
     "build": "lerna run build"
   }
 }
