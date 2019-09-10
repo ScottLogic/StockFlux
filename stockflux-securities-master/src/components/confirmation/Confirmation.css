@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: var(--margin-small);
 }
 
 .confirmation .message {
@@ -16,6 +17,10 @@
   flex-direction: row;
 }
 
-.confirmation .option-button {
+.option-no,
+.option-yes {
   margin: var(--margin-small);
+  height: 30px;
+  width: 130px;
+  font-size: var(--font-normal);
 }

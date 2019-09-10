@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import "./Confirmation.css";
-import Button, { ButtonSize } from "../button/Button";
-import PropTypes from "prop-types";
+import React, { useState } from 'react';
+import './Confirmation.css';
+import PropTypes from 'prop-types';
 
 const Confirmation = ({ children, confirmationText }) => {
-  const [clickedStatus, setClickedStatus] = useState(false);
-  const handleClickNoButton = () => {
-    setClickedStatus(false);
+  const [isClicked, setIsClicked] = useState(false);
+
+  const resetIsClicked = () => {
+    setIsClicked(false);
   };
 
   return (
     <div className="confirmation">
-      {!clickedStatus ? (
+      {!isClicked ? (
         <div
           onClickCapture={event => {
             event.stopPropagation();
-            setClickedStatus(true);
+            setIsClicked(true);
           }}
         >
           {children}
@@ -23,23 +23,21 @@ const Confirmation = ({ children, confirmationText }) => {
       ) : (
         <>
           <div className="message">{confirmationText}</div>
-          <div className="options-container">
-            <Button
-              size={ButtonSize.EXTRA_SMALL}
+          <div className="option-buttons">
+            <button
               onClick={children.props.onClick}
-              className="option-button"
+              className="option-yes"
               type="button"
             >
-              Yes
-            </Button>
-            <Button
-              size={ButtonSize.EXTRA_SMALL}
-              onClick={handleClickNoButton}
-              className="option-button"
+              YES
+            </button>
+            <button
+              onClick={resetIsClicked}
+              className="option-no"
               type="button"
             >
-              No
-            </Button>
+              NO
+            </button>
           </div>
         </>
       )}
