@@ -9,7 +9,3 @@
   font-weight: var(--font-weight-bolder);
   font-size: var(--font-xxxlarge);
 }
-
-.btn-add-security {
-  margin: var(--margin-small) var(--margin-medium);
-}

@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, useCallback } from 'react';
 import PageHeader from './page-header/PageHeader';
 import * as service from '../../services/SecuritiesService';
 import Table from './table/Table';
@@ -13,28 +13,33 @@ import './Securities.css';
 const Securities = ({ location }) => {
   const [state, dispatch] = useReducer(securitiesReducer, initialState);
 
-  const fetchSecurities = async () => {
+  const fetchSecurities = useCallback(async () => {
     dispatch({ type: 'FETCHING' });
     try {
       let securities = await service.getSecurities();
-      securities = securities.map(security => ({
-        disabled: !security.enabled,
-        exchange: security.exchange,
-        name: security.name,
-        securityId: security.securityId,
-        symbol: security.symbol,
-        updated: security.updated,
-        visible: security.visible
-      }));
-      dispatch(action.success(securities));
+
+      dispatch(action.success(translateSecuritiesDTO(securities)));
     } catch (err) {
       dispatch(action.error(err));
     }
+  }, []);
+
+  // Remove this once BE gets updated to use `disabled`
+  const translateSecuritiesDTO = securities => {
+    return securities.map(security => ({
+      disabled: !security.enabled,
+      exchange: security.exchange,
+      name: security.name,
+      securityId: security.securityId,
+      symbol: security.symbol,
+      updated: security.updated,
+      visible: security.visible
+    }));
   };
 
   useEffect(() => {
     fetchSecurities();
-  }, []);
+  }, [fetchSecurities]);
 
   return (
     <>

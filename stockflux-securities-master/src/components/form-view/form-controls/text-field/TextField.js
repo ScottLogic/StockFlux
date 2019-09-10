@@ -10,6 +10,7 @@ const TextField = ({ disabled, id, value, onChange, label }) => {
       <input
         className={classNames({ disabled: disabled })}
         id={id}
+        disabled={disabled}
         value={value}
         onChange={onChange}
       />
