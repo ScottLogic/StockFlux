@@ -1,0 +1,6 @@
+button.add-security {
+  margin: var(--margin-small) var(--margin-medium);
+  height: 30px;
+  width: 138px;
+  font-size: var(--font-normal);
+}
