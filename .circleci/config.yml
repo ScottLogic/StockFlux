@@ -12,7 +12,6 @@ workflows:
             branches:
               only:
                 - master
-                - integrate-lerna
 
 jobs:
   install_and_build:
