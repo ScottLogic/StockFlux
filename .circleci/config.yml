@@ -26,7 +26,7 @@ jobs:
           command: npm ci
       - run:
           name: Bootstrap packages
-          command: npm run bootstrap
+          command: npm run bootstrap -- --concurrency=2
       - run:
           name: Build packages
           command: npm run build
