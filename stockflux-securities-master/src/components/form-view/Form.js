@@ -1,47 +1,27 @@
 import React, { useEffect, useReducer } from 'react';
-import classNames from 'classnames';
-import Button, { ButtonSize } from '../button/Button';
-import * as action from '../../actions/inputForm';
-import { FetchState } from '../../enums';
+import * as action from '../../actions/securityForm';
 import './Form.css';
 import PropTypes from 'prop-types';
 import ToggleSwitch from './form-controls/toggle-switch/ToggleSwitch';
 import TextField from './form-controls/text-field/TextField';
 import * as service from '../../services/SecuritiesService';
-import { inputFormReducer } from '../../reducers/inputForm';
-import { Redirect } from 'react-router-dom';
-import Components from 'stockflux-components';
+import { inputFormReducer, initialFormState } from '../../reducers/securityForm';
 
-const Form = ({ securityId, setAlerts }) => {
-  const initialFormState = {
-    fetchStatus: securityId ? FetchState.FETCHING : FetchState.SUCCESS,
-    security: {
-      name: '',
-      exchange: '',
-      symbol: '',
-      disabled: false
-    },
-    redirect: false
-  };
-
+const Form = ({ securityId, setAlerts, setRedirect }) => {
   const [state, dispatch] = useReducer(inputFormReducer, initialFormState);
 
   useEffect(() => {
     if (securityId) {
-      dispatch(action.fetching());
       service
         .getSecurity(securityId)
         .then(security => {
-          dispatch(action.success([]));
-          setSecurityState(security);
+          setSecurity(security);
         })
-        .catch(() => {
-          dispatch(action.error(['Error, cannot get security']));
-        });
+        .catch(() => {});
     }
   }, [securityId]);
 
-  const setSecurityState = security => {
+  const setSecurity = security => {
     dispatch(action.setName(security.name));
     dispatch(action.setExchange(security.exchange));
     dispatch(action.setSymbol(security.symbol));
@@ -54,9 +34,9 @@ const Form = ({ securityId, setAlerts }) => {
       .updateSecurity(securityId, getSecurityDTO())
       .then(async response => {
         if (response.status === 200) {
-          submitSuccess();
+          setRedirect(true);
         } else {
-          submitError();
+          populateAlerts(response);
         }
       });
   };
@@ -64,20 +44,14 @@ const Form = ({ securityId, setAlerts }) => {
   const submitNew = () => {
     service.postSecurity(getSecurityDTO()).then(async response => {
       if (response.status === 201) {
-        submitSuccess();
+        setRedirect(true);
       } else {
-        await submitError(response);
+        await populateAlerts(response);
       }
     });
   };
 
-  const submitSuccess = () => {
-    dispatch(action.success());
-    dispatch(action.setRedirect(true));
-  };
-
-  const submitError = async response => {
-    dispatch(action.error());
+  const populateAlerts = async response => {
     const alerts = await response.json();
     setAlerts(
       alerts.messages.map(alertMessage => ({
@@ -89,16 +63,16 @@ const Form = ({ securityId, setAlerts }) => {
 
   // TODO: Remove once BE is storing enabled as disabled
   const getSecurityDTO = () => ({
-    name: state.security.name,
-    exchange: state.security.exchange,
-    symbol: state.security.symbol,
-    enabled: !state.security.disabled,
+    name: state.name,
+    exchange: state.exchange,
+    symbol: state.symbol,
+    enabled: !state.disabled,
     visible: true
   });
 
   const submitForm = event => {
     event.preventDefault();
-    dispatch(action.fetching());
+    //dispatch(action.fetching());
 
     if (securityId) {
       submitEdit(securityId);
@@ -107,67 +81,40 @@ const Form = ({ securityId, setAlerts }) => {
     }
   };
 
-  useEffect(() => {
-    if (state.redirect) {
-      return (
-        <Redirect
-          push
-          to={{
-            pathname: '/'
-          }}
-        />
-      );
-    }
-  }, [state]);
-
   return (
     <>
-      {state.fetchStatus === FetchState.UPDATING ? (
-        <div className="spinner-container">
-          <Components.LargeSpinner />
-        </div>
-      ) : (
-        <form onSubmit={submitForm}>
-          <TextField
-            label="NAME"
-            id="name-input"
-            value={state.security.name}
-            onChange={event => dispatch(action.setName(event.target.value))}
-          />
-          <TextField
-            label="EXCHANGE"
-            id="name-input"
-            disabled={true}
-            value={state.security.exchange}
-            onChange={event => dispatch(action.setExchange(event.target.value))}
-          />
-          <TextField
-            label="SYMBOL"
-            id="name-input"
-            disabled={true}
-            value={state.security.symbol}
-            onChange={event => dispatch(action.setSymbol(event.target.value))}
-          />
-          <ToggleSwitch
-            label="DISABLED"
-            id="disabled-toggle"
-            checked={state.security.disabled || false}
-            onChange={() =>
-              dispatch(action.setDisabled(!state.security.disabled))
-            }
-          />
-          <div className="input-buttons-container">
-            <Button
-              size={ButtonSize.LARGE}
-              className={classNames('submit', {
-                'in-progress': state.fetchStatus === FetchState.UPDATING
-              })}
-            >
-              {securityId ? 'SAVE' : 'CREATE'}
-            </Button>
-          </div>
-        </form>
-      )}
+      <form
+        className={securityId ? 'edit-form' : 'add-form'}
+        onSubmit={submitForm}
+      >
+        <TextField
+          label="EXCHANGE"
+          id="name"
+          disabled={securityId}
+          value={state.exchange}
+          onChange={event => dispatch(action.setExchange(event.target.value))}
+        />
+        <TextField
+          label="SYMBOL"
+          id="name"
+          disabled={securityId}
+          value={state.symbol}
+          onChange={event => dispatch(action.setSymbol(event.target.value))}
+        />
+        <TextField
+          label="NAME"
+          id="name"
+          value={state.name}
+          onChange={event => dispatch(action.setName(event.target.value))}
+        />
+        <ToggleSwitch
+          label="DISABLED"
+          id="disabled-toggle"
+          checked={state.disabled || false}
+          onChange={() => dispatch(action.setDisabled(!state.disabled))}
+        />
+        <button className="submit">{securityId ? 'SAVE' : 'CREATE'}</button>
+      </form>
     </>
   );
 };

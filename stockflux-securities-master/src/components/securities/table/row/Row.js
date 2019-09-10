@@ -9,7 +9,7 @@ import './Row.css';
 
 const Row = ({ item, dispatch, fetchSecurities }) => {
   const handleDelete = async () => {
-    dispatch(action.updating());
+    dispatch(action.fetching());
     try {
       await service.deleteSecurity(item.securityId);
       dispatch(action.success());
@@ -20,7 +20,7 @@ const Row = ({ item, dispatch, fetchSecurities }) => {
   };
 
   const handlePatch = async () => {
-    dispatch(action.updating());
+    dispatch(action.fetching());
     try {
       await service.patchSecurity(item.securityId, {
         enabled: item.disabled

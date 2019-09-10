@@ -1,17 +1,26 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './FormView.css';
-import * as service from '../../services/SecuritiesService';
+import { Link, Redirect } from 'react-router-dom';
+import { FaChevronLeft, FaTrashAlt } from 'react-icons/fa';
 import PropTypes from 'prop-types';
-import { FaChevronLeft } from 'react-icons/fa';
 import Form from './Form';
+import { deleteSecurity } from '../../services/SecuritiesService';
 import Confirmation from '../confirmation/Confirmation';
-import { FaTrashAlt } from 'react-icons/fa';
 import Alerts from '../alerts/Alerts';
+import RoundIcon from '../buttons/round-icon/RoundIcon';
+import './FormView.css';
 
 const FormView = ({ match }) => {
   const [alerts, setAlerts] = useState([]);
-  const deleteSecurity = () => service.deleteSecurity(match.params.securityId);
+  const [redirect, setRedirect] = useState(false);
+  const confirmedDelete = () => {
+    deleteSecurity(match.params.securityId);
+    setRedirect(true);
+  };
+
+  if (redirect) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <>
       <div className="form-view">
@@ -20,24 +29,31 @@ const FormView = ({ match }) => {
             ? `Edit ${match.params.securityId}`
             : 'Create a Security'}
         </h1>
-        <Form securityId={match.params.securityId} setAlerts={setAlerts} />
+        <Form
+          securityId={match.params.securityId}
+          setAlerts={setAlerts}
+          match={match}
+          setRedirect={setRedirect}
+        />
         <Link to="/">
-          <button className="back">
+          <RoundIcon className="back">
             <FaChevronLeft size={20} />
-          </button>
+          </RoundIcon>
         </Link>
       </div>
       {match.params.securityId && (
         <Confirmation confirmationText="Are you sure you want to delete this security?">
-          <button
-            type="button"
+          <RoundIcon
             className="delete"
-            onClick={() => deleteSecurity()}
+            onClick={() => {
+              confirmedDelete();
+            }}
           >
             <FaTrashAlt size={16} />
-          </button>
+          </RoundIcon>
         </Confirmation>
       )}
+      {/* TODO: Validation needs to be improved on both BE and FE (displaying error messages) */}
       <div className="alerts-container">
         <Alerts alerts={alerts} />
       </div>

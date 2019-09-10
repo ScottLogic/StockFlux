@@ -4,10 +4,6 @@ export const fetching = () => ({
   type: FetchState.FETCHING
 });
 
-export const updating = () => ({
-  type: FetchState.UPDATING
-});
-
 export const error = () => ({
   type: FetchState.ERROR
 });
