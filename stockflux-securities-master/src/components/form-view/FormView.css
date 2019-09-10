@@ -1,0 +1,54 @@
+.form-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-view .title {
+  padding: var(--padding-large);
+  font-weight: var(--font-weight-bold);
+}
+
+.form-view .spinner-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+button.back {
+  border: solid 1px var(--text-teal);
+  color: var(--text-teal);
+  font-weight: var(--font-weight-bold);
+  border-radius: 20px;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: 55px;
+  left: 20px;
+  font-weight: var(--font-weight-bolder);
+  display: flex;
+  background-color: inherit;
+}
+button.back:hover {
+  color: var(--text-teal-light);
+  border-color: var(--text-teal-light);
+}
+
+button.delete {
+  height: 40px;
+  width: 40px;
+  color: #b33838;
+  border-color: #b33838;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+button.delete:hover {
+  color: #ff5555;
+  border-color: #ff5555;
+}
+button.back svg {
+  margin: auto;
+}

@@ -1,0 +1,30 @@
+.input-buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: var(--margin-medium) 0 var(--margin-large) 0;
+}
+
+button.delete,
+button.submit {
+  margin: var(--margin-small) 0;
+  background-color: inherit;
+}
+
+button.submit.in-progress {
+  outline: none;
+  color: var(--text-grey-darkest);
+  border-color: var(--text-grey-darkest);
+}
+
+label {
+  font-size: 10px;
+  letter-spacing: 1px;
+  margin-left: 0px;
+  margin-bottom: 3px;
+  color: var(--text-teal-light);
+}
+span.input {
+  display: grid;
+  margin: 15px 0;
+}

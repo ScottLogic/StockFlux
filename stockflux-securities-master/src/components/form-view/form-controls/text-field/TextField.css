@@ -1,0 +1,19 @@
+input {
+  color: white;
+  border: solid 1px var(--text-teal);
+  font-size: var(--font-large);
+  background-color: var(--dark-background);
+  border-radius: 25px;
+  padding: var(--padding-small) var(--padding-medium);
+  margin: 0 0 var(--margin-small) 0;
+}
+
+input.disabled {
+  color: var(--text-grey);
+  cursor: not-allowed;
+  border: solid 1px var(--text-grey-darkest);
+}
+
+input:focus {
+  outline: none;
+}
