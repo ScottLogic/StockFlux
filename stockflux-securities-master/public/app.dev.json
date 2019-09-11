@@ -14,6 +14,7 @@
         "minWidth": 850,
         "maxWidth": 850,
         "minHeight": 600,
+        "maxHeight": 600,
         "defaultTop": 80,
         "saveWindowState": false,
         "frame": false,
