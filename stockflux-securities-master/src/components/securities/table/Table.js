@@ -6,16 +6,20 @@ import PropTypes from 'prop-types';
 import Body from './body/Body';
 import Head from './head/Head';
 
-const Table = props => {
+const Table = ({ dispatch, state, fetchSecurities }) => {
   return (
     <div className="table">
       <Head />
-      {props.state.fetchStatus === FetchState.FETCHING ? (
+      {state.fetchStatus === FetchState.FETCHING ? (
         <div className="spinner-container">
           <Components.LargeSpinner />
         </div>
       ) : (
-        <Body {...props} />
+        <Body
+          securities={state.securities}
+          dispatch={dispatch}
+          fetchSecurities={fetchSecurities}
+        />
       )}
     </div>
   );

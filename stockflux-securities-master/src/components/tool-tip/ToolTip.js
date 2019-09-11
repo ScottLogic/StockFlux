@@ -1,6 +1,7 @@
 import React from 'react';
-import './ToolTip.css';
 import PropTypes from 'prop-types';
+import ChildrenShape from '../../shapes/Children';
+import './ToolTip.css';
 
 const ToolTip = ({ children, text }) => (
   <div className="tool-tip">
@@ -10,7 +11,8 @@ const ToolTip = ({ children, text }) => (
 );
 
 ToolTip.propTypes = {
-  message: PropTypes.string
+  children: ChildrenShape.isRequired,
+  text: PropTypes.string.isRequired
 };
 
 export default ToolTip;

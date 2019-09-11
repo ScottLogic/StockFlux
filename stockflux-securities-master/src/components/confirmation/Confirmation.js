@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import './Confirmation.css';
 import PropTypes from 'prop-types';
+import ChildrenShape from '../../shapes/Children';
+import './Confirmation.css';
 
 const Confirmation = ({ children, confirmationText }) => {
   const [isClicked, setIsClicked] = useState(false);
@@ -46,6 +47,7 @@ const Confirmation = ({ children, confirmationText }) => {
 };
 
 Confirmation.propTypes = {
+  children: ChildrenShape.isRequired,
   confirmationText: PropTypes.string.isRequired
 };
 

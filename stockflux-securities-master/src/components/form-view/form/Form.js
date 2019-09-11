@@ -1,14 +1,15 @@
 import React, { useEffect, useReducer } from 'react';
-import * as action from '../../../actions/securityForm';
-import './Form.css';
 import PropTypes from 'prop-types';
 import ToggleSwitch from '../form-controls/toggle-switch/ToggleSwitch';
 import TextField from '../form-controls/text-field/TextField';
+import * as action from '../../../actions/Security';
 import * as service from '../../../services/SecuritiesService';
-import { inputFormReducer, initialFormState } from '../../../reducers/securityForm';
+import securityReducer, { initialState } from '../../../reducers/Security';
+import { AlertType } from '../../alerts/AlertType';
+import './Form.css';
 
 const Form = ({ securityId, setAlerts, setRedirect }) => {
-  const [state, dispatch] = useReducer(inputFormReducer, initialFormState);
+  const [state, dispatch] = useReducer(securityReducer, initialState);
 
   useEffect(() => {
     if (securityId) {
@@ -29,26 +30,24 @@ const Form = ({ securityId, setAlerts, setRedirect }) => {
     dispatch(action.setDisabled(!security.enabled));
   };
 
+  const processResponse = async (response, successStatusCode) => {
+    if (response.status === successStatusCode) {
+      setRedirect(true);
+    } else {
+      await populateAlerts(response);
+    }
+  };
+
   const submitEdit = securityId => {
     service
       .updateSecurity(securityId, getSecurityDTO())
-      .then(async response => {
-        if (response.status === 200) {
-          setRedirect(true);
-        } else {
-          populateAlerts(response);
-        }
-      });
+      .then(async response => await processResponse(response, 200));
   };
 
   const submitNew = () => {
-    service.postSecurity(getSecurityDTO()).then(async response => {
-      if (response.status === 201) {
-        setRedirect(true);
-      } else {
-        await populateAlerts(response);
-      }
-    });
+    service
+      .postSecurity(getSecurityDTO())
+      .then(async response => await processResponse(response, 201));
   };
 
   const populateAlerts = async response => {
@@ -56,7 +55,7 @@ const Form = ({ securityId, setAlerts, setRedirect }) => {
     setAlerts(
       alerts.messages.map(alertMessage => ({
         message: alertMessage,
-        type: 'error'
+        type: AlertType.ERROR
       }))
     );
   };
@@ -72,8 +71,6 @@ const Form = ({ securityId, setAlerts, setRedirect }) => {
 
   const submitForm = event => {
     event.preventDefault();
-    //dispatch(action.fetching());
-
     if (securityId) {
       submitEdit(securityId);
     } else {
@@ -120,7 +117,9 @@ const Form = ({ securityId, setAlerts, setRedirect }) => {
 };
 
 Form.propTypes = {
-  securityId: PropTypes.string
+  securityId: PropTypes.string,
+  setAlerts: PropTypes.func.isRequired,
+  setRedirect: PropTypes.func.isRequired
 };
 
 export default Form;

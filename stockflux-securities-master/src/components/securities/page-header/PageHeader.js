@@ -1,6 +1,6 @@
 import React from 'react';
-import AddSecurityButton from '../../buttons/add-security/AddSecurity';
 import PropTypes from 'prop-types';
+import AddSecurityButton from '../../buttons/add-security/AddSecurity';
 import './PageHeader.css';
 
 const PageHeader = ({ numberOfSecurities }) => {

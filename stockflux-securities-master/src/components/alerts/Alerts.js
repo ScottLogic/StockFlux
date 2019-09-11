@@ -1,6 +1,6 @@
 import React from 'react';
-// import { AlertType } from './AlertType';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import AlertShape from '../../shapes/Alert';
 import './Alerts.css';
 
 const Alerts = ({ alerts }) => (
@@ -24,11 +24,7 @@ const Alerts = ({ alerts }) => (
 );
 
 Alerts.propTypes = {
-  // alerts: PropTypes.oneOfType([
-  //   PropTypes.string,
-  //   PropTypes.arrayOf(PropTypes.string)
-  // ]).isRequired,
-  // type: PropTypes.oneOf([AlertType.SUCCESS, AlertType.ERROR]).isRequired
+  alerts: PropTypes.arrayOf(AlertShape).isRequired
 };
 
 export default Alerts;

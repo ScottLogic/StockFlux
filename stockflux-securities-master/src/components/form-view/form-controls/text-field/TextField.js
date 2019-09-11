@@ -19,9 +19,11 @@ const TextField = ({ disabled, id, value, onChange, label }) => {
 };
 
 TextField.propTypes = {
-  readOnly: PropTypes.bool,
-  value: PropTypes.string,
-  onChange: PropTypes.func.isRequired
+  disabled: PropTypes.bool,
+  id: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired
 };
 
 export default TextField;

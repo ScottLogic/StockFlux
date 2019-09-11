@@ -1,26 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import SecurityShape from '../../../../shapes/Security';
 import Row from '../row/Row';
 import './Body.css';
 
-const Body = ({ state, dispatch, fetchSecurities }) => {
+const Body = ({ securities, dispatch, fetchSecurities }) => {
   return (
     <div className="tbody scrollable">
-      {state.securities &&
-        state.securities.map(item => (
-          <Row
-            key={item.securityId}
-            item={item}
-            dispatch={dispatch}
-            fetchSecurities={fetchSecurities}
-          />
-        ))}
+      {securities.map(security => (
+        <Row
+          key={security.securityId}
+          security={security}
+          dispatch={dispatch}
+          fetchSecurities={fetchSecurities}
+        />
+      ))}
     </div>
   );
 };
 
 Body.propTypes = {
-  state: PropTypes.object.isRequired
+  securities: PropTypes.arrayOf(SecurityShape).isRequired,
+  dispatch: PropTypes.func.isRequired,
+  fetchSecurities: PropTypes.func.isRequired
 };
 
 export default Body;

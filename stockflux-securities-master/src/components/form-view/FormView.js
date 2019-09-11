@@ -11,6 +11,7 @@ import './FormView.css';
 const FormView = ({ match }) => {
   const [alerts, setAlerts] = useState([]);
   const [redirect, setRedirect] = useState(false);
+  const securityId = match.params.securityId;
 
   if (redirect) {
     return <Redirect to="/" />;
@@ -19,21 +20,15 @@ const FormView = ({ match }) => {
   return (
     <>
       <div className="form-view">
-        <FormTitle securityId={match.params.securityId} />
+        <FormTitle securityId={securityId} />
         <Form
-          securityId={match.params.securityId}
+          securityId={securityId}
           setAlerts={setAlerts}
           match={match}
           setRedirect={setRedirect}
         />
         <BackButton />
-        {match.params.securityId && (
-          <DeleteButton
-            securityId={match.params.securityId}
-            setRedirect={setRedirect}
-          />
-        )}
-        {/* TODO: Validation needs to be improved on both BE and FE (displaying error messages) */}
+        <DeleteButton securityId={securityId} setRedirect={setRedirect} />
         <div className="alerts-container">
           <Alerts alerts={alerts} />
         </div>

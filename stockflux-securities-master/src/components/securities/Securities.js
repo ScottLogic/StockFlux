@@ -2,29 +2,28 @@ import React, { useReducer, useEffect, useCallback } from 'react';
 import PageHeader from './page-header/PageHeader';
 import * as service from '../../services/SecuritiesService';
 import Table from './table/Table';
-import { securitiesReducer, initialState } from '../../reducers/securities';
-import * as action from '../../actions/securities';
+import securitiesReducer, { initialState } from '../../reducers/Securities';
+import * as action from '../../actions/Fetch';
 import HorizontalRule from '../horizontal-rule/HorizontalRule';
 import NoSecurities from './no-securities/NoSecurities';
 import Components from 'stockflux-components';
 import { FetchState } from '../../enums';
 import './Securities.css';
 
-const Securities = ({ location }) => {
+const Securities = () => {
   const [state, dispatch] = useReducer(securitiesReducer, initialState);
 
   const fetchSecurities = useCallback(async () => {
     dispatch({ type: 'FETCHING' });
     try {
       let securities = await service.getSecurities();
-
       dispatch(action.success(translateSecuritiesDTO(securities)));
     } catch (err) {
       dispatch(action.error(err));
     }
   }, []);
 
-  // Remove this once BE gets updated to use `disabled`
+  // TODO: Remove this once BE gets updated to use `disabled`
   const translateSecuritiesDTO = securities => {
     return securities.map(security => ({
       disabled: !security.enabled,
@@ -51,14 +50,11 @@ const Securities = ({ location }) => {
         <div className="spinner-container">
           <Components.Spinner />
         </div>
-      ) : state.securities &&
-        state.securities.length === 0 &&
-        !state.hasErrors ? (
+      ) : state.securities && state.securities.length === 0 ? (
         <NoSecurities />
       ) : (
         <>
           <Table
-            location={location}
             dispatch={dispatch}
             state={state}
             fetchSecurities={fetchSecurities}
@@ -69,7 +65,5 @@ const Securities = ({ location }) => {
     </>
   );
 };
-
-Securities.prototypes = {};
 
 export default Securities;

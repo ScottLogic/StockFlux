@@ -20,8 +20,9 @@ const ToggleSwitch = ({ id, checked, onChange, label }) => {
 
 ToggleSwitch.propTypes = {
   id: PropTypes.any.isRequired,
-  checked: PropTypes.bool,
-  onChange: PropTypes.func.isRequired
+  checked: PropTypes.bool.isRequired,
+  onChange: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired
 };
 
 export default ToggleSwitch;

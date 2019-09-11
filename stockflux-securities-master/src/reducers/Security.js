@@ -1,13 +1,13 @@
-import * as actionType from '../actions/securityForm';
+import * as actionType from '../actions/Security';
 
-export const initialFormState = {
+export const initialState = {
   name: '',
   exchange: '',
   symbol: '',
   disabled: false
 };
 
-export function inputFormReducer(state, action) {
+export default (state, action) => {
   switch (action.type) {
     case actionType.SET_NAME:
       return {
@@ -32,4 +32,4 @@ export function inputFormReducer(state, action) {
     default:
       throw new Error('Action Not Defined');
   }
-}
+};
