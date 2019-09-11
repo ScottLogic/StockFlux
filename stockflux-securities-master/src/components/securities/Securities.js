@@ -17,7 +17,7 @@ const Securities = () => {
     dispatch({ type: 'FETCHING' });
     try {
       let securities = await service.getSecurities();
-      dispatch(action.success(translateSecuritiesDTO(securities)));
+      dispatch(action.success(translateSecuritiesDTO([])));
     } catch (err) {
       dispatch(action.error(err));
     }

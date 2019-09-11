@@ -4,7 +4,7 @@
   align-items: center;
 }
 
-.title {
+.page-header .title {
   padding: var(--padding-large);
   font-weight: var(--font-weight-bolder);
   font-size: var(--font-xxxlarge);
