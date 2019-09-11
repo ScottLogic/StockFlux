@@ -11,21 +11,8 @@
   align-items: center;
 }
 
-.table button:focus {
-  outline: none;
-}
-
 .table button {
   border: none;
-  background: none;
-  color: var(--text-teal-light);
-  opacity: 0.8;
-  cursor: pointer;
-}
-
-.table button:hover {
-  color: var(--text-teal-light);
-  opacity: 1;
 }
 
 .buttons {
