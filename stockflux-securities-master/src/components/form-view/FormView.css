@@ -2,11 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.form-view .title {
-  padding: var(--padding-large);
-  font-weight: var(--font-weight-bold);
+  min-height: calc(600px - 35px);
 }
 
 .form-view .spinner-container {
@@ -37,4 +33,9 @@ button.delete:hover {
 
 .alerts-container {
   display: flex;
+}
+
+.security-id {
+  color: var(--text-teal-light);
+  padding: 0 8px;
 }

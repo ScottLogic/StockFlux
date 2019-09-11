@@ -1,11 +1,11 @@
 import React, { useEffect, useReducer } from 'react';
-import * as action from '../../actions/securityForm';
+import * as action from '../../../actions/securityForm';
 import './Form.css';
 import PropTypes from 'prop-types';
-import ToggleSwitch from './form-controls/toggle-switch/ToggleSwitch';
-import TextField from './form-controls/text-field/TextField';
-import * as service from '../../services/SecuritiesService';
-import { inputFormReducer, initialFormState } from '../../reducers/securityForm';
+import ToggleSwitch from '../form-controls/toggle-switch/ToggleSwitch';
+import TextField from '../form-controls/text-field/TextField';
+import * as service from '../../../services/SecuritiesService';
+import { inputFormReducer, initialFormState } from '../../../reducers/securityForm';
 
 const Form = ({ securityId, setAlerts, setRedirect }) => {
   const [state, dispatch] = useReducer(inputFormReducer, initialFormState);

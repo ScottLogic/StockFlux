@@ -5,7 +5,7 @@ import './Body.css';
 
 const Body = ({ state, dispatch, fetchSecurities }) => {
   return (
-    <div className="tbody scrollable-table-body">
+    <div className="tbody scrollable">
       {state.securities &&
         state.securities.map(item => (
           <Row

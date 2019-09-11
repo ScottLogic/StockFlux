@@ -1,21 +1,16 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import { FaChevronLeft, FaTrashAlt } from 'react-icons/fa';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Form from './Form';
-import { deleteSecurity } from '../../services/SecuritiesService';
-import Confirmation from '../confirmation/Confirmation';
+import Form from './form/Form';
 import Alerts from '../alerts/Alerts';
-import RoundIcon from '../buttons/round-icon/RoundIcon';
+import FormTitle from './form-title/FormTitle';
+import BackButton from './form-controls/buttons/back-button/BackButton';
+import DeleteButton from './form-controls/buttons/delete-button/DeleteButton';
 import './FormView.css';
 
 const FormView = ({ match }) => {
   const [alerts, setAlerts] = useState([]);
   const [redirect, setRedirect] = useState(false);
-  const confirmedDelete = () => {
-    deleteSecurity(match.params.securityId);
-    setRedirect(true);
-  };
 
   if (redirect) {
     return <Redirect to="/" />;
@@ -24,38 +19,24 @@ const FormView = ({ match }) => {
   return (
     <>
       <div className="form-view">
-        <h1 className="title">
-          {match.params.securityId
-            ? `Edit ${match.params.securityId}`
-            : 'Create a Security'}
-        </h1>
+        <FormTitle securityId={match.params.securityId} />
         <Form
           securityId={match.params.securityId}
           setAlerts={setAlerts}
           match={match}
           setRedirect={setRedirect}
         />
-        <Link to="/">
-          <RoundIcon className="back">
-            <FaChevronLeft size={20} />
-          </RoundIcon>
-        </Link>
-      </div>
-      {match.params.securityId && (
-        <Confirmation confirmationText="Are you sure you want to delete this security?">
-          <RoundIcon
-            className="delete"
-            onClick={() => {
-              confirmedDelete();
-            }}
-          >
-            <FaTrashAlt size={16} />
-          </RoundIcon>
-        </Confirmation>
-      )}
-      {/* TODO: Validation needs to be improved on both BE and FE (displaying error messages) */}
-      <div className="alerts-container">
-        <Alerts alerts={alerts} />
+        <BackButton />
+        {match.params.securityId && (
+          <DeleteButton
+            securityId={match.params.securityId}
+            setRedirect={setRedirect}
+          />
+        )}
+        {/* TODO: Validation needs to be improved on both BE and FE (displaying error messages) */}
+        <div className="alerts-container">
+          <Alerts alerts={alerts} />
+        </div>
       </div>
     </>
   );
