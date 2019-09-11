@@ -2,7 +2,6 @@ button.submit {
   margin: var(--margin-small) 0;
   height: 40px;
   width: 280px;
-  color: var(--text-teal);
   font-size: var(--font-normal);
 }
 

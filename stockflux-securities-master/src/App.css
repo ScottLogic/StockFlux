@@ -19,14 +19,15 @@
 
 button {
   background-color: inherit;
-  color: var(--text-teal);
+  color: var(--text-teal-light);
   outline: none;
   border-style: solid;
   border-radius: var(--border-radius);
-  border: solid 2px var(--text-teal);
+  border: solid 2px var(--text-teal-light);
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 button:hover {
-  color: var(--text-teal-light);
-  border-color: var(--text-teal-light);
+  opacity: 1;
 }

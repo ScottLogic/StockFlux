@@ -1,6 +1,6 @@
 .delete {
-  color: var(--error-red);
-  border-color: var(--error-red);
+  color: var(--error-red-light);
+  border-color: var(--error-red-light);
   position: absolute;
   right: var(--button-offset);
   bottom: var(--button-offset);
