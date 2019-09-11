@@ -17,7 +17,7 @@ const Securities = () => {
     dispatch({ type: 'FETCHING' });
     try {
       let securities = await service.getSecurities();
-      dispatch(action.success(translateSecuritiesDTO([])));
+      dispatch(action.success(translateSecuritiesDTO(securities)));
     } catch (err) {
       dispatch(action.error(err));
     }
@@ -60,6 +60,7 @@ const Securities = () => {
             dispatch={dispatch}
             fetchSecurities={fetchSecurities}
           />
+          <HorizontalRule />
         </>
       )}
     </>
