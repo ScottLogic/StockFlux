@@ -6,7 +6,7 @@ import './Confirmation.css';
 const Confirmation = ({ children, confirmationText }) => {
   const [isClicked, setIsClicked] = useState(false);
 
-  const resetIsClicked = () => {
+  const reset = () => {
     setIsClicked(false);
   };
 
@@ -32,11 +32,7 @@ const Confirmation = ({ children, confirmationText }) => {
             >
               YES
             </button>
-            <button
-              onClick={resetIsClicked}
-              className="option-no"
-              type="button"
-            >
+            <button onClick={reset} className="option-no" type="button">
               NO
             </button>
           </div>

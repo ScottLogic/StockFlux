@@ -1,9 +1,9 @@
 import React from 'react';
-import './TextField.css';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import './TextField.css';
 
-const TextField = ({ disabled, id, value, onChange, label }) => {
+const TextField = ({ label, id, value, disabled, onChange }) => {
   return (
     <span className="input">
       <label htmlFor={id}>{label}</label>
@@ -19,11 +19,11 @@ const TextField = ({ disabled, id, value, onChange, label }) => {
 };
 
 TextField.propTypes = {
-  disabled: PropTypes.bool,
+  label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  label: PropTypes.string.isRequired
+  disabled: PropTypes.bool,
+  onChange: PropTypes.func.isRequired
 };
 
 export default TextField;

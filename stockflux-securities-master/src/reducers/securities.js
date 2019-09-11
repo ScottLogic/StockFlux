@@ -6,7 +6,7 @@ export const initialState = {
   securities: []
 };
 
-export function securitiesReducer(state, action) {
+export default (state, action) => {
   switch (action.type) {
     case FetchState.FETCHING:
       return {
@@ -35,4 +35,4 @@ export function securitiesReducer(state, action) {
     default:
       throw new Error('Action Not Defined', action);
   }
-}
+};

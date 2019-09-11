@@ -1,11 +1,11 @@
 import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
+import { AlertType } from '../../alerts/AlertType';
 import ToggleSwitch from '../form-controls/toggle-switch/ToggleSwitch';
 import TextField from '../form-controls/text-field/TextField';
 import * as action from '../../../actions/Security';
 import * as service from '../../../services/SecuritiesService';
 import securityReducer, { initialState } from '../../../reducers/Security';
-import { AlertType } from '../../alerts/AlertType';
 import './Form.css';
 
 const Form = ({ securityId, setAlerts, setRedirect }) => {

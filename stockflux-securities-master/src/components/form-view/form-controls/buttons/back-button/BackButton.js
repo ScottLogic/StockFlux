@@ -1,7 +1,7 @@
 import React from 'react';
-import RoundIcon from '../../../../buttons/round-icon/RoundIcon';
-import { FaChevronLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { FaChevronLeft } from 'react-icons/fa';
+import RoundIcon from '../../../../buttons/round-icon/RoundIcon';
 
 const BackButton = () => (
   <Link to="/">

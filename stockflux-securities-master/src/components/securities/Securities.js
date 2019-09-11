@@ -1,13 +1,13 @@
 import React, { useReducer, useEffect, useCallback } from 'react';
+import Components from 'stockflux-components';
 import PageHeader from './page-header/PageHeader';
-import * as service from '../../services/SecuritiesService';
+import HorizontalRule from '../horizontal-rule/HorizontalRule';
 import Table from './table/Table';
+import NoSecurities from './no-securities/NoSecurities';
+import { FetchState } from '../../enums';
 import securitiesReducer, { initialState } from '../../reducers/Securities';
 import * as action from '../../actions/Fetch';
-import HorizontalRule from '../horizontal-rule/HorizontalRule';
-import NoSecurities from './no-securities/NoSecurities';
-import Components from 'stockflux-components';
-import { FetchState } from '../../enums';
+import * as service from '../../services/SecuritiesService';
 import './Securities.css';
 
 const Securities = () => {

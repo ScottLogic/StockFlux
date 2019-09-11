@@ -3,9 +3,9 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Form from './form/Form';
 import Alerts from '../alerts/Alerts';
-import FormTitle from './form-title/FormTitle';
 import BackButton from './form-controls/buttons/back-button/BackButton';
 import DeleteButton from './form-controls/buttons/delete-button/DeleteButton';
+import FormTitle from './form-title/FormTitle';
 import './FormView.css';
 
 const FormView = ({ match }) => {

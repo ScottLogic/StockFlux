@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaPen, FaTrashAlt, FaCheck, FaTimes } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import SecurityShape from '../../../../shapes/Security';
-import { FaPen, FaTrashAlt, FaCheck, FaTimes } from 'react-icons/fa';
 import ToolTip from '../../../tool-tip/ToolTip';
-import * as service from '../../../../services/SecuritiesService';
 import * as action from '../../../../actions/Fetch';
+import * as service from '../../../../services/SecuritiesService';
 import './Row.css';
 
 const Row = ({ security, dispatch, fetchSecurities }) => {

@@ -1,8 +1,8 @@
 import React from 'react';
-import './ToggleSwitch.css';
 import PropTypes from 'prop-types';
+import './ToggleSwitch.css';
 
-const ToggleSwitch = ({ id, checked, onChange, label }) => {
+const ToggleSwitch = ({ label, id, checked, onChange }) => {
   return (
     <span className="input">
       <label htmlFor={id}>{label}</label>
@@ -19,10 +19,10 @@ const ToggleSwitch = ({ id, checked, onChange, label }) => {
 };
 
 ToggleSwitch.propTypes = {
+  label: PropTypes.string.isRequired,
   id: PropTypes.any.isRequired,
   checked: PropTypes.bool.isRequired,
-  onChange: PropTypes.func.isRequired,
-  label: PropTypes.string.isRequired
+  onChange: PropTypes.func.isRequired
 };
 
 export default ToggleSwitch;

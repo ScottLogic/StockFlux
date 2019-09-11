@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RoundIcon from '../../../../buttons/round-icon/RoundIcon';
 import { FaTrashAlt } from 'react-icons/fa';
-import { deleteSecurity } from '../../../../../services/SecuritiesService';
 import Confirmation from '../../../../confirmation/Confirmation';
+import RoundIcon from '../../../../buttons/round-icon/RoundIcon';
+import { deleteSecurity } from '../../../../../services/SecuritiesService';
 
 const DeleteButton = ({ securityId, setRedirect }) => {
   const confirmedDelete = () => {
