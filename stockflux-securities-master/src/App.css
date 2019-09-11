@@ -1,11 +1,28 @@
+:root {
+  --window-height: 600px;
+  --border-radius: 20px;
+  --button-offset: 20px;
+  --row-height: 36px;
+  --page-header-height: 54px;
+  --teal-gradient: -webkit-linear-gradient(
+    left,
+    var(--middle-background) 0%,
+    var(--chart-teal) 3%,
+    var(--chart-teal-lighter) 50%,
+    var(--chart-teal) 97%,
+    var(--middle-background) 100%
+  );
+}
+
 button {
   background-color: inherit;
   color: var(--text-teal);
   outline: none;
   border-style: solid;
-  border-radius: 20px;
+  border-radius: var(--border-radius);
   border: solid 2px var(--text-teal);
 }
+
 button:hover {
   color: var(--text-teal-light);
   border-color: var(--text-teal-light);

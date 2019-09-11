@@ -1,4 +1,4 @@
 .spinner-container {
-  min-height: calc(600px - 54px - 35px);
+  min-height: calc(var(--window-height) - var(--page-header-height) - var(--titlebar-height));
   display: flex;
 }

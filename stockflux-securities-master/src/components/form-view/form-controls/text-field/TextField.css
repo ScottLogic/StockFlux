@@ -3,7 +3,7 @@ input {
   border: solid 1px var(--text-teal);
   font-size: var(--font-large);
   background-color: var(--dark-background);
-  border-radius: 25px;
+  border-radius: var(--border-radius);
   padding: var(--padding-small) var(--padding-medium);
   margin: 0 0 var(--margin-small) 0;
 }

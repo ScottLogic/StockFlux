@@ -7,12 +7,13 @@ button.submit {
 }
 
 label {
-  font-size: 10px;
+  font-size: var(--font-small);
   letter-spacing: 1px;
   margin-left: 0px;
   margin-bottom: 3px;
   color: var(--text-teal-light);
 }
+
 span.input {
   display: grid;
   margin: 15px 0;

@@ -1,7 +1,7 @@
 .tr {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 0.8fr;
-  height: 36px;
+  height: var(--row-height);
   font-size: var(--font-medium);
 }
 

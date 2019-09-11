@@ -4,6 +4,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 import Confirmation from '../../../../confirmation/Confirmation';
 import RoundIcon from '../../../../buttons/round-icon/RoundIcon';
 import { deleteSecurity } from '../../../../../services/SecuritiesService';
+import './DeleteButton.css';
 
 const DeleteButton = ({ securityId, setRedirect }) => {
   const confirmedDelete = () => {

@@ -5,7 +5,8 @@
 }
 
 .title {
-  margin: var(--margin-large);
+  padding: var(--padding-large);
   font-weight: var(--font-weight-bolder);
   font-size: var(--font-xxxlarge);
+  margin: 0;
 }

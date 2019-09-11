@@ -1,0 +1,12 @@
+.delete {
+  color: var(--error-red);
+  border-color: var(--error-red);
+  position: absolute;
+  right: var(--button-offset);
+  bottom: var(--button-offset);
+}
+
+.delete:hover {
+  color: var(--error-red-light);
+  border-color: var(--error-red-light);
+}

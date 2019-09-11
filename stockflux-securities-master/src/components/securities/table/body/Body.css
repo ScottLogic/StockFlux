@@ -1,7 +1,11 @@
 .tbody {
   display: grid;
 }
+
 .scrollable {
-  max-height: calc(600px - 54px - 35px - 36px - 4px);
+  max-height: calc(
+    var(--window-height) - var(--page-header-height) - var(--titlebar-height) -
+      var(--row-height) - 4px
+  );
   overflow: overlay;
 }

@@ -5,7 +5,7 @@
   height: 20px;
   background-color: var(--dark-background);
   border: solid 1px var(--text-teal);
-  border-radius: 20px;
+  border-radius: var(--border-radius);
   transition: all 0.3s;
   margin: auto 145px auto 0;
   cursor: pointer;
@@ -25,7 +25,7 @@
 }
 
 .toggle:checked + .toggle-switch::after {
-  left: 20px;
+  left: var(--button-offset);
   opacity: 1;
 }
 

@@ -1,12 +1,5 @@
 .line {
   width: -webkit-fill-available;
   height: 1px;
-  background: -webkit-linear-gradient(
-    left,
-    rgb(40, 49, 61) 0%,
-    #37d8bc 3%,
-    #51f2d6 50%,
-    #37d8bc 97%,
-    rgb(40, 49, 61) 100%
-  );
+  background: var(--teal-gradient);
 }
