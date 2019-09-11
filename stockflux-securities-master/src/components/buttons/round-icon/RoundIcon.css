@@ -1,14 +1,14 @@
-button.round {
+.round {
   border-radius: 100%;
   height: 40px;
   width: 40px;
   display: flex;
 }
-button.round:hover {
+.round:hover {
   color: var(--text-teal-light);
   border-color: var(--text-teal-light);
 }
 
-button.round svg {
+.round svg {
   margin: auto;
 }
