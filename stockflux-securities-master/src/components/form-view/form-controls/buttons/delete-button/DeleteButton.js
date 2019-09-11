@@ -31,7 +31,7 @@ const DeleteButton = ({ securityId, setRedirect }) => {
 };
 
 DeleteButton.propTypes = {
-  securityId: PropTypes.string.isRequired,
+  securityId: PropTypes.string,
   setRedirect: PropTypes.func.isRequired
 };
 export default DeleteButton;

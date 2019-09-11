@@ -22,7 +22,7 @@ TextField.propTypes = {
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-  disabled: PropTypes.bool,
+  disabled: PropTypes.string,
   onChange: PropTypes.func.isRequired
 };
 

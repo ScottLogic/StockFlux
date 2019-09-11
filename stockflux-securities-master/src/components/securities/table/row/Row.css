@@ -24,7 +24,7 @@
 }
 
 .table button:hover {
-  color: #55ffe1;
+  color: var(--text-teal-light);
   opacity: 1;
 }
 
@@ -33,23 +33,23 @@
 }
 
 .tr:nth-child(even) {
-  background: #28313d;
+  background-color: var(--row-even);
 }
 
 .tr:nth-child(even) .td {
-  border-left: 1px solid #323a48;
+  border-left: 1px solid var(--row-odd);
 }
 
 .tr:nth-child(odd) {
-  background: #323a48;
+  background-color: var(--row-odd);
 }
 
 .tr:nth-child(odd) .td {
-  border-left: 1px solid #28313d;
+  border-left: 1px solid var(--row-even);
 }
 
 .tr:hover {
-  background-color: #3c4656;
+  background-color: var(--row-hover);
 }
 
 .td:first-child {

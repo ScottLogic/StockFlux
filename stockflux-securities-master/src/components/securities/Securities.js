@@ -55,11 +55,11 @@ const Securities = () => {
       ) : (
         <>
           <Table
+            securities={state.securities}
+            fetchStatus={state.fetchStatus}
             dispatch={dispatch}
-            state={state}
             fetchSecurities={fetchSecurities}
           />
-          <HorizontalRule />
         </>
       )}
     </>

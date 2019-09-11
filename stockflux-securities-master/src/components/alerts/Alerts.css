@@ -13,7 +13,7 @@ p {
 }
 
 .error {
-  color: var(--error-red);
+  color: var(--error-red-light);
 }
 
 .success {
