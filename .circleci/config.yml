@@ -101,6 +101,6 @@ jobs:
           command: |
             STOCKFLUX_VERSION=$(cat ~/stockflux/version)
             rm ~/stockflux/version
-            git tag "$VERSION"
+            git tag "$STOCKFLUX_VERSION"
             git push --tags
           
