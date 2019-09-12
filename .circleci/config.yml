@@ -13,7 +13,6 @@ workflows:
               only:
                 - master
                 - dev
-                - deployment
 
 jobs:
   install_and_build:
@@ -103,4 +102,3 @@ jobs:
             rm ~/stockflux/version
             git tag "$STOCKFLUX_VERSION"
             git push --tags
-          
