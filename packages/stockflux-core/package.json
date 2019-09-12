@@ -1,0 +1,30 @@
+{
+  "name": "stockflux-core",
+  "version": "13.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "peerDependencies": {
+    "date-fns": "^1.30.1",
+    "openfin-fdc3": "^0.1.1",
+    "react": "^16.8.6",
+    "throat": "^5.0.0"
+  },
+  "scripts": {
+    "build": "webpack"
+  },
+  "browserslist": [
+    "chrome 68"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
+    "eslint": "^6.3.0",
+    "eslint-loader": "^3.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.8"
+  },
+  "dependencies": {}
+}

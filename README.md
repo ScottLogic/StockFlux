@@ -77,20 +77,12 @@ npm install -g openfin-cli
 More information on Openfin-cli can be found [here.](https://github.com/openfin/openfin-cli)
 
 To start you must first build the some of the supporting applications.
-In the following order run these commands
 
 ```bash
 npm install
+npm run bootstrap
 npm run build
 ```
-
-in these projects.
-
-1. Core
-2. Components
-3. Bitflux
-
-This is needed as each app requires Core and Components as a dependency. Chart requires Bitflux to render the chart component.
 
 In isolation each app can be ran individually with the following commands:
 
@@ -123,7 +115,7 @@ If you are running the app directory locally, by default, it will be found at:
 
 The AWS hosted version is at:
 
-`https://d2v92tgq94yxaa.cloudfront.net/api/apps/v1`
+`https://stockflux.scottlogic.com/api/apps/v1`
 
 Once this change has been made you can run the service start launching applications from it.
 
