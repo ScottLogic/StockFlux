@@ -13,6 +13,7 @@ workflows:
               only:
                 - master
                 - dev
+                - deployment
 
 jobs:
   install_and_build:
@@ -61,15 +62,11 @@ jobs:
             touch ~/.ssh/known_hosts
             echo $(cat github_key) >> ~/.ssh/known_hosts
       - run:
-          name: Version package.json files
+          name: Determine version
           command: |
-            cd .circleci
-            echo $(python version.py \
-              stockflux-launcher \
-              stockflux-container \
-              stockflux-chart \
-              stockflux-news \
-              stockflux-watchlist) >> ~/stockflux/version
+            cd ~/stockflux
+            STOCKFLUX_VERSION=$(cat package.json | jq -r '.version')
+            echo "${STOCKFLUX_VERSION}.${CIRCLE_BUILD_NUM}" > version
       - run:
           name: Install AWS CLI
           command: pip install awscli --user --upgrade
@@ -77,26 +74,26 @@ jobs:
           name: Upload Artifacts to S3
           command: |
             cd ~/stockflux
-            STOCKFLUX_VERSION=$(cat ~/stockflux/version)
-            BUCKET="stockflux-public-$CIRCLE_BRANCH"
+            STOCKFLUX_VERSION=$(cat version)
+            BUCKET="stockflux-public--$CIRCLE_BRANCH"
             ~/.local/bin/aws s3 sync \
-              stockflux-chart/build \
+              packages/stockflux-chart/build \
               "s3://$BUCKET/artifacts/stockflux-chart/$STOCKFLUX_VERSION/" \
               --delete
             ~/.local/bin/aws s3 sync \
-              stockflux-container/build \
+              packages/stockflux-container/build \
               "s3://$BUCKET/artifacts/stockflux-container/$STOCKFLUX_VERSION/" \
               --delete
             ~/.local/bin/aws s3 sync \
-              stockflux-news/build \
+              packages/stockflux-news/build \
               "s3://$BUCKET/artifacts/stockflux-news/$STOCKFLUX_VERSION/" \
               --delete
             ~/.local/bin/aws s3 sync \
-              stockflux-watchlist/build \
+              packages/stockflux-watchlist/build \
               "s3://$BUCKET/artifacts/stockflux-watchlist/$STOCKFLUX_VERSION/" \
               --delete
             ~/.local/bin/aws s3 sync \
-              stockflux-launcher/build \
+              packages/stockflux-launcher/build \
               "s3://$BUCKET/artifacts/stockflux-launcher/$STOCKFLUX_VERSION/" \
               --delete
       - run:
@@ -104,6 +101,6 @@ jobs:
           command: |
             STOCKFLUX_VERSION=$(cat ~/stockflux/version)
             rm ~/stockflux/version
-            git tag "$STOCKFLUX_VERSION"
+            git tag "$VERSION"
             git push --tags
           
