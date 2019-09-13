@@ -22,57 +22,17 @@ jobs:
       - checkout:
           path: ~/stockflux
       - run:
-          name: Build Core
-          command: |
-            cd ~/stockflux/stockflux-core
-            npm ci
-            npm run build
+          name: Root package install
+          command: npm ci
       - run:
-          name: Build Components
-          command: |
-            cd ~/stockflux/stockflux-components
-            npm ci
-            npm run build
+          name: Bootstrap packages
+          command: npm run bootstrap
       - run:
-          name: Build BitFlux
-          command: |
-            cd ~/stockflux/stockflux-bitflux
-            npm ci
-            npm run build
-      - run:
-          name: Build Chart
-          command: |
-            cd ~/stockflux/stockflux-chart
-            npm ci
-            npm run build
-      - run:
-          name: Build Container
-          command: |
-            cd ~/stockflux/stockflux-container
-            npm ci
-            npm run build
-      - run:
-          name: Build News
-          command: |
-            cd ~/stockflux/stockflux-news
-            npm ci
-            npm run build
-      - run:
-          name: Build Watchlist
-          command: |
-            cd ~/stockflux/stockflux-watchlist
-            npm ci
-            npm run build
-      - run:
-          name: Build Launcher
-          command: |
-            cd ~/stockflux/stockflux-launcher
-            npm ci
-            npm run build
+          name: Build packages
+          command: npm run build
       - persist_to_workspace:
           root: ~/stockflux
           paths: .
-
   deploy:
     working_directory: ~/stockflux
     docker:
@@ -85,17 +45,17 @@ jobs:
           command: pip install awscli --user --upgrade
       - run:
           name: Upload chart
-          command: ~/.local/bin/aws s3 sync stockflux-chart/build "s3://stockflux-public-$CIRCLE_BRANCH/artifacts/stockflux-chart/13.0.0/" --delete
+          command: ~/.local/bin/aws s3 sync packages/stockflux-chart/build "s3://stockflux-public--$CIRCLE_BRANCH/artifacts/stockflux-chart/13.0.0/" --delete
       - run:
           name: Upload container
-          command: ~/.local/bin/aws s3 sync stockflux-container/build "s3://stockflux-public-$CIRCLE_BRANCH/artifacts/stockflux-container/13.0.0/" --delete
+          command: ~/.local/bin/aws s3 sync packages/stockflux-container/build "s3://stockflux-public--$CIRCLE_BRANCH/artifacts/stockflux-container/13.0.0/" --delete
       - run:
           name: Upload news
-          command: ~/.local/bin/aws s3 sync stockflux-news/build "s3://stockflux-public-$CIRCLE_BRANCH/artifacts/stockflux-news/13.0.0/" --delete
+          command: ~/.local/bin/aws s3 sync packages/stockflux-news/build "s3://stockflux-public--$CIRCLE_BRANCH/artifacts/stockflux-news/13.0.0/" --delete
       - run:
           name: Upload watchlist
-          command: ~/.local/bin/aws s3 sync stockflux-watchlist/build "s3://stockflux-public-$CIRCLE_BRANCH/artifacts/stockflux-watchlist/13.0.0/" --delete
+          command: ~/.local/bin/aws s3 sync packages/stockflux-watchlist/build "s3://stockflux-public--$CIRCLE_BRANCH/artifacts/stockflux-watchlist/13.0.0/" --delete
       - run:
           name: Upload launcher
-          command: ~/.local/bin/aws s3 sync stockflux-launcher/build "s3://stockflux-public-$CIRCLE_BRANCH/artifacts/stockflux-launcher/13.0.0/" --delete
+          command: ~/.local/bin/aws s3 sync packages/stockflux-launcher/build "s3://stockflux-public--$CIRCLE_BRANCH/artifacts/stockflux-launcher/13.0.0/" --delete
 

@@ -1,0 +1,27 @@
+.app-shortcut {
+  background: none;
+  color: var(--text-teal-light);
+  border: solid 1px var(--text-teal);
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+  margin: 0 5px;
+  outline: none;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.left .app-shortcut,
+.right .app-shortcut {
+  margin: 5px 0;
+  overflow: hidden;
+}
+
+.app-shortcut img {
+  width: 120%;
+  height: 120%;
+}
