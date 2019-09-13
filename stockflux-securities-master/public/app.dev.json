@@ -1,48 +1,48 @@
 {
-    "runtime": {
-        "arguments": "--enable-aggressive-domstorage-flushing",
-        "version": "9.61.38.40"
+  "runtime": {
+    "arguments": "--enable-aggressive-domstorage-flushing",
+    "version": "9.61.38.40"
+  },
+  "startup_app": {
+    "name": "stockflux-securities-master",
+    "uuid": "stockflux-securities-master",
+    "url": "http://localhost:8057/index.html",
+    "applicationIcon": "http://localhost:8057/favicon.ico",
+    "autoShow": true,
+    "defaultWidth": 850,
+    "defaultHeight": 600,
+    "minWidth": 365,
+    "minHeight": 580,
+    "defaultTop": 80,
+    "saveWindowState": false,
+    "frame": false,
+    "contextMenu": true,
+    "customData": {
+      "apiBaseUrl": "https://d2zrdoosf9socz.cloudfront.net/api"
     },
-    "startup_app": {
-        "name": "stockflux-securities-master",
-        "uuid": "stockflux-securities-master",
-        "url": "http://localhost:8057/index.html",
-        "applicationIcon": "http://localhost:8057/favicon.ico",
-        "autoShow": true,
-        "defaultWidth": 850,
-        "defaultHeight": 600,
-        "minWidth": 365,
-        "minHeight": 300,
-        "defaultTop": 80,
-        "saveWindowState": false,
-        "frame": false,
-        "contextMenu": true,
-        "customData": {
-            "apiBaseUrl": "https://d2zrdoosf9socz.cloudfront.net/api"
-        },
-        "cornerRounding": {
-            "height": 4,
-            "width": 4
+    "cornerRounding": {
+      "height": 4,
+      "width": 4
+    }
+  },
+  "services": [
+    {
+      "name": "layouts",
+      "config": {
+        "features": {
+          "tab": false
         }
+      }
     },
-    "services": [
-        {
-            "name": "layouts",
-            "config": {
-                "features": {
-                    "tab": false
-                }
-            }
-        },
-        {
-            "name": "fdc3"
-        }
-    ],
-    "shortcut": {
-        "company": "ScottLogic",
-        "description": "Hosts StockFlux Securities Master as an OpenFin application.",
-        "name": "StockFlux Securities Master",
-        "icon": "http://localhost:8057/favicon.ico"
-    },
-    "splashScreenImage": "http://localhost:8057/splashscreen.png"
+    {
+      "name": "fdc3"
+    }
+  ],
+  "shortcut": {
+    "company": "ScottLogic",
+    "description": "Hosts StockFlux Securities Master as an OpenFin application.",
+    "name": "StockFlux Securities Master",
+    "icon": "http://localhost:8057/favicon.ico"
+  },
+  "splashScreenImage": "http://localhost:8057/splashscreen.png"
 }
