@@ -1,6 +1,6 @@
 {
   "name": "stockflux",
-  "version": "1.0.0",
+  "version": "13.0.0",
   "devDependencies": {
     "lerna": "^3.16.4"
   },
