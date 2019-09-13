@@ -12,3 +12,7 @@
 .th:first-child {
   border-left: none;
 }
+
+.tr .th:last-child {
+  min-width: var(--last-column-min-width);
+}

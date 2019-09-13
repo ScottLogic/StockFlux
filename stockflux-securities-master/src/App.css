@@ -1,11 +1,12 @@
 :root {
-  --window-height: 600px;
+  --window-height: 300px;
   --border-radius: 20px;
   --button-offset: 20px;
   --row-height: 36px;
   --row-even: var(--middle-background);
   --row-odd: #323a48;
   --row-hover: #3c4656;
+  --last-column-min-width: 85px;
   --page-header-height: 54px;
   --teal-gradient: -webkit-linear-gradient(
     left,
