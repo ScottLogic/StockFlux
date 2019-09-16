@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400, 100, 300, 500);
 
 * {
   box-sizing: border-box;
@@ -6,9 +6,9 @@
 
 body {
   margin: 0;
-  border: 1px solid #1A212A;
-  background-color: #28313D;
-  font-family: 'Roboto', sans-serif;
+  border: 1px solid #1a212a;
+  background-color: #28313d;
+  font-family: "Roboto", sans-serif;
   overflow: hidden;
 }
 
@@ -17,25 +17,25 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px #464E58;
+  -webkit-box-shadow: inset 0 0 6px #464e58;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #464E58;
-  outline: 1px solid #1A212A;
+  background-color: #464e58;
+  outline: 1px solid #1a212a;
   border-radius: 5px;
 }
 
 .searchResult {
-  border-bottom: 1px solid #1A212A;
-  color: #AEB1B5;
+  border-bottom: 1px solid #1a212a;
+  color: #aeb1b5;
   margin-right: 0;
   padding: 5px 0 5px 5px;
   user-select: none;
 }
 
 .searchResult:hover {
-  background-color: #464E58;
+  background-color: #464e58;
 }
 
 .searchResult:last-child {
@@ -47,13 +47,13 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: #95989C;
+  color: #95989c;
 }
 
 .subtitle {
   font-size: 20px;
   font-weight: 500;
-  color: #AEB1B5;
+  color: #aeb1b5;
 }
 
 .containerActions {
@@ -64,8 +64,13 @@ body {
   border: none;
   background-color: transparent;
   cursor: pointer;
+  border: solid 1px #37d8bc;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin: 0 5px;
   outline: none;
-  color: #95989C;
+  color: #37d8bc;
 }
 
 .buttonIcon {
@@ -74,7 +79,7 @@ body {
 }
 
 .buttonAction:hover {
-  color: #7B7E82;
+  color: #7b7e82;
 }
 
 .left .free-text-search,
@@ -84,7 +89,7 @@ body {
 }
 
 input {
-  background: #1A212A;
+  background: #1a212a;
   color: #aeb1b5;
   border: none;
   border-radius: 20px;
@@ -105,7 +110,7 @@ div#container {
 }
 
 div#searchbar-container {
-  border-bottom: 1px solid #1A212A;
+  border-bottom: 1px solid #1a212a;
 }
 
 div#results-container {
