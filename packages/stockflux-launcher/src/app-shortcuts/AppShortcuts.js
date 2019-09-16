@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { OpenfinApiHelpers } from 'stockflux-core';
-import Components from 'stockflux-components';
-import './AppShortcuts.css';
+import React, { useEffect, useState } from "react";
+import { OpenfinApiHelpers } from "stockflux-core";
+import Components from "stockflux-components";
+import "./AppShortcuts.css";
 
 export default () => {
   const [apps, setApps] = useState([]);
 
   useEffect(() => {
     const options = {
-      method: 'GET'
+      method: "GET"
     };
 
     OpenfinApiHelpers.getCurrentWindow()
@@ -25,7 +25,9 @@ export default () => {
       {apps
         .filter(
           app =>
-            app.customConfig !== undefined && app.customConfig.showInLauncher
+            app.customConfig !== undefined &&
+            app.customConfig.showInLauncher &&
+            app.appId.indexOf("stockflux-") === 0
         )
         .map(app => {
           /* Get the appropriate shortcut button by taking a part of stocklux appId 
@@ -35,11 +37,11 @@ export default () => {
           const AppShortcut =
             Components[
               app.appId
-                .split('stockflux-')[1]
+                .split("stockflux-")[1]
                 .charAt(0)
                 .toUpperCase() +
                 app.appId.slice(11) +
-                'Shortcut'
+                "Shortcut"
             ];
           return <AppShortcut key={app.appId} app={app} />;
         })}
