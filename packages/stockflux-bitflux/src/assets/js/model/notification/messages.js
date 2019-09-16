@@ -1,5 +1,5 @@
 export default function() {
-    return {
-        messages: []
-    };
+  return {
+    messages: []
+  };
 }

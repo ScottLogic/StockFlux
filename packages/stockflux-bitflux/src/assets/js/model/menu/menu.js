@@ -7,11 +7,11 @@ import option from './option';
 import selector from './selector';
 
 export default {
-    head: head,
-    periodAdaptor: periodAdaptor,
-    productAdaptor: productAdaptor,
-    overlay: overlay,
-    dropdownConfig: dropdownConfig,
-    option: option,
-    selector: selector
+  head: head,
+  periodAdaptor: periodAdaptor,
+  productAdaptor: productAdaptor,
+  overlay: overlay,
+  dropdownConfig: dropdownConfig,
+  option: option,
+  selector: selector
 };

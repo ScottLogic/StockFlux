@@ -1,5 +1,3 @@
-const onChange = searchInput => window.fin.InterApplicationBus.publish('search-request', searchInput);
-
 document.addEventListener('click', (event) => {
     const button = event.target.closest('.buttonAction');
 

@@ -4,12 +4,9 @@ const defaultSymbol = 'AAPL';
 const defaultCompany = 'Apple Inc.';
 
 export default async (symbol, company) =>
-    fdc3.raiseIntent(
-        'ViewNews',
-        {
-            type: 'news',
-            name: symbol || defaultSymbol,
-            companyName: company || defaultCompany,
-            appName: 'stockflux-news'
-        }
-    );
+  fdc3.raiseIntent('ViewNews', {
+    type: 'news',
+    name: symbol || defaultSymbol,
+    companyName: company || defaultCompany,
+    appName: 'stockflux-news'
+  });

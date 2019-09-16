@@ -4,8 +4,8 @@ import navigationReset from './navigationReset';
 import overlay from './overlay';
 
 export default {
-    head: head,
-    selectors: selectors,
-    navigationReset: navigationReset,
-    overlay: overlay
+  head: head,
+  selectors: selectors,
+  navigationReset: navigationReset,
+  overlay: overlay
 };

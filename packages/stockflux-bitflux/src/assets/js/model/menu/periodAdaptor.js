@@ -1,6 +1,6 @@
 export default function(period) {
-    return {
-        displayString: period.display,
-        option: period
-    };
+  return {
+    displayString: period.display,
+    option: period
+  };
 }

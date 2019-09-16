@@ -1,5 +1,5 @@
 export default function() {
-    return {
-        trackingLatest: true
-    };
+  return {
+    trackingLatest: true
+  };
 }
