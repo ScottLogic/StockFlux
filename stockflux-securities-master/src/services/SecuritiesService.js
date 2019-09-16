@@ -27,7 +27,7 @@ export async function getSecurity(securityId) {
   }
 }
 
-export async function postSecurity(security) {
+export async function postSecurity(security, errorCallback, successCallback) {
   const fetchOptions = {
     method: 'POST',
     headers: {
@@ -37,13 +37,29 @@ export async function postSecurity(security) {
   };
 
   const options = await getWindowOptions();
-  return await fetch(
+  const response = await fetch(
     `${options.customData.apiBaseUrl}/admin/securities`,
     fetchOptions
   );
+  if (response.status === 201) {
+    successCallback();
+    return;
+  } else {
+    const errors = await response.json();
+    if (errorCallback) errorCallback(errors.messages);
+    else
+      throw new Error(
+        `Something went wrong while creating security ${security.name}.`
+      );
+  }
 }
 
-export async function updateSecurity(securityId, security) {
+export async function updateSecurity(
+  securityId,
+  security,
+  errorCallback,
+  successCallback
+) {
   const fetchOptions = {
     method: 'PUT',
     headers: {
@@ -52,10 +68,21 @@ export async function updateSecurity(securityId, security) {
     body: JSON.stringify(security)
   };
   const options = await getWindowOptions();
-  return await fetch(
+  const response = await fetch(
     `${options.customData.apiBaseUrl}/admin/securities/${securityId}`,
     fetchOptions
   );
+  if (response.status === 200) {
+    successCallback();
+    return;
+  } else {
+    const errors = await response.json();
+    if (errorCallback) errorCallback(errors.messages);
+    else
+      throw new Error(
+        `Something went wrong while updating security ${securityId}.`
+      );
+  }
 }
 
 export async function deleteSecurity(securityId) {
@@ -88,8 +115,9 @@ export async function patchSecurity(securityId, updates) {
     `${options.customData.apiBaseUrl}/admin/securities/${securityId}`,
     fetchOptions
   );
-  if (response.status === 200) return await response;
-  else {
+  if (response.status === 200) {
+    return await response;
+  } else {
     throw new Error(
       `Something went wrong while fetching security ${securityId}.`
     );

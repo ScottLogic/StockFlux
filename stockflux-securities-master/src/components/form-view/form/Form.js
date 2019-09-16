@@ -30,30 +30,21 @@ const Form = ({ securityId, setAlerts, setRedirect }) => {
     dispatch(action.setDisabled(!security.enabled));
   };
 
-  const processResponse = async (response, successStatusCode) => {
-    if (response.status === successStatusCode) {
-      setRedirect(true);
-    } else {
-      await populateAlerts(response);
-    }
-  };
-
   const submitEdit = securityId => {
-    service
-      .updateSecurity(securityId, getSecurityDTO())
-      .then(async response => await processResponse(response, 200));
+    service.updateSecurity(securityId, getSecurityDTO(), populateAlerts, () =>
+      setRedirect(true)
+    );
   };
 
   const submitNew = () => {
-    service
-      .postSecurity(getSecurityDTO())
-      .then(async response => await processResponse(response, 201));
+    service.postSecurity(getSecurityDTO(), populateAlerts, () =>
+      setRedirect(true)
+    );
   };
 
-  const populateAlerts = async response => {
-    const alerts = await response.json();
+  const populateAlerts = async messages => {
     setAlerts(
-      alerts.messages.map(alertMessage => ({
+      messages.map(alertMessage => ({
         message: alertMessage,
         type: AlertType.ERROR
       }))
@@ -87,14 +78,14 @@ const Form = ({ securityId, setAlerts, setRedirect }) => {
         <TextField
           label="EXCHANGE"
           id="name"
-          disabled={'disabled'}
+          disabled={securityId && 'disabled'}
           value={state.exchange}
           onChange={event => dispatch(action.setExchange(event.target.value))}
         />
         <TextField
           label="SYMBOL"
           id="name"
-          disabled={'disabled'}
+          disabled={securityId && 'disabled'}
           value={state.symbol}
           onChange={event => dispatch(action.setSymbol(event.target.value))}
         />
