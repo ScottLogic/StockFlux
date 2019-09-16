@@ -1,5 +1,4 @@
 {
-  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module",
@@ -20,7 +19,6 @@
     "linebreak-style": ["error", "windows"],
     "quotes": ["error", "single"],
     "prettier/prettier": "error",
-    "prettier": "true",
     "semi": ["error", "always"],
     "no-trailing-spaces": "error",
     "no-unused-vars": [

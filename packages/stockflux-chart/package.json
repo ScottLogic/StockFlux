@@ -12,7 +12,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-icons": "^3.7.0",
-    "react-scripts": "^3.0.0",
+    "react-scripts": "3.0.1",
     "stockflux-bitflux": "1.8.1",
     "stockflux-core": "13.0.0",
     "stockflux-components": "13.0.0",

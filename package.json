@@ -2,7 +2,7 @@
   "name": "stockflux",
   "version": "13.0.0",
   "devDependencies": {
-    "babel-eslint": "^10.0.3",
+    "babel-eslint": "10.0.1",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^6.3.0",
     "eslint-config-react-app": "^5.0.1",
@@ -17,8 +17,9 @@
   },
   "scripts": {
     "bootstrap": "lerna bootstrap --concurrency 1",
-    "lint": "./node_modules/.bin/eslint \"**/*.js\" --ignore-pattern node_modules/ --ignore-pattern build/ --ignore-pattern dist/",
     "build": "lerna run build",
+    "lint": "./node_modules/.bin/eslint \"**/*.js\" --ignore-pattern node_modules/ --ignore-pattern build/ --ignore-pattern dist/",
+    "lint-fix": "./node_modules/.bin/eslint \"**/*.js\" --ignore-pattern node_modules/ --ignore-pattern build/ --ignore-pattern dist/ --fix",
     "start-chart": "cd packages/stockflux-chart && npm run start",
     "start-container": "cd packages/stockflux-container && npm run start",
     "start-launcher": "cd packages/stockflux-launcher && npm run start",
