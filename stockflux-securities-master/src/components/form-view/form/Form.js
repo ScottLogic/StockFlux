@@ -87,14 +87,14 @@ const Form = ({ securityId, setAlerts, setRedirect }) => {
         <TextField
           label="EXCHANGE"
           id="name"
-          disabled={securityId}
+          disabled={'disabled'}
           value={state.exchange}
           onChange={event => dispatch(action.setExchange(event.target.value))}
         />
         <TextField
           label="SYMBOL"
           id="name"
-          disabled={securityId}
+          disabled={'disabled'}
           value={state.symbol}
           onChange={event => dispatch(action.setSymbol(event.target.value))}
         />

@@ -8,7 +8,7 @@ const TextField = ({ label, id, value, disabled, onChange }) => {
     <span className="input">
       <label htmlFor={id}>{label}</label>
       <input
-        className={classNames({ disabled: disabled })}
+        className={disabled}
         id={id}
         disabled={disabled}
         value={value}
