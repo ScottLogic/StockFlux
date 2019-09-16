@@ -6,6 +6,7 @@ import TextField from '../form-controls/text-field/TextField';
 import * as action from '../../../actions/Security';
 import * as service from '../../../services/SecuritiesService';
 import securityReducer, { initialState } from '../../../reducers/Security';
+import ValidationError from '../../../errors/ValidationError';
 import './Form.css';
 
 const Form = ({ securityId, setAlerts, setRedirect }) => {
@@ -30,16 +31,28 @@ const Form = ({ securityId, setAlerts, setRedirect }) => {
     dispatch(action.setDisabled(!security.enabled));
   };
 
-  const submitEdit = securityId => {
-    service.updateSecurity(securityId, getSecurityDTO(), populateAlerts, () =>
-      setRedirect(true)
-    );
+  const displayError = err => {
+    if (err instanceof ValidationError) {
+      populateAlerts(err.messages);
+    } else console.error(err);
   };
 
-  const submitNew = () => {
-    service.postSecurity(getSecurityDTO(), populateAlerts, () =>
-      setRedirect(true)
-    );
+  const submitEdit = async securityId => {
+    try {
+      await service.updateSecurity(securityId, getSecurityDTO());
+      setRedirect(true);
+    } catch (err) {
+      displayError(err);
+    }
+  };
+
+  const submitNew = async () => {
+    try {
+      await service.postSecurity(getSecurityDTO());
+      setRedirect(true);
+    } catch (err) {
+      displayError(err);
+    }
   };
 
   const populateAlerts = async messages => {
@@ -76,32 +89,32 @@ const Form = ({ securityId, setAlerts, setRedirect }) => {
         onSubmit={submitForm}
       >
         <TextField
-          label="EXCHANGE"
-          id="name"
+          label='EXCHANGE'
+          id='name'
           disabled={securityId && 'disabled'}
           value={state.exchange}
           onChange={event => dispatch(action.setExchange(event.target.value))}
         />
         <TextField
-          label="SYMBOL"
-          id="name"
+          label='SYMBOL'
+          id='name'
           disabled={securityId && 'disabled'}
           value={state.symbol}
           onChange={event => dispatch(action.setSymbol(event.target.value))}
         />
         <TextField
-          label="NAME"
-          id="name"
+          label='NAME'
+          id='name'
           value={state.name}
           onChange={event => dispatch(action.setName(event.target.value))}
         />
         <ToggleSwitch
-          label="DISABLED"
-          id="disabled-toggle"
+          label='DISABLED'
+          id='disabled-toggle'
           checked={state.disabled || false}
           onChange={() => dispatch(action.setDisabled(!state.disabled))}
         />
-        <button className="submit">{securityId ? 'SAVE' : 'CREATE'}</button>
+        <button className='submit'>{securityId ? 'SAVE' : 'CREATE'}</button>
       </form>
     </>
   );

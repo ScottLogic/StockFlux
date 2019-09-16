@@ -1,3 +1,5 @@
+import ValidationError from '../errors/ValidationError';
+
 async function getWindowOptions() {
   const currentWindow = await window.fin.Window.getCurrent();
   return currentWindow.getOptions();
@@ -8,7 +10,7 @@ export async function getSecurities() {
   const response = await fetch(
     `${options.customData.apiBaseUrl}/admin/securities`
   );
-  if (response.status === 200) return await response.json();
+  if (response.ok) return await response.json();
   else {
     throw new Error('Something went wrong while fetching securities.');
   }
@@ -19,7 +21,7 @@ export async function getSecurity(securityId) {
   const response = await fetch(
     `${options.customData.apiBaseUrl}/admin/securities/${securityId}`
   );
-  if (response.status === 200) return await response.json();
+  if (response.ok) return await response.json();
   else {
     throw new Error(
       `Something went wrong while fetching security ${securityId}.`
@@ -27,7 +29,7 @@ export async function getSecurity(securityId) {
   }
 }
 
-export async function postSecurity(security, errorCallback, successCallback) {
+export async function postSecurity(security) {
   const fetchOptions = {
     method: 'POST',
     headers: {
@@ -41,25 +43,14 @@ export async function postSecurity(security, errorCallback, successCallback) {
     `${options.customData.apiBaseUrl}/admin/securities`,
     fetchOptions
   );
-  if (response.status === 201) {
-    successCallback();
-    return;
-  } else {
-    const errors = await response.json();
-    if (errorCallback) errorCallback(errors.messages);
-    else
-      throw new Error(
-        `Something went wrong while creating security ${security.name}.`
-      );
+  if (response.ok) return;
+  else {
+    const error = await response.json();
+    throw new ValidationError(error.messages);
   }
 }
 
-export async function updateSecurity(
-  securityId,
-  security,
-  errorCallback,
-  successCallback
-) {
+export async function updateSecurity(securityId, security) {
   const fetchOptions = {
     method: 'PUT',
     headers: {
@@ -72,16 +63,10 @@ export async function updateSecurity(
     `${options.customData.apiBaseUrl}/admin/securities/${securityId}`,
     fetchOptions
   );
-  if (response.status === 200) {
-    successCallback();
-    return;
-  } else {
-    const errors = await response.json();
-    if (errorCallback) errorCallback(errors.messages);
-    else
-      throw new Error(
-        `Something went wrong while updating security ${securityId}.`
-      );
+  if (response.ok) return;
+  else {
+    const error = await response.json();
+    throw new ValidationError(error.messages);
   }
 }
 
@@ -94,7 +79,7 @@ export async function deleteSecurity(securityId) {
     `${options.customData.apiBaseUrl}/admin/securities/${securityId}`,
     fetchOptions
   );
-  if (response.status === 204) return;
+  if (response.ok) return;
   else {
     throw new Error(
       `Something went wrong while deleting security ${securityId}.`
@@ -115,9 +100,8 @@ export async function patchSecurity(securityId, updates) {
     `${options.customData.apiBaseUrl}/admin/securities/${securityId}`,
     fetchOptions
   );
-  if (response.status === 200) {
-    return await response;
-  } else {
+  if (response.ok) return await response;
+  else {
     throw new Error(
       `Something went wrong while fetching security ${securityId}.`
     );
