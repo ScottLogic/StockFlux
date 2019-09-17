@@ -10,42 +10,12 @@ export default function() {
   var tooltip = fc.chart
     .tooltip()
     .items([
-      [
-        'T',
-        function(d) {
-          return timeFormat(d.date);
-        }
-      ],
-      [
-        'O',
-        function(d) {
-          return priceFormat(d.open);
-        }
-      ],
-      [
-        'H',
-        function(d) {
-          return priceFormat(d.high);
-        }
-      ],
-      [
-        'L',
-        function(d) {
-          return priceFormat(d.low);
-        }
-      ],
-      [
-        'C',
-        function(d) {
-          return priceFormat(d.close);
-        }
-      ],
-      [
-        'V',
-        function(d) {
-          return volumeFormat(d.volume);
-        }
-      ]
+      ['T', d => timeFormat(d.date)],
+      ['O', d => priceFormat(d.open)],
+      ['H', d => priceFormat(d.high)],
+      ['L', d => priceFormat(d.low)],
+      ['C', d => priceFormat(d.close)],
+      ['V', d => volumeFormat(d.volume)]
     ])
     .decorate(function(selection) {
       selection
