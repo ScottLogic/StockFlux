@@ -1,25 +1,22 @@
-import React, { useEffect, useReducer } from 'react';
-import PropTypes from 'prop-types';
-import { AlertType } from '../../alerts/AlertType';
-import ToggleSwitch from '../form-controls/toggle-switch/ToggleSwitch';
-import TextField from '../form-controls/text-field/TextField';
-import * as action from '../../../actions/Security';
-import * as service from '../../../services/SecuritiesService';
-import securityReducer, { initialState } from '../../../reducers/Security';
-import ValidationError from '../../../errors/ValidationError';
-import './Form.css';
+import React, { useEffect, useReducer } from "react";
+import PropTypes from "prop-types";
+import { AlertType } from "../../alerts/AlertType";
+import ToggleSwitch from "../form-controls/toggle-switch/ToggleSwitch";
+import TextField from "../form-controls/text-field/TextField";
+import * as action from "../../../actions/Security";
+import * as service from "../../../services/SecuritiesService";
+import securityReducer, { initialState } from "../../../reducers/Security";
+import ValidationError from "../../../errors/ValidationError";
+import "./Form.css";
 
 const Form = ({ securityId, setAlerts, setRedirect }) => {
   const [state, dispatch] = useReducer(securityReducer, initialState);
 
   useEffect(() => {
     if (securityId) {
-      service
-        .getSecurity(securityId)
-        .then(security => {
-          setSecurity(security);
-        })
-        .catch(() => {});
+      service.getSecurity(securityId).then(security => {
+        setSecurity(security);
+      });
     }
   }, [securityId]);
 
@@ -85,36 +82,36 @@ const Form = ({ securityId, setAlerts, setRedirect }) => {
   return (
     <>
       <form
-        className={securityId ? 'edit-form' : 'add-form'}
+        className={securityId ? "edit-form" : "add-form"}
         onSubmit={submitForm}
       >
         <TextField
-          label='EXCHANGE'
-          id='name'
-          disabled={securityId && 'disabled'}
+          label="EXCHANGE"
+          id="name"
+          disabled={Boolean(securityId)}
           value={state.exchange}
           onChange={event => dispatch(action.setExchange(event.target.value))}
         />
         <TextField
-          label='SYMBOL'
-          id='name'
-          disabled={securityId && 'disabled'}
+          label="SYMBOL"
+          id="name"
+          disabled={Boolean(securityId)}
           value={state.symbol}
           onChange={event => dispatch(action.setSymbol(event.target.value))}
         />
         <TextField
-          label='NAME'
-          id='name'
+          label="NAME"
+          id="name"
           value={state.name}
           onChange={event => dispatch(action.setName(event.target.value))}
         />
         <ToggleSwitch
-          label='DISABLED'
-          id='disabled-toggle'
+          label="DISABLED"
+          id="disabled-toggle"
           checked={state.disabled || false}
           onChange={() => dispatch(action.setDisabled(!state.disabled))}
         />
-        <button className='submit'>{securityId ? 'SAVE' : 'CREATE'}</button>
+        <button className="submit">{securityId ? "SAVE" : "CREATE"}</button>
       </form>
     </>
   );

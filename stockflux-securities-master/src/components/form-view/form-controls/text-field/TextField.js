@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import './TextField.css';
+import React from "react";
+import PropTypes from "prop-types";
+import cx from "classnames";
+import "./TextField.css";
 
 const TextField = ({ label, id, value, disabled, onChange }) => {
   return (
     <span className="input">
       <label htmlFor={id}>{label}</label>
       <input
-        className={disabled}
+        className={cx({ disabled })}
         id={id}
         disabled={disabled}
         value={value}
@@ -22,7 +22,7 @@ TextField.propTypes = {
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-  disabled: PropTypes.string,
+  disabled: PropTypes.bool,
   onChange: PropTypes.func.isRequired
 };
 
