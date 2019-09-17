@@ -37,9 +37,6 @@ jobs:
           key: node_modules
           paths:
             - ./node_modules
-      - persist_to_workspace:
-          root: ~/stockflux
-          paths: .
 
   lint:
     working_directory: ~/stockflux
