@@ -66,7 +66,7 @@ body {
   cursor: pointer;
   outline: none;
   color: #37d8bc;
-  border: solid 1px #37d8bc;
+  border: solid 1px #307A71;
   border-radius: 50%;
   width: 28px;
   height: 28px; 
@@ -79,7 +79,7 @@ body {
 }
 
 .buttonAction:hover {
-  color: #7b7e82;
+  border: solid 1px #37d8bc;
 }
 
 .left .free-text-search,
