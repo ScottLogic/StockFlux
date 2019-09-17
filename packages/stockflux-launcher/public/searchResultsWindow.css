@@ -68,14 +68,14 @@ body {
   color: #37d8bc;
   border: solid 1px #37d8bc;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px; 
   margin: 0 5px;
 }
 
 .buttonIcon {
-  height: 20px;
-  width: 20px;
+  height: 12px;
+  width: 12px;
 }
 
 .buttonAction:hover {
