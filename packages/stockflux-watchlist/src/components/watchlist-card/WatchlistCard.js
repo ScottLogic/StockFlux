@@ -44,9 +44,11 @@ const WatchlistCard = props => {
         setStockData(tempStockData);
         setChartData(miniChartData.data);
       } else {
-        miniChartData ? setFetchError(miniChartData.error) : setFetchError('Error: data returned was undefined');
+        miniChartData
+          ? setFetchError(miniChartData.error)
+          : setFetchError('Error: data returned was undefined');
       }
-    }
+    };
     populateChart();
   }, [props.symbol]);
 
@@ -105,23 +107,25 @@ const WatchlistCard = props => {
               <div className="symbol">{props.symbol}</div>
             </div>
             <div className="icons">
-              <div className="news-symbol" onClick={(e) => {
-                Intents.viewNews(props.symbol, stockData.name)
-              }}>
-                <Components.News />
-              </div>
-              <div className="remove-symbol" onClick={(e) => {
+              <Components.NewsShortcut
+                className="news-symbol"
+                symbol={props.symbol}
+                name={stockData.name}
+              />
+              <div
+                className="remove-symbol"
+                onClick={e => {
                   e.stopPropagation();
-                  props.removeFromWatchList(props.symbol)}
-                }
+                  props.removeFromWatchList(props.symbol);
+                }}
               >
                 <FaTimes />
               </div>
             </div>
           </div>
-          <div 
-              className="card-bottom" 
-              onClick={() => Intents.viewChart(props.symbol, stockData.name)}
+          <div
+            className="card-bottom"
+            onClick={() => Intents.viewChart(props.symbol, stockData.name)}
           >
             <Minichart
               symbol={props.symbol}
