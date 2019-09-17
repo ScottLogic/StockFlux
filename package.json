@@ -13,7 +13,7 @@
     "launcher:start": "cd packages/stockflux-launcher && npm run start",
     "news:start": "cd packages/stockflux-news && npm run start",
     "watchlist:start": "cd packages/stockflux-watchlist && npm run start",
-    "start:all": "concurrently \"npm run chart:start\" \"npm run container:start\" \"npm run launcher:start\" \"npm run news:start\" \"npm run watchlist:start\"",
+    "all:start": "concurrently \"npm run chart:start\" \"npm run container:start\" \"npm run launcher:start\" \"npm run news:start\" \"npm run watchlist:start\"",
     "chart:launch": "cd packages/stockflux-chart && npm run launch",
     "launcher:launch": "cd packages/stockflux-launcher && npm run launch",
     "news:launch": "cd packages/stockflux-news && npm run launch",
