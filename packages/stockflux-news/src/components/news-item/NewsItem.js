@@ -24,7 +24,7 @@ const handleNewsItemClick = (link) => {
             }
         }
     };
-    OpenfinApiHelpers.create(winOption);
+    OpenfinApiHelpers.createWindow(winOption);
 }
 
 const articleDate = (unformattedDate) => {
@@ -32,7 +32,7 @@ const articleDate = (unformattedDate) => {
     return !isToday(date) ? format(date, 'DD MMM') : format(date, 'h:mm A');
 }
 
-const NewsItem = ({headline, source, copy, link, time}) => (
+const NewsItem = ({ headline, source, copy, link, time }) => (
     <div className="newsitem" onClick={() => handleNewsItemClick(link)}>
         <div className="newsitem-header">
             <div className="headline">{headline}</div>
