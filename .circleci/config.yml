@@ -35,6 +35,10 @@ jobs:
       - run:
           name: Build packages
           command: npm run build
+      - save_cache:
+          key: node_modules
+          paths:
+            - ./node_modules
       - persist_to_workspace:
           root: ~/stockflux
           paths: .
@@ -46,12 +50,11 @@ jobs:
     steps:
       - checkout:
           path: ~/stockflux
+      - restore_cache:
+          key: node_modules
       - run:
           name: Lint *.js files
           command: npm run lint
-      - persist_to_workspace:
-          root: ~/stockflux
-          paths: .
 
   deploy:
     working_directory: ~/stockflux
