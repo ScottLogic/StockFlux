@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Chart from './components/Chart';
 import Components from 'stockflux-components';
-import { Intents, StockFluxHooks } from 'stockflux-core';
+import { StockFluxHooks } from 'stockflux-core';
 import { FaSyncAlt } from 'react-icons/fa';
 import {
   useInterApplicationBusSubscribe,
@@ -45,18 +45,6 @@ const App = () => {
     }
   }
 
-  const onNewsClick = () => {
-    if (symbol) {
-      Intents.viewNews(symbol, name);
-    }
-  };
-
-  const onWatchlistClick = () => {
-    if (symbol && name) {
-      Intents.addWatchlist(symbol, name);
-    }
-  };
-
   const getData = symbol => {
     if (symbol) {
       chart.changeStockFluxProduct(symbol);
@@ -74,17 +62,13 @@ const App = () => {
             <div className="chart-nav-icons">
               <div
                 className={'chart-nav-icon' + (symbol ? '' : ' icon-disabled')}
-                onClick={onNewsClick}
               >
-                >
-                <Components.News />
+                <Components.NewsShortcut symbol name />
               </div>
               <div
                 className={'chart-nav-icon' + (symbol ? '' : ' icon-disabled')}
-                onClick={onWatchlistClick}
               >
-                >
-                <Components.Watchlist />
+                <Components.WatchlistShortcut symbol name />
               </div>
               <div
                 className={'chart-nav-icon' + (symbol ? '' : ' icon-disabled')}

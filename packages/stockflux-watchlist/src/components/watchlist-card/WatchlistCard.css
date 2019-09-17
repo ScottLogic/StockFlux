@@ -29,7 +29,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding-top: var(--padding-small)
+  padding-top: var(--padding-small);
 }
 
 .card-top .symbol {
@@ -75,11 +75,11 @@
   padding-right: 3px;
 }
 
-.news-symbol {
+.news-shortcut {
   padding-right: 7px;
 }
 
-.news-symbol:hover svg,
+.news-shortcut:hover svg,
 .remove-symbol:hover svg {
   color: #999999;
 }

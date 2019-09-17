@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react';
 import cx from 'classnames';
-import 'stockflux-components';
 import { OpenfinApiHelpers } from 'stockflux-core';
 import { useDockWindow, ScreenEdge } from 'openfin-react-hooks';
 import {
