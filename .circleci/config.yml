@@ -5,9 +5,13 @@ workflows:
   build:
     jobs:
       - install_and_build
+      - lint:
+          requires:
+            - install_and_build
       - deploy:
           requires:
             - install_and_build
+            - lint
           filters:
             branches:
               only:
@@ -35,6 +39,20 @@ jobs:
           root: ~/stockflux
           paths: .
 
+  lint:
+    working_directory: ~/stockflux
+    docker:
+      - image: circleci/node:10.15.1
+    steps:
+      - checkout:
+          path: ~/stockflux
+      - run:
+          name: Lint *.js files
+          command: npm run lint
+      - persist_to_workspace:
+          root: ~/stockflux
+          paths: .
+
   deploy:
     working_directory: ~/stockflux
     docker:
@@ -44,9 +62,9 @@ jobs:
           at: ~/stockflux
       - add_ssh_keys:
           fingerprints:
-            - "e1:6c:ab:38:9e:8f:ed:f1:60:4a:c7:b1:23:33:0c:07"
-            - "16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48" # GitHub RSA
-            - "ad:1c:08:a4:40:e3:6f:9c:f5:66:26:5d:4b:33:5d:8c" # GitHub DSA
+            - 'e1:6c:ab:38:9e:8f:ed:f1:60:4a:c7:b1:23:33:0c:07'
+            - '16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48' # GitHub RSA
+            - 'ad:1c:08:a4:40:e3:6f:9c:f5:66:26:5d:4b:33:5d:8c' # GitHub DSA
       - run:
           name: Add GitHub SSH fingerprints to known hosts
           command: |
