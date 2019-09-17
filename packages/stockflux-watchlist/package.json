@@ -14,7 +14,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-icons": "^3.7.0",
-    "react-scripts": "^3.0.1",
+    "react-scripts": "3.0.1",
     "stockflux-components": "13.0.0",
     "stockflux-core": "13.0.0"
   },
@@ -25,9 +25,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": [
     "chrome 68"

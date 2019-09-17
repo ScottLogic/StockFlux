@@ -78,16 +78,16 @@ const Watchlist = () => {
     showNotification({
       message: {
         symbol: newSymbol,
-        watchlistName: "My Watchlist",
+        watchlistName: 'My Watchlist',
         alreadyInWatchlist,
         messageText: `${alreadyInWatchlist ? ' moved' : ' added'} to the top`
       }
     });
   };
 
-  const removeFromWatchList = (symbol) => {
+  const removeFromWatchList = symbol => {
     setWatchlist(watchlist.filter(item => item !== symbol));
-  }
+  };
 
   return (
     <div
@@ -102,9 +102,7 @@ const Watchlist = () => {
       }
     >
       <div className="header">
-        <span className="watchlist-name">
-          My Watchlist
-        </span>
+        <span className="watchlist-name">My Watchlist</span>
       </div>
       <Components.ScrollWrapperY>
         {watchlist.length === 0 ? (

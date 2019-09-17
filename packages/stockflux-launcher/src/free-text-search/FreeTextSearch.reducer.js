@@ -6,7 +6,7 @@ export const INITIALISE = 'initialise';
 export const initialSearchState = {
   isSearching: false,
   hasErrors: false,
-  results: [],
+  results: []
 };
 
 export const reducer = (state, { type, results }) => {
@@ -16,7 +16,7 @@ export const reducer = (state, { type, results }) => {
         ...state,
         hasErrors: false,
         isSearching: true,
-        results: [],
+        results: []
       };
     case SUCCESS:
       return {
@@ -29,7 +29,7 @@ export const reducer = (state, { type, results }) => {
         ...state,
         hasErrors: true,
         isSearching: false,
-        results: [],
+        results: []
       };
     case INITIALISE:
       return initialSearchState;

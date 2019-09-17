@@ -8,7 +8,14 @@ import { StockFlux, Intents, Utils } from 'stockflux-core';
 import currentWindowService from '../../services/currentWindowService';
 import './WatchlistCard.css';
 
-const WatchlistCard = props => {
+const WatchlistCard = ({
+  symbol,
+  bindings,
+  isUnwatching,
+  dragOver,
+  dragOverBottom,
+  removeFromWatchList
+}) => {
   const [dragging, setDragging] = useState({
     isDragging: false,
     clientX: null,
@@ -25,7 +32,7 @@ const WatchlistCard = props => {
 
   useEffect(() => {
     const populateChart = async () => {
-      const miniChartData = await StockFlux.getMiniChartData(props.symbol);
+      const miniChartData = await StockFlux.getMiniChartData(symbol);
       if (miniChartData && miniChartData.data) {
         const data = miniChartData.data[0];
         const stockName = miniChartData.name;
@@ -44,11 +51,13 @@ const WatchlistCard = props => {
         setStockData(tempStockData);
         setChartData(miniChartData.data);
       } else {
-        miniChartData ? setFetchError(miniChartData.error) : setFetchError('Error: data returned was undefined');
+        miniChartData
+          ? setFetchError(miniChartData.error)
+          : setFetchError('Error: data returned was undefined');
       }
-    }
+    };
     populateChart();
-  }, [props.symbol]);
+  }, [symbol]);
 
   const getPrice = price => {
     return !isNaN(+price) ? (+price).toFixed(2) : null;
@@ -79,22 +88,22 @@ const WatchlistCard = props => {
 
   const onDragEnd = e => {
     if (e.dataTransfer.dropEffect === 'none') {
-      props.bindings.onDropOutside(props.symbol, stockData.name);
+      bindings.onDropOutside(symbol, stockData.name);
     }
     setDragging({ isDragging: false });
   };
 
   return stockData ? (
     <div
-      id={`stock_${props.symbol}`}
+      id={`stock_${symbol}`}
       className={classNames({
         'card-wrapper': true,
         dragging: dragging.isDragging,
-        dragOver: props.dragOver,
-        dragOverBottom: props.dragOverBottom
+        dragOver: dragOver,
+        dragOverBottom: dragOverBottom
       })}
-      draggable={!props.isUnwatching}
-      onDragStart={onDragStart(props.symbol)}
+      draggable={!isUnwatching}
+      onDragStart={onDragStart(symbol)}
       onDragEnd={onDragEnd}
     >
       <div className="drop-target">
@@ -102,29 +111,34 @@ const WatchlistCard = props => {
           <div className="card-top">
             <div className="details-container">
               <div className="name">{stockData.name}</div>
-              <div className="symbol">{props.symbol}</div>
+              <div className="symbol">{symbol}</div>
             </div>
             <div className="icons">
-              <div className="news-symbol" onClick={(e) => {
-                Intents.viewNews(props.symbol, stockData.name)
-              }}>
+              <div
+                className="news-symbol"
+                onClick={() => {
+                  Intents.viewNews(symbol, stockData.name);
+                }}
+              >
                 <Components.News />
               </div>
-              <div className="remove-symbol" onClick={(e) => {
+              <div
+                className="remove-symbol"
+                onClick={e => {
                   e.stopPropagation();
-                  props.removeFromWatchList(props.symbol)}
-                }
+                  removeFromWatchList(symbol);
+                }}
               >
                 <FaTimes />
               </div>
             </div>
           </div>
-          <div 
-              className="card-bottom" 
-              onClick={() => Intents.viewChart(props.symbol, stockData.name)}
+          <div
+            className="card-bottom"
+            onClick={() => Intents.viewChart(symbol, stockData.name)}
           >
             <Minichart
-              symbol={props.symbol}
+              symbol={symbol}
               chartData={chartData}
               fetchError={fetchError}
             />
@@ -164,8 +178,13 @@ WatchlistCard.propTypes = {
   bindings: PropTypes.shape({
     onIconClick: PropTypes.func.isRequired,
     onModalConfirmClick: PropTypes.func.isRequired,
-    onModalBackdropClick: PropTypes.func.isRequired
+    onModalBackdropClick: PropTypes.func.isRequired,
+    onDropOutside: PropTypes.func.isRequired
   }).isRequired,
+  onDragStart: PropTypes.func.isRequired,
+  onDragEnd: PropTypes.func.isRequired,
+  dragOver: PropTypes.func.isRequired,
+  dragOverBottom: PropTypes.func.isRequired,
   isUnwatching: PropTypes.bool.isRequired,
   removeFromWatchList: PropTypes.func.isRequired
 };

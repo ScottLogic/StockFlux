@@ -18,8 +18,12 @@ import './App.css';
 const isLauncherHorizontal = edge => edge === ScreenEdge.TOP;
 
 export default () => {
-  const [edge, windowActions] = useDockWindow(ScreenEdge.TOP, OpenfinApiHelpers.getCurrentWindowSync(),
-      true, { dockedWidth: 50, dockedHeight: 50 });
+  const [edge, windowActions] = useDockWindow(
+    ScreenEdge.TOP,
+    OpenfinApiHelpers.getCurrentWindowSync(),
+    true,
+    { dockedWidth: 50, dockedHeight: 50 }
+  );
 
   const prevEdgeRef = useRef();
   useEffect(() => {
@@ -30,7 +34,7 @@ export default () => {
   const edgeToBeChecked = edge === ScreenEdge.NONE ? prevEdge : edge;
 
   return (
-    <div className={cx('app', edgeToBeChecked)} >
+    <div className={cx('app', edgeToBeChecked)}>
       {!isLauncherHorizontal(edgeToBeChecked) && CloseButton}
       <AppShortcuts />
       <FreeTextSearch dockedTo={edge} />
@@ -53,7 +57,7 @@ export default () => {
           },
           {
             label: <FaRegHandRock />,
-            className: 'drag-handle',
+            className: 'drag-handle'
           }
         ]}
       />

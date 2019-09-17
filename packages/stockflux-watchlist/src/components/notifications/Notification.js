@@ -1,4 +1,5 @@
-/* eslint-disable no-undef */
+/*global fin*/
+
 export const showNotification = notificationDetails => {
   const details = notificationDetails;
   new fin.desktop.Notification({
