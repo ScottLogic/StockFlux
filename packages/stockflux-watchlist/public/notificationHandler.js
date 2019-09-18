@@ -1,4 +1,4 @@
-/*eslint-disable-next-line no-unused-vars*/
+// eslint-disable-next-line no-unused-vars
 function onNotificationMessage(message) {
   document.getElementById('symbol').innerHTML = message.symbol;
   document.getElementById('message').innerHTML = message.messageText;
