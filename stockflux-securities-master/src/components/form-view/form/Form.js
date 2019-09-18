@@ -14,9 +14,13 @@ const Form = ({ securityId, setAlerts, setRedirect }) => {
 
   useEffect(() => {
     if (securityId) {
-      service.getSecurity(securityId).then(security => {
-        setSecurity(security);
-      });
+      try {
+        service.getSecurity(securityId).then(security => {
+          setSecurity(security);
+        });
+      } catch (err) {
+        displayError(err);
+      }
     }
   }, [securityId]);
 
