@@ -1,41 +1,41 @@
 {
-    "devtools_port": 9091,
-    "runtime": {
-        "arguments": "--enable-aggressive-domstorage-flushing",
-        "version": "13.76.43.31"
+  "devtools_port": 9091,
+  "runtime": {
+    "arguments": "--enable-aggressive-domstorage-flushing",
+    "version": "13.76.43.31"
+  },
+  "startup_app": {
+    "name": "stockflux-launcher",
+    "uuid": "stockflux-launcher",
+    "url": "http://localhost:8053/index.html",
+    "applicationIcon": "http://localhost:8053/favicon.ico",
+    "autoShow": true,
+    "defaultHeight": 70,
+    "defaultWidth": 800,
+    "defaultTop": 0,
+    "resizable": false,
+    "maximizable": false,
+    "minimizable": false,
+    "frame": false,
+    "shadow": true,
+    "opacity": 0.95,
+    "alwaysOnTop": true,
+    "contextMenu": true,
+    "waitForPageLoad": true,
+    "cornerRounding": {
+      "height": 0,
+      "width": 0
     },
-    "startup_app": {
-        "name": "stockflux-launcher",
-        "uuid": "stockflux-launcher",
-        "url": "http://localhost:8053/index.html",
-        "applicationIcon": "http://localhost:8053/favicon.ico",
-        "autoShow": true,
-        "defaultHeight": 70,
-        "defaultWidth": 800,
-        "defaultTop": 0,
-        "resizable": false,
-        "maximizable": false,
-        "minimizable": false,
-        "frame": false,
-        "shadow": true,
-        "opacity": 0.95,
-        "alwaysOnTop": true,
-        "contextMenu": true,
-        "waitForPageLoad": true,
-        "cornerRounding": {
-            "height": 0,
-            "width": 0
-        },
-        "customData": {
-            "apiBaseUrl": "https://d3capoqa8f983r.cloudfront.net/api"
-        }
-    },
-    "services": [],
-    "shortcut": {
-        "company": "ScottLogic",
-        "description": "Hosts StockFlux App Launcher as an OpenFin application.",
-        "name": "StockFlux App Launcher",
-        "icon": "http://localhost:8053/favicon.ico"
-    },
-    "splashScreenImage": "http://localhost:8053/splashscreen.png"
+    "customData": {
+      "apiBaseUrl": "https://d3capoqa8f983r.cloudfront.net/api"
+    }
+  },
+  "services": [],
+  "shortcut": {
+    "company": "ScottLogic",
+    "description": "Hosts StockFlux App Launcher as an OpenFin application.",
+    "name": "StockFlux App Launcher",
+    "icon": "http://localhost:8053/favicon.ico"
+  },
+  "splashScreenImage": "http://localhost:8053/splashscreen.png"
 }
