@@ -34,7 +34,7 @@ jobs:
           name: Root package install
           command: npm ci
       - save_cache:
-          key: node_modules-{{ checksum "package-lock.json" }}
+          key: deps-{{ checksum "package-lock.json" }}
           paths:
             - ./node_modules
 
@@ -46,10 +46,77 @@ jobs:
       - checkout:
           path: ~/stockflux
       - restore_cache:
-          key: node_modules-{{ checksum "package-lock.json" }}
+          key: deps-{{ checksum "package-lock.json" }}
       - run:
           name: Lint *.js files
-          command: npm run lint
+          command: npm run
+      - checkout:
+          path: ~/stockflux/packages
+      - save_cache:
+          key: deps-bitflux-{{ checksum "package-lock.json" }}
+          paths:
+            - ./stockflux-bitflux/node_modules
+      - save_cache:
+          key: deps-chart-{{ checksum "package-lock.json" }}
+          paths:
+            - ./stockflux-chart/node_modules
+      - save_cache:
+          key: deps-components-{{ checksum "package-lock.json" }}
+          paths:
+            - ./stockflux-components/node_modules
+      - save_cache:
+          key: deps-container-{{ checksum "package-lock.json" }}
+          paths:
+            - ./stockflux-container/node_modules
+      - save_cache:
+          key: deps-core-{{ checksum "package-lock.json" }}
+          paths:
+            - ./stockflux-core/node_modules
+      - save_cache:
+          key: deps-launcher-{{ checksum "package-lock.json" }}
+          paths:
+            - ./stockflux-launcher/node_modules
+      - save_cache:
+          key: deps-news-{{ checksum "package-lock.json" }}
+          paths:
+            - ./stockflux-news/node_modules
+      - save_cache:
+          key: deps-watchlist-{{ checksum "package-lock.json" }}
+          paths:
+            - ./stockflux-watchlist/node_modules
+
+      - save_cache:
+          key: deps-bitflux-{{ checksum "package-lock.json" }}
+          paths:
+            - ./stockflux-bitflux/node_modules
+      - save_cache:
+          key: deps-chart-{{ checksum "package-lock.json" }}
+          paths:
+            - ./stockflux-chart/node_modules
+      - save_cache:
+          key: deps-components-{{ checksum "package-lock.json" }}
+          paths:
+            - ./stockflux-components/node_modules
+      - save_cache:
+          key: deps-container-{{ checksum "package-lock.json" }}
+          paths:
+            - ./stockflux-container/node_modules
+      - save_cache:
+          key: deps-core-{{ checksum "package-lock.json" }}
+          paths:
+            - ./stockflux-core/node_modules
+      - save_cache:
+          key: deps-launcher-{{ checksum "package-lock.json" }}
+          paths:
+            - ./stockflux-launcher/node_modules
+      - save_cache:
+          key: deps-news-{{ checksum "package-lock.json" }}
+          paths:
+            - ./stockflux-news/node_modules
+      - save_cache:
+          key: deps-watchlist-{{ checksum "package-lock.json" }}
+          paths:
+            - ./stockflux-watchlist/node_modules
 
   build:
     working_directory: ~/stockflux
@@ -59,7 +126,7 @@ jobs:
       - checkout:
           path: ~/stockflux
       - restore_cache:
-          key: node_modules-{{ checksum "package-lock.json" }}
+          key: deps-{{ checksum "package-lock.json" }}
       - run:
           name: Bootstrap packages
           command: npm run bootstrap

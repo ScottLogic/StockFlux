@@ -114,14 +114,11 @@ const WatchlistCard = ({
               <div className="symbol">{symbol}</div>
             </div>
             <div className="icons">
-              <div
+              <Components.NewsShortcut
                 className="news-symbol"
-                onClick={() => {
-                  Intents.viewNews(symbol, stockData.name);
-                }}
-              >
-                <Components.News />
-              </div>
+                symbol={symbol}
+                name={stockData.name}
+              />
               <div
                 className="remove-symbol"
                 onClick={e => {
