@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { OpenfinApiHelpers } from "stockflux-core";
-import Components from "stockflux-components";
+// import Components from "stockflux-components";
 import "./AppShortcuts.css";
+import createNewsChildWindow from "../childWindowLauncher";
 
 export default () => {
   const [apps, setApps] = useState([]);
@@ -34,16 +35,29 @@ export default () => {
              (e.g. "news", "watchlist", "chart"), capitalizing the first letter and
              appending "Shortcut" at the end
           */
-          const AppShortcut =
-            Components[
-              app.appId
-                .split("stockflux-")[1]
-                .charAt(0)
-                .toUpperCase() +
-                app.appId.slice(11) +
-                "Shortcut"
-            ];
-          return <AppShortcut key={app.appId} app={app} />;
+
+          return (
+            <button
+              key={app.appId}
+              onClick={e => {
+                e.preventDefault();
+                createNewsChildWindow(app);
+              }}
+            >
+              {app.appId}
+            </button>
+          );
+
+          // const AppShortcut =
+          //   Components[
+          //     app.appId
+          //       .split("stockflux-")[1]
+          //       .charAt(0)
+          //       .toUpperCase() +
+          //       app.appId.slice(11) +
+          //       "Shortcut"
+          //   ];
+          // return <AppShortcut key={app.appId} app={app} />;
         })}
     </div>
   );
