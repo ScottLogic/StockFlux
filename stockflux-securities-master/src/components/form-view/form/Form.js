@@ -12,17 +12,6 @@ import "./Form.css";
 const Form = ({ securityId, setAlerts, setRedirect }) => {
   const [state, dispatch] = useReducer(securityReducer, initialState);
 
-  /*
-  useEffect(() => {
-  async function fetchData() {
-    // You can await here
-    const response = await MyAPI.getData(someId);
-    // ...
-  }
-  fetchData();
-}, [someId]); // Or [] if effect doesn't need props or state
-*/
-
   const populateAlerts = useCallback(
     async messages => {
       setAlerts(
