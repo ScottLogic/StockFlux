@@ -1,24 +1,12 @@
 import { OpenfinApiHelpers } from "stockflux-core";
 
-export default async function createNewsChildWindow(manifest, symbol, name) {
-  const manifestUrl =
-    typeof manifest === "string" ? manifest : manifest.manifest;
-
-  const response = await fetch(manifestUrl);
-  if (!response.ok) {
-    throw new Error("Could not retrieve news manifest");
-  }
-
-  const body = await response.json();
-  const options = body.startup_app;
-
-  options.uuid = "stockflux-launcher";
-  if (symbol) {
-    options.name = `${options.name}[${symbol}]`;
-  }
-
+async function createChildWindow(options) {
   const application = await window.fin.Application.getCurrent();
   const childWindows = await application.getChildWindows();
+  const currentWindow = await window.fin.Window.getCurrent();
+  const currentOptions = await currentWindow.getOptions();
+
+  options.uuid = currentOptions.uuid;
 
   let match;
   for (let i = 0; i < childWindows.length; i++) {
@@ -36,26 +24,49 @@ export default async function createNewsChildWindow(manifest, symbol, name) {
 
   await OpenfinApiHelpers.createWindow(options);
   return true;
+}
 
-  // const matches = childWindows.filter(async childWindow => {
-  //   const childWindowOptions = await childWindow.getOptions();
-  //   console.log(options.name, childWindowOptions.name);
-  //   return childWindowOptions.name === options.name;
-  // });
+async function getChildWindowOptions(manifest) {
+  const manifestUrl =
+    typeof manifest === "string" ? manifest : manifest.manifest;
 
-  // if (existingChildWindows[options.name]) {
-  //   existingChildWindows[options.name].bringToFront();
-  //   return true;
-  // }
+  const response = await fetch(manifestUrl);
+  if (!response.ok) {
+    throw new Error("Could not retrieve manifest");
+  }
 
-  // OpenfinApiHelpers.createWindow(options)
-  //   .then(window => {
-  //     existingChildWindows[options.name] = window;
-  //     existingChildWindows[options.name].on("closed", () => {
-  //       delete existingChildWindows[options.name];
-  //     });
-  //   })
-  //   .catch(e => console.error("Could not open child window"));
+  const body = await response.json();
+  return body.startup_app;
+}
 
-  // console.log(options);
+export async function createNewsChildWindow(manifest, symbol, name) {
+  const options = await getChildWindowOptions(manifest);
+  options.name = `stockflux-news${symbol ? `[${symbol}]` : ""}`;
+
+  // Add symbol and name to customData for launching news application
+
+  if (!options.customData) {
+    options.customData = {};
+  }
+
+  options.customData.symbol = symbol;
+  options.customData.name = name;
+
+  return await createChildWindow(options);
+}
+
+export async function createWatchlistChildWindow(manifest, symbol) {
+  const options = await getChildWindowOptions(manifest);
+  options.name = `stockflux-watchlist`;
+
+  return await createChildWindow(options);
+}
+
+export async function createChartChildWindow(manifest, symbol) {
+  const options = await getChildWindowOptions(manifest);
+  options.name = `stockflux-chart${symbol ? `[${symbol}]` : ""}`;
+
+  // Add symbol to customData for launching chart app
+
+  return await createChildWindow(options);
 }

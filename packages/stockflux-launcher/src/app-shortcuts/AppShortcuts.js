@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { OpenfinApiHelpers } from "stockflux-core";
 // import Components from "stockflux-components";
 import "./AppShortcuts.css";
-import createNewsChildWindow from "../childWindowLauncher";
+import { createWatchlistChildWindow } from "../childWindowLauncher";
 
 export default () => {
   const [apps, setApps] = useState([]);
@@ -41,7 +41,7 @@ export default () => {
               key={app.appId}
               onClick={e => {
                 e.preventDefault();
-                createNewsChildWindow(app);
+                createWatchlistChildWindow(app);
               }}
             >
               {app.appId}
