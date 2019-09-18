@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useCallback } from "react";
 import PropTypes from "prop-types";
 import { AlertType } from "../../alerts/AlertType";
 import ToggleSwitch from "../form-controls/toggle-switch/ToggleSwitch";
@@ -12,17 +12,46 @@ import "./Form.css";
 const Form = ({ securityId, setAlerts, setRedirect }) => {
   const [state, dispatch] = useReducer(securityReducer, initialState);
 
+  /*
+  useEffect(() => {
+  async function fetchData() {
+    // You can await here
+    const response = await MyAPI.getData(someId);
+    // ...
+  }
+  fetchData();
+}, [someId]); // Or [] if effect doesn't need props or state
+*/
+
+  const populateAlerts = useCallback(
+    async messages => {
+      setAlerts(
+        messages.map(alertMessage => ({
+          message: alertMessage,
+          type: AlertType.ERROR
+        }))
+      );
+    },
+    [setAlerts]
+  );
+
+  const displayError = useCallback(
+    err => {
+      if (err instanceof ValidationError) {
+        populateAlerts(err.messages);
+      } else console.error(err);
+    },
+    [populateAlerts]
+  );
+
   useEffect(() => {
     if (securityId) {
-      try {
-        service.getSecurity(securityId).then(security => {
-          setSecurity(security);
-        });
-      } catch (err) {
-        displayError(err);
-      }
+      service
+        .getSecurity(securityId)
+        .then(setSecurity)
+        .catch(displayError);
     }
-  }, [securityId]);
+  }, [securityId, displayError]);
 
   const setSecurity = security => {
     dispatch(action.setName(security.name));
@@ -30,12 +59,6 @@ const Form = ({ securityId, setAlerts, setRedirect }) => {
     dispatch(action.setSymbol(security.symbol));
     // TODO: Change `!security.enabled` to `security.disabled` once BE is updated
     dispatch(action.setDisabled(!security.enabled));
-  };
-
-  const displayError = err => {
-    if (err instanceof ValidationError) {
-      populateAlerts(err.messages);
-    } else console.error(err);
   };
 
   const submitEdit = async securityId => {
@@ -54,15 +77,6 @@ const Form = ({ securityId, setAlerts, setRedirect }) => {
     } catch (err) {
       displayError(err);
     }
-  };
-
-  const populateAlerts = async messages => {
-    setAlerts(
-      messages.map(alertMessage => ({
-        message: alertMessage,
-        type: AlertType.ERROR
-      }))
-    );
   };
 
   // TODO: Remove once BE is storing enabled as disabled
