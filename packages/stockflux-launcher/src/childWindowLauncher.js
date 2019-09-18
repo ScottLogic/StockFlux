@@ -59,7 +59,19 @@ export async function createWatchlistChildWindow(manifest, symbol) {
   const options = await getChildWindowOptions(manifest);
   options.name = `stockflux-watchlist`;
 
-  return await createChildWindow(options);
+  await createChildWindow(options);
+
+  try {
+    window.fin.InterApplicationBus.send(
+      { uuid: "stockflux-launcher" },
+      "watchlist",
+      {
+        symbol: "MSFT"
+      }
+    );
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 export async function createChartChildWindow(manifest, symbol) {

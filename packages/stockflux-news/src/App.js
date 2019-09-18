@@ -1,8 +1,11 @@
 import React, { useRef, useState, useEffect, useReducer } from "react";
 import Components from "stockflux-components";
 import { StockFlux, StockFluxHooks } from "stockflux-core";
-import { useOptions } from "openfin-react-hooks";
 import NewsItem from "./components/news-item/NewsItem";
+import {
+  useInterApplicationBusSubscribe,
+  useOptions
+} from "openfin-react-hooks";
 import "./App.css";
 
 const SEARCHING = "searching";
@@ -53,6 +56,19 @@ function App() {
   const listContainer = useRef(null);
 
   const { isSearching, results } = searchState;
+
+  const { data } = useInterApplicationBusSubscribe(
+    { uuid: options ? options.uuid : "*" },
+    "news"
+  );
+
+  useEffect(() => {
+    if (data && data.message) {
+      if (data.message.symbol) {
+        setSymbol(data.message.symbol);
+      }
+    }
+  }, [data, setSymbol]);
 
   useEffect(() => {
     if (options && options.customData.symbol) {

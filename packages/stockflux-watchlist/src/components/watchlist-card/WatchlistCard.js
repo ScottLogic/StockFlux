@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import * as PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { FaTimes } from 'react-icons/fa';
-import Minichart from '../minichart/Minichart';
-import Components from 'stockflux-components';
-import { StockFlux, Intents, Utils } from 'stockflux-core';
-import currentWindowService from '../../services/currentWindowService';
-import './WatchlistCard.css';
+import React, { useState, useEffect } from "react";
+import * as PropTypes from "prop-types";
+import classNames from "classnames";
+import { FaTimes } from "react-icons/fa";
+import Minichart from "../minichart/Minichart";
+import Components from "stockflux-components";
+import { StockFlux, Intents, Utils } from "stockflux-core";
+import currentWindowService from "../../services/currentWindowService";
+import { useOptions } from "openfin-react-hooks";
+import "./WatchlistCard.css";
 
 const WatchlistCard = props => {
   const [dragging, setDragging] = useState({
@@ -15,13 +16,15 @@ const WatchlistCard = props => {
     offsetY: null
   });
   const [chartData, setChartData] = useState([]);
-  const [fetchError, setFetchError] = useState('');
+  const [fetchError, setFetchError] = useState("");
   const [stockData, setStockData] = useState({
-    name: 'N/A',
+    name: "N/A",
     price: 0,
     delta: 0,
     percentage: 0
   });
+
+  const [options] = useOptions();
 
   useEffect(() => {
     const populateChart = async () => {
@@ -46,7 +49,7 @@ const WatchlistCard = props => {
       } else {
         miniChartData
           ? setFetchError(miniChartData.error)
-          : setFetchError('Error: data returned was undefined');
+          : setFetchError("Error: data returned was undefined");
       }
     };
     populateChart();
@@ -62,7 +65,7 @@ const WatchlistCard = props => {
     return !isNaN(+percentage) ? (+percentage).toFixed(2) : null;
   };
   const getName = name => {
-    return name ? Utils.truncate(name) : '';
+    return name ? Utils.truncate(name) : "";
   };
 
   const onDragStart = symbol => {
@@ -74,23 +77,36 @@ const WatchlistCard = props => {
         window: currentWindowService.getCurrentWindowName()
       };
       setDragging({ isDragging: true, clientX, offsetY });
-      e.dataTransfer.setData(JSON.stringify(symbolData), '');
-      e.dataTransfer.setData(JSON.stringify(windowData), '');
+      e.dataTransfer.setData(JSON.stringify(symbolData), "");
+      e.dataTransfer.setData(JSON.stringify(windowData), "");
     };
   };
 
   const onDragEnd = e => {
-    if (e.dataTransfer.dropEffect === 'none') {
+    if (e.dataTransfer.dropEffect === "none") {
       props.bindings.onDropOutside(props.symbol, stockData.name);
     }
     setDragging({ isDragging: false });
   };
 
+  const sendSymbolToNews = () => {};
+  try {
+    window.fin.InterApplicationBus.send(
+      { uuid: options ? options.uuid : "*" },
+      "news",
+      {
+        symbol: props.symbol
+      }
+    );
+  } catch (err) {
+    console.error(err);
+  }
+
   return stockData ? (
     <div
       id={`stock_${props.symbol}`}
       className={classNames({
-        'card-wrapper': true,
+        "card-wrapper": true,
         dragging: dragging.isDragging,
         dragOver: props.dragOver,
         dragOverBottom: props.dragOverBottom
@@ -111,6 +127,7 @@ const WatchlistCard = props => {
                 className="news-symbol"
                 symbol={props.symbol}
                 name={stockData.name}
+                onClick={sendSymbolToNews}
               />
               <div
                 className="remove-symbol"
@@ -133,24 +150,24 @@ const WatchlistCard = props => {
               fetchError={fetchError}
             />
             <div className="details">
-              {<div className="price">{stockData.price || 'N/A'}</div>}
-              {<div className="delta">{stockData.delta || ''}</div>}
+              {<div className="price">{stockData.price || "N/A"}</div>}
+              {<div className="delta">{stockData.delta || ""}</div>}
 
               <div className="percentage">
                 {stockData.percentage ? (
                   <>
                     <div
                       className={classNames({
-                        'stockflux-icon arrow-up': stockData.percentage > 0,
-                        'stockflux-icon arrow-down': stockData.percentage < 0
+                        "stockflux-icon arrow-up": stockData.percentage > 0,
+                        "stockflux-icon arrow-down": stockData.percentage < 0
                       })}
                       title="Stock Arrow"
                       draggable="false"
                     />
-                    {Math.abs(stockData.percentage) + '%'}
+                    {Math.abs(stockData.percentage) + "%"}
                   </>
                 ) : (
-                  ''
+                  ""
                 )}
               </div>
             </div>
