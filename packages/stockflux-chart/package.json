@@ -22,6 +22,7 @@
   "scripts": {
     "start": "cross-env BROWSER=none PORT=8051 react-scripts start",
     "launch": "openfin --launch --config ./public/app.dev.json",
+    "launch-appd": "openfin --launch --config http://localhost:3000/api/apps/v1/stockflux-chart/app.json",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -24,7 +24,7 @@ const handleNewsItemClick = link => {
       }
     }
   };
-  OpenfinApiHelpers.create(winOption);
+  OpenfinApiHelpers.createWindow(winOption);
 };
 
 const articleDate = unformattedDate => {
