@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Chart from './components/Chart';
 import Components from 'stockflux-components';
-import { StockFluxHooks } from 'stockflux-core';
 import { FaSyncAlt } from 'react-icons/fa';
 import {
   useInterApplicationBusSubscribe,
@@ -18,30 +17,42 @@ chart.periodsOfDataToFetch(1200);
 chart.proportionOfDataToDisplayByDefault(112 / 1200);
 
 const App = () => {
-  const [symbol, setSymbol] = StockFluxHooks.useLocalStorage(
-    'chartSymbol',
-    null
-  );
+  const [symbol, setSymbol] = useState(null);
   const [parentUuid, setParentUuid] = useState(null);
   const [listenerSymbol, setListenerSymbol] = useState(null);
-  const [name, setName] = StockFluxHooks.useLocalStorage('chartName', null);
+  const [name, setName] = useState(null);
   const [options] = useOptions();
+  const intentsEnabled = Boolean(
+    options && options.customData && options.customData.intentsEnabled
+  );
 
-  if (options && listenerSymbol !== options.customData.symbol) {
-    setListenerSymbol(options.customData.symbol);
-    setParentUuid({ uuid: options.uuid });
-  }
+  useEffect(() => {
+    if (intentsEnabled) {
+      if (options && listenerSymbol !== options.customData.symbol) {
+        setListenerSymbol(options.customData.symbol);
+        setParentUuid({ uuid: options.uuid });
+      }
+    } else {
+      if (options && options.customData && options.customData.symbol) {
+        setSymbol(options.customData.symbol);
+        setName(options.customData.name ? options.customData.name : null);
+      }
+    }
+  }, [intentsEnabled, options, listenerSymbol, setSymbol, setName]);
 
   const { data } = useInterApplicationBusSubscribe(
     parentUuid ? parentUuid : ALL,
     'stockFluxChart:' + listenerSymbol
   );
-  if (data && data.message) {
-    if (data.message.symbol && symbol !== data.message.symbol) {
-      setSymbol(data.message.symbol);
-    }
-    if (data.message.name && name !== data.message.name) {
-      setName(data.message.name);
+
+  if (intentsEnabled) {
+    if (data && data.message) {
+      if (data.message.symbol && symbol !== data.message.symbol) {
+        setSymbol(data.message.symbol);
+      }
+      if (data.message.name && name !== data.message.name) {
+        setName(data.message.name);
+      }
     }
   }
 
@@ -58,7 +69,7 @@ const App = () => {
           <Components.Titlebar />
           <div id="showcase-title">
             {symbol && <div className="code">{symbol}</div>}
-            <div className="name">{name ? name : 'Generated Data'}</div>
+            <div className="name">{!symbol ? 'Generated Data' : name}</div>
             <div className="chart-nav-icons">
               <div
                 className={'chart-nav-icon' + (symbol ? '' : ' icon-disabled')}
