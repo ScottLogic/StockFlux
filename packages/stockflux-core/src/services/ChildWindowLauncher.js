@@ -33,7 +33,7 @@ const getChildWindowOptions = async manifest => {
   return body.startup_app;
 };
 
-export default async (manifest, modifyOptions) => {
+export const launchChildWindow = async (manifest, modifyOptions) => {
   modifyOptions = modifyOptions === undefined ? o => o : modifyOptions;
 
   return await createChildWindow(

@@ -17,7 +17,12 @@ import {
   getStockFluxApps,
   getStockFluxApp
 } from './openfin-api-utils/openfinApiHelpers';
-import launchChildWindow from './services/ChildWindowLauncher';
+import { launchChildWindow } from './services/ChildWindowLauncher';
+import {
+  launchChart,
+  launchWatchlist,
+  launchNews
+} from './services/app-launchers';
 
 export const Utils = {
   truncate
@@ -52,4 +57,9 @@ export const StockFluxHooks = {
   useLocalStorage
 };
 
-export { launchChildWindow };
+export const Launchers = {
+  launchChildWindow,
+  launchChart,
+  launchWatchlist,
+  launchNews
+};
