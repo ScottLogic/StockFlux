@@ -47,6 +47,12 @@ const Watchlist = () => {
     [watchlist]
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const addToWatchlist = useCallback(symbol => {
+    setWatchlist(getDistinctElementArray([symbol, ...watchlist]));
+    displayNotification(symbol);
+  });
+
   const { data } = useInterApplicationBusSubscribe(
     { uuid: options ? options.uuid : '*' },
     'stockflux-watchlist'
@@ -55,13 +61,10 @@ const Watchlist = () => {
   useEffect(() => {
     if (data && data.message) {
       if (data.message.symbol) {
-        setWatchlist(
-          getDistinctElementArray([data.message.symbol, ...watchlist])
-        );
-        displayNotification(data.message.symbol);
+        addToWatchlist(data.message.symbol);
       }
     }
-  }, [data, displayNotification, setWatchlist, watchlist]);
+  }, [addToWatchlist, data]);
 
   const onIconClick = symbol => {
     return e => {

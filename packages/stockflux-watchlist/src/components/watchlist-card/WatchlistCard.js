@@ -196,10 +196,10 @@ WatchlistCard.propTypes = {
     onModalBackdropClick: PropTypes.func.isRequired,
     onDropOutside: PropTypes.func.isRequired
   }).isRequired,
-  onDragStart: PropTypes.func.isRequired,
-  onDragEnd: PropTypes.func.isRequired,
-  dragOver: PropTypes.func.isRequired,
-  dragOverBottom: PropTypes.func.isRequired,
+  onDragStart: PropTypes.func,
+  onDragEnd: PropTypes.func,
+  dragOver: PropTypes.bool.isRequired,
+  dragOverBottom: PropTypes.bool.isRequired,
   isUnwatching: PropTypes.bool.isRequired,
   removeFromWatchList: PropTypes.func.isRequired
 };
