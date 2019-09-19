@@ -1,16 +1,16 @@
-import React, { useRef, useState, useEffect, useReducer } from "react";
-import Components from "stockflux-components";
-import { StockFlux, StockFluxHooks, OpenfinApiHelpers} from "stockflux-core";
-import NewsItem from "./components/news-item/NewsItem";
+import React, { useRef, useState, useEffect, useReducer } from 'react';
+import Components from 'stockflux-components';
+import { StockFlux, StockFluxHooks } from 'stockflux-core';
+import NewsItem from './components/news-item/NewsItem';
 import {
   useInterApplicationBusSubscribe,
   useOptions
-} from "openfin-react-hooks";
-import "./App.css";
+} from 'openfin-react-hooks';
+import './App.css';
 
-const SEARCHING = "searching";
-const SUCCESS = "success";
-const ERROR = "error";
+const SEARCHING = 'searching';
+const SUCCESS = 'success';
+const ERROR = 'error';
 
 const initialSearchState = {
   isSearching: false,
@@ -48,7 +48,7 @@ function App() {
 
   const [searchState, dispatch] = useReducer(searchReducer, initialSearchState);
   const [symbol, setSymbol] = StockFluxHooks.useLocalStorage(
-    "newsSymbol",
+    'newsSymbol',
     null
   );
   const [name, setName] = useState(null);
@@ -58,8 +58,8 @@ function App() {
   const { isSearching, results } = searchState;
 
   const { data } = useInterApplicationBusSubscribe(
-    { uuid: options ? options.uuid : "*" },
-    "stockflux-news"
+    { uuid: options ? options.uuid : '*' },
+    'stockflux-news'
   );
 
   useEffect(() => {

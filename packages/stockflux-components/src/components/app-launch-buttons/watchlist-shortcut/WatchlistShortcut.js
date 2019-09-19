@@ -1,7 +1,7 @@
-import React from "react";
-import { Intents } from "stockflux-core";
-import WatchlistIcon from "../../icons/watchlist.svg";
-import "../AppShortcut.css";
+import React from 'react';
+import { Intents } from 'stockflux-core';
+import WatchlistIcon from '../../icons/watchlist.svg';
+import '../AppShortcut.css';
 
 const WatchlistShortcut = ({ symbol, name, onClick }) => {
   return (

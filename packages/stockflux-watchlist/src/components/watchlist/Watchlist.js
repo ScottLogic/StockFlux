@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
-import WatchlistCard from "../watchlist-card/WatchlistCard";
-import Components from "stockflux-components";
-import { StockFluxHooks } from "stockflux-core";
-import * as fdc3 from "openfin-fdc3";
-import { showNotification } from "../notifications/Notification";
+import React, { useState, useEffect, useCallback } from 'react';
+import WatchlistCard from '../watchlist-card/WatchlistCard';
+import Components from 'stockflux-components';
+import { StockFluxHooks } from 'stockflux-core';
+import * as fdc3 from 'openfin-fdc3';
+import { showNotification } from '../notifications/Notification';
 import {
   useInterApplicationBusSubscribe,
   useOptions
-} from "openfin-react-hooks";
+} from 'openfin-react-hooks';
 import {
   onDragStart,
   onDragOver,
   resetDragState,
   onDrop,
   onDropOutside
-} from "../watchlist-card/WatchlistCard.Dragging";
-import "./Watchlist.css";
+} from '../watchlist-card/WatchlistCard.Dragging';
+import './Watchlist.css';
 
 let latestListener;
 
@@ -26,27 +26,30 @@ const Watchlist = () => {
   const [unwatchedSymbol, setUnwatchedSymbol] = useState(null);
   //const [parentUuid, setParentUuid] = useState(null);
   const [watchlist, setWatchlist] = StockFluxHooks.useLocalStorage(
-    "watchlist",
-    ["AAPL", "AAP", "CC", "MS", "JPS"]
+    'watchlist',
+    ['AAPL', 'AAP', 'CC', 'MS', 'JPS']
   );
 
   const [options] = useOptions();
 
-  const displayNotification = newSymbol => {
-    const alreadyInWatchlist = watchlist.includes(newSymbol);
-    showNotification({
-      message: {
-        symbol: newSymbol,
-        watchlistName: "My Watchlist",
-        alreadyInWatchlist,
-        messageText: `${alreadyInWatchlist ? " moved" : " added"} to the top`
-      }
-    });
-  };
+  const displayNotification = useCallback(
+    newSymbol => {
+      const alreadyInWatchlist = watchlist.includes(newSymbol);
+      showNotification({
+        message: {
+          symbol: newSymbol,
+          watchlistName: 'My Watchlist',
+          alreadyInWatchlist,
+          messageText: `${alreadyInWatchlist ? ' moved' : ' added'} to the top`
+        }
+      });
+    },
+    [watchlist]
+  );
 
   const { data } = useInterApplicationBusSubscribe(
-    { uuid: options ? options.uuid : "*" },
-    "stockflux-watchlist"
+    { uuid: options ? options.uuid : '*' },
+    'stockflux-watchlist'
   );
 
   useEffect(() => {
@@ -58,7 +61,7 @@ const Watchlist = () => {
         displayNotification(data.message.symbol);
       }
     }
-  }, [data]);
+  }, [data, displayNotification, setWatchlist, watchlist]);
 
   const onIconClick = symbol => {
     return e => {
@@ -99,7 +102,7 @@ const Watchlist = () => {
    * 3) being forced to create a new intentListener every render (memory leak)
    * This works due to us manually using only the latest intentListener
    */
-  const currentListener = fdc3.addIntentListener("WatchlistAdd", context => {
+  const currentListener = fdc3.addIntentListener('WatchlistAdd', context => {
     if (context && currentListener === latestListener) {
       const newSymbol = context.id.default;
       setWatchlist(getDistinctElementArray([newSymbol, ...watchlist]));

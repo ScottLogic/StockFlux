@@ -1,4 +1,4 @@
-import { OpenfinApiHelpers } from "stockflux-core";
+import { OpenfinApiHelpers } from 'stockflux-core';
 
 async function createChildWindow(options) {
   const application = await window.fin.Application.getCurrent();
@@ -28,11 +28,11 @@ async function createChildWindow(options) {
 
 async function getChildWindowOptions(manifest) {
   const manifestUrl =
-    typeof manifest === "string" ? manifest : manifest.manifest;
+    typeof manifest === 'string' ? manifest : manifest.manifest;
 
   const response = await fetch(manifestUrl);
   if (!response.ok) {
-    throw new Error("Could not retrieve manifest");
+    throw new Error('Could not retrieve manifest');
   }
 
   const body = await response.json();
@@ -41,7 +41,7 @@ async function getChildWindowOptions(manifest) {
 
 export async function createNewsChildWindow(manifest, symbol, name) {
   const options = await getChildWindowOptions(manifest);
-  options.name = `stockflux-news${symbol ? `[${symbol}]` : ""}`;
+  options.name = `stockflux-news${symbol ? `[${symbol}]` : ''}`;
 
   // Add symbol and name to customData for launching news application
 
@@ -82,7 +82,7 @@ export async function createWatchlistChildWindow(manifest, symbol) {
 
 export async function createChartChildWindow(manifest, symbol) {
   const options = await getChildWindowOptions(manifest);
-  options.name = `stockflux-chart${symbol ? `[${symbol}]` : ""}`;
+  options.name = `stockflux-chart${symbol ? `[${symbol}]` : ''}`;
 
   // Add symbol to customData for launching chart app
 
