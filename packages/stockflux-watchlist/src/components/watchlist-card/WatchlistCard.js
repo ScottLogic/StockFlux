@@ -102,7 +102,7 @@ const WatchlistCard = ({
         { uuid: options ? options.uuid : "*" },
         "news",
         {
-          symbol: symbol
+          symbol
         }
       );
     } catch (err) {

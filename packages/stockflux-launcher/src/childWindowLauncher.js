@@ -58,13 +58,10 @@ export async function createNewsChildWindow(manifest, symbol, name) {
 export async function createChild(manifest, symbol) {
   const options = await getChildWindowOptions(manifest);
   await createChildWindow(options);
-
   try {
-    window.fin.InterApplicationBus.send(
-      { uuid: options.uuid },
-      options.name,
+    window.fin.InterApplicationBus.send({ uuid: options.uuid }, options.name, {
       symbol
-    );
+    });
   } catch (err) {
     console.error(err);
   }

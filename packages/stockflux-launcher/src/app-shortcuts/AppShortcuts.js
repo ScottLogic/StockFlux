@@ -47,9 +47,7 @@ export default () => {
             <AppShortcut
               key={app.appId}
               app={app}
-              onClick={() => {
-                createChild(app, "AAPL");
-              }}
+              onClick={() => createChild(app, "AAPL")}
             />
           );
         })}
