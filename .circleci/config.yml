@@ -33,6 +33,9 @@ jobs:
       - run:
           name: Root package install
           command: npm ci
+      - run:
+          name: Bootstrap Packages
+          command: npm run bootstrap
       - persist_to_workspace:
           root: ~/stockflux
           paths: .
@@ -55,9 +58,6 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/stockflux
-      - run:
-          name: Bootstrap Packages
-          command: npm run bootstrap
       - run:
           name: Build Packages
           command: npm run build
