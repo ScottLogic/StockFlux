@@ -1,3 +1,5 @@
+import useLocalStorage from './custom-hooks/LocalStorageHook';
+import { addWatchlist, viewChart, viewNews, viewWatchlist } from './intents';
 import {
   stockFluxSearch,
   getStockFluxData,
@@ -8,10 +10,12 @@ import { truncate } from './utils/formatters';
 import {
   createWindow,
   getCurrentWindow,
-  getCurrentWindowSync
+  getCurrentWindowSync,
+  getChildWindows,
+  getCurrentWindowOptions,
+  getAllApps
 } from './openfin-api-utils/openfinApiHelpers';
-import useLocalStorage from './custom-hooks/LocalStorageHook';
-import { addWatchlist, viewChart, viewNews, viewWatchlist } from './intents';
+import launchChildWindow from './services/ChildWindowLauncher';
 
 export const Utils = {
   truncate
@@ -20,7 +24,10 @@ export const Utils = {
 export const OpenfinApiHelpers = {
   createWindow,
   getCurrentWindow,
-  getCurrentWindowSync
+  getCurrentWindowSync,
+  getChildWindows,
+  getCurrentWindowOptions,
+  getAllApps
 };
 
 export const StockFlux = {
@@ -40,3 +47,5 @@ export const Intents = {
 export const StockFluxHooks = {
   useLocalStorage
 };
+
+export { launchChildWindow };

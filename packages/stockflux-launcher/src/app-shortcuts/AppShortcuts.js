@@ -2,22 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { OpenfinApiHelpers } from 'stockflux-core';
 import Components from 'stockflux-components';
 import './AppShortcuts.css';
-import { createChild, createChartChildWindow } from '../childWindowLauncher';
 
 export default () => {
   const [apps, setApps] = useState([]);
 
   useEffect(() => {
-    const options = {
-      method: 'GET'
-    };
-
-    OpenfinApiHelpers.getCurrentWindow()
-      .then(window => window.getOptions())
-      .then(options => options.customData.apiBaseUrl)
-      .then(baseUrl => fetch(`${baseUrl}/apps/v1`, options))
-      .then(response => response.json())
-      .then(results => setApps(results))
+    OpenfinApiHelpers.getAllApps()
+      .then(setApps)
       .catch(console.error);
   }, []);
 
@@ -40,13 +31,7 @@ export default () => {
                 app.appId.slice(11) +
                 'Shortcut'
             ];
-          return (
-            <AppShortcut
-              key={app.appId}
-              app={app}
-              onClick={() => createChartChildWindow(app)}
-            />
-          );
+          return <AppShortcut key={app.appId} app={app} />;
         })}
     </div>
   );

@@ -8,18 +8,15 @@ async function createChildWindow(options) {
 
   options.uuid = currentOptions.uuid;
 
-  let match;
   for (let i = 0; i < childWindows.length; i++) {
     const childWindowOptions = await childWindows[i].getOptions();
     if (childWindowOptions.name === options.name) {
-      match = childWindows[i];
+      if (childWindows[i]) {
+        childWindows[i].bringToFront();
+        return true;
+      }
       break;
     }
-  }
-
-  if (match) {
-    match.bringToFront();
-    return true;
   }
 
   await OpenfinApiHelpers.createWindow(options);
