@@ -13,7 +13,9 @@ import {
   getCurrentWindowSync,
   getChildWindows,
   getCurrentWindowOptions,
-  getAllApps
+  getAllApps,
+  getStockFluxApps,
+  getStockFluxApp
 } from './openfin-api-utils/openfinApiHelpers';
 import launchChildWindow from './services/ChildWindowLauncher';
 
@@ -27,7 +29,9 @@ export const OpenfinApiHelpers = {
   getCurrentWindowSync,
   getChildWindows,
   getCurrentWindowOptions,
-  getAllApps
+  getAllApps,
+  getStockFluxApps,
+  getStockFluxApp
 };
 
 export const StockFlux = {

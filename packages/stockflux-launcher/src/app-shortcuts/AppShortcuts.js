@@ -7,7 +7,7 @@ export default () => {
   const [apps, setApps] = useState([]);
 
   useEffect(() => {
-    OpenfinApiHelpers.getAllApps()
+    OpenfinApiHelpers.getStockFluxApps()
       .then(setApps)
       .catch(console.error);
   }, []);
@@ -31,7 +31,7 @@ export default () => {
                 app.appId.slice(11) +
                 'Shortcut'
             ];
-          return <AppShortcut key={app.appId} app={app} />;
+          return <AppShortcut key={app.appId} />;
         })}
     </div>
   );

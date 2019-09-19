@@ -21,7 +21,7 @@ export const getCurrentWindowOptions = async () => {
 };
 
 export const getAllApps = async () =>
-  getCurrentWindowOptions()
+  await getCurrentWindowOptions()
     .then(options => options.customData.apiBaseUrl)
     .then(baseUrl =>
       fetch(`${baseUrl}/apps/v1`, {
@@ -29,3 +29,18 @@ export const getAllApps = async () =>
       })
     )
     .then(async response => await response.json());
+
+export const getStockFluxApps = async () =>
+  await getAllApps().then(apps =>
+    apps.filter(app => app.appId.indexOf('stockflux-') === 0)
+  );
+
+export const getStockFluxApp = async appId =>
+  await getCurrentWindowOptions()
+    .then(options => options.customData.apiBaseUrl)
+    .then(baseUrl =>
+      fetch(`${baseUrl}/apps/v1/${appId}`, {
+        method: 'GET'
+      })
+    )
+    .then(response => response.json());

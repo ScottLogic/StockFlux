@@ -1,26 +1,30 @@
 import React from 'react';
-import { Intents, launchChildWindow } from 'stockflux-core';
+import { Intents, launchChildWindow, OpenfinApiHelpers } from 'stockflux-core';
 import WatchlistIcon from '../../icons/watchlist.svg';
 import '../AppShortcut.css';
 
-const WatchlistShortcut = ({ symbol, name, intentsEnabled, app }) => {
+const WatchlistShortcut = ({ symbol, name, intentsEnabled }) => {
+  const APP_NAME = 'stockflux-watchlist';
   const launchAsIntent = () => {
     symbol && name
       ? Intents.addToWatchlist(symbol, name)
       : Intents.viewWatchlist();
   };
 
-  const launchAsChildWindow = () => {
-    launchChildWindow(app.manifest, options => {
-      options.name = `stockflux-watchlist${symbol ? `[${symbol}]` : ''}`;
-      if (symbol) {
-        options.customData.symbol = symbol;
+  const launchAsChildWindow = async () => {
+    launchChildWindow(
+      await OpenfinApiHelpers.getStockFluxApp(APP_NAME),
+      options => {
+        options.name = `stockflux-watchlist${symbol ? `[${symbol}]` : ''}`;
+        if (symbol) {
+          options.customData.symbol = symbol;
+        }
+        if (name) {
+          options.customData.name = name;
+        }
+        return options;
       }
-      if (name) {
-        options.customData.name = name;
-      }
-      return options;
-    });
+    );
   };
 
   return (
