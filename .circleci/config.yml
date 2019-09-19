@@ -33,20 +33,17 @@ jobs:
       - run:
           name: Root package install
           command: npm ci
-      - save_cache:
-          key: deps-{{ checksum "package-lock.json" }}
-          paths:
-            - ./node_modules
+      - persist_to_workspace:
+          root: ~/stockflux
+          paths: .
 
   lint:
     working_directory: ~/stockflux
     docker:
       - image: circleci/node:10.15.1
     steps:
-      - checkout:
-          path: ~/stockflux
-      - restore_cache:
-          key: deps-{{ checksum "package-lock.json" }}
+      - attach_workspace:
+          at: ~/stockflux
       - run:
           name: Lint *.js files
           command: npm run lint
@@ -56,106 +53,14 @@ jobs:
     docker:
       - image: circleci/node:10.15.1
     steps:
-      - checkout:
-          path: ~/stockflux
-      - restore_cache:
-          key: deps-{{ checksum "package-lock.json" }}
-      - run:
-          name: Restore Bitflux Cache
-          command: cd ~/stockflux/packages/stockflux-bitflux
-      - restore_cache:
-          key: deps-bitflux-{{ checksum "package-lock.json" }}
-      - run:
-          name: Restore Chart Cache
-          command: cd ~/stockflux/packages/stockflux-chart
-      - restore_cache:
-          key: deps-chart-{{ checksum "package-lock.json" }}
-      - run:
-          name: Restore Components Cache
-          command: cd ~/stockflux/packages/stockflux-components
-      - restore_cache:
-          key: deps-components-{{ checksum "package-lock.json" }}
-      - run:
-          name: Restore Container Cache
-          command: cd ~/stockflux/packages/stockflux-container
-      - restore_cache:
-          key: deps-container-{{ checksum "package-lock.json" }}
-      - run:
-          name: Restore Core Cache
-          command: cd ~/stockflux/packages/stockflux-core
-      - restore_cache:
-          key: deps-core-{{ checksum "package-lock.json" }}
-      - run:
-          name: Restore Launcher Cache
-          command: cd ~/stockflux/packages/stockflux-launcher
-      - restore_cache:
-          key: deps-launcher-{{ checksum "package-lock.json" }}
-      - run:
-          name: Restore News Cache
-          command: cd ~/stockflux/packages/stockflux-news
-      - restore_cache:
-          key: deps-news-{{ checksum "package-lock.json" }}
+      - attach_workspace:
+          at: ~/stockflux
       - run:
           name: Bootstrap Packages
           command: npm run bootstrap
       - run:
           name: Build Packages
           command: npm run build
-      - run:
-          name: Save Bitflux Cache
-          command: cd ~/stockflux/packages/stockflux-bitflux
-      - save_cache:
-          key: deps-bitflux-{{ checksum "package-lock.json" }}
-          paths: ./node_modules
-      - run:
-          name: Save Chart Cache
-          command: cd ~/stockflux/packages/stockflux-chart
-      - save_cache:
-          key: deps-chart-{{ checksum "package-lock.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          name: Save Components Cache
-          command: cd ~/stockflux/packages/stockflux-components
-      - save_cache:
-          key: deps-components-{{ checksum "package-lock.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          name: Save Container Cache
-          command: cd ~/stockflux/packages/stockflux-container
-      - save_cache:
-          key: deps-container-{{ checksum "package-lock.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          name: Save Core Cache
-          command: cd ~/stockflux/packages/stockflux-core
-      - save_cache:
-          key: deps-core-{{ checksum "package-lock.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          name: Save Launcher Cache
-          command: cd ~/stockflux/packages/stockflux-launcher
-      - save_cache:
-          key: deps-launcher-{{ checksum "package-lock.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          name: Save News Cache
-          command: cd ~/stockflux/packages/stockflux-news
-      - save_cache:
-          key: deps-news-{{ checksum "package-lock.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          name: Save Watchlist Cache
-          command: cd ~/stockflux/packages/stockflux-watchlist
-      - save_cache:
-          key: deps-watchlist-{{ checksum "package-lock.json" }}
-          paths:
-            - ./node_modules
       - persist_to_workspace:
           root: ~/stockflux
           paths: .
