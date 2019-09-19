@@ -89,18 +89,19 @@ const WatchlistCard = props => {
     setDragging({ isDragging: false });
   };
 
-  const sendSymbolToNews = () => {};
-  try {
-    window.fin.InterApplicationBus.send(
-      { uuid: options ? options.uuid : "*" },
-      "news",
-      {
-        symbol: props.symbol
-      }
-    );
-  } catch (err) {
-    console.error(err);
-  }
+  const sendSymbolToNews = () => {
+    try {
+      window.fin.InterApplicationBus.send(
+        { uuid: options ? options.uuid : "*" },
+        "news",
+        {
+          symbol: props.symbol
+        }
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return stockData ? (
     <div
