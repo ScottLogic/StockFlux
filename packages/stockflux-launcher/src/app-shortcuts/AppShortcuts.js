@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { OpenfinApiHelpers } from "stockflux-core";
-// import Components from "stockflux-components";
+import Components from "stockflux-components";
 import "./AppShortcuts.css";
 import { createWatchlistChildWindow } from "../childWindowLauncher";
 
@@ -31,33 +31,24 @@ export default () => {
             app.appId.indexOf("stockflux-") === 0
         )
         .map(app => {
-          /* Get the appropriate shortcut button by taking a part of stocklux appId 
-             (e.g. "news", "watchlist", "chart"), capitalizing the first letter and
-             appending "Shortcut" at the end
-          */
-
+          const AppShortcut =
+            Components[
+              app.appId
+                .split("stockflux-")[1]
+                .charAt(0)
+                .toUpperCase() +
+                app.appId.slice(11) +
+                "Shortcut"
+            ];
           return (
-            <button
+            <AppShortcut
               key={app.appId}
-              onClick={e => {
-                e.preventDefault();
+              app={app}
+              onClick={() => {
                 createWatchlistChildWindow(app);
               }}
-            >
-              {app.appId}
-            </button>
+            />
           );
-
-          // const AppShortcut =
-          //   Components[
-          //     app.appId
-          //       .split("stockflux-")[1]
-          //       .charAt(0)
-          //       .toUpperCase() +
-          //       app.appId.slice(11) +
-          //       "Shortcut"
-          //   ];
-          // return <AppShortcut key={app.appId} app={app} />;
         })}
     </div>
   );
