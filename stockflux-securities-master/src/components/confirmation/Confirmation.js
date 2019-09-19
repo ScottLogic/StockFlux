@@ -1,21 +1,22 @@
-import React, { useState } from "react";
-import "./Confirmation.css";
-import Button, { ButtonSize } from "../button/Button";
-import PropTypes from "prop-types";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import ChildrenShape from '../../shapes/Children';
+import './Confirmation.css';
 
 const Confirmation = ({ children, confirmationText }) => {
-  const [clickedStatus, setClickedStatus] = useState(false);
-  const handleClickNoButton = () => {
-    setClickedStatus(false);
+  const [isClicked, setIsClicked] = useState(false);
+
+  const reset = () => {
+    setIsClicked(false);
   };
 
   return (
     <div className="confirmation">
-      {!clickedStatus ? (
+      {!isClicked ? (
         <div
           onClickCapture={event => {
             event.stopPropagation();
-            setClickedStatus(true);
+            setIsClicked(true);
           }}
         >
           {children}
@@ -23,23 +24,17 @@ const Confirmation = ({ children, confirmationText }) => {
       ) : (
         <>
           <div className="message">{confirmationText}</div>
-          <div className="options-container">
-            <Button
-              size={ButtonSize.EXTRA_SMALL}
+          <div className="option-buttons">
+            <button
               onClick={children.props.onClick}
-              className="option-button"
+              className="option-yes"
               type="button"
             >
-              Yes
-            </Button>
-            <Button
-              size={ButtonSize.EXTRA_SMALL}
-              onClick={handleClickNoButton}
-              className="option-button"
-              type="button"
-            >
-              No
-            </Button>
+              YES
+            </button>
+            <button onClick={reset} className="option-no" type="button">
+              NO
+            </button>
           </div>
         </>
       )}
@@ -48,6 +43,7 @@ const Confirmation = ({ children, confirmationText }) => {
 };
 
 Confirmation.propTypes = {
+  children: ChildrenShape.isRequired,
   confirmationText: PropTypes.string.isRequired
 };
 

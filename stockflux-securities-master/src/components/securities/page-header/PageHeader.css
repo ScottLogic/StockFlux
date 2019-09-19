@@ -1,0 +1,12 @@
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-header .title {
+  padding: var(--padding-large);
+  font-weight: var(--font-weight-bolder);
+  font-size: var(--font-xxxlarge);
+  margin: 0;
+}

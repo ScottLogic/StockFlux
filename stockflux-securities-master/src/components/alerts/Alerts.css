@@ -1,0 +1,21 @@
+.alerts {
+  margin: auto;
+}
+
+ul {
+  padding-right: 40px;
+}
+
+li,
+p {
+  font-size: var(--font-xlarge);
+  margin: var(--margin-small);
+}
+
+.error {
+  color: var(--error-red-light);
+}
+
+.success {
+  color: var(--success-green);
+}

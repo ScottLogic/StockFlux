@@ -1,17 +1,19 @@
-import ValidationError from "./ValidationError";
+import ValidationError from '../errors/ValidationError';
 
 async function getWindowOptions() {
   const currentWindow = await window.fin.Window.getCurrent();
   return currentWindow.getOptions();
 }
 
-export async function getSecuritiesData() {
+export async function getSecurities() {
   const options = await getWindowOptions();
   const response = await fetch(
     `${options.customData.apiBaseUrl}/admin/securities`
   );
-  const securities = await response.json();
-  return securities;
+  if (response.ok) return await response.json();
+  else {
+    throw new Error('Something went wrong while fetching securities.');
+  }
 }
 
 export async function getSecurity(securityId) {
@@ -19,19 +21,19 @@ export async function getSecurity(securityId) {
   const response = await fetch(
     `${options.customData.apiBaseUrl}/admin/securities/${securityId}`
   );
-  const json = await response.json();
-
-  if (response.ok) {
-    return json;
+  if (response.ok) return await response.json();
+  else {
+    throw new Error(
+      `Something went wrong while fetching security ${securityId}.`
+    );
   }
-  throw new ValidationError(json.messages);
 }
 
 export async function postSecurity(security) {
   const fetchOptions = {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(security)
   };
@@ -41,19 +43,18 @@ export async function postSecurity(security) {
     `${options.customData.apiBaseUrl}/admin/securities`,
     fetchOptions
   );
-  const json = await response.json();
-
-  if (response.ok) {
-    return json;
+  if (response.ok) return;
+  else {
+    const error = await response.json();
+    throw new ValidationError(error.messages);
   }
-  throw new ValidationError(json.messages);
 }
 
 export async function updateSecurity(securityId, security) {
   const fetchOptions = {
-    method: "PUT",
+    method: 'PUT',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(security)
   };
@@ -62,35 +63,35 @@ export async function updateSecurity(securityId, security) {
     `${options.customData.apiBaseUrl}/admin/securities/${securityId}`,
     fetchOptions
   );
-  const json = await response.json();
-  if (response.ok) {
-    return json;
+  if (response.ok) return;
+  else {
+    const error = await response.json();
+    throw new ValidationError(error.messages);
   }
-  throw new ValidationError(json.messages);
 }
 
 export async function deleteSecurity(securityId) {
   const fetchOptions = {
-    method: "DELETE"
+    method: 'DELETE'
   };
   const options = await getWindowOptions();
   const response = await fetch(
     `${options.customData.apiBaseUrl}/admin/securities/${securityId}`,
     fetchOptions
   );
-  if (response.ok) {
-    return;
+  if (response.ok) return;
+  else {
+    throw new Error(
+      `Something went wrong while deleting security ${securityId}.`
+    );
   }
-
-  const json = await response.json();
-  throw new ValidationError(json.messages);
 }
 
 export async function patchSecurity(securityId, updates) {
   const fetchOptions = {
-    method: "PATCH",
+    method: 'PATCH',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(updates)
   };
@@ -99,10 +100,10 @@ export async function patchSecurity(securityId, updates) {
     `${options.customData.apiBaseUrl}/admin/securities/${securityId}`,
     fetchOptions
   );
-  if (response.ok) {
-    return response;
+  if (response.ok) return await response;
+  else {
+    throw new Error(
+      `Something went wrong while fetching security ${securityId}.`
+    );
   }
-
-  const json = await response.json();
-  throw new ValidationError(json.messages);
 }

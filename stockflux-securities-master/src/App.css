@@ -1,0 +1,34 @@
+:root {
+  --window-height: 300px;
+  --border-radius: 20px;
+  --button-offset: 20px;
+  --row-height: 36px;
+  --row-even: var(--middle-background);
+  --row-odd: #323a48;
+  --row-hover: #3c4656;
+  --last-column-min-width: 85px;
+  --page-header-height: 54px;
+  --teal-gradient: -webkit-linear-gradient(
+    left,
+    var(--middle-background) 0%,
+    var(--chart-teal) 3%,
+    var(--chart-teal-lighter) 50%,
+    var(--chart-teal) 97%,
+    var(--middle-background) 100%
+  );
+}
+
+button {
+  background-color: inherit;
+  color: var(--text-teal-light);
+  outline: none;
+  border-style: solid;
+  border-radius: var(--border-radius);
+  border: solid 2px var(--text-teal-light);
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 1;
+}

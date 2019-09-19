@@ -1,0 +1,18 @@
+.th {
+  font-size: var(--font-normal);
+  font-weight: var(--font-weight-bolder);
+  padding: var(--padding-medium) var(--padding-large);
+  border-left: 1px solid var(--clr-divider-light);
+  cursor: default;
+  letter-spacing: 0.2px;
+  background-color: var(--dark-background);
+  text-align: center;
+}
+
+.th:first-child {
+  border-left: none;
+}
+
+.tr .th:last-child {
+  min-width: var(--last-column-min-width);
+}

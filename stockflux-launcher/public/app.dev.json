@@ -1,41 +1,41 @@
 {
-    "devtools_port": 9091,
-    "runtime": {
-        "arguments": "--enable-aggressive-domstorage-flushing",
-        "version": "11.69.42.14"
+  "devtools_port": 9091,
+  "runtime": {
+    "arguments": "--enable-aggressive-domstorage-flushing",
+    "version": "11.69.42.14"
+  },
+  "startup_app": {
+    "name": "stockflux-launcher",
+    "uuid": "stockflux-launcher",
+    "url": "http://localhost:8053/index.html",
+    "applicationIcon": "http://localhost:8053/favicon.ico",
+    "autoShow": true,
+    "defaultHeight": 70,
+    "defaultWidth": 800,
+    "defaultTop": 0,
+    "resizable": false,
+    "maximizable": false,
+    "minimizable": false,
+    "frame": false,
+    "shadow": true,
+    "opacity": 0.95,
+    "alwaysOnTop": true,
+    "contextMenu": true,
+    "waitForPageLoad": true,
+    "cornerRounding": {
+      "height": 0,
+      "width": 0
     },
-    "startup_app": {
-        "name": "stockflux-launcher",
-        "uuid": "stockflux-launcher",
-        "url": "http://localhost:8053/index.html",
-        "applicationIcon": "http://localhost:8053/favicon.ico",
-        "autoShow": true,
-        "defaultHeight": 70,
-        "defaultWidth": 800,
-        "defaultTop": 0,
-        "resizable": false,
-        "maximizable": false,
-        "minimizable": false,
-        "frame": false,
-        "shadow": true,
-        "opacity": 0.95,
-        "alwaysOnTop": true,
-        "contextMenu": true,
-        "waitForPageLoad": true,
-        "cornerRounding": {
-            "height": 0,
-            "width": 0
-        },
-        "customData": {
-            "apiBaseUrl": "https://lf467ndb08.execute-api.eu-west-2.amazonaws.com/dev/api"
-        }
-    },
-    "services": [],
-    "shortcut": {
-        "company": "ScottLogic",
-        "description": "Hosts StockFlux App Launcher as an OpenFin application.",
-        "name": "StockFlux App Launcher",
-        "icon": "http://localhost:8053/favicon.ico"
-    },
-    "splashScreenImage": "http://localhost:8053/splashscreen.png"
+    "customData": {
+      "apiBaseUrl": "https://lf467ndb08.execute-api.eu-west-2.amazonaws.com/dev/api"
+    }
+  },
+  "services": [],
+  "shortcut": {
+    "company": "ScottLogic",
+    "description": "Hosts StockFlux App Launcher as an OpenFin application.",
+    "name": "StockFlux App Launcher",
+    "icon": "http://localhost:8053/favicon.ico"
+  },
+  "splashScreenImage": "http://localhost:8053/splashscreen.png"
 }

@@ -1,0 +1,31 @@
+.tbody {
+  height: calc(
+    100vh - var(--titlebar-height) - var(--page-header-height) -
+      var(--row-height)
+  );
+}
+
+.tbody .tr:last-child {
+  border-bottom: 1px solid var(--row-hover);
+}
+
+.scrollable {
+  max-height: calc(
+    var(--window-height) - var(--page-header-height) - var(--titlebar-height) -
+      var(--row-height) - 4px
+  );
+  overflow: overlay;
+}
+
+.tr .td:last-child {
+  min-width: var(--last-column-min-width);
+}
+
+.scrollWrapperY {
+  transition: none;
+  overflow: overlay;
+}
+
+.scrollPaddingRight:hover {
+  padding-right: 0;
+}

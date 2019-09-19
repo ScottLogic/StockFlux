@@ -11,12 +11,12 @@
   border-radius: 6px;
   padding: var(--padding-small) var(--padding-medium);
   position: absolute;
-  top: 0px;
+  bottom: 0;
   right: 105%;
 }
 
 .tool-tip .message:after {
-  content: " ";
+  content: ' ';
   position: absolute;
   top: 30%;
   left: 100%;

@@ -1,23 +1,22 @@
-import React from "react";
-import "stockflux-components";
-import Components from "stockflux-components";
-import SecuritiesTable from "./components/securities-table/SecuritiesTable";
-import InputForm from "./components/input-form/InputForm";
-import { Redirect, Route, Switch } from "react-router-dom";
-
-import "./App.css";
+import React from 'react';
+import 'stockflux-components';
+import Components from 'stockflux-components';
+import Securities from './components/securities/Securities';
+import FormView from './components/form-view/FormView';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import './App.css';
 
 const App = () => {
   return (
-    <div>
+    <>
       <Components.Titlebar />
       <Switch>
-        <Route exact path="/" component={SecuritiesTable} />
-        <Route exact path="/inputform/:securityId" component={InputForm} />
-        <Route exact path="/inputform" component={InputForm} />
+        <Route exact path="/" component={Securities} />
+        <Route exact path="/inputform/:securityId" component={FormView} />
+        <Route exact path="/inputform" component={FormView} />
         <Redirect to="/" />
       </Switch>
-    </div>
+    </>
   );
 };
 

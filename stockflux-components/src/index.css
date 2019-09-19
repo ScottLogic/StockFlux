@@ -23,7 +23,8 @@
   --chart-teal: #37d8bc;
   --chart-teal-lighter: #51f2d6;
 
-  --error-red: #dd1b1b;
+  --error-red: #b33838;
+  --error-red-light: #ff5555;
   --success-green: #9ae727;
 
   /* dimensions */
@@ -39,6 +40,7 @@
   --icon-transition-duration: 0.5s;
 
   /* font-size */
+  --font-small: 10px;
   --font-normal: 12px;
   --font-medium: 13px;
   --font-large: 14px;

@@ -11,15 +11,14 @@
         "autoShow": true,
         "defaultWidth": 850,
         "defaultHeight": 600,
-        "minWidth": 850,
-        "maxWidth": 850,
-        "minHeight": 600,
+        "minWidth": 365,
+        "minHeight": 580,
         "defaultTop": 80,
         "saveWindowState": false,
         "frame": false,
         "contextMenu": true,
         "customData": {
-            "apiBaseUrl": "https://dqhve0cy32j9i.cloudfront.net/api"
+            "apiBaseUrl": "https://d2zrdoosf9socz.cloudfront.net/api"
         },
         "cornerRounding": {
             "height": 4,

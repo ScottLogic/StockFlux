@@ -1,0 +1,5 @@
+button.back {
+  position: absolute;
+  top: calc(var(--button-offset) + var(--titlebar-height));
+  left: var(--button-offset);
+}

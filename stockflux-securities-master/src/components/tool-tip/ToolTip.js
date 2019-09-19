@@ -1,16 +1,18 @@
-import React from "react";
-import "./ToolTip.css";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
+import ChildrenShape from '../../shapes/Children';
+import './ToolTip.css';
 
-const ToolTip = ({ children, message }) => (
+const ToolTip = ({ children, text }) => (
   <div className="tool-tip">
     {children}
-    <span className="message">{message}</span>
+    <span className="message">{text}</span>
   </div>
 );
 
 ToolTip.propTypes = {
-  message: PropTypes.string
+  children: ChildrenShape.isRequired,
+  text: PropTypes.string.isRequired
 };
 
 export default ToolTip;
