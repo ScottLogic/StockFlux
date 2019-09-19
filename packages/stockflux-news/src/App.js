@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect, useReducer } from 'react';
 import Components from 'stockflux-components';
-import { StockFlux, StockFluxHooks } from 'stockflux-core';
+import { StockFlux } from 'stockflux-core';
 import NewsItem from './components/news-item/NewsItem';
 import {
   useInterApplicationBusSubscribe,
@@ -47,10 +47,7 @@ function App() {
   };
 
   const [searchState, dispatch] = useReducer(searchReducer, initialSearchState);
-  const [symbol, setSymbol] = StockFluxHooks.useLocalStorage(
-    'newsSymbol',
-    null
-  );
+  const [symbol, setSymbol] = useState(null);
   const [name, setName] = useState(null);
   const [options] = useOptions();
   const listContainer = useRef(null);
