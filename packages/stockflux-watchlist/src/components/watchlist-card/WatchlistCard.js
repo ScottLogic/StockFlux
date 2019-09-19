@@ -9,7 +9,14 @@ import currentWindowService from "../../services/currentWindowService";
 import { useOptions } from "openfin-react-hooks";
 import "./WatchlistCard.css";
 
-const WatchlistCard = props => {
+const WatchlistCard = ({
+  symbol,
+  dragOver,
+  dragOverBottom,
+  bindings,
+  isUnwatching,
+  removeFromWatchList
+}) => {
   const [dragging, setDragging] = useState({
     isDragging: false,
     clientX: null,
@@ -28,7 +35,7 @@ const WatchlistCard = props => {
 
   useEffect(() => {
     const populateChart = async () => {
-      const miniChartData = await StockFlux.getMiniChartData(props.symbol);
+      const miniChartData = await StockFlux.getMiniChartData(symbol);
       if (miniChartData && miniChartData.data) {
         const data = miniChartData.data[0];
         const stockName = miniChartData.name;
@@ -53,7 +60,7 @@ const WatchlistCard = props => {
       }
     };
     populateChart();
-  }, [props.symbol]);
+  }, [symbol]);
 
   const getPrice = price => {
     return !isNaN(+price) ? (+price).toFixed(2) : null;
@@ -84,7 +91,7 @@ const WatchlistCard = props => {
 
   const onDragEnd = e => {
     if (e.dataTransfer.dropEffect === "none") {
-      props.bindings.onDropOutside(props.symbol, stockData.name);
+      bindings.onDropOutside(symbol, stockData.name);
     }
     setDragging({ isDragging: false });
   };
@@ -95,7 +102,7 @@ const WatchlistCard = props => {
         { uuid: options ? options.uuid : "*" },
         "news",
         {
-          symbol: props.symbol
+          symbol: symbol
         }
       );
     } catch (err) {
@@ -105,15 +112,15 @@ const WatchlistCard = props => {
 
   return stockData ? (
     <div
-      id={`stock_${props.symbol}`}
+      id={`stock_${symbol}`}
       className={classNames({
         "card-wrapper": true,
         dragging: dragging.isDragging,
-        dragOver: props.dragOver,
-        dragOverBottom: props.dragOverBottom
+        dragOver: dragOver,
+        dragOverBottom: dragOverBottom
       })}
-      draggable={!props.isUnwatching}
-      onDragStart={onDragStart(props.symbol)}
+      draggable={!isUnwatching}
+      onDragStart={onDragStart(symbol)}
       onDragEnd={onDragEnd}
     >
       <div className="drop-target">
@@ -121,12 +128,12 @@ const WatchlistCard = props => {
           <div className="card-top">
             <div className="details-container">
               <div className="name">{stockData.name}</div>
-              <div className="symbol">{props.symbol}</div>
+              <div className="symbol">{symbol}</div>
             </div>
             <div className="icons">
               <Components.NewsShortcut
                 className="news-symbol"
-                symbol={props.symbol}
+                symbol={symbol}
                 name={stockData.name}
                 onClick={sendSymbolToNews}
               />
@@ -134,7 +141,7 @@ const WatchlistCard = props => {
                 className="remove-symbol"
                 onClick={e => {
                   e.stopPropagation();
-                  props.removeFromWatchList(props.symbol);
+                  removeFromWatchList(symbol);
                 }}
               >
                 <FaTimes />
@@ -143,10 +150,10 @@ const WatchlistCard = props => {
           </div>
           <div
             className="card-bottom"
-            onClick={() => Intents.viewChart(props.symbol, stockData.name)}
+            onClick={() => Intents.viewChart(symbol, stockData.name)}
           >
             <Minichart
-              symbol={props.symbol}
+              symbol={symbol}
               chartData={chartData}
               fetchError={fetchError}
             />
