@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect, useReducer } from "react";
 import Components from "stockflux-components";
-import { StockFlux, StockFluxHooks } from "stockflux-core";
+import { StockFlux, StockFluxHooks, OpenfinApiHelpers} from "stockflux-core";
 import NewsItem from "./components/news-item/NewsItem";
 import {
   useInterApplicationBusSubscribe,

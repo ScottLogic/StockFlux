@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import * as PropTypes from "prop-types";
-import classNames from "classnames";
-import { FaTimes } from "react-icons/fa";
-import Minichart from "../minichart/Minichart";
-import Components from "stockflux-components";
-import { StockFlux, Intents, Utils } from "stockflux-core";
-import currentWindowService from "../../services/currentWindowService";
-import { useOptions } from "openfin-react-hooks";
-import "./WatchlistCard.css";
+import React, { useState, useEffect } from 'react';
+import * as PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { FaTimes } from 'react-icons/fa';
+import Minichart from '../minichart/Minichart';
+import Components from 'stockflux-components';
+import { StockFlux, Intents, Utils } from 'stockflux-core';
+import currentWindowService from '../../services/currentWindowService';
+import { useOptions } from 'openfin-react-hooks';
+import './WatchlistCard.css';
 
 const WatchlistCard = ({
   symbol,
@@ -23,9 +23,9 @@ const WatchlistCard = ({
     offsetY: null
   });
   const [chartData, setChartData] = useState([]);
-  const [fetchError, setFetchError] = useState("");
+  const [fetchError, setFetchError] = useState('');
   const [stockData, setStockData] = useState({
-    name: "N/A",
+    name: 'N/A',
     price: 0,
     delta: 0,
     percentage: 0
@@ -56,7 +56,7 @@ const WatchlistCard = ({
       } else {
         miniChartData
           ? setFetchError(miniChartData.error)
-          : setFetchError("Error: data returned was undefined");
+          : setFetchError('Error: data returned was undefined');
       }
     };
     populateChart();
@@ -72,7 +72,7 @@ const WatchlistCard = ({
     return !isNaN(+percentage) ? (+percentage).toFixed(2) : null;
   };
   const getName = name => {
-    return name ? Utils.truncate(name) : "";
+    return name ? Utils.truncate(name) : '';
   };
 
   const onDragStart = symbol => {
@@ -84,13 +84,13 @@ const WatchlistCard = ({
         window: currentWindowService.getCurrentWindowName()
       };
       setDragging({ isDragging: true, clientX, offsetY });
-      e.dataTransfer.setData(JSON.stringify(symbolData), "");
-      e.dataTransfer.setData(JSON.stringify(windowData), "");
+      e.dataTransfer.setData(JSON.stringify(symbolData), '');
+      e.dataTransfer.setData(JSON.stringify(windowData), '');
     };
   };
 
   const onDragEnd = e => {
-    if (e.dataTransfer.dropEffect === "none") {
+    if (e.dataTransfer.dropEffect === 'none') {
       bindings.onDropOutside(symbol, stockData.name);
     }
     setDragging({ isDragging: false });
@@ -99,8 +99,8 @@ const WatchlistCard = ({
   const sendSymbolToNews = () => {
     try {
       window.fin.InterApplicationBus.send(
-        { uuid: options ? options.uuid : "*" },
-        "news",
+        { uuid: options ? options.uuid : '*' },
+        'news',
         {
           symbol
         }
@@ -114,7 +114,7 @@ const WatchlistCard = ({
     <div
       id={`stock_${symbol}`}
       className={classNames({
-        "card-wrapper": true,
+        'card-wrapper': true,
         dragging: dragging.isDragging,
         dragOver: dragOver,
         dragOverBottom: dragOverBottom
@@ -158,24 +158,24 @@ const WatchlistCard = ({
               fetchError={fetchError}
             />
             <div className="details">
-              {<div className="price">{stockData.price || "N/A"}</div>}
-              {<div className="delta">{stockData.delta || ""}</div>}
+              {<div className="price">{stockData.price || 'N/A'}</div>}
+              {<div className="delta">{stockData.delta || ''}</div>}
 
               <div className="percentage">
                 {stockData.percentage ? (
                   <>
                     <div
                       className={classNames({
-                        "stockflux-icon arrow-up": stockData.percentage > 0,
-                        "stockflux-icon arrow-down": stockData.percentage < 0
+                        'stockflux-icon arrow-up': stockData.percentage > 0,
+                        'stockflux-icon arrow-down': stockData.percentage < 0
                       })}
                       title="Stock Arrow"
                       draggable="false"
                     />
-                    {Math.abs(stockData.percentage) + "%"}
+                    {Math.abs(stockData.percentage) + '%'}
                   </>
                 ) : (
-                  ""
+                  ''
                 )}
               </div>
             </div>
@@ -193,8 +193,13 @@ WatchlistCard.propTypes = {
   bindings: PropTypes.shape({
     onIconClick: PropTypes.func.isRequired,
     onModalConfirmClick: PropTypes.func.isRequired,
-    onModalBackdropClick: PropTypes.func.isRequired
+    onModalBackdropClick: PropTypes.func.isRequired,
+    onDropOutside: PropTypes.func.isRequired
   }).isRequired,
+  onDragStart: PropTypes.func.isRequired,
+  onDragEnd: PropTypes.func.isRequired,
+  dragOver: PropTypes.func.isRequired,
+  dragOverBottom: PropTypes.func.isRequired,
   isUnwatching: PropTypes.bool.isRequired,
   removeFromWatchList: PropTypes.func.isRequired
 };

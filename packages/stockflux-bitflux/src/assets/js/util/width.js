@@ -1,3 +1,3 @@
 export default function(element) {
-    return element.getBoundingClientRect().width;
+  return element.getBoundingClientRect().width;
 }

@@ -23,5 +23,5 @@ import '../styles/sprite.css';
 import '../styles/variables.css';
 
 export default {
-    app: app
+  app: app
 };

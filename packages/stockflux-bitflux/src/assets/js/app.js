@@ -1,18 +1,18 @@
-import d3 from "d3";
-import fc from "d3fc";
-import fcRebind from "d3fc-rebind";
-import chartGroup from "./chart/group";
-import menu from "./menu/menu";
-import util from "./util/util";
-import event from "./event";
-import dataInterface from "./data/dataInterface";
-import notification from "./notification/notification";
-import messageModel from "./model/notification/message";
-import dataModel from "./model/data/data";
-import gdaxStreamingErrorResponseFormatter from "./data/gdax/streaming/errorResponseFormatter";
-import initialiseModel from "./initialiseModel";
-import getGdaxProducts from "./data/gdax/getProducts";
-import formatGdaxProducts from "./data/gdax/formatProducts";
+import d3 from 'd3';
+import fc from 'd3fc';
+import fcRebind from 'd3fc-rebind';
+import chartGroup from './chart/group';
+import menu from './menu/menu';
+import util from './util/util';
+import event from './event';
+import dataInterface from './data/dataInterface';
+import notification from './notification/notification';
+import messageModel from './model/notification/message';
+import dataModel from './model/data/data';
+import gdaxStreamingErrorResponseFormatter from './data/gdax/streaming/errorResponseFormatter';
+import initialiseModel from './initialiseModel';
+import getGdaxProducts from './data/gdax/getProducts';
+import formatGdaxProducts from './data/gdax/formatProducts';
 
 export default function() {
   var appTemplate =
@@ -101,22 +101,22 @@ export default function() {
     containers.chartsAndOverlay.datum(model.charts).call(charts);
 
     containers.app
-      .select("#navbar-reset")
+      .select('#navbar-reset')
       .datum(model.navReset)
       .call(navReset);
 
     containers.app
-      .select(".head-menu")
+      .select('.head-menu')
       .datum(model.headMenu)
       .call(headMenu);
 
     containers.app
-      .selectAll(".selectors")
+      .selectAll('.selectors')
       .datum(model.selectors)
       .call(selectors);
 
     containers.app
-      .select("#notifications")
+      .select('#notifications')
       .datum(model.notificationMessages)
       .call(toastNotifications);
 
@@ -138,7 +138,7 @@ export default function() {
   }
 
   function initialiseResize() {
-    d3.select(window).on("resize", function() {
+    d3.select(window).on('resize', function() {
       updateLayout();
       render();
     });
@@ -205,7 +205,7 @@ export default function() {
 
   function resetToLatest() {
     var data = model.charts.primary.data;
-    var dataDomain = fc.util.extent().fields(["date"])(data);
+    var dataDomain = fc.util.extent().fields(['date'])(data);
     var navTimeDomain = util.domain.moveToLatest(
       model.charts.primary.discontinuityProvider,
       dataDomain,
@@ -219,14 +219,14 @@ export default function() {
     var spinner = '<div class="spinner large" />';
     var obscure = arguments.length > 1 || isLoading;
 
-    var errorMessage = "";
+    var errorMessage = '';
     if (error && error.length) {
       errorMessage =
-        '<div class="content alert alert-info">' + error + "</div>";
+        '<div class="content alert alert-info">' + error + '</div>';
     }
     containers.app
-      .select("#loading-status-message")
-      .classed("hidden", !obscure)
+      .select('#loading-status-message')
+      .classed('hidden', !obscure)
       .html(error ? errorMessage : spinner);
   }
 
@@ -287,7 +287,7 @@ export default function() {
           var newDomain = util.domain.moveToLatest(
             model.charts.primary.discontinuityProvider,
             model.charts.primary.viewDomain,
-            fc.util.extent().fields(["date"])(model.charts.primary.data)
+            fc.util.extent().fields(['date'])(model.charts.primary.data)
           );
           onViewChange(newDomain);
         }
@@ -306,9 +306,9 @@ export default function() {
         } else {
           loading(
             false,
-            "Error loading data. Please make your selection again, or refresh the page."
+            'Error loading data. Please make your selection again, or refresh the page.'
           );
-          var responseText = "";
+          var responseText = '';
           try {
             var responseObject = err.responseText
               ? JSON.parse(err.responseText)
@@ -317,14 +317,14 @@ export default function() {
               responseObject
             );
             if (formattedMessage) {
-              responseText = ". " + formattedMessage;
+              responseText = '. ' + formattedMessage;
             }
           } catch (e) {
-            responseText = "";
+            responseText = '';
           }
-          var statusText = err.statusText || "Unknown reason.";
+          var statusText = err.statusText || 'Unknown reason.';
           var message =
-            "Error getting historic data: " + statusText + responseText;
+            'Error getting historic data: ' + statusText + responseText;
 
           addNotification(message);
         }
@@ -441,13 +441,13 @@ export default function() {
 
   function addGdaxProducts(error, bitcoinProducts) {
     if (error) {
-      var statusText = error.statusText || "Unknown reason.";
-      var message = "Error retrieving GDAX products: " + statusText;
+      var statusText = error.statusText || 'Unknown reason.';
+      var message = 'Error retrieving GDAX products: ' + statusText;
       model.notificationMessages.messages.unshift(messageModel(message));
     } else {
       var defaultPeriods = [model.periods.hour1, model.periods.day1];
       var productPeriodOverrides = d3.map();
-      productPeriodOverrides.set("BTC-USD", [
+      productPeriodOverrides.set('BTC-USD', [
         model.periods.minute1,
         model.periods.minute5,
         model.periods.hour1,
@@ -482,7 +482,7 @@ export default function() {
       productString,
       [model.periods.day1],
       model.sources.quandl,
-      ".3s"
+      '.3s'
     );
     var existsInHeadMenuProducts = model.headMenu.products.some(function(p) {
       return p.id === product.id;
@@ -512,7 +512,7 @@ export default function() {
       productString,
       [model.periods.day1],
       model.sources.stockFlux,
-      ".3s"
+      '.3s'
     );
     var existsInHeadMenuProducts = model.headMenu.products.some(function(p) {
       return p.id === product.id;
@@ -583,33 +583,33 @@ export default function() {
   app.run = function(element) {
     if (!element) {
       throw new Error(
-        "An element must be specified when running the application."
+        'An element must be specified when running the application.'
       );
     }
 
     var appContainer = d3.select(element);
     appContainer.html(appTemplate);
 
-    var chartsAndOverlayContainer = appContainer.select("#charts");
-    var chartsContainer = appContainer.select("#charts-container");
-    var overlayContainer = appContainer.select("#overlay");
+    var chartsAndOverlayContainer = appContainer.select('#charts');
+    var chartsContainer = appContainer.select('#charts-container');
+    var overlayContainer = appContainer.select('#overlay');
     containers = {
       app: appContainer,
       charts: chartsContainer,
       chartsAndOverlay: chartsAndOverlayContainer,
-      primary: chartsContainer.select("#primary-container"),
-      secondaries: chartsContainer.select("#secondaries-container"),
-      xAxis: chartsContainer.select("#x-axis-container"),
-      navbar: chartsContainer.select("#navbar-container"),
+      primary: chartsContainer.select('#primary-container'),
+      secondaries: chartsContainer.select('#secondaries-container'),
+      xAxis: chartsContainer.select('#x-axis-container'),
+      navbar: chartsContainer.select('#navbar-container'),
       overlay: overlayContainer,
       overlaySecondaries: overlayContainer.select(
-        "#overlay-secondaries-container"
+        '#overlay-secondaries-container'
       ),
-      legend: appContainer.select("#legend"),
+      legend: appContainer.select('#legend'),
       suspendLayout: function(value) {
         var self = this;
         Object.keys(self).forEach(function(key) {
-          if (typeof self[key] !== "function") {
+          if (typeof self[key] !== 'function') {
             self[key].layoutSuspended(value);
           }
         });
@@ -640,9 +640,9 @@ export default function() {
     app,
     model.sources.quandl.historicFeed,
     fcRebind.includeMap({
-      apiKey: "quandlApiKey",
-      database: "quandlDatabase",
-      columnNameMap: "quandlColumnNameMap"
+      apiKey: 'quandlApiKey',
+      database: 'quandlDatabase',
+      columnNameMap: 'quandlColumnNameMap'
     })
   );
 
@@ -650,7 +650,7 @@ export default function() {
     app,
     _dataInterface,
     fcRebind.includeMap({
-      candlesOfData: "periodsOfDataToFetch"
+      candlesOfData: 'periodsOfDataToFetch'
     })
   );
 

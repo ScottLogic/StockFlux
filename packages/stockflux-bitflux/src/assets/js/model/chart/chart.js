@@ -7,11 +7,11 @@ import secondary from './secondary';
 import xAxis from './xAxis';
 
 export default {
-    group: group,
-    legend: legend,
-    nav: nav,
-    navigationReset: navigationReset,
-    primary: primary,
-    secondary: secondary,
-    xAxis: xAxis
+  group: group,
+  legend: legend,
+  nav: nav,
+  navigationReset: navigationReset,
+  primary: primary,
+  secondary: secondary,
+  xAxis: xAxis
 };

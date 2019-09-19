@@ -1,17 +1,17 @@
-import d3 from "d3";
+import d3 from 'd3';
 
 // https://docs.gdax.com/#websocket-feed
 
 export default function() {
-  var product = "BTC-USD";
-  var dispatch = d3.dispatch("open", "close", "error", "message");
-  var messageType = "match";
+  var product = 'BTC-USD';
+  var dispatch = d3.dispatch('open', 'close', 'error', 'message');
+  var messageType = 'match';
   var socket;
 
   var webSocket = function(url, subscribe) {
-    url = url || "wss://ws-feed.gdax.com";
+    url = url || 'wss://ws-feed.gdax.com';
     subscribe = subscribe || {
-      type: "subscribe",
+      type: 'subscribe',
       product_id: product
     };
 
@@ -31,13 +31,13 @@ export default function() {
       var msg = JSON.parse(event.data);
       if (msg.type === messageType) {
         dispatch.message(msg);
-      } else if (msg.type === "error") {
+      } else if (msg.type === 'error') {
         dispatch.error(msg);
       }
     };
   };
 
-  d3.rebind(webSocket, dispatch, "on");
+  d3.rebind(webSocket, dispatch, 'on');
 
   webSocket.close = function() {
     // Only close the WebSocket if it is opening or open

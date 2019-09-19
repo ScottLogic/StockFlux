@@ -6,9 +6,9 @@ import BitFlux from './bitflux';
 // For example: ?seed=yourseed
 var seed = window.location.search.split('seed=')[1];
 if (seed) {
-    Math.seedrandom(seed);
+  Math.seedrandom(seed);
 }
 
 BitFlux.app()
-    .fetchGdaxProducts(true)
-    .run('#app-container');
+  .fetchGdaxProducts(true)
+  .run('#app-container');

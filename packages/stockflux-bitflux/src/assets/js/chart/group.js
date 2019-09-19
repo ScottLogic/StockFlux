@@ -7,67 +7,73 @@ import multiChart from './multiChart';
 import xAxisChart from './xAxis';
 
 export default function() {
-    var dispatch = d3.dispatch(event.viewChange, event.crosshairChange);
+  var dispatch = d3.dispatch(event.viewChange, event.crosshairChange);
 
-    var legend = legendChart();
+  var legend = legendChart();
 
-    var nav = navChart()
-        .on(event.viewChange, dispatch[event.viewChange]);
+  var nav = navChart().on(event.viewChange, dispatch[event.viewChange]);
 
-    var primary = primaryChart()
-        .on(event.viewChange, dispatch[event.viewChange])
-        .on(event.crosshairChange, dispatch[event.crosshairChange]);
+  var primary = primaryChart()
+    .on(event.viewChange, dispatch[event.viewChange])
+    .on(event.crosshairChange, dispatch[event.crosshairChange]);
 
-    var secondaryCharts = multiChart()
-        .on(event.viewChange, dispatch[event.viewChange]);
+  var secondaryCharts = multiChart().on(
+    event.viewChange,
+    dispatch[event.viewChange]
+  );
 
-    var xAxis = xAxisChart();
+  var xAxis = xAxisChart();
 
-    function group(selection) {
-        selection.each(function(model) {
-            selection.select('#legend')
-                .datum(model.legend)
-                .call(legend);
+  function group(selection) {
+    selection.each(function(model) {
+      selection
+        .select('#legend')
+        .datum(model.legend)
+        .call(legend);
 
-            selection.select('#navbar-container')
-                .datum(model.nav)
-                .call(nav);
+      selection
+        .select('#navbar-container')
+        .datum(model.nav)
+        .call(nav);
 
-            selection.select('#primary-container')
-                .datum(model.primary)
-                .call(primary);
+      selection
+        .select('#primary-container')
+        .datum(model.primary)
+        .call(primary);
 
-            selection.select('#secondaries-container')
-                .datum(model.secondary)
-                .call(secondaryCharts);
+      selection
+        .select('#secondaries-container')
+        .datum(model.secondary)
+        .call(secondaryCharts);
 
-            selection.select('#x-axis-container')
-                .datum(model.xAxis)
-                .call(xAxis);
-        });
-    }
+      selection
+        .select('#x-axis-container')
+        .datum(model.xAxis)
+        .call(xAxis);
+    });
+  }
 
-    group.legend = function() {
-        return legend;
-    };
+  group.legend = function() {
+    return legend;
+  };
 
-    group.nav = function() {
-        return nav;
-    };
+  group.nav = function() {
+    return nav;
+  };
 
-    group.primary = function() {
-        return primary;
-    };
+  group.primary = function() {
+    return primary;
+  };
 
-    group.secondaries = function() {
-        return secondaryCharts;
-    };
+  group.secondaries = function() {
+    return secondaryCharts;
+  };
 
-    group.xAxis = function() {
-        return xAxis;
-    };
+  group.xAxis = function() {
+    return xAxis;
+  };
 
-    d3.rebind(group, dispatch, 'on');
+  d3.rebind(group, dispatch, 'on');
 
-    return group;
+  return group;
 }
