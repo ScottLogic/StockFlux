@@ -11,5 +11,5 @@ const mountApp = () => {
 if (window.fin) {
   window.fin.desktop.main(mountApp);
 } else {
-  console.error("This application can only be run in an OpenFin container.");
+  console.error('This application can only be run in an OpenFin container.');
 }

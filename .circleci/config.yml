@@ -4,10 +4,18 @@ workflows:
   version: 2
   build:
     jobs:
-      - install_and_build
+      - install
+      - lint:
+          requires:
+            - install
+      - build:
+          requires:
+            - install
       - deploy:
           requires:
-            - install_and_build
+            - install
+            - lint
+            - build
           filters:
             branches:
               only:
@@ -15,7 +23,7 @@ workflows:
                 - dev
 
 jobs:
-  install_and_build:
+  install:
     working_directory: ~/stockflux
     docker:
       - image: circleci/node:10.15.1
@@ -26,10 +34,32 @@ jobs:
           name: Root package install
           command: npm ci
       - run:
-          name: Bootstrap packages
+          name: Bootstrap Packages
           command: npm run bootstrap
+      - persist_to_workspace:
+          root: ~/stockflux
+          paths: .
+
+  lint:
+    working_directory: ~/stockflux
+    docker:
+      - image: circleci/node:10.15.1
+    steps:
+      - attach_workspace:
+          at: ~/stockflux
       - run:
-          name: Build packages
+          name: Lint *.js files
+          command: npm run lint
+
+  build:
+    working_directory: ~/stockflux
+    docker:
+      - image: circleci/node:10.15.1
+    steps:
+      - attach_workspace:
+          at: ~/stockflux
+      - run:
+          name: Build Packages
           command: npm run build
       - persist_to_workspace:
           root: ~/stockflux
@@ -44,9 +74,9 @@ jobs:
           at: ~/stockflux
       - add_ssh_keys:
           fingerprints:
-            - "e1:6c:ab:38:9e:8f:ed:f1:60:4a:c7:b1:23:33:0c:07"
-            - "16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48" # GitHub RSA
-            - "ad:1c:08:a4:40:e3:6f:9c:f5:66:26:5d:4b:33:5d:8c" # GitHub DSA
+            - 'e1:6c:ab:38:9e:8f:ed:f1:60:4a:c7:b1:23:33:0c:07'
+            - '16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48' # GitHub RSA
+            - 'ad:1c:08:a4:40:e3:6f:9c:f5:66:26:5d:4b:33:5d:8c' # GitHub DSA
       - run:
           name: Add GitHub SSH fingerprints to known hosts
           command: |

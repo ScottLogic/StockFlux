@@ -4,8 +4,8 @@ import data from './data/data';
 import notification from './notification/notification';
 
 export default {
-    menu: menu,
-    chart: chart,
-    data: data,
-    notification: notification
+  menu: menu,
+  chart: chart,
+  data: data,
+  notification: notification
 };

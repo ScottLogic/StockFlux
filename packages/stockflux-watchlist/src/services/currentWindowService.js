@@ -1,4 +1,5 @@
-/* eslint-disable no-undef */
+/*global fin*/
+
 /**
  * Abstraction layer for the OpenFin API.
  */

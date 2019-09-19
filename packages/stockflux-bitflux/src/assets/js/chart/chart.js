@@ -7,11 +7,11 @@ import multiChart from './multiChart';
 import group from './group';
 
 export default {
-    legend: legend,
-    nav: nav,
-    primary: primary,
-    xAxis: xAxis,
-    secondary: secondary,
-    multiChart: multiChart,
-    group: group
+  legend: legend,
+  nav: nav,
+  primary: primary,
+  xAxis: xAxis,
+  secondary: secondary,
+  multiChart: multiChart,
+  group: group
 };

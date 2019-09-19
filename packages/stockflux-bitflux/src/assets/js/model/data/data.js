@@ -3,7 +3,7 @@ import product from './product';
 import source from './source';
 
 export default {
-    period: period,
-    product: product,
-    source: source
+  period: period,
+  product: product,
+  source: source
 };

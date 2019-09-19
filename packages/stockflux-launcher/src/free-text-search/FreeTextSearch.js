@@ -1,12 +1,29 @@
-import React, { useState, useReducer, useEffect, useRef, useCallback } from 'react';
+import React, {
+  useState,
+  useReducer,
+  useEffect,
+  useRef,
+  useCallback
+} from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { Intents, StockFlux } from 'stockflux-core';
 import SearchResult from './search-result';
-import { reducer, initialSearchState, SEARCHING, SUCCESS, ERROR, INITIALISE } from './FreeTextSearch.reducer';
-import { ScreenEdge, useBounds, useInterApplicationBusSubscribe } from 'openfin-react-hooks';
+import {
+  reducer,
+  initialSearchState,
+  SEARCHING,
+  SUCCESS,
+  ERROR,
+  INITIALISE
+} from './FreeTextSearch.reducer';
+import {
+  ScreenEdge,
+  useBounds,
+  useInterApplicationBusSubscribe
+} from 'openfin-react-hooks';
 import './FreeTextSearch.css';
-import MESSAGES from "./FreeTextSearch.messages";
-import launchSearchResultsWindow from "./search-result/SearchResults.launcher";
+import MESSAGES from './FreeTextSearch.messages';
+import launchSearchResultsWindow from './search-result/SearchResults.launcher';
 import populateSearchResultsWindow from './search-result/SearchResults.populater';
 import { OpenfinApiHelpers } from 'stockflux-core/src';
 
@@ -37,14 +54,19 @@ const FreeTextSearch = ({ dockedTo }) => {
   const handleOnInputChange = useCallback(
     event => {
       setQuery(event.target.value);
-      if (event.target.value !== null && event.target.value === "") {
+      if (event.target.value !== null && event.target.value === '') {
         closeResultsWindow();
       } else if (!resultsWindow && !isCreatingResultWindow) {
         isCreatingResultWindow = true;
-        launchSearchResultsWindow(searchButtonRef, searchInputRef, dockedTo, bounds)
-            .then(win => resultsWindow = win)
-            .catch(err => console.error(err))
-            .finally(() => isCreatingResultWindow = false);
+        launchSearchResultsWindow(
+          searchButtonRef,
+          searchInputRef,
+          dockedTo,
+          bounds
+        )
+          .then(win => (resultsWindow = win))
+          .catch(err => console.error(err))
+          .finally(() => (isCreatingResultWindow = false));
       }
     },
     [searchButtonRef, searchInputRef, dockedTo, bounds]
@@ -56,18 +78,23 @@ const FreeTextSearch = ({ dockedTo }) => {
       if (dockedTo === ScreenEdge.TOP) {
         searchInputRef.current.value = '';
       }
-    } else if(!isCreatingResultWindow) {
+    } else if (!isCreatingResultWindow) {
       isCreatingResultWindow = true;
-      launchSearchResultsWindow(searchButtonRef, searchInputRef, dockedTo, bounds)
-          .then(win => resultsWindow = win)
-          .catch(err => console.error(err))
-          .finally(() => isCreatingResultWindow = false);
+      launchSearchResultsWindow(
+        searchButtonRef,
+        searchInputRef,
+        dockedTo,
+        bounds
+      )
+        .then(win => (resultsWindow = win))
+        .catch(err => console.error(err))
+        .finally(() => (isCreatingResultWindow = false));
     }
   }, [searchButtonRef, searchInputRef, dockedTo, bounds]);
 
   useEffect(() => {
     closeResultsWindow();
-    setQuery("");
+    setQuery('');
   }, [dockedTo]);
 
   useEffect(() => {
@@ -94,7 +121,10 @@ const FreeTextSearch = ({ dockedTo }) => {
   }, [debouncedQuery]);
 
   useEffect(() => {
-    const handler = setTimeout(() => setDebouncedQuery(query), SEARCH_TIMEOUT_INTERVAL);
+    const handler = setTimeout(
+      () => setDebouncedQuery(query),
+      SEARCH_TIMEOUT_INTERVAL
+    );
     return () => clearTimeout(handler);
   }, [query]);
 
@@ -107,15 +137,14 @@ const FreeTextSearch = ({ dockedTo }) => {
       populateSearchResultsWindow(MESSAGES.SEARCHING, resultsWindow);
     } else if (results && results.length) {
       const html = results.map(result => (
-        <SearchResult
-          key={result.code}
-          code={result.code}
-          name={result.name}
-        />
+        <SearchResult key={result.code} code={result.code} name={result.name} />
       ));
       populateSearchResultsWindow(html, resultsWindow);
     } else {
-      populateSearchResultsWindow(debouncedQuery ? MESSAGES.NO_MATCHES : MESSAGES.INITIAL, resultsWindow);
+      populateSearchResultsWindow(
+        debouncedQuery ? MESSAGES.NO_MATCHES : MESSAGES.INITIAL,
+        resultsWindow
+      );
     }
   }, [debouncedQuery, isSearching, results]);
 
@@ -129,35 +158,51 @@ const FreeTextSearch = ({ dockedTo }) => {
     closeResultsWindow();
     searchInputRef.current.value = '';
     searchInputRef.current.blur();
-  }
+  };
 
   useEffect(() => {
     if (parentUuid) {
-      window.fin.InterApplicationBus.subscribe(parentUuid, 'intent-request', (message) => {
-        switch (message.type) {
-          case 'news-view':
-            Intents.viewNews(message.code, message.name);
-            closeAndClearSearch();
-            break;
-          case 'watchlist-add':
-            Intents.addWatchlist(message.code, message.name);
-            closeAndClearSearch();
-            break;
-          case 'chart-add':
-            Intents.viewChart(message.code, message.name);
-            closeAndClearSearch();
-            break;
-          default:
-            break;
+      window.fin.InterApplicationBus.subscribe(
+        parentUuid,
+        'intent-request',
+        message => {
+          switch (message.type) {
+            case 'news-view':
+              Intents.viewNews(message.code, message.name);
+              closeAndClearSearch();
+              break;
+            case 'watchlist-add':
+              Intents.addWatchlist(message.code, message.name);
+              closeAndClearSearch();
+              break;
+            case 'chart-add':
+              Intents.viewChart(message.code, message.name);
+              closeAndClearSearch();
+              break;
+            default:
+              break;
+          }
         }
-      });
+      );
     }
   }, [parentUuid]);
 
-  const { data, subscribeError, isSubscribed } = useInterApplicationBusSubscribe(
-    parentUuid ? parentUuid : ALL, 'search-request');
+  const {
+    data,
+    subscribeError,
+    isSubscribed
+  } = useInterApplicationBusSubscribe(
+    parentUuid ? parentUuid : ALL,
+    'search-request'
+  );
 
-  if (!subscribeError && isSubscribed && data && debouncedQuery !== data.message && dockedTo !== ScreenEdge.TOP) {
+  if (
+    !subscribeError &&
+    isSubscribed &&
+    data &&
+    debouncedQuery !== data.message &&
+    dockedTo !== ScreenEdge.TOP
+  ) {
     setDebouncedQuery(data.message);
   }
 
