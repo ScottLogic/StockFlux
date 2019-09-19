@@ -59,7 +59,7 @@ function App() {
 
   const { data } = useInterApplicationBusSubscribe(
     { uuid: options ? options.uuid : "*" },
-    "news"
+    "stockflux-news"
   );
 
   useEffect(() => {

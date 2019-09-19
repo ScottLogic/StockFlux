@@ -55,20 +55,29 @@ export async function createNewsChildWindow(manifest, symbol, name) {
   return await createChildWindow(options);
 }
 
-export async function createWatchlistChildWindow(manifest, symbol) {
+export async function createChild(manifest, symbol) {
   const options = await getChildWindowOptions(manifest);
-  options.name = `stockflux-watchlist`;
-
   await createChildWindow(options);
 
   try {
     window.fin.InterApplicationBus.send(
-      { uuid: "stockflux-launcher" },
-      "watchlist",
-      {
-        symbol: "MSFT"
-      }
+      { uuid: options.uuid },
+      options.name,
+      symbol
     );
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export async function createWatchlistChildWindow(manifest, symbol) {
+  const options = await getChildWindowOptions(manifest);
+  await createChildWindow(options);
+
+  try {
+    window.fin.InterApplicationBus.send({ uuid: options.uuid }, options.name, {
+      symbol
+    });
   } catch (err) {
     console.error(err);
   }

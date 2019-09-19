@@ -46,7 +46,7 @@ const Watchlist = () => {
 
   const { data } = useInterApplicationBusSubscribe(
     { uuid: options ? options.uuid : "*" },
-    "watchlist"
+    "stockflux-watchlist"
   );
 
   useEffect(() => {
