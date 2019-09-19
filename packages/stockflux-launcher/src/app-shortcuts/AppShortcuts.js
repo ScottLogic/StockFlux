@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { OpenfinApiHelpers } from 'stockflux-core';
 import Components from 'stockflux-components';
 import './AppShortcuts.css';
-import { createChild } from '../childWindowLauncher';
+import { createChild, createChartChildWindow } from '../childWindowLauncher';
 
 export default () => {
   const [apps, setApps] = useState([]);
@@ -44,7 +44,7 @@ export default () => {
             <AppShortcut
               key={app.appId}
               app={app}
-              onClick={() => createChild(app, 'AAPL')}
+              onClick={() => createChartChildWindow(app)}
             />
           );
         })}

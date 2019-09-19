@@ -40,31 +40,24 @@ async function getChildWindowOptions(manifest) {
 }
 
 export async function createNewsChildWindow(manifest, symbol, name) {
-  const options = await getChildWindowOptions(manifest);
-  options.name = `stockflux-news${symbol ? `[${symbol}]` : ''}`;
-
-  // Add symbol and name to customData for launching news application
-
-  if (!options.customData) {
-    options.customData = {};
-  }
-
-  options.customData.symbol = symbol;
-  options.customData.name = name;
-
-  return await createChildWindow(options);
+  return createChild(manifest, o => {
+    o.name = `stockflux-news${symbol ? `[${symbol}]` : ''}`;
+    if (symbol) {
+      o.customData.symbol = symbol;
+    }
+    if (name) {
+      o.customData.name = name;
+    }
+    return o;
+  });
 }
 
-export async function createChild(manifest, symbol) {
-  const options = await getChildWindowOptions(manifest);
-  await createChildWindow(options);
-  try {
-    window.fin.InterApplicationBus.send({ uuid: options.uuid }, options.name, {
-      symbol
-    });
-  } catch (err) {
-    console.error(err);
-  }
+export async function createChild(manifest, modifyOptions) {
+  modifyOptions = modifyOptions === undefined ? o => o : modifyOptions;
+
+  return await createChildWindow(
+    modifyOptions(await getChildWindowOptions(manifest))
+  );
 }
 
 export async function createWatchlistChildWindow(manifest, symbol) {
@@ -80,11 +73,15 @@ export async function createWatchlistChildWindow(manifest, symbol) {
   }
 }
 
-export async function createChartChildWindow(manifest, symbol) {
-  const options = await getChildWindowOptions(manifest);
-  options.name = `stockflux-chart${symbol ? `[${symbol}]` : ''}`;
-
-  // Add symbol to customData for launching chart app
-
-  return await createChildWindow(options);
+export async function createChartChildWindow(manifest, symbol, name) {
+  return createChild(manifest, o => {
+    o.name = `stockflux-chart${symbol ? `[${symbol}]` : ''}`;
+    if (symbol) {
+      o.customData.symbol = symbol;
+    }
+    if (name) {
+      o.customData.name = name;
+    }
+    return o;
+  });
 }
