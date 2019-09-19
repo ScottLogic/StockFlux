@@ -65,16 +65,21 @@ body {
   background-color: transparent;
   cursor: pointer;
   outline: none;
-  color: #95989c;
+  color: #37d8bc;
+  border: solid 1px #307A71;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px; 
+  margin: 0 5px;
 }
 
 .app-shortcut {
-  height: 20px;
-  width: 20px;
+  height: 13px;
+  width: 13px;
 }
 
 .buttonAction:hover {
-  color: #7b7e82;
+  border: solid 1px #37d8bc;
 }
 
 .left .free-text-search,
