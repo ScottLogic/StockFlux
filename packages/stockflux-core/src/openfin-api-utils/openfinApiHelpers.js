@@ -44,3 +44,6 @@ export const getStockFluxApp = async appId =>
       })
     )
     .then(response => response.json());
+
+export const sendInterApplicationMessage = async (uuid, topic, payload) =>
+  await window.fin.InterApplicationBus.send({ uuid }, topic, payload);
