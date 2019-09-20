@@ -91,6 +91,10 @@ button.round {
   display: flex;
 }
 
+.icons .round:last-child {
+  margin-right: 0;
+}
+
 .details-container {
   width: 70%;
 }

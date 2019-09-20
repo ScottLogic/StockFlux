@@ -3,7 +3,7 @@
   height: 35px;
   width: 35px;
   display: inline-block;
-  margin: 5px;
+  margin: 0 5px;
   color: var(--text-teal-light);
   border: solid 2px var(--text-teal);
   outline: none;
@@ -12,20 +12,16 @@
   padding: 6px;
 }
 
-.small {
-  height: 28px;
-  width: 28px;
+.round.small {
+  height: 30px;
+  width: 30px;
+  padding: 4px;
+  margin: 0 2px;
 }
 
 .round svg {
   margin: auto;
   display: block;
-}
-
-.small svg {
-  height: 20px;
-  width: 20px;
-  padding: 0;
 }
 
 .round:hover {
