@@ -3,7 +3,7 @@
   height: 35px;
   width: 35px;
   display: inline-block;
-  margin: 0 5px;
+  margin: 5px;
   color: var(--text-teal-light);
   border: solid 2px var(--text-teal);
   outline: none;
@@ -16,7 +16,7 @@
   height: 30px;
   width: 30px;
   padding: 5px;
-  margin: 0 2px;
+  margin: 2px;
 }
 
 .round svg {
