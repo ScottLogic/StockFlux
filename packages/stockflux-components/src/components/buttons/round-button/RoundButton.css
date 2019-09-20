@@ -15,13 +15,19 @@
 .round.small {
   height: 30px;
   width: 30px;
-  padding: 4px;
+  padding: 5px;
   margin: 0 2px;
 }
 
 .round svg {
   margin: auto;
   display: block;
+  shape-rendering: auto;
+  fill: currentColor;
+}
+
+.round svg:hover {
+  color: inherit;
 }
 
 .round:hover {

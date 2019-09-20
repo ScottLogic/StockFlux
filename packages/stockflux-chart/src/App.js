@@ -71,22 +71,25 @@ const App = () => {
             {symbol && <div className="code">{symbol}</div>}
             <div className="name">{!symbol ? 'Generated Data' : name}</div>
             <div className="chart-nav-icons">
-              <div
-                className={'chart-nav-icon' + (symbol ? '' : ' icon-disabled')}
-              >
-                <Components.Shortcuts.News symbol name />
-              </div>
-              <div
-                className={'chart-nav-icon' + (symbol ? '' : ' icon-disabled')}
-              >
-                <Components.Shortcuts.Watchlist symbol name />
-              </div>
-              <div
-                className={'chart-nav-icon' + (symbol ? '' : ' icon-disabled')}
+              <Components.Shortcuts.News
+                small={true}
+                symbol
+                name
+                disabled={!symbol}
+              />
+              <Components.Shortcuts.Watchlist
+                small={true}
+                symbol
+                name
+                disabled={!symbol}
+              />
+              <Components.Buttons.Round
+                small={true}
                 onClick={() => getData(symbol)}
+                disabled={!symbol}
               >
                 <FaSyncAlt />
-              </div>
+              </Components.Buttons.Round>
             </div>
           </div>
           <Chart getData={getData} chart={chart} symbol={symbol} />
