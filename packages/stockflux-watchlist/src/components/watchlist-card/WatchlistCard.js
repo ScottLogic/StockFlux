@@ -135,17 +135,19 @@ const WatchlistCard = ({
                 className="news-symbol"
                 symbol={symbol}
                 name={stockData.name}
+                small={true}
                 onClick={sendSymbolToNews}
               />
-              <div
+              <Components.Buttons.Close
                 className="remove-symbol"
                 onClick={e => {
                   e.stopPropagation();
                   removeFromWatchList(symbol);
                 }}
+                small={true}
               >
                 <FaTimes />
-              </div>
+              </Components.Buttons.Close>
             </div>
           </div>
           <div

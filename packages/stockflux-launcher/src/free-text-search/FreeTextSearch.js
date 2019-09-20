@@ -217,9 +217,9 @@ const FreeTextSearch = ({ dockedTo }) => {
         />
       )}
       <span ref={searchButtonRef}>
-        <Components.RoundButton onClick={() => handleSearchClick()}>
+        <Components.Buttons.Round onClick={() => handleSearchClick()}>
           <FaSearch />
-        </Components.RoundButton>
+        </Components.Buttons.Round>
       </span>
     </div>
   );

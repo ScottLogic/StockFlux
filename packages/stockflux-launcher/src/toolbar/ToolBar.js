@@ -6,14 +6,14 @@ export default ({ tools }) => {
   return (
     <div className="toolbar">
       {tools.map((tool, index) => (
-        <Components.RoundButton
+        <Components.Buttons.Round
           key={index}
           onClick={() => tool.onClick()}
           disabled={!!tool.disabled}
           className={tool.className ? tool.className : ''}
         >
           {tool.label}
-        </Components.RoundButton>
+        </Components.Buttons.Round>
       ))}
     </div>
   );
