@@ -16,6 +16,7 @@ html {
   flex-direction: row;
   justify-content: space-between;
   border-bottom: solid 1px var(--text-teal);
+  align-items: center;
 }
 
 .left,
