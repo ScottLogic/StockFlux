@@ -1,13 +1,14 @@
 import React from 'react';
 import { Launchers } from 'stockflux-core';
-import NewsIcon from '../../icons/news.svg';
-import '../AppShortcut.css';
+import NewsIcon from '../icons/news.svg';
+import RoundButton from '../round-button/RoundButton';
+import './AppShortcut.css';
 
 export default ({ symbol, name, intentsEnabled }) => (
-  <div
-    className="app-shortcut news-shortcut"
+  <RoundButton
+    className="app-shortcut news"
     onClick={() => Launchers.launchNews(symbol, name, intentsEnabled)}
   >
     <NewsIcon />
-  </div>
+  </RoundButton>
 );

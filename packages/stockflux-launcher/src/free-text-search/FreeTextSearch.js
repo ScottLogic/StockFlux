@@ -26,6 +26,7 @@ import MESSAGES from './FreeTextSearch.messages';
 import launchSearchResultsWindow from './search-result/SearchResults.launcher';
 import populateSearchResultsWindow from './search-result/SearchResults.populater';
 import { OpenfinApiHelpers } from 'stockflux-core/src';
+import Components from 'stockflux-components';
 
 const ALL = { uuid: '*' };
 const SEARCH_TIMEOUT_INTERVAL = 250;
@@ -215,9 +216,11 @@ const FreeTextSearch = ({ dockedTo }) => {
           ref={searchInputRef}
         />
       )}
-      <button onClick={() => handleSearchClick()} ref={searchButtonRef}>
-        <FaSearch />
-      </button>
+      <span ref={searchButtonRef}>
+        <Components.RoundButton onClick={() => handleSearchClick()}>
+          <FaSearch />
+        </Components.RoundButton>
+      </span>
     </div>
   );
 };

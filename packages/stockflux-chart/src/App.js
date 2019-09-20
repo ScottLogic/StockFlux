@@ -74,12 +74,12 @@ const App = () => {
               <div
                 className={'chart-nav-icon' + (symbol ? '' : ' icon-disabled')}
               >
-                <Components.NewsShortcut symbol name />
+                <Components.Shortcuts.News symbol name />
               </div>
               <div
                 className={'chart-nav-icon' + (symbol ? '' : ' icon-disabled')}
               >
-                <Components.WatchlistShortcut symbol name />
+                <Components.Shortcuts.Watchlist symbol name />
               </div>
               <div
                 className={'chart-nav-icon' + (symbol ? '' : ' icon-disabled')}

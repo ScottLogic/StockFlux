@@ -38,6 +38,6 @@ The global default export is defined as `Components`. You can use it like so:
 ```jsx
 <Components.ScrollWrapperY>
   <Components.Spinner />
-  <Components.NewsShortcut />
+  <Components.Shortcuts.News />
 </Components.ScrollWrapperY>
 ```

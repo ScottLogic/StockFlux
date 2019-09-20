@@ -1,4 +1,4 @@
-import { Intents } from 'stockflux-core';
+import { Launchers } from 'stockflux-core';
 
 let dragStartClientY = null;
 let cardHeight = null;
@@ -72,7 +72,7 @@ export const onDrop = (
 };
 
 export const onDropOutside = async function(symbol, stockName) {
-  Intents.viewChart(symbol, stockName);
+  Launchers.launchChart(symbol, stockName);
 };
 
 export const resetDragState = setDragOverIndex => {

@@ -25,6 +25,7 @@
     "build": "webpack"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "react-svg-loader": "^3.0.3"
   }
 }

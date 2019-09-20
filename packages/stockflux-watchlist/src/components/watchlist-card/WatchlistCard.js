@@ -131,7 +131,7 @@ const WatchlistCard = ({
               <div className="symbol">{symbol}</div>
             </div>
             <div className="icons">
-              <Components.NewsShortcut
+              <Components.Shortcuts.News
                 className="news-symbol"
                 symbol={symbol}
                 name={stockData.name}

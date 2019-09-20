@@ -1,9 +1,10 @@
 import Titlebar from './components/Titlebar/Titlebar';
 import ScrollWrapperY from './components/scroll-wrapper-y/ScrollWrapperY';
 import { Spinner, LargeSpinner } from './components/spinner/Spinner';
-import WatchlistShortcut from './components/app-launch-buttons/watchlist-shortcut/WatchlistShortcut';
-import ChartShortcut from './components/app-launch-buttons/chart-shortcut/ChartShortcut';
-import NewsShortcut from './components/app-launch-buttons/news-shortcut/NewsShortcut';
+import Watchlist from './components/app-shortcuts/Watchlist';
+import Chart from './components/app-shortcuts/Chart';
+import RoundButton from './components/round-button/RoundButton';
+import News from './components/app-shortcuts/News';
 
 import './styles/button-icon.css';
 import './styles/icon.css';
@@ -16,7 +17,6 @@ export default {
   ScrollWrapperY,
   Spinner,
   LargeSpinner,
-  WatchlistShortcut,
-  ChartShortcut,
-  NewsShortcut
+  RoundButton,
+  Shortcuts: { Watchlist, Chart, News }
 };

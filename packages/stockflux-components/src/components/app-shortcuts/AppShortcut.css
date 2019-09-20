@@ -1,12 +1,13 @@
-.app-shortcut {
-  cursor: pointer;
-}
-
 .app-shortcut:hover svg {
   color: #37d8bc;
 }
 
 .app-shortcut svg {
   height: 28px;
+  width: 28px;
+}
+
+.small .app-shortcut svg {
+  height: 20px;
   width: 20px;
 }

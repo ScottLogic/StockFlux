@@ -23,13 +23,11 @@ export default () => {
         )
         .map(app => {
           const AppShortcut =
-            Components[
+            Components.Shortcuts[
               app.appId
                 .split('stockflux-')[1]
                 .charAt(0)
-                .toUpperCase() +
-                app.appId.slice(11) +
-                'Shortcut'
+                .toUpperCase() + app.appId.slice(11)
             ];
           return <AppShortcut key={app.appId} />;
         })}
