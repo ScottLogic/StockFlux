@@ -2,7 +2,7 @@
   "devtools_port": 9091,
   "runtime": {
     "arguments": "--enable-aggressive-domstorage-flushing",
-    "version": "13.76.43.31"
+    "version": "12.69.43.22"
   },
   "startup_app": {
     "name": "stockflux-launcher",
