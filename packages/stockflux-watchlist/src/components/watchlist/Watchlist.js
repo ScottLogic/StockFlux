@@ -24,7 +24,6 @@ const getDistinctElementArray = array => [...new Set(array)];
 const Watchlist = () => {
   const [dragOverIndex, setDragOverIndex] = useState(null);
   const [unwatchedSymbol, setUnwatchedSymbol] = useState(null);
-  //const [parentUuid, setParentUuid] = useState(null);
   const [watchlist, setWatchlist] = StockFluxHooks.useLocalStorage(
     'watchlist',
     ['AAPL', 'AAP', 'CC', 'MS', 'JPS']
@@ -32,39 +31,36 @@ const Watchlist = () => {
 
   const [options] = useOptions();
 
-  const displayNotification = useCallback(
-    newSymbol => {
-      const alreadyInWatchlist = watchlist.includes(newSymbol);
-      showNotification({
-        message: {
-          symbol: newSymbol,
-          watchlistName: 'My Watchlist',
-          alreadyInWatchlist,
-          messageText: `${alreadyInWatchlist ? ' moved' : ' added'} to the top`
-        }
-      });
-    },
-    [watchlist]
-  );
+  const displayNotification = newSymbol => {
+    const alreadyInWatchlist = watchlist.includes(newSymbol);
+    showNotification({
+      message: {
+        symbol: newSymbol,
+        watchlistName: 'My Watchlist',
+        alreadyInWatchlist,
+        messageText: `${alreadyInWatchlist ? ' moved' : ' added'} to the top`
+      }
+    });
+  };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const addToWatchlist = useCallback(symbol => {
+  const addToWatchlist = symbol => {
     setWatchlist(getDistinctElementArray([symbol, ...watchlist]));
     displayNotification(symbol);
-  });
+  };
 
   const { data } = useInterApplicationBusSubscribe(
     { uuid: options ? options.uuid : '*' },
     'stockflux-watchlist'
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (data && data.message) {
       if (data.message.symbol) {
         addToWatchlist(data.message.symbol);
       }
     }
-  }, [addToWatchlist, data]);
+  }, [data]);
 
   const onIconClick = symbol => {
     return e => {
