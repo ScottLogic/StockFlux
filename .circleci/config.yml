@@ -21,6 +21,7 @@ workflows:
               only:
                 - master
                 - dev
+                - intents-fix
 
 jobs:
   install:
