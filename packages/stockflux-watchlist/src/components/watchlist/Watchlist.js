@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import WatchlistCard from '../watchlist-card/WatchlistCard';
 import Components from 'stockflux-components';
 import { StockFluxHooks } from 'stockflux-core';
@@ -53,13 +53,13 @@ const Watchlist = () => {
     'stockflux-watchlist'
   );
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (data && data.message) {
       if (data.message.symbol) {
         addToWatchlist(data.message.symbol);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   const onIconClick = symbol => {
