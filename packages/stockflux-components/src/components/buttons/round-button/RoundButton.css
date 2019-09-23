@@ -1,0 +1,54 @@
+.round {
+  border-radius: 100%;
+  height: 35px;
+  width: 35px;
+  display: inline-block;
+  margin: 5px;
+  color: var(--text-teal-light);
+  border: solid 2px var(--text-teal);
+  outline: none;
+  background-color: inherit;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.round.small {
+  height: 30px;
+  width: 30px;
+  padding: 5px;
+  margin: 2px;
+}
+
+.round svg {
+  margin: auto;
+  display: block;
+  shape-rendering: auto;
+  fill: currentColor;
+}
+
+.round svg:hover {
+  color: inherit;
+}
+
+.round:hover {
+  color: var(--text-teal-light);
+  border-color: var(--text-teal-light);
+}
+
+.round:active {
+  background-color: var(--middle-background-lighter);
+}
+
+.round:disabled {
+  color: var(--light-background);
+  border: solid 1px var(--light-background);
+  cursor: default;
+}
+
+.round:disabled:hover {
+  background-color: inherit;
+}
+
+.round:not(:disabled):active {
+  background-color: var(--middle-background-lighter);
+}

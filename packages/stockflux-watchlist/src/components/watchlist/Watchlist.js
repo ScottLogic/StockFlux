@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import WatchlistCard from '../watchlist-card/WatchlistCard';
 import Components from 'stockflux-components';
 import { StockFluxHooks } from 'stockflux-core';
 import * as fdc3 from 'openfin-fdc3';
 import { showNotification } from '../notifications/Notification';
+import {
+  useInterApplicationBusSubscribe,
+  useOptions
+} from 'openfin-react-hooks';
 import {
   onDragStart,
   onDragOver,
@@ -24,6 +28,39 @@ const Watchlist = () => {
     'watchlist',
     ['AAPL', 'AAP', 'CC', 'MS', 'JPS']
   );
+
+  const [options] = useOptions();
+
+  const displayNotification = newSymbol => {
+    const alreadyInWatchlist = watchlist.includes(newSymbol);
+    showNotification({
+      message: {
+        symbol: newSymbol,
+        watchlistName: 'My Watchlist',
+        alreadyInWatchlist,
+        messageText: `${alreadyInWatchlist ? ' moved' : ' added'} to the top`
+      }
+    });
+  };
+
+  const addToWatchlist = symbol => {
+    setWatchlist(getDistinctElementArray([symbol, ...watchlist]));
+    displayNotification(symbol);
+  };
+
+  const { data } = useInterApplicationBusSubscribe(
+    { uuid: options ? options.uuid : '*' },
+    'stockflux-watchlist'
+  );
+
+  useEffect(() => {
+    if (data && data.message) {
+      if (data.message.symbol) {
+        addToWatchlist(data.message.symbol);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   const onIconClick = symbol => {
     return e => {
@@ -72,18 +109,6 @@ const Watchlist = () => {
     }
   });
   latestListener = currentListener;
-
-  const displayNotification = newSymbol => {
-    const alreadyInWatchlist = watchlist.includes(newSymbol);
-    showNotification({
-      message: {
-        symbol: newSymbol,
-        watchlistName: 'My Watchlist',
-        alreadyInWatchlist,
-        messageText: `${alreadyInWatchlist ? ' moved' : ' added'} to the top`
-      }
-    });
-  };
 
   const removeFromWatchList = symbol => {
     setWatchlist(watchlist.filter(item => item !== symbol));

@@ -69,6 +69,7 @@ body {
 .chart-nav-icons {
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 .chart-nav-icon svg {

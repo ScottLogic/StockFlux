@@ -6,14 +6,15 @@ import Minichart from '../minichart/Minichart';
 import Components from 'stockflux-components';
 import { StockFlux, Intents, Utils } from 'stockflux-core';
 import currentWindowService from '../../services/currentWindowService';
+import { useOptions } from 'openfin-react-hooks';
 import './WatchlistCard.css';
 
 const WatchlistCard = ({
   symbol,
-  bindings,
-  isUnwatching,
   dragOver,
   dragOverBottom,
+  bindings,
+  isUnwatching,
   removeFromWatchList
 }) => {
   const [dragging, setDragging] = useState({
@@ -29,6 +30,8 @@ const WatchlistCard = ({
     delta: 0,
     percentage: 0
   });
+
+  const [options] = useOptions();
 
   useEffect(() => {
     const populateChart = async () => {
@@ -93,6 +96,20 @@ const WatchlistCard = ({
     setDragging({ isDragging: false });
   };
 
+  const sendSymbolToNews = () => {
+    try {
+      window.fin.InterApplicationBus.send(
+        { uuid: options ? options.uuid : '*' },
+        'news',
+        {
+          symbol
+        }
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return stockData ? (
     <div
       id={`stock_${symbol}`}
@@ -114,20 +131,23 @@ const WatchlistCard = ({
               <div className="symbol">{symbol}</div>
             </div>
             <div className="icons">
-              <Components.NewsShortcut
+              <Components.Shortcuts.News
                 className="news-symbol"
                 symbol={symbol}
                 name={stockData.name}
+                small={true}
+                onClick={sendSymbolToNews}
               />
-              <div
+              <Components.Buttons.Close
                 className="remove-symbol"
                 onClick={e => {
                   e.stopPropagation();
                   removeFromWatchList(symbol);
                 }}
+                small={true}
               >
                 <FaTimes />
-              </div>
+              </Components.Buttons.Close>
             </div>
           </div>
           <div
@@ -178,10 +198,10 @@ WatchlistCard.propTypes = {
     onModalBackdropClick: PropTypes.func.isRequired,
     onDropOutside: PropTypes.func.isRequired
   }).isRequired,
-  onDragStart: PropTypes.func.isRequired,
-  onDragEnd: PropTypes.func.isRequired,
-  dragOver: PropTypes.func.isRequired,
-  dragOverBottom: PropTypes.func.isRequired,
+  onDragStart: PropTypes.func,
+  onDragEnd: PropTypes.func,
+  dragOver: PropTypes.bool.isRequired,
+  dragOverBottom: PropTypes.bool.isRequired,
   isUnwatching: PropTypes.bool.isRequired,
   removeFromWatchList: PropTypes.func.isRequired
 };

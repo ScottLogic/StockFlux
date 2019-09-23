@@ -1,25 +1,16 @@
 import React, { useRef, useState, useEffect, useReducer } from 'react';
 import Components from 'stockflux-components';
-import { StockFlux, StockFluxHooks, OpenfinApiHelpers } from 'stockflux-core';
+import { StockFlux } from 'stockflux-core';
+import NewsItem from './components/news-item/NewsItem';
 import {
   useInterApplicationBusSubscribe,
   useOptions
 } from 'openfin-react-hooks';
-
-import NewsItem from './components/news-item/NewsItem';
-
 import './App.css';
-
-const ALL = { uuid: '*' };
 
 const SEARCHING = 'searching';
 const SUCCESS = 'success';
 const ERROR = 'error';
-
-const MIN_HEIGHT = 400;
-const TITLEBAR_HEIGHT = 35;
-const SYMBOL_HEADER_HEIGHT = 40;
-const SPINNER_CONTAINER_HEIGHT = 60;
 
 const initialSearchState = {
   isSearching: false,
@@ -56,35 +47,35 @@ function App() {
   };
 
   const [searchState, dispatch] = useReducer(searchReducer, initialSearchState);
-  const [symbol, setSymbol] = StockFluxHooks.useLocalStorage(
-    'newsSymbol',
-    null
-  );
-  const [name, setName] = StockFluxHooks.useLocalStorage('newsName', null);
-  const [parentUuid, setParentUuid] = useState(null);
-  const [listenerSymbol, setListenerSymbol] = useState(null);
+  const [symbol, setSymbol] = useState(null);
+  const [name, setName] = useState(null);
   const [options] = useOptions();
   const listContainer = useRef(null);
 
   const { isSearching, results } = searchState;
 
-  if (options && listenerSymbol !== options.customData.symbol) {
-    setListenerSymbol(options.customData.symbol);
-    setParentUuid({ uuid: options.uuid });
-  }
-
   const { data } = useInterApplicationBusSubscribe(
-    parentUuid ? parentUuid : ALL,
-    'stockFluxNews:' + listenerSymbol
+    { uuid: options ? options.uuid : '*' },
+    'stockflux-news'
   );
-  if (data && data.message) {
-    if (data.message.symbol && symbol !== data.message.symbol) {
-      setSymbol(data.message.symbol);
+
+  useEffect(() => {
+    if (data && data.message) {
+      if (data.message.symbol) {
+        setSymbol(data.message.symbol);
+      }
     }
-    if (data.message.name && name !== data.message.name) {
-      setName(data.message.name);
+  }, [data, setSymbol]);
+
+  useEffect(() => {
+    if (options && options.customData.symbol) {
+      setSymbol(options.customData.symbol);
     }
-  }
+
+    if (options && options.customData.name) {
+      setName(options.customData.name);
+    }
+  }, [options, setName, setSymbol, symbol]);
 
   useEffect(() => {
     if (symbol) {
@@ -97,38 +88,10 @@ function App() {
     }
   }, [symbol]);
 
-  useEffect(() => {
-    (async () => {
-      const win = await OpenfinApiHelpers.getCurrentWindow();
-      const bounds = await win.getBounds();
-      if (results.length === 0 && isSearching) {
-        win.resizeTo(
-          bounds.width,
-          Math.min(
-            SPINNER_CONTAINER_HEIGHT + TITLEBAR_HEIGHT + SYMBOL_HEADER_HEIGHT,
-            MIN_HEIGHT
-          )
-        );
-      } else {
-        win.resizeTo(
-          bounds.width,
-          Math.min(
-            listContainer.current.scrollHeight +
-              TITLEBAR_HEIGHT +
-              SYMBOL_HEADER_HEIGHT,
-            MIN_HEIGHT
-          )
-        );
-      }
-    })();
-  });
-
   return (
     <div className="stockflux-news">
       <Components.Titlebar />
-      <div className="header">
-        {symbol} {name} News
-      </div>
+      <div className="header">{name ? name : symbol} News</div>
       <Components.ScrollWrapperY>
         <div className="container" ref={listContainer}>
           {isSearching ? (
