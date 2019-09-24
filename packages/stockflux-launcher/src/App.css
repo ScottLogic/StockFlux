@@ -1,3 +1,7 @@
+:root {
+  --launcher-border: solid 2px var(--text-teal);
+}
+
 html {
   background-color: var(--middle-background);
 }
@@ -15,7 +19,7 @@ html {
 .top {
   flex-direction: row;
   justify-content: space-between;
-  border-bottom: solid 1px var(--text-teal);
+  border-bottom: var(--launcher-border);
   align-items: center;
 }
 
@@ -26,11 +30,11 @@ html {
 }
 
 .right {
-  border-left: solid 1px var(--text-teal);
+  border-left: var(--launcher-border);
 }
 
 .left {
-  border-right: solid 1px var(--text-teal);
+  border-right: var(--launcher-border);
 }
 
 .drag-handle {
