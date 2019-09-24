@@ -6,7 +6,7 @@ import RoundButton from '../../round-button/RoundButton';
 export default ({ symbol, name, small, disabled, intentsEnabled }) => {
   return (
     <RoundButton
-      className="app-shortcut watchlist"
+      className="shortcut watchlist"
       onClick={() => Launchers.launchWatchlist(symbol, name, intentsEnabled)}
       disabled={disabled}
       small={small}

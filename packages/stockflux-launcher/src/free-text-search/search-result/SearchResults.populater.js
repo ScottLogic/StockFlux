@@ -1,8 +1,15 @@
-import ReactDOMServer from 'react-dom/server';
+import ReactDOM from 'react-dom';
 
 export default (html, resultsWindow) => {
-  const markup = ReactDOMServer.renderToStaticMarkup(html);
-  resultsWindow
-    .getWebWindow()
-    .document.getElementById('results-container').innerHTML = markup;
+  const childDocument = resultsWindow.getWebWindow().document;
+  injectToChildHead(childDocument, document.getElementsByTagName('style'));
+  ReactDOM.render(html, childDocument.getElementById('results-container'));
+};
+
+const injectToChildHead = (childDocument, nodes) => {
+  for (let node of nodes) {
+    childDocument
+      .getElementsByTagName('head')[0]
+      .appendChild(node.cloneNode(true));
+  }
 };
