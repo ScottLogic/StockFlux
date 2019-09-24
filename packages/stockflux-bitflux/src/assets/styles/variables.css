@@ -3,7 +3,7 @@
 --chart-teal: #37D8BC;
 --chart-fade: #307A71;
 --text-grey: #AEB1B5;
---primary-dark-blue: var(--dark-background);
+--primary-dark-blue: var(--middle-background);
 --secondary-orange: var(--chart-teal);
 --secondary-grey: var(--chart-teal);
 --primary-blue: var(--chart-teal);

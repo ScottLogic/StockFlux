@@ -9,7 +9,7 @@ body {
 }
 
 .main {
-    background-color: var(--dark-background);
+    background-color: var(--middle-background);
     padding: 0;
 }
 
