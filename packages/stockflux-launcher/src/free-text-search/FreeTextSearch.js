@@ -138,7 +138,7 @@ const FreeTextSearch = ({ dockedTo }) => {
       populateSearchResultsWindow(MESSAGES.SEARCHING, resultsWindow);
     } else if (results && results.length) {
       const html = results.map(result => (
-        <SearchResult key={result.code} code={result.code} name={result.name} />
+        <SearchResult key={result.symbol} symbol={result.symbol} name={result.name} />
       ));
       populateSearchResultsWindow(html, resultsWindow);
     } else {
@@ -168,16 +168,16 @@ const FreeTextSearch = ({ dockedTo }) => {
         'intent-request',
         message => {
           switch (message.type) {
-            case 'news-view':
-              Intents.viewNews(message.code, message.name);
+            case 'news':
+              Intents.viewNews(message.symbol, message.name);
               closeAndClearSearch();
               break;
-            case 'watchlist-add':
-              Intents.addWatchlist(message.code, message.name);
+            case 'watchlist':
+              Intents.addWatchlist(message.symbol, message.name);
               closeAndClearSearch();
               break;
-            case 'chart-add':
-              Intents.viewChart(message.code, message.name);
+            case 'chart':
+              Intents.viewChart(message.symbol, message.name);
               closeAndClearSearch();
               break;
             default:
