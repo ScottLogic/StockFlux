@@ -9,9 +9,13 @@ const SearchResult = ({ code, name }) => {
       <p className="name">{Utils.truncate(name)}</p>
       <p className="subtitle">{code}</p>{' '}
       <div id="actions" className="actions">
-        <Components.Shortcuts.News symbol={code} name={name} />
-        <Components.Shortcuts.Watchlist symbol={code} name={name} />
-        <Components.Shortcuts.Chart symbol={code} name={name} />
+        <Components.Shortcuts.News symbol={code} name={name} small={true} />
+        <Components.Shortcuts.Watchlist
+          symbol={code}
+          name={name}
+          small={true}
+        />
+        <Components.Shortcuts.Chart symbol={code} name={name} small={true} />
       </div>
     </div>
   );
