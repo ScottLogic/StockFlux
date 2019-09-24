@@ -8,7 +8,7 @@
 .free-text-search input {
   background: var(--dark-background);
   color: var(--text-teal-light);
-  border: solid 2px var(--text-teal);
+  border: var(--border);
   border-radius: 20px;
   height: 30px;
   width: 33%;
