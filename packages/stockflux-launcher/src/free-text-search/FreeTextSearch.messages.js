@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default {
   SEARCHING: 'Searching...',
   NO_MATCHES: 'Sorry, no matches found.',
