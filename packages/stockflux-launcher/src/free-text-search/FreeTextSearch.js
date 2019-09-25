@@ -6,7 +6,7 @@ import React, {
   useCallback
 } from 'react';
 import { FaSearch } from 'react-icons/fa';
-import { Intents, StockFlux } from 'stockflux-core';
+import { StockFlux } from 'stockflux-core';
 import SearchResult from './search-result';
 import {
   reducer,
@@ -167,39 +167,6 @@ const FreeTextSearch = ({ dockedTo }) => {
       .getOptions()
       .then(options => setParentUuid({ uuid: options.uuid }));
   }, []);
-
-  const closeAndClearSearch = () => {
-    closeResultsWindow();
-    searchInputRef.current.value = '';
-    searchInputRef.current.blur();
-  };
-
-  useEffect(() => {
-    if (parentUuid) {
-      window.fin.InterApplicationBus.subscribe(
-        parentUuid,
-        'intent-request',
-        message => {
-          switch (message.type) {
-            case 'news':
-              Intents.viewNews(message.symbol, message.name);
-              closeAndClearSearch();
-              break;
-            case 'watchlist':
-              Intents.addWatchlist(message.symbol, message.name);
-              closeAndClearSearch();
-              break;
-            case 'chart':
-              Intents.viewChart(message.symbol, message.name);
-              closeAndClearSearch();
-              break;
-            default:
-              break;
-          }
-        }
-      );
-    }
-  }, [parentUuid]);
 
   const {
     data,
