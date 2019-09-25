@@ -1,5 +1,4 @@
 import getWindowPosition from './SearchResults.positioner';
-import { ScreenEdge } from 'openfin-react-hooks';
 import { OpenfinApiHelpers } from 'stockflux-core';
 
 export default async (
@@ -34,8 +33,6 @@ export default async (
     backgroundColor: '#28313D',
     waitForPageLoad: true,
     alwaysOnTop: false,
-    defaultWidth: 400,
-    defaultHeight: 400,
     maxWidth: 400,
     minWidth: 400,
     minHeight: 300
