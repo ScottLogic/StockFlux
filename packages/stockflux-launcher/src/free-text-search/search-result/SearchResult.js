@@ -6,8 +6,10 @@ import { Utils } from 'stockflux-core';
 const SearchResult = ({ symbol, name }) => {
   return (
     <div className="card">
-      <p className="name">{Utils.truncate(name)}</p>
-      <p className="subtitle">{symbol}</p>{' '}
+      <div className="info">
+        <p className="name">{Utils.truncate(name)}</p>
+        <p className="symbol">{symbol}</p>
+      </div>
       <div id="actions" className="actions">
         <Components.Shortcuts.News symbol={symbol} name={name} small={true} />
         <Components.Shortcuts.Watchlist

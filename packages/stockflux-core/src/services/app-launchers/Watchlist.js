@@ -28,10 +28,6 @@ const launchAsChildWindow = async (symbol, name) => {
       symbol,
       name
     });
-    // window.fin.InterApplicationBus.publish('stockflux-watchlist', {
-    //   symbol,
-    //   name
-    // });
   } catch (err) {
     console.error(err);
   }

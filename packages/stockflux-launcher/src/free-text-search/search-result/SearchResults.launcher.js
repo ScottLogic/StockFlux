@@ -21,10 +21,10 @@ export default async (
   );
 
   const childWindow = {
-    name: 'child-window-search-results',
+    name: 'search-results',
     defaultWidth,
     defaultHeight,
-    url: 'searchResultsWindow.html',
+    url: 'child-window.html',
     frame: false,
     autoShow: true,
     defaultTop,
@@ -33,16 +33,21 @@ export default async (
     showTaskbarIcon: false,
     backgroundColor: '#28313D',
     waitForPageLoad: true,
-    alwaysOnTop: true
+    alwaysOnTop: false,
+    defaultWidth: 400,
+    defaultHeight: 400,
+    maxWidth: 400,
+    minWidth: 400,
+    minHeight: 300
   };
 
   const win = await OpenfinApiHelpers.createWindow(childWindow);
 
-  if (dockedTo === ScreenEdge.LEFT || dockedTo === ScreenEdge.RIGHT) {
-    win
-      .getWebWindow()
-      .document.getElementById('searchbar-container').hidden = false;
-  }
+  // if (dockedTo === ScreenEdge.LEFT || dockedTo === ScreenEdge.RIGHT) {
+  //   win
+  //     .getWebWindow()
+  //     .document.getElementById('searchbar-container').hidden = false;
+  // }
 
   return win;
 };

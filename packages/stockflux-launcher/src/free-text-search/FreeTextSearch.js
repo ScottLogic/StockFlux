@@ -135,16 +135,29 @@ const FreeTextSearch = ({ dockedTo }) => {
     }
 
     if (isSearching) {
-      populateSearchResultsWindow(MESSAGES.SEARCHING, resultsWindow);
+      populateSearchResultsWindow(
+        MESSAGES.SEARCHING,
+        resultsWindow,
+        'childWindow.css'
+      );
     } else if (results && results.length) {
-      const html = results.map(result => (
-        <SearchResult key={result.symbol} symbol={result.symbol} name={result.name} />
+      const resultCards = results.map(result => (
+        <SearchResult
+          key={result.symbol}
+          symbol={result.symbol}
+          name={result.name}
+        />
       ));
-      populateSearchResultsWindow(html, resultsWindow);
+      populateSearchResultsWindow(
+        resultCards,
+        resultsWindow,
+        'childWindow.css'
+      );
     } else {
       populateSearchResultsWindow(
-        debouncedQuery ? MESSAGES.NO_MATCHES : MESSAGES.INITIAL,
-        resultsWindow
+        <p>{debouncedQuery ? MESSAGES.NO_MATCHES : MESSAGES.INITIAL}</p>,
+        resultsWindow,
+        'childWindow.css'
       );
     }
   }, [debouncedQuery, isSearching, results]);

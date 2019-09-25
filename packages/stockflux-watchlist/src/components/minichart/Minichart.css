@@ -38,7 +38,7 @@ path.line {
   padding: 5px 3px;
   font-size: var(--font-normal);
   font-weight: var(--font-weight-normal);
-  color: var(--clr-white);
+  color: var(--text-grey-lighter);
   padding-left: var(--padding-medium);
   width: 160px;
 }
