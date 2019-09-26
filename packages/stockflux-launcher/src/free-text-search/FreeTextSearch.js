@@ -61,24 +61,25 @@ const FreeTextSearch = ({ dockedTo }) => {
         );
       }
     },
-    [
-      childWindow,
-      close,
-      launch,
-      searchButtonRef,
-      searchInputRef,
-      dockedTo,
-      bounds
-    ]
+    [childWindow, launch, searchButtonRef, searchInputRef, dockedTo, bounds]
   );
 
   const handleSearchClick = useCallback(() => {
-    if (childWindow) {
+    console.log(
+      'childWindow',
+      childWindow,
+      'results',
+      results,
+      'state === ChildWindowState.populated',
+      state === ChildWindowState.populated
+    );
+    if (childWindow && results && state === ChildWindowState.populated) {
       close();
       if (dockedTo === ScreenEdge.TOP) {
         searchInputRef.current.value = '';
       }
     } else if (state === ChildWindowState.initial) {
+      console.log('launch');
       launch(
         getResultsWindowProps(searchButtonRef, searchInputRef, dockedTo, bounds)
       );
@@ -86,6 +87,7 @@ const FreeTextSearch = ({ dockedTo }) => {
   }, [
     childWindow,
     close,
+    launch,
     state,
     searchButtonRef,
     searchInputRef,
@@ -93,10 +95,9 @@ const FreeTextSearch = ({ dockedTo }) => {
     bounds
   ]);
 
-  // useEffect(() => {
-  //   close();
-  //   setQuery('');
-  // }, [dockedTo, close]);
+  useEffect(() => {
+    if (query && query.length === 0) close();
+  }, [dockedTo, close, query]);
 
   useEffect(() => {
     const stockFluxSearch = () => {
