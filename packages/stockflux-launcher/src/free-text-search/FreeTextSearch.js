@@ -23,31 +23,26 @@ import {
 } from 'openfin-react-hooks';
 import './FreeTextSearch.css';
 import MESSAGES from './FreeTextSearch.messages';
-import launchSearchResultsWindow from './search-result/SearchResults.launcher';
-import populateSearchResultsWindow from './search-result/SearchResults.populater';
 import { OpenfinApiHelpers } from 'stockflux-core/src';
 import Components from 'stockflux-components';
+import getResultsWindowProps from './search-result/GetResultsWindowProps';
+import useChildWindow from './search-result/useChildWindow';
+import ChildWindowState from './search-result/ChildWindowState';
 
 const ALL = { uuid: '*' };
 const SEARCH_TIMEOUT_INTERVAL = 250;
 
 let latestRequest = null;
-let isCreatingResultWindow = false;
-let resultsWindow = null;
-
-const closeResultsWindow = () => {
-  if (resultsWindow) {
-    resultsWindow.close();
-    resultsWindow = null;
-  }
-};
-
 const FreeTextSearch = ({ dockedTo }) => {
   const [searchState, dispatch] = useReducer(reducer, initialSearchState);
   const [parentUuid, setParentUuid] = useState(null);
   const [query, setQuery] = useState(null);
   const bounds = useBounds();
   const [debouncedQuery, setDebouncedQuery] = useState(null);
+  const [childWindow, state, launch, populateDOM, close] = useChildWindow(
+    document,
+    'childWindow.css'
+  );
   const { isSearching, results } = searchState;
   const searchButtonRef = useRef(null);
   const searchInputRef = useRef(null);
@@ -55,48 +50,53 @@ const FreeTextSearch = ({ dockedTo }) => {
   const handleOnInputChange = useCallback(
     event => {
       setQuery(event.target.value);
-      if (event.target.value !== null && event.target.value === '') {
-        closeResultsWindow();
-      } else if (!resultsWindow && !isCreatingResultWindow) {
-        isCreatingResultWindow = true;
-        launchSearchResultsWindow(
-          searchButtonRef,
-          searchInputRef,
-          dockedTo,
-          bounds
-        )
-          .then(win => (resultsWindow = win))
-          .catch(err => console.error(err))
-          .finally(() => (isCreatingResultWindow = false));
+      if (!childWindow) {
+        launch(
+          getResultsWindowProps(
+            searchButtonRef,
+            searchInputRef,
+            dockedTo,
+            bounds
+          )
+        );
       }
     },
-    [searchButtonRef, searchInputRef, dockedTo, bounds]
+    [
+      childWindow,
+      close,
+      launch,
+      searchButtonRef,
+      searchInputRef,
+      dockedTo,
+      bounds
+    ]
   );
 
   const handleSearchClick = useCallback(() => {
-    if (resultsWindow) {
-      closeResultsWindow();
+    if (childWindow) {
+      close();
       if (dockedTo === ScreenEdge.TOP) {
         searchInputRef.current.value = '';
       }
-    } else if (!isCreatingResultWindow) {
-      isCreatingResultWindow = true;
-      launchSearchResultsWindow(
-        searchButtonRef,
-        searchInputRef,
-        dockedTo,
-        bounds
-      )
-        .then(win => (resultsWindow = win))
-        .catch(err => console.error(err))
-        .finally(() => (isCreatingResultWindow = false));
+    } else if (state === ChildWindowState.initial) {
+      launch(
+        getResultsWindowProps(searchButtonRef, searchInputRef, dockedTo, bounds)
+      );
     }
-  }, [searchButtonRef, searchInputRef, dockedTo, bounds]);
+  }, [
+    childWindow,
+    close,
+    state,
+    searchButtonRef,
+    searchInputRef,
+    dockedTo,
+    bounds
+  ]);
 
-  useEffect(() => {
-    closeResultsWindow();
-    setQuery('');
-  }, [dockedTo]);
+  // useEffect(() => {
+  //   close();
+  //   setQuery('');
+  // }, [dockedTo, close]);
 
   useEffect(() => {
     const stockFluxSearch = () => {
@@ -130,37 +130,32 @@ const FreeTextSearch = ({ dockedTo }) => {
   }, [query]);
 
   useEffect(() => {
-    if (!resultsWindow) {
+    if (!childWindow) {
       return;
     }
 
-    if (isSearching) {
-      populateSearchResultsWindow(
-        MESSAGES.SEARCHING,
-        resultsWindow,
-        'childWindow.css'
-      );
-    } else if (results && results.length) {
-      const resultCards = results.map(result => (
-        <SearchResult
-          key={result.symbol}
-          symbol={result.symbol}
-          name={result.name}
-        />
-      ));
-      populateSearchResultsWindow(
-        resultCards,
-        resultsWindow,
-        'childWindow.css'
-      );
-    } else {
-      populateSearchResultsWindow(
-        <p>{debouncedQuery ? MESSAGES.NO_MATCHES : MESSAGES.INITIAL}</p>,
-        resultsWindow,
-        'childWindow.css'
-      );
-    }
-  }, [debouncedQuery, isSearching, results]);
+    const resultsHTML =
+      results && results.length > 0
+        ? results.map(result => (
+            <SearchResult
+              key={result.symbol}
+              symbol={result.symbol}
+              name={result.name}
+            />
+          ))
+        : null;
+
+    const messageHtml = (
+      <p>
+        {isSearching
+          ? MESSAGES.SEARCHING
+          : debouncedQuery
+          ? MESSAGES.NO_MATCHES
+          : MESSAGES.INITIAL}
+      </p>
+    );
+    populateDOM(resultsHTML ? resultsHTML : messageHtml);
+  }, [childWindow, populateDOM, debouncedQuery, isSearching, results]);
 
   useEffect(() => {
     OpenfinApiHelpers.getCurrentWindowSync()

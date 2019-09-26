@@ -1,92 +1,87 @@
-import { useEffect, useState } from 'react';
+import { useState, useReducer, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import reducer, { initialState } from './ChildWindowStateReducer';
+import ChildWindowState from './ChildWindowState';
 import { OpenfinApiHelpers } from 'stockflux-core';
 
-export default ({ subscribeTopics, shouldInheritFromParent }) => {
+export default (document, cssUrl) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
   const [childWindow, setChildWindow] = useState(null);
-  const [childDOM, setChildDOM] = useState(null);
-  const [subscriptions, setSubscriptions] = useState(null);
-
-  useEffect(() => {
-    if (childWindow !== null) setChildDOM(childWindow.getWebWindow().document);
-  }, [childWindow]);
-
-  // This useEffect is highly based on useInterApplicationBusSubscribe from openfin-react-hooks
-  useEffect(() => {
-    const getUuid = async () => {
-      const options = await OpenfinApiHelpers.getCurrentWindowSync().getOptions();
-      return { uuid: options && options.uuid ? options.uuid : '*' };
-    };
-
-    if (subscribeTopics.length > 0) {
-      subscribeTopics.forEach(topic => {
-        let isSubscribed = false;
-        let subscriptionError = false;
-
-        const onReceiveMessage = (message, uuid, name) => {
-          if (!subscriptionError && isSubscribed && message) {
-            setSubscriptions({
-              [topic]: {
-                data: { message, uuid, name },
-                subscriptionError,
-                isSubscribed
-              }
-            });
-          }
-        };
-
-        if (isSubscribed || !window.fin || !window.fin.InterApplicationBus) {
-          return () => null;
-        }
-
-        window.fin.InterApplicationBus.subscribe(
-          getUuid(),
-          topic,
-          onReceiveMessage
-        )
-          .then(() => (isSubscribed = true))
-          .catch(e => (subscriptionError = e));
-      });
-    }
-  }, [subscribeTopics]);
-
-  const launch = async windowProps => {
-    const window = await OpenfinApiHelpers.createWindow(windowProps);
-    setChildWindow(window);
-
-    if (shouldInheritFromParent) {
-      inheritFromParent();
-    }
-  };
 
   const inheritFromParent = () => {
     const parentStyles = document.getElementsByTagName('style');
     const parentScripts = document.getElementsByTagName('script');
 
-    injectNodes(childDOM, parentStyles);
-    injectNodes(childDOM, parentScripts);
+    injectNodes(parentStyles);
+    injectNodes(parentScripts);
   };
 
-  const injectNodes = (childDOM, nodes) => {
+  const injectNodes = nodes => {
     for (let node of nodes) {
-      injectNode(childDOM, node);
+      injectNode(node);
     }
   };
 
-  const injectNode = (childDOM, node) => {
-    childDOM.getElementsByTagName('head')[0].appendChild(node.cloneNode(true));
+  const injectNode = node => {
+    childWindow
+      .getWebWindow()
+      .document.getElementsByTagName('head')[0]
+      .appendChild(node.cloneNode(true));
   };
 
-  const populateDOM = (html, cssUrl) => {
-    ReactDOM.render(html, childDOM.getElementById('root'));
+  useEffect(() => {
+    if (childWindow) {
+      if (document) {
+        inheritFromParent();
+      }
 
-    if (cssUrl) {
-      var linkElement = document.createElement('link');
-      linkElement.setAttribute('rel', 'stylesheet');
-      linkElement.setAttribute('href', cssUrl);
-      injectNode(childDOM, linkElement);
+      if (cssUrl) {
+        const linkElement = document.createElement('link');
+        linkElement.setAttribute('rel', 'stylesheet');
+        linkElement.setAttribute('href', cssUrl);
+        injectNode(linkElement);
+      }
+    }
+  }, [childWindow, cssUrl, document, inheritFromParent, injectNode]);
+
+  const launch = async windowProps => {
+    try {
+      dispatch(ChildWindowState.launching);
+      setChildWindow(await OpenfinApiHelpers.createWindow(windowProps));
+      dispatch(ChildWindowState.launched);
+    } catch (err) {
+      console.error(err);
+      dispatch(ChildWindowState.error);
     }
   };
 
-  return [childWindow, subscriptions, launch, populateDOM];
+  console.log('*satte', state);
+
+  const populateDOM = html => {
+    try {
+      dispatch(ChildWindowState.populating);
+      ReactDOM.render(
+        html,
+        childWindow.getWebWindow().document.getElementById('root')
+      );
+      dispatch(ChildWindowState.populated);
+    } catch (err) {
+      console.error(err);
+      dispatch(ChildWindowState.error);
+    }
+  };
+
+  const close = () => {
+    try {
+      if (childWindow) {
+        childWindow.close();
+        setChildWindow(null);
+      }
+    } catch (err) {
+      console.error(err);
+      dispatch(ChildWindowState.error);
+    }
+  };
+
+  return [childWindow, state, launch, populateDOM, close];
 };
