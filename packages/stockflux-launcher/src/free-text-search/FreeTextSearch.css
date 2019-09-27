@@ -28,3 +28,20 @@
 .right .free-text-search input {
   display: none;
 }
+
+div#root > .free-text-search {
+  padding: 8px 10px 8px 0;
+  width: 400px;
+  position: fixed;
+  background-color: var(--middle-background);
+  border-bottom: 1px solid var(--clr-divider-light);
+}
+
+div#root > .spinner {
+  margin: 185px;
+  position: fixed;
+}
+
+div#root > .cards.padding-top {
+  padding-top: 48px;
+}

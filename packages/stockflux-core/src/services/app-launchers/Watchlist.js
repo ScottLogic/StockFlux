@@ -23,7 +23,6 @@ const launchAsChildWindow = async (symbol, name) => {
 
   try {
     const options = await getCurrentWindowOptions();
-
     await sendInterApplicationMessage(options ? options.uuid : '*', APP_NAME, {
       symbol,
       name

@@ -25,6 +25,7 @@ import useChildWindow from '../search-result/useChildWindow';
 import childWindowState from '../reducers/child-window/State';
 import SearchInputField from './SearchInputField';
 import SearchButton from './SearchButton';
+import classNames from 'classnames';
 
 const ALL = { uuid: '*' };
 const SEARCH_TIMEOUT_INTERVAL = 250;
@@ -66,6 +67,7 @@ const FreeTextSearch = ({ dockedTo }) => {
   const handleSearchClick = useCallback(() => {
     if (childWindow && results && state === childWindowState.populated) {
       close();
+      dispatch({ type: searchAction.initialise });
       if (dockedTo === ScreenEdge.TOP) {
         inputRef.current.value = '';
       }
@@ -103,8 +105,6 @@ const FreeTextSearch = ({ dockedTo }) => {
         } catch {
           dispatch({ type: searchAction.error });
         }
-      } else {
-        dispatch({ type: searchAction.initialise });
       }
     };
     stockFluxSearch();
@@ -118,8 +118,30 @@ const FreeTextSearch = ({ dockedTo }) => {
     return () => clearTimeout(handler);
   }, [query]);
 
-  const getResultsJsx = useCallback(
-    () => (
+  const getCards = paddingNeeded => (
+    <div className={classNames('cards', { 'padding-top': paddingNeeded })}>
+      {results.map(result => (
+        <SearchResult
+          key={result.symbol}
+          symbol={result.symbol}
+          name={result.name}
+        />
+      ))}
+    </div>
+  );
+
+  useEffect(() => {
+    if (!childWindow) {
+      return;
+    }
+
+    const messageJsx = isSearching ? (
+      <Components.Spinner />
+    ) : (
+      <p>{debouncedQuery ? messages.no_matches : messages.initial}</p>
+    );
+
+    const finalJsx = (
       <>
         {[ScreenEdge.LEFT, ScreenEdge.RIGHT].includes(dockedTo) && (
           <div className="free-text-search">
@@ -129,39 +151,20 @@ const FreeTextSearch = ({ dockedTo }) => {
             />
           </div>
         )}
-        {results.map(result => (
-          <SearchResult
-            key={result.symbol}
-            symbol={result.symbol}
-            name={result.name}
-          />
-        ))}
+        {results && results.length > 0
+          ? getCards([ScreenEdge.LEFT, ScreenEdge.RIGHT].includes(dockedTo))
+          : messageJsx}
       </>
-    ),
-    [dockedTo, handleOnInputChange, results]
-  );
-
-  useEffect(() => {
-    if (!childWindow) {
-      return;
-    }
-
-    const resultsJsx = results && results.length > 0 ? getResultsJsx() : null;
-
-    const messageJsx = isSearching ? (
-      <Components.Spinner />
-    ) : (
-      <p>{debouncedQuery ? messages.no_matches : messages.initial}</p>
     );
 
-    populateDOM(resultsJsx ? resultsJsx : messageJsx);
+    populateDOM(finalJsx);
   }, [
     childWindow,
     populateDOM,
     debouncedQuery,
     isSearching,
     results,
-    getResultsJsx
+    handleOnInputChange
   ]);
 
   const {
