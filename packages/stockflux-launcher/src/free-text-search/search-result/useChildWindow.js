@@ -78,7 +78,7 @@ export default (document, cssUrl) => {
   const close = () => {
     try {
       if (childWindow) {
-        dispatch(initialState);
+        dispatch({ type: ChildWindowState.initial });
         childWindow.close();
         setChildWindow(null);
       }

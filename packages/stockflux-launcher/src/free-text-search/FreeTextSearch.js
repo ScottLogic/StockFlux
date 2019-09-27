@@ -78,7 +78,7 @@ const FreeTextSearch = ({ dockedTo }) => {
       if (dockedTo === ScreenEdge.TOP) {
         searchInputRef.current.value = '';
       }
-    } else if (state === ChildWindowState.initial) {
+    } else {
       console.log('launch');
       launch(
         getResultsWindowProps(searchButtonRef, searchInputRef, dockedTo, bounds)
