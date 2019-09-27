@@ -22,7 +22,7 @@ import {
   useInterApplicationBusSubscribe
 } from 'openfin-react-hooks';
 import './FreeTextSearch.css';
-import MESSAGES from './FreeTextSearch.messages';
+import messages from './FreeTextSearch.messages';
 import { OpenfinApiHelpers } from 'stockflux-core/src';
 import Components from 'stockflux-components';
 import getResultsWindowProps from './search-result/GetResultsWindowProps';
@@ -146,15 +146,12 @@ const FreeTextSearch = ({ dockedTo }) => {
           ))
         : null;
 
-    const messageHtml = (
-      <p>
-        {isSearching
-          ? MESSAGES.SEARCHING
-          : debouncedQuery
-          ? MESSAGES.NO_MATCHES
-          : MESSAGES.INITIAL}
-      </p>
+    const messageHtml = isSearching ? (
+      <Components.Spinner />
+    ) : (
+      <p>{debouncedQuery ? messages.no_matches : messages.initial}</p>
     );
+
     populateDOM(resultsHTML ? resultsHTML : messageHtml);
   }, [childWindow, populateDOM, debouncedQuery, isSearching, results]);
 

@@ -61,23 +61,25 @@ export default (document, cssUrl) => {
   };
 
   const populateDOM = html => {
-    try {
-      dispatch({ type: ChildWindowState.populating });
-      ReactDOM.render(
-        html,
-        childWindow.getWebWindow().document.getElementById('root')
-      );
-      dispatch({ type: ChildWindowState.populated });
-    } catch (error) {
-      dispatch({ type: ChildWindowState.error, error });
+    if (childWindow) {
+      try {
+        dispatch({ type: ChildWindowState.populating });
+        ReactDOM.render(
+          html,
+          childWindow.getWebWindow().document.getElementById('root')
+        );
+        dispatch({ type: ChildWindowState.populated });
+      } catch (error) {
+        dispatch({ type: ChildWindowState.error, error });
+      }
     }
   };
 
   const close = () => {
     try {
       if (childWindow) {
+        dispatch(initialState);
         childWindow.close();
-        dispatch({ type: ChildWindowState.initial });
         setChildWindow(null);
       }
     } catch (error) {

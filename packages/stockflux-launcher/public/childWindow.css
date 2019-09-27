@@ -1,5 +1,23 @@
 body {
   overflow-x: hidden;
+  height: inherit;
+}
+
+div#root {
+  height: 200px;
+}
+
+div#root > p {
+  text-align: center;
+  color: var(--text-grey-light);
+  padding: 170px 50px;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+
+div#root > .spinner {
+  margin-top: 170px;
 }
 
 .card {

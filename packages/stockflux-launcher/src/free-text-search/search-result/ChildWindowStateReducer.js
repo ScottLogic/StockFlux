@@ -8,8 +8,7 @@ export default (state, action) => {
     !Object.values(ChildWindowState).indexOf(action.type) ||
     action.type === ChildWindowState.error
   ) {
-    // throw new Error('Something went wrong.');
-    console.error(action.error);
+    throw new Error('Something went wrong.');
   }
 
   return action.type;
