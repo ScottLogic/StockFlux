@@ -111,7 +111,7 @@ const FreeTextSearch = ({ dockedTo }) => {
     return () => clearTimeout(handler);
   }, [query]);
 
-  const getCards = useCallback(
+  const getCardsJsx = useCallback(
     paddingNeeded => (
       <div className={classNames('cards', { 'padding-top': paddingNeeded })}>
         {results.map(result => (
@@ -126,6 +126,12 @@ const FreeTextSearch = ({ dockedTo }) => {
     [results]
   );
 
+  const isDockedToSide = () =>
+    [ScreenEdge.LEFT, ScreenEdge.RIGHT].includes(dockedTo);
+
+  const isDockedToTopOrNone = () =>
+    [ScreenEdge.TOP, ScreenEdge.NONE].includes(dockedTo);
+
   useEffect(() => {
     if (!childWindow.windowRef) {
       return;
@@ -137,9 +143,9 @@ const FreeTextSearch = ({ dockedTo }) => {
       <p>{debouncedQuery ? messages.no_matches : messages.initial}</p>
     );
 
-    const finalJsx = (
+    const jsx = (
       <>
-        {[ScreenEdge.LEFT, ScreenEdge.RIGHT].includes(dockedTo) && (
+        {isDockedToSide() && (
           <div className="free-text-search">
             <SearchInputField
               handleOnInputChange={handleOnInputChange}
@@ -148,12 +154,12 @@ const FreeTextSearch = ({ dockedTo }) => {
           </div>
         )}
         {results && results.length > 0
-          ? getCards([ScreenEdge.LEFT, ScreenEdge.RIGHT].includes(dockedTo))
+          ? getCardsJsx(isDockedToSide())
           : messageJsx}
       </>
     );
 
-    childWindow.populateDOM(finalJsx);
+    childWindow.populateDOM(jsx);
   }, [
     childWindow,
     dockedTo,
@@ -161,7 +167,7 @@ const FreeTextSearch = ({ dockedTo }) => {
     isSearching,
     results,
     handleOnInputChange,
-    getCards
+    getCardsJsx
   ]);
 
   const {
@@ -185,7 +191,7 @@ const FreeTextSearch = ({ dockedTo }) => {
 
   return (
     <div className="free-text-search">
-      {[ScreenEdge.TOP, ScreenEdge.NONE].includes(dockedTo) && (
+      {isDockedToTopOrNone() && (
         <SearchInputField
           handleOnInputChange={handleOnInputChange}
           inputRef={inputRef}
