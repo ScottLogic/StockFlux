@@ -8,16 +8,16 @@ import { OpenfinApiHelpers } from 'stockflux-core';
 
 export default (document, cssUrl) => {
   const [state, dispatch] = useReducer(reducer, initialChildWindowState);
-  const [childWindow, setChildWindow] = useState(null);
+  const [windowRef, setWindowRef] = useState(null);
 
   const injectNode = useCallback(
     node => {
-      childWindow
+      windowRef
         .getWebWindow()
         .document.getElementsByTagName('head')[0]
         .appendChild(node.cloneNode(true));
     },
-    [childWindow]
+    [windowRef]
   );
 
   const injectNodes = useCallback(
@@ -38,7 +38,7 @@ export default (document, cssUrl) => {
   }, [document, injectNodes]);
 
   useEffect(() => {
-    if (childWindow) {
+    if (windowRef) {
       if (document) {
         inheritFromParent();
       }
@@ -50,12 +50,12 @@ export default (document, cssUrl) => {
         injectNode(linkElement);
       }
     }
-  }, [childWindow, cssUrl, document, inheritFromParent, injectNode]);
+  }, [windowRef, cssUrl, document, inheritFromParent, injectNode]);
 
   const launch = async windowProps => {
     try {
       dispatch({ type: childWindowState.launching });
-      setChildWindow(await OpenfinApiHelpers.createWindow(windowProps));
+      setWindowRef(await OpenfinApiHelpers.createWindow(windowProps));
       dispatch({ type: childWindowState.launched });
     } catch (error) {
       dispatch({ type: childWindowState.error, error });
@@ -63,12 +63,12 @@ export default (document, cssUrl) => {
   };
 
   const populateDOM = jsx => {
-    if (childWindow) {
+    if (windowRef) {
       try {
         dispatch({ type: childWindowState.populating });
         ReactDOM.render(
           jsx,
-          childWindow.getWebWindow().document.getElementById('root')
+          windowRef.getWebWindow().document.getElementById('root')
         );
         dispatch({ type: childWindowState.populated });
       } catch (error) {
@@ -79,15 +79,14 @@ export default (document, cssUrl) => {
 
   const close = () => {
     try {
-      if (childWindow) {
+      if (windowRef) {
         dispatch({ type: childWindowState.initial });
-        childWindow.close();
-        setChildWindow(null);
+        windowRef.close();
+        setWindowRef(null);
       }
     } catch (error) {
       dispatch({ type: childWindowState.error, error });
     }
   };
-
-  return [childWindow, state, launch, populateDOM, close];
+  return { windowRef, state, launch, populateDOM, close };
 };

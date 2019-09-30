@@ -36,10 +36,7 @@ const FreeTextSearch = ({ dockedTo }) => {
   const [query, setQuery] = useState(null);
   const bounds = useBounds();
   const [debouncedQuery, setDebouncedQuery] = useState(null);
-  const [childWindow, state, launch, populateDOM, close] = useChildWindow(
-    document,
-    'childWindow.css'
-  );
+  const childWindow = useChildWindow(document, 'childWindow.css');
   const { isSearching, results } = searchState;
   const searchButtonRef = useRef(null);
   const inputRef = useRef(null);
@@ -50,41 +47,37 @@ const FreeTextSearch = ({ dockedTo }) => {
 
   const launchChildWindow = useCallback(
     () =>
-      launch(
+      childWindow.launch(
         getResultsWindowProps(searchButtonRef, inputRef, dockedTo, bounds)
       ),
-    [bounds, dockedTo, launch]
+    [bounds, dockedTo, childWindow]
   );
 
   const handleOnInputChange = useCallback(
     event => {
       setQuery(event.target.value);
-      if (!childWindow) launchChildWindow();
+      if (!childWindow.windowRef) launchChildWindow();
     },
     [childWindow, launchChildWindow]
   );
 
   const handleSearchClick = useCallback(() => {
-    if (childWindow && results && state === childWindowState.populated) {
-      close();
+    if (
+      childWindow.windowRef &&
+      results &&
+      childWindow.state === childWindowState.populated
+    ) {
+      childWindow.close();
       dispatch({ type: searchAction.initialise });
       if (dockedTo === ScreenEdge.TOP) {
         inputRef.current.value = '';
       }
     } else launchChildWindow();
-  }, [
-    childWindow,
-    close,
-    launchChildWindow,
-    state,
-    inputRef,
-    dockedTo,
-    results
-  ]);
+  }, [childWindow, inputRef, dockedTo, results]);
 
   useEffect(() => {
-    if (query && query.length === 0) close();
-  }, [dockedTo, close, query]);
+    if (query && query.length === 0) childWindow.close();
+  }, [dockedTo, childWindow, query]);
 
   useEffect(() => {
     const stockFluxSearch = () => {
@@ -118,20 +111,23 @@ const FreeTextSearch = ({ dockedTo }) => {
     return () => clearTimeout(handler);
   }, [query]);
 
-  const getCards = paddingNeeded => (
-    <div className={classNames('cards', { 'padding-top': paddingNeeded })}>
-      {results.map(result => (
-        <SearchResult
-          key={result.symbol}
-          symbol={result.symbol}
-          name={result.name}
-        />
-      ))}
-    </div>
+  const getCards = useCallback(
+    paddingNeeded => (
+      <div className={classNames('cards', { 'padding-top': paddingNeeded })}>
+        {results.map(result => (
+          <SearchResult
+            key={result.symbol}
+            symbol={result.symbol}
+            name={result.name}
+          />
+        ))}
+      </div>
+    ),
+    [results]
   );
 
   useEffect(() => {
-    if (!childWindow) {
+    if (!childWindow.windowRef) {
       return;
     }
 
@@ -157,14 +153,15 @@ const FreeTextSearch = ({ dockedTo }) => {
       </>
     );
 
-    populateDOM(finalJsx);
+    childWindow.populateDOM(finalJsx);
   }, [
     childWindow,
-    populateDOM,
+    dockedTo,
     debouncedQuery,
     isSearching,
     results,
-    handleOnInputChange
+    handleOnInputChange,
+    getCards
   ]);
 
   const {
