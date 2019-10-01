@@ -1,5 +1,10 @@
 import React from 'react';
 
-export default ({ inputRef, handleOnInputChange }) => (
-  <input onInput={handleOnInputChange} placeholder="Search" ref={inputRef} />
+export default ({ query, inputRef, handleOnInputChange }) => (
+  <input
+    onChange={handleOnInputChange}
+    placeholder="Search"
+    value={query}
+    ref={inputRef}
+  />
 );

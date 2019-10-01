@@ -15,7 +15,7 @@ export default (state, action) => {
     );
 
   if (errors) {
-    throw new Error('Something went wrong.');
+    throw new Error(errors);
   }
 
   return action.type;

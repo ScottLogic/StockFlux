@@ -1,5 +1,11 @@
+:root {
+  --search-input-min-width: 250px;
+  --search-input-width: 400px;
+  --search-input-height: 30px;
+}
+
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {

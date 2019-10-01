@@ -6,7 +6,6 @@ import React, {
   useCallback
 } from 'react';
 import { StockFlux } from 'stockflux-core';
-import SearchResult from '../search-result';
 import reducer, {
   initialSearchState
 } from '../reducers/free-text-search/FreeTextSearch';
@@ -16,19 +15,18 @@ import {
   useBounds,
   useInterApplicationBusSubscribe
 } from 'openfin-react-hooks';
-import './FreeTextSearch.css';
-import messages from './FreeTextSearch.messages';
 import { OpenfinApiHelpers } from 'stockflux-core/src';
-import Components from 'stockflux-components';
-import getResultsWindowProps from '../search-result/GetResultsWindowProps';
-import useChildWindow from '../search-result/useChildWindow';
-import childWindowState from '../reducers/child-window/State';
+import getResultsWindowProps from '../search-results/helpers/GetResultsWindowProps';
+import useChildWindow from '../search-results/helpers/useChildWindow';
+import ChildWindow from '../search-results/ChildWindow';
 import SearchInputField from './SearchInputField';
 import SearchButton from './SearchButton';
-import classNames from 'classnames';
+import './FreeTextSearch.css';
 
 const ALL = { uuid: '*' };
 const SEARCH_TIMEOUT_INTERVAL = 250;
+const SEARCH_RESULTS_WINDOW_NAME = 'search-results';
+const SEARCH_RESULTS_CSS_PATCH = 'childWindow.css';
 
 let latestRequest = null;
 const FreeTextSearch = ({ dockedTo }) => {
@@ -36,7 +34,11 @@ const FreeTextSearch = ({ dockedTo }) => {
   const [query, setQuery] = useState(null);
   const bounds = useBounds();
   const [debouncedQuery, setDebouncedQuery] = useState(null);
-  const childWindow = useChildWindow(document, 'childWindow.css');
+  const childWindow = useChildWindow(
+    SEARCH_RESULTS_WINDOW_NAME,
+    document,
+    SEARCH_RESULTS_CSS_PATCH
+  );
   const { isSearching, results } = searchState;
   const searchButtonRef = useRef(null);
   const inputRef = useRef(null);
@@ -48,36 +50,46 @@ const FreeTextSearch = ({ dockedTo }) => {
   const launchChildWindow = useCallback(
     () =>
       childWindow.launch(
-        getResultsWindowProps(searchButtonRef, inputRef, dockedTo, bounds)
+        getResultsWindowProps(
+          SEARCH_RESULTS_WINDOW_NAME,
+          searchButtonRef,
+          inputRef,
+          dockedTo,
+          bounds
+        )
       ),
     [bounds, dockedTo, childWindow]
   );
 
+  const closeChildWindow = useCallback(() => {
+    setQuery(null);
+    dispatch({ type: searchAction.initialise });
+    childWindow.close();
+  }, [childWindow]);
+
   const handleOnInputChange = useCallback(
     event => {
+      if (!childWindow.window) launchChildWindow();
       setQuery(event.target.value);
-      if (!childWindow.windowRef) launchChildWindow();
     },
     [childWindow, launchChildWindow]
   );
 
   const handleSearchClick = useCallback(() => {
-    if (
-      childWindow.windowRef &&
-      results &&
-      childWindow.state === childWindowState.populated
-    ) {
-      childWindow.close();
-      dispatch({ type: searchAction.initialise });
-      if (dockedTo === ScreenEdge.TOP) {
-        inputRef.current.value = '';
-      }
+    if (childWindow.window && results) {
+      closeChildWindow();
     } else launchChildWindow();
-  }, [childWindow, inputRef, dockedTo, results]);
+  }, [childWindow, results, launchChildWindow, closeChildWindow]);
 
-  useEffect(() => {
-    if (query && query.length === 0) childWindow.close();
-  }, [dockedTo, childWindow, query]);
+  const isDockedToSide = useCallback(
+    () => [ScreenEdge.LEFT, ScreenEdge.RIGHT].includes(dockedTo),
+    [dockedTo]
+  );
+
+  const isDockedToTopOrNone = useCallback(
+    () => [ScreenEdge.TOP, ScreenEdge.NONE].includes(dockedTo),
+    [dockedTo]
+  );
 
   useEffect(() => {
     const stockFluxSearch = () => {
@@ -111,55 +123,40 @@ const FreeTextSearch = ({ dockedTo }) => {
     return () => clearTimeout(handler);
   }, [query]);
 
-  const getCardsJsx = useCallback(
-    paddingNeeded => (
-      <div className={classNames('cards', { 'padding-top': paddingNeeded })}>
-        {results.map(result => (
-          <SearchResult
-            key={result.symbol}
-            symbol={result.symbol}
-            name={result.name}
-          />
-        ))}
-      </div>
-    ),
-    [results]
-  );
-
-  const isDockedToSide = () =>
-    [ScreenEdge.LEFT, ScreenEdge.RIGHT].includes(dockedTo);
-
-  const isDockedToTopOrNone = () =>
-    [ScreenEdge.TOP, ScreenEdge.NONE].includes(dockedTo);
+  useEffect(() => {
+    if (query === '' && childWindow.window) {
+      closeChildWindow();
+    }
+  }, [childWindow, query, closeChildWindow]);
 
   useEffect(() => {
-    if (!childWindow.windowRef) {
-      return;
+    if (childWindow) {
+      closeChildWindow();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dockedTo]);
 
-    const messageJsx = isSearching ? (
-      <Components.Spinner />
-    ) : (
-      <p>{debouncedQuery ? messages.no_matches : messages.initial}</p>
-    );
-
-    const jsx = (
-      <>
-        {isDockedToSide() && (
-          <div className="free-text-search">
-            <SearchInputField
-              handleOnInputChange={handleOnInputChange}
-              inputRef={inputRef}
-            />
-          </div>
-        )}
-        {results && results.length > 0
-          ? getCardsJsx(isDockedToSide())
-          : messageJsx}
-      </>
-    );
-
-    childWindow.populateDOM(jsx);
+  useEffect(() => {
+    if (childWindow.window) {
+      const childWindowJsx = (
+        <ChildWindow
+          results={results}
+          isSearching={isSearching}
+          debouncedQuery={debouncedQuery}
+        >
+          {isDockedToSide() && (
+            <div className="free-text-search">
+              <SearchInputField
+                query={query ? query : ''}
+                handleOnInputChange={handleOnInputChange}
+                inputRef={inputRef}
+              />
+            </div>
+          )}
+        </ChildWindow>
+      );
+      childWindow.populateDOM(childWindowJsx);
+    }
   }, [
     childWindow,
     dockedTo,
@@ -167,7 +164,8 @@ const FreeTextSearch = ({ dockedTo }) => {
     isSearching,
     results,
     handleOnInputChange,
-    getCardsJsx
+    isDockedToSide,
+    query
   ]);
 
   const {

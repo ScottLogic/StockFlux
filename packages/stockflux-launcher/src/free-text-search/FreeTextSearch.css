@@ -10,10 +10,10 @@
   color: var(--text-teal-light);
   border: var(--border);
   border-radius: 20px;
-  height: 30px;
-  width: 400px;
-  min-width: 250px;
-  padding: 10px;
+  height: var(--search-input-height);
+  width: var(--search-input-width);
+  min-width: var(--search-input-min-width);
+  padding: var(--padding-medium);
   margin: 0 5px;
   outline: none;
 }
@@ -31,17 +31,17 @@
 
 div#root > .free-text-search {
   padding: 8px 10px 8px 0;
-  width: 400px;
+  width: var(--search-input-width);
   position: fixed;
   background-color: var(--middle-background);
   border-bottom: 1px solid var(--clr-divider-light);
 }
 
 div#root > .spinner {
-  margin: 185px;
+  margin: calc(var(--search-input-width) / 2 - 15px);
   position: fixed;
 }
 
 div#root > .cards.padding-top {
-  padding-top: 48px;
+  padding-top: calc(var(--search-input-height) + 18px);
 }
