@@ -48,6 +48,8 @@ const FreeTextSearch = ({ dockedTo }) => {
     .getOptions()
     .then(options => options.uuid);
 
+  const isDockedToSide = [ScreenEdge.LEFT, ScreenEdge.RIGHT].includes(dockedTo);
+
   const launchChildWindow = useCallback(
     () =>
       childWindow.launch(
@@ -59,7 +61,7 @@ const FreeTextSearch = ({ dockedTo }) => {
           bounds
         )
       ),
-    [bounds, dockedTo, childWindow]
+    [bounds, dockedTo, childWindow, isDockedToSide]
   );
 
   const closeChildWindow = useCallback(() => {
@@ -81,12 +83,6 @@ const FreeTextSearch = ({ dockedTo }) => {
       closeChildWindow();
     } else launchChildWindow();
   }, [childWindow, results, launchChildWindow, closeChildWindow]);
-
-  const isDockedToSide = [ScreenEdge.LEFT, ScreenEdge.RIGHT].includes(dockedTo);
-
-  const isDockedToTopOrNone = [ScreenEdge.TOP, ScreenEdge.NONE].includes(
-    dockedTo
-  );
 
   useEffect(() => {
     const stockFluxSearch = () => {
@@ -186,7 +182,7 @@ const FreeTextSearch = ({ dockedTo }) => {
 
   return (
     <div className="free-text-search">
-      {isDockedToTopOrNone && (
+      {!isDockedToSide && (
         <SearchInputField
           handleOnInputChange={handleOnInputChange}
           inputRef={launcherInputRef}
