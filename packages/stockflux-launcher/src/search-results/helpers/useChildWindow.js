@@ -54,23 +54,28 @@ export default (name, document, cssUrl) => {
 
   const closeExistingWindows = async () => {
     const childWindows = await OpenfinApiHelpers.getChildWindows();
-    return childWindows.find(async child => {
-      const webWindow = await child.getWebWindow();
+
+    const promises = await Promise.all(
+      childWindows.map(childWindow => childWindow.getWebWindow())
+    );
+    promises.forEach(webWindow => {
       if (webWindow.name === name) {
         webWindow.close();
       }
     });
   };
-  const launch = windowProps => {
-    closeExistingWindows().then(async () => {
+
+  const launch = async windowProps => {
+    if (state !== childWindowState.launching) {
       try {
         dispatch({ type: childWindowState.launching });
+        await closeExistingWindows();
         setWindow(await OpenfinApiHelpers.createWindow(windowProps));
         dispatch({ type: childWindowState.launched });
       } catch (error) {
         dispatch({ type: childWindowState.error, error });
       }
-    });
+    }
   };
 
   const populateDOM = jsx => {

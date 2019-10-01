@@ -90,7 +90,7 @@ const FreeTextSearch = ({ dockedTo }) => {
         dispatch({ type: searchAction.searching });
         try {
           const currentRequest = StockFlux.stockFluxSearch(debouncedQuery).then(
-            stockFluxResults => {
+          stockFluxResults => {
               if (latestRequest === currentRequest) {
                 dispatch({
                   type: searchAction.success,
