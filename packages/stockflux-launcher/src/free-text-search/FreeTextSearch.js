@@ -41,7 +41,8 @@ const FreeTextSearch = ({ dockedTo }) => {
   );
   const { isSearching, results } = searchState;
   const searchButtonRef = useRef(null);
-  const inputRef = useRef(null);
+  const launcherInputRef = useRef(null);
+  const childWindowInputRef = useRef(null);
 
   const parentUuid = OpenfinApiHelpers.getCurrentWindowSync()
     .getOptions()
@@ -53,7 +54,7 @@ const FreeTextSearch = ({ dockedTo }) => {
         getResultsWindowProps(
           SEARCH_RESULTS_WINDOW_NAME,
           searchButtonRef,
-          inputRef,
+          isDockedToSide ? childWindowInputRef : launcherInputRef,
           dockedTo,
           bounds
         )
@@ -81,14 +82,10 @@ const FreeTextSearch = ({ dockedTo }) => {
     } else launchChildWindow();
   }, [childWindow, results, launchChildWindow, closeChildWindow]);
 
-  const isDockedToSide = useCallback(
-    () => [ScreenEdge.LEFT, ScreenEdge.RIGHT].includes(dockedTo),
-    [dockedTo]
-  );
+  const isDockedToSide = [ScreenEdge.LEFT, ScreenEdge.RIGHT].includes(dockedTo);
 
-  const isDockedToTopOrNone = useCallback(
-    () => [ScreenEdge.TOP, ScreenEdge.NONE].includes(dockedTo),
-    [dockedTo]
+  const isDockedToTopOrNone = [ScreenEdge.TOP, ScreenEdge.NONE].includes(
+    dockedTo
   );
 
   useEffect(() => {
@@ -144,12 +141,12 @@ const FreeTextSearch = ({ dockedTo }) => {
           isSearching={isSearching}
           debouncedQuery={debouncedQuery}
         >
-          {isDockedToSide() && (
+          {isDockedToSide && (
             <div className="free-text-search">
               <SearchInputField
                 query={query ? query : ''}
                 handleOnInputChange={handleOnInputChange}
-                inputRef={inputRef}
+                inputRef={childWindowInputRef}
               />
             </div>
           )}
@@ -189,10 +186,10 @@ const FreeTextSearch = ({ dockedTo }) => {
 
   return (
     <div className="free-text-search">
-      {isDockedToTopOrNone() && (
+      {isDockedToTopOrNone && (
         <SearchInputField
           handleOnInputChange={handleOnInputChange}
-          inputRef={inputRef}
+          inputRef={launcherInputRef}
         />
       )}
       <SearchButton
