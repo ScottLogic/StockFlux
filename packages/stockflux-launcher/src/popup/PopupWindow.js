@@ -11,20 +11,19 @@ const ModalPopup = ({ message, options, children }) => {
 
   const launchChildWindow = useCallback(() => {
     childWindow.launch({
-      name: 'popup-confirmation',
+      name: 'popup',
       url: 'child-window.html',
       frame: false,
       autoShow: true,
-      defaultCenter: true,
+      defaultCentered: true,
       saveWindowState: false,
-      showTaskbarIcon: true,
+      showTaskbarIcon: false,
+      resizable: false,
       backgroundColor: '#28313D',
       waitForPageLoad: true,
       alwaysOnTop: true,
-      maxWidth: 400,
-      minWidth: 400,
-      minHeight: 200,
-      maxHeight: 200
+      defaultWidth: 400,
+      defaultHeight: 150,
     });
   }, []);
 

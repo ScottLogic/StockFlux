@@ -1,5 +1,13 @@
-body{
+.popup{
     color:white;    
+}
+
+.popup-message{
+    text-align: center;
+}
+
+.popup-options {
+    text-align: right;
 }
 
 button {
