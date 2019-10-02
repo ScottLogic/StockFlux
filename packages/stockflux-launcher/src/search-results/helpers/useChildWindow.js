@@ -1,23 +1,25 @@
-import { useState, useReducer, useEffect, useCallback } from 'react';
+import { useReducer, useEffect, useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import reducer, {
   initialChildWindowState
 } from '../../reducers/child-window/ChildWindow';
 import childWindowState from '../../reducers/child-window/State';
+import action from '../../reducers/child-window/Actions';
 import { OpenfinApiHelpers } from 'stockflux-core';
 
 export default (name, document, cssUrl) => {
-  const [state, dispatch] = useReducer(reducer, initialChildWindowState);
-  const [window, setWindow] = useState(null);
+  const [childWindow, dispatch] = useReducer(reducer, initialChildWindowState);
 
   const injectNode = useCallback(
     node => {
-      window
-        .getWebWindow()
-        .document.getElementsByTagName('head')[0]
-        .appendChild(node.cloneNode(true));
+      if (childWindow.window) {
+        childWindow.window
+          .getWebWindow()
+          .document.getElementsByTagName('head')[0]
+          .appendChild(node.cloneNode(true));
+      }
     },
-    [window]
+    [childWindow.window]
   );
 
   const injectNodes = useCallback(
@@ -38,7 +40,7 @@ export default (name, document, cssUrl) => {
   }, [document, injectNodes]);
 
   useEffect(() => {
-    if (window) {
+    if (childWindow.window) {
       if (document) {
         inheritFromParent();
       }
@@ -50,13 +52,13 @@ export default (name, document, cssUrl) => {
         injectNode(linkElement);
       }
     }
-  }, [window, cssUrl, document, inheritFromParent, injectNode]);
+  }, [childWindow.window, cssUrl, document, inheritFromParent, injectNode]);
 
   const closeExistingWindows = async () => {
     const childWindows = await OpenfinApiHelpers.getChildWindows();
 
     const promises = await Promise.all(
-      childWindows.map(childWindow => childWindow.getWebWindow())
+      childWindows.map(child => child.getWebWindow())
     );
     promises.forEach(webWindow => {
       if (webWindow.name === name) {
@@ -65,44 +67,65 @@ export default (name, document, cssUrl) => {
     });
   };
 
-  const launch = async windowProps => {
-    if (state !== childWindowState.launching) {
+  const dispatchError = error =>
+    dispatch({
+      type: action.changeState,
+      payload: childWindowState.error,
+      error
+    });
+
+  const dispatchNewState = state =>
+    dispatch({
+      type: action.changeState,
+      payload: state
+    });
+
+  const launch = async windowOptions => {
+    if (childWindow.state !== childWindowState.launching) {
       try {
-        dispatch({ type: childWindowState.launching });
+        dispatchNewState(childWindowState.launching);
         await closeExistingWindows();
-        setWindow(await OpenfinApiHelpers.createWindow(windowProps));
-        dispatch({ type: childWindowState.launched });
+        dispatch({
+          type: action.setWindow,
+          payload: await OpenfinApiHelpers.createWindow(windowOptions)
+        });
+        dispatchNewState(childWindowState.launched);
       } catch (error) {
-        dispatch({ type: childWindowState.error, error });
+        dispatchError(error);
       }
     }
   };
 
   const populateDOM = jsx => {
-    if (window) {
+    if (childWindow.window) {
       try {
-        dispatch({ type: childWindowState.populating });
+        dispatchNewState(childWindowState.populating);
         ReactDOM.render(
           jsx,
-          window.getWebWindow().document.getElementById('root')
+          childWindow.window.getWebWindow().document.getElementById('root')
         );
-        dispatch({ type: childWindowState.populated });
+        dispatchNewState(childWindowState.populated);
       } catch (error) {
-        dispatch({ type: childWindowState.error, error });
+        dispatchError(error);
       }
     }
   };
 
   const close = () => {
     try {
-      if (window) {
-        dispatch({ type: childWindowState.initial });
-        window.close();
-        setWindow(null);
+      if (childWindow.window) {
+        childWindow.window.close();
+        dispatch({ type: action.reset });
       }
     } catch (error) {
-      dispatch({ type: childWindowState.error, error });
+      dispatchError(error);
     }
   };
-  return { window, state, launch, populateDOM, close };
+  return {
+    window: childWindow.window,
+    state: childWindow.state,
+    launch,
+    populateDOM,
+    close
+  };
 };

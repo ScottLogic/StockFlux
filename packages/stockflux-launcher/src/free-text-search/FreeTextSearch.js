@@ -61,28 +61,28 @@ const FreeTextSearch = ({ dockedTo }) => {
           bounds
         )
       ),
-    [bounds, dockedTo, childWindow, isDockedToSide]
+    [bounds, dockedTo, childWindow.window, isDockedToSide]
   );
 
   const closeChildWindow = useCallback(() => {
     setQuery(null);
     dispatch({ type: searchAction.initialise });
     childWindow.close();
-  }, [childWindow]);
+  }, [childWindow.window]);
 
   const handleOnInputChange = useCallback(
     event => {
       if (!childWindow.window) launchChildWindow();
       setQuery(event.target.value);
     },
-    [childWindow, launchChildWindow]
+    [childWindow.window, launchChildWindow]
   );
 
   const handleSearchClick = useCallback(() => {
     if (childWindow.window && results) {
       closeChildWindow();
     } else launchChildWindow();
-  }, [childWindow, results, launchChildWindow, closeChildWindow]);
+  }, [childWindow.window, results, launchChildWindow, closeChildWindow]);
 
   useEffect(() => {
     const stockFluxSearch = () => {
@@ -120,7 +120,7 @@ const FreeTextSearch = ({ dockedTo }) => {
     if (query === '' && childWindow.window) {
       closeChildWindow();
     }
-  }, [childWindow, query, closeChildWindow]);
+  }, [childWindow.window, query, closeChildWindow]);
 
   useEffect(() => {
     if (childWindow) {
@@ -151,7 +151,7 @@ const FreeTextSearch = ({ dockedTo }) => {
       childWindow.populateDOM(childWindowJsx);
     }
   }, [
-    childWindow,
+    childWindow.window,
     dockedTo,
     debouncedQuery,
     isSearching,
