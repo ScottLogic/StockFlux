@@ -5,15 +5,14 @@ export const initialChildWindowState = childWindowState.initial;
 export default (state, action) => {
   let errors;
 
+  const addError = error => errors + error;
+
   if (!Object.keys(childWindowState).indexOf(action.type))
-    errors = addError(errors, `Invalid action type: ${action.type}. `);
+    addError(`Invalid action type: ${action.type}. `);
 
   if (action.type === childWindowState.error) {
     console.error(action.error);
-    errors = addError(
-      errors,
-      `Error occured while dispatching action: ${action.type}. `
-    );
+    addError(`Error occured while dispatching action: ${action.type}. `);
   }
 
   if (errors) {
@@ -22,5 +21,3 @@ export default (state, action) => {
 
   return action.type;
 };
-
-const addError = (errors, error) => errors + error;
