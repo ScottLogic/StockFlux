@@ -1,0 +1,18 @@
+body{
+    color:white;    
+}
+
+button {
+    color:var(--text-teal-light);
+    border-color:var(--text-teal-light);
+}
+
+.modal-cancel {
+    color:var(--text-teal-light);
+    border-color:var(--text-teal-light);
+}
+
+.modal-confirm{
+    color:var(--text-teal-light);
+    border-color:var(--text-teal-light);
+}
