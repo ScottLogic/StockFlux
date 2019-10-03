@@ -21,7 +21,8 @@ import { launchChildWindow } from './services/ChildWindowLauncher';
 import {
   launchChart,
   launchWatchlist,
-  launchNews
+  launchNews,
+  launchTodo
 } from './services/app-launchers';
 
 export const Utils = {
@@ -61,5 +62,6 @@ export const Launchers = {
   launchChildWindow,
   launchChart,
   launchWatchlist,
-  launchNews
+  launchNews,
+  launchTodo
 };

@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+#root {
+  height: 100%;
+  --header-height: 50px;
+  --titlebar-height: 35px;
+  --newsitem-height: 150px;
+  --no-article-height: 30px;
+}
