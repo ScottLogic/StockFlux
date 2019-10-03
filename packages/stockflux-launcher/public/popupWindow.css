@@ -1,9 +1,14 @@
+body {
+    overflow: hidden;
+    padding: 4vh 4vw;
+}
 .popup{
-    color:white;    
+    color:var(--text-grey-lighter);    
 }
 
 .popup-message{
     text-align: center;
+    font-size: var(--font-large);
 }
 
 .popup-options {

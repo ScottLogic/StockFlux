@@ -7,11 +7,15 @@ const ModalPopup = ({ message, options, children }) => {
   const handleClick = () => {
     setShowPopup(true);
   };
-  const childWindow = useChildWindow('popup', document, 'popupWindow.css');
+  const childWindow = useChildWindow(
+    'popup-window',
+    document,
+    'popupWindow.css'
+  );
 
   const launchChildWindow = useCallback(() => {
     childWindow.launch({
-      name: 'popup',
+      name: 'popup-window',
       url: 'child-window.html',
       frame: false,
       autoShow: true,
@@ -22,9 +26,10 @@ const ModalPopup = ({ message, options, children }) => {
       backgroundColor: '#28313D',
       waitForPageLoad: true,
       alwaysOnTop: true,
-      defaultWidth: 400,
-      defaultHeight: 150,
+      defaultWidth: 300,
+      defaultHeight: 100
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSelection = useCallback(
@@ -35,6 +40,7 @@ const ModalPopup = ({ message, options, children }) => {
         action.action();
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [setShowPopup]
   );
 
@@ -62,14 +68,12 @@ const ModalPopup = ({ message, options, children }) => {
       );
       childWindow.populateDOM(childWindowJsx);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [childWindow, handleSelection]);
 
   useEffect(() => {
-    if (showPopup) {
-      launchChildWindow();
-    } else {
-      childWindow.close();
-    }
+    showPopup ? launchChildWindow() : childWindow.close();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showPopup, launchChildWindow]);
 
   return <div onClick={handleClick}>{children}</div>;
