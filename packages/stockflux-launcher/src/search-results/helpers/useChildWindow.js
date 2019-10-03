@@ -54,25 +54,26 @@ export default (name, document, cssUrl) => {
     }
   }, [childWindow.window, cssUrl, document, inheritFromParent, injectNode]);
 
-  const closeExistingWindows = async () => {
+  const closeExistingWindows = useCallback(async () => {
     const childWindows = await OpenfinApiHelpers.getChildWindows();
 
-    const promises = await Promise.all(
-      childWindows.map(child => child.getWebWindow())
+    await Promise.all(
+      childWindows.map(win =>
+        win.identity.name && win.identity.name === name
+          ? win.close()
+          : Promise.resolve()
+      )
     );
-    promises.forEach(webWindow => {
-      if (webWindow.name === name) {
-        webWindow.close();
-      }
-    });
-  };
+  }, [name]);
 
-  const dispatchError = error =>
+  const dispatchError = error => {
+    console.error(error);
     dispatch({
       type: action.changeState,
       payload: childWindowState.error,
       error
     });
+  };
 
   const dispatchNewState = state =>
     dispatch({
@@ -80,38 +81,44 @@ export default (name, document, cssUrl) => {
       payload: state
     });
 
-  const launch = async windowOptions => {
-    if (childWindow.state !== childWindowState.launching) {
-      try {
-        dispatchNewState(childWindowState.launching);
-        await closeExistingWindows();
-        dispatch({
-          type: action.setWindow,
-          payload: await OpenfinApiHelpers.createWindow(windowOptions)
-        });
-        dispatchNewState(childWindowState.launched);
-      } catch (error) {
-        dispatchError(error);
+  const launch = useCallback(
+    async windowOptions => {
+      if (childWindow.state !== childWindowState.launching) {
+        try {
+          dispatchNewState(childWindowState.launching);
+          await closeExistingWindows();
+          dispatch({
+            type: action.setWindow,
+            payload: await OpenfinApiHelpers.createWindow(windowOptions)
+          });
+          dispatchNewState(childWindowState.launched);
+        } catch (error) {
+          dispatchError(error);
+        }
       }
-    }
-  };
+    },
+    [childWindow.state, closeExistingWindows]
+  );
 
-  const populateDOM = jsx => {
-    if (childWindow.window) {
-      try {
-        dispatchNewState(childWindowState.populating);
-        ReactDOM.render(
-          jsx,
-          childWindow.window.getWebWindow().document.getElementById('root')
-        );
-        dispatchNewState(childWindowState.populated);
-      } catch (error) {
-        dispatchError(error);
+  const populateDOM = useCallback(
+    jsx => {
+      if (childWindow.window) {
+        try {
+          dispatchNewState(childWindowState.populating);
+          ReactDOM.render(
+            jsx,
+            childWindow.window.getWebWindow().document.getElementById('root')
+          );
+          dispatchNewState(childWindowState.populated);
+        } catch (error) {
+          dispatchError(error);
+        }
       }
-    }
-  };
+    },
+    [childWindow.window]
+  );
 
-  const close = () => {
+  const close = useCallback(() => {
     try {
       if (childWindow.window) {
         childWindow.window.close();
@@ -120,7 +127,8 @@ export default (name, document, cssUrl) => {
     } catch (error) {
       dispatchError(error);
     }
-  };
+  }, [childWindow.window]);
+
   return {
     window: childWindow.window,
     state: childWindow.state,

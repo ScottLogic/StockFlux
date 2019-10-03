@@ -11,12 +11,10 @@ export default (state, action) => {
     case actionType.changeState:
       if (!Object.keys(childWindowState).indexOf(action.payload))
         throw new Error(`Invalid window state: ${action.payload}.`);
-      else if (action.type === childWindowState.error) {
-        console.error(action.error);
+      else if (action.type === childWindowState.error)
         throw new Error(
           `Error occured while window was in this state: ${action.payload}.`
         );
-      }
       return { ...state, state: action.payload };
     case actionType.setWindow:
       return { ...state, window: action.payload };

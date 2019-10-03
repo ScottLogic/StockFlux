@@ -44,6 +44,8 @@ const FreeTextSearch = ({ dockedTo }) => {
   const launcherInputRef = useRef(null);
   const childWindowInputRef = useRef(null);
 
+  const { window, launch, populateDOM, close } = childWindow;
+
   const parentUuid = OpenfinApiHelpers.getCurrentWindowSync()
     .getOptions()
     .then(options => options.uuid);
@@ -52,7 +54,7 @@ const FreeTextSearch = ({ dockedTo }) => {
 
   const launchChildWindow = useCallback(
     () =>
-      childWindow.launch(
+      launch(
         getResultsWindowProps(
           SEARCH_RESULTS_WINDOW_NAME,
           searchButtonRef,
@@ -61,28 +63,28 @@ const FreeTextSearch = ({ dockedTo }) => {
           bounds
         )
       ),
-    [bounds, dockedTo, childWindow.window, isDockedToSide]
+    [bounds, dockedTo, launch, isDockedToSide]
   );
 
   const closeChildWindow = useCallback(() => {
     setQuery(null);
     dispatch({ type: searchAction.initialise });
-    childWindow.close();
-  }, [childWindow.window]);
+    close();
+  }, [close]);
 
   const handleOnInputChange = useCallback(
     event => {
-      if (!childWindow.window) launchChildWindow();
+      if (!window) launchChildWindow();
       setQuery(event.target.value);
     },
-    [childWindow.window, launchChildWindow]
+    [window, launchChildWindow]
   );
 
   const handleSearchClick = useCallback(() => {
-    if (childWindow.window && results) {
+    if (window && results) {
       closeChildWindow();
     } else launchChildWindow();
-  }, [childWindow.window, results, launchChildWindow, closeChildWindow]);
+  }, [window, results, launchChildWindow, closeChildWindow]);
 
   useEffect(() => {
     const stockFluxSearch = () => {
@@ -117,10 +119,10 @@ const FreeTextSearch = ({ dockedTo }) => {
   }, [query]);
 
   useEffect(() => {
-    if (query === '' && childWindow.window) {
+    if (query === '' && window) {
       closeChildWindow();
     }
-  }, [childWindow.window, query, closeChildWindow]);
+  }, [window, query, closeChildWindow]);
 
   useEffect(() => {
     if (childWindow) {
@@ -130,7 +132,7 @@ const FreeTextSearch = ({ dockedTo }) => {
   }, [dockedTo]);
 
   useEffect(() => {
-    if (childWindow.window) {
+    if (window) {
       const childWindowJsx = (
         <ChildWindow
           results={results}
@@ -148,10 +150,11 @@ const FreeTextSearch = ({ dockedTo }) => {
           )}
         </ChildWindow>
       );
-      childWindow.populateDOM(childWindowJsx);
+      populateDOM(childWindowJsx);
     }
   }, [
-    childWindow.window,
+    window,
+    populateDOM,
     dockedTo,
     debouncedQuery,
     isSearching,
