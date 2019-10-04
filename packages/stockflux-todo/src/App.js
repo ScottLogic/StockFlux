@@ -1,121 +1,118 @@
-import React, { useRef, useState, useEffect, useReducer } from 'react';
+import React, { useState } from 'react';
 import Components from 'stockflux-components';
-import { StockFlux } from 'stockflux-core';
-import NewsItem from './components/news-item/NewsItem';
-import {
-  useInterApplicationBusSubscribe,
-  useOptions
-} from 'openfin-react-hooks';
+import { StockFluxHooks } from 'stockflux-core';
+import useInputField from './utilities/editableInput';
+import TodoItem from './components/todo';
+import { FaPlus } from 'react-icons/fa';
 import './App.css';
 
-const SEARCHING = 'searching';
-const SUCCESS = 'success';
-const ERROR = 'error';
-
-const initialSearchState = {
-  isSearching: false,
-  hasErrors: false,
-  results: []
-};
-
 function App() {
-  const searchReducer = (state, { type, results }) => {
-    switch (type) {
-      case SEARCHING:
-        return {
-          ...state,
-          hasErrors: false,
-          isSearching: true,
-          results: []
-        };
-      case SUCCESS:
-        return {
-          ...state,
-          isSearching: false,
-          results
-        };
-      case ERROR:
-        return {
-          ...state,
-          hasErrors: true,
-          isSearching: false,
-          results: []
-        };
-      default:
-        throw new Error();
-    }
-  };
-
-  const [searchState, dispatch] = useReducer(searchReducer, initialSearchState);
-  const [symbol, setSymbol] = useState(null);
-  const [name, setName] = useState(null);
-  const [options] = useOptions();
-  const listContainer = useRef(null);
-
-  const { isSearching, results } = searchState;
-
-  const { data } = useInterApplicationBusSubscribe(
-    { uuid: options ? options.uuid : '*' },
-    'stockflux-news'
+  const todo = useInputField('');
+  const [filterStatus, setFilterStatus] = useState();
+  const [todoList, setTodoList] = StockFluxHooks.useLocalStorage(
+    'todoList',
+    []
   );
 
-  useEffect(() => {
-    if (data && data.message) {
-      if (data.message.symbol) {
-        setSymbol(data.message.symbol);
+  const addTodo = () => {
+    setTodoList([
+      ...todoList,
+      {
+        text: todo.value,
+        completed: false,
+        created: new Date()
       }
-    }
-  }, [data, setSymbol]);
+    ]);
+    todo.setValue('');
+  };
 
-  useEffect(() => {
-    if (options && options.customData.symbol) {
-      setSymbol(options.customData.symbol);
-    }
+  const removeTodo = ({ entry }) => {
+    setTodoList(todoList.filter(e => e !== entry));
+  };
 
-    if (options && options.customData.name) {
-      setName(options.customData.name);
-    }
-  }, [options, setName, setSymbol, symbol]);
+  const changeStatus = ({ entry, newStatus }) => {
+    setTodoList(
+      todoList.map(todo =>
+        todo === entry ? { ...todo, completed: newStatus } : todo
+      )
+    );
+  };
 
-  useEffect(() => {
-    if (symbol) {
-      dispatch({ type: SEARCHING });
-      StockFlux.getSymbolNews(symbol)
-        .then(results => {
-          dispatch({ type: SUCCESS, results });
-        })
-        .catch(() => dispatch({ type: ERROR }));
+  const filterTodo = entry => {
+    if (filterStatus === undefined) {
+      return true;
     }
-  }, [symbol]);
+    if (filterStatus === true && entry.completed) {
+      return true;
+    }
+    if (filterStatus === false && !entry.completed) {
+      return true;
+    }
+    return false;
+  };
 
   return (
-    <div className="stockflux-news">
+    <div className="stockflux-todo">
       <Components.Titlebar />
-      <div className="header">{name ? name : symbol} News</div>
-      <Components.ScrollWrapperY>
-        <div className="container" ref={listContainer}>
-          {isSearching ? (
-            <div className="spin-container">
-              <Components.Spinner />
-            </div>
-          ) : results.length > 0 ? (
-            results.map((newsItem, index) => (
-              <NewsItem
-                key={index}
-                headline={newsItem.title}
-                source={newsItem.source}
-                copy={newsItem.summary}
-                link={newsItem.url}
-                time={newsItem.time}
-              />
-            ))
-          ) : (
-            <div className="no-articles">
-              Sorry, no news stories found for that symbol.
-            </div>
-          )}
-        </div>
-      </Components.ScrollWrapperY>
+      <div className="header">ToDos</div>
+
+      <div className="todo-input-container">
+        <input type="text" value={todo.value} onChange={todo.onChange}></input>
+        <Components.Buttons.Round
+          onClick={addTodo}
+          disabled={todo.value === ''}
+        >
+          <FaPlus></FaPlus>
+        </Components.Buttons.Round>
+      </div>
+      <div className="todo-filter-container">
+        <label>
+          <input
+            type="radio"
+            name="todo-filter"
+            checked={filterStatus === undefined}
+            onChange={() => setFilterStatus()}
+          />
+          All
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="todo-filter"
+            checked={filterStatus === true}
+            onChange={() => setFilterStatus(true)}
+          />
+          Completed
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="todo-filter"
+            checked={filterStatus === false}
+            onChange={() => setFilterStatus(false)}
+          />
+          Uncompleted
+        </label>
+      </div>
+      <div className="container">
+        <Components.ScrollWrapperY>
+          <div>
+            {todoList
+              .filter(entry => filterTodo(entry))
+              .map((entry, index) => {
+                return (
+                  <TodoItem
+                    key={index}
+                    entry={entry}
+                    index={index}
+                    changeStatus={changeStatus}
+                    remove={removeTodo}
+                  ></TodoItem>
+                );
+              })}
+          </div>
+        </Components.ScrollWrapperY>
+      </div>
     </div>
   );
 }

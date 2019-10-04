@@ -1,4 +1,4 @@
-.stockflux-news {
+.stockflux-todo {
   height: 100%;
   background-color: var(--middle-background);
 }
@@ -18,17 +18,27 @@
   height: calc(100vh - (var(--header-height) + var(--titlebar-height)));
 }
 
-.no-articles {
-  padding: var(--padding-medium);
-  display: flex;
-  height: var(--no-article-height);
-  justify-content: center;
-  font-size: var(--font-large);
-  color: var(--text-grey-lighter);
-  font-weight: var(--font-weight-bold);
+.todo-filter-container {
+  font-size: var(--font-xlarge);
+  color: var(--text-grey);
 }
 
-.spin-container {
-  padding: var(--padding-medium) 0;
-  height: 46px;
+.todo-input-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-input-container input[type=text] {
+  background: var(--dark-background);
+  color: var(--text-teal-light);
+  border: solid 2px var(--text-teal);
+  border-radius: 20px;
+  height: 30px;
+  width: 33%;
+  min-width: 250px;
+  padding: 10px;
+  margin: 0 5px;
+  outline: none;
 }
