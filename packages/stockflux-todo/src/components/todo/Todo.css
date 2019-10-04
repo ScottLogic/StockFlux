@@ -1,0 +1,37 @@
+.todo-item-details{
+    color: var(--text-grey);
+    font-size: var(--font-xlarge);
+    flex-grow: 1;
+}
+
+.todo-created{
+    font-size:var(--font-normal);
+}
+
+.todo-completed {
+    text-decoration: line-through;
+}
+
+.todo-item {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    max-height: var(--todoitem-height);
+    color: white;
+    cursor: pointer;
+    padding: var(--padding-medium);
+}
+
+.todo-item:hover {
+    background-color: var(--middle-background-light);
+}
+
+
+.todo-item:not(:first-child) {
+    border-top: 1px solid var(--middle-background-lighter);
+}
+
+.todo-item button {
+    flex-grow: 0;
+    flex-shrink: 0;
+}

@@ -21,6 +21,9 @@
 .todo-filter-container {
   font-size: var(--font-xlarge);
   color: var(--text-grey);
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .todo-input-container {
@@ -41,4 +44,12 @@
   padding: 10px;
   margin: 0 5px;
   outline: none;
+}
+
+.todo-active {
+  background-color: var(--middle-background-lighter);
+}
+
+.todo-remove-completed {
+  align-items: flex-end;
 }

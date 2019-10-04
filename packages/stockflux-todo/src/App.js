@@ -3,7 +3,7 @@ import Components from 'stockflux-components';
 import { StockFluxHooks } from 'stockflux-core';
 import useInputField from './utilities/editableInput';
 import TodoItem from './components/todo';
-import { FaPlus } from 'react-icons/fa';
+import { FaPlus, FaTasks, FaTrash } from 'react-icons/fa';
 import './App.css';
 
 function App() {
@@ -14,15 +14,21 @@ function App() {
     []
   );
 
+  const handleFormSubmit = event => {
+    event.preventDefault();
+    addTodo();
+  };
+
   const addTodo = () => {
-    setTodoList([
-      ...todoList,
-      {
-        text: todo.value,
-        completed: false,
-        created: new Date()
-      }
-    ]);
+    todo.value &&
+      setTodoList([
+        ...todoList,
+        {
+          text: todo.value,
+          completed: false,
+          created: new Date()
+        }
+      ]);
     todo.setValue('');
   };
 
@@ -38,63 +44,63 @@ function App() {
     );
   };
 
-  const filterTodo = entry => {
-    if (filterStatus === undefined) {
-      return true;
-    }
-    if (filterStatus === true && entry.completed) {
-      return true;
-    }
-    if (filterStatus === false && !entry.completed) {
-      return true;
-    }
-    return false;
+  const filterTodo = entry =>
+    filterStatus === undefined || entry.completed === filterStatus;
+
+  const clearCompletedTasks = () => {
+    setTodoList(todoList.filter(todo => !todo.completed));
   };
 
   return (
     <div className="stockflux-todo">
       <Components.Titlebar />
-      <div className="header">ToDos</div>
-
-      <div className="todo-input-container">
-        <input type="text" value={todo.value} onChange={todo.onChange}></input>
-        <Components.Buttons.Round
-          onClick={addTodo}
-          disabled={todo.value === ''}
-        >
-          <FaPlus></FaPlus>
-        </Components.Buttons.Round>
-      </div>
-      <div className="todo-filter-container">
-        <label>
-          <input
-            type="radio"
-            name="todo-filter"
-            checked={filterStatus === undefined}
-            onChange={() => setFilterStatus()}
-          />
-          All
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="todo-filter"
-            checked={filterStatus === true}
-            onChange={() => setFilterStatus(true)}
-          />
-          Completed
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="todo-filter"
-            checked={filterStatus === false}
-            onChange={() => setFilterStatus(false)}
-          />
-          Uncompleted
-        </label>
-      </div>
+      <div className="header">Checklist</div>
       <div className="container">
+        <div className="todo-input-container">
+          <form onSubmit={handleFormSubmit}>
+            <input
+              type="text"
+              value={todo.value}
+              onChange={todo.onChange}
+            ></input>
+          </form>
+          <Components.Buttons.Round
+            onClick={addTodo}
+            disabled={todo.value === ''}
+          >
+            <FaPlus></FaPlus>
+          </Components.Buttons.Round>
+        </div>
+        <div className="todo-filter-container">
+          <Components.Buttons.Round
+            onClick={() => setFilterStatus()}
+            className={filterStatus === undefined ? 'todo-active' : ''}
+            title="Show all Tasks"
+          >
+            <FaTasks></FaTasks>
+          </Components.Buttons.Round>
+          <Components.Buttons.Round
+            onClick={() => setFilterStatus(true)}
+            className={filterStatus === true ? 'todo-active' : ''}
+            title="Show Completed Tasks"
+          >
+            C
+          </Components.Buttons.Round>
+          <Components.Buttons.Round
+            onClick={() => setFilterStatus(false)}
+            title="Show Unfinished Tasks"
+            className={filterStatus === false ? 'todo-active' : ''}
+          >
+            O
+          </Components.Buttons.Round>
+          <Components.Buttons.Round
+            className="todo-remove-completed"
+            onClick={() => clearCompletedTasks()}
+          >
+            <FaTrash></FaTrash>
+          </Components.Buttons.Round>
+        </div>
+
         <Components.ScrollWrapperY>
           <div>
             {todoList

@@ -12,6 +12,6 @@ body {
   height: 100%;
   --header-height: 50px;
   --titlebar-height: 35px;
-  --newsitem-height: 150px;
+  /*--todoitem-height: 75px;*/
   --no-article-height: 30px;
 }
