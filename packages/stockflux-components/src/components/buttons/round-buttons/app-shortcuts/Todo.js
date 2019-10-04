@@ -1,6 +1,6 @@
 import React from 'react';
 import { Launchers } from 'stockflux-core';
-import WatchlistIcon from '../../../icons/watchlist.svg';
+import { FaTasks } from 'react-icons/fa';
 import RoundButton from '../../round-button/RoundButton';
 
 export default ({ symbol, name, small, disabled, intentsEnabled }) => {
@@ -11,7 +11,7 @@ export default ({ symbol, name, small, disabled, intentsEnabled }) => {
       disabled={disabled}
       small={small}
     >
-      <WatchlistIcon />
+      <FaTasks />
     </RoundButton>
   );
 };
