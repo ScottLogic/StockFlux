@@ -95,8 +95,16 @@ function App() {
         <div>{name ? name : symbol} News</div>
         <div>
           {' '}
-          <Components.Shortcuts.Chart small={true} />
-          <Components.Shortcuts.Watchlist small={true} />
+          <Components.Shortcuts.Chart
+            small={true}
+            symbol={symbol}
+            name={name}
+          />
+          <Components.Shortcuts.Watchlist
+            symbol={symbol}
+            name={name}
+            small={true}
+          />
         </div>
       </div>
       <Components.ScrollWrapperY>
