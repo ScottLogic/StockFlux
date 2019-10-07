@@ -20,6 +20,10 @@
   height: calc(100vh - (var(--header-height) + var(--titlebar-height)));
 }
 
+.icons {
+  white-space: nowrap;
+}
+
 .no-articles {
   padding: var(--padding-medium);
   display: flex;

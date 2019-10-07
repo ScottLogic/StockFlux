@@ -92,8 +92,8 @@ function App() {
     <div className="stockflux-news">
       <Components.Titlebar />
       <div className="header">
-        <div>{name ? name : symbol} News</div>
-        <div>
+        {name ? name : symbol} News
+        <div className="icons">
           {' '}
           <Components.Shortcuts.Chart
             small={true}
