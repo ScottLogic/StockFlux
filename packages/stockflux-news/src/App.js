@@ -91,7 +91,14 @@ function App() {
   return (
     <div className="stockflux-news">
       <Components.Titlebar />
-      <div className="header">{name ? name : symbol} News</div>
+      <div className="header">
+        <div>{name ? name : symbol} News</div>
+        <div>
+          {' '}
+          <Components.Shortcuts.Chart small={true} />
+          <Components.Shortcuts.Watchlist small={true} />
+        </div>
+      </div>
       <Components.ScrollWrapperY>
         <div className="container" ref={listContainer}>
           {isSearching ? (

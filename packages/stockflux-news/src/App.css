@@ -4,11 +4,13 @@
 }
 
 .header {
-  font-size: var(--font-xxxlarge);
   color: var(--text-grey-lighter);
+  display:flex;
+  flex-direction: row;
+  font-size: var(--font-xxxlarge);
   font-weight: var(--font-weight-bolder);
+  justify-content: space-between;
   padding: 12px;
-  display: flex;
   height: var(--header-height);
   border-bottom: 1px solid var(--dark-background);
 }
