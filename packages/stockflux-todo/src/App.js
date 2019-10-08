@@ -13,6 +13,8 @@ function App() {
     'todoList',
     []
   );
+  const [dragIndex, setdragIndex] = useState();
+  const [dragOverIndex, setDragOverIndex] = useState();
 
   const handleFormSubmit = event => {
     event.preventDefault();
@@ -44,15 +46,76 @@ function App() {
     );
   };
 
-  const filterTodo = entry =>
-    filterStatus === undefined || entry.completed === filterStatus;
+  const filterTodo = entry => {
+    return filterStatus === undefined || entry.completed === filterStatus;
+  };
 
   const clearCompletedTasks = () => {
     setTodoList(todoList.filter(todo => !todo.completed));
   };
 
+  const getIndexFromTransfer = types => {
+    for (let i = 0; i < types.length; i += 1) {
+      const dataTransferObj = JSON.parse(types[i]);
+      if (Object.keys(dataTransferObj)[0] === 'index') {
+        return dataTransferObj.index;
+      }
+    }
+    return undefined;
+  };
+
+  // let cardHeight;
+  // let dragStartClientY;
+  const [cardHeight, setCardHeight] = useState();
+  const [dragStartClientY, setDragStartClientY] = useState();
+
+  const onDragStart = e => {
+    //console.log(getIndexFromTransfer(e.dataTransfer.types));
+    setdragIndex(getIndexFromTransfer(e.dataTransfer.types));
+    console.log(e.target.getBoundingClientRect().height);
+    console.log(e.nativeEvent.clientY);
+    setCardHeight(e.target.getBoundingClientRect().height);
+    setDragStartClientY(e.nativeEvent.clientY);
+  };
+
+  const onDragEnd = () => {
+    setdragIndex();
+  };
+
+  const onDrop = () => {
+    console.log('dropped');
+    console.log('Move X to Y', dragIndex, dragOverIndex);
+    setDragOverIndex();
+    setdragIndex();
+  };
+
+  const onDragOver = event => {
+    const dragOverIndexOffset = Math.ceil(
+      ((event.nativeEvent.clientY - dragStartClientY) / (cardHeight / 2) + 1) /
+        2
+    );
+    let nextDragOverIndex = dragIndex + dragOverIndexOffset;
+
+    if (nextDragOverIndex <= dragIndex) {
+      nextDragOverIndex -= 1;
+    }
+
+    if (todoList[nextDragOverIndex] && nextDragOverIndex !== dragOverIndex) {
+      setDragOverIndex(nextDragOverIndex);
+    } else if (nextDragOverIndex >= todoList.length) {
+      setDragOverIndex(todoList.length);
+    }
+    event.preventDefault();
+  };
+
   return (
-    <div className="stockflux-todo">
+    <div
+      className="stockflux-todo"
+      onDragStart={onDragStart}
+      onDragOver={onDragOver}
+      onDragEnd={onDragEnd}
+      onDrop={onDrop}
+    >
       <Components.Titlebar />
       <div className="header">Checklist</div>
       <div className="container">
@@ -100,23 +163,25 @@ function App() {
             <FaTrash></FaTrash>
           </Components.Buttons.Round>
         </div>
-
         <Components.ScrollWrapperY>
-          <div>
-            {todoList
-              .filter(entry => filterTodo(entry))
-              .map((entry, index) => {
-                return (
-                  <TodoItem
-                    key={index}
-                    entry={entry}
-                    index={index}
-                    changeStatus={changeStatus}
-                    remove={removeTodo}
-                  ></TodoItem>
-                );
-              })}
-          </div>
+          {todoList
+            .filter(entry => filterTodo(entry))
+            .map((entry, index) => {
+              return (
+                <TodoItem
+                  // onDragStart={onDragStart}
+                  // onDragOver={onDragOver}
+                  // onDragEnd={onDragEnd}
+                  key={index}
+                  entry={entry}
+                  index={index}
+                  changeStatus={changeStatus}
+                  remove={removeTodo}
+                  dragOver={dragOverIndex === index}
+                  dragging={dragOverIndex}
+                ></TodoItem>
+              );
+            })}
         </Components.ScrollWrapperY>
       </div>
     </div>

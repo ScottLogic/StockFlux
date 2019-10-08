@@ -1,37 +1,69 @@
-.todo-item-details{
-    color: var(--text-grey);
-    font-size: var(--font-xlarge);
-    flex-grow: 1;
+.todo-item-details {
+  color: var(--text-grey);
+  font-size: var(--font-xlarge);
+  flex-grow: 1;
 }
 
-.todo-created{
-    font-size:var(--font-normal);
+.todo-created {
+  font-size: var(--font-normal);
 }
 
 .todo-completed {
-    text-decoration: line-through;
+  text-decoration: line-through;
 }
 
 .todo-item {
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    max-height: var(--todoitem-height);
-    color: white;
-    cursor: pointer;
-    padding: var(--padding-medium);
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  max-height: var(--todoitem-height);
+  color: white;
+  cursor: pointer;
+  padding: var(--padding-medium);
 }
 
 .todo-item:hover {
-    background-color: var(--middle-background-light);
+  background-color: var(--middle-background-light);
 }
 
-
 .todo-item:not(:first-child) {
-    border-top: 1px solid var(--middle-background-lighter);
+  border-top: 1px solid var(--middle-background-lighter);
 }
 
 .todo-item button {
-    flex-grow: 0;
-    flex-shrink: 0;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
+
+.card {
+  padding: 5px 10px 5px 0;
+  cursor: pointer;
+  height: var(--todoitem-height);
+}
+
+.drop-target {
+  height: var(--todoitem-height);
+}
+
+.todo-wrapper:hover .darkens {
+  background-color: var(--dark-background);
+}
+
+.darkens:hover {
+  background-color: var(--dark-background);
+}
+
+
+.todo-wrapper.dragOverBottom,
+.todo-wrapper.dragOver,
+.todo-wrapper.dragging {
+  background-color: var(--dragging-background);
+}
+
+/* .todo-wrapper.dragOver {
+  padding-top: var(--todoitem-height);
+}
+
+.todo-wrapper.dragOverBottom {
+  padding-bottom: var(--todoitem-height); 
+}*/

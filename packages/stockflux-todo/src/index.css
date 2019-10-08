@@ -12,6 +12,7 @@ body {
   height: 100%;
   --header-height: 50px;
   --titlebar-height: 35px;
-  /*--todoitem-height: 75px;*/
+  --todoitem-height: 75px;
   --no-article-height: 30px;
+  --dragging-background: #2e5356;
 }
