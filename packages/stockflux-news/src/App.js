@@ -101,9 +101,9 @@ function App() {
             name={name}
           />
           <Components.Shortcuts.Watchlist
+            small={true}
             symbol={symbol}
             name={name}
-            small={true}
           />
         </div>
       </div>
