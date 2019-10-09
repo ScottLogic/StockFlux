@@ -94,7 +94,6 @@ function App() {
       <div className="header">
         {name ? name : symbol} News
         <div className="icons">
-          {' '}
           <Components.Shortcuts.Chart
             small={true}
             symbol={symbol}
