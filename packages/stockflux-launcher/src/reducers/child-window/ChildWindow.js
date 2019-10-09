@@ -1,24 +1,24 @@
-import STATE_TYPE from './State';
-import ACTION_TYPE from './Action';
+import stateType from './State';
+import actionType from './Action';
 
 export const initialChildWindowState = {
   window: null,
-  state: STATE_TYPE.INITIAL
+  state: stateType.INITIAL
 };
 
 export default (state, action) => {
   switch (action.type) {
-    case ACTION_TYPE.CHANGE_STATE:
-      if (!Object.keys(STATE_TYPE).includes(action.payload))
+    case actionType.CHANGE_STATE:
+      if (!Object.keys(stateType).includes(action.payload))
         throw new Error(`Invalid window state: ${action.payload}.`);
-      else if (action.payload === STATE_TYPE.ERROR)
+      else if (action.payload === stateType.ERROR)
         throw new Error(
           `Error occured while window was in this state: ${action.payload}.`
         );
       return { ...state, state: action.payload };
-    case ACTION_TYPE.SET_WINDOW:
+    case actionType.SET_WINDOW:
       return { ...state, window: action.payload };
-    case ACTION_TYPE.RESET:
+    case actionType.RESET:
       return initialChildWindowState;
     default:
       throw new Error(`Invalid action type: ${action.type}.`);

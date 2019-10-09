@@ -32,6 +32,7 @@ let latestRequest = null;
 const FreeTextSearch = ({ dockedTo }) => {
   const [searchState, dispatch] = useReducer(reducer, initialSearchState);
   const [query, setQuery] = useState(null);
+  const [parentUuid, setParentUuid] = useState(null);
   const bounds = useBounds();
   const [debouncedQuery, setDebouncedQuery] = useState(null);
   const childWindow = useChildWindow(
@@ -46,9 +47,11 @@ const FreeTextSearch = ({ dockedTo }) => {
 
   const { window, launch, populateDOM, close } = childWindow;
 
-  const parentUuid = OpenfinApiHelpers.getCurrentWindowOptions().then(
-    options => options.uuid
-  );
+  useEffect(() => {
+    OpenfinApiHelpers.getCurrentWindowOptions().then(options =>
+      setParentUuid(options.uuid)
+    );
+  }, []);
 
   const isDockedToSide = [ScreenEdge.LEFT, ScreenEdge.RIGHT].includes(dockedTo);
 
