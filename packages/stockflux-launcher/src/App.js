@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import cx from 'classnames';
 import { OpenfinApiHelpers } from 'stockflux-core';
 import { useDockWindow, useOptions, ScreenEdge } from 'openfin-react-hooks';
@@ -26,14 +26,6 @@ export default () => {
     { dockedWidth: 50, dockedHeight: 50 }
   );
 
-  const prevEdgeRef = useRef();
-  useEffect(() => {
-    prevEdgeRef.current = edge;
-  });
-  const prevEdge = prevEdgeRef.current;
-
-  const edgeToBeChecked = edge === ScreenEdge.NONE ? prevEdge : edge;
-
   useEffect(() => {
     setCloudMode(
       options && options.customData && options.customData.cloudMode === true
@@ -42,18 +34,35 @@ export default () => {
     setHorizontal(
       isCloudMode || [ScreenEdge.TOP, ScreenEdge.NONE].indexOf(edge) > -1
     );
-  }, [edge, isCloudMode, isDocked, isHorizontal, options]);
+  }, [edge, isCloudMode, setDocked, isHorizontal, options]);
 
-  const undock = useCallback(() => {
+  const undock = () => {
+    console.log('here');
     const w = OpenfinApiHelpers.getCurrentWindowSync();
-    console.log(window);
-    window.resizeTo(250, 250);
-    //OpenfinApiHelpers.resizeWindow(100);
-    //console.log(w);
-  }, []);
+    w.animate({
+      size: {
+        duration: 250,
+        width: 600,
+        height: 70
+      }
+    });
+    setDocked(false);
+  };
+
+  // const undock = useCallback(() => {
+  //   const w = OpenfinApiHelpers.getCurrentWindowSync();
+  //   w.animate({
+  //     size: {
+  //       duration: 250,
+  //       width: 600,
+  //       height: 70
+  //     }
+  //   });
+  //   setDocked(false);
+  // }, [setDocked]);
 
   return (
-    <div className={cx('app', edgeToBeChecked)}>
+    <div className={cx('app', edge)}>
       <FreeTextSearch dockedTo={edge} />
       <ToolBar
         tools={[
@@ -77,6 +86,7 @@ export default () => {
           },
           {
             label: <FaUnlock />,
+            disabled: false,
             onClick: undock,
             visible: !isCloudMode && isDocked
           },
