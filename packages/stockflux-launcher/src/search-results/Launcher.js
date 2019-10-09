@@ -22,7 +22,7 @@ export default async (
   const childWindow = {
     name: 'search-results',
     defaultWidth,
-    defaultHeight,#
+    defaultHeight,
     url: 'child-window.html',
     frame: false,
     autoShow: true,

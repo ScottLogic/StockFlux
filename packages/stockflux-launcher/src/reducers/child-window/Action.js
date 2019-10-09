@@ -4,5 +4,5 @@ export default {
   LAUNCH: 'LAUNCH',
   POPULATE: 'POPULATE',
   CLOSE: 'CLOSE',
-  RESET: 'RESET',
+  RESET: 'RESET'
 };

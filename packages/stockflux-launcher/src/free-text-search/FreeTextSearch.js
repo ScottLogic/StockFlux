@@ -46,8 +46,9 @@ const FreeTextSearch = ({ dockedTo }) => {
 
   const { window, launch, populateDOM, close } = childWindow;
 
-  const parentUuid = OpenfinApiHelpers.getCurrentWindowOptions()
-    .then(options => options.uuid);
+  const parentUuid = OpenfinApiHelpers.getCurrentWindowOptions().then(
+    options => options.uuid
+  );
 
   const isDockedToSide = [ScreenEdge.LEFT, ScreenEdge.RIGHT].includes(dockedTo);
 
