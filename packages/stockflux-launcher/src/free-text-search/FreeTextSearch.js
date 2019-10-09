@@ -9,7 +9,7 @@ import { StockFlux } from 'stockflux-core';
 import reducer, {
   initialSearchState
 } from '../reducers/free-text-search/FreeTextSearch';
-import SEARCH_ACTION from '../reducers/free-text-search/Action';
+import searchAction from '../reducers/free-text-search/Action';
 import {
   ScreenEdge,
   useBounds,
@@ -71,7 +71,7 @@ const FreeTextSearch = ({ dockedTo }) => {
 
   const closeChildWindow = useCallback(() => {
     setQuery(null);
-    dispatch({ type: SEARCH_ACTION.INITIALISE });
+    dispatch({ type: searchAction.INITIALISE });
     close();
   }, [close]);
 
@@ -92,13 +92,13 @@ const FreeTextSearch = ({ dockedTo }) => {
   useEffect(() => {
     const stockFluxSearch = () => {
       if (debouncedQuery) {
-        dispatch({ type: SEARCH_ACTION.SEARCHING });
+        dispatch({ type: searchAction.SEARCHING });
         try {
           const currentRequest = StockFlux.stockFluxSearch(debouncedQuery).then(
             stockFluxResults => {
               if (latestRequest === currentRequest) {
                 dispatch({
-                  type: SEARCH_ACTION.SUCCESS,
+                  type: searchAction.SUCCESS,
                   results: stockFluxResults
                 });
               }
@@ -106,7 +106,7 @@ const FreeTextSearch = ({ dockedTo }) => {
           );
           latestRequest = currentRequest;
         } catch {
-          dispatch({ type: SEARCH_ACTION.ERROR });
+          dispatch({ type: searchAction.ERROR });
         }
       }
     };
