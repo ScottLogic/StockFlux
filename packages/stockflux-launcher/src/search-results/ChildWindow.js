@@ -1,13 +1,13 @@
 import React from 'react';
 import Components from 'stockflux-components';
-import MESSAGES from './messages';
+import messages from './messages';
 import SearchResults from './SearchResults';
 
 export default ({ results, children, isSearching, debouncedQuery }) => {
   const messageJsx = isSearching ? (
     <Components.Spinner />
   ) : (
-    <p>{debouncedQuery ? MESSAGES.NO_MATCHES : MESSAGES.INITIAL}</p>
+    <p>{debouncedQuery ? messages.NO_MATCHES : messages.INITIAL}</p>
   );
 
   return (
