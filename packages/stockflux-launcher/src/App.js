@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import cx from 'classnames';
 import { OpenfinApiHelpers } from 'stockflux-core';
 import { useDockWindow, useOptions, ScreenEdge } from 'openfin-react-hooks';
@@ -6,6 +6,7 @@ import {
   FaChevronUp,
   FaChevronLeft,
   FaChevronRight,
+  FaRegHandRock,
   FaUnlock
 } from 'react-icons/fa';
 import FreeTextSearch from './free-text-search/FreeTextSearch';
@@ -25,6 +26,23 @@ export default () => {
     { dockedWidth: 50, dockedHeight: 50 }
   );
 
+  const prevEdgeRef = useRef();
+  useEffect(() => {
+    if (!isCloudMode) {
+      if (edge !== ScreenEdge.NONE) {
+        setHorizontal(edge === ScreenEdge.TOP);
+      }
+    } else {
+      setHorizontal(true);
+    }
+
+    prevEdgeRef.current = edge;
+  }, [edge, isCloudMode]);
+
+  const prevEdge = prevEdgeRef.current;
+
+  const edgeToBeChecked = edge === ScreenEdge.NONE ? prevEdge : edge;
+
   useEffect(() => {
     setCloudMode(
       options && options.customData && options.customData.cloudMode === true
@@ -35,14 +53,8 @@ export default () => {
     setDocked(!isCloudMode && edge !== ScreenEdge.NONE);
   }, [edge, isCloudMode]);
 
-  useEffect(() => {
-    setHorizontal(
-      isCloudMode || [ScreenEdge.TOP, ScreenEdge.NONE].indexOf(edge) > -1
-    );
-  }, [edge, isCloudMode]);
-
   const undock = async () => {
-    windowActions.dockNone();
+    //windowActions.dockNone();
     const w = OpenfinApiHelpers.getCurrentWindowSync();
     await w.animate({
       position: {
@@ -56,11 +68,11 @@ export default () => {
         height: 70
       }
     });
-    setDocked(false);
+    //setDocked(false);
   };
 
   return (
-    <div className={cx('app', edge)}>
+    <div className={cx('app', edgeToBeChecked)}>
       {!isHorizontal && CloseButton}
       <FreeTextSearch dockedTo={edge} />
       <ToolBar
@@ -82,6 +94,11 @@ export default () => {
             onClick: windowActions.dockRight,
             disabled: edge === ScreenEdge.RIGHT,
             visible: !isCloudMode
+          },
+          {
+            label: <FaRegHandRock />,
+            className: 'drag-handle',
+            visible: isDocked
           },
           {
             label: <FaUnlock />,
