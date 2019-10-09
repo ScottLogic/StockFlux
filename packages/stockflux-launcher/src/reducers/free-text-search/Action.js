@@ -1,6 +1,6 @@
 export default {
-  searching: 'SEARCHING',
-  success: 'SUCCESS',
-  error: 'ERROR',
-  initialise: 'INITIALISE'
+  SEARCHING: 'SEARCHING',
+  SUCCESS: 'SUCCESS',
+  ERROR: 'ERROR',
+  INITIALISE: 'INITIALISE',
 };

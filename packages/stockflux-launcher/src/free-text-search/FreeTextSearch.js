@@ -9,7 +9,7 @@ import { StockFlux } from 'stockflux-core';
 import reducer, {
   initialSearchState
 } from '../reducers/free-text-search/FreeTextSearch';
-import searchAction from '../reducers/free-text-search/Action';
+import SEARCH_ACTION from '../reducers/free-text-search/Action';
 import {
   ScreenEdge,
   useBounds,
@@ -46,8 +46,7 @@ const FreeTextSearch = ({ dockedTo }) => {
 
   const { window, launch, populateDOM, close } = childWindow;
 
-  const parentUuid = OpenfinApiHelpers.getCurrentWindowSync()
-    .getOptions()
+  const parentUuid = OpenfinApiHelpers.getCurrentWindowOptions()
     .then(options => options.uuid);
 
   const isDockedToSide = [ScreenEdge.LEFT, ScreenEdge.RIGHT].includes(dockedTo);
@@ -68,7 +67,7 @@ const FreeTextSearch = ({ dockedTo }) => {
 
   const closeChildWindow = useCallback(() => {
     setQuery(null);
-    dispatch({ type: searchAction.initialise });
+    dispatch({ type: SEARCH_ACTION.INITIALISE });
     close();
   }, [close]);
 
@@ -89,13 +88,13 @@ const FreeTextSearch = ({ dockedTo }) => {
   useEffect(() => {
     const stockFluxSearch = () => {
       if (debouncedQuery) {
-        dispatch({ type: searchAction.searching });
+        dispatch({ type: SEARCH_ACTION.SEARCHING });
         try {
           const currentRequest = StockFlux.stockFluxSearch(debouncedQuery).then(
             stockFluxResults => {
               if (latestRequest === currentRequest) {
                 dispatch({
-                  type: searchAction.success,
+                  type: SEARCH_ACTION.SUCCESS,
                   results: stockFluxResults
                 });
               }
@@ -103,7 +102,7 @@ const FreeTextSearch = ({ dockedTo }) => {
           );
           latestRequest = currentRequest;
         } catch {
-          dispatch({ type: searchAction.error });
+          dispatch({ type: SEARCH_ACTION.ERROR });
         }
       }
     };

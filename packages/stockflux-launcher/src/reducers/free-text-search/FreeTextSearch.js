@@ -1,4 +1,4 @@
-import action from './Action';
+import ACTION_TYPE from './Action';
 
 export const initialSearchState = {
   isSearching: false,
@@ -8,27 +8,27 @@ export const initialSearchState = {
 
 export default (state, { type, results }) => {
   switch (type) {
-    case action.searching:
+    case ACTION_TYPE.SEARCHING:
       return {
         ...state,
         hasErrors: false,
         isSearching: true,
         results: []
       };
-    case action.success:
+    case ACTION_TYPE.SUCCESS:
       return {
         ...state,
         isSearching: false,
         results
       };
-    case action.error:
+    case ACTION_TYPE.ERROR:
       return {
         ...state,
         hasErrors: true,
         isSearching: false,
         results: []
       };
-    case action.initialise:
+    case ACTION_TYPE.INITIALISE:
       return initialSearchState;
     default:
       throw new Error();

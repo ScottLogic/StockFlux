@@ -1,8 +1,8 @@
 export default {
-  initial: 'INITIAL',
-  launching: 'LAUNCHING',
-  launched: 'LAUNCHED',
-  populating: 'POPULATING',
-  populated: 'POPULATED',
-  error: 'ERROR'
+  INITIAL: 'INITIAL',
+  LAUNCHING: 'LAUNCHING',
+  LAUNCHED: 'LAUNCHED',
+  POPULATING: 'POPULATING',
+  POPULATED: 'POPULATED',
+  ERROR: 'ERROR',
 };

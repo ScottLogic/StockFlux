@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import reducer, {
   initialChildWindowState
 } from '../../reducers/child-window/ChildWindow';
-import childWindowState from '../../reducers/child-window/State';
-import action from '../../reducers/child-window/Actions';
+import STATE_TYPE from '../../reducers/child-window/State';
+import ACTION_TYPE from '../../reducers/child-window/Action';
 import { OpenfinApiHelpers } from 'stockflux-core';
 
 export default (name, document, cssUrl) => {
@@ -69,29 +69,29 @@ export default (name, document, cssUrl) => {
   const dispatchError = error => {
     console.error(error);
     dispatch({
-      type: action.changeState,
-      payload: childWindowState.error,
+      type: ACTION_TYPE.CHANGE_STATE,
+      payload: STATE_TYPE.ERROR,
       error
     });
   };
 
   const dispatchNewState = state =>
     dispatch({
-      type: action.changeState,
+      type: ACTION_TYPE.CHANGE_STATE,
       payload: state
     });
 
   const launch = useCallback(
     async windowOptions => {
-      if (childWindow.state !== childWindowState.launching) {
+      if (childWindow.state !== STATE_TYPE.LAUNCHING) {
         try {
-          dispatchNewState(childWindowState.launching);
+          dispatchNewState(STATE_TYPE.LAUNCHING);
           await closeExistingWindows();
           dispatch({
-            type: action.setWindow,
+            type: ACTION_TYPE.SET_WINDOW,
             payload: await OpenfinApiHelpers.createWindow(windowOptions)
           });
-          dispatchNewState(childWindowState.launched);
+          dispatchNewState(STATE_TYPE.LAUNCHED);
         } catch (error) {
           dispatchError(error);
         }
@@ -104,12 +104,12 @@ export default (name, document, cssUrl) => {
     jsx => {
       if (childWindow.window) {
         try {
-          dispatchNewState(childWindowState.populating);
+          dispatchNewState(STATE_TYPE.POPULATING);
           ReactDOM.render(
             jsx,
             childWindow.window.getWebWindow().document.getElementById('root')
           );
-          dispatchNewState(childWindowState.populated);
+          dispatchNewState(STATE_TYPE.POPULATED);
         } catch (error) {
           dispatchError(error);
         }
@@ -122,7 +122,7 @@ export default (name, document, cssUrl) => {
     try {
       if (childWindow.window) {
         childWindow.window.close();
-        dispatch({ type: action.reset });
+        dispatch({ type: ACTION_TYPE.RESET });
       }
     } catch (error) {
       dispatchError(error);
