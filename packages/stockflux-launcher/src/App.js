@@ -6,7 +6,6 @@ import {
   FaChevronUp,
   FaChevronLeft,
   FaChevronRight,
-  FaRegHandRock,
   FaUnlock
 } from 'react-icons/fa';
 import FreeTextSearch from './free-text-search/FreeTextSearch';
@@ -30,16 +29,27 @@ export default () => {
     setCloudMode(
       options && options.customData && options.customData.cloudMode === true
     );
+  }, [options, setCloudMode]);
+
+  useEffect(() => {
     setDocked(!isCloudMode && edge !== ScreenEdge.NONE);
+  }, [edge, isCloudMode]);
+
+  useEffect(() => {
     setHorizontal(
       isCloudMode || [ScreenEdge.TOP, ScreenEdge.NONE].indexOf(edge) > -1
     );
-  }, [edge, isCloudMode, setDocked, isHorizontal, options]);
+  }, [edge, isCloudMode]);
 
-  const undock = () => {
-    console.log('here');
+  const undock = async () => {
+    windowActions.dockNone();
     const w = OpenfinApiHelpers.getCurrentWindowSync();
-    w.animate({
+    await w.animate({
+      position: {
+        left: 100,
+        top: 100,
+        duration: 250
+      },
       size: {
         duration: 250,
         width: 600,
@@ -49,20 +59,9 @@ export default () => {
     setDocked(false);
   };
 
-  // const undock = useCallback(() => {
-  //   const w = OpenfinApiHelpers.getCurrentWindowSync();
-  //   w.animate({
-  //     size: {
-  //       duration: 250,
-  //       width: 600,
-  //       height: 70
-  //     }
-  //   });
-  //   setDocked(false);
-  // }, [setDocked]);
-
   return (
     <div className={cx('app', edge)}>
+      {!isHorizontal && CloseButton}
       <FreeTextSearch dockedTo={edge} />
       <ToolBar
         tools={[
@@ -86,14 +85,9 @@ export default () => {
           },
           {
             label: <FaUnlock />,
-            disabled: false,
             onClick: undock,
+            disabled: false,
             visible: !isCloudMode && isDocked
-          },
-          {
-            label: <FaRegHandRock />,
-            className: 'drag-handle',
-            visible: !isDocked
           }
         ]}
       />
