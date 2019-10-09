@@ -96,15 +96,16 @@ export default () => {
             visible: !isCloudMode
           },
           {
-            label: <FaRegHandRock />,
-            className: 'drag-handle',
-            visible: isDocked
-          },
-          {
             label: <FaUnlock />,
+            className: '',
             onClick: undock,
             disabled: false,
             visible: !isCloudMode && isDocked
+          },
+          {
+            label: <FaRegHandRock />,
+            className: 'drag-handle',
+            visible: !isDocked
           }
         ]}
       />
