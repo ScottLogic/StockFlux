@@ -19,8 +19,12 @@ export default () => {
   const [isDocked, setDocked] = useState(true);
   const [isHorizontal, setHorizontal] = useState(true);
   const [options] = useOptions();
-  const [edge, windowActions] = useDockWindow(
-    ScreenEdge.TOP,
+  const initialScreenEdge =
+    options && options.customData && options.customData.initialDocked === true
+      ? ScreenEdge.TOP
+      : ScreenEdge.NONE;
+  let [edge, windowActions] = useDockWindow(
+    initialScreenEdge,
     OpenfinApiHelpers.getCurrentWindowSync(),
     true,
     { dockedWidth: 50, dockedHeight: 50 }
@@ -53,22 +57,37 @@ export default () => {
     setDocked(!isCloudMode && edge !== ScreenEdge.NONE);
   }, [edge, isCloudMode]);
 
+  useEffect(() => {
+    if (
+      options &&
+      options.customData &&
+      options.customData.initialDocked === false
+    ) {
+      const w = OpenfinApiHelpers.getCurrentWindowSync();
+      w.resizeTo(600, 70, 'top-right');
+      w.moveTo(600, 10);
+    }
+  }, [options]);
+
   const undock = async () => {
-    //windowActions.dockNone();
     const w = OpenfinApiHelpers.getCurrentWindowSync();
-    await w.animate({
-      position: {
-        left: 100,
-        top: 100,
-        duration: 250
-      },
-      size: {
-        duration: 250,
-        width: 600,
-        height: 70
-      }
-    });
-    //setDocked(false);
+
+    switch (edge) {
+      case ScreenEdge.LEFT:
+        w.resizeTo(70, 600);
+        w.moveTo(20, 100);
+        break;
+      case ScreenEdge.RIGHT:
+        w.resizeTo(70, 600);
+        w.moveBy(-100, 100);
+        break;
+      case ScreenEdge.TOP:
+        w.resizeTo(600, 70);
+        w.moveBy(600, 10);
+        break;
+      default:
+        break;
+    }
   };
 
   return (
