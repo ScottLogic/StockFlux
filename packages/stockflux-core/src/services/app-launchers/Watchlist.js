@@ -23,15 +23,10 @@ const launchAsChildWindow = async (symbol, name) => {
 
   try {
     const options = await getCurrentWindowOptions();
-
     await sendInterApplicationMessage(options ? options.uuid : '*', APP_NAME, {
       symbol,
       name
     });
-    // window.fin.InterApplicationBus.publish('stockflux-watchlist', {
-    //   symbol,
-    //   name
-    // });
   } catch (err) {
     console.error(err);
   }

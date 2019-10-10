@@ -15,7 +15,7 @@ html {
 .top {
   flex-direction: row;
   justify-content: space-between;
-  border-bottom: solid 1px var(--text-teal);
+  border-bottom: var(--border);
   align-items: center;
 }
 
@@ -26,11 +26,11 @@ html {
 }
 
 .right {
-  border-left: solid 1px var(--text-teal);
+  border-left: var(--border);
 }
 
 .left {
-  border-right: solid 1px var(--text-teal);
+  border-right: var(--border);
 }
 
 .drag-handle {

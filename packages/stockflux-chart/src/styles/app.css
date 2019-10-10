@@ -52,13 +52,13 @@ body {
     display: flex;
     flex-direction: row;
 }
-#showcase-title .code,
+#showcase-title .symbol,
 #showcase-title .name {
     display: inline-block;
     padding-right: 10px;
 }
 
-#showcase-title .code {
+#showcase-title .symbol {
     font: 18px var(--font-weight-bolder);
 }
 

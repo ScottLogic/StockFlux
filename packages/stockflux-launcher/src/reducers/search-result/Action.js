@@ -1,0 +1,6 @@
+export default {
+  SEARCHING: 'SEARCHING',
+  SUCCESS: 'SUCCESS',
+  ERROR: 'ERROR',
+  INITIALISE: 'INITIALISE'
+};

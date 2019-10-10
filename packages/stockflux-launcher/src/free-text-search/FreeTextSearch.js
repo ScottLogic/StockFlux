@@ -5,117 +5,109 @@ import React, {
   useRef,
   useCallback
 } from 'react';
-import { FaSearch } from 'react-icons/fa';
-import { Intents, StockFlux } from 'stockflux-core';
-import SearchResult from './search-result';
-import {
-  reducer,
-  initialSearchState,
-  SEARCHING,
-  SUCCESS,
-  ERROR,
-  INITIALISE
-} from './FreeTextSearch.reducer';
+import { StockFlux } from 'stockflux-core';
+import reducer, {
+  initialSearchState
+} from '../reducers/free-text-search/FreeTextSearch';
+import searchAction from '../reducers/free-text-search/Action';
 import {
   ScreenEdge,
   useBounds,
   useInterApplicationBusSubscribe
 } from 'openfin-react-hooks';
-import './FreeTextSearch.css';
-import MESSAGES from './FreeTextSearch.messages';
-import launchSearchResultsWindow from './search-result/SearchResults.launcher';
-import populateSearchResultsWindow from './search-result/SearchResults.populater';
 import { OpenfinApiHelpers } from 'stockflux-core/src';
-import Components from 'stockflux-components';
+import getResultsWindowProps from '../search-results/helpers/GetResultsWindowProps';
+import useChildWindow from '../search-results/helpers/useChildWindow';
+import ChildWindow from '../search-results/ChildWindow';
+import SearchInputField from './SearchInputField';
+import SearchButton from './SearchButton';
+import './FreeTextSearch.css';
 
 const ALL = { uuid: '*' };
 const SEARCH_TIMEOUT_INTERVAL = 250;
+const SEARCH_RESULTS_WINDOW_NAME = 'search-results';
+const SEARCH_RESULTS_CSS_PATCH = 'childWindow.css';
 
 let latestRequest = null;
-let isCreatingResultWindow = false;
-let resultsWindow = null;
-
-const closeResultsWindow = () => {
-  if (resultsWindow) {
-    resultsWindow.close();
-    resultsWindow = null;
-  }
-};
-
 const FreeTextSearch = ({ dockedTo }) => {
   const [searchState, dispatch] = useReducer(reducer, initialSearchState);
-  const [parentUuid, setParentUuid] = useState(null);
   const [query, setQuery] = useState(null);
+  const [parentUuid, setParentUuid] = useState(null);
   const bounds = useBounds();
   const [debouncedQuery, setDebouncedQuery] = useState(null);
+  const childWindow = useChildWindow(
+    SEARCH_RESULTS_WINDOW_NAME,
+    document,
+    SEARCH_RESULTS_CSS_PATCH
+  );
   const { isSearching, results } = searchState;
   const searchButtonRef = useRef(null);
-  const searchInputRef = useRef(null);
+  const launcherInputRef = useRef(null);
+  const childWindowInputRef = useRef(null);
 
-  const handleOnInputChange = useCallback(
-    event => {
-      setQuery(event.target.value);
-      if (event.target.value !== null && event.target.value === '') {
-        closeResultsWindow();
-      } else if (!resultsWindow && !isCreatingResultWindow) {
-        isCreatingResultWindow = true;
-        launchSearchResultsWindow(
+  const { window, launch, populateDOM, close } = childWindow;
+
+  useEffect(() => {
+    OpenfinApiHelpers.getCurrentWindowOptions().then(options =>
+      setParentUuid(options.uuid)
+    );
+  }, []);
+
+  const isDockedToSide = [ScreenEdge.LEFT, ScreenEdge.RIGHT].includes(dockedTo);
+
+  const launchChildWindow = useCallback(
+    () =>
+      launch(
+        getResultsWindowProps(
+          SEARCH_RESULTS_WINDOW_NAME,
           searchButtonRef,
-          searchInputRef,
+          isDockedToSide ? childWindowInputRef : launcherInputRef,
           dockedTo,
           bounds
         )
-          .then(win => (resultsWindow = win))
-          .catch(err => console.error(err))
-          .finally(() => (isCreatingResultWindow = false));
-      }
+      ),
+    [bounds, dockedTo, launch, isDockedToSide]
+  );
+
+  const closeChildWindow = useCallback(() => {
+    setQuery(null);
+    dispatch({ type: searchAction.INITIALISE });
+    close();
+  }, [close]);
+
+  const handleOnInputChange = useCallback(
+    event => {
+      if (!window) launchChildWindow();
+      setQuery(event.target.value);
     },
-    [searchButtonRef, searchInputRef, dockedTo, bounds]
+    [window, launchChildWindow]
   );
 
   const handleSearchClick = useCallback(() => {
-    if (resultsWindow) {
-      closeResultsWindow();
-      if (dockedTo === ScreenEdge.TOP) {
-        searchInputRef.current.value = '';
-      }
-    } else if (!isCreatingResultWindow) {
-      isCreatingResultWindow = true;
-      launchSearchResultsWindow(
-        searchButtonRef,
-        searchInputRef,
-        dockedTo,
-        bounds
-      )
-        .then(win => (resultsWindow = win))
-        .catch(err => console.error(err))
-        .finally(() => (isCreatingResultWindow = false));
-    }
-  }, [searchButtonRef, searchInputRef, dockedTo, bounds]);
-
-  useEffect(() => {
-    closeResultsWindow();
-    setQuery('');
-  }, [dockedTo]);
+    if (window && results) {
+      closeChildWindow();
+    } else launchChildWindow();
+  }, [window, results, launchChildWindow, closeChildWindow]);
 
   useEffect(() => {
     const stockFluxSearch = () => {
       if (debouncedQuery) {
-        dispatch({ type: SEARCHING });
+        dispatch({ type: searchAction.SEARCHING });
         try {
           const currentRequest = StockFlux.stockFluxSearch(debouncedQuery).then(
             stockFluxResults => {
               if (latestRequest === currentRequest) {
-                dispatch({ type: SUCCESS, results: stockFluxResults });
+                dispatch({
+                  type: searchAction.SUCCESS,
+                  results: stockFluxResults
+                });
               }
             }
           );
           latestRequest = currentRequest;
         } catch {
-          dispatch({ type: ERROR });
+          dispatch({ type: searchAction.ERROR });
         }
-      } else {
-        dispatch({ type: INITIALISE });
       }
     };
     stockFluxSearch();
@@ -130,70 +122,57 @@ const FreeTextSearch = ({ dockedTo }) => {
   }, [query]);
 
   useEffect(() => {
-    if (!resultsWindow) {
-      return;
+    if (query === '' && window) {
+      closeChildWindow();
     }
-
-    if (isSearching) {
-      populateSearchResultsWindow(MESSAGES.SEARCHING, resultsWindow);
-    } else if (results && results.length) {
-      const html = results.map(result => (
-        <SearchResult key={result.code} code={result.code} name={result.name} />
-      ));
-      populateSearchResultsWindow(html, resultsWindow);
-    } else {
-      populateSearchResultsWindow(
-        debouncedQuery ? MESSAGES.NO_MATCHES : MESSAGES.INITIAL,
-        resultsWindow
-      );
-    }
-  }, [debouncedQuery, isSearching, results]);
+  }, [window, query, closeChildWindow]);
 
   useEffect(() => {
-    OpenfinApiHelpers.getCurrentWindowSync()
-      .getOptions()
-      .then(options => setParentUuid({ uuid: options.uuid }));
-  }, []);
-
-  const closeAndClearSearch = () => {
-    closeResultsWindow();
-    searchInputRef.current.value = '';
-    searchInputRef.current.blur();
-  };
+    if (childWindow) {
+      closeChildWindow();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dockedTo]);
 
   useEffect(() => {
-    if (parentUuid) {
-      window.fin.InterApplicationBus.subscribe(
-        parentUuid,
-        'intent-request',
-        message => {
-          switch (message.type) {
-            case 'news-view':
-              Intents.viewNews(message.code, message.name);
-              closeAndClearSearch();
-              break;
-            case 'watchlist-add':
-              Intents.addWatchlist(message.code, message.name);
-              closeAndClearSearch();
-              break;
-            case 'chart-add':
-              Intents.viewChart(message.code, message.name);
-              closeAndClearSearch();
-              break;
-            default:
-              break;
-          }
-        }
+    if (window) {
+      const childWindowJsx = (
+        <ChildWindow
+          results={results}
+          isSearching={isSearching}
+          debouncedQuery={debouncedQuery}
+        >
+          {isDockedToSide && (
+            <div className="free-text-search">
+              <SearchInputField
+                query={query ? query : ''}
+                handleOnInputChange={handleOnInputChange}
+                inputRef={childWindowInputRef}
+              />
+            </div>
+          )}
+        </ChildWindow>
       );
+      populateDOM(childWindowJsx);
     }
-  }, [parentUuid]);
+  }, [
+    window,
+    populateDOM,
+    dockedTo,
+    debouncedQuery,
+    isSearching,
+    results,
+    handleOnInputChange,
+    isDockedToSide,
+    query
+  ]);
 
   const {
     data,
     subscribeError,
     isSubscribed
   } = useInterApplicationBusSubscribe(
-    parentUuid ? parentUuid : ALL,
+    { uuid: parentUuid ? parentUuid : ALL },
     'search-request'
   );
 
@@ -209,18 +188,16 @@ const FreeTextSearch = ({ dockedTo }) => {
 
   return (
     <div className="free-text-search">
-      {(dockedTo === ScreenEdge.TOP || dockedTo === ScreenEdge.NONE) && (
-        <input
-          onInput={event => handleOnInputChange(event)}
-          placeholder="Search"
-          ref={searchInputRef}
+      {!isDockedToSide && (
+        <SearchInputField
+          handleOnInputChange={handleOnInputChange}
+          inputRef={launcherInputRef}
         />
       )}
-      <span ref={searchButtonRef}>
-        <Components.Buttons.Round onClick={() => handleSearchClick()}>
-          <FaSearch />
-        </Components.Buttons.Round>
-      </span>
+      <SearchButton
+        searchButtonRef={searchButtonRef}
+        handleSearchClick={handleSearchClick}
+      />
     </div>
   );
 };

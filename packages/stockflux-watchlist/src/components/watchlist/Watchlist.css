@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  color: var(--clr-white);
+  color: var(--text-grey-lighter);
 }
 
 body {
@@ -34,7 +34,9 @@ body {
 
 .watchlist {
   --cumulative-border-width: 3px;
-  height: calc(100vh - var(--bottom-tab-height) + var(--cumulative-border-width));
+  height: calc(
+    100vh - var(--bottom-tab-height) + var(--cumulative-border-width)
+  );
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -61,7 +63,8 @@ body {
 
 .no-watchlist {
   --padding-almost-large: 12px;
-  padding: var(--padding-almost-large) var(--padding-large) var(--padding-almost-large) var(--padding-xlarge);
+  padding: var(--padding-almost-large) var(--padding-large)
+    var(--padding-almost-large) var(--padding-xlarge);
   color: var(--text-grey);
   font-size: var(--font-medium);
   font-weight: var(--font-weight-normal);
