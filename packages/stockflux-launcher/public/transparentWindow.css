@@ -1,8 +1,0 @@
-body {
-  overflow-x: hidden;
-  height: inherit;
-}
-
-div#root {
-  height: 200px;
-}
