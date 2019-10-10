@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import WatchlistCard from '../watchlist-card/WatchlistCard';
 import Components from 'stockflux-components';
-import { StockFluxHooks } from 'stockflux-core';
+import { StockFluxHooks, OpenfinApiHelpers } from 'stockflux-core';
+//import TransparentWindow from 'stockflux-launcher/transparent-window/';
 import * as fdc3 from 'openfin-fdc3';
 import { showNotification } from '../notifications/Notification';
 import {
@@ -24,6 +25,10 @@ const getDistinctElementArray = array => [...new Set(array)];
 const Watchlist = () => {
   const [dragOverIndex, setDragOverIndex] = useState(null);
   const [unwatchedSymbol, setUnwatchedSymbol] = useState(null);
+  const [displayPreview, setDisplayPreview] = useState(false);
+  const [previewOptions, setPreviewOptions] = useState();
+  const [previewPosition, setPreviewPosition] = useState({ top: 0, left: 0 });
+  const [previewSize, setPreviewSize] = useState({ height: 300, width: 300 });
   const [watchlist, setWatchlist] = StockFluxHooks.useLocalStorage(
     'watchlist',
     ['AAPL', 'AAP', 'CC', 'MS', 'JPS']
@@ -114,6 +119,52 @@ const Watchlist = () => {
     setWatchlist(watchlist.filter(item => item !== symbol));
   };
 
+  const handlePreviewImage = (x, y) => {
+    setDisplayPreview(x === 0 && y === 0);
+  };
+
+  const getWindowOptions = async () => {
+    const targetApplication = await OpenfinApiHelpers.getStockFluxApp(
+      'stockflux-chart'
+    );
+    const manifestContents = await fetch(targetApplication.manifest, {
+      method: 'GET'
+    });
+    const info = await manifestContents.json();
+    return info.startup_app;
+  };
+
+  useEffect(() => {
+    getWindowOptions().then(value => {
+      setPreviewOptions(value);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (previewOptions) {
+      const leftPosition =
+        window.screen.availWidth -
+          (window.outerWidth +
+            window.screenLeft +
+            5 +
+            previewOptions.defaultWidth) >
+        0
+          ? window.outerWidth + window.screenLeft + 5
+          : window.screenLeft - 5 - previewOptions.defaultWidth;
+      setPreviewPosition({
+        left:
+          leftPosition > 0
+            ? leftPosition
+            : window.outerWidth + window.screenLeft + 5,
+        top: window.screenTop
+      });
+      setPreviewSize({
+        height: previewOptions.defaultHeight,
+        width: previewOptions.defaultWidth
+      });
+    }
+  }, [previewOptions, displayPreview]);
+
   return (
     <div
       className="watchlist"
@@ -121,11 +172,27 @@ const Watchlist = () => {
       onDragOver={e =>
         onDragOver(e, watchlist, dragOverIndex, setDragOverIndex)
       }
-      onDragEnd={() => resetDragState(setDragOverIndex)}
-      onDrop={e =>
-        onDrop(e, watchlist, getSymbolIndex, setWatchlist, dragOverIndex)
+      onDragEnd={() => {
+        setDisplayPreview(false);
+        resetDragState(setDragOverIndex);
+      }}
+      onDrop={e => {
+        setDisplayPreview(false);
+        onDrop(e, watchlist, getSymbolIndex, setWatchlist, dragOverIndex);
+      }}
+      onDragLeave={e =>
+        handlePreviewImage(e.nativeEvent.clientY, e.nativeEvent.clientX)
+      }
+      onDragEnter={e =>
+        handlePreviewImage(e.nativeEvent.clientY, e.nativeEvent.clientX)
       }
     >
+      <Components.PreviewWindow
+        display={displayPreview}
+        htmlfile="preview-chart.html"
+        position={previewPosition}
+        size={previewSize}
+      ></Components.PreviewWindow>
       <div className="header">
         <span className="watchlist-name">My Watchlist</span>
       </div>
