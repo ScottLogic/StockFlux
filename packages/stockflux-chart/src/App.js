@@ -6,15 +6,15 @@ import {
   useInterApplicationBusSubscribe,
   useOptions
 } from 'openfin-react-hooks';
-import bitflux from 'stockflux-bitflux/dist/bitflux';
+// import bitflux from 'stockflux-bitflux/dist/bitflux';
 
 import './styles/app.css';
 
 const ALL = { uuid: '*' };
 
-const chart = bitflux.app();
-chart.periodsOfDataToFetch(1200);
-chart.proportionOfDataToDisplayByDefault(112 / 1200);
+// const chart = bitflux.app();
+// chart.periodsOfDataToFetch(1200);
+// chart.proportionOfDataToDisplayByDefault(112 / 1200);
 
 const App = () => {
   const [symbol, setSymbol] = useState(null);
@@ -58,7 +58,7 @@ const App = () => {
 
   const getData = symbol => {
     if (symbol) {
-      chart.changeStockFluxProduct(symbol);
+      // chart.changeStockFluxProduct(symbol);
     }
   };
 
@@ -92,7 +92,7 @@ const App = () => {
               </Components.Buttons.Round>
             </div>
           </div>
-          <Chart getData={getData} chart={chart} symbol={symbol} />
+          <Chart symbol="TSLA" date="2019-09-01" />
         </div>
       </div>
     </>
