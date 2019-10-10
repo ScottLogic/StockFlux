@@ -19,18 +19,25 @@ export default () => {
   const [isDocked, setDocked] = useState(true);
   const [isHorizontal, setHorizontal] = useState(true);
   const [options] = useOptions();
-  const initialScreenEdge =
-    options && options.customData && options.customData.initialDocked === true
-      ? ScreenEdge.TOP
-      : ScreenEdge.NONE;
-  let [edge, windowActions] = useDockWindow(
-    initialScreenEdge,
+  let currentScreenEdge =
+    options && options.customData && options.customData.initialDocked === false
+      ? ScreenEdge.NONE
+      : ScreenEdge.TOP;
+  const [edge, windowActions] = useDockWindow(
+    currentScreenEdge,
     OpenfinApiHelpers.getCurrentWindowSync(),
     true,
     { dockedWidth: 50, dockedHeight: 50 }
   );
 
   const prevEdgeRef = useRef();
+  useEffect(() => {
+    if (edge !== ScreenEdge.NONE) prevEdgeRef.current = edge;
+  });
+  const prevEdge = prevEdgeRef.current;
+
+  const edgeToBeChecked = edge === ScreenEdge.NONE ? prevEdge : edge;
+
   useEffect(() => {
     if (!isCloudMode) {
       if (edge !== ScreenEdge.NONE) {
@@ -39,13 +46,7 @@ export default () => {
     } else {
       setHorizontal(true);
     }
-
-    prevEdgeRef.current = edge;
   }, [edge, isCloudMode]);
-
-  const prevEdge = prevEdgeRef.current;
-
-  const edgeToBeChecked = edge === ScreenEdge.NONE ? prevEdge : edge;
 
   useEffect(() => {
     setCloudMode(
@@ -64,21 +65,21 @@ export default () => {
       options.customData.initialDocked === false
     ) {
       const w = OpenfinApiHelpers.getCurrentWindowSync();
-      w.resizeTo(600, 70, 'top-right');
+      w.resizeTo(600, 70);
       w.moveTo(600, 10);
     }
-  }, [options]);
+  }, [options, windowActions]);
 
   const undock = async () => {
     const w = OpenfinApiHelpers.getCurrentWindowSync();
 
     switch (edge) {
       case ScreenEdge.LEFT:
-        w.resizeTo(70, 600);
+        w.resizeTo(50, 600);
         w.moveTo(20, 100);
         break;
       case ScreenEdge.RIGHT:
-        w.resizeTo(70, 600);
+        w.resizeTo(50, 600);
         w.moveBy(-100, 100);
         break;
       case ScreenEdge.TOP:
