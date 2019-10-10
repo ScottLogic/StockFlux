@@ -125,7 +125,9 @@ export default () => {
           {
             label: <FaRegHandRock />,
             className: 'drag-handle',
-            visible: !isDocked
+            onClick: undock,
+            disabled: isDocked,
+            visible: !isCloudMode
           }
         ]}
       />
