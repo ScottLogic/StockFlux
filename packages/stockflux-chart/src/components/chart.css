@@ -1,167 +1,52 @@
-div#legend {
-    background-color: default;
-    margin-top: 5px;
-    margin-left: 1px;
-    padding: 5px 5px 5px 0;
-    align-self: flex-start;
+html, body{
+  overflow-x: hidden;
+  overflow-y: hidden;
+  background: var(--primary-dark-blue);
+
 }
-div#legend svg#tooltip {
-    padding-top: 10px;
+.legend {
+    margin-top: -15px;
+    width: 550px;
+     height: 30px; 
+     border: none
+
 }
-.selectors button {
-    cursor: default;
+
+.legend-label {
+    text-anchor: end;
+    font-size: 12px;
+    fill:white;
+  }
+
+  .legend-value {
+    font-size: 12px;
+    fill: white;
+  }
+
+.domain {
+  stroke: var(--chart-teal);
+  stroke-width: 2
 }
-.selectors button:hover {
-    background: var(--button-hover);
+
+.tick text{
+  fill: white
 }
-.selectors .dropdown.open button {
-    background: var(--dropdown-open-button);
+
+.tick path{
+  stroke: var(--chart-teal)
 }
-.selectors .dropdown-toggle {
-    height: 28px;
-    border-radius: 0;
+
+/* path{
+  stroke: var(--chart-teal)
+} */
+
+.line{
+  stroke: var(--chart-teal);
+  stroke-width: 2
 }
-.selectors .selector-dropdown:nth-child(2) .dropdown-toggle {
-    width: inherit;
-    padding-top: 2px;
-    padding-left: 8px;
-    padding-right: 8px;
-}
-.selectors .selector-dropdown.open .dropdown-toggle {
-    border-bottom: none;
-    z-index: 2;
-}
-.selectors .selector-dropdown.open .dropdown-menu {
-    z-index: 1;
-}
-.selectors .selector-dropdown .dropdown-menu {
-    top: 25px;
-    border-radius: 0;
-}
-.container-fluid {
-    padding-right: 0px;
-    padding-left: 0px;
-}
-#primary-container .average > path.line {
-    stroke-dasharray: 0;
-}
-.secondary-container .bar {
-    stroke: var(--chart-fade) !important;
-    fill: var(--chart-fade) !important;
-}
-.secondary-container .macd-divergence .bar {
-    stroke: var(--chart-fade) !important;
-    fill: var(--chart-fade) !important;
-}
-.secondary-container .macd-signal .line, .secondary-container .macd .line, .secondary-container .rsi {
-    stroke-width: 2px;
-}
-#navbar-row {
-    padding-top: 20px;
-}
-#navbar-row #navbar-container .plot-area .multi .area {
-    fill: url(#brush-gradient) !important;
-    fill-opacity: 0.2;
-}
-#navbar-row #navbar-container .plot-area .multi path {
-    stroke: var(--chart-fade) !important;
-    stroke-width: 1.5px;
-}
-#navbar-row #navbar-container .plot-area .w, #navbar-row #navbar-container .plot-area .e {
-    width: 1px;
-}
-#navbar-row #navbar-container .plot-area .w > rect, #navbar-row #navbar-container .plot-area .e > rect {
-    fill: var(--chart-teal) !important;
-}
-#navbar-row #navbar-container .plot-area .w .outer-handle, #navbar-row #navbar-container .plot-area .w .inner-handle, #navbar-row #navbar-container .plot-area .e .outer-handle, #navbar-row #navbar-container .plot-area .e .inner-handle {
-    stroke: var(--chart-teal) !important;
-}
-#navbar-row #navbar-container .plot-area .w .inner-handle, #navbar-row #navbar-container .plot-area .e .inner-handle {
-    fill: var(--chart-teal) !important;
-}
-#navbar-row #navbar-reset {
-    opacity: 1.0;
-}
-#navbar-row #navbar-reset .reset-button {
-    stroke: var(--chart-teal) !important;
-}
-#navbar-row #navbar-reset .reset-button:hover {
-    fill: var(--button-hover) !important;
-}
-#navbar-row #navbar-container #brush-gradient .brush-gradient-top {
-    stop-color: var(--chart-teal) ;
-}
-.y-axis .close-line.tick > path {
-    stroke: var(--chart-teal) !important;
-    fill: var(--chart-teal) !important;
-}
-.y-axis .close-line.tick > text {
-    fill: black !important;
-}
-.y-axis .tick text, .y-axis #x-axis-container .tick text, .y-axis #navbar-row #navbar-container text {
-    fill:  var(--text-grey);
-}
-#x-axis-container .tick text, #navbar-row #navbar-container text {
-    fill:  var(--text-grey);
-}
-.multi.rsi.indicator {
-    stroke: var(--tertiary-purple);
-}
-.multi.rsi.annotations .annotation.horizontal line {
-    stroke-dasharray: 8px;
-}
-.plot-area .annotation.close-line > line {
-    stroke: var(--chart-teal);
-}
-.dropdown .dropdown-menu {
-    background-color: var(--dark-background) !important;
-    border-color: var(--chart-teal);
-}
-.dropdown .dropdown-menu > li {
-    padding-top: 0px;
-    padding-bottom: 0px;
-}
-.dropdown .dropdown-menu > li:hover {
-    background-color: var(--button-hover);
-}
-.dropdown .dropdown-menu > li:first-of-type {
-    margin-top: 10px;
-}
-.dropdown .dropdown-menu > li > a {
-    color: var(--chart-teal);
-}
-.head-row {
-    display: none;
-}
-.primary-row {
-    margin-top: 19px;
-}
-#charts {
-    padding-right: 0px !important;
-}
-#charts-container {
-    padding-bottom: 3px;
-}
-div.selectors {
-    top: -21px;
-    right: 80px;
-    left: auto;
-}
-#app-container {
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-right: 0px;
-    width: 100%;
-}
-#product-dropdown {
-    display: hide;
-}
-#mobile-product-dropdown .dropdown-toggle {
-    display: none;
-}
-#overlay .edit-indicator .icon {
-    border-radius: 0;
-}
-#overlay .edit-indicator .icon.bf-icon-delete {
-    background-image: url('../assets/png/close_indicator.png');
-}
+
+  :root{
+    --primary-dark-blue: #1A212A;
+
+  }
+  
