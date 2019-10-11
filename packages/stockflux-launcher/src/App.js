@@ -15,10 +15,11 @@ import CloseButton from './toolbar/CloseButton';
 import './App.css';
 
 export default () => {
+  const [direction, setDirection] = useState(ScreenEdge.TOP);
   const [isCloudMode, setCloudMode] = useState(false);
   const [isDocked, setDocked] = useState(true);
-  const [isHorizontal, setHorizontal] = useState(true);
   const [options] = useOptions();
+  const initialDocked = options ? options.customData.initialDocked : false;
   let currentScreenEdge =
     options && options.customData && options.customData.initialDocked === false
       ? ScreenEdge.NONE
@@ -39,24 +40,18 @@ export default () => {
   const edgeToBeChecked = edge === ScreenEdge.NONE ? prevEdge : edge;
 
   useEffect(() => {
-    if (!isCloudMode) {
-      if (edge !== ScreenEdge.NONE) {
-        setHorizontal(edge === ScreenEdge.TOP);
-      }
-    } else {
-      setHorizontal(true);
-    }
-  }, [edge, isCloudMode]);
-
-  useEffect(() => {
     setCloudMode(
       options && options.customData && options.customData.cloudMode === true
     );
   }, [options, setCloudMode]);
 
   useEffect(() => {
-    setDocked(!isCloudMode && edge !== ScreenEdge.NONE);
-  }, [edge, isCloudMode]);
+    if (edge !== ScreenEdge.NONE) setDirection(edge);
+  }, [edge]);
+
+  useEffect(() => {
+    setDocked(!isCloudMode && edgeToBeChecked !== ScreenEdge.NONE);
+  }, [edge, edgeToBeChecked, isCloudMode]);
 
   useEffect(() => {
     if (
@@ -73,7 +68,7 @@ export default () => {
   const undock = async () => {
     const w = OpenfinApiHelpers.getCurrentWindowSync();
 
-    switch (edge) {
+    switch (direction) {
       case ScreenEdge.LEFT:
         w.resizeTo(50, 600);
         w.moveTo(20, 100);
@@ -92,9 +87,10 @@ export default () => {
   };
 
   return (
-    <div className={cx('app', edgeToBeChecked)}>
-      {!isHorizontal && CloseButton}
-      <FreeTextSearch dockedTo={edge} />
+    <div className={cx('app', direction)}>
+      {direction !== 'top' && CloseButton}
+      <FreeTextSearch dockedTo={direction} />
+      <p>direction: {direction}</p>
       <ToolBar
         tools={[
           {
@@ -127,11 +123,11 @@ export default () => {
             className: 'drag-handle',
             onClick: undock,
             disabled: isDocked,
-            visible: !isCloudMode
+            visible: !isCloudMode && !isDocked
           }
         ]}
       />
-      {isHorizontal && CloseButton}
+      {direction === 'top' && CloseButton}
     </div>
   );
 };
