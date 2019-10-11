@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import cx from 'classnames';
 import { OpenfinApiHelpers } from 'stockflux-core';
 import { useDockWindow, useOptions, ScreenEdge } from 'openfin-react-hooks';
@@ -19,40 +19,18 @@ export default () => {
   const [isCloudMode, setCloudMode] = useState(false);
   const [isDocked, setDocked] = useState(true);
   const [options] = useOptions();
-  const initialDocked = options ? options.customData.initialDocked : false;
-  let currentScreenEdge =
-    options && options.customData && options.customData.initialDocked === false
-      ? ScreenEdge.NONE
-      : ScreenEdge.TOP;
+  const initialEdge =
+    options && options.customData && options.customData.initialDocked === true
+      ? ScreenEdge.TOP
+      : ScreenEdge.NONE;
   const [edge, windowActions] = useDockWindow(
-    currentScreenEdge,
+    initialEdge,
     OpenfinApiHelpers.getCurrentWindowSync(),
     true,
     { dockedWidth: 50, dockedHeight: 50 }
   );
 
-  const prevEdgeRef = useRef();
-  useEffect(() => {
-    if (edge !== ScreenEdge.NONE) prevEdgeRef.current = edge;
-  });
-  const prevEdge = prevEdgeRef.current;
-
-  const edgeToBeChecked = edge === ScreenEdge.NONE ? prevEdge : edge;
-
-  useEffect(() => {
-    setCloudMode(
-      options && options.customData && options.customData.cloudMode === true
-    );
-  }, [options, setCloudMode]);
-
-  useEffect(() => {
-    if (edge !== ScreenEdge.NONE) setDirection(edge);
-  }, [edge]);
-
-  useEffect(() => {
-    setDocked(!isCloudMode && edgeToBeChecked !== ScreenEdge.NONE);
-  }, [edge, edgeToBeChecked, isCloudMode]);
-
+  // Handle initialDocked false resize to mini window
   useEffect(() => {
     if (
       options &&
@@ -63,7 +41,23 @@ export default () => {
       w.resizeTo(600, 70);
       w.moveTo(600, 10);
     }
-  }, [options, windowActions]);
+  }, [options]);
+
+  useEffect(() => {
+    setCloudMode(
+      options && options.customData && options.customData.cloudMode === true
+    );
+  }, [options, setCloudMode]);
+
+  useEffect(() => {
+    if (edge !== ScreenEdge.NONE) {
+      setDirection(edge);
+    }
+  }, [edge]);
+
+  useEffect(() => {
+    setDocked(!isCloudMode && edge !== ScreenEdge.NONE);
+  }, [edge, isCloudMode]);
 
   const undock = async () => {
     const w = OpenfinApiHelpers.getCurrentWindowSync();
@@ -90,7 +84,6 @@ export default () => {
     <div className={cx('app', direction)}>
       {direction !== 'top' && CloseButton}
       <FreeTextSearch dockedTo={direction} />
-      <p>direction: {direction}</p>
       <ToolBar
         tools={[
           {
