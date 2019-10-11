@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import WatchlistCard from '../watchlist-card/WatchlistCard';
 import Components from 'stockflux-components';
-import { StockFluxHooks, OpenfinApiHelpers } from 'stockflux-core';
-//import TransparentWindow from 'stockflux-launcher/transparent-window/';
+import { StockFluxHooks, OpenfinApiHelpers, Launchers } from 'stockflux-core';
 import * as fdc3 from 'openfin-fdc3';
 import { showNotification } from '../notifications/Notification';
 import {
@@ -13,8 +12,7 @@ import {
   onDragStart,
   onDragOver,
   resetDragState,
-  onDrop,
-  onDropOutside
+  onDrop
 } from '../watchlist-card/WatchlistCard.Dragging';
 import './Watchlist.css';
 
@@ -91,6 +89,11 @@ const Watchlist = () => {
 
   const getSymbolIndex = symbol => watchlist.indexOf(symbol);
 
+  const onDropOutside = (symbol, stockName) => {
+    // the 3rd param is for intents enabled.
+    Launchers.launchChart(symbol, stockName, null, previewPosition);
+  };
+
   const bindings = {
     onModalConfirmClick: onModalConfirmClick,
     onModalBackdropClick: onModalBackdropClick,
@@ -119,10 +122,6 @@ const Watchlist = () => {
     setWatchlist(watchlist.filter(item => item !== symbol));
   };
 
-  const handlePreviewImage = (x, y) => {
-    setDisplayPreview(x === 0 && y === 0);
-  };
-
   const getWindowOptions = async () => {
     const targetApplication = await OpenfinApiHelpers.getStockFluxApp(
       'stockflux-chart'
@@ -130,6 +129,7 @@ const Watchlist = () => {
     const manifestContents = await fetch(targetApplication.manifest, {
       method: 'GET'
     });
+
     const info = await manifestContents.json();
     return info.startup_app;
   };
@@ -141,21 +141,28 @@ const Watchlist = () => {
   }, []);
 
   useEffect(() => {
+    const windowOffset = 5;
+    const screenLeft =
+      window.screenLeft > 0
+        ? window.screenLeft
+        : window.screen.availWidth + window.screenLeft;
     if (previewOptions) {
       const leftPosition =
         window.screen.availWidth -
           (window.outerWidth +
-            window.screenLeft +
-            5 +
+            screenLeft +
+            windowOffset +
             previewOptions.defaultWidth) >
         0
-          ? window.outerWidth + window.screenLeft + 5
-          : window.screenLeft - 5 - previewOptions.defaultWidth;
+          ? window.outerWidth + screenLeft + windowOffset
+          : screenLeft - windowOffset - previewOptions.defaultWidth;
       setPreviewPosition({
         left:
-          leftPosition > 0
-            ? leftPosition
-            : window.outerWidth + window.screenLeft + 5,
+          leftPosition > window.screen.availLeft
+            ? window.screenLeft > 0
+              ? leftPosition
+              : window.screen.availLeft + leftPosition
+            : window.outerWidth + screenLeft + windowOffset,
         top: window.screenTop
       });
       setPreviewSize({
@@ -168,10 +175,13 @@ const Watchlist = () => {
   return (
     <div
       className="watchlist"
-      onDragStart={e => onDragStart(e, watchlist, setDragOverIndex)}
-      onDragOver={e =>
-        onDragOver(e, watchlist, dragOverIndex, setDragOverIndex)
-      }
+      onDragStart={e => {
+        onDragStart(e, watchlist, setDragOverIndex);
+        setDisplayPreview(true);
+      }}
+      onDragOver={e => {
+        onDragOver(e, watchlist, dragOverIndex, setDragOverIndex);
+      }}
       onDragEnd={() => {
         setDisplayPreview(false);
         resetDragState(setDragOverIndex);
@@ -180,12 +190,6 @@ const Watchlist = () => {
         setDisplayPreview(false);
         onDrop(e, watchlist, getSymbolIndex, setWatchlist, dragOverIndex);
       }}
-      onDragLeave={e =>
-        handlePreviewImage(e.nativeEvent.clientY, e.nativeEvent.clientX)
-      }
-      onDragEnter={e =>
-        handlePreviewImage(e.nativeEvent.clientY, e.nativeEvent.clientX)
-      }
     >
       <Components.PreviewWindow
         display={displayPreview}

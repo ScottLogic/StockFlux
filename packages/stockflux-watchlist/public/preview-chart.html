@@ -3,11 +3,24 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      .dotted-box {
+        display:  flex;
+        width: 99vw;
+        height: 99vh;
+        box-sizing: border-box;
+        border: dotted 3px #fff;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root">
-        <h1 style="color:white;">Preview of Chart</h1>        
+      <div class="dotted-box">
+        <h2>Open a chart here</h2>
+      </div>
     </div>
   </body>
 </html>
