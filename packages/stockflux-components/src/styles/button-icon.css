@@ -12,7 +12,7 @@
     background-image: url('../images/minimize.png');
 }
 .button-icon.minimize:hover {
-    background-image: url('../images/minimize_active.png');
+    box-shadow: inset 0 0 0 1000px rgba(255,255,255,.15);
 }
 .button-icon.compact {
     background-image: url('../images/compact.png');
@@ -42,7 +42,7 @@
     background-image: url('../images/close.png');
 }
 .button-icon.close:hover {
-    background-image: url('../images/close_active.png');
+    box-shadow: inset 0 0 0 1000px rgba(255,255,255,.15);
 }
 .button-icon.undock {
     background-image: url('../images/undock.png');

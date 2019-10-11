@@ -188,16 +188,16 @@ const FreeTextSearch = ({ dockedTo }) => {
 
   return (
     <div className="free-text-search">
+      <SearchButton
+        searchButtonRef={searchButtonRef}
+        handleSearchClick={handleSearchClick}
+      />
       {!isDockedToSide && (
         <SearchInputField
           handleOnInputChange={handleOnInputChange}
           inputRef={launcherInputRef}
         />
       )}
-      <SearchButton
-        searchButtonRef={searchButtonRef}
-        handleSearchClick={handleSearchClick}
-      />
     </div>
   );
 };

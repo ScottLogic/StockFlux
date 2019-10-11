@@ -9,7 +9,7 @@
   background: var(--dark-background);
   color: var(--text-teal-light);
   border: var(--border);
-  border-radius: 20px;
+  border-radius: 4px;
   height: var(--search-input-height);
   width: var(--search-input-width);
   min-width: var(--search-input-min-width);
@@ -21,7 +21,6 @@
 .left .free-text-search,
 .right .free-text-search {
   flex-direction: column;
-  justify-content: flex-start;
 }
 
 .left .free-text-search input,
@@ -32,7 +31,6 @@
 div#root > .free-text-search {
   padding: 8px 10px 8px 0;
   width: var(--search-input-width);
-  position: fixed;
   background-color: var(--middle-background);
   border-bottom: 1px solid var(--clr-divider-light);
 }

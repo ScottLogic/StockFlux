@@ -1,0 +1,53 @@
+.titlebar {
+    background-color: var(--dark-background);
+    border: none;
+    height: 28px;
+    width: 100%;
+    -webkit-app-region: drag;
+}
+
+.column {
+    border: none;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.add-padding-left {
+    padding-left: 24px;
+}
+
+.column-left {
+    float: left;
+    padding-left: 3px;
+    -webkit-app-region: no-drag;
+}
+
+.add-padding-right {
+    padding-right: 12px;
+}
+
+.column-right {
+    float: right;
+    -webkit-app-region: no-drag;
+}
+
+.title {
+    color: #FFFFFF;
+    font-family: 'Roboto';
+    font-size: 21px;
+}
+
+.titlebar-title {
+    width: 100%;
+    -webkit-app-region: no-drag;
+}
+
+.icons-container {
+    -webkit-app-region: no-drag;
+}
+
+.titlebar-container > .icons-container > .button-icon {
+    height: 15px;
+}
+  

@@ -3,19 +3,30 @@ html {
 }
 
 .app {
+  box-shadow: 0px 2px 4px 1px rgba(13, 36, 55, 1);
   width: 100%;
   height: 100%;
   overflow: hidden;
   color: var(--text-grey);
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
+}
+
+.shortcut-horizontal {
+  padding-left: 24px;
+}
+
+.shortcut-vertical {
+  padding-left: 24px;
+  padding-top: 12px;
 }
 
 .none,
 .top {
   flex-direction: row;
   justify-content: space-between;
-  border-bottom: var(--border);
+  border-bottom: 1px solid #0372BE;
   align-items: center;
 }
 
@@ -26,11 +37,11 @@ html {
 }
 
 .right {
-  border-left: var(--border);
+  border-left: 1px solid #0372BE;
 }
 
 .left {
-  border-right: var(--border);
+  border-right: 1px solid #0372BE;
 }
 
 .drag-handle {
