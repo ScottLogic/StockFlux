@@ -89,7 +89,7 @@ export async function stockFluxSearch(item) {
     );
     const stockData = await res.json();
     return stockData.success
-      ? stockData.data.map(item => ({ code: item.symbol, name: item.name }))
+      ? stockData.data.map(item => ({ symbol: item.symbol, name: item.name }))
       : [];
   } catch (e) {
     return [];

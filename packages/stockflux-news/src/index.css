@@ -10,7 +10,7 @@ body {
 
 #root {
   height: 100%;
-  --header-height: 50px;
+  --header-height: 60px;
   --titlebar-height: 35px;
   --newsitem-height: 150px;
   --no-article-height: 30px;

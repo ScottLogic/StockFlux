@@ -5,7 +5,7 @@ import RoundButton from '../../round-button/RoundButton';
 
 export default ({ symbol, name, small, disabled, intentsEnabled }) => (
   <RoundButton
-    className="app-shortcut news"
+    className="shortcut news"
     onClick={() => Launchers.launchNews(symbol, name, intentsEnabled)}
     disabled={disabled}
     small={small}

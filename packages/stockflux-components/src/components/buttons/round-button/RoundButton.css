@@ -5,7 +5,7 @@
   display: inline-block;
   margin: 5px;
   color: var(--text-teal-light);
-  border: solid 2px var(--text-teal);
+  border: var(--border);
   outline: none;
   background-color: inherit;
   cursor: pointer;

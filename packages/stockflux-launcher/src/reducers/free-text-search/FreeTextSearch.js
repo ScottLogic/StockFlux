@@ -1,7 +1,4 @@
-export const SEARCHING = 'searching';
-export const SUCCESS = 'success';
-export const ERROR = 'error';
-export const INITIALISE = 'initialise';
+import actionType from './Action';
 
 export const initialSearchState = {
   isSearching: false,
@@ -9,29 +6,29 @@ export const initialSearchState = {
   results: []
 };
 
-export const reducer = (state, { type, results }) => {
+export default (state, { type, results }) => {
   switch (type) {
-    case SEARCHING:
+    case actionType.SEARCHING:
       return {
         ...state,
         hasErrors: false,
         isSearching: true,
         results: []
       };
-    case SUCCESS:
+    case actionType.SUCCESS:
       return {
         ...state,
         isSearching: false,
         results
       };
-    case ERROR:
+    case actionType.ERROR:
       return {
         ...state,
         hasErrors: true,
         isSearching: false,
         results: []
       };
-    case INITIALISE:
+    case actionType.INITIALISE:
       return initialSearchState;
     default:
       throw new Error();

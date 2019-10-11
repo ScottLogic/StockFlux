@@ -68,7 +68,7 @@ const App = () => {
         <div className="main-content">
           <Components.Titlebar />
           <div id="showcase-title">
-            {symbol && <div className="code">{symbol}</div>}
+            {symbol && <div className="symbol">{symbol}</div>}
             <div className="name">{!symbol ? 'Generated Data' : name}</div>
             <div className="chart-nav-icons">
               <Components.Shortcuts.News
