@@ -15,7 +15,7 @@ import CloseButton from './toolbar/CloseButton';
 import './App.css';
 
 export default () => {
-  const [direction, setDirection] = useState(ScreenEdge.TOP);
+  const [alignment, setAlignment] = useState('horizontal');
   const [isCloudMode, setCloudMode] = useState(false);
   const [isDocked, setDocked] = useState(true);
   const [options] = useOptions();
@@ -29,6 +29,7 @@ export default () => {
     true,
     { dockedWidth: 50, dockedHeight: 50 }
   );
+  const currentDirection = edge !== ScreenEdge.NONE ? edge : ScreenEdge.TOP;
 
   // Handle initialDocked false resize to mini window
   useEffect(() => {
@@ -44,16 +45,16 @@ export default () => {
   }, [options]);
 
   useEffect(() => {
+    if (edge !== ScreenEdge.NONE) {
+      setAlignment(edge !== ScreenEdge.TOP ? 'vertical' : 'horizontal');
+    }
+  }, [edge]);
+
+  useEffect(() => {
     setCloudMode(
       options && options.customData && options.customData.cloudMode === true
     );
   }, [options, setCloudMode]);
-
-  useEffect(() => {
-    if (edge !== ScreenEdge.NONE) {
-      setDirection(edge);
-    }
-  }, [edge]);
 
   useEffect(() => {
     setDocked(!isCloudMode && edge !== ScreenEdge.NONE);
@@ -62,7 +63,7 @@ export default () => {
   const undock = async () => {
     const w = OpenfinApiHelpers.getCurrentWindowSync();
 
-    switch (direction) {
+    switch (currentDirection) {
       case ScreenEdge.LEFT:
         w.resizeTo(50, 600);
         w.moveTo(20, 100);
@@ -81,9 +82,9 @@ export default () => {
   };
 
   return (
-    <div className={cx('app', direction)}>
-      {direction !== 'top' && CloseButton}
-      <FreeTextSearch dockedTo={direction} />
+    <div className={cx('app', alignment, edge)}>
+      {alignment === 'vertical' && CloseButton}
+      <FreeTextSearch dockedTo={currentDirection} />
       <ToolBar
         tools={[
           {
@@ -120,7 +121,7 @@ export default () => {
           }
         ]}
       />
-      {direction === 'top' && CloseButton}
+      {alignment === 'horizontal' && CloseButton}
     </div>
   );
 };

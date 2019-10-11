@@ -11,26 +11,31 @@ html {
   flex-wrap: wrap;
 }
 
-.none,
-.top {
+.horizontal {
   flex-direction: row;
   justify-content: space-between;
-  border-bottom: solid 1px var(--text-teal);
   align-items: center;
 }
 
-.left,
-.right {
+.vertical {
   flex-direction: column;
   justify-content: space-between;
+}
+
+.left {
+  border-right: solid 1px var(--text-teal);
+}
+
+.none {
+  border: solid 1px var(--text-teal);
 }
 
 .right {
   border-left: solid 1px var(--text-teal);
 }
 
-.left {
-  border-right: solid 1px var(--text-teal);
+.top {
+  border-bottom: solid 1px var(--text-teal);
 }
 
 .drag-handle {
