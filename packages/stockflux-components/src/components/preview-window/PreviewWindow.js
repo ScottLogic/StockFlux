@@ -12,7 +12,6 @@ export default ({
   const TRANSPARENT_CSS_PATCH = 'transparentWindow.css';
 
   const windowStatus = {
-    show: 'SHOW',
     showing: 'SHOWING',
     hiding: 'HIDING',
     hide: 'HIDE',
@@ -51,7 +50,6 @@ export default ({
     if (window) {
       setPopupStatus(windowStatus.showing);
       window.show().then(() => {
-        setPopupStatus(windowStatus.show);
         window.animate(
           { opacity: { opacity: 0.7, duration: 500 } },
           { tween: 'ease-in-out', interrupt: true }
