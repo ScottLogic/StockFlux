@@ -29,7 +29,7 @@ const SEARCH_RESULTS_WINDOW_NAME = 'search-results';
 const SEARCH_RESULTS_CSS_PATCH = 'childWindow.css';
 
 let latestRequest = null;
-const FreeTextSearch = ({ dockedTo }) => {
+const FreeTextSearch = ({ dockedTo, showTextInput }) => {
   const [searchState, dispatch] = useReducer(reducer, initialSearchState);
   const [query, setQuery] = useState(null);
   const [parentUuid, setParentUuid] = useState(null);
@@ -53,7 +53,7 @@ const FreeTextSearch = ({ dockedTo }) => {
     );
   }, []);
 
-  const isDockedToSide = [ScreenEdge.LEFT, ScreenEdge.RIGHT].includes(dockedTo);
+  const isDockedToSide = [ScreenEdge.LEFT, ScreenEdge.RIGHT].includes(dockedTo);  
 
   const launchChildWindow = useCallback(
     () =>
@@ -142,7 +142,7 @@ const FreeTextSearch = ({ dockedTo }) => {
           isSearching={isSearching}
           debouncedQuery={debouncedQuery}
         >
-          {isDockedToSide && (
+          {(isDockedToSide || showTextInput) && (
             <div className="free-text-search">
               <SearchInputField
                 query={query ? query : ''}
@@ -164,7 +164,8 @@ const FreeTextSearch = ({ dockedTo }) => {
     results,
     handleOnInputChange,
     isDockedToSide,
-    query
+    query,
+    showTextInput
   ]);
 
   const {
