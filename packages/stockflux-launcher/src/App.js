@@ -91,7 +91,7 @@ export default () => {
   };
 
   return (
-    <div className={cx('app', alignment, currentDirection)}>
+    <div className={cx('app', alignment, edge)}>
       {alignment === 'vertical' && CloseButton}
       <FreeTextSearch dockedTo={edge} />
       <ToolBar
