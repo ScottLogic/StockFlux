@@ -4,6 +4,7 @@
 }
 
 .vertical .toolbar,
+.left .toolbar,
 .right .toolbar {
   flex-direction: column;
 }

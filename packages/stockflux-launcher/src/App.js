@@ -81,7 +81,7 @@ export default () => {
         break;
       case ScreenEdge.TOP:
         setUndockHeight(50);
-        setUndockWidth(600);
+        setUndockWidth(1000);
         break;
       default:
         break;
