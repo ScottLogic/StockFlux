@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import cx from 'classnames';
-import { OpenfinApiHelpers } from 'stockflux-core';
 import UndockedWindowHook from './custom-hooks/UndockedWindowHook';
 import { useOptions, ScreenEdge } from 'openfin-react-hooks';
 import {
@@ -20,23 +19,23 @@ export default () => {
   const [isCloudMode, setCloudMode] = useState(false);
   const [isDocked, setDocked] = useState(true);
   const [options] = useOptions();
-  const initialEdge = options
-    ? options.customData && options.customData.initialDocked === true
-      ? ScreenEdge.TOP
-      : ScreenEdge.NONE
-    : ScreenEdge.TOP;
+  const [undockWidth, setUndockWidth] = useState(1000);
+  const [undockHeight, setUndockHeight] = useState(50);
+  const [undockTop, setUndockTop] = useState(50);
+  const [undockLeft, setUndockLeft] = useState(400);
+
   const [edge, windowActions] = UndockedWindowHook(
-    initialEdge,
+    ScreenEdge.TOP,
     window.fin.Window.getCurrentSync(),
     true,
     { dockedWidth: 50, dockedHeight: 50 },
     {
-      undockPosition: { top: 100, left: 100 },
-      undockSize: { width: 100, height: 100 }
+      undockPosition: { top: undockTop, left: undockLeft },
+      undockSize: { width: undockWidth, height: undockHeight }
     }
   );
 
-  const currentDirection = edge !== ScreenEdge.NONE ? edge : ScreenEdge.TOP;
+  let currentDirection = edge !== ScreenEdge.NONE ? edge : ScreenEdge.TOP;
 
   // Handle initialDocked false resize to mini window
   useEffect(() => {
@@ -45,10 +44,9 @@ export default () => {
       options.customData &&
       options.customData.initialDocked === false
     ) {
-      const w = OpenfinApiHelpers.getCurrentWindowSync();
-      w.resizeTo(600, 70);
-      w.moveTo(600, 10);
+      windowActions.dockNone();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options]);
 
   useEffect(() => {
@@ -68,30 +66,35 @@ export default () => {
   }, [edge, isCloudMode]);
 
   const undock = async () => {
-    const w = OpenfinApiHelpers.getCurrentWindowSync();
-
     switch (currentDirection) {
       case ScreenEdge.LEFT:
-        w.resizeTo(50, 600);
-        w.moveTo(20, 100);
+        currentDirection = ScreenEdge.LEFT;
+        setUndockHeight(600);
+        setUndockWidth(50);
+        setUndockLeft(100);
         break;
       case ScreenEdge.RIGHT:
-        w.resizeTo(50, 600);
-        w.moveBy(-100, 100);
+        currentDirection = ScreenEdge.RIGHT;
+        setUndockHeight(600);
+        setUndockWidth(50);
+        setUndockLeft(1500);
         break;
       case ScreenEdge.TOP:
-        w.resizeTo(600, 70);
-        w.moveBy(600, 10);
+        setUndockHeight(50);
+        setUndockWidth(600);
         break;
       default:
         break;
     }
+
+    windowActions.dockNone();
+    console.log(currentDirection, edge);
   };
 
   return (
-    <div className={cx('app', alignment, edge)}>
+    <div className={cx('app', alignment, currentDirection)}>
       {alignment === 'vertical' && CloseButton}
-      <FreeTextSearch dockedTo={currentDirection} />
+      <FreeTextSearch dockedTo={edge} />
       <ToolBar
         tools={[
           {
@@ -122,7 +125,6 @@ export default () => {
           {
             label: <FaRegHandRock />,
             className: 'drag-handle',
-            onClick: undock,
             disabled: isDocked,
             visible: !isCloudMode && !isDocked
           }

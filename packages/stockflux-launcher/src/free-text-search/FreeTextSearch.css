@@ -24,8 +24,7 @@
   justify-content: flex-start;
 }
 
-.left .free-text-search input,
-.right .free-text-search input {
+.vertical .free-text-search input {
   display: none;
 }
 
