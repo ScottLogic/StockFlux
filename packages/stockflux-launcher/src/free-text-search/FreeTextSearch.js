@@ -53,7 +53,7 @@ const FreeTextSearch = ({ dockedTo, showTextInput }) => {
     );
   }, []);
 
-  const isDockedToSide = [ScreenEdge.LEFT, ScreenEdge.RIGHT].includes(dockedTo);  
+  const isDockedToSide = [ScreenEdge.LEFT, ScreenEdge.RIGHT].includes(dockedTo);
 
   const launchChildWindow = useCallback(
     () =>
