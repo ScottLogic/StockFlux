@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import cx from 'classnames';
 import { OpenfinApiHelpers } from 'stockflux-core';
-import { useDockWindow, useOptions, ScreenEdge } from 'openfin-react-hooks';
+import UndockedWindowHook from './custom-hooks/UndockedWindowHook';
+import { useOptions, ScreenEdge } from 'openfin-react-hooks';
 import {
   FaChevronUp,
   FaChevronLeft,
@@ -24,12 +25,17 @@ export default () => {
       ? ScreenEdge.TOP
       : ScreenEdge.NONE
     : ScreenEdge.TOP;
-  const [edge, windowActions] = useDockWindow(
+  const [edge, windowActions] = UndockedWindowHook(
     initialEdge,
-    OpenfinApiHelpers.getCurrentWindowSync(),
+    window.fin.Window.getCurrentSync(),
     true,
-    { dockedWidth: 50, dockedHeight: 50 }
+    { dockedWidth: 50, dockedHeight: 50 },
+    {
+      undockPosition: { top: 100, left: 100 },
+      undockSize: { width: 100, height: 100 }
+    }
   );
+
   const currentDirection = edge !== ScreenEdge.NONE ? edge : ScreenEdge.TOP;
 
   // Handle initialDocked false resize to mini window
