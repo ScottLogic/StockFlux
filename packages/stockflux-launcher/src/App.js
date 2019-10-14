@@ -19,10 +19,11 @@ export default () => {
   const [isCloudMode, setCloudMode] = useState(false);
   const [isDocked, setDocked] = useState(true);
   const [options] = useOptions();
-  const initialEdge =
-    options && options.customData && options.customData.initialDocked === true
+  const initialEdge = options
+    ? options.customData && options.customData.initialDocked === true
       ? ScreenEdge.TOP
-      : ScreenEdge.NONE;
+      : ScreenEdge.NONE
+    : ScreenEdge.TOP;
   const [edge, windowActions] = useDockWindow(
     initialEdge,
     OpenfinApiHelpers.getCurrentWindowSync(),
