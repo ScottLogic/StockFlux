@@ -21,7 +21,7 @@ export default () => {
   const [options] = useOptions();
   const [undockWidth, setUndockWidth] = useState(1000);
   const [undockHeight, setUndockHeight] = useState(50);
-  const [undockTop, setUndockTop] = useState(50);
+  const [undockTop] = useState(50);
   const [undockLeft, setUndockLeft] = useState(400);
 
   const [edge, windowActions] = UndockedWindowHook(
@@ -88,7 +88,6 @@ export default () => {
     }
 
     windowActions.dockNone();
-    console.log(currentDirection, edge);
   };
 
   return (

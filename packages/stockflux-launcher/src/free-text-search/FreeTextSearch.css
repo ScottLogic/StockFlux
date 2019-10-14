@@ -19,7 +19,8 @@
 }
 
 .left .free-text-search,
-.right .free-text-search {
+.right .free-text-search,
+.vertical .free-text-search {
   flex-direction: column;
   justify-content: flex-start;
 }
