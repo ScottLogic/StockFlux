@@ -35,6 +35,16 @@ export default () => {
   );
 
   let currentDirection = edge !== ScreenEdge.NONE ? edge : ScreenEdge.TOP;
+  let left =
+    window.screenLeft >= window.screen.availWidth ? window.screenLeft : 0;
+  let right =
+    window.screenLeft >= window.screen.availWidth
+      ? window.screenLeft
+      : window.screen.availWidth - 50;
+  let midpoint =
+    left === 0
+      ? (left + right) / 4
+      : window.screen.availWidth + (left + right) / 8;
 
   // Handle initialDocked false resize to mini window
   useEffect(() => {
@@ -43,6 +53,7 @@ export default () => {
       options.customData &&
       options.customData.initialDocked === false
     ) {
+      setUndockLeft(midpoint);
       windowActions.dockNone();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -65,17 +76,6 @@ export default () => {
   }, [edge, isCloudMode]);
 
   const undock = async () => {
-    let left =
-      window.screenLeft >= window.screen.availWidth ? window.screenLeft : 0;
-    let right =
-      window.screenLeft >= window.screen.availWidth
-        ? window.screenLeft
-        : window.screen.availWidth - 50;
-    let midpoint =
-      left === 0
-        ? (left + right) / 4
-        : window.screen.availWidth + (left + right) / 8;
-
     switch (currentDirection) {
       case ScreenEdge.LEFT:
         setUndockHeight(600);
