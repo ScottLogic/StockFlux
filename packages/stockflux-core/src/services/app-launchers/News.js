@@ -10,6 +10,7 @@ const launchAsIntent = (symbol, name) =>
 const launchAsChildWindow = async (symbol, name) =>
   launchChildWindow(await getStockFluxApp(APP_NAME), options => {
     options.name = `${APP_NAME}${symbol ? `[${symbol}]` : ''}`;
+    options.allowMultiple = true;
     if (symbol) {
       options.customData.symbol = symbol;
     }

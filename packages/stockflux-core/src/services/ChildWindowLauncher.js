@@ -1,18 +1,44 @@
 import * as OpenfinApiHelpers from '../openfin-api-utils/openfinApiHelpers';
 
+const windowAlreadyExist = async (windowName, childWindows) => {
+  for (let i = 0; i < childWindows.length; i++) {
+    const childWindowOptions = await childWindows[i].getOptions();
+    if (childWindowOptions.name === windowName) {
+      return true;
+    }
+  }
+  return false;
+};
+
 const createChildWindow = async options => {
   const childWindows = await OpenfinApiHelpers.getChildWindows();
   const currentOptions = await OpenfinApiHelpers.getCurrentWindowOptions();
 
   options.uuid = currentOptions.uuid;
-  for (let i = 0; i < childWindows.length; i++) {
-    const childWindowOptions = await childWindows[i].getOptions();
-    if (childWindowOptions.name === options.name) {
-      if (childWindows[i]) {
-        childWindows[i].bringToFront();
-        return true;
+
+  if (options.allowMultiple) {
+    if (await windowAlreadyExist(options.name, childWindows)) {
+      let windowNumber = 1;
+      while (
+        await windowAlreadyExist(
+          `${options.name} ${windowNumber}`,
+          childWindows
+        )
+      ) {
+        windowNumber++;
       }
-      break;
+      options.name = `${options.name} ${windowNumber}`;
+    }
+  } else {
+    for (let i = 0; i < childWindows.length; i++) {
+      const childWindowOptions = await childWindows[i].getOptions();
+      if (childWindowOptions.name === options.name) {
+        if (childWindows[i]) {
+          childWindows[i].bringToFront();
+          return true;
+        }
+        break;
+      }
     }
   }
 
