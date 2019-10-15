@@ -3,13 +3,13 @@
   align-items: center;
 }
 
+.vertical .toolbar,
 .left .toolbar,
 .right .toolbar {
   flex-direction: column;
 }
 
-.left .toolbar button,
-.right .toolbar button {
+.vertical .toolbar button {
   margin: 5px 0;
 }
 

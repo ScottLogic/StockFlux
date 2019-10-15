@@ -19,19 +19,20 @@
 }
 
 .left .free-text-search,
-.right .free-text-search {
+.right .free-text-search,
+.vertical .free-text-search {
   flex-direction: column;
   justify-content: flex-start;
 }
 
-.left .free-text-search input,
-.right .free-text-search input {
+.vertical .free-text-search input {
   display: none;
 }
 
 div#root > .free-text-search {
   padding: 8px 10px 8px 0;
   width: var(--search-input-width);
+  position: fixed;
   background-color: var(--middle-background);
   border-bottom: 1px solid var(--clr-divider-light);
 }
