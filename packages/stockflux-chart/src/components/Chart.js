@@ -5,43 +5,15 @@ import * as fc from 'd3fc';
 
 let firstRun = true;
 
-const Chart = ({ symbol, date }) => {
-
-  const getOHLCData = useCallback(async () => {
-    var url = `https://d3capoqa8f983r.cloudfront.net/api/ohlc/${symbol}/${date}`
-
-    const response = await fetch(url, {
-      method: 'GET'
-    });
-
-    if (!response.ok)
-      throw new Error("response not successful");
-
-
-    const stockData = await response.json();
-    if (!stockData.success)
-      throw new Error("Not successful")
-
-
-    const updated = stockData.data.map(item => {
-      return {
-        open: item.open,
-        close: item.close,
-        high: item.high,
-        low: item.low,
-        volume: item.volume,
-        date: new Date(item.date)
-      };
-    })
-
-    return updated
-
-  }, [symbol, date]);
+const Chart = ({ chartData }) => {
 
   useEffect(() => {
-    getOHLCData().then(data => makeChart(data)
-    )
-  }, [getOHLCData]);
+    if (chartData != null) {
+      makeChart(chartData)
+    } else {
+      makeChart(fc.randomFinancial()(100))
+    }
+  }, [chartData]);
 
   const showcaseContainer = useRef(null);
   const navigationContainer = useRef(null);
@@ -69,6 +41,7 @@ const Chart = ({ symbol, date }) => {
       .crossValue(function (d) { return d.date; })
       .mainValue(function (d) { return d.close; })
 
+    var candlestick = fc.seriesSvgCandlestick();
 
     var brush = fc.brushX()
       .on('brush', function (evt) {
@@ -114,7 +87,8 @@ const Chart = ({ symbol, date }) => {
     render()
   }
 
-  return <div><div ref={showcaseContainer} id="showcase-container" />
+  return <div>
+    <div ref={showcaseContainer} id="showcase-container" />
     <div ref={navigationContainer} id="navigation-container" />
   </div>
 };
