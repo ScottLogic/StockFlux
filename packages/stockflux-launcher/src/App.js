@@ -22,7 +22,7 @@ export default () => {
   const [undockWidth, setUndockWidth] = useState(1000);
   const [undockHeight, setUndockHeight] = useState(50);
   const [undockTop] = useState(50);
-  const [undockLeft, setUndockLeft] = useState(400);
+  const [undockLeft, setUndockLeft] = useState(0);
 
   const [edge, windowActions] = UndockedWindowHook(
     ScreenEdge.TOP,
@@ -66,22 +66,32 @@ export default () => {
   }, [edge, isCloudMode]);
 
   const undock = async () => {
+    let left =
+      window.screenLeft >= window.screen.availWidth ? window.screenLeft : 0;
+    let right =
+      window.screenLeft >= window.screen.availWidth
+        ? window.screenLeft
+        : window.screen.availWidth - 50;
+    let midpoint =
+      left === 0
+        ? (left + right) / 4
+        : window.screen.availWidth + (left + right) / 8;
+
     switch (currentDirection) {
       case ScreenEdge.LEFT:
-        currentDirection = ScreenEdge.LEFT;
         setUndockHeight(600);
         setUndockWidth(50);
-        setUndockLeft(100);
+        setUndockLeft(left);
         break;
       case ScreenEdge.RIGHT:
-        currentDirection = ScreenEdge.RIGHT;
         setUndockHeight(600);
         setUndockWidth(50);
-        setUndockLeft(1500);
+        setUndockLeft(right);
         break;
       case ScreenEdge.TOP:
         setUndockHeight(50);
         setUndockWidth(1000);
+        setUndockLeft(midpoint);
         break;
       default:
         break;
