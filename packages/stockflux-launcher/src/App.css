@@ -17,7 +17,8 @@ html {
   align-items: center;
 }
 
-.vertical {
+.left,
+.right {
   flex-direction: column;
   justify-content: space-between;
 }
