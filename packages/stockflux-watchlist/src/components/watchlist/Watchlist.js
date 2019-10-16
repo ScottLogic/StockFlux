@@ -92,8 +92,7 @@ const Watchlist = () => {
   const getSymbolIndex = symbol => watchlist.indexOf(symbol);
 
   const onDropOutside = (symbol, stockName) => {
-    // the 3rd param is for intents enabled.
-    Launchers.launchChart(symbol, stockName, null, previewDetails.position);
+    Launchers.launchChart(symbol, stockName, previewDetails.position);
   };
 
   const bindings = {

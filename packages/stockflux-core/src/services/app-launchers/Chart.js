@@ -23,7 +23,7 @@ const launchAsChildWindow = async (symbol, name, position) =>
     return options;
   });
 
-export default (symbol, name, intentsEnabled, position) =>
+export default (symbol, name, position, intentsEnabled) =>
   intentsEnabled
     ? launchAsIntent(symbol, name)
     : launchAsChildWindow(symbol, name, position);
