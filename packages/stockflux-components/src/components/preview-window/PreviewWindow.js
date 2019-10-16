@@ -41,6 +41,7 @@ export default ({
         resizable: false,
         alwaysOnTop: true
       }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [launch]
   );
 
@@ -75,6 +76,7 @@ export default ({
       window.hide();
       setPopupStatus(windowStatus.hidden);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [popupStatus, window]);
 
   useEffect(() => {
@@ -84,6 +86,7 @@ export default ({
     } else {
       hideWindow();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [display, window]);
 
   useEffect(() => {
