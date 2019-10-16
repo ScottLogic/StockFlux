@@ -45,5 +45,12 @@ export const getStockFluxApp = async appId =>
     )
     .then(response => response.json());
 
+export const getWindow = async () => {
+  return await window.fin;
+};
+
 export const sendInterApplicationMessage = async (uuid, topic, payload) =>
   await window.fin.InterApplicationBus.send({ uuid }, topic, payload);
+
+export const useMain = async mountApp =>
+  await window.fin.desktop.main(mountApp);
