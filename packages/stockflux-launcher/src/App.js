@@ -21,7 +21,7 @@ export default () => {
   const [undockWidth, setUndockWidth] = useState(1000);
   const [undockHeight, setUndockHeight] = useState(50);
   const [undockTop] = useState(50);
-  const [undockLeft] = useState(0);
+  const [undockLeft, setUndockLeft] = useState(0);
 
   const [edge, windowActions] = useDockWindow(
     ScreenEdge.TOP,
@@ -36,6 +36,18 @@ export default () => {
 
   let currentDirection = edge !== ScreenEdge.NONE ? edge : ScreenEdge.TOP;
 
+  // Update location
+  useEffect(() => {
+    let left = 0;
+    left = window.screenLeft < 0 ? -window.screen.availWidth : left;
+    left =
+      window.screenLeft >= window.screen.availWidth
+        ? window.screen.availWidth
+        : left;
+
+    setUndockLeft(left);
+  }, [edge]);
+
   // Handle initialDocked false resize to mini window
   useEffect(() => {
     if (
@@ -45,6 +57,7 @@ export default () => {
     ) {
       undock();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options]);
 
   useEffect(() => {
@@ -66,7 +79,6 @@ export default () => {
   const undock = async () => {
     setUndockHeight(50);
     setUndockWidth(1000);
-    //setUndockLeft(window.screenLeft);
     windowActions.dockNone();
   };
 
