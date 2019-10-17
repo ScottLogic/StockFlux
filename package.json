@@ -35,5 +35,9 @@
     "launcher:launch-appd": "cd packages/stockflux-launcher && npm run launch-appd",
     "news:launch-appd": "cd packages/stockflux-news && npm run launch-appd",
     "watchlist:launch-appd": "cd packages/stockflux-watchlist && npm run launch-appd"
+  },
+  "dependencies": {
+    "d3": "^5.12.0",
+    "d3fc": "^14.0.55"
   }
 }
