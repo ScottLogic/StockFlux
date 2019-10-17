@@ -14,12 +14,12 @@ import CloseButton from './toolbar/CloseButton';
 import './App.css';
 
 export default () => {
-  const [alignment, setAlignment] = useState('horizontal');
   const [isDockable, setIsDockable] = useState(false);
   const [isDocked, setDocked] = useState(true);
+  const [isHorizontal, setHorizontal] = useState(true);
   const [options] = useOptions();
-  const [undockWidth, setUndockWidth] = useState(1000);
   const [undockHeight, setUndockHeight] = useState(50);
+  const [undockWidth, setUndockWidth] = useState(1000);
   const [undockTop, setUndockTop] = useState(50);
   const [undockLeft, setUndockLeft] = useState(0);
 
@@ -34,22 +34,19 @@ export default () => {
     }
   );
 
-  let currentDirection = edge !== ScreenEdge.NONE ? edge : ScreenEdge.TOP;
-
   // Update location
   useEffect(() => {
-    let left = 0;
-    left = window.screenLeft < 0 ? -window.screen.availWidth : left;
-    left =
-      window.screenLeft >= window.screen.availWidth
-        ? window.screen.availWidth
-        : left;
-    let top = 0;
-    top = window.screenTop < 0 ? -window.screen.availHeight : top;
-    top =
-      window.screenTop >= window.screen.availHeight
-        ? window.screen.availHeight + 50
-        : top;
+    let left = setUndockPosition(
+      0,
+      window.screen.availWidth,
+      window.screenLeft
+    );
+    let top = setUndockPosition(
+      0,
+      window.screen.availHeight,
+      window.screenTop,
+      true
+    );
     setUndockLeft(left);
     setUndockTop(top);
   }, [edge]);
@@ -61,14 +58,14 @@ export default () => {
       options.customData &&
       options.customData.initialDocked === false
     ) {
-      undock();
+      windowActions.dockNone();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options]);
 
   useEffect(() => {
     if (edge !== ScreenEdge.NONE) {
-      setAlignment(edge !== ScreenEdge.TOP ? 'vertical' : 'horizontal');
+      setHorizontal(edge === ScreenEdge.TOP ? true : false);
     }
   }, [edge]);
 
@@ -82,15 +79,25 @@ export default () => {
     setDocked(isDockable && edge !== ScreenEdge.NONE);
   }, [edge, isDockable]);
 
-  const undock = async () => {
-    setUndockHeight(50);
-    setUndockWidth(1000);
-    windowActions.dockNone();
+  const setUndockPosition = (
+    position,
+    availValue,
+    screenValue,
+    isTop = false
+  ) => {
+    position = screenValue < 0 ? -availValue : position;
+    position = screenValue >= availValue ? availValue : position;
+
+    // Offset undocked top to account for OpenFin Cloud wrapper at top of screen
+    if (isTop) {
+      position = position + 100;
+    }
+    return position;
   };
 
   return (
-    <div className={cx('app', currentDirection)}>
-      {alignment === 'vertical' && CloseButton}
+    <div className={cx('app', edge)}>
+      {!isHorizontal && CloseButton}
       <FreeTextSearch dockedTo={edge} />
       <ToolBar
         tools={[
@@ -115,7 +122,7 @@ export default () => {
           {
             label: <FaUnlock />,
             className: '',
-            onClick: undock,
+            onClick: windowActions.dockNone,
             disabled: false,
             visible: isDockable && isDocked
           },
@@ -127,7 +134,7 @@ export default () => {
           }
         ]}
       />
-      {alignment === 'horizontal' && CloseButton}
+      {isHorizontal && CloseButton}
     </div>
   );
 };
