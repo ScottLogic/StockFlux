@@ -4,12 +4,19 @@ html, body{
   background: var(--primary-dark-blue);
 
 }
+
+.candlestick.down{
+  fill:#FF3300;
+  stroke: #FF3300
+}
+
+
+
 .legend {
     margin-top: -15px;
     width: 550px;
      height: 30px; 
      border: none
-
 }
 
 .legend-label {
