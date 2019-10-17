@@ -5,7 +5,7 @@ import * as fc from 'd3fc';
 
 let firstRun = true;
 
-const Chart = ({ chartData }) => {
+const Chart = ({ chartData, chartType }) => {
 
   useEffect(() => {
     if (chartData != null) {
@@ -13,7 +13,7 @@ const Chart = ({ chartData }) => {
     } else {
       makeChart(fc.randomFinancial()(100))
     }
-  }, [chartData]);
+  }, [chartData, chartType]);
 
   const showcaseContainer = useRef(null);
   const navigationContainer = useRef(null);
@@ -37,12 +37,13 @@ const Chart = ({ chartData }) => {
       brushedRange: [0.75, 1]
     };
 
+
+    var gridlines = fc.annotationSvgGridline().yTicks(10).xTicks(0)
+
     var area = fc.seriesSvgLine()
       .crossValue(function (d) { return d.date; })
       .mainValue(function (d) { return d.close; })
-
-    var candlestick = fc.seriesSvgCandlestick();
-
+    var candlestick = fc.seriesSvgCandlestick()
     var brush = fc.brushX()
       .on('brush', function (evt) {
         // if the brush has zero height there is no selection
@@ -64,8 +65,13 @@ const Chart = ({ chartData }) => {
         }
       });
 
-    var mainChart = fc.chartCartesian(x, y)
-      .svgPlotArea(area);
+    if (chartType === true) {
+      var mainChart = fc.chartCartesian(x, y)
+        .svgPlotArea(area)
+    } else {
+      var mainChart = fc.chartCartesian(x, y)
+        .svgPlotArea(candlestick)
+    }
 
     var navigatorChart = fc.chartCartesian(x.copy(), y.copy())
       .svgPlotArea(multi);
@@ -75,6 +81,7 @@ const Chart = ({ chartData }) => {
     mainChart.xDomain(chartData.brushedRange.map(scale.invert));
 
     const render = () => {
+      d3.selectAll("#showcase-container > *").remove();
       d3.select('#showcase-container')
         .datum(chartData.series)
         .call(mainChart);
