@@ -5,7 +5,7 @@ import { OpenfinApiHelpers } from 'stockflux-core';
  */
 class CurrentWindowService {
   getCurrentWindow() {
-    return OpenfinApiHelpers.getCurrent();
+    return OpenfinApiHelpers.getCurrentWindow();
   }
 
   getCurrentWindowName() {

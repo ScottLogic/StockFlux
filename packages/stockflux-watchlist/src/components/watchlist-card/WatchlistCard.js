@@ -178,8 +178,8 @@ const WatchlistCard = ({
                     {Math.abs(stockData.percentage) + '%'}
                   </>
                 ) : (
-                    ''
-                  )}
+                  ''
+                )}
               </div>
             </div>
           </div>
@@ -187,8 +187,8 @@ const WatchlistCard = ({
       </div>
     </div>
   ) : (
-      <></>
-    );
+    <></>
+  );
 };
 
 WatchlistCard.propTypes = {
