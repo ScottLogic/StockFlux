@@ -24,9 +24,7 @@ export default () => {
   const [isDocked, setDocked] = useState(true);
   const [isHorizontal, setHorizontal] = useState(true);
   const [options] = useOptions();
-  const [undockHeight] = useState(50);
-  const [undockWidth] = useState(1000);
-  const [undockTop, setUndockTop] = useState(50);
+  const [undockTop, setUndockTop] = useState(0);
   const [undockLeft, setUndockLeft] = useState(0);
 
   const [edge, windowActions] = useDockWindow(
@@ -36,7 +34,7 @@ export default () => {
     { dockedWidth: 50, dockedHeight: 50 },
     {
       undockPosition: { top: undockTop, left: undockLeft },
-      undockSize: { width: undockWidth, height: undockHeight }
+      undockSize: { width: 1000, height: 50 }
     }
   );
 
