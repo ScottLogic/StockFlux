@@ -18,8 +18,8 @@ export default () => {
   const [isDocked, setDocked] = useState(true);
   const [isHorizontal, setHorizontal] = useState(true);
   const [options] = useOptions();
-  const [undockHeight, setUndockHeight] = useState(50);
-  const [undockWidth, setUndockWidth] = useState(1000);
+  const [undockHeight] = useState(50);
+  const [undockWidth] = useState(1000);
   const [undockTop, setUndockTop] = useState(50);
   const [undockLeft, setUndockLeft] = useState(0);
 
