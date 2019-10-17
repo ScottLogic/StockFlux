@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import cx from 'classnames';
-import { useDockWindow, useOptions, ScreenEdge } from 'openfin-react-hooks';
+import {
+  useDocked,
+  useDockWindow,
+  useOptions,
+  ScreenEdge
+} from 'openfin-react-hooks';
 import {
   FaChevronUp,
   FaChevronLeft,
@@ -33,6 +38,8 @@ export default () => {
       undockSize: { width: undockWidth, height: undockHeight }
     }
   );
+
+  const hasAttachedWindow = useDocked()[0];
 
   // Update location
   useEffect(() => {
@@ -104,26 +111,26 @@ export default () => {
           {
             label: <FaChevronUp />,
             onClick: windowActions.dockTop,
-            disabled: edge === ScreenEdge.TOP,
+            disabled: edge === ScreenEdge.TOP || hasAttachedWindow,
             visible: isDockable
           },
           {
             label: <FaChevronLeft />,
             onClick: windowActions.dockLeft,
-            disabled: edge === ScreenEdge.LEFT,
+            disabled: edge === ScreenEdge.LEFT || hasAttachedWindow,
             visible: isDockable
           },
           {
             label: <FaChevronRight />,
             onClick: windowActions.dockRight,
-            disabled: edge === ScreenEdge.RIGHT,
+            disabled: edge === ScreenEdge.RIGHT || hasAttachedWindow,
             visible: isDockable
           },
           {
             label: <FaUnlock />,
             className: '',
             onClick: windowActions.dockNone,
-            disabled: false,
+            disabled: hasAttachedWindow,
             visible: isDockable && isDocked
           },
           {
