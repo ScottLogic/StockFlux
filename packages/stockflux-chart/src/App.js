@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Chart from './components/Chart';
 import Components from 'stockflux-components';
 import { FaSyncAlt } from 'react-icons/fa';
@@ -6,18 +6,17 @@ import {
   useInterApplicationBusSubscribe,
   useOptions
 } from 'openfin-react-hooks';
-// import bitflux from 'stockflux-bitflux/dist/bitflux';
+import { format, subYears } from 'date-fns';
 
 import './styles/app.css';
 
 const ALL = { uuid: '*' };
 
-// const chart = bitflux.app();
-// chart.periodsOfDataToFetch(1200);
-// chart.proportionOfDataToDisplayByDefault(112 / 1200);
-
 const App = () => {
   const [symbol, setSymbol] = useState(null);
+  const [chartData, setChartData] = useState(null);
+  const [chartType, setChartType] = useState(null);
+
   const [parentUuid, setParentUuid] = useState(null);
   const [listenerSymbol, setListenerSymbol] = useState(null);
   const [name, setName] = useState(null);
@@ -56,11 +55,52 @@ const App = () => {
     }
   }
 
-  const getData = symbol => {
+  if (!symbol) {
+    setSymbol('TSLA')
+  }
+
+  // if (!date) {
+  //   setDate('2019-09-01')
+  // }
+
+  const getData = useCallback(async () => {
+    var date = format(subYears(new Date(), 1), 'YYYY-MM-DD');
+    var url = `https://d3capoqa8f983r.cloudfront.net/api/ohlc/${symbol}/${date}`
+
+    const response = await fetch(url, {
+      method: 'GET'
+    });
+
+    if (!response.ok)
+      throw new Error("response not successful");
+
+
+    const stockData = await response.json();
+    if (!stockData.success)
+      throw new Error("Not successful")
+
+
+    const updated = stockData.data.map(item => {
+      return {
+        open: item.open,
+        close: item.close,
+        high: item.high,
+        low: item.low,
+        volume: item.volume,
+        date: new Date(item.date)
+      };
+    })
+
+    return updated
+
+  }, [symbol]);
+
+
+  useEffect(() => {
     if (symbol) {
-      // chart.changeStockFluxProduct(symbol);
-    }
-  };
+      getData().then(data => setChartData(data))
+    } else setChartData()
+  }, [symbol, getData])
 
   return (
     <>
@@ -85,14 +125,19 @@ const App = () => {
               />
               <Components.Buttons.Round
                 small={true}
-                onClick={() => getData(symbol)}
+                onClick={() => getData()}
                 disabled={!symbol}
               >
                 <FaSyncAlt />
               </Components.Buttons.Round>
+              <Components.Buttons.Round
+                small={true}
+                onClick={() => setChartType(!chartType)}
+              >
+              </Components.Buttons.Round>
             </div>
           </div>
-          <Chart symbol="TSLA" date="2019-09-01" />
+          <Chart chartData={chartData} chartType={chartType} />
         </div>
       </div>
     </>
