@@ -20,7 +20,7 @@ export default () => {
   const [options] = useOptions();
   const [undockWidth, setUndockWidth] = useState(1000);
   const [undockHeight, setUndockHeight] = useState(50);
-  const [undockTop] = useState(50);
+  const [undockTop, setUndockTop] = useState(50);
   const [undockLeft, setUndockLeft] = useState(0);
 
   const [edge, windowActions] = useDockWindow(
@@ -44,8 +44,14 @@ export default () => {
       window.screenLeft >= window.screen.availWidth
         ? window.screen.availWidth
         : left;
-
+    let top = 0;
+    top = window.screenTop < 0 ? -window.screen.availHeight : top;
+    top =
+      window.screenTop >= window.screen.availHeight
+        ? window.screen.availHeight + 50
+        : top;
     setUndockLeft(left);
+    setUndockTop(top);
   }, [edge]);
 
   // Handle initialDocked false resize to mini window
