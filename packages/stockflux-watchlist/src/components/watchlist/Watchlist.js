@@ -142,31 +142,36 @@ const Watchlist = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const screenLeft = () =>
+    window.screenLeft > 0
+      ? window.screenLeft
+      : window.screen.availWidth + window.screenLeft;
+
+  const leftPosition = (targetWidth, offset) =>
+    window.screen.availWidth -
+      (window.outerWidth + screenLeft() + offset + targetWidth) >
+    0
+      ? window.outerWidth + screenLeft() + offset
+      : screenLeft() - offset - targetWidth;
+
+  const calcLeftPosition = (targetWidth, offset) =>
+    leftPosition(targetWidth, offset) > window.screen.availLeft
+      ? window.screenleft > 0
+        ? leftPosition(targetWidth, offset)
+        : window.screen.availLeft + leftPosition(targetWidth, offset)
+      : window.outerWidth + screenLeft() + offset;
+
   useEffect(() => {
     const WINDOW_OFFSET = 5;
-    const screenLeft =
-      window.screenLeft > 0
-        ? window.screenLeft
-        : window.screen.availWidth + window.screenLeft;
+
     if (previewDetails.options) {
-      const leftPosition =
-        window.screen.availWidth -
-          (window.outerWidth +
-            screenLeft +
-            WINDOW_OFFSET +
-            previewDetails.options.defaultWidth) >
-        0
-          ? window.outerWidth + screenLeft + WINDOW_OFFSET
-          : screenLeft - WINDOW_OFFSET - previewDetails.options.defaultWidth;
       setPreviewDetails({
         ...previewDetails,
         position: {
-          left:
-            leftPosition > window.screen.availLeft
-              ? window.screenLeft > 0
-                ? leftPosition
-                : window.screen.availLeft + leftPosition
-              : window.outerWidth + screenLeft + WINDOW_OFFSET,
+          left: calcLeftPosition(
+            previewDetails.options.defaultWidth,
+            WINDOW_OFFSET
+          ),
           top: window.screenTop
         },
         size: {
