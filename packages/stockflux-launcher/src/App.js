@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import cx from 'classnames';
+import { OpenfinApiHelpers } from 'stockflux-core';
 import {
   useDocked,
   useDockWindow,
@@ -30,7 +31,7 @@ export default () => {
 
   const [edge, windowActions] = useDockWindow(
     ScreenEdge.TOP,
-    window.fin.Window.getCurrentSync(),
+    OpenfinApiHelpers.getCurrentWindowSync(),
     true,
     { dockedWidth: 50, dockedHeight: 50 },
     {
@@ -71,9 +72,9 @@ export default () => {
   }, [options]);
 
   useEffect(() => {
-    if (edge !== ScreenEdge.NONE) {
-      setHorizontal(edge === ScreenEdge.TOP ? true : false);
-    }
+    setHorizontal(
+      edge === ScreenEdge.TOP || edge === ScreenEdge.NONE ? true : false
+    );
   }, [edge]);
 
   useEffect(() => {
