@@ -1,8 +1,8 @@
 import * as OpenfinApiHelpers from '../openfin-api-utils/openfinApiHelpers';
 
 const windowAlreadyExist = async (windowName, childWindows) => {
-  for (let i = 0; i < childWindows.length; i++) {
-    const childWindowOptions = await childWindows[i].getOptions();
+  for (const childWindow of childWindows) {
+    const childWindowOptions = await childWindow.getOptions();
     if (childWindowOptions.name === windowName) {
       return true;
     }
