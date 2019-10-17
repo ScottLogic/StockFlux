@@ -17,7 +17,9 @@ import {
   getStockFluxApps,
   getStockFluxApp,
   getWindow,
+  openUrlWithBrowser,
   sendInterApplicationMessage,
+  showNotification,
   useMain
 } from './openfin-api-utils/openfinApiHelpers';
 import { launchChildWindow } from './services/ChildWindowLauncher';
@@ -41,7 +43,9 @@ export const OpenfinApiHelpers = {
   getStockFluxApps,
   getStockFluxApp,
   getWindow,
+  openUrlWithBrowser,
   sendInterApplicationMessage,
+  showNotification,
   useMain
 };
 
