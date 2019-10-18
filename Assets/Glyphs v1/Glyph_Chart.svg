@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>Glyph/Chart</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="4 2 4 20.068 11.295154 12.6152473 17.5253033 18.2947333 25.8196035 8.68373329 27.4340082 9.85710137 17.7066261 21.2307535 11.3823033 15.4027333 4 23.048 4 26 28 26 28 28 2 28 2 2"></polygon>
+    </defs>
+    <g id="Screen" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD-Copy" transform="translate(-449.000000, -171.000000)">
+            <g id="Glyph/Chart" transform="translate(447.000000, 169.000000)">
+                <rect id="Bounding_box" fill="#D8D8D8" opacity="0" x="0" y="0" width="30" height="30"></rect>
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Chart-Copy" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>
