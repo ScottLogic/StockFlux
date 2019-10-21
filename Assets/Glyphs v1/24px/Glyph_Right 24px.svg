@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="18px" viewBox="0 0 24 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59 (86127) - https://sketch.com -->
+    <title>Glyph/24Right</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M24,3 L24,21 L0,21 L0,3 L24,3 Z M19.2,4.63636364 L1.6,4.63636364 L1.6,19.3636364 L19.2,19.3636364 L19.2,4.63636364 Z" id="path-1"></path>
+    </defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD-Copy" transform="translate(-366.000000, -313.000000)">
+            <g id="Glyph/24Right" transform="translate(366.000000, 310.000000)">
+                <rect id="Bounding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" x="0" y="0" width="24" height="24"></rect>
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Right-Copy" fill="#AEB1B5" fill-rule="nonzero" xlink:href="#path-1"></use>
+                <g id="Color/Black" mask="url(#mask-2)" fill="#000000" fill-rule="evenodd">
+                    <rect id="Rectangle" x="0" y="0" width="30" height="30"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
