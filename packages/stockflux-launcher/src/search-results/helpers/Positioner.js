@@ -43,11 +43,10 @@ export default (searchButtonRef, inputRef, dockedTo, windowBounds) => {
         let leftPosition = windowBounds.left + windowBounds.width;
         if (rightPosition > window.screen.width) {
           leftPosition = windowBounds.left - DEFAULT_SEARCH_RESULTS_SIZE;
-        } else {
-          if (windowBounds.left < 0 && rightPosition > 0) {
-            leftPosition = windowBounds.left - DEFAULT_SEARCH_RESULTS_SIZE;
-          }
+        } else if (windowBounds.left < 0 && rightPosition > 0) {
+          leftPosition = windowBounds.left - DEFAULT_SEARCH_RESULTS_SIZE;
         }
+
         return {
           defaultTop: parseInt(searchButtonRect.top),
           defaultLeft: leftPosition,
