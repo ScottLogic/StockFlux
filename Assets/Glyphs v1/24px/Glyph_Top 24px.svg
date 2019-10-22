@@ -7,16 +7,13 @@
         <path d="M24,3 L24,21 L0,21 L0,3 L24,3 Z M22.4,7.90909091 L1.6,7.90909091 L1.6,19.3636364 L22.4,19.3636364 L22.4,7.90909091 Z" id="path-1"></path>
     </defs>
     <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Desktop-HD-Copy" transform="translate(-366.000000, -401.000000)">
-            <g id="Glyph/24Top" transform="translate(366.000000, 398.000000)">
-                <rect id="Bounding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" x="0" y="0" width="24" height="24"></rect>
+        <g id="Desktop-HD-Copy" transform="translate(-361.000000, -401.000000)">
+            <g id="Glyph/24Top" transform="translate(361.000000, 398.000000)">
+                <rect id="Bounding_box" fill="#D8D8D8" opacity="0" x="0" y="0" width="24" height="24"></rect>
                 <mask id="mask-2" fill="white">
                     <use xlink:href="#path-1"></use>
                 </mask>
-                <path stroke="#AEB1B5" stroke-width="2" d="M23,4 L1,4 L1,20 L23,20 L23,4 Z M23.4,6.90909091 L23.4,20.3636364 L0.6,20.3636364 L0.6,6.90909091 L23.4,6.90909091 Z"></path>
-                <g id="Color/Black" mask="url(#mask-2)" fill="#000000" fill-rule="evenodd">
-                    <rect id="Rectangle" x="0" y="0" width="24" height="22"></rect>
-                </g>
+                <use id="Shape-Copy" fill="#000000" xlink:href="#path-1"></use>
             </g>
         </g>
     </g>

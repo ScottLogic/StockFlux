@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="9px" height="7px" viewBox="0 0 9 7" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59 (86127) - https://sketch.com -->
+    <title>Arrow/Up Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M4.5,0 L9,7 L0,7 L4.5,0 Z" id="path-1"></path>
+    </defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD-Copy" transform="translate(-523.000000, -90.000000)">
+            <g id="Arrow/Up-Copy" transform="translate(523.000000, 90.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Triangle-5" fill="#000000" transform="translate(4.500000, 3.500000) scale(1, -1) translate(-4.500000, -3.500000) " xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>
