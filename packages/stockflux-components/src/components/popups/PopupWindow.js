@@ -1,17 +1,19 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import Components from 'stockflux-components';
-import useChildWindow from '../search-results/helpers/useChildWindow';
+import RoundButton from '../buttons/round-button/RoundButton';
+import { useChildWindow } from 'openfin-react-hooks';
 
 const ModalPopup = ({ message, options, children }) => {
   const [showPopup, setShowPopup] = useState(false);
   const handleClick = () => {
     setShowPopup(true);
   };
-  const childWindow = useChildWindow(
-    'popup-window',
-    document,
-    'popupWindow.css'
-  );
+  const childWindow = useChildWindow({
+    name: 'popup-window',
+    parentDocument: document,
+    cssUrl: 'popupWindow.css',
+    shouldClosePreviousOnLaunch: true,
+    shouldInheritCss: true
+  });
 
   const launchChildWindow = useCallback(() => {
     childWindow.launch({
@@ -45,7 +47,7 @@ const ModalPopup = ({ message, options, children }) => {
   );
 
   useEffect(() => {
-    if (childWindow.window) {
+    if (childWindow.state === 'LAUNCHING') {
       const childWindowJsx = (
         <>
           <div className="popup">
@@ -53,20 +55,20 @@ const ModalPopup = ({ message, options, children }) => {
             <div className="popup-options">
               {options.map(option => {
                 return (
-                  <Components.Buttons.Round
+                  <RoundButton
                     key={option.name}
                     onClick={() => handleSelection(option.name)}
                     className={option.className}
                   >
                     {option.icon}
-                  </Components.Buttons.Round>
+                  </RoundButton>
                 );
               })}
             </div>
           </div>
         </>
       );
-      childWindow.populateDOM(childWindowJsx);
+      childWindow.populate(childWindowJsx);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [childWindow, handleSelection]);
