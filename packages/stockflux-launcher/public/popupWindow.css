@@ -1,9 +1,11 @@
 body {
     overflow: hidden;
     padding: 4vh 4vw;
+    border:var(--border);
+    box-sizing: border-box;
 }
 .popup{
-    color:var(--text-grey-lighter);    
+    color:var(--text-grey-lighter);        
 }
 
 .popup-message{
