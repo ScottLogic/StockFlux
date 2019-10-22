@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import RoundButton from '../buttons/round-button/RoundButton';
 import { useChildWindow } from 'openfin-react-hooks';
 
-const ModalPopup = ({ message, options, children }) => {
+const PopupWindow = ({ message, options, children }) => {
   const [showPopup, setShowPopup] = useState(false);
   const handleClick = () => {
     setShowPopup(true);
@@ -49,24 +49,22 @@ const ModalPopup = ({ message, options, children }) => {
   useEffect(() => {
     if (childWindow.state === 'LAUNCHING') {
       const childWindowJsx = (
-        <>
-          <div className="popup">
-            <p className="popup-message">{message}</p>
-            <div className="popup-options">
-              {options.map(option => {
-                return (
-                  <RoundButton
-                    key={option.name}
-                    onClick={() => handleSelection(option.name)}
-                    className={option.className}
-                  >
-                    {option.icon}
-                  </RoundButton>
-                );
-              })}
-            </div>
+        <div className="popup">
+          <p className="popup-message">{message}</p>
+          <div className="popup-options">
+            {options.map(option => {
+              return (
+                <RoundButton
+                  key={option.name}
+                  onClick={() => handleSelection(option.name)}
+                  className={option.className}
+                >
+                  {option.icon}
+                </RoundButton>
+              );
+            })}
           </div>
-        </>
+        </div>
       );
       childWindow.populate(childWindowJsx);
     }
@@ -81,4 +79,4 @@ const ModalPopup = ({ message, options, children }) => {
   return <div onClick={handleClick}>{children}</div>;
 };
 
-export default ModalPopup;
+export default PopupWindow;
