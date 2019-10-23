@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="627px" height="756px" viewBox="0 0 627 756" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="934px" height="756px" viewBox="0 0 934 756" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 59 (86127) - https://sketch.com -->
     <title>Watchlist reference</title>
     <desc>Created with Sketch.</desc>
@@ -48,29 +48,29 @@
     <g id="Watchlist-reference" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Stock_Flux/Watchlist_Scroll-Copy" transform="translate(31.000000, 196.000000)">
             <g id="Color/Blue-3" fill="#0D2437">
-                <rect id="Rectangle" x="0" y="0" width="253" height="514"></rect>
+                <rect id="Rectangle" x="0" y="0" width="259" height="514"></rect>
             </g>
             <g id="State/Top_Dark" fill="#091A29">
-                <rect id="Rectangle" x="0" y="0" width="253" height="28"></rect>
+                <rect id="Rectangle" x="0" y="0" width="259" height="28"></rect>
             </g>
-            <g id="Component/Close_Minimize" transform="translate(198.000000, 0.000000)">
+            <g id="Component/Close_Minimize" transform="translate(202.695652, 0.000000)">
                 <g id="Minimize">
-                    <rect id="Rectangle-Copy-2" fill="#D8D8D8" opacity="0" x="0" y="0" width="24" height="28"></rect>
-                    <rect id="Rectangle" fill="#FFFFFF" x="6" y="19" width="12" height="2"></rect>
+                    <rect id="Rectangle-Copy-2" fill="#D8D8D8" opacity="0" x="0" y="0" width="24.4615385" height="28"></rect>
+                    <rect id="Rectangle" fill="#FFFFFF" x="6.11538462" y="19" width="12.2307692" height="2"></rect>
                 </g>
-                <g id="Close" transform="translate(28.000000, 0.000000)">
-                    <rect id="Rectangle" fill="#1B3B56" opacity="0" x="0" y="0" width="24" height="28"></rect>
-                    <polygon id="X" fill="#FFFFFF" points="17.6189127 8 18.909903 9.2909903 13.7451778 14.4541796 18.909903 19.6189127 17.6189127 20.909903 12.4541796 15.7451778 7.2909903 20.909903 6 19.6189127 11.1639928 14.4541796 6 9.2909903 7.2909903 8 12.4541796 13.1639928"></polygon>
+                <g id="Close" transform="translate(28.538462, 0.000000)">
+                    <rect id="Rectangle" fill="#1B3B56" opacity="0" x="0" y="0" width="24.4615385" height="28"></rect>
+                    <polygon id="X" fill="#FFFFFF" points="17.9577379 8 19.273555 9.2909903 14.0095081 14.4541796 19.273555 19.6189127 17.9577379 20.909903 12.693683 15.7451778 7.43120165 20.909903 6.11538462 19.6189127 11.378685 14.4541796 6.11538462 9.2909903 7.43120165 8 12.693683 13.1639928"></polygon>
                 </g>
             </g>
             <text id="Watchlist" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
-                <tspan x="12" y="20">Watchlist</tspan>
+                <tspan x="12.284585" y="20">Watchlist</tspan>
             </text>
-            <polygon id="Divider_Lines" fill="#061725" points="253 148 253 150 0 150 0 148"></polygon>
+            <polygon id="Divider_Lines" fill="#061725" points="259 148 259 150 0 150 0 148"></polygon>
         </g>
         <g id="Stock_Flux/Watchlist_item" transform="translate(31.000000, 224.000000)">
             <g id="Color/Blue-3" fill="#0D2437" fill-rule="evenodd">
-                <rect id="Rectangle" x="0" y="0" width="253" height="120"></rect>
+                <rect id="Rectangle" x="0" y="0" width="259" height="120"></rect>
             </g>
             <text id="Ticker" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
                 <tspan x="12" y="22">AAPL</tspan>
@@ -114,7 +114,7 @@
                     <rect id="Rectangle" x="0" y="0" width="9" height="7"></rect>
                 </g>
             </g>
-            <g id="Chart_Watchlist/1" transform="translate(0.000000, 54.000000)">
+            <g id="Sparkline/1" transform="translate(0.000000, 54.000000)">
                 <mask id="mask-8" fill="white">
                     <use xlink:href="#path-7"></use>
                 </mask>
@@ -141,12 +141,12 @@
             <g id="Color/Blue-3" fill="#0D2437" fill-rule="evenodd">
                 <rect id="Rectangle" x="0" y="0" width="265" height="514"></rect>
             </g>
-            <g id="State/Top_Dark" fill="#091A29" fill-rule="evenodd">
-                <rect id="Rectangle" x="0" y="0" width="265" height="28"></rect>
+            <g id="Color/Blue-5" fill="#071521" fill-rule="evenodd">
+                <rect id="Rectangle" x="0" y="0" width="271" height="28"></rect>
             </g>
             <g id="Stock_Flux/Watchlist_item" transform="translate(0.000000, 30.000000)">
                 <g id="Color/Blue-3" fill="#0D2437" fill-rule="evenodd">
-                    <rect id="Rectangle" x="0" y="0" width="253" height="120"></rect>
+                    <rect id="Rectangle" x="0" y="0" width="259" height="120"></rect>
                 </g>
                 <text id="Ticker" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
                     <tspan x="12" y="22">AAPL</tspan>
@@ -190,7 +190,7 @@
                         <rect id="Rectangle" x="0" y="0" width="9" height="7"></rect>
                     </g>
                 </g>
-                <g id="Chart_Watchlist/1" transform="translate(0.000000, 54.000000)">
+                <g id="Sparkline/1" transform="translate(0.000000, 54.000000)">
                     <mask id="mask-19" fill="white">
                         <use xlink:href="#path-18"></use>
                     </mask>
@@ -215,7 +215,7 @@
             </g>
             <g id="Stock_Flux/Watchlist_item" transform="translate(0.000000, 149.000000)">
                 <g id="Color/Blue-3" fill="#0D2437" fill-rule="evenodd">
-                    <rect id="Rectangle" x="0" y="0" width="253" height="120"></rect>
+                    <rect id="Rectangle" x="0" y="0" width="259" height="120"></rect>
                 </g>
                 <text id="Ticker" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
                     <tspan x="12" y="22">TSLA</tspan>
@@ -259,7 +259,7 @@
                         <rect id="Rectangle" x="0" y="0" width="9" height="7"></rect>
                     </g>
                 </g>
-                <g id="Chart_Watchlist/1" transform="translate(0.000000, 54.000000)">
+                <g id="Sparkline/1" transform="translate(0.000000, 54.000000)">
                     <mask id="mask-29" fill="white">
                         <use xlink:href="#path-28"></use>
                     </mask>
@@ -284,7 +284,7 @@
             </g>
             <g id="Stock_Flux/Watchlist_item" transform="translate(0.000000, 272.000000)">
                 <g id="Color/Blue-3" fill="#0D2437" fill-rule="evenodd">
-                    <rect id="Rectangle" x="0" y="0" width="253" height="120"></rect>
+                    <rect id="Rectangle" x="0" y="0" width="259" height="120"></rect>
                 </g>
                 <text id="Ticker" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
                     <tspan x="12" y="22">MSFT</tspan>
@@ -328,7 +328,7 @@
                         <rect id="Rectangle" x="0" y="0" width="9" height="7"></rect>
                     </g>
                 </g>
-                <g id="Chart_Watchlist/3" transform="translate(0.000000, 54.000000)">
+                <g id="Sparkline/3" transform="translate(0.000000, 54.000000)">
                     <mask id="mask-39" fill="white">
                         <use xlink:href="#path-38"></use>
                     </mask>
@@ -353,7 +353,7 @@
             </g>
             <g id="Stock_Flux/Watchlist_item" transform="translate(0.000000, 394.000000)">
                 <g id="Color/Blue-3" fill="#0D2437" fill-rule="evenodd">
-                    <rect id="Rectangle" x="0" y="0" width="253" height="120"></rect>
+                    <rect id="Rectangle" x="0" y="0" width="259" height="120"></rect>
                 </g>
                 <text id="Ticker" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
                     <tspan x="12" y="22">CC</tspan>
@@ -397,7 +397,7 @@
                         <rect id="Rectangle" x="0" y="0" width="9" height="7"></rect>
                     </g>
                 </g>
-                <g id="Chart_Watchlist/1" transform="translate(0.000000, 54.000000)">
+                <g id="Sparkline/1" transform="translate(0.000000, 54.000000)">
                     <mask id="mask-50" fill="white">
                         <use xlink:href="#path-49"></use>
                     </mask>
@@ -420,7 +420,7 @@
                     <tspan x="210" y="111">-2.13</tspan>
                 </text>
             </g>
-            <g id="Component/Close_Minimize" transform="translate(210.000000, 0.000000)" fill-rule="evenodd" stroke-width="1">
+            <g id="Component/Close_Minimize" transform="translate(216.000000, 0.000000)" fill-rule="evenodd" stroke-width="1">
                 <g id="Minimize">
                     <rect id="Rectangle-Copy-2" fill="#D8D8D8" opacity="0" x="0" y="0" width="24" height="28"></rect>
                     <rect id="Rectangle" fill="#FFFFFF" x="6" y="19" width="12" height="2"></rect>
@@ -433,16 +433,16 @@
             <text id="Window-name" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
                 <tspan x="12" y="20">Watchlist</tspan>
             </text>
-            <path d="M253,392 L253,394 L0,394 L0,392 L253,392 Z M253,271 L253,273 L0,273 L0,271 L253,271 Z M253,149 L253,151 L0,151 L0,149 L253,149 Z" id="Divider_Lines" fill="#061725" fill-rule="evenodd"></path>
-            <g id="Color/Blue-2" transform="translate(253.000000, 28.000000)" fill="#1B3B56" fill-rule="evenodd">
+            <path d="M259,392 L259,394 L0,394 L0,392 L259,392 Z M259,271 L259,273 L0,273 L0,271 L259,271 Z M259,149 L259,151 L0,151 L0,149 L259,149 Z" id="Divider_Lines" fill="#061725" fill-rule="evenodd"></path>
+            <g id="Color/Blue-2" transform="translate(259.000000, 28.000000)" fill="#1B3B56" fill-rule="evenodd">
                 <rect id="Rectangle" x="0" y="0" width="12" height="486"></rect>
             </g>
-            <g id="Component/Scroll_Bar" transform="translate(253.000000, 40.000000)" fill="#091A29" fill-rule="evenodd">
+            <g id="Component/Scroll_Bar" transform="translate(259.000000, 40.000000)" fill="#091A29" fill-rule="evenodd">
                 <g id="Color/Blue-4">
                     <rect id="Rectangle" x="0" y="0" width="12" height="182"></rect>
                 </g>
             </g>
-            <g id="Component/Scroll_Arrow_Up" transform="translate(253.000000, 28.000000)">
+            <g id="Component/Scroll_Arrow_Up" transform="translate(259.000000, 28.000000)">
                 <mask id="mask-54" fill="white">
                     <use xlink:href="#path-53"></use>
                 </mask>
@@ -453,7 +453,7 @@
                     </g>
                 </g>
             </g>
-            <g id="Component/Scroll_Arrow_Down" transform="translate(253.000000, 502.000000)">
+            <g id="Component/Scroll_Arrow_Down" transform="translate(259.000000, 502.000000)">
                 <mask id="mask-56" fill="white">
                     <use xlink:href="#path-55"></use>
                 </mask>
@@ -467,10 +467,10 @@
         </g>
         <g id="Stock_Flux/Watchlist_item" transform="translate(31.000000, 43.000000)">
             <g id="Color/Blue-3" fill="#0D2437" fill-rule="evenodd">
-                <rect id="Rectangle" x="0" y="0" width="253" height="120"></rect>
+                <rect id="Rectangle" x="0" y="0" width="259" height="120"></rect>
             </g>
             <g id="State/Top_Dark" fill="#091A29" fill-rule="evenodd">
-                <rect id="Rectangle" x="0" y="0" width="253" height="48"></rect>
+                <rect id="Rectangle" x="0" y="0" width="259" height="48"></rect>
             </g>
             <text id="Ticker" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
                 <tspan x="12" y="22">TSLA</tspan>
@@ -514,7 +514,7 @@
                     <rect id="Rectangle" x="0" y="0" width="9" height="7"></rect>
                 </g>
             </g>
-            <g id="Chart_Watchlist/1" transform="translate(0.000000, 54.000000)">
+            <g id="Sparkline/1" transform="translate(0.000000, 54.000000)">
                 <mask id="mask-64" fill="white">
                     <use xlink:href="#path-63"></use>
                 </mask>
@@ -537,5 +537,34 @@
                 <tspan x="210" y="111">-2.13</tspan>
             </text>
         </g>
+        <g id="Stock_Flux/Watchlist_Scroll-Copy" transform="translate(633.000000, 196.000000)">
+            <g id="Color/Blue-3" fill="#0D2437">
+                <rect id="Rectangle" x="0" y="0" width="259" height="514"></rect>
+            </g>
+            <g id="State/Top_Dark" fill="#091A29">
+                <rect id="Rectangle" x="0" y="0" width="259" height="28"></rect>
+            </g>
+            <g id="Component/Close_Minimize" transform="translate(202.695652, 0.000000)">
+                <g id="Minimize">
+                    <rect id="Rectangle-Copy-2" fill="#D8D8D8" opacity="0" x="0" y="0" width="24.4615385" height="28"></rect>
+                    <rect id="Rectangle" fill="#FFFFFF" x="6.11538462" y="19" width="12.2307692" height="2"></rect>
+                </g>
+                <g id="Close" transform="translate(28.538462, 0.000000)">
+                    <rect id="Rectangle" fill="#1B3B56" opacity="0" x="0" y="0" width="24.4615385" height="28"></rect>
+                    <polygon id="X" fill="#FFFFFF" points="17.9577379 8 19.273555 9.2909903 14.0095081 14.4541796 19.273555 19.6189127 17.9577379 20.909903 12.693683 15.7451778 7.43120165 20.909903 6.11538462 19.6189127 11.378685 14.4541796 6.11538462 9.2909903 7.43120165 8 12.693683 13.1639928"></polygon>
+                </g>
+            </g>
+            <text id="Watchlist" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
+                <tspan x="12.284585" y="20">Watchlist</tspan>
+            </text>
+        </g>
+        <text id="You-have-no-stocks-i" font-family="Roboto-Regular, Roboto" font-size="16" font-weight="normal" fill="#FFFFFF">
+            <tspan x="657" y="275">You have no stocks in your</tspan>
+            <tspan x="657" y="294">Watchlist.</tspan>
+        </text>
+        <text id="Use-the-Search-to-ad" font-family="Roboto-Regular, Roboto" font-size="16" font-weight="normal" fill="#FFFFFF">
+            <tspan x="657" y="325">Use the Search to add new</tspan>
+            <tspan x="657" y="344">stocks to the list.</tspan>
+        </text>
     </g>
 </svg>
