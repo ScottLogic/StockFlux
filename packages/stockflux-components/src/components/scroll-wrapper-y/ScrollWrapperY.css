@@ -1,7 +1,13 @@
 .scrollWrapperY {
   flex: 1 1 auto;
   position: relative;
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;
   height: inherit;
+  margin-right: var(--scrollbar-width);
+}
+
+.scrollPaddingRight {
+  overflow-y: scroll !important;
+  margin-right: 0 !important;
 }
