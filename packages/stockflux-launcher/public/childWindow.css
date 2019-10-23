@@ -4,9 +4,7 @@ body {
 }
 
 div#root {
-  height:100vh;
-  flex: 1 1 auto;
-  overflow:hidden;
+  height: 200px;
 }
 
 div#root > p {
