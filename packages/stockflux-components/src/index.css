@@ -30,11 +30,11 @@
   --color-primary:#0D2437;
   --color-secondary:#091A29;
   /* Windows*/
-  --background-color:#0D2437;  
-  --header-bar:#071521;
-  --divider:#091A29;
+  --window-background-color:#0D2437;  
+  --window-header-bar:#071521;
+  --window-divider:#091A29;
   --window-icon:#FFFFFF;
-  --stock-hover:#091A29;
+  --window-stock-hover:#091A29;
   /* Charts */
   --chart-line: #29E9E3;
   --chart-gradient-top:#29E9E3; 
@@ -50,6 +50,7 @@
   --icon-active:#29E9E3;
   --icon-inactive: #8A96A6;
   --icon-hover: #1B3B56;
+  --icon-hover-light: rgba(256,256,256,0.15);
   /* Text */
   --text-color:#FFFFFF; 
   --text-increase:#41D442;
@@ -61,7 +62,7 @@
   --search-result-height: 60px;
   --icons-size: 30px;
   --titlebar-height: 28px;
-  --bottom-tab-height: 40px;
+  --bottom-tab-height: 33px;
   --scrollbar-width: 12px;
 
   /* transitions  */

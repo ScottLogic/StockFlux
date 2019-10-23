@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: row;
   height: var(--titlebar-height);
-  background-color: var(--dark-background);
+  background-color: var(--window-header-bar);
   align-items: stretch;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .header-icon:hover {
-  background-color: rgba(256,256,256,0.15);
+  background-color: var(--icon-hover-light);
 }
 
 .header-icon > svg > * {
