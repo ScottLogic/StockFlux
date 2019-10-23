@@ -126,9 +126,6 @@ const Watchlist = () => {
         onDrop(e, watchlist, getSymbolIndex, setWatchlist, dragOverIndex)
       }
     >
-      <div className="header">
-        <span className="watchlist-name">My Watchlist</span>
-      </div>
       <Components.ScrollWrapperY>
         {watchlist.length === 0 ? (
           <div className="no-watchlist">

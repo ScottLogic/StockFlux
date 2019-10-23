@@ -22,13 +22,44 @@
 
   --chart-teal: #37d8bc;
   --chart-teal-lighter: #51f2d6;
+  /* UX Colours */
+  /* Generic Colours */
+  --color-highlight: #29E9E3;
+  --color-inactive: #8A96A6;
+  --color-hover:#1B3B56;
+  --color-primary:#0D2437;
+  --color-secondary:#091A29;
+  /* Windows*/
+  --background-color:#0D2437;  
+  --header-bar:#071521;
+  --divider:#091A29;
+  --window-icon:#FFFFFF;
+  --stock-hover:#091A29;
+  /* Charts */
+  --chart-line: #29E9E3;
+  --chart-gradient-top:#29E9E3; 
+  --chart-gradient-bottom:#FFFFFF;
+  --chart-hover:#1B3B56;
+  /* Scroll Bars */
+  --scroll-bar-background:#0D2437;
+  --scroll-bar-inactive:#8A96A6;
+  --scroll-bar-track:#1B3B56;
+  --scroll-bar-grip:#091A29;
+  /* Icons */
+  --icon-active:#29E9E3;
+  --icon-inactive: #8A96A6;
+  --icon-hover: #1B3B56;
+  /* Text */
+  --text-color:#FFFFFF; 
+  --text-increase:#41D442;
+  --text-decrease:#FF7171;
 
   /* dimensions */
   --expanded-width: 230px;
   --toolbar-height: 50px;
   --search-result-height: 60px;
   --icons-size: 30px;
-  --titlebar-height: 35px;
+  --titlebar-height: 28px;
   --bottom-tab-height: 40px;
   --scrollbar-width: 12px;
 
@@ -42,6 +73,7 @@
   --font-xlarge: 16px;
   --font-xxlarge: 18px;
   --font-xxxlarge: 20px;
+  --font-header-text: 21px;
 
   /* font-weight */
   --font-weight-normal: 300;
