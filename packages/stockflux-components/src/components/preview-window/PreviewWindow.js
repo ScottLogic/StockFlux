@@ -45,7 +45,7 @@ export default ({
     [launch]
   );
 
-  const [popupStatus, setPopupStatus] = useState('');
+  const [popupStatus, setPopupStatus] = useState(windowStatus.hidden);
 
   const showWindow = () => {
     if (window) {
