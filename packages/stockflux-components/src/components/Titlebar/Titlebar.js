@@ -4,6 +4,7 @@ import { snapAndDock } from 'openfin-layouts';
 import { OpenfinApiHelpers } from 'stockflux-core';
 import CloseIcon from '../icons/close.svg';
 import MinimizeIcon from '../icons/minimize.svg';
+import LinkIcon from '../icons/link.svg';
 
 import './Titlebar.css';
 
@@ -30,18 +31,18 @@ export default ({ title }) => {
         <span>{title}</span>
       </div>
       <div className="icons-container">
-        <div className="header-icon" onClick={onMinimizeClick} title="Minimize">
-          <MinimizeIcon />
-        </div>
         {isDocked[0] && (
           <div
-            className="button-icon undock"
+            className="header-icon link-icon"
             onClick={onUndockClick}
             title="Undock"
           >
-            &nbsp;
+            <LinkIcon />
           </div>
         )}
+        <div className="header-icon" onClick={onMinimizeClick} title="Minimize">
+          <MinimizeIcon />
+        </div>
         <div className="header-icon" onClick={onCloseClick} title="Close">
           <CloseIcon />
         </div>

@@ -43,3 +43,7 @@
 .header-icon > svg > * {
   color: var(--window-icon);
 }
+
+.link-icon > svg > * {
+  color: var(--icon-active);
+}
