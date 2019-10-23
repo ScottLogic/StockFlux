@@ -89,44 +89,48 @@ export default () => {
   };
 
   return (
-    <div className={cx('app', edge)}>
-      <Titlebar dockedTo={edge} />
-      <div
-        className={cx(
-          edge === 'top' || edge === 'none'
-            ? 'shortcut-horizontal'
-            : 'shortcut-vertical'
-        )}
-      >
-        <Components.Shortcuts.Watchlist
-          small={true}
-          symbol="TSLA"
-          name="Tesla"
+    <div className="launcher-container">
+      <div className="launcher-title">
+        <Titlebar dockedTo={edge} />
+      </div>
+      <div className={cx('app', edge)}>
+        <div
+          className={cx(
+            edge === 'top' || edge === 'none'
+              ? 'shortcut-horizontal'
+              : 'shortcut-vertical'
+          )}
+        >
+          <Components.Shortcuts.Watchlist
+            small={true}
+            symbol="TSLA"
+            name="Tesla"
+          />
+        </div>
+        <FreeTextSearch dockedTo={edge} />
+        <ToolBar
+          tools={[
+            {
+              label: <FaChevronUp />,
+              onClick: windowActions.dockTop,
+              disabled: edge === ScreenEdge.TOP,
+              visible: isDockable
+            },
+            {
+              label: <FaChevronLeft />,
+              onClick: windowActions.dockLeft,
+              disabled: edge === ScreenEdge.LEFT,
+              visible: isDockable
+            },
+            {
+              label: <FaChevronRight />,
+              onClick: windowActions.dockRight,
+              disabled: edge === ScreenEdge.RIGHT,
+              visible: isDockable
+            }
+          ]}
         />
       </div>
-      <FreeTextSearch dockedTo={edge} />
-      <ToolBar
-        tools={[
-          {
-            label: <FaChevronUp />,
-            onClick: windowActions.dockTop,
-            disabled: edge === ScreenEdge.TOP,
-            visible: isDockable
-          },
-          {
-            label: <FaChevronLeft />,
-            onClick: windowActions.dockLeft,
-            disabled: edge === ScreenEdge.LEFT,
-            visible: isDockable
-          },
-          {
-            label: <FaChevronRight />,
-            onClick: windowActions.dockRight,
-            disabled: edge === ScreenEdge.RIGHT,
-            visible: isDockable
-          }
-        ]}
-      />
     </div>
   );
 };
