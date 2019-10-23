@@ -25,13 +25,14 @@ html {
 }
 
 .shortcut-horizontal {
+  padding-bottom: 6px;
   padding-left: 24px;
-  padding-top: 12px;
 }
 
 .shortcut-vertical {
-  padding-left: 24px;
-  padding-top: 48px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 24px;
 }
 
 .none,

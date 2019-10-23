@@ -16,3 +16,7 @@
 .toolbar button.round svg {
   padding: 0;
 }
+
+svg {
+  color: white;
+}
