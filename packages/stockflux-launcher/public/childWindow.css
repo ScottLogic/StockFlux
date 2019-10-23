@@ -9,7 +9,7 @@ div#root {
   overflow:hidden;
 }
 
-div.scrollWrapperY > p {
+div#root > p {
   text-align: center;
   color: var(--text-grey-light);
   padding: 170px 50px;

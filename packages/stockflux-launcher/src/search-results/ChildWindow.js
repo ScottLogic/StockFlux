@@ -13,13 +13,11 @@ export default ({ results, children, isSearching, debouncedQuery }) => {
   return (
     <>
       {children}
-      <Components.ScrollWrapperY>
-        {results && results.length > 0 ? (
-          <SearchResults results={results} paddingNeeded={children} />
-        ) : (
-          messageJsx
-        )}
-      </Components.ScrollWrapperY>
+      {results && results.length > 0 ? (
+        <SearchResults results={results} paddingNeeded={children} />
+      ) : (
+        messageJsx
+      )}
     </>
   );
 };
