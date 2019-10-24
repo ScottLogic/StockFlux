@@ -27,7 +27,7 @@ export default () => {
     },
     {
       undockPosition: undockPosition,
-      undockSize: { width: 1000, height: 75 }
+      undockSize: { width: 1000, height: 88 }
     }
   );
 
