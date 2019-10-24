@@ -44,7 +44,7 @@
         <rect id="Rectangle-Copy-6" stroke="#979797" fill="#1B3B56" transform="translate(55.000000, 223.000000) rotate(180.000000) translate(-55.000000, -223.000000) " x="40" y="208" width="30" height="30"></rect>
         <rect id="Rectangle-Copy-4" stroke="#979797" fill="#FFFFFF" x="40" y="388" width="30" height="30"></rect>
         <text id="Teal---#29E9E3---Use" font-family="Roboto-Regular, Roboto" font-size="21" font-weight="normal" fill="#000000">
-            <tspan x="86" y="110">Teal - #29E9E3 - Used for active icons, graph line &amp; graph gradient</tspan>
+            <tspan x="86" y="110">Teal - #29E9E3 - Used for active icons</tspan>
         </text>
         <text id="Blue-1---#8A96A6---U" font-family="Roboto-Regular, Roboto" font-size="21" font-weight="normal" fill="#000000">
             <tspan x="86" y="170">Blue 1 - #8A96A6 - Used for inactive icons</tspan>
