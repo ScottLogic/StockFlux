@@ -1,11 +1,11 @@
 import React from 'react';
 import Components from 'stockflux-components';
-import { FaSearch } from 'react-icons/fa';
+import { ReactComponent as SearchIcon } from '../icons/search.svg';
 
 export default ({ searchButtonRef, handleSearchClick }) => (
-  <span ref={searchButtonRef}>
+  <span className="searchIcon" ref={searchButtonRef}>
     <Components.Buttons.Round onClick={handleSearchClick}>
-      <FaSearch />
+      <SearchIcon />
     </Components.Buttons.Round>
   </span>
 );

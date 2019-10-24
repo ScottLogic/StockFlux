@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import cx from 'classnames';
 import { ScreenEdge, useDockWindow, useOptions } from 'openfin-react-hooks';
-import { FaChevronLeft, FaChevronRight, FaChevronUp } from 'react-icons/fa';
+import { ReactComponent as LeftIcon } from './icons/left.svg';
+import { ReactComponent as RightIcon } from './icons/right.svg';
+import { ReactComponent as TopIcon } from './icons/top.svg';
 import Components from 'stockflux-components';
 import { OpenfinApiHelpers } from 'stockflux-core';
 import './App.css';
@@ -111,19 +113,19 @@ export default () => {
         <ToolBar
           tools={[
             {
-              label: <FaChevronUp />,
-              onClick: windowActions.dockTop,
-              disabled: edge === ScreenEdge.TOP,
-              visible: isDockable
-            },
-            {
-              label: <FaChevronLeft />,
+              label: <LeftIcon />,
               onClick: windowActions.dockLeft,
               disabled: edge === ScreenEdge.LEFT,
               visible: isDockable
             },
             {
-              label: <FaChevronRight />,
+              label: <TopIcon />,
+              onClick: windowActions.dockTop,
+              disabled: edge === ScreenEdge.TOP,
+              visible: isDockable
+            },
+            {
+              label: <RightIcon />,
               onClick: windowActions.dockRight,
               disabled: edge === ScreenEdge.RIGHT,
               visible: isDockable

@@ -28,6 +28,11 @@
   display: none;
 }
 
+.searchIcon {
+  margin-bottom: 30px;
+  margin-right: 12px;
+}
+
 div#root > .free-text-search {
   padding: 8px 10px 8px 0;
   width: var(--search-input-width);

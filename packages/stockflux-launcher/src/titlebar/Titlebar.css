@@ -19,7 +19,7 @@
 
 .column-left {
     float: left;
-    padding-left: 24px;
+    padding-left: 3px;
     -webkit-app-region: no-drag;
 }
 
