@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
 import cx from 'classnames';
 import { ScreenEdge, useDockWindow, useOptions } from 'openfin-react-hooks';
-import { ReactComponent as LeftIcon } from './icons/left.svg';
-import { ReactComponent as RightIcon } from './icons/right.svg';
-import { ReactComponent as TopIcon } from './icons/top.svg';
+import React, { useEffect, useState } from 'react';
 import Components from 'stockflux-components';
 import { OpenfinApiHelpers } from 'stockflux-core';
 import './App.css';
 import FreeTextSearch from './free-text-search/FreeTextSearch';
+import { ReactComponent as LeftIcon } from './icons/left.svg';
+import { ReactComponent as RightIcon } from './icons/right.svg';
+import { ReactComponent as TopIcon } from './icons/top.svg';
 import Titlebar from './titlebar/Titlebar';
 import ToolBar from './toolbar/ToolBar';
 
@@ -18,7 +18,6 @@ export default () => {
   const isDockable = options ? options.customData.isDockable : false;
 
   const [isHorizontal, setHorizontal] = useState(true);
-  const [undockPosition, setUndockPosition] = useState({ left: 0, top: 0 });
   const [edge, windowActions] = useDockWindow(
     ScreenEdge.TOP,
     OpenfinApiHelpers.getCurrentWindowSync(),
@@ -28,7 +27,6 @@ export default () => {
       dockedHeight: defaultHeight
     },
     {
-      undockPosition: undockPosition,
       undockSize: { width: 1000, height: 88 }
     }
   );
@@ -53,42 +51,11 @@ export default () => {
   /* Make sure window shrinks when dragged from top */
   useEffect(() => {
     if (edge === ScreenEdge.NONE) {
+      window.moveBy(200, 200);
       windowActions.dockNone();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [edge]);
-
-  // Update location
-  useEffect(() => {
-    let left = getUndockPosition(
-      0,
-      window.screen.availWidth,
-      window.screenLeft
-    );
-    let top = getUndockPosition(
-      0,
-      window.screen.availHeight,
-      window.screenTop,
-      true
-    );
-    setUndockPosition({ left, top });
-  }, [edge]);
-
-  const getUndockPosition = (
-    position,
-    availValue,
-    screenValue,
-    isTop = false
-  ) => {
-    position = screenValue < 0 ? -availValue : position;
-    position = screenValue >= availValue ? availValue : position;
-
-    // Offset undocked top to account for OpenFin Cloud wrapper at top of screen
-    if (isTop) {
-      position = position + 50;
-    }
-    return position;
-  };
 
   return (
     <div className="launcher-container">
