@@ -19,7 +19,6 @@
 
 .column-left {
     float: left;
-    padding-left: 3px;
     -webkit-app-region: no-drag;
 }
 
