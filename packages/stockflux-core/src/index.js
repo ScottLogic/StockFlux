@@ -24,6 +24,7 @@ import {
   launchWatchlist,
   launchNews
 } from './services/app-launchers';
+import useChildWindow from './custom-hooks/useChildWindow/useChildWindow';
 
 export const Utils = {
   truncate
@@ -56,7 +57,8 @@ export const Intents = {
 };
 
 export const StockFluxHooks = {
-  useLocalStorage
+  useLocalStorage,
+  useChildWindow
 };
 
 export const Launchers = {
