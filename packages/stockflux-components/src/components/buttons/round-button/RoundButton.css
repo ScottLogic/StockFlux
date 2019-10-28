@@ -1,6 +1,6 @@
 .round {
   display: inline-block;
-  color: var(--text-teal-light);
+  color: var(--icon-inactive);
   border: none;
   outline: none;
   background-color: inherit;
@@ -26,7 +26,7 @@
 }
 
 .round:hover {
-  color: var(--text-teal-light);
+  color: var(--icon-active);
 }
 
 .round:active {

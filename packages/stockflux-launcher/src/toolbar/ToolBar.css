@@ -1,7 +1,6 @@
 .toolbar {
   display: flex;
   align-items: center;
-  padding-right: 24px;
   padding-bottom: 12px;
 }
 
@@ -18,8 +17,4 @@
 .toolbar button.round svg {
   margin-top: 15px;
   padding: 0;
-}
-
-svg {
-  color: white;
 }

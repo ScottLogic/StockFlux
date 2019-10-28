@@ -51,6 +51,7 @@
 }
 
 .header-icon {
+    color: #FFFFFF;
     display: inline-block;    
     cursor: pointer;
     padding:3px;

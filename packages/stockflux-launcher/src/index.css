@@ -1,5 +1,8 @@
 :root {
+  --icon-active: #29E9E3;
+  --icon-inactive: #8A96A6;
   --icon-hover-light: rgba(256,256,256,0.15);
+  --launcher-border-color: 1px solid #0372BE;
   --search-input-min-width: 250px;
   --search-input-width: 396px;
   --search-input-height: 30px;

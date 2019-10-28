@@ -61,27 +61,48 @@ export default () => {
         <Titlebar dockedTo={edge} />
       </div>
       <div className={cx('app', edge)}>
-        <Components.Shortcuts.Watchlist symbol="TSLA" name="Tesla" />
+        <div
+          className={cx(
+            edge === 'top' || edge === 'none'
+              ? 'shortcut-horizontal'
+              : 'shortcut-vertical'
+          )}
+        >
+          <Components.Shortcuts.Watchlist
+            className="launcher-icon"
+            symbol="TSLA"
+            name="Tesla"
+          />
+        </div>
 
         <FreeTextSearch dockedTo={edge} />
         <ToolBar
           tools={[
             {
-              className: 'launcher-icon',
+              className:
+                edge === ScreenEdge.LEFT
+                  ? 'launcher-icon-active'
+                  : 'launcher-icon',
               label: <LeftIcon />,
               onClick: windowActions.dockLeft,
               disabled: edge === ScreenEdge.LEFT,
               visible: isDockable
             },
             {
-              className: 'launcher-icon',
+              className:
+                edge === ScreenEdge.TOP
+                  ? 'launcher-icon-active'
+                  : 'launcher-icon',
               label: <TopIcon />,
               onClick: windowActions.dockTop,
               disabled: edge === ScreenEdge.TOP,
               visible: isDockable
             },
             {
-              className: 'launcher-icon',
+              className:
+                edge === ScreenEdge.RIGHT
+                  ? 'launcher-icon-active'
+                  : 'launcher-icon',
               label: <RightIcon />,
               onClick: windowActions.dockRight,
               disabled: edge === ScreenEdge.RIGHT,

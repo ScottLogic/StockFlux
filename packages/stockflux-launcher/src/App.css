@@ -8,8 +8,27 @@ html {
   height: 100%;
 }
 
+.launcher-icon-active {
+  margin-top: 10px;
+}
+
+.launcher-icon-active:disabled {
+  color: var(--icon-active);
+}
+
+.launcher-icon-active:hover {
+  background-color: var(--icon-hover-light);
+  color: var(--icon-inactive);
+}
+
+.launcher-icon {
+  color: var(--icon-inactive);
+  margin-top: 10px;
+}
+
 .launcher-icon:hover {
   background-color: var(--icon-hover-light);
+  color: var(--icon-active);
 }
 
 .launcher-title {
@@ -29,13 +48,11 @@ html {
 }
 
 .shortcut-horizontal {
-  padding-bottom: 40px;
   padding-left: 24px;
 }
 
 .shortcut-vertical {
   padding-left: 10px;
-  padding-right: 10px;
   padding-top: 60px;
 }
 
@@ -50,11 +67,11 @@ html {
 }
 
 .left {
-  border-right: 1px solid #0372BE;
+  border-right: var(--launcher-border-color);
 }
 
 .right {
-  border-left: 1px solid #0372BE;
+  border-left: var(--launcher-border-color);
 }
 
 .none,
@@ -65,13 +82,13 @@ html {
 }
 
 .none {
-  border: 1px solid #0372BE;
+  border: var(--launcher-border-color);
   border-top: 0;
   height: 70px;
 }
 
 .top {
-  border-bottom: 1px solid #0372BE;
+  border-bottom: var(--launcher-border-color);
   height: 60px;
 }
 
