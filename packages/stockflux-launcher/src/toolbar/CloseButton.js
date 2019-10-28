@@ -1,7 +1,6 @@
 import React from 'react';
 import Components from 'stockflux-components';
 import { OpenfinApiHelpers } from 'stockflux-core';
-//import ConfirmationWindow from '../popups/ConfirmationWindow';
 
 export default (
   <Components.Popups.ConfirmationWindow
