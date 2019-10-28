@@ -19,6 +19,9 @@ import WatchListIcon from './components/glyphs/small/watchlist.svg';
 import PriceUp from './components/glyphs/arrows/priceArrowUp.svg';
 import PriceDown from './components/glyphs/arrows/priceArrowDown.svg';
 
+
+import ConfirmationWindow from './components/popups/ConfirmationWindow';
+import PopupWindow from './components/popups/PopupWindow';
 import PreviewWindow from './components/preview-window/PreviewWindow';
 
 import './styles/button-icon.css';
@@ -45,5 +48,6 @@ export default {
     Small: { Chart: ChartIcon, News: NewsIcon, Watchlist: WatchListIcon },
     Arrows: { PriceUp, PriceDown }
   },
+  Popups: { PopupWindow, ConfirmationWindow },
   PreviewWindow
 };
