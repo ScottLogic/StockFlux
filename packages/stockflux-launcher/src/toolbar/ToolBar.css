@@ -16,11 +16,8 @@
 }
 
 .toolbar button.round svg {
+  margin-top: 15px;
   padding: 0;
-}
-
-.toolbar button.round svg:hover {
-  box-shadow: inset 0 0 0 1000px #1B3B56;
 }
 
 svg {

@@ -1,14 +1,10 @@
 .round {
-  height: 35px;
-  width: 35px;
   display: inline-block;
-  margin: 5px;
   color: var(--text-teal-light);
   border: none;
   outline: none;
   background-color: inherit;
   cursor: pointer;
-  padding: 6px;
 }
 
 .round.small {
