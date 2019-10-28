@@ -21,7 +21,6 @@ import PriceDown from './components/glyphs/arrows/priceArrowDown.svg';
 
 import PreviewWindow from './components/preview-window/PreviewWindow';
 
-
 import './styles/button-icon.css';
 import './styles/icon.css';
 import './styles/font.css';

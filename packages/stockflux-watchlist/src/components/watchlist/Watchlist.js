@@ -207,7 +207,7 @@ const Watchlist = () => {
         htmlfile="preview-chart.html"
         position={previewDetails.position}
         size={previewDetails.size}
-      ></Components.PreviewWindow>      
+      ></Components.PreviewWindow>
       <Components.ScrollWrapperY>
         {watchlist.length === 0 ? (
           <div className="no-watchlist">
