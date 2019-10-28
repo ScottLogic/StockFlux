@@ -1,9 +1,6 @@
-/*global fin*/
+import { OpenfinApiHelpers } from 'stockflux-core';
 
 export const showNotification = notificationDetails => {
   const details = notificationDetails;
-  new fin.desktop.Notification({
-    url: './notification.html',
-    message: details.message
-  });
+  OpenfinApiHelpers.showNotification('./notification.html', details.message);
 };

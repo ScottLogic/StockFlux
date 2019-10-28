@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { OpenfinApiHelpers } from 'stockflux-core';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FaTimes } from 'react-icons/fa';
@@ -98,7 +99,7 @@ const WatchlistCard = ({
 
   const sendSymbolToNews = () => {
     try {
-      window.fin.InterApplicationBus.send(
+      OpenfinApiHelpers.sendInterApplicationMessage(
         { uuid: options ? options.uuid : '*' },
         'news',
         {

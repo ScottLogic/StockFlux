@@ -1,11 +1,11 @@
-/*global fin*/
+import { OpenfinApiHelpers } from 'stockflux-core';
 
 /**
  * Abstraction layer for the OpenFin API.
  */
 class CurrentWindowService {
   getCurrentWindow() {
-    return fin.desktop.Window.getCurrent();
+    return OpenfinApiHelpers.getCurrentWindow();
   }
 
   getCurrentWindowName() {
@@ -13,11 +13,11 @@ class CurrentWindowService {
   }
 
   ready(cb) {
-    fin.desktop.main(cb);
+    OpenfinApiHelpers.useMain(cb);
   }
 
   openUrlWithBrowser(url) {
-    fin.desktop.System.openUrlWithBrowser(url);
+    OpenfinApiHelpers.openUrlWithBrowser(url);
   }
 
   resizeTo(...args) {

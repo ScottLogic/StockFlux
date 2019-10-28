@@ -8,6 +8,7 @@ import Close from './components/buttons/round-buttons/Close';
 import News from './components/buttons/round-buttons/app-shortcuts/News';
 import ConfirmationWindow from './components/popups/ConfirmationWindow';
 import PopupWindow from './components/popups/PopupWindow';
+import PreviewWindow from './components/preview-window/PreviewWindow';
 
 import './styles/button-icon.css';
 import './styles/icon.css';
@@ -22,5 +23,6 @@ export default {
   LargeSpinner,
   Buttons: { Round, Close },
   Shortcuts: { Watchlist, Chart, News },
-  Popups: { PopupWindow, ConfirmationWindow }
+  Popups: { PopupWindow, ConfirmationWindow },
+  PreviewWindow
 };

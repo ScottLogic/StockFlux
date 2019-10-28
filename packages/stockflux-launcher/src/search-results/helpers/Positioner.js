@@ -17,7 +17,7 @@ export default (searchButtonRef, inputRef, dockedTo, windowBounds) => {
     case ScreenEdge.LEFT:
       return {
         defaultTop: parseInt(searchButtonRect.top),
-        defaultLeft: DEFAULT_LAUNCHER_SIZE,
+        defaultLeft: windowBounds.right,
         defaultWidth: DEFAULT_SEARCH_RESULTS_SIZE,
         defaultHeight: DEFAULT_SEARCH_RESULTS_SIZE
       };
@@ -29,11 +29,30 @@ export default (searchButtonRef, inputRef, dockedTo, windowBounds) => {
         defaultHeight: DEFAULT_SEARCH_RESULTS_SIZE
       };
     default:
-      return {
-        defaultTop: 0,
-        defaultLeft: 0,
-        defaultWidth: DEFAULT_SEARCH_RESULTS_SIZE,
-        defaultHeight: DEFAULT_SEARCH_RESULTS_SIZE
-      };
+      const searchInputBox = inputRef.current.getBoundingClientRect();
+      if (searchInputBox.x !== 0) {
+        return {
+          defaultTop: parseInt(windowBounds.top) + DEFAULT_LAUNCHER_SIZE,
+          defaultLeft: windowBounds.left + parseInt(searchInputBox.left),
+          defaultWidth: DEFAULT_SEARCH_RESULTS_SIZE,
+          defaultHeight: DEFAULT_SEARCH_RESULTS_SIZE
+        };
+      } else {
+        const rightPosition =
+          windowBounds.left + windowBounds.width + DEFAULT_SEARCH_RESULTS_SIZE;
+        let leftPosition = windowBounds.left + windowBounds.width;
+        if (rightPosition > window.screen.width) {
+          leftPosition = windowBounds.left - DEFAULT_SEARCH_RESULTS_SIZE;
+        } else if (windowBounds.left < 0 && rightPosition > 0) {
+          leftPosition = windowBounds.left - DEFAULT_SEARCH_RESULTS_SIZE;
+        }
+
+        return {
+          defaultTop: parseInt(searchButtonRect.top),
+          defaultLeft: leftPosition,
+          defaultWidth: DEFAULT_SEARCH_RESULTS_SIZE,
+          defaultHeight: DEFAULT_SEARCH_RESULTS_SIZE
+        };
+      }
   }
 };

@@ -5,7 +5,7 @@ import React, {
   useRef,
   useCallback
 } from 'react';
-import { StockFlux } from 'stockflux-core';
+import { StockFlux, StockFluxHooks } from 'stockflux-core';
 import reducer, {
   initialSearchState
 } from '../reducers/free-text-search/FreeTextSearch';
@@ -17,7 +17,6 @@ import {
 } from 'openfin-react-hooks';
 import { OpenfinApiHelpers } from 'stockflux-core/src';
 import getResultsWindowProps from '../search-results/helpers/GetResultsWindowProps';
-import useChildWindow from '../search-results/helpers/useChildWindow';
 import ChildWindow from '../search-results/ChildWindow';
 import SearchInputField from './SearchInputField';
 import SearchButton from './SearchButton';
@@ -29,12 +28,13 @@ const SEARCH_RESULTS_WINDOW_NAME = 'search-results';
 const SEARCH_RESULTS_CSS_PATCH = 'childWindow.css';
 
 let latestRequest = null;
-const FreeTextSearch = ({ dockedTo }) => {
+const FreeTextSearch = ({ dockedTo, showTextInput }) => {
   const [searchState, dispatch] = useReducer(reducer, initialSearchState);
   const [query, setQuery] = useState(null);
+  const [parentUuid, setParentUuid] = useState(null);
   const bounds = useBounds();
   const [debouncedQuery, setDebouncedQuery] = useState(null);
-  const childWindow = useChildWindow(
+  const childWindow = StockFluxHooks.useChildWindow(
     SEARCH_RESULTS_WINDOW_NAME,
     document,
     SEARCH_RESULTS_CSS_PATCH
@@ -44,15 +44,19 @@ const FreeTextSearch = ({ dockedTo }) => {
   const launcherInputRef = useRef(null);
   const childWindowInputRef = useRef(null);
 
-  const parentUuid = OpenfinApiHelpers.getCurrentWindowSync()
-    .getOptions()
-    .then(options => options.uuid);
+  const { window, launch, populateDOM, close } = childWindow;
+
+  useEffect(() => {
+    OpenfinApiHelpers.getCurrentWindowOptions().then(options =>
+      setParentUuid(options.uuid)
+    );
+  }, []);
 
   const isDockedToSide = [ScreenEdge.LEFT, ScreenEdge.RIGHT].includes(dockedTo);
 
   const launchChildWindow = useCallback(
     () =>
-      childWindow.launch(
+      launch(
         getResultsWindowProps(
           SEARCH_RESULTS_WINDOW_NAME,
           searchButtonRef,
@@ -61,39 +65,39 @@ const FreeTextSearch = ({ dockedTo }) => {
           bounds
         )
       ),
-    [bounds, dockedTo, childWindow, isDockedToSide]
+    [bounds, dockedTo, launch, isDockedToSide]
   );
 
   const closeChildWindow = useCallback(() => {
     setQuery(null);
-    dispatch({ type: searchAction.initialise });
-    childWindow.close();
-  }, [childWindow]);
+    dispatch({ type: searchAction.INITIALISE });
+    close();
+  }, [close]);
 
   const handleOnInputChange = useCallback(
     event => {
-      if (!childWindow.window) launchChildWindow();
+      if (!window) launchChildWindow();
       setQuery(event.target.value);
     },
-    [childWindow, launchChildWindow]
+    [window, launchChildWindow]
   );
 
   const handleSearchClick = useCallback(() => {
-    if (childWindow.window && results) {
+    if (window && results) {
       closeChildWindow();
     } else launchChildWindow();
-  }, [childWindow, results, launchChildWindow, closeChildWindow]);
+  }, [window, results, launchChildWindow, closeChildWindow]);
 
   useEffect(() => {
     const stockFluxSearch = () => {
       if (debouncedQuery) {
-        dispatch({ type: searchAction.searching });
+        dispatch({ type: searchAction.SEARCHING });
         try {
           const currentRequest = StockFlux.stockFluxSearch(debouncedQuery).then(
             stockFluxResults => {
               if (latestRequest === currentRequest) {
                 dispatch({
-                  type: searchAction.success,
+                  type: searchAction.SUCCESS,
                   results: stockFluxResults
                 });
               }
@@ -101,7 +105,7 @@ const FreeTextSearch = ({ dockedTo }) => {
           );
           latestRequest = currentRequest;
         } catch {
-          dispatch({ type: searchAction.error });
+          dispatch({ type: searchAction.ERROR });
         }
       }
     };
@@ -117,10 +121,10 @@ const FreeTextSearch = ({ dockedTo }) => {
   }, [query]);
 
   useEffect(() => {
-    if (query === '' && childWindow.window) {
+    if (query === '' && window) {
       closeChildWindow();
     }
-  }, [childWindow, query, closeChildWindow]);
+  }, [window, query, closeChildWindow]);
 
   useEffect(() => {
     if (childWindow) {
@@ -130,14 +134,14 @@ const FreeTextSearch = ({ dockedTo }) => {
   }, [dockedTo]);
 
   useEffect(() => {
-    if (childWindow.window) {
+    if (window) {
       const childWindowJsx = (
         <ChildWindow
           results={results}
           isSearching={isSearching}
           debouncedQuery={debouncedQuery}
         >
-          {isDockedToSide && (
+          {(isDockedToSide || showTextInput) && (
             <div className="free-text-search">
               <SearchInputField
                 query={query ? query : ''}
@@ -148,17 +152,19 @@ const FreeTextSearch = ({ dockedTo }) => {
           )}
         </ChildWindow>
       );
-      childWindow.populateDOM(childWindowJsx);
+      populateDOM(childWindowJsx);
     }
   }, [
-    childWindow,
+    window,
+    populateDOM,
     dockedTo,
     debouncedQuery,
     isSearching,
     results,
     handleOnInputChange,
     isDockedToSide,
-    query
+    query,
+    showTextInput
   ]);
 
   const {

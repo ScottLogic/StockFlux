@@ -1,11 +1,12 @@
 import { useReducer, useEffect, useCallback } from 'react';
 import ReactDOM from 'react-dom';
-import reducer, {
-  initialChildWindowState
-} from '../../reducers/child-window/ChildWindow';
-import state from '../../reducers/child-window/State';
-import ActionType from '../../reducers/child-window/Action';
-import { OpenfinApiHelpers } from 'stockflux-core';
+import reducer, { initialChildWindowState } from './reducers/ChildWindow';
+import childWindowState from './reducers/State';
+import action from './reducers/Actions';
+import {
+  createWindow,
+  getChildWindows
+} from '../../openfin-api-utils/openfinApiHelpers';
 
 export default (name, document, cssUrl) => {
   const [childWindow, dispatch] = useReducer(reducer, initialChildWindowState);
@@ -55,7 +56,7 @@ export default (name, document, cssUrl) => {
   }, [childWindow.window, cssUrl, document, inheritFromParent, injectNode]);
 
   const closeExistingWindows = useCallback(async () => {
-    const childWindows = await OpenfinApiHelpers.getChildWindows();
+    const childWindows = await getChildWindows();
 
     await Promise.all(
       childWindows.map(win =>
@@ -69,29 +70,29 @@ export default (name, document, cssUrl) => {
   const dispatchError = error => {
     console.error(error);
     dispatch({
-      type: ActionType.CHANGE_STATE,
-      payload: state.ERROR,
+      type: action.changeState,
+      payload: childWindowState.error,
       error
     });
   };
 
   const dispatchNewState = state =>
     dispatch({
-      type: ActionType.CHANGE_STATE,
+      type: action.changeState,
       payload: state
     });
 
   const launch = useCallback(
     async windowOptions => {
-      if (childWindow.state !== state.LAUNCHING) {
+      if (childWindow.state !== childWindowState.launching) {
         try {
-          dispatchNewState(state.LAUNCHING);
+          dispatchNewState(childWindowState.launching);
           await closeExistingWindows();
           dispatch({
-            type: ActionType.SET_WINDOW,
-            payload: await OpenfinApiHelpers.createWindow(windowOptions)
+            type: action.setWindow,
+            payload: await createWindow(windowOptions)
           });
-          dispatchNewState(state.LAUNCHED);
+          dispatchNewState(childWindowState.launched);
         } catch (error) {
           dispatchError(error);
         }
@@ -104,12 +105,12 @@ export default (name, document, cssUrl) => {
     jsx => {
       if (childWindow.window) {
         try {
-          dispatchNewState(state.POPULATING);
+          dispatchNewState(childWindowState.populating);
           ReactDOM.render(
             jsx,
             childWindow.window.getWebWindow().document.getElementById('root')
           );
-          dispatchNewState(state.POPULATED);
+          dispatchNewState(childWindowState.populated);
         } catch (error) {
           dispatchError(error);
         }
@@ -122,7 +123,7 @@ export default (name, document, cssUrl) => {
     try {
       if (childWindow.window) {
         childWindow.window.close();
-        dispatch({ type: ActionType.RESET });
+        dispatch({ type: action.reset });
       }
     } catch (error) {
       dispatchError(error);
