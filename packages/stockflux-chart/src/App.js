@@ -7,6 +7,7 @@ import {
   useOptions
 } from 'openfin-react-hooks';
 import { format, subYears } from 'date-fns';
+import { ReactComponent as D3FCIcon } from './assets/d3fc.svg'
 
 import './styles/app.css';
 
@@ -58,6 +59,9 @@ const App = () => {
   if (!symbol) {
     setSymbol('TSLA')
   }
+  if (name == null) {
+    setName('Tesla, Inc')
+  }
 
   // if (!date) {
   //   setDate('2019-09-01')
@@ -108,8 +112,11 @@ const App = () => {
         <div className="main-content">
           <Components.Titlebar />
           <div id="showcase-title">
-            {symbol && <div className="code">{symbol}</div>}
-            <div className="name">{!symbol ? 'Generated Data' : name}</div>
+            <div className="symbol-info">
+              {symbol && <div className="code">{symbol}</div>}
+              <div className="name">{!symbol ? 'Generated Data' : name}</div>
+            </div>
+
             <div className="chart-nav-icons">
               <Components.Shortcuts.News
                 small={true}
@@ -137,7 +144,14 @@ const App = () => {
               </Components.Buttons.Round>
             </div>
           </div>
-          <Chart chartData={chartData} chartType={chartType} />
+        </div>
+        <Chart chartData={chartData} chartType={chartType} />
+        <div className="chart-info">
+          <div className="chart-tool">
+            Powered by
+          </div>
+          <div className="d3fc-button"><D3FCIcon /></div>
+
         </div>
       </div>
     </>
