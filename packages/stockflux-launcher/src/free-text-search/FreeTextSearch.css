@@ -30,7 +30,13 @@
 
 .searchIcon {
   margin-bottom: 30px;
-  margin-right: 12px;
+  margin-right: 30px;
+  margin-top: 15px;
+}
+
+.searchSVG {
+  height: 40px;
+  width: 60px;
 }
 
 div#root > .free-text-search {

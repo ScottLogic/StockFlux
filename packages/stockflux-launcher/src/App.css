@@ -35,15 +35,6 @@ html {
   padding-top: 60px;
 }
 
-.none,
-.top {
-  flex-direction: row;
-  justify-content: space-between;
-  border-bottom: 1px solid #0372BE;
-  align-items: center;
-  height: 60px;
-}
-
 .left,
 .right {
   flex-direction: column;
@@ -54,12 +45,30 @@ html {
   height: 100%;
 }
 
+.left {
+  border-right: 1px solid #0372BE;
+}
+
 .right {
   border-left: 1px solid #0372BE;
 }
 
-.left {
-  border-right: 1px solid #0372BE;
+.none,
+.top {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.none {
+  border: 1px solid #0372BE;
+  border-top: 0;
+  height: 70px;
+}
+
+.top {
+  border-bottom: 1px solid #0372BE;
+  height: 60px;
 }
 
 .drag-handle {
