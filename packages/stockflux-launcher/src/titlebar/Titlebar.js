@@ -2,6 +2,8 @@ import cx from 'classnames';
 import React, { useCallback } from 'react';
 import { OpenfinApiHelpers } from 'stockflux-core';
 import './Titlebar.css';
+import { ReactComponent as CloseIcon } from '../icons/close.svg';
+import { ReactComponent as MinimizeIcon } from '../icons/minimize.svg';
 
 export default ({ dockedTo }) => {
   const onMinimizeClick = useCallback(async () => {
@@ -45,16 +47,12 @@ export default ({ dockedTo }) => {
           dockedTo === 'top' || dockedTo === 'none' ? 'add-padding-right' : ''
         )}
       >
-        <div
-          className="button-icon minimize"
-          onClick={onMinimizeClick}
-          title="Minimize"
-        >
-          &nbsp;
+        <div className="header-icon" onClick={onMinimizeClick} title="Minimize">
+          <MinimizeIcon />
         </div>
 
-        <div className="button-icon close" onClick={onCloseClick} title="Close">
-          &nbsp;
+        <div className="header-icon" onClick={onCloseClick} title="Close">
+          <CloseIcon />
         </div>
       </div>
     </div>

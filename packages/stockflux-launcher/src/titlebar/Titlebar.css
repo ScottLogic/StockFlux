@@ -49,4 +49,13 @@
 .titlebar-container > .icons-container > .button-icon {
     height: 15px;
 }
-  
+
+.header-icon {
+    display: inline-block;    
+    cursor: pointer;
+    padding:3px;
+}
+
+.header-icon:hover {
+  background-color: var(--icon-hover-light);
+}

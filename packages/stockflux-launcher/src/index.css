@@ -1,4 +1,5 @@
 :root {
+  --icon-hover-light: rgba(256,256,256,0.15);
   --search-input-min-width: 250px;
   --search-input-width: 396px;
   --search-input-height: 30px;
