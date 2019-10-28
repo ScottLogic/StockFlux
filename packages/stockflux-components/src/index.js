@@ -6,6 +6,7 @@ import Chart from './components/buttons/round-buttons/app-shortcuts/Chart';
 import Round from './components/buttons/round-button/RoundButton';
 import Close from './components/buttons/round-buttons/Close';
 import News from './components/buttons/round-buttons/app-shortcuts/News';
+
 import Borderless from './components/buttons/borderless-button/BorderlessButton';
 import ChartBorderless from './components/buttons/borderless-buttons/app-shortcuts/Chart';
 import NewsBorderless from './components/buttons/borderless-buttons/app-shortcuts/News';
@@ -17,6 +18,9 @@ import WatchListIcon from './components/glyphs/small/watchlist.svg';
 
 import PriceUp from './components/glyphs/arrows/priceArrowUp.svg';
 import PriceDown from './components/glyphs/arrows/priceArrowDown.svg';
+
+import PreviewWindow from './components/preview-window/PreviewWindow';
+
 
 import './styles/button-icon.css';
 import './styles/icon.css';
@@ -41,5 +45,6 @@ export default {
   Icons: {
     Small: { Chart: ChartIcon, News: NewsIcon, Watchlist: WatchListIcon },
     Arrows: { PriceUp, PriceDown }
-  }
+  },
+  PreviewWindow
 };

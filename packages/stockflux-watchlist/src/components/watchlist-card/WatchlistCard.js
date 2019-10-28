@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { OpenfinApiHelpers } from 'stockflux-core';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Minichart from '../minichart/Minichart';
@@ -97,7 +98,7 @@ const WatchlistCard = ({
 
   const sendSymbolToNews = () => {
     try {
-      window.fin.InterApplicationBus.send(
+      OpenfinApiHelpers.sendInterApplicationMessage(
         { uuid: options ? options.uuid : '*' },
         'news',
         {
