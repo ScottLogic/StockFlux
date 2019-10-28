@@ -226,6 +226,7 @@ const Watchlist = () => {
                 dragOverIndex === watchlist.length && i === watchlist.length - 1
               }
               removeFromWatchList={removeFromWatchList}
+              chartPreview={previewDetails}
             />
           ))
         )}

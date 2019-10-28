@@ -15,7 +15,8 @@ const WatchlistCard = ({
   dragOverBottom,
   bindings,
   isUnwatching,
-  removeFromWatchList
+  removeFromWatchList,
+  chartPreview
 }) => {
   const [dragging, setDragging] = useState({
     isDragging: false,
@@ -30,6 +31,7 @@ const WatchlistCard = ({
     delta: 0,
     percentage: 0
   });
+  const [showChartPreview, setShowChartPreview] = useState(false);
 
   const [options] = useOptions();
 
@@ -123,6 +125,12 @@ const WatchlistCard = ({
       onDragStart={onDragStart(symbol)}
       onDragEnd={onDragEnd}
     >
+      <Components.PreviewWindow
+        display={showChartPreview}
+        htmlfile="preview-chart.html"
+        position={chartPreview.position}
+        size={chartPreview.size}
+      ></Components.PreviewWindow>
       <div className="drop-target">
         <div className="card default-background" draggable="false">
           <div className="card-top darkens">
@@ -139,7 +147,11 @@ const WatchlistCard = ({
                   onClick={sendSymbolToNews}
                 />
               </div>
-              <div className="icon">
+              <div
+                className="icon"
+                onMouseOver={() => setShowChartPreview(true)}
+                onMouseLeave={() => setShowChartPreview(false)}
+              >
                 <Components.Shortcuts.ChartBorderless
                   symbol={symbol}
                   name={stockData.name}
