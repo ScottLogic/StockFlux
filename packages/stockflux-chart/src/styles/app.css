@@ -9,26 +9,46 @@ body {
 }
 
 .main {
-    background-color: var(--dark-background);
+    background-color: #0D2437;
     padding: 0;
+    height: 100vh
+}
+.main-content {
+    height: 90px;
+}
+
+.chart-info {
+    position: absolute; 
+    right: 0px;
+    margin-right: 24px;
+    height: 28px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+}
+
+
+
+.d3fc-button {
+    position: absolute;
+    right: 0px;
+    fill:white
+    
+}
+.chart-tool{
+    color: white;
 }
 
 #showcase-container {
-    position: absolute;
-    top: var(--toolbar-height);
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 0px 20px 20px 20px;
-    height: 75%
+
+    height: 80%;
+    width: calc(100vw - 40px)
 }
 #navigation-container {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 0px 20px 0px 20px;
+
     height: 20%;
+    width: calc(100vw - 40px)
+
 }
 #navigation-container .y-axis {
     visibility: hidden;
@@ -57,29 +77,38 @@ body {
 }
 
 #showcase-title {
-    color: var(--chart-teal);
-    position: relative;
-    bottom: 10px;
-    left: 25px;
-    z-index: 10;
+    color: white;
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    height: 55px;
 }
-#showcase-title .code,
+#showcase-title .code{
+    margin-left: 24px;
+    padding: 4px 0px 4px 0px;
+    position: relative;
+    top: 0px;
+}
+
 #showcase-title .name {
-    display: inline-block;
-    padding-right: 10px;
+    margin-left: 24px;
+    position: relative;
+    display: inline;
+    top: 0px;
 }
 
 #showcase-title .code {
-    font: 18px var(--font-weight-bolder);
+    font-size: 18px;
+    font-weight: var(--font-weight-normal);
 }
 
 #showcase-title  .name {
-    font: 14px var(--font-weight-normal);
+    font: 18px var(--font-weight-normal);
 }
 
 .chart-nav-icons {
+    position: absolute; 
+    right:0px;
+    padding-right:24px;
     display: flex;
     flex-direction: row;
     align-items: center;

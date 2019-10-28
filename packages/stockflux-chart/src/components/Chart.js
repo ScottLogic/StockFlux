@@ -43,7 +43,9 @@ const Chart = ({ chartData, chartType }) => {
     var area = fc.seriesSvgLine()
       .crossValue(function (d) { return d.date; })
       .mainValue(function (d) { return d.close; })
+
     var candlestick = fc.seriesSvgCandlestick()
+
     var brush = fc.brushX()
       .on('brush', function (evt) {
         // if the brush has zero height there is no selection
@@ -71,6 +73,10 @@ const Chart = ({ chartData, chartType }) => {
     } else {
       var mainChart = fc.chartCartesian(x, y)
         .svgPlotArea(candlestick)
+        .decorate(function (selection) {
+          var plot = selection.enter().select('.plot-area')
+          plot.attr('class', 'plot-area main-chart')
+        })
     }
 
     var navigatorChart = fc.chartCartesian(x.copy(), y.copy())
@@ -92,12 +98,34 @@ const Chart = ({ chartData, chartType }) => {
     };
 
     render()
+
   }
 
-  return <div>
+  return <div className="chart-content">
     <div ref={showcaseContainer} id="showcase-container" />
     <div ref={navigationContainer} id="navigation-container" />
   </div>
 };
-
+// .decorate(function (selection) {
+//   var enter = selection.enter();
+//   // console.log(enter)
+//   // var handles = enter.select('.plot-area')
+//   // console.log(handles)
+//   var area = (d3.select('.plot-area'))
+//   console.log("area", area)
+//   var brush = (d3.select('.brush'))
+//   console.log("brush", brush)
+//   var handles = brush.selectAll('.handle')
+//   console.log("handle", handles)
+//   handles
+//     .append('circle')
+//     .attr('cy', 30)
+//     .attr('r', 7)
+//     .attr('class', 'outer-handle');
+//   handles
+//     .append('circle')
+//     .attr('cy', 30)
+//     .attr('r', 4)
+//     .attr('class', 'inner-handle');
+// })
 export default Chart;
