@@ -1,12 +1,12 @@
 * {
   box-sizing: border-box;
-  color: var(--text-grey-lighter);
+  color: var(--text-color);
 }
 
 body {
-  background-color: var(--middle-background);
+  background-color: var(--window-background-color);
   font-family: var(--font-roboto-sans-serif);
-  color: var(--text-grey-lighter);
+  color: var(--text-color);
   user-select: none;
   margin: 0;
   border: 1px solid var(--dark-background);
@@ -40,13 +40,6 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-}
-
-.header {
-  flex: 0 0 auto;
-  display: flex;
-  height: var(--toolbar-height);
-  border-bottom: 1px solid var(--dark-background);
 }
 
 .scroll-wrapper {
@@ -98,7 +91,7 @@ body {
 .card-wrapper.dragOverBottom,
 .card-wrapper.dragOver,
 .card-wrapper.dragging {
-  background-color: var(--dragging-background);
+  background-color: rgba(41,233,227,0.2);
 }
 
 .card-wrapper.dragOver {

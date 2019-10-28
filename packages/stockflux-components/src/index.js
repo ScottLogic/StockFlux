@@ -6,6 +6,17 @@ import Chart from './components/buttons/round-buttons/app-shortcuts/Chart';
 import Round from './components/buttons/round-button/RoundButton';
 import Close from './components/buttons/round-buttons/Close';
 import News from './components/buttons/round-buttons/app-shortcuts/News';
+import Borderless from './components/buttons/borderless-button/BorderlessButton';
+import ChartBorderless from './components/buttons/borderless-buttons/app-shortcuts/Chart';
+import NewsBorderless from './components/buttons/borderless-buttons/app-shortcuts/News';
+import CloseBorderless from './components/buttons/borderless-buttons/Close';
+
+import ChartIcon from './components/glyphs/small/chart.svg';
+import NewsIcon from './components/glyphs/small/news.svg';
+import WatchListIcon from './components/glyphs/small/watchlist.svg';
+
+import PriceUp from './components/glyphs/arrows/priceArrowUp.svg';
+import PriceDown from './components/glyphs/arrows/priceArrowDown.svg';
 
 import './styles/button-icon.css';
 import './styles/icon.css';
@@ -18,6 +29,17 @@ export default {
   ScrollWrapperY,
   Spinner,
   LargeSpinner,
-  Buttons: { Round, Close },
-  Shortcuts: { Watchlist, Chart, News }
+  Buttons: { Round, Close, Borderless },
+  Shortcuts: {
+    Watchlist,
+    Chart,
+    News,
+    ChartBorderless,
+    NewsBorderless,
+    CloseBorderless
+  },
+  Icons: {
+    Small: { Chart: ChartIcon, News: NewsIcon, Watchlist: WatchListIcon },
+    Arrows: { PriceUp, PriceDown }
+  }
 };

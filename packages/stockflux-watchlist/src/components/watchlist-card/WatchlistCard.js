@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FaTimes } from 'react-icons/fa';
 import Minichart from '../minichart/Minichart';
 import Components from 'stockflux-components';
 import { StockFlux, Intents, Utils } from 'stockflux-core';
@@ -124,30 +123,40 @@ const WatchlistCard = ({
       onDragEnd={onDragEnd}
     >
       <div className="drop-target">
-        <div className="card darkens default-background" draggable="false">
-          <div className="card-top">
+        <div className="card default-background" draggable="false">
+          <div className="card-top darkens">
             <div className="details-container">
-              <div className="name">{stockData.name}</div>
               <div className="symbol">{symbol}</div>
+              <div className="name">{stockData.name}</div>
             </div>
             <div className="icons">
-              <Components.Shortcuts.News
-                className="news-symbol"
-                symbol={symbol}
-                name={stockData.name}
-                small={true}
-                onClick={sendSymbolToNews}
-              />
-              <Components.Buttons.Close
-                className="remove-symbol"
-                onClick={e => {
-                  e.stopPropagation();
-                  removeFromWatchList(symbol);
-                }}
-                small={true}
-              >
-                <FaTimes />
-              </Components.Buttons.Close>
+              <div className="icon">
+                <Components.Shortcuts.NewsBorderless
+                  symbol={symbol}
+                  name={stockData.name}
+                  small={true}
+                  onClick={sendSymbolToNews}
+                />
+              </div>
+              <div className="icon">
+                <Components.Shortcuts.ChartBorderless
+                  symbol={symbol}
+                  name={stockData.name}
+                  small={true}
+                  onClick={() => bindings.onDropOutside(symbol, stockData.name)}
+                />
+              </div>
+              <div className="icon">
+                <Components.Buttons.Borderless
+                  onClick={e => {
+                    e.stopPropagation();
+                    removeFromWatchList(symbol);
+                  }}
+                  small={true}
+                >
+                  <Components.Icons.Small.Watchlist />
+                </Components.Buttons.Borderless>
+              </div>
             </div>
           </div>
           <div
@@ -161,25 +170,36 @@ const WatchlistCard = ({
             />
             <div className="details">
               {<div className="price">{stockData.price || 'N/A'}</div>}
-              {<div className="delta">{stockData.delta || ''}</div>}
-
-              <div className="percentage">
+              <div
+                className={classNames({
+                  'percentage price_positive': stockData.percentage > 0,
+                  'percentage price_negative': stockData.percentage < 0
+                })}
+              >
                 {stockData.percentage ? (
-                  <>
-                    <div
-                      className={classNames({
-                        'stockflux-icon arrow-up': stockData.percentage > 0,
-                        'stockflux-icon arrow-down': stockData.percentage < 0
-                      })}
-                      title="Stock Arrow"
-                      draggable="false"
-                    />
+                  <span>
+                    {stockData.percentage > 0 ? (
+                      <Components.Icons.Arrows.PriceUp />
+                    ) : (
+                      <Components.Icons.Arrows.PriceDown />
+                    )}
+                    {stockData.percentage < 0 ? '-' : ''}
                     {Math.abs(stockData.percentage) + '%'}
-                  </>
+                  </span>
                 ) : (
                   ''
                 )}
               </div>
+              {
+                <div
+                  className={classNames({
+                    'delta price_positive': stockData.percentage > 0,
+                    'delta price_negative': stockData.percentage < 0
+                  })}
+                >
+                  {stockData.delta || ''}
+                </div>
+              }
             </div>
           </div>
         </div>

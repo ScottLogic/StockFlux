@@ -55,9 +55,9 @@
   --font-header-text: 21px;
 
   /* font-weight */
-  --font-weight-normal: 300;
-  --font-weight-bold: 400;
-  --font-weight-bolder: 500;
+  --font-weight-normal: 400;
+  --font-weight-bold: 500;
+  --font-weight-bolder: 700;
 
   /* padding */
   --padding-small: 5px;
