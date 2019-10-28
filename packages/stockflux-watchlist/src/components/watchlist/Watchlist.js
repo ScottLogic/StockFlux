@@ -3,7 +3,6 @@ import WatchlistCard from '../watchlist-card/WatchlistCard';
 import Components from 'stockflux-components';
 import { StockFluxHooks, OpenfinApiHelpers, Launchers } from 'stockflux-core';
 import * as fdc3 from 'openfin-fdc3';
-import { showNotification } from '../notifications/Notification';
 import {
   useInterApplicationBusSubscribe,
   useOptions
@@ -14,9 +13,16 @@ import {
   resetDragState,
   onDrop
 } from '../watchlist-card/WatchlistCard.Dragging';
+import { useNotification } from 'openfin-react-hooks';
 import './Watchlist.css';
 
 let latestListener;
+
+const NOTIFICATION_OPTIONS = {
+  cssUrl: './notification.css',
+  parentDocument: document,
+  shouldInheritCss: true
+};
 
 const getDistinctElementArray = array => [...new Set(array)];
 
@@ -35,17 +41,38 @@ const Watchlist = () => {
   );
 
   const [options] = useOptions();
+  const notification = useNotification(NOTIFICATION_OPTIONS);
 
   const displayNotification = newSymbol => {
     const alreadyInWatchlist = watchlist.includes(newSymbol);
-    showNotification({
-      message: {
-        symbol: newSymbol,
-        watchlistName: 'My Watchlist',
-        alreadyInWatchlist,
-        messageText: `${alreadyInWatchlist ? ' moved' : ' added'} to the top`
-      }
-    });
+    if (notification) {
+      notification.launch({
+        url: 'notification.html',
+        timeout: 'never'
+      });
+      notification.populate(
+        <>
+          <div className="notification-icon">
+            <img
+              id="icon"
+              className={alreadyInWatchlist ? 'arrow-up' : 'card-icon'}
+              src={alreadyInWatchlist ? 'ArrowUp.png' : 'CardIcon.png'}
+              alt="Notification Icon"
+            />
+          </div>
+          <div id="notification-content">
+            <p id="title">WATCHLIST UPDATED</p>
+            <hr />
+            <p id="info">
+              <span id="symbol">{newSymbol}</span>
+              <span id="message">{`${
+                alreadyInWatchlist ? ' moved' : ' added'
+              } to the top`}</span>
+            </p>
+          </div>
+        </>
+      );
+    }
   };
 
   const addToWatchlist = symbol => {
