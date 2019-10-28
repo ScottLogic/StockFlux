@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="22px" viewBox="0 0 26 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>Glyph_News</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M24,4 L24,10 L28,10 L28,24 C28,25.1045695 27.1045695,26 26,26 L4,26 C2.8954305,26 2,25.1045695 2,24 L2,4 L24,4 Z M25.999,12 L24,12 L24,24 L26,24 L25.999,12 Z M22,6 L4,6 L4,24 L22,24 L22,6 Z M20,20 L20,22 L6,22 L6,20 L20,20 Z M20,16 L20,18 L6,18 L6,16 L20,16 Z M12,8 L12,14 L6,14 L6,8 L12,8 Z M20,12 L20,14 L14,14 L14,12 L20,12 Z M20,8 L20,10 L14,10 L14,8 L20,8 Z" id="path-1"></path>
+    </defs>
+    <g id="Screen" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD-Copy" transform="translate(-449.000000, -317.000000)">
+            <g id="Glyph_News" transform="translate(447.000000, 313.000000)">
+                <rect id="Bounding_box" fill="#D8D8D8" opacity="0" x="0" y="0" width="30" height="30"></rect>
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="News-Copy" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>

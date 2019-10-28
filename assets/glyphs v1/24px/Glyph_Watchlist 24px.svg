@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="11px" viewBox="0 0 19 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59 (86127) - https://sketch.com -->
+    <title>Glyph/24Watchlist</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M11.5,7 C14.9978034,7 18.1644701,8.74166667 21,12.225 C18.1644701,15.7083333 14.9978034,17.45 11.5,17.45 C8.00219658,17.45 4.83552992,15.7083333 2,12.225 C4.83552992,8.74166667 8.00219658,7 11.5,7 Z M11.5,8.16111111 C9.20456651,8.16111111 7.34375,9.98057614 7.34375,12.225 C7.34375,14.4694239 9.20456651,16.2888889 11.5,16.2888889 C13.7954335,16.2888889 15.65625,14.4694239 15.65625,12.225 C15.65625,9.98057614 13.7954335,8.16111111 11.5,8.16111111 Z M11.5,10.0814103 C12.7107781,10.0814103 13.6923077,11.0411281 13.6923077,12.225 C13.6923077,13.4088719 12.7107781,14.3685897 11.5,14.3685897 C10.2892219,14.3685897 9.30769231,13.4088719 9.30769231,12.225 C9.30769231,11.0411281 10.2892219,10.0814103 11.5,10.0814103 Z" id="path-1"></path>
+    </defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD-Copy" transform="translate(-363.000000, -449.000000)">
+            <g id="Glyph/24Watchlist" transform="translate(361.000000, 442.000000)">
+                <rect id="Bounding_box" fill="#D8D8D8" opacity="0" x="0" y="0" width="24" height="24"></rect>
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Watchlist-Copy" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>
