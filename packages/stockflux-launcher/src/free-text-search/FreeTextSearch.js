@@ -5,7 +5,7 @@ import React, {
   useRef,
   useCallback
 } from 'react';
-import { StockFlux } from 'stockflux-core';
+import { StockFlux, StockFluxHooks } from 'stockflux-core';
 import reducer, {
   initialSearchState
 } from '../reducers/free-text-search/FreeTextSearch';
@@ -17,7 +17,6 @@ import {
 } from 'openfin-react-hooks';
 import { OpenfinApiHelpers } from 'stockflux-core/src';
 import getResultsWindowProps from '../search-results/helpers/GetResultsWindowProps';
-import useChildWindow from '../search-results/helpers/useChildWindow';
 import ChildWindow from '../search-results/ChildWindow';
 import SearchInputField from './SearchInputField';
 import SearchButton from './SearchButton';
@@ -29,13 +28,13 @@ const SEARCH_RESULTS_WINDOW_NAME = 'search-results';
 const SEARCH_RESULTS_CSS_PATCH = 'childWindow.css';
 
 let latestRequest = null;
-const FreeTextSearch = ({ dockedTo }) => {
+const FreeTextSearch = ({ dockedTo, showTextInput }) => {
   const [searchState, dispatch] = useReducer(reducer, initialSearchState);
   const [query, setQuery] = useState(null);
   const [parentUuid, setParentUuid] = useState(null);
   const bounds = useBounds();
   const [debouncedQuery, setDebouncedQuery] = useState(null);
-  const childWindow = useChildWindow(
+  const childWindow = StockFluxHooks.useChildWindow(
     SEARCH_RESULTS_WINDOW_NAME,
     document,
     SEARCH_RESULTS_CSS_PATCH
@@ -142,7 +141,7 @@ const FreeTextSearch = ({ dockedTo }) => {
           isSearching={isSearching}
           debouncedQuery={debouncedQuery}
         >
-          {isDockedToSide && (
+          {(isDockedToSide || showTextInput) && (
             <div className="free-text-search">
               <SearchInputField
                 query={query ? query : ''}
@@ -164,7 +163,8 @@ const FreeTextSearch = ({ dockedTo }) => {
     results,
     handleOnInputChange,
     isDockedToSide,
-    query
+    query,
+    showTextInput
   ]);
 
   const {
