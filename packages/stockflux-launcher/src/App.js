@@ -36,7 +36,10 @@ export default () => {
     <div className={cx('app', edgeToBeChecked)}>
       {!isLauncherHorizontal(edgeToBeChecked) && CloseButton}
       <AppShortcuts />
-      <FreeTextSearch dockedTo={edge} />
+      <FreeTextSearch
+        dockedTo={edge}
+        showTextInput={!isLauncherHorizontal(edgeToBeChecked)}
+      />
       <ToolBar
         tools={[
           {

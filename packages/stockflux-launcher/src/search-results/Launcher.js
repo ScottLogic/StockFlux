@@ -38,13 +38,5 @@ export default async (
     minHeight: 300
   };
 
-  const win = await OpenfinApiHelpers.createWindow(childWindow);
-
-  // if (dockedTo === ScreenEdge.LEFT || dockedTo === ScreenEdge.RIGHT) {
-  //   win
-  //     .getWebWindow()
-  //     .document.getElementById('searchbar-container').hidden = false;
-  // }
-
-  return win;
+  return await OpenfinApiHelpers.createWindow(childWindow);
 };
