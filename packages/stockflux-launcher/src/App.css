@@ -52,14 +52,14 @@ html {
 }
 
 .shortcut-horizontal {
-  padding-left: 24px;
-  padding-right: 24px;
+  margin-left: 24px;
+  margin-right: 24px;
 }
 
 .shortcut-vertical {
-  padding-left: 8px;
-  padding-right: 8px;
-  padding-top: 80px;
+  padding-left: 4px;
+  padding-right: 4px;
+  margin-top: 80px;
 }
 
 .left,

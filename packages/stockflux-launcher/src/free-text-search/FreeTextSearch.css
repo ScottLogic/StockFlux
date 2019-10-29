@@ -7,7 +7,7 @@
 
 .free-text-search input {
   background: var(--dark-background);
-  color: var(--text-teal-light);
+  color: var(---search-input-text-color);
   border: none;
   border-radius: 4px;
   height: var(--search-input-height);
@@ -29,7 +29,7 @@
 
 .free-text-search-undocked input {
   background: var(--dark-background);
-  color: var(--text-teal-light);
+  color: var(--search-input-text-color);
   border: none;
   border-radius: 4px;
   height: var(--search-input-height);
