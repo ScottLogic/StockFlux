@@ -29,7 +29,7 @@ export default () => {
     },
     {
       undockPosition: { left: leftPosition, top: topPosition },
-      undockSize: { width: window.screen.availWidth - 500, height: 88 }
+      undockSize: { width: 724, height: 88 }
     }
   );
 

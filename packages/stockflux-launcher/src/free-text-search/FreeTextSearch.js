@@ -1,3 +1,4 @@
+import cx from 'classnames';
 import React, {
   useState,
   useReducer,
@@ -53,6 +54,7 @@ const FreeTextSearch = ({ dockedTo, showTextInput }) => {
   }, []);
 
   const isDockedToSide = [ScreenEdge.LEFT, ScreenEdge.RIGHT].includes(dockedTo);
+  const isDocked = dockedTo !== ScreenEdge.NONE;
 
   const launchChildWindow = useCallback(
     () =>
@@ -142,7 +144,11 @@ const FreeTextSearch = ({ dockedTo, showTextInput }) => {
           debouncedQuery={debouncedQuery}
         >
           {(isDockedToSide || showTextInput) && (
-            <div className="free-text-search">
+            <div
+              className={cx(
+                isDocked ? 'free-text-search' : 'free-text-search-undocked'
+              )}
+            >
               <SearchInputField
                 query={query ? query : ''}
                 handleOnInputChange={handleOnInputChange}
@@ -164,7 +170,8 @@ const FreeTextSearch = ({ dockedTo, showTextInput }) => {
     handleOnInputChange,
     isDockedToSide,
     query,
-    showTextInput
+    showTextInput,
+    isDocked
   ]);
 
   const {
@@ -187,7 +194,11 @@ const FreeTextSearch = ({ dockedTo, showTextInput }) => {
   }
 
   return (
-    <div className="free-text-search">
+    <div
+      className={cx(
+        isDocked ? 'free-text-search' : 'free-text-search-undocked'
+      )}
+    >
       <SearchButton
         className="launcher-icon"
         searchButtonRef={searchButtonRef}

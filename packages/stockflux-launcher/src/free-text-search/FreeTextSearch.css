@@ -18,6 +18,28 @@
   outline: none;
 }
 
+.free-text-search-undocked {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  padding-right: 18px;
+}
+
+.free-text-search-undocked input {
+  background: var(--dark-background);
+  color: var(--text-teal-light);
+  border: none;
+  border-radius: 4px;
+  height: var(--search-input-height);
+  width: var(--search-input-width-undocked);
+  min-width: var(--search-input-min-width);
+  padding: var(--padding-medium);
+  margin: 0 5px;
+  outline: none;
+}
+
 .left .free-text-search,
 .right .free-text-search {
   flex-direction: column;
@@ -30,7 +52,7 @@
 
 .searchIcon {
   margin-bottom: 30px;
-  margin-top: 15px;
+  margin-top: 25px;
 }
 
 .searchSVG {
