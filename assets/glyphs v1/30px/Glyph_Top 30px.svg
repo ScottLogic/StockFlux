@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="22px" viewBox="0 0 30 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>Glyph_Top</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M30,4 L30,26 L0,26 L0,4 L30,4 Z M28,10 L2,10 L2,24 L28,24 L28,10 Z" id="path-1"></path>
+    </defs>
+    <g id="Screen" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD-Copy" transform="translate(-447.000000, -557.000000)">
+            <g id="Glyph_Top" transform="translate(447.000000, 553.000000)">
+                <rect id="Bounding_box" fill="#D8D8D8" opacity="0" x="0" y="0" width="30" height="30"></rect>
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Shape-Copy" fill="#000000" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>

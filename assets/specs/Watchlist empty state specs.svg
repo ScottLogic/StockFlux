@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="626px" height="682px" viewBox="0 0 626 682" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59 (86127) - https://sketch.com -->
+    <title>Watchlist empty state specs</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Watchlist-empty-state-specs" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Stock_Flux/Watchlist_Scroll-Copy" transform="translate(100.000000, 119.000000)">
+            <g id="Color/Blue-3" fill="#0D2437">
+                <rect id="Rectangle" x="0" y="0" width="253" height="514"></rect>
+            </g>
+            <g id="State/Top_Dark" fill="#091A29">
+                <rect id="Rectangle" x="0" y="0" width="253" height="28"></rect>
+            </g>
+            <g id="Component/Close_Minimize" transform="translate(198.000000, 0.000000)">
+                <g id="Minimize">
+                    <rect id="Rectangle-Copy-2" fill="#D8D8D8" opacity="0" x="0" y="0" width="24" height="28"></rect>
+                    <rect id="Rectangle" fill="#FFFFFF" x="6" y="19" width="12" height="2"></rect>
+                </g>
+                <g id="Close" transform="translate(28.000000, 0.000000)">
+                    <rect id="Rectangle" fill="#1B3B56" opacity="0" x="0" y="0" width="24" height="28"></rect>
+                    <polygon id="X" fill="#FFFFFF" points="17.6189127 8 18.909903 9.2909903 13.7451778 14.4541796 18.909903 19.6189127 17.6189127 20.909903 12.4541796 15.7451778 7.2909903 20.909903 6 19.6189127 11.1639928 14.4541796 6 9.2909903 7.2909903 8 12.4541796 13.1639928"></polygon>
+                </g>
+            </g>
+            <text id="Watchlist" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
+                <tspan x="12" y="20">Watchlist</tspan>
+            </text>
+        </g>
+        <text id="You-have-no-stocks-i" font-family="Roboto-Regular, Roboto" font-size="16" font-weight="normal" fill="#FFFFFF">
+            <tspan x="124" y="198">You have no stocks in your</tspan>
+            <tspan x="124" y="217">Watchlist.</tspan>
+        </text>
+        <text id="Use-the-Search-to-ad" font-family="Roboto-Regular, Roboto" font-size="16" font-weight="normal" fill="#FFFFFF">
+            <tspan x="124" y="248">Use the Search to add new</tspan>
+            <tspan x="124" y="267">stocks to the list.</tspan>
+        </text>
+        <line x1="80" y1="186.500542" x2="371" y2="186.499458" id="Path-2-Copy-76" stroke="#F37126" stroke-dasharray="10,5"></line>
+        <line x1="80" y1="147.500542" x2="371.5" y2="147.999458" id="Path-2-Copy-75" stroke="#F37126" stroke-dasharray="10,5"></line>
+        <path id="Line-7" d="M378.809343,190.319082 L388.019864,195.5 L378.809343,200.680918 L378.319082,199.809343 L385.091,196 L314,196 L314,195 L385.091,195 L378.319082,191.190657 L378.809343,190.319082 Z" fill="#F37126" fill-rule="nonzero"></path>
+        <text id="Roboto-Regular,-16px" font-family="Roboto-Regular, Roboto" font-size="16" font-weight="normal" fill="#000000">
+            <tspan x="399" y="201">Roboto Regular, 16px, White</tspan>
+        </text>
+        <line x1="-145.5" y1="375.501086" x2="392.5" y2="375.499999" id="Path-2-Copy-77" stroke="#F37126" stroke-dasharray="10,5" transform="translate(123.500000, 375.500542) rotate(90.000214) translate(-123.500000, -375.500542) "></line>
+        <line x1="-169.5" y1="375.501086" x2="368.5" y2="375.499999" id="Path-2-Copy-78" stroke="#F37126" stroke-dasharray="10,5" transform="translate(99.500000, 375.500542) rotate(90.000214) translate(-99.500000, -375.500542) "></line>
+        <line x1="84.5" y1="375.501086" x2="622.5" y2="375.499999" id="Path-2-Copy-80" stroke="#F37126" stroke-dasharray="10,5" transform="translate(353.500000, 375.500542) rotate(90.000214) translate(-353.500000, -375.500542) "></line>
+        <line x1="60.5" y1="375.501086" x2="598.5" y2="375.499999" id="Path-2-Copy-79" stroke="#F37126" stroke-dasharray="10,5" transform="translate(329.500000, 375.500542) rotate(90.000214) translate(-329.500000, -375.500542) "></line>
+        <text id="36px" font-family="Roboto-Regular, Roboto" font-size="18" font-weight="normal" fill="#000000">
+            <tspan x="40" y="173">36px</tspan>
+        </text>
+        <text id="24px" font-family="Roboto-Regular, Roboto" font-size="18" font-weight="normal" fill="#000000">
+            <tspan x="93" y="93">24px</tspan>
+        </text>
+        <text id="24px-copy" font-family="Roboto-Regular, Roboto" font-size="18" font-weight="normal" fill="#000000">
+            <tspan x="323" y="93">24px</tspan>
+        </text>
+        <text id="Empty-state" font-family="Roboto-Medium, Roboto" font-size="21" font-weight="400" fill="#E05505">
+            <tspan x="44" y="48">Empty state</tspan>
+        </text>
+    </g>
+</svg>

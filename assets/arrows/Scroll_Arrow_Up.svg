@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="8px" height="6px" viewBox="0 0 8 6" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59 (86127) - https://sketch.com -->
+    <title>Component/Scroll_Arrow_Up Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M6,3 L10,9 L2,9 L6,3 Z" id="path-1"></path>
+    </defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD-Copy" transform="translate(-523.000000, -114.000000)">
+            <g id="Component/Scroll_Arrow_Up-Copy" transform="translate(521.000000, 111.000000)">
+                <rect id="Rectangle" opacity="0" x="0" y="0" width="12" height="12"></rect>
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Triangle-5" fill="#000000" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>

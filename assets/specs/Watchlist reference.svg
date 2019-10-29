@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="934px" height="756px" viewBox="0 0 934 756" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59 (86127) - https://sketch.com -->
+    <title>Watchlist reference</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M19.7692308,3 L19.7692308,7.90909091 L23,7.90909091 L23,19.3636364 C23,20.267375 22.2767677,21 21.3846154,21 L3.61538462,21 C2.72323233,21 2,20.267375 2,19.3636364 L2,3 L19.7692308,3 Z M21.3838077,9.54545455 L19.7692308,9.54545455 L19.7692308,19.3636364 L21.3846154,19.3636364 L21.3838077,9.54545455 Z M18.1538462,4.63636364 L3.61538462,4.63636364 L3.61538462,19.3636364 L18.1538462,19.3636364 L18.1538462,4.63636364 Z M16.5384615,16.0909091 L16.5384615,17.7272727 L5.23076923,17.7272727 L5.23076923,16.0909091 L16.5384615,16.0909091 Z M16.5384615,12.8181818 L16.5384615,14.4545455 L5.23076923,14.4545455 L5.23076923,12.8181818 L16.5384615,12.8181818 Z M10.0769231,6.27272727 L10.0769231,11.1818182 L5.23076923,11.1818182 L5.23076923,6.27272727 L10.0769231,6.27272727 Z M16.5384615,9.54545455 L16.5384615,11.1818182 L11.6923077,11.1818182 L11.6923077,9.54545455 L16.5384615,9.54545455 Z M16.5384615,6.27272727 L16.5384615,7.90909091 L11.6923077,7.90909091 L11.6923077,6.27272727 L16.5384615,6.27272727 Z" id="path-1"></path>
+        <path d="M12,7 C15.3578913,7 18.3978913,8.74166667 21.12,12.225 C18.3978913,15.7083333 15.3578913,17.45 12,17.45 C8.64210872,17.45 5.60210872,15.7083333 2.88,12.225 C5.60210872,8.74166667 8.64210872,7 12,7 Z M12,8.16111111 C9.79638385,8.16111111 8.01,9.98057614 8.01,12.225 C8.01,14.4694239 9.79638385,16.2888889 12,16.2888889 C14.2036162,16.2888889 15.99,14.4694239 15.99,12.225 C15.99,9.98057614 14.2036162,8.16111111 12,8.16111111 Z M12,10.0814103 C13.162347,10.0814103 14.1046154,11.0411281 14.1046154,12.225 C14.1046154,13.4088719 13.162347,14.3685897 12,14.3685897 C10.837653,14.3685897 9.89538462,13.4088719 9.89538462,12.225 C9.89538462,11.0411281 10.837653,10.0814103 12,10.0814103 Z" id="path-3"></path>
+        <path d="M4.5,0 L9,7 L0,7 L4.5,0 Z" id="path-5"></path>
+        <rect id="path-7" x="0" y="0" width="162" height="60"></rect>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-9">
+            <stop stop-color="#29E9E3" stop-opacity="0.3" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <polygon id="path-10" points="3.61538462 3 3.61538462 16.1465455 9.5076244 10.0488387 14.5396681 14.6956909 21.2389105 6.83214542 22.5428528 7.79217384 14.686121 17.0978892 9.57801424 12.3295091 3.61538462 18.5847273 3.61538462 19.3636364 23 19.3636364 23 21 2 21 2 3"></polygon>
+        <path d="M19.7692308,3 L19.7692308,7.90909091 L23,7.90909091 L23,19.3636364 C23,20.267375 22.2767677,21 21.3846154,21 L3.61538462,21 C2.72323233,21 2,20.267375 2,19.3636364 L2,3 L19.7692308,3 Z M21.3838077,9.54545455 L19.7692308,9.54545455 L19.7692308,19.3636364 L21.3846154,19.3636364 L21.3838077,9.54545455 Z M18.1538462,4.63636364 L3.61538462,4.63636364 L3.61538462,19.3636364 L18.1538462,19.3636364 L18.1538462,4.63636364 Z M16.5384615,16.0909091 L16.5384615,17.7272727 L5.23076923,17.7272727 L5.23076923,16.0909091 L16.5384615,16.0909091 Z M16.5384615,12.8181818 L16.5384615,14.4545455 L5.23076923,14.4545455 L5.23076923,12.8181818 L16.5384615,12.8181818 Z M10.0769231,6.27272727 L10.0769231,11.1818182 L5.23076923,11.1818182 L5.23076923,6.27272727 L10.0769231,6.27272727 Z M16.5384615,9.54545455 L16.5384615,11.1818182 L11.6923077,11.1818182 L11.6923077,9.54545455 L16.5384615,9.54545455 Z M16.5384615,6.27272727 L16.5384615,7.90909091 L11.6923077,7.90909091 L11.6923077,6.27272727 L16.5384615,6.27272727 Z" id="path-12"></path>
+        <path d="M12,7 C15.3578913,7 18.3978913,8.74166667 21.12,12.225 C18.3978913,15.7083333 15.3578913,17.45 12,17.45 C8.64210872,17.45 5.60210872,15.7083333 2.88,12.225 C5.60210872,8.74166667 8.64210872,7 12,7 Z M12,8.16111111 C9.79638385,8.16111111 8.01,9.98057614 8.01,12.225 C8.01,14.4694239 9.79638385,16.2888889 12,16.2888889 C14.2036162,16.2888889 15.99,14.4694239 15.99,12.225 C15.99,9.98057614 14.2036162,8.16111111 12,8.16111111 Z M12,10.0814103 C13.162347,10.0814103 14.1046154,11.0411281 14.1046154,12.225 C14.1046154,13.4088719 13.162347,14.3685897 12,14.3685897 C10.837653,14.3685897 9.89538462,13.4088719 9.89538462,12.225 C9.89538462,11.0411281 10.837653,10.0814103 12,10.0814103 Z" id="path-14"></path>
+        <path d="M4.5,0 L9,7 L0,7 L4.5,0 Z" id="path-16"></path>
+        <rect id="path-18" x="0" y="0" width="162" height="60"></rect>
+        <polygon id="path-20" points="3.61538462 3 3.61538462 16.1465455 9.5076244 10.0488387 14.5396681 14.6956909 21.2389105 6.83214542 22.5428528 7.79217384 14.686121 17.0978892 9.57801424 12.3295091 3.61538462 18.5847273 3.61538462 19.3636364 23 19.3636364 23 21 2 21 2 3"></polygon>
+        <path d="M19.7692308,3 L19.7692308,7.90909091 L23,7.90909091 L23,19.3636364 C23,20.267375 22.2767677,21 21.3846154,21 L3.61538462,21 C2.72323233,21 2,20.267375 2,19.3636364 L2,3 L19.7692308,3 Z M21.3838077,9.54545455 L19.7692308,9.54545455 L19.7692308,19.3636364 L21.3846154,19.3636364 L21.3838077,9.54545455 Z M18.1538462,4.63636364 L3.61538462,4.63636364 L3.61538462,19.3636364 L18.1538462,19.3636364 L18.1538462,4.63636364 Z M16.5384615,16.0909091 L16.5384615,17.7272727 L5.23076923,17.7272727 L5.23076923,16.0909091 L16.5384615,16.0909091 Z M16.5384615,12.8181818 L16.5384615,14.4545455 L5.23076923,14.4545455 L5.23076923,12.8181818 L16.5384615,12.8181818 Z M10.0769231,6.27272727 L10.0769231,11.1818182 L5.23076923,11.1818182 L5.23076923,6.27272727 L10.0769231,6.27272727 Z M16.5384615,9.54545455 L16.5384615,11.1818182 L11.6923077,11.1818182 L11.6923077,9.54545455 L16.5384615,9.54545455 Z M16.5384615,6.27272727 L16.5384615,7.90909091 L11.6923077,7.90909091 L11.6923077,6.27272727 L16.5384615,6.27272727 Z" id="path-22"></path>
+        <path d="M12,7 C15.3578913,7 18.3978913,8.74166667 21.12,12.225 C18.3978913,15.7083333 15.3578913,17.45 12,17.45 C8.64210872,17.45 5.60210872,15.7083333 2.88,12.225 C5.60210872,8.74166667 8.64210872,7 12,7 Z M12,8.16111111 C9.79638385,8.16111111 8.01,9.98057614 8.01,12.225 C8.01,14.4694239 9.79638385,16.2888889 12,16.2888889 C14.2036162,16.2888889 15.99,14.4694239 15.99,12.225 C15.99,9.98057614 14.2036162,8.16111111 12,8.16111111 Z M12,10.0814103 C13.162347,10.0814103 14.1046154,11.0411281 14.1046154,12.225 C14.1046154,13.4088719 13.162347,14.3685897 12,14.3685897 C10.837653,14.3685897 9.89538462,13.4088719 9.89538462,12.225 C9.89538462,11.0411281 10.837653,10.0814103 12,10.0814103 Z" id="path-24"></path>
+        <path d="M4.5,0 L9,7 L0,7 L4.5,0 Z" id="path-26"></path>
+        <rect id="path-28" x="0" y="0" width="162" height="60"></rect>
+        <polygon id="path-30" points="3.61538462 3 3.61538462 16.1465455 9.5076244 10.0488387 14.5396681 14.6956909 21.2389105 6.83214542 22.5428528 7.79217384 14.686121 17.0978892 9.57801424 12.3295091 3.61538462 18.5847273 3.61538462 19.3636364 23 19.3636364 23 21 2 21 2 3"></polygon>
+        <path d="M19.7692308,3 L19.7692308,7.90909091 L23,7.90909091 L23,19.3636364 C23,20.267375 22.2767677,21 21.3846154,21 L3.61538462,21 C2.72323233,21 2,20.267375 2,19.3636364 L2,3 L19.7692308,3 Z M21.3838077,9.54545455 L19.7692308,9.54545455 L19.7692308,19.3636364 L21.3846154,19.3636364 L21.3838077,9.54545455 Z M18.1538462,4.63636364 L3.61538462,4.63636364 L3.61538462,19.3636364 L18.1538462,19.3636364 L18.1538462,4.63636364 Z M16.5384615,16.0909091 L16.5384615,17.7272727 L5.23076923,17.7272727 L5.23076923,16.0909091 L16.5384615,16.0909091 Z M16.5384615,12.8181818 L16.5384615,14.4545455 L5.23076923,14.4545455 L5.23076923,12.8181818 L16.5384615,12.8181818 Z M10.0769231,6.27272727 L10.0769231,11.1818182 L5.23076923,11.1818182 L5.23076923,6.27272727 L10.0769231,6.27272727 Z M16.5384615,9.54545455 L16.5384615,11.1818182 L11.6923077,11.1818182 L11.6923077,9.54545455 L16.5384615,9.54545455 Z M16.5384615,6.27272727 L16.5384615,7.90909091 L11.6923077,7.90909091 L11.6923077,6.27272727 L16.5384615,6.27272727 Z" id="path-32"></path>
+        <path d="M12,7 C15.3578913,7 18.3978913,8.74166667 21.12,12.225 C18.3978913,15.7083333 15.3578913,17.45 12,17.45 C8.64210872,17.45 5.60210872,15.7083333 2.88,12.225 C5.60210872,8.74166667 8.64210872,7 12,7 Z M12,8.16111111 C9.79638385,8.16111111 8.01,9.98057614 8.01,12.225 C8.01,14.4694239 9.79638385,16.2888889 12,16.2888889 C14.2036162,16.2888889 15.99,14.4694239 15.99,12.225 C15.99,9.98057614 14.2036162,8.16111111 12,8.16111111 Z M12,10.0814103 C13.162347,10.0814103 14.1046154,11.0411281 14.1046154,12.225 C14.1046154,13.4088719 13.162347,14.3685897 12,14.3685897 C10.837653,14.3685897 9.89538462,13.4088719 9.89538462,12.225 C9.89538462,11.0411281 10.837653,10.0814103 12,10.0814103 Z" id="path-34"></path>
+        <path d="M4.5,0 L9,7 L0,7 L4.5,0 Z" id="path-36"></path>
+        <rect id="path-38" x="0" y="0" width="162" height="60"></rect>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-40">
+            <stop stop-color="#29E9E3" stop-opacity="0.3" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <polygon id="path-41" points="3.61538462 3 3.61538462 16.1465455 9.5076244 10.0488387 14.5396681 14.6956909 21.2389105 6.83214542 22.5428528 7.79217384 14.686121 17.0978892 9.57801424 12.3295091 3.61538462 18.5847273 3.61538462 19.3636364 23 19.3636364 23 21 2 21 2 3"></polygon>
+        <path d="M19.7692308,3 L19.7692308,7.90909091 L23,7.90909091 L23,19.3636364 C23,20.267375 22.2767677,21 21.3846154,21 L3.61538462,21 C2.72323233,21 2,20.267375 2,19.3636364 L2,3 L19.7692308,3 Z M21.3838077,9.54545455 L19.7692308,9.54545455 L19.7692308,19.3636364 L21.3846154,19.3636364 L21.3838077,9.54545455 Z M18.1538462,4.63636364 L3.61538462,4.63636364 L3.61538462,19.3636364 L18.1538462,19.3636364 L18.1538462,4.63636364 Z M16.5384615,16.0909091 L16.5384615,17.7272727 L5.23076923,17.7272727 L5.23076923,16.0909091 L16.5384615,16.0909091 Z M16.5384615,12.8181818 L16.5384615,14.4545455 L5.23076923,14.4545455 L5.23076923,12.8181818 L16.5384615,12.8181818 Z M10.0769231,6.27272727 L10.0769231,11.1818182 L5.23076923,11.1818182 L5.23076923,6.27272727 L10.0769231,6.27272727 Z M16.5384615,9.54545455 L16.5384615,11.1818182 L11.6923077,11.1818182 L11.6923077,9.54545455 L16.5384615,9.54545455 Z M16.5384615,6.27272727 L16.5384615,7.90909091 L11.6923077,7.90909091 L11.6923077,6.27272727 L16.5384615,6.27272727 Z" id="path-43"></path>
+        <path d="M12,7 C15.3578913,7 18.3978913,8.74166667 21.12,12.225 C18.3978913,15.7083333 15.3578913,17.45 12,17.45 C8.64210872,17.45 5.60210872,15.7083333 2.88,12.225 C5.60210872,8.74166667 8.64210872,7 12,7 Z M12,8.16111111 C9.79638385,8.16111111 8.01,9.98057614 8.01,12.225 C8.01,14.4694239 9.79638385,16.2888889 12,16.2888889 C14.2036162,16.2888889 15.99,14.4694239 15.99,12.225 C15.99,9.98057614 14.2036162,8.16111111 12,8.16111111 Z M12,10.0814103 C13.162347,10.0814103 14.1046154,11.0411281 14.1046154,12.225 C14.1046154,13.4088719 13.162347,14.3685897 12,14.3685897 C10.837653,14.3685897 9.89538462,13.4088719 9.89538462,12.225 C9.89538462,11.0411281 10.837653,10.0814103 12,10.0814103 Z" id="path-45"></path>
+        <path d="M4.5,0 L9,7 L0,7 L4.5,0 Z" id="path-47"></path>
+        <rect id="path-49" x="0" y="0" width="162" height="60"></rect>
+        <polygon id="path-51" points="3.61538462 3 3.61538462 16.1465455 9.5076244 10.0488387 14.5396681 14.6956909 21.2389105 6.83214542 22.5428528 7.79217384 14.686121 17.0978892 9.57801424 12.3295091 3.61538462 18.5847273 3.61538462 19.3636364 23 19.3636364 23 21 2 21 2 3"></polygon>
+        <path d="M6,3 L10,9 L2,9 L6,3 Z" id="path-53"></path>
+        <path d="M6,3 L10,9 L2,9 L6,3 Z" id="path-55"></path>
+        <path d="M19.7692308,3 L19.7692308,7.90909091 L23,7.90909091 L23,19.3636364 C23,20.267375 22.2767677,21 21.3846154,21 L3.61538462,21 C2.72323233,21 2,20.267375 2,19.3636364 L2,3 L19.7692308,3 Z M21.3838077,9.54545455 L19.7692308,9.54545455 L19.7692308,19.3636364 L21.3846154,19.3636364 L21.3838077,9.54545455 Z M18.1538462,4.63636364 L3.61538462,4.63636364 L3.61538462,19.3636364 L18.1538462,19.3636364 L18.1538462,4.63636364 Z M16.5384615,16.0909091 L16.5384615,17.7272727 L5.23076923,17.7272727 L5.23076923,16.0909091 L16.5384615,16.0909091 Z M16.5384615,12.8181818 L16.5384615,14.4545455 L5.23076923,14.4545455 L5.23076923,12.8181818 L16.5384615,12.8181818 Z M10.0769231,6.27272727 L10.0769231,11.1818182 L5.23076923,11.1818182 L5.23076923,6.27272727 L10.0769231,6.27272727 Z M16.5384615,9.54545455 L16.5384615,11.1818182 L11.6923077,11.1818182 L11.6923077,9.54545455 L16.5384615,9.54545455 Z M16.5384615,6.27272727 L16.5384615,7.90909091 L11.6923077,7.90909091 L11.6923077,6.27272727 L16.5384615,6.27272727 Z" id="path-57"></path>
+        <path d="M12,7 C15.3578913,7 18.3978913,8.74166667 21.12,12.225 C18.3978913,15.7083333 15.3578913,17.45 12,17.45 C8.64210872,17.45 5.60210872,15.7083333 2.88,12.225 C5.60210872,8.74166667 8.64210872,7 12,7 Z M12,8.16111111 C9.79638385,8.16111111 8.01,9.98057614 8.01,12.225 C8.01,14.4694239 9.79638385,16.2888889 12,16.2888889 C14.2036162,16.2888889 15.99,14.4694239 15.99,12.225 C15.99,9.98057614 14.2036162,8.16111111 12,8.16111111 Z M12,10.0814103 C13.162347,10.0814103 14.1046154,11.0411281 14.1046154,12.225 C14.1046154,13.4088719 13.162347,14.3685897 12,14.3685897 C10.837653,14.3685897 9.89538462,13.4088719 9.89538462,12.225 C9.89538462,11.0411281 10.837653,10.0814103 12,10.0814103 Z" id="path-59"></path>
+        <path d="M4.5,0 L9,7 L0,7 L4.5,0 Z" id="path-61"></path>
+        <rect id="path-63" x="0" y="0" width="162" height="60"></rect>
+        <polygon id="path-65" points="3.61538462 3 3.61538462 16.1465455 9.5076244 10.0488387 14.5396681 14.6956909 21.2389105 6.83214542 22.5428528 7.79217384 14.686121 17.0978892 9.57801424 12.3295091 3.61538462 18.5847273 3.61538462 19.3636364 23 19.3636364 23 21 2 21 2 3"></polygon>
+    </defs>
+    <g id="Watchlist-reference" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Stock_Flux/Watchlist_Scroll-Copy" transform="translate(31.000000, 196.000000)">
+            <g id="Color/Blue-3" fill="#0D2437">
+                <rect id="Rectangle" x="0" y="0" width="259" height="514"></rect>
+            </g>
+            <g id="State/Top_Dark" fill="#091A29">
+                <rect id="Rectangle" x="0" y="0" width="259" height="28"></rect>
+            </g>
+            <g id="Component/Close_Minimize" transform="translate(202.695652, 0.000000)">
+                <g id="Minimize">
+                    <rect id="Rectangle-Copy-2" fill="#D8D8D8" opacity="0" x="0" y="0" width="24.4615385" height="28"></rect>
+                    <rect id="Rectangle" fill="#FFFFFF" x="6.11538462" y="19" width="12.2307692" height="2"></rect>
+                </g>
+                <g id="Close" transform="translate(28.538462, 0.000000)">
+                    <rect id="Rectangle" fill="#1B3B56" opacity="0" x="0" y="0" width="24.4615385" height="28"></rect>
+                    <polygon id="X" fill="#FFFFFF" points="17.9577379 8 19.273555 9.2909903 14.0095081 14.4541796 19.273555 19.6189127 17.9577379 20.909903 12.693683 15.7451778 7.43120165 20.909903 6.11538462 19.6189127 11.378685 14.4541796 6.11538462 9.2909903 7.43120165 8 12.693683 13.1639928"></polygon>
+                </g>
+            </g>
+            <text id="Watchlist" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
+                <tspan x="12.284585" y="20">Watchlist</tspan>
+            </text>
+            <polygon id="Divider_Lines" fill="#061725" points="259 148 259 150 0 150 0 148"></polygon>
+        </g>
+        <g id="Stock_Flux/Watchlist_item" transform="translate(31.000000, 224.000000)">
+            <g id="Color/Blue-3" fill="#0D2437" fill-rule="evenodd">
+                <rect id="Rectangle" x="0" y="0" width="259" height="120"></rect>
+            </g>
+            <text id="Ticker" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
+                <tspan x="12" y="22">AAPL</tspan>
+            </text>
+            <text id="Company-name" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" fill="#FFFFFF">
+                <tspan x="12" y="39">Aaple, Inc.</tspan>
+            </text>
+            <g id="Group" stroke-width="1" fill-rule="evenodd" transform="translate(0.000000, 70.000000)"></g>
+            <text id="Change-%" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400" fill="#41D442">
+                <tspan x="194.585938" y="90">+0.88%</tspan>
+            </text>
+            <text id="Price" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
+                <tspan x="190.820312" y="68">240.87</tspan>
+            </text>
+            <g id="Glyph/24News" transform="translate(166.000000, 6.000000)">
+                <rect id="Bounding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" x="0" y="0" width="24" height="24"></rect>
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="News-Copy" fill="#AEB1B5" fill-rule="nonzero" xlink:href="#path-1"></use>
+                <g id="Color/Blue-1" mask="url(#mask-2)" fill="#8A96A6" fill-rule="evenodd">
+                    <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                </g>
+            </g>
+            <g id="Glyph/24Watchlist" transform="translate(226.000000, 6.000000)">
+                <rect id="Bounding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" x="0.96" y="0" width="23.04" height="24"></rect>
+                <mask id="mask-4" fill="white">
+                    <use xlink:href="#path-3"></use>
+                </mask>
+                <use id="Watchlist-Copy" fill="#AEB1B5" fill-rule="nonzero" xlink:href="#path-3"></use>
+                <g id="Color/Teal" mask="url(#mask-4)" fill="#29E9E3" fill-rule="evenodd">
+                    <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                </g>
+            </g>
+            <g id="Arrow/Up" transform="translate(182.000000, 81.000000)">
+                <mask id="mask-6" fill="white">
+                    <use xlink:href="#path-5"></use>
+                </mask>
+                <use id="Triangle-5" fill="#AEB1B5" fill-rule="evenodd" xlink:href="#path-5"></use>
+                <g id="Color/Green" mask="url(#mask-6)" fill="#41D442" fill-rule="evenodd">
+                    <rect id="Rectangle" x="0" y="0" width="9" height="7"></rect>
+                </g>
+            </g>
+            <g id="Sparkline/1" transform="translate(0.000000, 54.000000)">
+                <mask id="mask-8" fill="white">
+                    <use xlink:href="#path-7"></use>
+                </mask>
+                <use id="Chart_binding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" xlink:href="#path-7"></use>
+                <polygon id="chart_gradient" fill="url(#linearGradient-9)" fill-rule="evenodd" mask="url(#mask-8)" points="0 23.6669836 6.28 31.2226448 12.56 19.2926321 18.84 17.8761484 25.12 9.01065541 31.4 12.03219 37.68 17.6072882 43.96 1 50.24 2.44973641 56.52 17.9094011 62.8 25.3271853 69.08 26.223386 75.36 32.451778 81.64 35.4781788 87.92 42.2613231 94.2 41.1834492 100.48 59 106.76 55.5409086 113.04 38.0889209 119.32 32.6314237 125.6 25.5745529 131.88 36.3601863 138.16 32.5632962 144.44 30.1686966 150.72 27.9091354 156 40.6069329 156 60 0 60"></polygon>
+                <polyline id="chart" stroke="#29E9E3" stroke-width="1" mask="url(#mask-8)" points="0 23.6669836 6.28 31.2226448 12.56 19.2926321 18.84 17.8761484 25.12 9.01065541 31.4 12.03219 37.68 17.6072882 43.96 1 50.24 2.44973641 56.52 17.9094011 62.8 25.3271853 69.08 26.223386 75.36 32.451778 81.64 35.4781788 87.92 42.2613231 94.2 41.1834492 100.48 59 106.76 55.5409086 113.04 38.0889209 119.32 32.6314237 125.6 25.5745529 131.88 36.3601863 138.16 32.5632962 144.44 30.1686966 150.72 27.9091354 156 40.6069329"></polyline>
+                <circle id="Oval-13" fill="#29E9E3" fill-rule="evenodd" mask="url(#mask-8)" cx="156" cy="41" r="3"></circle>
+            </g>
+            <g id="Glyph/24Chart" transform="translate(196.000000, 6.000000)">
+                <rect id="Bounding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" x="0" y="0" width="24" height="24"></rect>
+                <mask id="mask-11" fill="white">
+                    <use xlink:href="#path-10"></use>
+                </mask>
+                <use id="Chart-Copy" fill="#AEB1B5" fill-rule="nonzero" xlink:href="#path-10"></use>
+                <g id="Color/Blue-1" mask="url(#mask-11)" fill="#8A96A6" fill-rule="evenodd">
+                    <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                </g>
+            </g>
+            <text id="Price-change" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400" fill="#41D442">
+                <tspan x="206.335938" y="111">+2.13</tspan>
+            </text>
+        </g>
+        <g id="Stock_Flux/Watchlist_Scroll" transform="translate(326.000000, 196.000000)">
+            <g id="Color/Blue-3" fill="#0D2437" fill-rule="evenodd">
+                <rect id="Rectangle" x="0" y="0" width="265" height="514"></rect>
+            </g>
+            <g id="Color/Blue-5" fill="#071521" fill-rule="evenodd">
+                <rect id="Rectangle" x="0" y="0" width="271" height="28"></rect>
+            </g>
+            <g id="Stock_Flux/Watchlist_item" transform="translate(0.000000, 30.000000)">
+                <g id="Color/Blue-3" fill="#0D2437" fill-rule="evenodd">
+                    <rect id="Rectangle" x="0" y="0" width="259" height="120"></rect>
+                </g>
+                <text id="Ticker" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
+                    <tspan x="12" y="22">AAPL</tspan>
+                </text>
+                <text id="Company-name" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" fill="#FFFFFF">
+                    <tspan x="12" y="39">Apple, Inc.</tspan>
+                </text>
+                <g id="Group" stroke-width="1" fill-rule="evenodd" transform="translate(0.000000, 70.000000)"></g>
+                <text id="Change-%" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400" fill="#FF7171">
+                    <tspan x="198.25" y="90">-0.88%</tspan>
+                </text>
+                <text id="Price" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
+                    <tspan x="190.820312" y="68">240.87</tspan>
+                </text>
+                <g id="Glyph/24News" transform="translate(166.000000, 6.000000)">
+                    <rect id="Bounding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" x="0" y="0" width="24" height="24"></rect>
+                    <mask id="mask-13" fill="white">
+                        <use xlink:href="#path-12"></use>
+                    </mask>
+                    <use id="News-Copy" fill="#AEB1B5" fill-rule="nonzero" xlink:href="#path-12"></use>
+                    <g id="Color/Blue-1" mask="url(#mask-13)" fill="#8A96A6" fill-rule="evenodd">
+                        <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                    </g>
+                </g>
+                <g id="Glyph/24Watchlist" transform="translate(226.000000, 6.000000)">
+                    <rect id="Bounding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" x="0.96" y="0" width="23.04" height="24"></rect>
+                    <mask id="mask-15" fill="white">
+                        <use xlink:href="#path-14"></use>
+                    </mask>
+                    <use id="Watchlist-Copy" fill="#AEB1B5" fill-rule="nonzero" xlink:href="#path-14"></use>
+                    <g id="Color/Teal" mask="url(#mask-15)" fill="#29E9E3" fill-rule="evenodd">
+                        <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                    </g>
+                </g>
+                <g id="Arrow/Up-Copy" transform="translate(182.000000, 81.000000)">
+                    <mask id="mask-17" fill="white">
+                        <use xlink:href="#path-16"></use>
+                    </mask>
+                    <use id="Triangle-5" fill="#AEB1B5" fill-rule="evenodd" transform="translate(4.500000, 3.500000) scale(1, -1) translate(-4.500000, -3.500000) " xlink:href="#path-16"></use>
+                    <g id="Color/Red" mask="url(#mask-17)" fill="#FF7171" fill-rule="evenodd">
+                        <rect id="Rectangle" x="0" y="0" width="9" height="7"></rect>
+                    </g>
+                </g>
+                <g id="Sparkline/1" transform="translate(0.000000, 54.000000)">
+                    <mask id="mask-19" fill="white">
+                        <use xlink:href="#path-18"></use>
+                    </mask>
+                    <use id="Chart_binding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" xlink:href="#path-18"></use>
+                    <polygon id="chart_gradient" fill="url(#linearGradient-9)" fill-rule="evenodd" mask="url(#mask-19)" points="0 23.6669836 6.28 31.2226448 12.56 19.2926321 18.84 17.8761484 25.12 9.01065541 31.4 12.03219 37.68 17.6072882 43.96 1 50.24 2.44973641 56.52 17.9094011 62.8 25.3271853 69.08 26.223386 75.36 32.451778 81.64 35.4781788 87.92 42.2613231 94.2 41.1834492 100.48 59 106.76 55.5409086 113.04 38.0889209 119.32 32.6314237 125.6 25.5745529 131.88 36.3601863 138.16 32.5632962 144.44 30.1686966 150.72 27.9091354 156 40.6069329 156 60 0 60"></polygon>
+                    <polyline id="chart" stroke="#29E9E3" stroke-width="1" mask="url(#mask-19)" points="0 23.6669836 6.28 31.2226448 12.56 19.2926321 18.84 17.8761484 25.12 9.01065541 31.4 12.03219 37.68 17.6072882 43.96 1 50.24 2.44973641 56.52 17.9094011 62.8 25.3271853 69.08 26.223386 75.36 32.451778 81.64 35.4781788 87.92 42.2613231 94.2 41.1834492 100.48 59 106.76 55.5409086 113.04 38.0889209 119.32 32.6314237 125.6 25.5745529 131.88 36.3601863 138.16 32.5632962 144.44 30.1686966 150.72 27.9091354 156 40.6069329"></polyline>
+                    <circle id="Oval-13" fill="#29E9E3" fill-rule="evenodd" mask="url(#mask-19)" cx="156" cy="41" r="3"></circle>
+                </g>
+                <g id="Glyph/24Chart" transform="translate(196.000000, 6.000000)">
+                    <rect id="Bounding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" x="0" y="0" width="24" height="24"></rect>
+                    <mask id="mask-21" fill="white">
+                        <use xlink:href="#path-20"></use>
+                    </mask>
+                    <use id="Chart-Copy" fill="#AEB1B5" fill-rule="nonzero" xlink:href="#path-20"></use>
+                    <g id="Color/Blue-1" mask="url(#mask-21)" fill="#8A96A6" fill-rule="evenodd">
+                        <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                    </g>
+                </g>
+                <text id="Price-change" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400" fill="#FF7171">
+                    <tspan x="210" y="111">-2.13</tspan>
+                </text>
+            </g>
+            <g id="Stock_Flux/Watchlist_item" transform="translate(0.000000, 149.000000)">
+                <g id="Color/Blue-3" fill="#0D2437" fill-rule="evenodd">
+                    <rect id="Rectangle" x="0" y="0" width="259" height="120"></rect>
+                </g>
+                <text id="Ticker" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
+                    <tspan x="12" y="22">TSLA</tspan>
+                </text>
+                <text id="Company-name" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" fill="#FFFFFF">
+                    <tspan x="12" y="39">Tesla, Inc.</tspan>
+                </text>
+                <g id="Group" stroke-width="1" fill-rule="evenodd" transform="translate(0.000000, 70.000000)"></g>
+                <text id="Change-%" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400" fill="#FF7171">
+                    <tspan x="198.25" y="90">-0.88%</tspan>
+                </text>
+                <text id="Price" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
+                    <tspan x="190.820312" y="68">240.87</tspan>
+                </text>
+                <g id="Glyph/24News" transform="translate(166.000000, 6.000000)">
+                    <rect id="Bounding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" x="0" y="0" width="24" height="24"></rect>
+                    <mask id="mask-23" fill="white">
+                        <use xlink:href="#path-22"></use>
+                    </mask>
+                    <use id="News-Copy" fill="#AEB1B5" fill-rule="nonzero" xlink:href="#path-22"></use>
+                    <g id="Color/Teal" mask="url(#mask-23)" fill="#29E9E3" fill-rule="evenodd">
+                        <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                    </g>
+                </g>
+                <g id="Glyph/24Watchlist" transform="translate(226.000000, 6.000000)">
+                    <rect id="Bounding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" x="0.96" y="0" width="23.04" height="24"></rect>
+                    <mask id="mask-25" fill="white">
+                        <use xlink:href="#path-24"></use>
+                    </mask>
+                    <use id="Watchlist-Copy" fill="#AEB1B5" fill-rule="nonzero" xlink:href="#path-24"></use>
+                    <g id="Color/Teal" mask="url(#mask-25)" fill="#29E9E3" fill-rule="evenodd">
+                        <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                    </g>
+                </g>
+                <g id="Arrow/Up-Copy" transform="translate(182.000000, 81.000000)">
+                    <mask id="mask-27" fill="white">
+                        <use xlink:href="#path-26"></use>
+                    </mask>
+                    <use id="Triangle-5" fill="#AEB1B5" fill-rule="evenodd" transform="translate(4.500000, 3.500000) scale(1, -1) translate(-4.500000, -3.500000) " xlink:href="#path-26"></use>
+                    <g id="Color/Red" mask="url(#mask-27)" fill="#FF7171" fill-rule="evenodd">
+                        <rect id="Rectangle" x="0" y="0" width="9" height="7"></rect>
+                    </g>
+                </g>
+                <g id="Sparkline/1" transform="translate(0.000000, 54.000000)">
+                    <mask id="mask-29" fill="white">
+                        <use xlink:href="#path-28"></use>
+                    </mask>
+                    <use id="Chart_binding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" xlink:href="#path-28"></use>
+                    <polygon id="chart_gradient" fill="url(#linearGradient-9)" fill-rule="evenodd" mask="url(#mask-29)" points="0 23.6669836 6.28 31.2226448 12.56 19.2926321 18.84 17.8761484 25.12 9.01065541 31.4 12.03219 37.68 17.6072882 43.96 1 50.24 2.44973641 56.52 17.9094011 62.8 25.3271853 69.08 26.223386 75.36 32.451778 81.64 35.4781788 87.92 42.2613231 94.2 41.1834492 100.48 59 106.76 55.5409086 113.04 38.0889209 119.32 32.6314237 125.6 25.5745529 131.88 36.3601863 138.16 32.5632962 144.44 30.1686966 150.72 27.9091354 156 40.6069329 156 60 0 60"></polygon>
+                    <polyline id="chart" stroke="#29E9E3" stroke-width="1" mask="url(#mask-29)" points="0 23.6669836 6.28 31.2226448 12.56 19.2926321 18.84 17.8761484 25.12 9.01065541 31.4 12.03219 37.68 17.6072882 43.96 1 50.24 2.44973641 56.52 17.9094011 62.8 25.3271853 69.08 26.223386 75.36 32.451778 81.64 35.4781788 87.92 42.2613231 94.2 41.1834492 100.48 59 106.76 55.5409086 113.04 38.0889209 119.32 32.6314237 125.6 25.5745529 131.88 36.3601863 138.16 32.5632962 144.44 30.1686966 150.72 27.9091354 156 40.6069329"></polyline>
+                    <circle id="Oval-13" fill="#29E9E3" fill-rule="evenodd" mask="url(#mask-29)" cx="156" cy="41" r="3"></circle>
+                </g>
+                <g id="Glyph/24Chart" transform="translate(196.000000, 6.000000)">
+                    <rect id="Bounding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" x="0" y="0" width="24" height="24"></rect>
+                    <mask id="mask-31" fill="white">
+                        <use xlink:href="#path-30"></use>
+                    </mask>
+                    <use id="Chart-Copy" fill="#AEB1B5" fill-rule="nonzero" xlink:href="#path-30"></use>
+                    <g id="Color/Blue-1" mask="url(#mask-31)" fill="#8A96A6" fill-rule="evenodd">
+                        <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                    </g>
+                </g>
+                <text id="Price-change" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400" fill="#FF7171">
+                    <tspan x="210" y="111">-2.13</tspan>
+                </text>
+            </g>
+            <g id="Stock_Flux/Watchlist_item" transform="translate(0.000000, 272.000000)">
+                <g id="Color/Blue-3" fill="#0D2437" fill-rule="evenodd">
+                    <rect id="Rectangle" x="0" y="0" width="259" height="120"></rect>
+                </g>
+                <text id="Ticker" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
+                    <tspan x="12" y="22">MSFT</tspan>
+                </text>
+                <text id="Company-name" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" fill="#FFFFFF">
+                    <tspan x="12" y="39">Microsoft Corporations</tspan>
+                </text>
+                <g id="Group" stroke-width="1" fill-rule="evenodd" transform="translate(0.000000, 70.000000)"></g>
+                <text id="Change-%" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400" fill="#41D442">
+                    <tspan x="194.585938" y="90">+0.88%</tspan>
+                </text>
+                <text id="Price" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
+                    <tspan x="190.820312" y="68">240.87</tspan>
+                </text>
+                <g id="Glyph/24News" transform="translate(166.000000, 6.000000)">
+                    <rect id="Bounding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" x="0" y="0" width="24" height="24"></rect>
+                    <mask id="mask-33" fill="white">
+                        <use xlink:href="#path-32"></use>
+                    </mask>
+                    <use id="News-Copy" fill="#AEB1B5" fill-rule="nonzero" xlink:href="#path-32"></use>
+                    <g id="Color/Teal" mask="url(#mask-33)" fill="#29E9E3" fill-rule="evenodd">
+                        <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                    </g>
+                </g>
+                <g id="Glyph/24Watchlist" transform="translate(226.000000, 6.000000)">
+                    <rect id="Bounding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" x="0.96" y="0" width="23.04" height="24"></rect>
+                    <mask id="mask-35" fill="white">
+                        <use xlink:href="#path-34"></use>
+                    </mask>
+                    <use id="Watchlist-Copy" fill="#AEB1B5" fill-rule="nonzero" xlink:href="#path-34"></use>
+                    <g id="Color/Teal" mask="url(#mask-35)" fill="#29E9E3" fill-rule="evenodd">
+                        <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                    </g>
+                </g>
+                <g id="Arrow/Up" transform="translate(182.000000, 81.000000)">
+                    <mask id="mask-37" fill="white">
+                        <use xlink:href="#path-36"></use>
+                    </mask>
+                    <use id="Triangle-5" fill="#AEB1B5" fill-rule="evenodd" xlink:href="#path-36"></use>
+                    <g id="Color/Green" mask="url(#mask-37)" fill="#41D442" fill-rule="evenodd">
+                        <rect id="Rectangle" x="0" y="0" width="9" height="7"></rect>
+                    </g>
+                </g>
+                <g id="Sparkline/3" transform="translate(0.000000, 54.000000)">
+                    <mask id="mask-39" fill="white">
+                        <use xlink:href="#path-38"></use>
+                    </mask>
+                    <use id="Chart_binding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" xlink:href="#path-38"></use>
+                    <circle id="Oval-13" fill="#29E9E3" fill-rule="evenodd" mask="url(#mask-39)" cx="156" cy="40" r="3"></circle>
+                    <polygon id="chart-copy" fill="url(#linearGradient-40)" fill-rule="evenodd" mask="url(#mask-39)" points="-1 8.8205227 5.28 26.3036024 11.56 25.6203686 17.84 31.871701 24.12 19.1722854 30.4 33.860271 36.68 34.4284338 42.96 35.5878765 49.24 21.674565 55.52 13.762923 61.8 10.8065241 68.08 2.02979516 74.36 2 80.64 23.9852308 86.92 8.21640018 93.2 39.9066333 99.48 23.9883131 105.76 18.3888782 112.04 27.7599692 118.32 20.1467925 124.6 43.6536313 130.88 22.2072818 137.16 25.7529057 143.44 40.7670969 149.72 58 156 40.6864445 156 60 0 60"></polygon>
+                    <polyline id="chart" stroke="#29E9E3" stroke-width="1" mask="url(#mask-39)" points="-1 8.8205227 5.28 26.3036024 11.56 25.6203686 17.84 31.871701 24.12 19.1722854 30.4 33.860271 36.68 34.4284338 42.96 35.5878765 49.24 21.674565 55.52 13.762923 61.8 10.8065241 68.08 2.02979516 74.36 2 80.64 23.9852308 86.92 8.21640018 93.2 39.9066333 99.48 23.9883131 105.76 18.3888782 112.04 27.7599692 118.32 20.1467925 124.6 43.6536313 130.88 22.2072818 137.16 25.7529057 143.44 40.7670969 149.72 58 156 40.6864445"></polyline>
+                </g>
+                <g id="Glyph/24Chart" transform="translate(196.000000, 6.000000)">
+                    <rect id="Bounding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" x="0" y="0" width="24" height="24"></rect>
+                    <mask id="mask-42" fill="white">
+                        <use xlink:href="#path-41"></use>
+                    </mask>
+                    <use id="Chart-Copy" fill="#AEB1B5" fill-rule="nonzero" xlink:href="#path-41"></use>
+                    <g id="Color/Blue-1" mask="url(#mask-42)" fill="#8A96A6" fill-rule="evenodd">
+                        <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                    </g>
+                </g>
+                <text id="Price-change" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400" fill="#41D442">
+                    <tspan x="206.335938" y="111">+2.13</tspan>
+                </text>
+            </g>
+            <g id="Stock_Flux/Watchlist_item" transform="translate(0.000000, 394.000000)">
+                <g id="Color/Blue-3" fill="#0D2437" fill-rule="evenodd">
+                    <rect id="Rectangle" x="0" y="0" width="259" height="120"></rect>
+                </g>
+                <text id="Ticker" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
+                    <tspan x="12" y="22">CC</tspan>
+                </text>
+                <text id="Company-name" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" fill="#FFFFFF">
+                    <tspan x="12" y="39">The Chemours Co.</tspan>
+                </text>
+                <g id="Group" stroke-width="1" fill-rule="evenodd" transform="translate(0.000000, 70.000000)"></g>
+                <text id="Change-%" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400" fill="#FF7171">
+                    <tspan x="198.25" y="90">-0.88%</tspan>
+                </text>
+                <text id="Price" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
+                    <tspan x="190.820312" y="68">240.87</tspan>
+                </text>
+                <g id="Glyph/24News" transform="translate(166.000000, 6.000000)">
+                    <rect id="Bounding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" x="0" y="0" width="24" height="24"></rect>
+                    <mask id="mask-44" fill="white">
+                        <use xlink:href="#path-43"></use>
+                    </mask>
+                    <use id="News-Copy" fill="#AEB1B5" fill-rule="nonzero" xlink:href="#path-43"></use>
+                    <g id="Color/Blue-1" mask="url(#mask-44)" fill="#8A96A6" fill-rule="evenodd">
+                        <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                    </g>
+                </g>
+                <g id="Glyph/24Watchlist" transform="translate(226.000000, 6.000000)">
+                    <rect id="Bounding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" x="0.96" y="0" width="23.04" height="24"></rect>
+                    <mask id="mask-46" fill="white">
+                        <use xlink:href="#path-45"></use>
+                    </mask>
+                    <use id="Watchlist-Copy" fill="#AEB1B5" fill-rule="nonzero" xlink:href="#path-45"></use>
+                    <g id="Color/Teal" mask="url(#mask-46)" fill="#29E9E3" fill-rule="evenodd">
+                        <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                    </g>
+                </g>
+                <g id="Arrow/Up-Copy" transform="translate(182.000000, 81.000000)">
+                    <mask id="mask-48" fill="white">
+                        <use xlink:href="#path-47"></use>
+                    </mask>
+                    <use id="Triangle-5" fill="#AEB1B5" fill-rule="evenodd" transform="translate(4.500000, 3.500000) scale(1, -1) translate(-4.500000, -3.500000) " xlink:href="#path-47"></use>
+                    <g id="Color/Red" mask="url(#mask-48)" fill="#FF7171" fill-rule="evenodd">
+                        <rect id="Rectangle" x="0" y="0" width="9" height="7"></rect>
+                    </g>
+                </g>
+                <g id="Sparkline/1" transform="translate(0.000000, 54.000000)">
+                    <mask id="mask-50" fill="white">
+                        <use xlink:href="#path-49"></use>
+                    </mask>
+                    <use id="Chart_binding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" xlink:href="#path-49"></use>
+                    <polygon id="chart_gradient" fill="url(#linearGradient-9)" fill-rule="evenodd" mask="url(#mask-50)" points="0 23.6669836 6.28 31.2226448 12.56 19.2926321 18.84 17.8761484 25.12 9.01065541 31.4 12.03219 37.68 17.6072882 43.96 1 50.24 2.44973641 56.52 17.9094011 62.8 25.3271853 69.08 26.223386 75.36 32.451778 81.64 35.4781788 87.92 42.2613231 94.2 41.1834492 100.48 59 106.76 55.5409086 113.04 38.0889209 119.32 32.6314237 125.6 25.5745529 131.88 36.3601863 138.16 32.5632962 144.44 30.1686966 150.72 27.9091354 156 40.6069329 156 60 0 60"></polygon>
+                    <polyline id="chart" stroke="#29E9E3" stroke-width="1" mask="url(#mask-50)" points="0 23.6669836 6.28 31.2226448 12.56 19.2926321 18.84 17.8761484 25.12 9.01065541 31.4 12.03219 37.68 17.6072882 43.96 1 50.24 2.44973641 56.52 17.9094011 62.8 25.3271853 69.08 26.223386 75.36 32.451778 81.64 35.4781788 87.92 42.2613231 94.2 41.1834492 100.48 59 106.76 55.5409086 113.04 38.0889209 119.32 32.6314237 125.6 25.5745529 131.88 36.3601863 138.16 32.5632962 144.44 30.1686966 150.72 27.9091354 156 40.6069329"></polyline>
+                    <circle id="Oval-13" fill="#29E9E3" fill-rule="evenodd" mask="url(#mask-50)" cx="156" cy="41" r="3"></circle>
+                </g>
+                <g id="Glyph/24Chart" transform="translate(196.000000, 6.000000)">
+                    <rect id="Bounding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" x="0" y="0" width="24" height="24"></rect>
+                    <mask id="mask-52" fill="white">
+                        <use xlink:href="#path-51"></use>
+                    </mask>
+                    <use id="Chart-Copy" fill="#AEB1B5" fill-rule="nonzero" xlink:href="#path-51"></use>
+                    <g id="Color/Blue-1" mask="url(#mask-52)" fill="#8A96A6" fill-rule="evenodd">
+                        <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                    </g>
+                </g>
+                <text id="Price-change" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400" fill="#FF7171">
+                    <tspan x="210" y="111">-2.13</tspan>
+                </text>
+            </g>
+            <g id="Component/Close_Minimize" transform="translate(216.000000, 0.000000)" fill-rule="evenodd" stroke-width="1">
+                <g id="Minimize">
+                    <rect id="Rectangle-Copy-2" fill="#D8D8D8" opacity="0" x="0" y="0" width="24" height="28"></rect>
+                    <rect id="Rectangle" fill="#FFFFFF" x="6" y="19" width="12" height="2"></rect>
+                </g>
+                <g id="Close" transform="translate(28.000000, 0.000000)">
+                    <rect id="Rectangle" fill="#1B3B56" opacity="0" x="0" y="0" width="24" height="28"></rect>
+                    <polygon id="X" fill="#FFFFFF" points="17.6189127 8 18.909903 9.2909903 13.7451778 14.4541796 18.909903 19.6189127 17.6189127 20.909903 12.4541796 15.7451778 7.2909903 20.909903 6 19.6189127 11.1639928 14.4541796 6 9.2909903 7.2909903 8 12.4541796 13.1639928"></polygon>
+                </g>
+            </g>
+            <text id="Window-name" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
+                <tspan x="12" y="20">Watchlist</tspan>
+            </text>
+            <path d="M259,392 L259,394 L0,394 L0,392 L259,392 Z M259,271 L259,273 L0,273 L0,271 L259,271 Z M259,149 L259,151 L0,151 L0,149 L259,149 Z" id="Divider_Lines" fill="#061725" fill-rule="evenodd"></path>
+            <g id="Color/Blue-2" transform="translate(259.000000, 28.000000)" fill="#1B3B56" fill-rule="evenodd">
+                <rect id="Rectangle" x="0" y="0" width="12" height="486"></rect>
+            </g>
+            <g id="Component/Scroll_Bar" transform="translate(259.000000, 40.000000)" fill="#091A29" fill-rule="evenodd">
+                <g id="Color/Blue-4">
+                    <rect id="Rectangle" x="0" y="0" width="12" height="182"></rect>
+                </g>
+            </g>
+            <g id="Component/Scroll_Arrow_Up" transform="translate(259.000000, 28.000000)">
+                <mask id="mask-54" fill="white">
+                    <use xlink:href="#path-53"></use>
+                </mask>
+                <use id="Triangle-5" fill="#AEB1B5" fill-rule="evenodd" xlink:href="#path-53"></use>
+                <g id="Color/Blue-4" mask="url(#mask-54)" fill="#091A29" fill-rule="evenodd">
+                    <g transform="translate(2.000000, 3.000000)" id="Rectangle">
+                        <rect x="0" y="0" width="8" height="7"></rect>
+                    </g>
+                </g>
+            </g>
+            <g id="Component/Scroll_Arrow_Down" transform="translate(259.000000, 502.000000)">
+                <mask id="mask-56" fill="white">
+                    <use xlink:href="#path-55"></use>
+                </mask>
+                <use id="Triangle-5" fill="#AEB1B5" fill-rule="evenodd" transform="translate(6.000000, 6.000000) scale(1, -1) translate(-6.000000, -6.000000) " xlink:href="#path-55"></use>
+                <g id="Color/Blue-1" mask="url(#mask-56)" fill="#8A96A6" fill-rule="evenodd">
+                    <g transform="translate(2.000000, 3.000000)" id="Rectangle">
+                        <rect x="0" y="0" width="8" height="7"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+        <g id="Stock_Flux/Watchlist_item" transform="translate(31.000000, 43.000000)">
+            <g id="Color/Blue-3" fill="#0D2437" fill-rule="evenodd">
+                <rect id="Rectangle" x="0" y="0" width="259" height="120"></rect>
+            </g>
+            <g id="State/Top_Dark" fill="#091A29" fill-rule="evenodd">
+                <rect id="Rectangle" x="0" y="0" width="259" height="48"></rect>
+            </g>
+            <text id="Ticker" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
+                <tspan x="12" y="22">TSLA</tspan>
+            </text>
+            <text id="Company-name" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" fill="#FFFFFF">
+                <tspan x="12" y="39">Tesla, Inc.</tspan>
+            </text>
+            <g id="Group" stroke-width="1" fill-rule="evenodd" transform="translate(0.000000, 70.000000)"></g>
+            <text id="Change-%" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400" fill="#FF7171">
+                <tspan x="198.25" y="90">-0.88%</tspan>
+            </text>
+            <text id="Price" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
+                <tspan x="190.820312" y="68">240.87</tspan>
+            </text>
+            <g id="Glyph/24News" transform="translate(166.000000, 6.000000)">
+                <rect id="Bounding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" x="0" y="0" width="24" height="24"></rect>
+                <mask id="mask-58" fill="white">
+                    <use xlink:href="#path-57"></use>
+                </mask>
+                <use id="News-Copy" fill="#AEB1B5" fill-rule="nonzero" xlink:href="#path-57"></use>
+                <g id="Color/Teal" mask="url(#mask-58)" fill="#29E9E3" fill-rule="evenodd">
+                    <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                </g>
+            </g>
+            <g id="Glyph/24Watchlist" transform="translate(226.000000, 6.000000)">
+                <rect id="Bounding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" x="0.96" y="0" width="23.04" height="24"></rect>
+                <mask id="mask-60" fill="white">
+                    <use xlink:href="#path-59"></use>
+                </mask>
+                <use id="Watchlist-Copy" fill="#AEB1B5" fill-rule="nonzero" xlink:href="#path-59"></use>
+                <g id="Color/Teal" mask="url(#mask-60)" fill="#29E9E3" fill-rule="evenodd">
+                    <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                </g>
+            </g>
+            <g id="Arrow/Up-Copy" transform="translate(182.000000, 81.000000)">
+                <mask id="mask-62" fill="white">
+                    <use xlink:href="#path-61"></use>
+                </mask>
+                <use id="Triangle-5" fill="#AEB1B5" fill-rule="evenodd" transform="translate(4.500000, 3.500000) scale(1, -1) translate(-4.500000, -3.500000) " xlink:href="#path-61"></use>
+                <g id="Color/Red" mask="url(#mask-62)" fill="#FF7171" fill-rule="evenodd">
+                    <rect id="Rectangle" x="0" y="0" width="9" height="7"></rect>
+                </g>
+            </g>
+            <g id="Sparkline/1" transform="translate(0.000000, 54.000000)">
+                <mask id="mask-64" fill="white">
+                    <use xlink:href="#path-63"></use>
+                </mask>
+                <use id="Chart_binding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" xlink:href="#path-63"></use>
+                <polygon id="chart_gradient" fill="url(#linearGradient-9)" fill-rule="evenodd" mask="url(#mask-64)" points="0 23.6669836 6.28 31.2226448 12.56 19.2926321 18.84 17.8761484 25.12 9.01065541 31.4 12.03219 37.68 17.6072882 43.96 1 50.24 2.44973641 56.52 17.9094011 62.8 25.3271853 69.08 26.223386 75.36 32.451778 81.64 35.4781788 87.92 42.2613231 94.2 41.1834492 100.48 59 106.76 55.5409086 113.04 38.0889209 119.32 32.6314237 125.6 25.5745529 131.88 36.3601863 138.16 32.5632962 144.44 30.1686966 150.72 27.9091354 156 40.6069329 156 60 0 60"></polygon>
+                <polyline id="chart" stroke="#29E9E3" stroke-width="1" mask="url(#mask-64)" points="0 23.6669836 6.28 31.2226448 12.56 19.2926321 18.84 17.8761484 25.12 9.01065541 31.4 12.03219 37.68 17.6072882 43.96 1 50.24 2.44973641 56.52 17.9094011 62.8 25.3271853 69.08 26.223386 75.36 32.451778 81.64 35.4781788 87.92 42.2613231 94.2 41.1834492 100.48 59 106.76 55.5409086 113.04 38.0889209 119.32 32.6314237 125.6 25.5745529 131.88 36.3601863 138.16 32.5632962 144.44 30.1686966 150.72 27.9091354 156 40.6069329"></polyline>
+                <circle id="Oval-13" fill="#29E9E3" fill-rule="evenodd" mask="url(#mask-64)" cx="156" cy="41" r="3"></circle>
+            </g>
+            <g id="Glyph/24Chart" transform="translate(196.000000, 6.000000)">
+                <rect id="Bounding_box" fill="#D8D8D8" fill-rule="evenodd" opacity="0" x="0" y="0" width="24" height="24"></rect>
+                <mask id="mask-66" fill="white">
+                    <use xlink:href="#path-65"></use>
+                </mask>
+                <use id="Chart-Copy" fill="#AEB1B5" fill-rule="nonzero" xlink:href="#path-65"></use>
+                <g id="Color/Blue-1" mask="url(#mask-66)" fill="#8A96A6" fill-rule="evenodd">
+                    <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                </g>
+            </g>
+            <text id="Price-change" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400" fill="#FF7171">
+                <tspan x="210" y="111">-2.13</tspan>
+            </text>
+        </g>
+        <g id="Stock_Flux/Watchlist_Scroll-Copy" transform="translate(633.000000, 196.000000)">
+            <g id="Color/Blue-3" fill="#0D2437">
+                <rect id="Rectangle" x="0" y="0" width="259" height="514"></rect>
+            </g>
+            <g id="State/Top_Dark" fill="#091A29">
+                <rect id="Rectangle" x="0" y="0" width="259" height="28"></rect>
+            </g>
+            <g id="Component/Close_Minimize" transform="translate(202.695652, 0.000000)">
+                <g id="Minimize">
+                    <rect id="Rectangle-Copy-2" fill="#D8D8D8" opacity="0" x="0" y="0" width="24.4615385" height="28"></rect>
+                    <rect id="Rectangle" fill="#FFFFFF" x="6.11538462" y="19" width="12.2307692" height="2"></rect>
+                </g>
+                <g id="Close" transform="translate(28.538462, 0.000000)">
+                    <rect id="Rectangle" fill="#1B3B56" opacity="0" x="0" y="0" width="24.4615385" height="28"></rect>
+                    <polygon id="X" fill="#FFFFFF" points="17.9577379 8 19.273555 9.2909903 14.0095081 14.4541796 19.273555 19.6189127 17.9577379 20.909903 12.693683 15.7451778 7.43120165 20.909903 6.11538462 19.6189127 11.378685 14.4541796 6.11538462 9.2909903 7.43120165 8 12.693683 13.1639928"></polygon>
+                </g>
+            </g>
+            <text id="Watchlist" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400" fill="#FFFFFF">
+                <tspan x="12.284585" y="20">Watchlist</tspan>
+            </text>
+        </g>
+        <text id="You-have-no-stocks-i" font-family="Roboto-Regular, Roboto" font-size="16" font-weight="normal" fill="#FFFFFF">
+            <tspan x="657" y="275">You have no stocks in your</tspan>
+            <tspan x="657" y="294">Watchlist.</tspan>
+        </text>
+        <text id="Use-the-Search-to-ad" font-family="Roboto-Regular, Roboto" font-size="16" font-weight="normal" fill="#FFFFFF">
+            <tspan x="657" y="325">Use the Search to add new</tspan>
+            <tspan x="657" y="344">stocks to the list.</tspan>
+        </text>
+    </g>
+</svg>
