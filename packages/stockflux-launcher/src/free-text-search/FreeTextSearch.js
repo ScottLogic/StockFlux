@@ -189,6 +189,7 @@ const FreeTextSearch = ({ dockedTo, showTextInput }) => {
   return (
     <div className="free-text-search">
       <SearchButton
+        className="launcher-icon"
         searchButtonRef={searchButtonRef}
         handleSearchClick={handleSearchClick}
       />

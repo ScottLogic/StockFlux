@@ -46,8 +46,7 @@
 .title-vertical {
     padding-bottom: 28px;
     padding-left: 40%;
- 
-    padding-top: 28px; 
+    padding-top: 8px;
 }
 
 .icons-container {
@@ -62,7 +61,7 @@
     color: #FFFFFF;
     display: inline-block;    
     cursor: pointer;
-    padding:3px;
+    padding:6px;
 }
 
 .header-icon:hover {

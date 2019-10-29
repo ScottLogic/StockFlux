@@ -18,21 +18,6 @@ export default ({ dockedTo }) => {
 
   const dockedHorizontal = dockedTo === 'top' || dockedTo === 'none';
 
-  let heading;
-  if (dockedHorizontal) {
-    heading = (
-      <p className="title">
-        <strong>Stock</strong>Flux
-      </p>
-    );
-  } else {
-    // heading = (
-    //   <p className="title">
-    //     <strong>SF</strong>
-    //   </p>
-    // );
-  }
-
   return (
     <div className="titlebar">
       {dockedHorizontal && (
@@ -50,10 +35,8 @@ export default ({ dockedTo }) => {
 
       <div
         className={cx(
-          'column column-right',
-          dockedTo === 'top' || dockedTo === 'none'
-            ? 'header-icon add-padding-right'
-            : 'header-icon'
+          'column column-right header-icon',
+          dockedTo === 'top' || dockedTo === 'none' ? 'add-padding-right' : ''
         )}
         onClick={onCloseClick}
         title="Close"
@@ -63,10 +46,8 @@ export default ({ dockedTo }) => {
 
       <div
         className={cx(
-          'column column-right',
-          dockedTo === 'top' || dockedTo === 'none'
-            ? 'header-icon add-padding-right'
-            : 'header-icon'
+          'column column-right header-icon',
+          dockedTo === 'top' || dockedTo === 'none' ? 'add-padding-right' : ''
         )}
         onClick={onMinimizeClick}
         title="Minimize"
@@ -77,7 +58,7 @@ export default ({ dockedTo }) => {
       {!dockedHorizontal && (
         <div>
           <p className="title title-vertical">
-            <strong>SF</strong>
+            <strong>S</strong>F
           </p>
         </div>
       )}

@@ -77,16 +77,13 @@ export default () => {
       <div className={cx('app', edge)}>
         <div
           className={cx(
+            'launcher-icon',
             edge === 'top' || edge === 'none'
               ? 'shortcut-horizontal'
               : 'shortcut-vertical'
           )}
         >
-          <Components.Shortcuts.Watchlist
-            className="launcher-icon"
-            symbol="TSLA"
-            name="Tesla"
-          />
+          <Components.Shortcuts.Watchlist symbol="TSLA" name="Tesla" />
         </div>
 
         <FreeTextSearch dockedTo={edge} />
