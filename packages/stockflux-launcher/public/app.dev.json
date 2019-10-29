@@ -10,7 +10,7 @@
         "url": "http://localhost:8053/index.html",
         "applicationIcon": "http://localhost:8053/favicon.ico",
         "autoShow": true,
-        "defaultHeight": 75,
+        "defaultHeight": 88,
         "defaultWidth": 800,
         "defaultTop": 0,
         "resizable": false,

@@ -16,6 +16,8 @@ export default () => {
   const defaultHeight = options ? options.defaultHeight : 75;
   const defaultWidth = options ? options.defaultWidth : 50;
   const isDockable = options ? options.customData.isDockable : false;
+  const [leftPosition, setLeft] = useState(0);
+  const [topPosition, setTop] = useState(0);
   const [isHorizontal, setHorizontal] = useState(true);
   const [edge, windowActions] = useDockWindow(
     ScreenEdge.TOP,
@@ -26,9 +28,15 @@ export default () => {
       dockedHeight: defaultHeight
     },
     {
-      undockSize: { width: window.screen.availWidth - 500, height: 100 }
+      undockPosition: { left: leftPosition, top: topPosition },
+      undockSize: { width: window.screen.availWidth - 500, height: 88 }
     }
   );
+
+  async function getBounds() {
+    let bounds = await OpenfinApiHelpers.getCurrentWindowSync().getBounds();
+    return bounds;
+  }
 
   /* Hook undock if initialDocked is false on start */
   useEffect(() => {
@@ -45,8 +53,14 @@ export default () => {
   /* Make sure window shrinks when dragged from top */
   useEffect(() => {
     if (edge === ScreenEdge.NONE) {
-      window.resizeTo(window.screen.availWidth - 500, 88);
+      getBounds().then(value => {
+        setLeft(value.left);
+        setTop(value.top);
+
+        windowActions.dockNone();
+      });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [edge]);
 
   useEffect(() => {

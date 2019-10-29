@@ -79,16 +79,6 @@ html {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-}
-
-.none {
-  border: var(--launcher-border-color);
-  border-top: 0;
-  height: 70px;
-}
-
-.top {
-  border-bottom: var(--launcher-border-color);
   height: 60px;
 }
 
