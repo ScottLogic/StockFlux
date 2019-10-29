@@ -16,6 +16,10 @@ html {
   color: var(--icon-active);
 }
 
+.launcher-icon-active:disabled:hover {
+  background-color: var(--icon-hover-light);
+}
+
 .launcher-icon-active:hover {
   background-color: var(--icon-hover-light);
   color: var(--icon-inactive);
