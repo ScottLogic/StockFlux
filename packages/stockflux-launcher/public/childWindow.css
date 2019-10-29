@@ -18,8 +18,9 @@ div.scrollWrapperY > p {
   margin: 0;
 }
 
-div#root > .spinner {
-  margin-top: 170px;
+.spinner {
+  position: relative;
+  top:calc(50vh - var(--search-input-height))
 }
 
 .card {
