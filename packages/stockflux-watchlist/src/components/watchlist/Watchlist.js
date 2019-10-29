@@ -203,8 +203,9 @@ const Watchlist = () => {
       }}
     >
       <Components.PreviewWindow
+        windowName="chart-preview"
         display={displayPreview}
-        htmlfile="preview-chart.html"
+        htmlPath="preview-chart.html"
         position={previewDetails.position}
         size={previewDetails.size}
       ></Components.PreviewWindow>
