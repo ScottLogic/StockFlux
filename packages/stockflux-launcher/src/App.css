@@ -1,5 +1,5 @@
 html {
-  background-color: var(--middle-background);
+  background-color: var(--launcher-color);
 }
 
 .launcher-container {
@@ -64,14 +64,6 @@ html {
   flex-grow: 3;
   position: absolute;
   height: 100%;
-}
-
-.left {
-  border-right: var(--launcher-border-color);
-}
-
-.right {
-  border-left: var(--launcher-border-color);
 }
 
 .none,

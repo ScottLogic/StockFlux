@@ -24,7 +24,7 @@ export default () => {
     OpenfinApiHelpers.getCurrentWindowSync(),
     true,
     {
-      dockedWidth: isHorizontal ? defaultWidth : 90,
+      dockedWidth: isHorizontal ? defaultWidth : 80,
       dockedHeight: defaultHeight
     },
     {
