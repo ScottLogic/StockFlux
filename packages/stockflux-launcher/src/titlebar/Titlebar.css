@@ -1,7 +1,8 @@
 .titlebar {
     background-color: var(--dark-background);
     border: none;
-    height: 28px;
+    display: inline-block;
+    height: 100%;
     width: 100%;
     -webkit-app-region: drag;
 }
@@ -40,6 +41,13 @@
 .titlebar-title {
     width: 100%;
     -webkit-app-region: no-drag;
+}
+
+.title-vertical {
+    padding-bottom: 28px;
+    padding-left: 40%;
+ 
+    padding-top: 28px; 
 }
 
 .icons-container {
