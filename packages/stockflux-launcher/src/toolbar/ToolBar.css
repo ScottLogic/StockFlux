@@ -2,6 +2,8 @@
   display: flex;
   align-items: center;
   padding-bottom: 12px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .left .toolbar,
