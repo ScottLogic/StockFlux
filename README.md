@@ -2,7 +2,7 @@
 
 Stockflux is a suite of applications, components and libraries developed by [Scott Logic](http://www.scottlogic.com) designed to showcase the latest in Openfin and FDC3.
 
-![main_screenshot](https://user-images.githubusercontent.com/2376919/60515108-d3ae6e00-9cd2-11e9-82b9-12a401a37a2f.png)
+![main_screenshot](./stockflux.png)
 
 Here are a few things to try:
 
@@ -133,10 +133,10 @@ The installer requires no dependencies or prior configuration to be ran.
 
 ### Project Package Dependency Diagram
 
-![package ](./package-dependencies.PNG)
+![package ](./package-dependencies.png)
 
 ### How the apps communicate
 
 The Application make use of the [Intents API](https://fdc3.finos.org/docs/1.0/intents-intro) and the [InterApplicationBus](https://developer.openfin.co/jsdocs/stable/fin.desktop.InterApplicationBus.html) to launch each other and pass messages. The Chart and News applications are not launched via intents as we allow the user to launch multiple of them. The Container application registers their intents and creates child windows when called.
 
-![communications](./communication-dependencies.PNG)
+![communications](./communication-dependencies.png)
