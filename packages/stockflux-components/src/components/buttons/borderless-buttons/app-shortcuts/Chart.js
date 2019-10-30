@@ -1,6 +1,5 @@
 import React from 'react';
 import { Launchers } from 'stockflux-core';
-// import ChartIcon from '../../../glyphs/small/chart.svg';
 import ChartIcon from '../../../glyphs/small/chart.svg';
 import BorderlessButton from '../../borderless-button/BorderlessButton';
 
