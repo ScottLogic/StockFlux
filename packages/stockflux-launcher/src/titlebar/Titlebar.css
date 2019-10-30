@@ -24,7 +24,7 @@
 }
 
 .add-padding-right {
-    padding-right: 12px;
+    padding-right: 12px !important;
 }
 
 .column-right {
@@ -68,7 +68,7 @@
     color: #FFFFFF;
     display: inline-block;    
     cursor: pointer;
-    padding:6px;
+    padding:8px;
     z-index: 1;
 }
 

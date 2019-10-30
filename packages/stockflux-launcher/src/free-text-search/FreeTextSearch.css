@@ -16,7 +16,7 @@
   width: var(--search-input-width);
   min-width: var(--search-input-min-width);
   padding: var(--padding-medium);
-  margin: 0 5px;
+  margin: 0 12px;
   outline: none;
 }
 
