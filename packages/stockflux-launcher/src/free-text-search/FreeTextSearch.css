@@ -3,6 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Roboto Regular';
 }
 
 .free-text-search input {
@@ -10,6 +11,7 @@
   color: var(---search-input-text-color);
   border: none;
   border-radius: 4px;
+  font-size: 18px;
   height: var(--search-input-height);
   width: var(--search-input-width);
   min-width: var(--search-input-min-width);
@@ -18,26 +20,9 @@
   outline: none;
 }
 
-.free-text-search-undocked {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 350px;
+.search-undocked {
   padding-right: 18px;
-}
-
-.free-text-search-undocked input {
-  background: var(--dark-background);
-  color: var(--search-input-text-color);
-  border: none;
-  border-radius: 4px;
-  height: var(--search-input-height);
-  width: var(--search-input-width-undocked);
-  min-width: var(--search-input-min-width);
-  padding: var(--padding-medium);
-  margin: 0 5px;
-  outline: none;
+  width: 350px;
 }
 
 .left .free-text-search,

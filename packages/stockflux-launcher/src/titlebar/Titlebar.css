@@ -1,5 +1,5 @@
 .titlebar {
-    background-color: var(--dark-background);
+    background-color: var(--titlebar-color);
     border: none;
     display: inline-block;
     height: 100%;
@@ -34,8 +34,15 @@
 
 .title {
     color: #FFFFFF;
-    font-family: 'Roboto';
     font-size: 21px;
+}
+
+.title-light {
+    font-family: 'Roboto Light';
+}
+
+.title-strong {
+    font-family: 'Roboto Medium';
 }
 
 .titlebar-title {

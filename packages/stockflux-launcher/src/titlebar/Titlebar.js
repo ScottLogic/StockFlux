@@ -28,7 +28,8 @@ export default ({ dockedTo }) => {
           )}
         >
           <p className="title">
-            <strong>Stock</strong>Flux
+            <span className="title-strong">Stock</span>
+            <span className="title-light">Flux</span>
           </p>
         </div>
       )}
@@ -58,7 +59,8 @@ export default ({ dockedTo }) => {
       {!dockedHorizontal && (
         <div>
           <p className="title title-vertical">
-            <strong>S</strong>F
+            <span className="title-strong">S</span>
+            <span className="title-light">F</span>
           </p>
         </div>
       )}
