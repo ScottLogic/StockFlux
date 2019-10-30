@@ -5,6 +5,8 @@ import Watchlist from './components/buttons/round-buttons/app-shortcuts/Watchlis
 import Chart from './components/buttons/round-buttons/app-shortcuts/Chart';
 import Round from './components/buttons/round-button/RoundButton';
 import Close from './components/buttons/round-buttons/Close';
+import CloseIcon from './components/icons/close.svg';
+import MinimizeIcon from './components/icons/minimize.svg';
 import News from './components/buttons/round-buttons/app-shortcuts/News';
 import ConfirmationWindow from './components/popups/ConfirmationWindow';
 import PopupWindow from './components/popups/PopupWindow';
@@ -22,6 +24,9 @@ export default {
   Spinner,
   LargeSpinner,
   Buttons: { Round, Close },
+  Icons: {
+    Toolbar: { MinimizeIcon, CloseIcon }
+  },
   Shortcuts: { Watchlist, Chart, News },
   Popups: { PopupWindow, ConfirmationWindow },
   PreviewWindow

@@ -1,9 +1,8 @@
 import cx from 'classnames';
 import React, { useCallback } from 'react';
 import { OpenfinApiHelpers } from 'stockflux-core';
+import Components from 'stockflux-components';
 import './Titlebar.css';
-import { ReactComponent as CloseIcon } from '../icons/close.svg';
-import { ReactComponent as MinimizeIcon } from '../icons/minimize.svg';
 
 export default ({ dockedTo }) => {
   const onMinimizeClick = useCallback(async () => {
@@ -42,7 +41,7 @@ export default ({ dockedTo }) => {
         onClick={onCloseClick}
         title="Close"
       >
-        <CloseIcon />
+        <Components.Icons.Toolbar.CloseIcon />
       </div>
 
       <div
@@ -53,7 +52,7 @@ export default ({ dockedTo }) => {
         onClick={onMinimizeClick}
         title="Minimize"
       >
-        <MinimizeIcon />
+        <Components.Icons.Toolbar.MinimizeIcon />
       </div>
 
       {!dockedHorizontal && (
