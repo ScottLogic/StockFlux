@@ -11,13 +11,21 @@ const SearchResult = ({ symbol, name }) => {
         <p className="symbol">{symbol}</p>
       </div>
       <div id="actions" className="actions">
-        <Components.Shortcuts.News symbol={symbol} name={name} small={true} />
-        <Components.Shortcuts.Watchlist
+        <Components.Shortcuts.NewsBorderless
           symbol={symbol}
           name={name}
           small={true}
         />
-        <Components.Shortcuts.Chart symbol={symbol} name={name} small={true} />
+        <Components.Shortcuts.WatchlistBorderless
+          symbol={symbol}
+          name={name}
+          small={true}
+        />
+        <Components.Shortcuts.ChartBorderless
+          symbol={symbol}
+          name={name}
+          small={true}
+        />
       </div>
     </div>
   );

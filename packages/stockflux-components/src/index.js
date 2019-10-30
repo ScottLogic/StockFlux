@@ -10,6 +10,7 @@ import News from './components/buttons/round-buttons/app-shortcuts/News';
 import Borderless from './components/buttons/borderless-button/BorderlessButton';
 import ChartBorderless from './components/buttons/borderless-buttons/app-shortcuts/Chart';
 import NewsBorderless from './components/buttons/borderless-buttons/app-shortcuts/News';
+import WatchlistBorderless from './components/buttons/borderless-buttons/app-shortcuts/Watchlist';
 import CloseBorderless from './components/buttons/borderless-buttons/Close';
 
 import ChartIcon from './components/glyphs/small/chart.svg';
@@ -41,6 +42,7 @@ export default {
     News,
     ChartBorderless,
     NewsBorderless,
+    WatchlistBorderless,
     CloseBorderless
   },
   Icons: {
