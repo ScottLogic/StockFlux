@@ -65,9 +65,9 @@ body {
 
 .card-wrapper {
   cursor: pointer;
-  border-width: 1px 0;
+  border-width: 2px 0;
   max-height: calc(var(--card-height) * 2);
-  border-bottom: 1px solid var(--clr-divider-light);
+  border-bottom: 2px solid var(--clr-divider-light);
 }
 
 .card-wrapper * {
