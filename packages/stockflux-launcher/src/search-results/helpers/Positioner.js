@@ -9,8 +9,8 @@ export default (searchButtonRef, inputRef, dockedTo, windowBounds) => {
     case ScreenEdge.TOP:
       const searchInputRect = inputRef.current.getBoundingClientRect();
       return {
-        defaultTop: DEFAULT_LAUNCHER_SIZE,
-        defaultLeft: parseInt(searchInputRect.left),
+        defaultTop: parseInt(windowBounds.top) + DEFAULT_LAUNCHER_SIZE,
+        defaultLeft: windowBounds.left + parseInt(searchInputRect.left),
         defaultWidth: parseInt(searchInputRect.width),
         defaultHeight: DEFAULT_SEARCH_RESULTS_SIZE
       };
