@@ -8,30 +8,12 @@ html {
   height: 100%;
 }
 
-.launcher-icon-active {
-  margin-top: 10px;
-}
-
-.launcher-icon-active:disabled {
-  color: var(--icon-active);
-}
-
-.launcher-icon-active:disabled:hover {
-  background-color: var(--icon-hover-light);
-}
-
-.launcher-icon-active:hover {
-  background-color: var(--icon-hover-light);
-  color: var(--icon-inactive);
-}
-
 .launcher-icon {
   color: var(--icon-inactive);
   margin-top: 10px;
 }
 
 .launcher-icon:hover {
-  background-color: var(--icon-hover-light);
   color: var(--icon-active);
 }
 

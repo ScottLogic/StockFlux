@@ -90,30 +90,21 @@ export default () => {
         <ToolBar
           tools={[
             {
-              className:
-                edge === ScreenEdge.LEFT
-                  ? 'launcher-icon-active'
-                  : 'launcher-icon',
+              className: 'launcher-icon',
               label: <LeftIcon />,
               onClick: windowActions.dockLeft,
               disabled: edge === ScreenEdge.LEFT,
               visible: isDockable
             },
             {
-              className:
-                edge === ScreenEdge.TOP
-                  ? 'launcher-icon-active'
-                  : 'launcher-icon',
+              className: 'launcher-icon',
               label: <TopIcon />,
               onClick: windowActions.dockTop,
               disabled: edge === ScreenEdge.TOP,
               visible: isDockable
             },
             {
-              className:
-                edge === ScreenEdge.RIGHT
-                  ? 'launcher-icon-active'
-                  : 'launcher-icon',
+              className: 'launcher-icon',
               label: <RightIcon />,
               onClick: windowActions.dockRight,
               disabled: edge === ScreenEdge.RIGHT,

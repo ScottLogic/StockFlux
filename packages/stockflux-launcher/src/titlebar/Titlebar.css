@@ -35,6 +35,7 @@
 .title {
     color: #FFFFFF;
     font-size: 21px;
+    user-select:none;
 }
 
 .title-light {
@@ -70,8 +71,4 @@
     cursor: pointer;
     padding:8px;
     z-index: 1;
-}
-
-.header-icon:hover {
-  background-color: var(--icon-hover-light);
 }
