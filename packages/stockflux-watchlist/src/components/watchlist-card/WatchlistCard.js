@@ -4,7 +4,7 @@ import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Minichart from '../minichart/Minichart';
 import Components from 'stockflux-components';
-import { StockFlux, Intents, Utils } from 'stockflux-core';
+import { StockFlux, Utils } from 'stockflux-core';
 import currentWindowService from '../../services/currentWindowService';
 import { useOptions } from 'openfin-react-hooks';
 import './WatchlistCard.css';
@@ -162,7 +162,7 @@ const WatchlistCard = ({
           </div>
           <div
             className="card-bottom"
-            onClick={() => Intents.viewChart(symbol, stockData.name)}
+            onClick={() => bindings.onDropOutside(symbol, stockData.name)}
           >
             <Minichart
               symbol={symbol}
