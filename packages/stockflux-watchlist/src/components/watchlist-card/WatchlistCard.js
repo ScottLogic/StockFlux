@@ -172,17 +172,16 @@ const WatchlistCard = ({
             <div className="details">
               {<div className="price">{stockData.price || 'N/A'}</div>}
               <div
-                className={classNames({
-                  'percentage price_positive': stockData.percentage > 0,
-                  'percentage price_negative': stockData.percentage < 0
-                })}
+                className={`percentage ${
+                  stockData.percentage < 0 ? 'price_negative' : 'price_positive'
+                }`}
               >
                 {stockData.percentage ? (
                   <span>
-                    {stockData.percentage > 0 ? (
-                      <Components.Icons.Arrows.PriceUp />
-                    ) : (
+                    {stockData.percentage < 0 ? (
                       <Components.Icons.Arrows.PriceDown />
+                    ) : (
+                      <Components.Icons.Arrows.PriceUp />
                     )}
                     {stockData.percentage < 0 ? '-' : ''}
                     {Math.abs(stockData.percentage) + '%'}
@@ -193,10 +192,11 @@ const WatchlistCard = ({
               </div>
               {
                 <div
-                  className={classNames({
-                    'delta price_positive': stockData.percentage > 0,
-                    'delta price_negative': stockData.percentage < 0
-                  })}
+                  className={`delta ${
+                    stockData.percentage < 0
+                      ? 'price_negative'
+                      : 'price_positive'
+                  }`}
                 >
                   {stockData.delta || ''}
                 </div>
