@@ -38,7 +38,9 @@ const FreeTextSearch = ({ dockedTo, showTextInput }) => {
   const childWindow = useChildWindow({
     name: SEARCH_RESULTS_WINDOW_NAME,
     parentDocument: document,
-    cssUrl: SEARCH_RESULTS_CSS_PATCH
+    cssUrl: SEARCH_RESULTS_CSS_PATCH,
+    shouldInheritCss: true,
+    shouldClosePreviousOnLaunch: true
   });
   const { isSearching, results } = searchState;
   const searchButtonRef = useRef(null);
