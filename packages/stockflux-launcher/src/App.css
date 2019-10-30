@@ -10,7 +10,7 @@ html {
 
 .launcher-icon {
   color: var(--icon-inactive);
-  margin-top: 10px;
+  margin-bottom: 8px;
 }
 
 .launcher-icon:hover {
@@ -36,6 +36,7 @@ html {
 .shortcut-horizontal {
   margin-left: 24px;
   margin-right: 24px;
+  margin-top: 15px;
 }
 
 .shortcut-vertical {

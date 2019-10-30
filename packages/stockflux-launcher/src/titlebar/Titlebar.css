@@ -52,8 +52,9 @@
 }
 
 .title-vertical {
+    margin-left: 30px;
+    margin-right: 30px;
     padding-bottom: 28px;
-    padding-left: 40%;
     padding-top: 8px;
 }
 
