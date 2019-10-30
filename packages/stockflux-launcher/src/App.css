@@ -8,12 +8,12 @@ html {
   height: 100%;
 }
 
-.launcher-icon {
+.icon {
   color: var(--icon-inactive);
   margin-bottom: 8px;
 }
 
-.launcher-icon:hover {
+.icon:hover {
   color: var(--icon-active);
 }
 
@@ -33,13 +33,13 @@ html {
   width: 100%;
 }
 
-.shortcut-horizontal {
+.horizontal {
   margin-left: 24px;
   margin-right: 24px;
   margin-top: 15px;
 }
 
-.shortcut-vertical {
+.vertical {
   padding-left: 4px;
   padding-right: 4px;
   margin-top: 80px;

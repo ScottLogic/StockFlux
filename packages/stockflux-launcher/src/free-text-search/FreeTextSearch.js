@@ -203,7 +203,6 @@ const FreeTextSearch = ({ dockedTo, showTextInput }) => {
       )}
     >
       <SearchButton
-        className="launcher-icon"
         searchButtonRef={searchButtonRef}
         handleSearchClick={handleSearchClick}
       />

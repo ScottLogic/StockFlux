@@ -33,6 +33,9 @@ export default () => {
     }
   );
 
+  const iconStyle = isHorizontal ? 'icon horizontal' : 'icon vertical';
+  const toolbarStyle = isHorizontal ? 'toolbar' : 'toolbar t-vertical';
+
   async function getBounds() {
     let bounds = await OpenfinApiHelpers.getCurrentWindowSync().getBounds();
     return bounds;
@@ -75,36 +78,31 @@ export default () => {
         <Titlebar dockedTo={edge} />
       </div>
       <div className={cx('app', edge)}>
-        <div
-          className={cx(
-            'launcher-icon',
-            edge === 'top' || edge === 'none'
-              ? 'shortcut-horizontal'
-              : 'shortcut-vertical'
-          )}
-        >
+        <div className={iconStyle}>
           <Components.Shortcuts.Watchlist symbol="TSLA" name="Tesla" />
         </div>
 
         <FreeTextSearch dockedTo={edge} />
+
         <ToolBar
+          style={toolbarStyle}
           tools={[
             {
-              className: 'launcher-icon',
+              className: 'icon',
               label: <LeftIcon />,
               onClick: windowActions.dockLeft,
               disabled: edge === ScreenEdge.LEFT,
               visible: isDockable
             },
             {
-              className: 'launcher-icon',
+              className: 'icon',
               label: <TopIcon />,
               onClick: windowActions.dockTop,
               disabled: edge === ScreenEdge.TOP,
               visible: isDockable
             },
             {
-              className: 'launcher-icon',
+              className: 'icon',
               label: <RightIcon />,
               onClick: windowActions.dockRight,
               disabled: edge === ScreenEdge.RIGHT,

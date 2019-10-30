@@ -2,9 +2,9 @@ import React from 'react';
 import Components from 'stockflux-components';
 import './ToolBar.css';
 
-export default ({ tools }) => {
+export default ({ tools, style }) => {
   return (
-    <div className="toolbar">
+    <div className={style}>
       {tools
         .filter(tool => tool.visible)
         .map((tool, index) => (
