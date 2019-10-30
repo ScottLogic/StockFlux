@@ -133,10 +133,10 @@ The installer requires no dependencies or prior configuration to be ran.
 
 ### Project Package Dependency Diagram
 
-![package ](https://github.com/ScottLogic/StockFlux/blob/dev/package-dependencies.png)
+![package ](./package-dependencies.PNG)
 
 ### How the apps communicate
 
 The Application make use of the [Intents API](https://fdc3.finos.org/docs/1.0/intents-intro) and the [InterApplicationBus](https://developer.openfin.co/jsdocs/stable/fin.desktop.InterApplicationBus.html) to launch each other and pass messages. The Chart and News applications are not launched via intents as we allow the user to launch multiple of them. The Container application registers their intents and creates child windows when called.
 
-![communications](https://github.com/ScottLogic/StockFlux/blob/dev/communication-dependencies.png)
+![communications](./communication-dependencies.PNG)
