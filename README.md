@@ -93,13 +93,13 @@ npm run launch
 
 The applications run on the following ports:
 
-Application | Port
---- | ---
-Chart | 8051
-Watchlist | 8052
-Launcher | 8053
-Container | 8055
-News | 8056
+| Application | Port |
+| ----------- | ---- |
+| Chart       | 8051 |
+| Watchlist   | 8052 |
+| Launcher    | 8053 |
+| Container   | 8055 |
+| News        | 8056 |
 
 If these port selections conflict with another service you may be running they can be changed in the `package.json` file of each application.
 
@@ -133,10 +133,10 @@ The installer requires no dependencies or prior configuration to be ran.
 
 ### Project Package Dependency Diagram
 
-![package ](./package-dependencies.png)
+![package ](https://github.com/ScottLogic/StockFlux/blob/dev/package-dependencies.png)
 
 ### How the apps communicate
 
 The Application make use of the [Intents API](https://fdc3.finos.org/docs/1.0/intents-intro) and the [InterApplicationBus](https://developer.openfin.co/jsdocs/stable/fin.desktop.InterApplicationBus.html) to launch each other and pass messages. The Chart and News applications are not launched via intents as we allow the user to launch multiple of them. The Container application registers their intents and creates child windows when called.
 
-![communications](./communication-dependencies.png)
+![communications](https://github.com/ScottLogic/StockFlux/blob/dev/communication-dependencies.png)
