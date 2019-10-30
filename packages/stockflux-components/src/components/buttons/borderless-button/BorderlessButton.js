@@ -4,7 +4,7 @@ import './BorderlessButton.css';
 
 export default ({ children, small, className, onClick, disabled }) => (
   <button
-    className={cx('borderless', { small, [className]: className })}
+    className={cx('borderless', small, { [className]: className })}
     onClick={onClick}
     disabled={disabled}
   >
