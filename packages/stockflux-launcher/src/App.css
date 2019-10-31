@@ -62,7 +62,3 @@ html {
   align-items: center;
   height: 60px;
 }
-
-.drag-handle {
-  -webkit-app-region: drag;
-}
