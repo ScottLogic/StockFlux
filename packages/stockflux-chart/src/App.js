@@ -71,13 +71,13 @@ const App = () => {
             {symbol && <div className="symbol">{symbol}</div>}
             <div className="name">{!symbol ? 'Generated Data' : name}</div>
             <div className="chart-nav-icons">
-              <Components.Shortcuts.NewsBorderless
+              <Components.Shortcuts.News
                 small={true}
                 symbol
                 name
                 disabled={!symbol}
               />
-              <Components.Shortcuts.WatchlistBorderless
+              <Components.Shortcuts.Watchlist
                 small={true}
                 symbol
                 name

@@ -132,7 +132,7 @@ const WatchlistCard = ({
             </div>
             <div className="icons">
               <div className="icon">
-                <Components.Shortcuts.NewsBorderless
+                <Components.Shortcuts.News
                   symbol={symbol}
                   name={stockData.name}
                   small={true}
@@ -140,7 +140,7 @@ const WatchlistCard = ({
                 />
               </div>
               <div className="icon">
-                <Components.Shortcuts.ChartBorderless
+                <Components.Shortcuts.Chart
                   symbol={symbol}
                   name={stockData.name}
                   small={true}

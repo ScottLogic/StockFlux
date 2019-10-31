@@ -94,12 +94,12 @@ function App() {
       <div className="header">
         {name ? name : symbol} News
         <div className="icons">
-          <Components.Shortcuts.ChartBorderless
+          <Components.Shortcuts.Chart
             small={true}
             symbol={symbol}
             name={name}
           />
-          <Components.Shortcuts.WatchlistBorderless
+          <Components.Shortcuts.Watchlist
             small={true}
             symbol={symbol}
             name={name}
