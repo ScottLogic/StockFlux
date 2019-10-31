@@ -1,7 +1,6 @@
 import cx from 'classnames';
 import { ScreenEdge, useDockWindow, useOptions } from 'openfin-react-hooks';
 import React, { useEffect, useState } from 'react';
-import Components from 'stockflux-components';
 import { OpenfinApiHelpers } from 'stockflux-core';
 import './App.css';
 import FreeTextSearch from './free-text-search/FreeTextSearch';
@@ -9,6 +8,7 @@ import getUndockedPosition from './helpers/getUndockedPosition';
 import { ReactComponent as LeftIcon } from './icons/left.svg';
 import { ReactComponent as RightIcon } from './icons/right.svg';
 import { ReactComponent as TopIcon } from './icons/top.svg';
+import Watchlist from './app-shortcuts/Watchlist';
 import Titlebar from './titlebar/Titlebar';
 import ToolBar from './toolbar/ToolBar';
 
@@ -75,7 +75,7 @@ export default () => {
       </div>
       <div className={cx('app', edge)}>
         <div className={iconStyle}>
-          <Components.Shortcuts.Watchlist symbol="TSLA" name="Tesla" />
+          <Watchlist symbol="TSLA" name="Tesla" />
         </div>
 
         <FreeTextSearch dockedTo={edge} />
