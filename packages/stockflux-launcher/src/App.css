@@ -1,5 +1,5 @@
 html {
-  background-color: var(--launcher-color);
+  background-color: var(--window-background-color);
 }
 
 .launcher-container {

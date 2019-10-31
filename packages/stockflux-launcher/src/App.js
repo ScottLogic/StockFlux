@@ -17,8 +17,7 @@ export default () => {
   const defaultHeight = options ? options.defaultHeight : 75;
   const defaultWidth = options ? options.defaultWidth : 50;
   const isDockable = options ? options.customData.isDockable : false;
-  const [leftPosition, setLeft] = useState(0);
-  const [topPosition, setTop] = useState(0);
+  const [undockPosition, setUndockPosition] = useState({ left: 0, top: 0 });
   const [isHorizontal, setHorizontal] = useState(true);
   const [edge, windowActions] = useDockWindow(
     ScreenEdge.TOP,
@@ -29,12 +28,12 @@ export default () => {
       dockedHeight: defaultHeight
     },
     {
-      undockPosition: { left: leftPosition, top: topPosition },
+      undockPosition: { left: undockPosition.left, top: undockPosition.top },
       undockSize: { width: 724, height: 88 }
     }
   );
 
-  const iconStyle = isHorizontal ? 'icon horizontal' : 'icon vertical';
+  const iconStyle = `icon ${isHorizontal ? 'horizontal' : 'vertical'}`;
   const toolbarStyle = isHorizontal ? 'toolbar' : 'toolbar t-vertical';
 
   /* Hook undock if initialDocked is false on start */
@@ -53,8 +52,7 @@ export default () => {
   useEffect(() => {
     if (edge === ScreenEdge.NONE) {
       getUndockedPosition().then(position => {
-        setLeft(position.left);
-        setTop(position.top);
+        setUndockPosition({ left: position.left, top: position.top });
 
         windowActions.dockNone();
       });
@@ -63,9 +61,7 @@ export default () => {
   }, [edge]);
 
   useEffect(() => {
-    setHorizontal(
-      edge === ScreenEdge.TOP || edge === ScreenEdge.NONE ? true : false
-    );
+    setHorizontal([ScreenEdge.TOP, ScreenEdge.NONE].includes(edge));
   }, [edge]);
 
   return (

@@ -1,5 +1,5 @@
 .titlebar {
-    background-color: var(--titlebar-color);
+    background-color: var(--window-header-bar);
     border: none;
     display: inline-block;
     height: 100%;
@@ -71,6 +71,6 @@
     color: #FFFFFF;
     display: inline-block;    
     cursor: pointer;
-    padding:8px;
+    padding: 8px;
     z-index: 1;
 }
