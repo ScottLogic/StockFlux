@@ -71,25 +71,25 @@ const App = () => {
             {symbol && <div className="symbol">{symbol}</div>}
             <div className="name">{!symbol ? 'Generated Data' : name}</div>
             <div className="chart-nav-icons">
-              <Components.Shortcuts.News
+              <Components.Shortcuts.NewsBorderless
                 small={true}
                 symbol
                 name
                 disabled={!symbol}
               />
-              <Components.Shortcuts.Watchlist
+              <Components.Shortcuts.WatchlistBorderless
                 small={true}
                 symbol
                 name
                 disabled={!symbol}
               />
-              <Components.Buttons.Round
+              <Components.Buttons.Borderless
                 small={true}
                 onClick={() => getData(symbol)}
                 disabled={!symbol}
               >
                 <FaSyncAlt />
-              </Components.Buttons.Round>
+              </Components.Buttons.Borderless>
             </div>
           </div>
           <Chart getData={getData} chart={chart} symbol={symbol} />
