@@ -7,6 +7,6 @@ export default (
     message="Are you sure you wish to quit?"
     onConfirm={() => OpenfinApiHelpers.getCurrentWindowSync().close()}
   >
-    <Components.Buttons.Close />
+    <Components.Shortcuts.Close />
   </Components.Popups.ConfirmationWindow>
 );

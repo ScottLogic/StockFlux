@@ -4,8 +4,8 @@ import { ReactComponent as SearchIcon } from '../icons/search.svg';
 
 export default ({ searchButtonRef, handleSearchClick }) => (
   <span className="icon" ref={searchButtonRef}>
-    <Components.Buttons.Round onClick={handleSearchClick}>
-      <SearchIcon className="searchSVG" />
-    </Components.Buttons.Round>
+    <Components.Buttons.Borderless onClick={handleSearchClick}>
+      <FaSearch />
+    </Components.Buttons.Borderless>
   </span>
 );
