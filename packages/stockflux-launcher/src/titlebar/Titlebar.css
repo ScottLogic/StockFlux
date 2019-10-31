@@ -33,7 +33,7 @@
 }
 
 .title {
-    color: #FFFFFF;
+    color: var(--text-color);
     font-size: 21px;
     user-select:none;
 }
@@ -44,7 +44,7 @@
 
 .title-strong {
     font-family: 'Roboto';
-    font-weight: 500;
+    font-weight: var(--font-weight-bold);
 }
 
 .titlebar-title {
@@ -68,7 +68,7 @@
 }
 
 .header-icon {
-    color: #FFFFFF;
+    color: var(--text-color);
     display: inline-block;    
     cursor: pointer;
     padding: 8px;

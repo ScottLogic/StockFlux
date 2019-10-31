@@ -1,4 +1,5 @@
 import cx from 'classnames';
+import { ScreenEdge } from 'openfin-react-hooks';
 import React, { useCallback } from 'react';
 import { OpenfinApiHelpers } from 'stockflux-core';
 import Components from 'stockflux-components';
@@ -15,7 +16,7 @@ export default ({ dockedTo }) => {
     currentWindow.close();
   }, []);
 
-  const dockedHorizontal = dockedTo === 'top' || dockedTo === 'none';
+  const dockedHorizontal = [ScreenEdge.NONE, ScreenEdge.TOP].includes(dockedTo);
 
   return (
     <div className="titlebar">
@@ -36,7 +37,7 @@ export default ({ dockedTo }) => {
       <div
         className={cx(
           'column column-right header-icon',
-          dockedTo === 'top' || dockedTo === 'none' ? 'add-padding-right' : ''
+          dockedHorizontal ? 'add-padding-right' : ''
         )}
         onClick={onCloseClick}
         title="Close"
@@ -47,7 +48,7 @@ export default ({ dockedTo }) => {
       <div
         className={cx(
           'column column-right header-icon',
-          dockedTo === 'top' || dockedTo === 'none' ? 'add-padding-right' : ''
+          dockedHorizontal ? 'add-padding-right' : ''
         )}
         onClick={onMinimizeClick}
         title="Minimize"
