@@ -16,21 +16,21 @@ g {
 }
 
 path.line {
-  stroke: var(--chart-stroke);
+  stroke: var( --chart-line);
 }
 
 .point {
-  fill: var(--chart-stroke);
-  stroke: var(--chart-stroke);
+  fill: var(--chart-line);
+  stroke: var( --chart-line);
 }
 
 .top {
-  stop-color: var(--chart-stroke);
+  stop-color: var( --chart-line);
   stop-opacity: 0.5;
 }
 
 .bottom {
-  stop-color: var(--chart-stroke);
+  stop-color: var( --chart-line);
   stop-opacity: 0;
 }
 

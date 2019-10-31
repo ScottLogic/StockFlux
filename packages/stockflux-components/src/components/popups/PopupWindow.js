@@ -7,6 +7,7 @@ const PopupWindow = ({ message, options, children }) => {
   const handleClick = () => {
     setShowPopup(true);
   };
+
   const childWindow = useChildWindow({
     name: 'popup-window',
     parentDocument: document,
@@ -47,29 +48,27 @@ const PopupWindow = ({ message, options, children }) => {
   );
 
   useEffect(() => {
-    if (childWindow.state === 'LAUNCHING') {
+    if (childWindow.state === 'LAUNCHED') {
       const childWindowJsx = (
         <div className="popup">
           <p className="popup-message">{message}</p>
           <div className="popup-options">
-            {options.map(option => {
-              return (
-                <RoundButton
-                  key={option.name}
-                  onClick={() => handleSelection(option.name)}
-                  className={option.className}
-                >
-                  {option.icon}
-                </RoundButton>
-              );
-            })}
+            {options.map(option => (
+              <RoundButton
+                key={option.name}
+                onClick={() => handleSelection(option.name)}
+                className={option.className}
+              >
+                {option.icon}
+              </RoundButton>
+            ))}
           </div>
         </div>
       );
       childWindow.populate(childWindowJsx);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [childWindow, handleSelection]);
+  }, [childWindow.state, handleSelection]);
 
   useEffect(() => {
     showPopup ? launchChildWindow() : childWindow.close();
