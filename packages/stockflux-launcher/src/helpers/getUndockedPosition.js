@@ -32,7 +32,7 @@ function getMiddleScreenPosition(screen) {
   return midpoint - 362;
 }
 
-function getLeftPosition(
+function getUndockPosition(
   bounds,
   primaryMonitorRect,
   nonPrimaryMonitors,
@@ -73,7 +73,7 @@ export default () => {
       let left = bounds.left;
 
       // Check if launcher is in window using left/top checks
-      let resultNormalBounds = getLeftPosition(
+      let resultNormalBounds = getUndockPosition(
         bounds,
         primaryMonitorRect,
         nonPrimaryMonitors,
@@ -87,7 +87,7 @@ export default () => {
       }
 
       // Check if launcher is in window using right/bottom checks
-      let nonNormalBounds = getLeftPosition(
+      let nonNormalBounds = getUndockPosition(
         bounds,
         primaryMonitorRect,
         nonPrimaryMonitors,

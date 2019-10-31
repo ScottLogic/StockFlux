@@ -18,13 +18,29 @@ export default ({ dockedTo }) => {
 
   const dockedHorizontal = [ScreenEdge.NONE, ScreenEdge.TOP].includes(dockedTo);
 
+  const ButtonComponent = (closeButton, onClick, title) => {
+    return (
+      <div
+        className={cx(
+          'column column-right header-icon',
+          dockedHorizontal ? 'add-padding-right' : ''
+        )}
+        onClick={onClick}
+        title={title}
+      >
+        {closeButton && <Components.Icons.Toolbar.CloseIcon />}
+        {!closeButton && <Components.Icons.Toolbar.MinimizeIcon />}
+      </div>
+    );
+  };
+
   return (
     <div className="titlebar">
       {dockedHorizontal && (
         <div
           className={cx(
             'column column-left',
-            dockedTo === 'top' || dockedTo === 'none' ? 'add-padding-left' : ''
+            dockedHorizontal ? 'add-padding-left' : ''
           )}
         >
           <p className="title">
@@ -34,27 +50,9 @@ export default ({ dockedTo }) => {
         </div>
       )}
 
-      <div
-        className={cx(
-          'column column-right header-icon',
-          dockedHorizontal ? 'add-padding-right' : ''
-        )}
-        onClick={onCloseClick}
-        title="Close"
-      >
-        <Components.Icons.Toolbar.CloseIcon />
-      </div>
+      {ButtonComponent(true, onCloseClick, 'Close')}
 
-      <div
-        className={cx(
-          'column column-right header-icon',
-          dockedHorizontal ? 'add-padding-right' : ''
-        )}
-        onClick={onMinimizeClick}
-        title="Minimize"
-      >
-        <Components.Icons.Toolbar.MinimizeIcon />
-      </div>
+      {ButtonComponent(false, onMinimizeClick, 'Minimize')}
 
       {!dockedHorizontal && (
         <div>

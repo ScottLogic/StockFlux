@@ -148,11 +148,9 @@ const FreeTextSearch = ({ dockedTo, showTextInput }) => {
         >
           {(isDockedToSide || showTextInput) && (
             <div
-              className={cx(
-                isDocked
-                  ? 'free-text-search'
-                  : 'free-text-search search-undocked'
-              )}
+              className={cx('free-text-search', {
+                'search-undocked': !isDocked
+              })}
             >
               <SearchInputField
                 query={query ? query : ''}
@@ -200,9 +198,9 @@ const FreeTextSearch = ({ dockedTo, showTextInput }) => {
 
   return (
     <div
-      className={cx(
-        isDocked ? 'free-text-search' : 'free-text-search search-undocked'
-      )}
+      className={cx('free-text-search', {
+        'search-undocked': !isDocked
+      })}
     >
       <SearchButton
         searchButtonRef={searchButtonRef}
