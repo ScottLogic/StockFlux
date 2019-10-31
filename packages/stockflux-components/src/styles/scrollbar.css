@@ -23,9 +23,9 @@
 }
 
 ::-webkit-scrollbar-button:increment {    
-    background-image: url('../images/scroll_arrow_up.png');    
+    background-image: url('../images/scroll_arrow_down.png');    
 }
 
 ::-webkit-scrollbar-button:decrement {
-    background-image: url('../images/scroll_arrow_down.png');
+    background-image: url('../images/scroll_arrow_up.png');    
 }
