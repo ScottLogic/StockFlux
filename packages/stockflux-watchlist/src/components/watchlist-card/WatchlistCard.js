@@ -43,6 +43,7 @@ const WatchlistCard = ({
       ...openApps,
       news: newsWindow
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [symbol]);
 
   const determineIfChartOpen = useCallback(async () => {
@@ -53,6 +54,7 @@ const WatchlistCard = ({
       chartWindow.addListener('closed', determineIfChartOpen);
     }
     setOpenApps({ ...openApps, chart: chartWindow });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [symbol]);
 
   useEffect(() => {
