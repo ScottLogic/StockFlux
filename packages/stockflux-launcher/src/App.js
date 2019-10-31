@@ -1,6 +1,7 @@
 import cx from 'classnames';
 import { ScreenEdge, useDockWindow, useOptions } from 'openfin-react-hooks';
 import React, { useEffect, useState } from 'react';
+import Components from 'stockflux-components';
 import { OpenfinApiHelpers } from 'stockflux-core';
 import './App.css';
 import FreeTextSearch from './free-text-search/FreeTextSearch';
@@ -35,6 +36,14 @@ export default () => {
 
   const iconStyle = `icon ${isHorizontal ? 'horizontal' : 'vertical'}`;
   const toolbarStyle = isHorizontal ? 'toolbar' : 'toolbar t-vertical';
+  const title = isHorizontal ? (
+    <span>
+      <span className="title title-strong">Stock</span>
+      <span className="title title-light">Flux</span>
+    </span>
+  ) : (
+    ''
+  );
 
   /* Hook undock if initialDocked is false on start */
   useEffect(() => {
@@ -67,9 +76,16 @@ export default () => {
   return (
     <div className="launcher-container">
       <div className="launcher-title">
-        <Titlebar dockedTo={edge} />
+        <Components.Titlebar title={title} dockedTo={edge} />
       </div>
       <div className={cx('app', edge)}>
+        {!isHorizontal && (
+          <div className="title">
+            <br></br>
+            <span className="title title-strong">S</span>
+            <span className="title title-light">F</span>
+          </div>
+        )}
         <div className={iconStyle}>
           <Watchlist symbol="TSLA" name="Tesla" />
         </div>
