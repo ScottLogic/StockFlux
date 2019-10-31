@@ -12,3 +12,20 @@
     border-radius: 5px;
     background-color:  var(--scroll-bar-grip);
 }
+
+::-webkit-scrollbar-button {
+    background-color: var(--scroll-bar-track);
+    width: var(--scrollbar-width);
+    height: 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+::-webkit-scrollbar-button:increment {    
+    background-image: url('../images/scroll_arrow_up.png');    
+}
+
+::-webkit-scrollbar-button:decrement {
+    background-image: url('../images/scroll_arrow_down.png');
+}
