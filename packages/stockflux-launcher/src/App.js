@@ -5,6 +5,7 @@ import Components from 'stockflux-components';
 import { OpenfinApiHelpers } from 'stockflux-core';
 import './App.css';
 import FreeTextSearch from './free-text-search/FreeTextSearch';
+import getUndockedPosition from './helpers/getUndockedPosition';
 import { ReactComponent as LeftIcon } from './icons/left.svg';
 import { ReactComponent as RightIcon } from './icons/right.svg';
 import { ReactComponent as TopIcon } from './icons/top.svg';
@@ -36,11 +37,6 @@ export default () => {
   const iconStyle = isHorizontal ? 'icon horizontal' : 'icon vertical';
   const toolbarStyle = isHorizontal ? 'toolbar' : 'toolbar t-vertical';
 
-  async function getBounds() {
-    let bounds = await OpenfinApiHelpers.getCurrentWindowSync().getBounds();
-    return bounds;
-  }
-
   /* Hook undock if initialDocked is false on start */
   useEffect(() => {
     if (
@@ -56,9 +52,9 @@ export default () => {
   /* Make sure window shrinks when dragged from top */
   useEffect(() => {
     if (edge === ScreenEdge.NONE) {
-      getBounds().then(value => {
-        setLeft(value.left);
-        setTop(value.top);
+      getUndockedPosition().then(position => {
+        setLeft(position.left);
+        setTop(position.top);
 
         windowActions.dockNone();
       });
