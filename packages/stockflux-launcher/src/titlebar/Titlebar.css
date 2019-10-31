@@ -39,11 +39,12 @@
 }
 
 .title-light {
-    font-family: 'Roboto Light';
+    font-family: 'Roboto';
 }
 
 .title-strong {
-    font-family: 'Roboto Medium';
+    font-family: 'Roboto';
+    font-weight: 500;
 }
 
 .titlebar-title {
