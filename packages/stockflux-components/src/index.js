@@ -9,7 +9,7 @@ import Watchlist from './components/buttons/borderless-buttons/app-shortcuts/Wat
 import Close from './components/buttons/borderless-buttons/Close';
 
 import ChartIcon from './components/glyphs/small/chart.svg';
-import CloseIcon from './components/icons/minimize.svg';
+import CloseIcon from './components/icons/close.svg';
 import MinimizeIcon from './components/icons/minimize.svg';
 import NewsIcon from './components/glyphs/small/news.svg';
 import WatchListIcon from './components/glyphs/small/watchlist.svg';

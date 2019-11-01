@@ -12,17 +12,18 @@ async function getMonitorInfo() {
 
 function boundsCheck(bounds, screen, primaryCheck) {
   if (primaryCheck) {
-    const lInBounds = bounds.left >= screen.left && bounds.left < screen.right;
-    const tInBounds = bounds.top >= screen.top && bounds.top < screen.bottom;
+    const leftInBounds =
+      bounds.left >= screen.left && bounds.left < screen.right;
+    const topInBounds = bounds.top >= screen.top && bounds.top < screen.bottom;
 
-    return lInBounds && tInBounds;
+    return leftInBounds && topInBounds;
   } else {
-    const rInBounds =
+    const rightInBounds =
       bounds.right >= screen.left && bounds.right < screen.right;
-    const bInBounds =
+    const bottomInBounds =
       bounds.bottom >= screen.top && bounds.bottom < screen.bottom;
 
-    return rInBounds && bInBounds;
+    return rightInBounds && bottomInBounds;
   }
 }
 
