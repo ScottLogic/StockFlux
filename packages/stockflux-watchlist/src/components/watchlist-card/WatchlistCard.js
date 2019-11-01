@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useReducer } from 'react';
 import { OpenfinApiHelpers } from 'stockflux-core';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -7,6 +7,8 @@ import Components from 'stockflux-components';
 import { StockFlux, Utils } from 'stockflux-core';
 import currentWindowService from '../../services/currentWindowService';
 import cx from 'classnames';
+import reducer, { initialState } from '../../reducers/open-apps/OpenApps';
+import Action from '../../reducers/open-apps/Action';
 import './WatchlistCard.css';
 
 const WatchlistCard = ({
@@ -30,7 +32,7 @@ const WatchlistCard = ({
     delta: 0,
     percentage: 0
   });
-  const [openApps, setOpenApps] = useState({ chart: false, news: false });
+  const [openApps, dispatch] = useReducer(reducer, initialState);
 
   const determineIfNewsOpen = useCallback(async () => {
     const newsWindow = await OpenfinApiHelpers.windowAlreadyExists(
@@ -39,10 +41,7 @@ const WatchlistCard = ({
     if (newsWindow) {
       newsWindow.addListener('closed', determineIfNewsOpen);
     }
-    setOpenApps({
-      ...openApps,
-      news: newsWindow
-    });
+    dispatch({ type: Action.SET_NEWS_WINDOW, payload: newsWindow });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [symbol]);
 
@@ -53,7 +52,7 @@ const WatchlistCard = ({
     if (chartWindow) {
       chartWindow.addListener('closed', determineIfChartOpen);
     }
-    setOpenApps({ ...openApps, chart: chartWindow });
+    dispatch({ type: Action.SET_CHART_WINDOW, payload: chartWindow });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [symbol]);
 
@@ -146,7 +145,7 @@ const WatchlistCard = ({
               <div className="name">{stockData.name}</div>
             </div>
             <div className="icons">
-              <div className="icon">
+              <div className={cx('icon', { open: openApps.news })}>
                 <Components.Shortcuts.News
                   symbol={symbol}
                   name={stockData.name}
@@ -154,7 +153,7 @@ const WatchlistCard = ({
                   onClick={determineIfNewsOpen}
                 />
               </div>
-              <div className="icon">
+              <div className={cx('icon', { open: openApps.chart })}>
                 <Components.Shortcuts.Chart
                   symbol={symbol}
                   name={stockData.name}
