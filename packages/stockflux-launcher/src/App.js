@@ -10,7 +10,6 @@ import { ReactComponent as LeftIcon } from './icons/left.svg';
 import { ReactComponent as RightIcon } from './icons/right.svg';
 import { ReactComponent as TopIcon } from './icons/top.svg';
 import Watchlist from './app-shortcuts/Watchlist';
-import Titlebar from './titlebar/Titlebar';
 import ToolBar from './toolbar/ToolBar';
 
 export default () => {
@@ -80,7 +79,7 @@ export default () => {
       </div>
       <div className={cx('app', edge)}>
         {!isHorizontal && (
-          <div className="title">
+          <div className="title title-vertical">
             <br></br>
             <span className="title title-strong">S</span>
             <span className="title title-light">F</span>

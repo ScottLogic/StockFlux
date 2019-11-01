@@ -42,7 +42,7 @@ html {
 .vertical {
   padding-left: 4px;
   padding-right: 4px;
-  margin-top: 80px;
+  margin-top: 52px;
 }
 
 .left,
@@ -61,4 +61,33 @@ html {
   justify-content: space-between;
   align-items: center;
   height: 60px;
+}
+
+.header-icon {
+  color: var(--text-color);
+  display: inline-block;    
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1;
+}
+
+.title {
+  color: var(--text-color);
+  font-size: 21px;
+  user-select:none;
+}
+
+.title-light {
+  font-family: var(--font-family);
+}
+
+.title-strong {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-bold);
+}
+
+.title-vertical {
+  height: 28px;
+  padding-left: 30px;
+  padding-top: 5px;
 }
