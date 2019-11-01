@@ -20,7 +20,7 @@
 
 .newsitem-content {
     padding-top: var(--padding-small);
-    width: 75%;
+    width: 100%;
     max-height: 80px;
     overflow: hidden;
     text-overflow: ellipsis;
