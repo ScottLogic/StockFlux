@@ -48,7 +48,6 @@ function App() {
 
   const [searchState, dispatch] = useReducer(searchReducer, initialSearchState);
   const [symbol, setSymbol] = useState(null);
-  const [name, setName] = useState(null);
   const [options] = useOptions();
   const listContainer = useRef(null);
 
@@ -71,11 +70,7 @@ function App() {
     if (options && options.customData.symbol) {
       setSymbol(options.customData.symbol);
     }
-
-    if (options && options.customData.name) {
-      setName(options.customData.name);
-    }
-  }, [options, setName, setSymbol, symbol]);
+  }, [options, setSymbol, symbol]);
 
   useEffect(() => {
     if (symbol) {
