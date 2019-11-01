@@ -146,16 +146,16 @@ const WatchlistCard = ({
               <div className="name">{stockData.name}</div>
             </div>
             <div className="icons">
-              <div className={cx('icon', { open: openApps.news })}>
-                <Components.Shortcuts.NewsBorderless
+              <div className="icon">
+                <Components.Shortcuts.News
                   symbol={symbol}
                   name={stockData.name}
                   small={true}
                   onClick={determineIfNewsOpen}
                 />
               </div>
-              <div className={cx('icon', { open: openApps.chart })}>
-                <Components.Shortcuts.ChartBorderless
+              <div className="icon">
+                <Components.Shortcuts.Chart
                   symbol={symbol}
                   name={stockData.name}
                   small={true}

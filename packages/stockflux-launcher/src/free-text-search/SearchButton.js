@@ -4,8 +4,8 @@ import { FaSearch } from 'react-icons/fa';
 
 export default ({ searchButtonRef, handleSearchClick }) => (
   <span ref={searchButtonRef}>
-    <Components.Buttons.Round onClick={handleSearchClick}>
+    <Components.Buttons.Borderless onClick={handleSearchClick}>
       <FaSearch />
-    </Components.Buttons.Round>
+    </Components.Buttons.Borderless>
   </span>
 );
