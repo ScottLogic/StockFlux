@@ -20,7 +20,8 @@ import {
   openUrlWithBrowser,
   sendInterApplicationMessage,
   showNotification,
-  useMain
+  useMain,
+  windowAlreadyExists
 } from './openfin-api-utils/openfinApiHelpers';
 import { launchChildWindow } from './services/ChildWindowLauncher';
 import {
@@ -46,7 +47,8 @@ export const OpenfinApiHelpers = {
   openUrlWithBrowser,
   sendInterApplicationMessage,
   showNotification,
-  useMain
+  useMain,
+  windowAlreadyExists
 };
 
 export const StockFlux = {

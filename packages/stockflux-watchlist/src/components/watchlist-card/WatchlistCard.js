@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useReducer } from 'react';
 import { OpenfinApiHelpers } from 'stockflux-core';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -6,7 +6,9 @@ import Minichart from '../minichart/Minichart';
 import Components from 'stockflux-components';
 import { StockFlux, Utils } from 'stockflux-core';
 import currentWindowService from '../../services/currentWindowService';
-import { useOptions } from 'openfin-react-hooks';
+import cx from 'classnames';
+import reducer, { initialState } from '../../reducers/open-apps/OpenApps';
+import Action from '../../reducers/open-apps/Action';
 import './WatchlistCard.css';
 
 const WatchlistCard = ({
@@ -30,8 +32,34 @@ const WatchlistCard = ({
     delta: 0,
     percentage: 0
   });
+  const [openApps, dispatch] = useReducer(reducer, initialState);
 
-  const [options] = useOptions();
+  const determineIfNewsOpen = useCallback(async () => {
+    const newsWindow = await OpenfinApiHelpers.windowAlreadyExists(
+      `stockflux-news[${symbol}]`
+    );
+    if (newsWindow) {
+      newsWindow.addListener('closed', determineIfNewsOpen);
+    }
+    dispatch({ type: Action.SET_NEWS_WINDOW, payload: newsWindow });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [symbol]);
+
+  const determineIfChartOpen = useCallback(async () => {
+    const chartWindow = await OpenfinApiHelpers.windowAlreadyExists(
+      `stockflux-chart[${symbol}]`
+    );
+    if (chartWindow) {
+      chartWindow.addListener('closed', determineIfChartOpen);
+    }
+    dispatch({ type: Action.SET_CHART_WINDOW, payload: chartWindow });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [symbol]);
+
+  useEffect(() => {
+    determineIfChartOpen();
+    determineIfNewsOpen();
+  }, [determineIfChartOpen, determineIfNewsOpen]);
 
   useEffect(() => {
     const populateChart = async () => {
@@ -96,20 +124,6 @@ const WatchlistCard = ({
     setDragging({ isDragging: false });
   };
 
-  const sendSymbolToNews = () => {
-    try {
-      OpenfinApiHelpers.sendInterApplicationMessage(
-        { uuid: options ? options.uuid : '*' },
-        'news',
-        {
-          symbol
-        }
-      );
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   return stockData ? (
     <div
       id={`stock_${symbol}`}
@@ -131,23 +145,26 @@ const WatchlistCard = ({
               <div className="name">{stockData.name}</div>
             </div>
             <div className="icons">
-              <div className="icon">
+              <div className={cx('icon', { open: openApps.news })}>
                 <Components.Shortcuts.News
                   symbol={symbol}
                   name={stockData.name}
                   small={true}
-                  onClick={sendSymbolToNews}
+                  onClick={determineIfNewsOpen}
                 />
               </div>
-              <div className="icon">
+              <div className={cx('icon', { open: openApps.chart })}>
                 <Components.Shortcuts.Chart
                   symbol={symbol}
                   name={stockData.name}
                   small={true}
-                  onClick={() => bindings.onDropOutside(symbol, stockData.name)}
+                  onClick={() => {
+                    bindings.onDropOutside(symbol, stockData.name);
+                    determineIfChartOpen();
+                  }}
                 />
               </div>
-              <div className="icon">
+              <div className="icon open">
                 <Components.Buttons.Borderless
                   onClick={e => {
                     e.stopPropagation();
