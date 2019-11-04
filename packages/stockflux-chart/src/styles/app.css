@@ -44,7 +44,7 @@ body {
 }
 
 #showcase-title {
-    color: var(--chart-teal);
+    color: var(--color-highlight);
     position: relative;
     top: 5px;
     left: 25px;
@@ -73,7 +73,7 @@ body {
 }
 
 .chart-nav-icon svg {
-    fill: var(--chart-teal);
+    fill: var(--color-highlight);
     padding-right: 10px;
     height: 20px;
     width: 30px;
@@ -82,7 +82,7 @@ body {
 }
 
 .chart-nav-icon:not(.icon-disabled):hover svg {
-    fill: var(--chart-teal-lighter);
+    fill: var(--color-highlight);
 }
 
 .chart-nav-icon.icon-disabled svg {
