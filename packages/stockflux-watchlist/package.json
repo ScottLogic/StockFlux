@@ -10,7 +10,7 @@
     "date-fns": "1.30.1",
     "openfin-fdc3": "^0.1.1",
     "openfin-layouts": "^1.0.0",
-    "openfin-react-hooks": "^1.0.1",
+    "openfin-react-hooks": "^1.3.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-icons": "^3.7.0",

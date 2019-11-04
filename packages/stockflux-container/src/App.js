@@ -10,7 +10,7 @@ let latestNewsListener;
 let windows = [];
 
 function App() {
-  const { InterApplicationBus } = window.fin;
+  const { InterApplicationBus } = OpenfinApiHelpers.getWindow();
   const [options] = useOptions();
 
   const createWindow = async (context, windowName) => {

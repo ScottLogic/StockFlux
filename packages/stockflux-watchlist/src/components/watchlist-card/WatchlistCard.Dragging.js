@@ -3,7 +3,7 @@ import { Launchers } from 'stockflux-core';
 let dragStartClientY = null;
 let cardHeight = null;
 
-const getSymbolFromDataTransfer = types => {
+export const getSymbolFromDataTransfer = types => {
   for (let i = 0; i < types.length; i += 1) {
     const dataTransferObj = JSON.parse(types[i]);
     if (Object.keys(dataTransferObj)[0] === 'symbol') {

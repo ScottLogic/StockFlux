@@ -83,13 +83,13 @@ const App = () => {
                 name
                 disabled={!symbol}
               />
-              <Components.Buttons.Round
+              <Components.Buttons.Borderless
                 small={true}
                 onClick={() => getData(symbol)}
                 disabled={!symbol}
               >
                 <FaSyncAlt />
-              </Components.Buttons.Round>
+              </Components.Buttons.Borderless>
             </div>
           </div>
           <Chart getData={getData} chart={chart} symbol={symbol} />

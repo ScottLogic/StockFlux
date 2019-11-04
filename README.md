@@ -2,7 +2,7 @@
 
 Stockflux is a suite of applications, components and libraries developed by [Scott Logic](http://www.scottlogic.com) designed to showcase the latest in Openfin and FDC3.
 
-![main_screenshot](https://user-images.githubusercontent.com/2376919/60515108-d3ae6e00-9cd2-11e9-82b9-12a401a37a2f.png)
+![main_screenshot](./stockflux.png)
 
 Here are a few things to try:
 
@@ -93,13 +93,13 @@ npm run launch
 
 The applications run on the following ports:
 
-Application | Port
---- | ---
-Chart | 8051
-Watchlist | 8052
-Launcher | 8053
-Container | 8055
-News | 8056
+| Application | Port |
+| ----------- | ---- |
+| Chart       | 8051 |
+| Watchlist   | 8052 |
+| Launcher    | 8053 |
+| Container   | 8055 |
+| News        | 8056 |
 
 If these port selections conflict with another service you may be running they can be changed in the `package.json` file of each application.
 

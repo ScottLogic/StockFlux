@@ -1,13 +1,13 @@
 import React from 'react';
 import { FaTimes } from 'react-icons/fa';
 import cx from 'classnames';
-import RoundButton from '../round-button/RoundButton';
+import BorderlessButton from '../borderless-button/BorderlessButton';
 
 export default props => (
-  <RoundButton
+  <BorderlessButton
     {...props}
     className={cx('close', { [props.className]: props.className })}
   >
     <FaTimes />
-  </RoundButton>
+  </BorderlessButton>
 );

@@ -1,17 +1,17 @@
 import React from 'react';
 import { Launchers } from 'stockflux-core';
-import WatchlistIcon from '../../../icons/watchlist.svg';
-import RoundButton from '../../round-button/RoundButton';
+import WatchlistIcon from '../../../glyphs/small/watchlist.svg';
+import BorderlessButton from '../../borderless-button/BorderlessButton';
 
 export default ({ symbol, name, small, disabled, intentsEnabled }) => {
   return (
-    <RoundButton
+    <BorderlessButton
       className="shortcut watchlist"
       onClick={() => Launchers.launchWatchlist(symbol, name, intentsEnabled)}
       disabled={disabled}
       small={small}
     >
       <WatchlistIcon />
-    </RoundButton>
+    </BorderlessButton>
   );
 };
