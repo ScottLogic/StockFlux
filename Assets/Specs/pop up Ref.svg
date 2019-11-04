@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="294" height="169" viewBox="0 0 294 169">
+  <defs>
+    <rect id="pop-up-ref-b" width="270" height="145" x="0" y="0" rx="5"/>
+    <filter id="pop-up-ref-a" width="114.1%" height="126.2%" x="-7%" y="-11.7%" filterUnits="objectBoundingBox">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="1.5" result="shadowSpreadOuter1"/>
+      <feOffset dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="4.5"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0.568627451   0 0 0 0 0.568627451   0 0 0 0 0.568627451  0 0 0 0.5 0"/>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(12 10)">
+    <use fill="#000" filter="url(#pop-up-ref-a)" xlink:href="#pop-up-ref-b"/>
+    <use fill="#0D2437" xlink:href="#pop-up-ref-b"/>
+    <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+      <tspan x="89.127" y="41">Do you wish to </tspan> <tspan x="82.148" y="62">close StockFlux?</tspan>
+    </text>
+    <g transform="translate(157 90)">
+      <rect width="79" height="26.5" fill="#21B1CA" rx="3"/>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+        <tspan x="27.865" y="15.75">Yes</tspan>
+      </text>
+    </g>
+    <g transform="translate(34 90)">
+      <rect width="79" height="26.5" fill="#21B1CA" rx="3"/>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+        <tspan x="30.545" y="15.75">No</tspan>
+      </text>
+    </g>
+  </g>
+</svg>
