@@ -30,6 +30,7 @@ const Watchlist = () => {
   const [dragOverIndex, setDragOverIndex] = useState(null);
   const [unwatchedSymbol, setUnwatchedSymbol] = useState(null);
   const [displayPreview, setDisplayPreview] = useState(false);
+  const [newSymbol, setNewSymbol] = useState(null);
   const [previewDetails, setPreviewDetails] = useState({
     options: null,
     position: { top: 0, left: 0 },
@@ -44,12 +45,28 @@ const Watchlist = () => {
   const notification = useNotification(NOTIFICATION_OPTIONS);
 
   const displayNotification = newSymbol => {
-    const alreadyInWatchlist = watchlist.includes(newSymbol);
+    setNewSymbol(newSymbol);
     if (notification) {
       notification.launch({
         url: 'notification.html',
         timeout: 'never'
       });
+    }
+  };
+
+  const addToWatchlist = symbol => {
+    setWatchlist(getDistinctElementArray([symbol, ...watchlist]));
+    displayNotification(symbol);
+  };
+
+  const { data } = useInterApplicationBusSubscribe(
+    { uuid: options ? options.uuid : '*' },
+    'stockflux-watchlist'
+  );
+
+  useEffect(() => {
+    if (notification.state === 'LAUNCHED') {
+      const alreadyInWatchlist = watchlist.includes(newSymbol);
       notification.populate(
         <>
           <div className="notification-icon">
@@ -73,18 +90,7 @@ const Watchlist = () => {
         </>
       );
     }
-  };
-
-  const addToWatchlist = symbol => {
-    setWatchlist(getDistinctElementArray([symbol, ...watchlist]));
-    displayNotification(symbol);
-  };
-
-  const { data } = useInterApplicationBusSubscribe(
-    { uuid: options ? options.uuid : '*' },
-    'stockflux-watchlist'
-  );
-
+  });
   useEffect(() => {
     if (data && data.message) {
       if (data.message.symbol) {
