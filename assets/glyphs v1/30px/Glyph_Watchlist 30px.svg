@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="15px" viewBox="0 0 26 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>Glyph_Watchlist</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M15,8 C19.7864678,8 24.1198012,10.4375 28,15.3125 C24.1198012,20.1875 19.7864678,22.625 15,22.625 C10.2135322,22.625 5.88019884,20.1875 2,15.3125 C5.88019884,10.4375 10.2135322,8 15,8 Z M15,9.625 C11.8588805,9.625 9.3125,12.1713805 9.3125,15.3125 C9.3125,18.4536195 11.8588805,21 15,21 C18.1411195,21 20.6875,18.4536195 20.6875,15.3125 C20.6875,12.1713805 18.1411195,9.625 15,9.625 Z M15,12.3125 C16.6568542,12.3125 18,13.6556458 18,15.3125 C18,16.9693542 16.6568542,18.3125 15,18.3125 C13.3431458,18.3125 12,16.9693542 12,15.3125 C12,13.6556458 13.3431458,12.3125 15,12.3125 Z" id="path-1"></path>
+    </defs>
+    <g id="Screen" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD-Copy" transform="translate(-449.000000, -513.000000)">
+            <g id="Glyph_Watchlist" transform="translate(447.000000, 505.000000)">
+                <rect id="Bounding_box" fill="#D8D8D8" opacity="0" x="0" y="0" width="30" height="30"></rect>
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Watchlist-Copy" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>

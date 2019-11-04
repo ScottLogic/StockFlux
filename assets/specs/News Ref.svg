@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="515" height="726" viewBox="0 0 515 726">
+  <defs>
+    <polygon id="news-ref-a" points="16.667 7 17.708 8 13.541 11.999 17.708 16 16.667 17 12.499 12.999 8.333 17 7.292 16 11.458 11.999 7.292 8 8.333 7 12.499 11"/>
+    <rect id="news-ref-c" width="402" height="143" x="0" y="0"/>
+    <path id="news-ref-d" d="M6,3 L10,9 L2,9 L6,3 Z"/>
+    <path id="news-ref-f" d="M6,3 L10,9 L2,9 L6,3 Z"/>
+    <path id="news-ref-h" d="M10,15 L10,17 L9,17 L9,22 L15,22 L15,17 L14,17 L14,15 L15,15 C16.1045695,15 17,15.8954305 17,17 L17,22 C17,23.1045695 16.1045695,24 15,24 L9,24 C7.8954305,24 7,23.1045695 7,22 L7,17 C7,15.8954305 7.8954305,15 9,15 L10,15 Z M12,8 C12.5522847,8 13,8.44771525 13,9 L13,19 C13,19.5522847 12.5522847,20 12,20 C11.4477153,20 11,19.5522847 11,19 L11,9 C11,8.44771525 11.4477153,8 12,8 Z M15,4 C16.1045695,4 17,4.8954305 17,6 L17,11 C17,12.1045695 16.1045695,13 15,13 L14,13 L14,11 L15,11 L15,6 L9,6 L9,11 L10,11 L10,13 L9,13 C7.8954305,13 7,12.1045695 7,11 L7,6 C7,4.8954305 7.8954305,4 9,4 L15,4 Z"/>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <g transform="translate(51 44)">
+      <rect width="413" height="639" fill="#0D2437"/>
+      <rect width="401" height="39" fill="#091A29" transform="translate(0 27)"/>
+      <g transform="translate(0 28)">
+        <rect width="99" height="36" fill="#1B3B56"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="15.359" y="24">TSLA</tspan>
+        </text>
+        <g transform="translate(74.25 6)">
+          <rect width="25" height="24" fill="#D8D8D8" opacity="0"/>
+          <mask id="news-ref-b" fill="#fff">
+            <use xlink:href="#news-ref-a"/>
+          </mask>
+          <use fill="#FFF" xlink:href="#news-ref-a"/>
+          <g fill="#8A96A6" mask="url(#news-ref-b)">
+            <rect width="25" height="24"/>
+          </g>
+        </g>
+      </g>
+      <g transform="translate(101 28)">
+        <rect width="99" height="36" fill="#0D2437"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="25.695" y="24">MSFT</tspan>
+        </text>
+      </g>
+      <g transform="translate(202 28)">
+        <rect width="99" height="36" fill="#0D2437"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="37.749" y="24">CC</tspan>
+        </text>
+      </g>
+      <g transform="translate(303 28)">
+        <rect width="99" height="36" fill="#0D2437"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="24.82" y="24">GOOG</tspan>
+        </text>
+      </g>
+      <rect width="413" height="28" fill="#071521"/>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+        <tspan x="12" y="20">News</tspan>
+      </text>
+      <g transform="translate(0 66)">
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+          <tspan x="330.644" y="25">12:58 PM</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+          <tspan x="12" y="79">The Economic Times India</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="16">
+          <tspan x="12" y="106">NEW DELHI: Be it smartphones, notebooks or electric </tspan> <tspan x="12" y="125">cars, lithium-ion batteries have...</tspan>
+        </text>
+        <text fill="#29E9E3" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="12" y="27">From Phones To Cars, Li-Ion Batteries </tspan> <tspan x="12" y="48">Come Of Age</tspan>
+        </text>
+      </g>
+      <g transform="translate(0 213)">
+        <use fill="#A6FFFC" fill-opacity=".1" xlink:href="#news-ref-c"/>
+        <use fill="#1B3B56" xlink:href="#news-ref-c"/>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+          <tspan x="330.644" y="25">12:58 PM</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+          <tspan x="12" y="79">The Economic Times India</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="16">
+          <tspan x="12" y="106">NEW DELHI: Be it smartphones, notebooks or electric </tspan> <tspan x="12" y="125">cars, lithium-ion batteries have...</tspan>
+        </text>
+        <text fill="#29E9E3" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="12" y="27">From Phones To Cars, Li-Ion Batteries </tspan> <tspan x="12" y="48">Come Of Age</tspan>
+        </text>
+      </g>
+      <g transform="translate(0 360)">
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+          <tspan x="330.644" y="25">12:58 PM</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+          <tspan x="12" y="79">The Economic Times India</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="16">
+          <tspan x="12" y="106">NEW DELHI: Be it smartphones, notebooks or electric </tspan> <tspan x="12" y="125">cars, lithium-ion batteries have...</tspan>
+        </text>
+        <text fill="#29E9E3" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="12" y="27">From Phones To Cars, Li-Ion Batteries </tspan> <tspan x="12" y="48">Come Of Age</tspan>
+        </text>
+      </g>
+      <g transform="translate(0 507)">
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+          <tspan x="330.644" y="25">12:58 PM</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+          <tspan x="12" y="79">The Economic Times India</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="16">
+          <tspan x="12" y="106">NEW DELHI: Be it smartphones, notebooks or electric </tspan> <tspan x="12" y="125">cars, lithium-ion batteries have...</tspan>
+        </text>
+        <text fill="#29E9E3" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="12" y="27">From Phones To Cars, Li-Ion Batteries </tspan> <tspan x="12" y="48">Come Of Age</tspan>
+        </text>
+      </g>
+      <path fill="#061725" d="M402,505 L402,507 L0,507 L0,505 L402,505 Z M402,357 L402,359 L0,359 L0,357 L402,357 Z M402,208 L402,210 L0,210 L0,208 L402,208 Z M402,64 L402,66 L0,66 L0,64 L402,64 Z"/>
+      <rect width="12" height="611" fill="#1B3B56" transform="translate(401 28)"/>
+      <rect width="12" height="264" fill="#091A29" transform="translate(401 40)"/>
+      <g transform="translate(401 28)">
+        <mask id="news-ref-e" fill="#fff">
+          <use xlink:href="#news-ref-d"/>
+        </mask>
+        <use fill="#AEB1B5" xlink:href="#news-ref-d"/>
+        <g fill="#091A29" mask="url(#news-ref-e)">
+          <rect width="8" height="7" transform="translate(2 3)"/>
+        </g>
+      </g>
+      <g transform="translate(401 627)">
+        <mask id="news-ref-g" fill="#fff">
+          <use xlink:href="#news-ref-f"/>
+        </mask>
+        <use fill="#AEB1B5" transform="matrix(1 0 0 -1 0 12)" xlink:href="#news-ref-f"/>
+        <g fill="#8A96A6" mask="url(#news-ref-g)">
+          <rect width="8" height="7" transform="translate(2 3)"/>
+        </g>
+      </g>
+      <g transform="translate(386)">
+        <rect width="24" height="28" fill="#1B3B56" opacity="0"/>
+        <polygon fill="#FFF" points="17.619 8 18.91 9.291 13.745 14.454 18.91 19.619 17.619 20.91 12.454 15.745 7.291 20.91 6 19.619 11.164 14.454 6 9.291 7.291 8 12.454 13.164"/>
+      </g>
+      <g transform="translate(359)">
+        <rect width="24" height="28" fill="#D8D8D8" opacity="0"/>
+        <rect width="12" height="2" x="6" y="19" fill="#FFF"/>
+      </g>
+      <g transform="translate(332)">
+        <rect width="24" height="28" fill="#1B3B56" opacity="0"/>
+        <mask id="news-ref-i" fill="#fff">
+          <use xlink:href="#news-ref-h"/>
+        </mask>
+        <use fill="#FFF" transform="rotate(90 12 14)" xlink:href="#news-ref-h"/>
+        <g fill="#29E9E3" mask="url(#news-ref-i)">
+          <rect width="24" height="28"/>
+        </g>
+      </g>
+    </g>
+    <g fill-rule="nonzero" transform="translate(328 312)">
+      <polygon fill="#000" points=".2 16.9 .2 .9 11.8 12.5 5 12.5 4.6 12.6"/>
+      <polygon fill="#000" points="9.3 17.6 5.7 19.1 1 8 4.7 6.5"/>
+      <rect width="2" height="8" x="4.501" y="9.594" fill="#FFF" transform="rotate(-22.773 5.5 13.594)"/>
+      <polygon fill="#FFF" points="1.2 3.3 1.2 14.5 4.2 11.6 4.6 11.5 9.4 11.5"/>
+    </g>
+  </g>
+</svg>

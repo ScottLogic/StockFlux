@@ -31,8 +31,8 @@ const Watchlist = () => {
   const [unwatchedSymbol, setUnwatchedSymbol] = useState(null);
   const [displayPreview, setDisplayPreview] = useState(false);
   const [newSymbol, setNewSymbol] = useState(null);
+  const [windowOptions, setWindowOptions] = useState(null);
   const [previewDetails, setPreviewDetails] = useState({
-    options: null,
     position: { top: 0, left: 0 },
     size: { height: 300, width: 300 }
   });
@@ -40,6 +40,7 @@ const Watchlist = () => {
     'watchlist',
     ['AAPL', 'AAP', 'CC', 'MS', 'JPS']
   );
+  const WINDOW_OFFSET = 5;
 
   const [options] = useOptions();
   const notification = useNotification(NOTIFICATION_OPTIONS);
@@ -125,7 +126,14 @@ const Watchlist = () => {
   const getSymbolIndex = symbol => watchlist.indexOf(symbol);
 
   const onDropOutside = (symbol, stockName) => {
-    Launchers.launchChart(symbol, stockName, previewDetails.position);
+    if (windowOptions) {
+      /*Always recalculate where the target window should drop, for is the window has been moved. */
+      const dropPosition = {
+        left: calcLeftPosition(windowOptions.defaultWidth, WINDOW_OFFSET),
+        top: window.screenTop
+      };
+      Launchers.launchChart(symbol, stockName, dropPosition);
+    }
   };
 
   const bindings = {
@@ -170,7 +178,7 @@ const Watchlist = () => {
 
   useEffect(() => {
     getWindowOptions().then(value => {
-      setPreviewDetails({ ...previewDetails, options: value });
+      setWindowOptions(value);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -195,26 +203,21 @@ const Watchlist = () => {
       : window.outerWidth + screenLeft() + offset;
 
   useEffect(() => {
-    const WINDOW_OFFSET = 5;
-
-    if (previewDetails.options) {
+    if (windowOptions) {
       setPreviewDetails({
         ...previewDetails,
         position: {
-          left: calcLeftPosition(
-            previewDetails.options.defaultWidth,
-            WINDOW_OFFSET
-          ),
+          left: calcLeftPosition(windowOptions.defaultWidth, WINDOW_OFFSET),
           top: window.screenTop
         },
         size: {
-          height: previewDetails.options.defaultHeight,
-          width: previewDetails.options.defaultWidth
+          height: windowOptions.defaultHeight,
+          width: windowOptions.defaultWidth
         }
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [displayPreview]);
+  }, [displayPreview, windowOptions]);
 
   return (
     <div
@@ -236,14 +239,12 @@ const Watchlist = () => {
       }}
     >
       <Components.PreviewWindow
+        windowName="chart-preview"
         display={displayPreview}
-        htmlfile="preview-chart.html"
+        htmlPath="preview-chart.html"
         position={previewDetails.position}
         size={previewDetails.size}
       ></Components.PreviewWindow>
-      <div className="header">
-        <span className="watchlist-name">My Watchlist</span>
-      </div>
       <Components.ScrollWrapperY>
         {watchlist.length === 0 ? (
           <div className="no-watchlist">

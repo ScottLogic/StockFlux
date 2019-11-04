@@ -11,15 +11,15 @@
 
   /* Dimensions -----------------------*/
   /*-----------------------------------*/
-  --card-height: 109px;
-  --card-width: 230px;
+  --card-height: 120px;
+  --card-width: 532px;
   --bubble-head-width: 10px;
   --bubble-head-height: 10px;
 
   /* Minichart Variables --------------*/
   /*-----------------------------------*/
-  --minichart-width: 145px;
-  --minichart-height: 40px;
+  --minichart-width: 153px;
+  --minichart-height: 60px;
   --chart-stroke: var(--chart-teal);
 
   /* Other ----------------------------*/

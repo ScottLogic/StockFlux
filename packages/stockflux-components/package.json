@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
+    "openfin-react-hooks": "^1.3.0",
     "react-icons": "^3.7.0",
     "react-svg-loader": "^3.0.3"
   }

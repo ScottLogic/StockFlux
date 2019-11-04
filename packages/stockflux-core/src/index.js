@@ -20,7 +20,8 @@ import {
   openUrlWithBrowser,
   sendInterApplicationMessage,
   showNotification,
-  useMain
+  useMain,
+  windowAlreadyExists
 } from './openfin-api-utils/openfinApiHelpers';
 import { launchChildWindow } from './services/ChildWindowLauncher';
 import {
@@ -28,7 +29,6 @@ import {
   launchWatchlist,
   launchNews
 } from './services/app-launchers';
-import useChildWindow from './custom-hooks/useChildWindow/useChildWindow';
 
 export const Utils = {
   truncate
@@ -47,7 +47,8 @@ export const OpenfinApiHelpers = {
   openUrlWithBrowser,
   sendInterApplicationMessage,
   showNotification,
-  useMain
+  useMain,
+  windowAlreadyExists
 };
 
 export const StockFlux = {
@@ -65,8 +66,7 @@ export const Intents = {
 };
 
 export const StockFluxHooks = {
-  useLocalStorage,
-  useChildWindow
+  useLocalStorage
 };
 
 export const Launchers = {

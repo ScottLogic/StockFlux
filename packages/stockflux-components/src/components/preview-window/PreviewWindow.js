@@ -1,16 +1,15 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { StockFluxHooks } from 'stockflux-core';
+import { useChildWindow } from 'openfin-react-hooks';
 
 export default ({
-  htmlfile = 'transparent-window.html',
+  windowName,
+  htmlPath,
+  cssPath,
   children,
   position = { left: 100, top: 100 },
   size = { width: 300, height: 300 },
   display
 }) => {
-  const TRANSPARENT_WINDOW_NAME = 'transparent_window';
-  const TRANSPARENT_CSS_PATCH = 'transparentWindow.css';
-
   const windowStatus = {
     showing: 'SHOWING',
     hiding: 'HIDING',
@@ -18,29 +17,33 @@ export default ({
     hidden: 'HIDDEN'
   };
 
-  const childWindow = StockFluxHooks.useChildWindow(
-    TRANSPARENT_WINDOW_NAME,
-    document,
-    TRANSPARENT_CSS_PATCH
-  );
+  const WINDOW_OPTIONS = {
+    name: windowName,
+    waitForPageLoad: true,
+    opacity: 0.0,
+    autoShow: false,
+    showTaskbarIcon: false,
+    defaultHeight: size.height,
+    defaultWidth: size.width,
+    url: htmlPath,
+    frame: false,
+    resizable: false,
+    alwaysOnTop: true
+  };
 
-  const { window, launch } = childWindow;
+  const childWindow = useChildWindow({
+    name: windowName,
+    options: WINDOW_OPTIONS,
+    shouldInheritCss: true,
+    parentDocument: document,
+    cssUrl: cssPath,
+    shouldClosePreviousOnLaunch: true
+  });
+
+  const { windowRef, launch } = childWindow;
 
   const launchChildWindow = useCallback(
-    () =>
-      launch({
-        name: TRANSPARENT_WINDOW_NAME,
-        waitForPageLoad: true,
-        opacity: 0.0,
-        autoShow: false,
-        showTaskbarIcon: false,
-        defaultHeight: size.height,
-        defaultWidth: size.width,
-        url: htmlfile,
-        frame: false,
-        resizable: false,
-        alwaysOnTop: true
-      }),
+    () => launch(WINDOW_OPTIONS),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [launch]
   );
@@ -48,10 +51,10 @@ export default ({
   const [popupStatus, setPopupStatus] = useState(windowStatus.hidden);
 
   const showWindow = () => {
-    if (window) {
+    if (windowRef) {
       setPopupStatus(windowStatus.showing);
-      window.show().then(() => {
-        window.animate(
+      windowRef.show().then(() => {
+        windowRef.animate(
           { opacity: { opacity: 0.7, duration: 500 } },
           { tween: 'ease-in-out', interrupt: true }
         );
@@ -60,9 +63,9 @@ export default ({
   };
 
   const hideWindow = () => {
-    if (window) {
+    if (windowRef) {
       setPopupStatus(windowStatus.hiding);
-      window
+      windowRef
         .animate(
           { opacity: { opacity: 0.0, duration: 500 } },
           { tween: 'ease-in-out', interrupt: true }
@@ -73,33 +76,35 @@ export default ({
 
   useEffect(() => {
     if (popupStatus === windowStatus.hide && display === false) {
-      window.hide();
+      windowRef.hide();
       setPopupStatus(windowStatus.hidden);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [popupStatus, window]);
+  }, [popupStatus, windowRef]);
 
   useEffect(() => {
     if (display) {
-      !window && launchChildWindow();
+      !windowRef && launchChildWindow();
       showWindow();
     } else {
       hideWindow();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [display, window]);
+  }, [display, windowRef]);
 
   useEffect(() => {
-    window &&
-      window.moveTo(position.left, position.top, { moveindependently: true });
-  }, [position, window]);
-
-  useEffect(() => {
-    window &&
-      window.resizeTo(size.width, size.height, 'top-left', {
+    windowRef &&
+      windowRef.moveTo(position.left, position.top, {
         moveindependently: true
       });
-  }, [size, window]);
+  }, [position, windowRef]);
+
+  useEffect(() => {
+    windowRef &&
+      windowRef.resizeTo(size.width, size.height, 'top-left', {
+        moveindependently: true
+      });
+  }, [size, windowRef]);
 
   return <>{children}</>;
 };

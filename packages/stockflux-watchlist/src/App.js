@@ -6,7 +6,7 @@ import './App.css';
 const App = () => {
   return (
     <>
-      <Components.Titlebar />
+      <Components.Titlebar title="Watchlist" />
       <Watchlist />
     </>
   );
