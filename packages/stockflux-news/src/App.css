@@ -3,30 +3,9 @@
   background-color: var(--window-background-color);
 }
 
-.tab-bar {
-  height: var(--tabbar-height);
-  display:flex;
-  flex-direction: row;      
-  
-}
-
-.news-tab {
-  flex-grow:1;
-  border: var(--window-divider) 1px solid;
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  padding-left: 6px;
-  padding-right: 6px;
-}
-
-.news-tab:hover {
-  background-color: var(--color-hover);
-}
-
 .container {
   max-height: 700px;
-  height: calc(100vh - (var(--tabbar-height) + var(--titlebar-height)));
+  height: calc(100vh - var(--titlebar-height));
 }
 
 .icons {

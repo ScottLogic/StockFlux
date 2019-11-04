@@ -86,11 +86,6 @@ function App() {
   return (
     <div className="stockflux-news">
       <Components.Titlebar title="News" />
-      <div className="tab-bar">
-        <div className="news-tab">{symbol}</div>
-        <div className="news-tab">A.N.OTHR</div>
-        <div className="news-tab">MISC</div>
-      </div>
       <Components.ScrollWrapperY>
         <div className="container" ref={listContainer}>
           {isSearching ? (
