@@ -28,7 +28,12 @@ body {
 }
 
 
-
+.symbol-info{
+    position: absolute;
+    top: 10vh;
+    left: 5vw;
+    width: 10vw;
+}
 .d3fc-button {
     position: absolute;
     right: 0px;
@@ -40,14 +45,13 @@ body {
 }
 
 #showcase-container {
-
+    margin: 0px 0px 0px 30px;
     height: 80%;
-    width: calc(100vw - 40px)
+    width: 95%
 }
 #navigation-container {
-
+    background: #091A29;
     height: 20%;
-    width: calc(100vw - 40px)
 
 }
 #navigation-container .y-axis {
@@ -82,15 +86,14 @@ body {
     align-items: center;
     height: 55px;
 }
-#showcase-title .code{
-    margin-left: 24px;
-    padding: 4px 0px 4px 0px;
+.code{
+    color:white;
     position: relative;
     top: 0px;
 }
 
-#showcase-title .name {
-    margin-left: 24px;
+.name {
+    color: white;
     position: relative;
     display: inline;
     top: 0px;

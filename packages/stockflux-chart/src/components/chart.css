@@ -25,11 +25,10 @@ html, body{
 
 .chart-content{
   /*TODO: update with var for height of main-content*/
-  height: calc(100vh - 79px - 38px) ;
-  margin-left: 20px;
-  margin-right: 20px;
-  width: calc(100vw - 40px);
-  background: #091A29;
+  /* position: relative; */
+  height: calc(100vh - 65px) ;
+  width: 100%;
+  /* background: #091A29; */
   
 }
 
@@ -38,7 +37,7 @@ html, body{
   rx: 22;
   width: .5%;
   height: 100%;
-  fill: var(--chart-teal);
+  fill: white;
 }
 
 .handle.handle--e{
@@ -46,7 +45,7 @@ html, body{
   /* ry: 100; */
   width: .5%;
   height: 100%;
-  fill: var(--chart-teal);
+  fill: white;
 }
 
 .selection {
@@ -78,7 +77,7 @@ fill-opacity: 0.2
   }
 
 .domain {
-  stroke: var(--chart-teal);
+  stroke: white;
   stroke-width: 2
 }
 
@@ -89,7 +88,7 @@ fill-opacity: 0.2
 }
 
 .tick path{
-  stroke: var(--chart-teal)
+  stroke: white
 }
 
 /* path{

@@ -109,49 +109,19 @@ const App = () => {
   return (
     <>
       <div className="main">
-        <div className="main-content">
-          <Components.Titlebar />
-          <div id="showcase-title">
-            <div className="symbol-info">
-              {symbol && <div className="code">{symbol}</div>}
-              <div className="name">{!symbol ? 'Generated Data' : name}</div>
-            </div>
-
-            <div className="chart-nav-icons">
-              <Components.Shortcuts.News
-                small={true}
-                symbol
-                name
-                disabled={!symbol}
-              />
-              <Components.Shortcuts.Watchlist
-                small={true}
-                symbol
-                name
-                disabled={!symbol}
-              />
-              <Components.Buttons.Round
-                small={true}
-                onClick={() => getData()}
-                disabled={!symbol}
-              >
-                <FaSyncAlt />
-              </Components.Buttons.Round>
-              <Components.Buttons.Round
-                small={true}
-                onClick={() => setChartType(!chartType)}
-              >
-              </Components.Buttons.Round>
-            </div>
+        <Components.Titlebar />
+        <div className="chart-stuff">
+          <div className="symbol-info">
+            {symbol && <div className="code">{symbol}</div>}
+            <div className="name">{!symbol ? 'Generated Data' : name}</div>
           </div>
+          <Chart chartData={chartData} chartType={chartType} />
         </div>
-        <Chart chartData={chartData} chartType={chartType} />
         <div className="chart-info">
           <div className="chart-tool">
             Powered by
           </div>
           <div className="d3fc-button"><D3FCIcon /></div>
-
         </div>
       </div>
     </>
