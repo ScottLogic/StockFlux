@@ -18,18 +18,9 @@ html, body{
   height: 10%;
 }
 
-.chart-container{
-  height:100%;
-  width: 100%;
-}
-
 .chart-content{
-  /*TODO: update with var for height of main-content*/
-  /* position: relative; */
   height: calc(100vh - 65px) ;
   width: 100%;
-  /* background: #091A29; */
-  
 }
 
 .handle.handle--w{
@@ -55,32 +46,12 @@ stroke: none;
 stroke-width: 5px;
 fill: #29E9E3;
 fill-opacity: 0.2
-
 }
-
-.legend {
-    margin-top: -15px;
-    width: 550px;
-     height: 30px; 
-     border: none
-}
-
-.legend-label {
-    text-anchor: end;
-    font-size: 12px;
-    fill:white;
-  }
-
-  .legend-value {
-    font-size: 12px;
-    fill: white;
-  }
 
 .domain {
   stroke: white;
   stroke-width: 2
 }
-
 
 .tick text{
   fill: white;
@@ -99,15 +70,6 @@ fill-opacity: 0.2
   stroke: var(--chart-teal);
   stroke-width: 2
 }
-
-  :root{
-    --primary-dark-blue: #1A212A;
-
-  }
-
-.main-chart{
-  overflow: hidden !important;
-} 
   
 .cartesian-chart >.plot-area {
   /* overflow: visible  !important; */
