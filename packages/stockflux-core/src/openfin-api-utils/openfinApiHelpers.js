@@ -70,3 +70,14 @@ export const showNotification = async (url, message) => {
 
 export const useMain = async mountApp =>
   await window.fin.desktop.main(mountApp);
+
+export const windowAlreadyExists = async windowName => {
+  const childWindows = await getChildWindows();
+  for (const childWindow of childWindows) {
+    const childWindowOptions = await childWindow.getOptions();
+    if (childWindowOptions.name === windowName) {
+      return childWindow;
+    }
+  }
+  return false;
+};

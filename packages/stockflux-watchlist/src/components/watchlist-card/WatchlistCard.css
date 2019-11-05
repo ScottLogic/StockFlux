@@ -4,7 +4,7 @@
 }
 
 .card:hover {
-  background-color: var(  --color-hover);
+  background-color: var(--color-hover);
 }
 
 .drop-target {
@@ -20,10 +20,10 @@
 }
 
 .card-top {
-  padding-top:8px;
+  padding-top: 8px;
   padding-left: var(--padding-medium);
-  padding-right:3px;
-  padding-bottom:3px;
+  padding-right: 3px;
+  padding-bottom: 3px;
   height: 48px;
   display: flex;
   flex-direction: row;
@@ -45,8 +45,8 @@
 }
 
 .card-bottom {
-  height:60px;
-  margin-right:3px;
+  height: 60px;
+  margin-right: 3px;
 }
 
 .details {
@@ -54,34 +54,37 @@
 }
 
 .percentage {
-  margin-top:9px;
-  margin-bottom:9px;
+  margin-top: 9px;
+  margin-bottom: 9px;
 }
 
 .delta,
 .percentage,
 .price {
-  padding-right: 1px;  
-  font-weight: var( --font-weight-bold);
-  line-height: 1.1;  
+  padding-right: 1px;
+  font-weight: var(--font-weight-bold);
+  line-height: 1.1;
 }
 
 .price {
-  font-size: var(  --font-xxlarge);
+  font-size: var(--font-xxlarge);
 }
-.percentage, .delta {
+.percentage,
+.delta {
   font-size: var(--font-large);
 }
 
-.percentage  svg {
+.percentage svg {
   margin-right: 3px;
-  height:9px;
+  height: 9px;
 }
 
-.price_positive, .price_positive * {
+.price_positive,
+.price_positive * {
   color: var(--text-increase);
 }
-.price_negative, .price_negative * {
+.price_negative,
+.price_negative * {
   color: var(--text-decrease);
 }
 
@@ -95,12 +98,12 @@
 
 .icons {
   display: flex;
-  margin-right:3px;  
-  width:38%;
+  margin-right: 3px;
+  width: 38%;
 }
 
 .icon {
-  align-self:baseline;
+  align-self: baseline;
 }
 
 .icon > button {
@@ -108,14 +111,18 @@
 }
 
 .icon:hover {
-  color:var(--text-color);
-  background-color:var(--icon-hover-light);  
+  color: var(--text-color);
+  background-color: var(--icon-hover-light);
 }
 
-.icon:active svg  {
-  color:var(--icon-active);
+.icon:active svg {
+  color: var(--icon-active);
 }
 
 .details-container {
   width: 61%;
+}
+
+.open path {
+  color: var(--icon-active);
 }

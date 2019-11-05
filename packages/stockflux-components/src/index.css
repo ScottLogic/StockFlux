@@ -81,26 +81,26 @@
 
   
   /* Deprecated Style Colours  */
-  --text-grey-darkest: #626569;
-  --text-grey-darker: #7b7e82;
-  --text-grey-dark: #95989c;
-  --text-grey: #aeb1b5;
-  --text-grey-light: #c8cbcf;
-  --text-grey-lighter: #e1e4e8;
+  --text-grey-darkest: var(--text-color);
+  --text-grey-darker: var(--text-color);
+  --text-grey-dark: var(--text-color);
+  --text-grey: var(--text-color);
+  --text-grey-light: var(--text-color);
+  --text-grey-lighter: var(--text-color);
 
-  --text-teal: #307a71;
-  --text-teal-light: #37d8bc;
+  --text-teal: var(--color-highlight);
+  --text-teal-light: var(--color-highlight);
 
   --lightest-background: #79818b;
   --lighter-background: #606872;
   --light-background: #464e58;
 
-  --middle-background: #28313d;
-  --middle-background-light: #424b57;
-  --middle-background-lighter: #5b6470;
+  --middle-background: var(--window-background-color);
+  --middle-background-light: var(--color-hover);
+  --middle-background-lighter: var(--window-divider);
 
-  --dark-background: #1a212a;
+  --dark-background: var(--window-background-color);
 
-  --chart-teal: #37d8bc;
-  --chart-teal-lighter: #51f2d6;  
+  --chart-teal: var(--color-highlight);
+  --chart-teal-lighter: var(--color-highlight);  
 }

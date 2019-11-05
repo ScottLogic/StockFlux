@@ -5,10 +5,11 @@ import { OpenfinApiHelpers } from 'stockflux-core';
 import CloseIcon from '../icons/close.svg';
 import MinimizeIcon from '../icons/minimize.svg';
 import LinkIcon from '../icons/link.svg';
+import ConfirmationWindow from '../popups/ConfirmationWindow';
 
 import './Titlebar.css';
 
-export default ({ title }) => {
+export default ({ title, confirmClose }) => {
   const isDocked = useDocked();
 
   const onMinimizeClick = useCallback(async () => {
@@ -43,9 +44,21 @@ export default ({ title }) => {
         <div className="header-icon" onClick={onMinimizeClick} title="Minimize">
           <MinimizeIcon />
         </div>
-        <div className="header-icon" onClick={onCloseClick} title="Close">
-          <CloseIcon />
-        </div>
+        {!confirmClose && (
+          <div className="header-icon" onClick={onCloseClick} title="Close">
+            <CloseIcon />
+          </div>
+        )}
+        {confirmClose && (
+          <div className="header-icon">
+            <ConfirmationWindow
+              message="This will close all related windows. Do you wish to continue?"
+              onConfirm={onCloseClick}
+            >
+              <CloseIcon />
+            </ConfirmationWindow>
+          </div>
+        )}
       </div>
     </div>
   );

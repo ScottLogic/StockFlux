@@ -1,0 +1,59 @@
+body {
+  overflow-x: hidden;
+  height: inherit;
+}
+
+div#root {
+  height:100vh;
+  flex: 1 1 auto;
+  overflow:hidden;
+}
+
+div.scrollWrapperY > p {
+  text-align: center;
+  color: var(--text-grey-light);
+  padding: 170px 50px;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+
+.spinner {
+  position: relative;
+  top:calc(50vh - var(--search-input-height))
+}
+
+.card {
+  padding: var(--padding-medium);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--clr-divider-light);
+}
+
+.card p {
+  cursor: default;
+  margin: var(--margin-medium);
+}
+
+div#actions {
+  float: right;
+  margin: 0 var(--margin-small);
+  display: inherit;
+}
+
+.card:hover {
+  background-color: var(--dark-background);
+}
+
+.name {
+  letter-spacing: 0.5px;
+  font-weight: var(--font-weight-bold);
+  color: var(--text-teal-light);
+}
+.symbol {
+  letter-spacing: 1px;
+  font-size: var(--font-xlarge);
+  font-weight: var(--font-weight-bolder);
+  color: var(--text-grey-lighter);
+}
