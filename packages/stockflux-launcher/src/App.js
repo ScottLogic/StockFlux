@@ -75,7 +75,7 @@ export default () => {
   return (
     <div className="launcher-container">
       <div className="launcher-title">
-        <Components.Titlebar title={title} dockedTo={edge} />
+        <Components.Titlebar title={title} confirmClose={true} />
       </div>
       <div className={cx('app', edge)}>
         {!isHorizontal && (
