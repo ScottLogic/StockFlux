@@ -53,9 +53,19 @@ body {
     height: 20%;
 }
 
+#navigation-container >.cartesian-chart >.plot-area{
+    stroke: grey;
+    stroke-width: 1px;
+}
+
 #navigation-container .y-axis {
     visibility: hidden;
 }
+
+#navigation-container .x-axis .domain{
+    visibility: hidden;
+}
+
 
 #showcase-title {
     color: white;
