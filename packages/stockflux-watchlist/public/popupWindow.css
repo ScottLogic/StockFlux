@@ -1,0 +1,23 @@
+body {
+    overflow: hidden;
+    padding: 4vh 4vw;
+    border:var(--border);
+    box-sizing: border-box;
+}
+.popup{
+    color:var(--text-grey-lighter);        
+}
+
+.popup-message{
+    text-align: center;
+    font-size: var(--font-large);
+}
+
+.popup-options {
+    text-align: right;
+}
+
+.popup-options button {
+    color:var(--text-teal-light);
+    border-color:var(--text-teal-light);
+}
