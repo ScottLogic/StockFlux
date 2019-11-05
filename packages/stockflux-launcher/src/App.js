@@ -5,7 +5,7 @@ import { OpenfinApiHelpers } from 'stockflux-core';
 import './App.css';
 import FreeTextSearch from './free-text-search/FreeTextSearch';
 import getUndockedPosition from './helpers/getUndockedPosition';
-import { ReactComponent as LeftIcon } from './icons/left.svg';
+import LeftIcon from './icons/left.svg';
 import { ReactComponent as RightIcon } from './icons/right.svg';
 import { ReactComponent as TopIcon } from './icons/top.svg';
 import Watchlist from './app-shortcuts/Watchlist';

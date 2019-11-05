@@ -6,7 +6,7 @@ async function getBounds() {
 }
 
 async function getMonitorInfo() {
-  let monitorInfo = await window.fin.System.getMonitorInfo();
+  let monitorInfo = await OpenfinApiHelpers.getMonitorInfo();
   return monitorInfo;
 }
 
