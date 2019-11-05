@@ -32,6 +32,7 @@ const WatchlistCard = ({
     delta: 0,
     percentage: 0
   });
+  const [dragOutcome, setDragOutcome] = useState('');
   const [openApps, dispatch] = useReducer(reducer, initialState);
 
   const determineIfNewsOpen = useCallback(async () => {
@@ -114,13 +115,24 @@ const WatchlistCard = ({
       setDragging({ isDragging: true, clientX, offsetY });
       e.dataTransfer.setData(JSON.stringify(symbolData), '');
       e.dataTransfer.setData(JSON.stringify(windowData), '');
+      bindings.previewMode(dragOutcome);
     };
   };
 
   const onDragEnd = e => {
     if (e.dataTransfer.dropEffect === 'none') {
-      bindings.onDropOutside(symbol, stockData.name);
+      switch (dragOutcome) {
+        case 'DELETE':
+          removeFromWatchList(symbol);
+          break;
+        case 'CHART':
+          bindings.onDropOutside(symbol, stockData.name);
+          break;
+        default:
+          console.error('Invalid Action to switch(DragOutcome)');
+      }
     }
+    setDragOutcome('');
     setDragging({ isDragging: false });
   };
 
@@ -139,7 +151,10 @@ const WatchlistCard = ({
     >
       <div className="drop-target">
         <div className="card default-background" draggable="false">
-          <div className="card-top darkens">
+          <div
+            className="card-top darkens"
+            onMouseDown={() => setDragOutcome('DELETE')}
+          >
             <div className="details-container">
               <div className="symbol">{symbol}</div>
               <div className="name">{stockData.name}</div>
@@ -179,7 +194,11 @@ const WatchlistCard = ({
           </div>
           <div
             className="card-bottom"
-            onClick={() => bindings.onDropOutside(symbol, stockData.name)}
+            onClick={() => {
+              setDragOutcome('');
+              bindings.onDropOutside(symbol, stockData.name);
+            }}
+            onMouseDown={() => setDragOutcome('CHART')}
           >
             <Minichart
               symbol={symbol}

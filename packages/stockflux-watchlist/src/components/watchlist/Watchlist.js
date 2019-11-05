@@ -24,6 +24,7 @@ const Watchlist = () => {
   const [dragOverIndex, setDragOverIndex] = useState(null);
   const [unwatchedSymbol, setUnwatchedSymbol] = useState(null);
   const [displayPreview, setDisplayPreview] = useState(false);
+  const [displayDelete, setDisplayDelete] = useState(false);
   const [windowOptions, setWindowOptions] = useState(null);
   const [previewDetails, setPreviewDetails] = useState({
     position: { top: 0, left: 0 },
@@ -103,12 +104,18 @@ const Watchlist = () => {
     }
   };
 
+  const setPreviewMode = mode => {
+    mode === 'CHART' && setDisplayPreview(true);
+    mode === 'DELETE' && setDisplayDelete(true);
+  };
+
   const bindings = {
     onModalConfirmClick: onModalConfirmClick,
     onModalBackdropClick: onModalBackdropClick,
     onIconClick: onIconClick,
     resetDragState: resetDragState,
-    onDropOutside: onDropOutside
+    onDropOutside: onDropOutside,
+    previewMode: setPreviewMode
   };
 
   /*
@@ -191,17 +198,18 @@ const Watchlist = () => {
       className="watchlist"
       onDragStart={e => {
         onDragStart(e, watchlist, setDragOverIndex);
-        setDisplayPreview(true);
       }}
       onDragOver={e => {
         onDragOver(e, watchlist, dragOverIndex, setDragOverIndex);
       }}
       onDragEnd={() => {
         setDisplayPreview(false);
+        setDisplayDelete(false);
         resetDragState(setDragOverIndex);
       }}
       onDrop={e => {
         setDisplayPreview(false);
+        setDisplayDelete(false);
         onDrop(e, watchlist, getSymbolIndex, setWatchlist, dragOverIndex);
       }}
     >
@@ -211,6 +219,13 @@ const Watchlist = () => {
         htmlPath="preview-chart.html"
         position={previewDetails.position}
         size={previewDetails.size}
+      ></Components.PreviewWindow>
+      <Components.PreviewWindow
+        windowName="symbol-delete"
+        display={displayDelete}
+        htmlPath="delete-symbol.html"
+        position={previewDetails.position}
+        size={{ height: 100, width: 400 }}
       ></Components.PreviewWindow>
       <Components.ScrollWrapperY>
         {watchlist.length === 0 ? (
