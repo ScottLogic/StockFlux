@@ -13,7 +13,7 @@ html {
   margin-bottom: 8px;
 }
 
-.icon:hover {
+.icon:hover:enabled{
   color: var(--icon-active);
 }
 

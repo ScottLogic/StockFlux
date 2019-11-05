@@ -8,6 +8,12 @@ import News from './components/buttons/borderless-buttons/app-shortcuts/News';
 import Watchlist from './components/buttons/borderless-buttons/app-shortcuts/Watchlist';
 import Close from './components/buttons/borderless-buttons/Close';
 
+import LeftIcon from './components/glyphs/launcher/left.svg';
+import RightIcon from './components/glyphs/launcher/right.svg';
+import TopIcon from './components/glyphs/launcher/top.svg';
+import SearchIcon from './components/glyphs/launcher/search.svg';
+import WatchlistIcon from './components/glyphs/launcher/watchlist.svg';
+
 import ChartIcon from './components/glyphs/small/chart.svg';
 import CloseIcon from './components/icons/close.svg';
 import MinimizeIcon from './components/icons/minimize.svg';
@@ -42,6 +48,7 @@ export default {
   Icons: {
     Small: { Chart: ChartIcon, News: NewsIcon, Watchlist: WatchListIcon },
     Arrows: { PriceUp, PriceDown },
+    Launcher: { LeftIcon, RightIcon, TopIcon, SearchIcon, WatchlistIcon },
     Toolbar: { MinimizeIcon, CloseIcon }
   },
   Popups: { PopupWindow, ConfirmationWindow },
