@@ -20,6 +20,11 @@ export const getCurrentWindowOptions = async () => {
   return await currentWindow.getOptions();
 };
 
+export const getMonitorInfo = async () => {
+  const monitorInfo = await window.fin.System.getMonitorInfo();
+  return await monitorInfo;
+};
+
 export const getAllApps = async () =>
   await getCurrentWindowOptions()
     .then(options => options.customData.apiBaseUrl)

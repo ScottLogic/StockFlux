@@ -1,69 +1,106 @@
-import React, { useRef, useEffect } from 'react';
 import cx from 'classnames';
+import { ScreenEdge, useDockWindow, useOptions } from 'openfin-react-hooks';
+import React, { useEffect, useState } from 'react';
+import Components from 'stockflux-components';
 import { OpenfinApiHelpers } from 'stockflux-core';
-import { useDockWindow, ScreenEdge } from 'openfin-react-hooks';
-import {
-  FaChevronUp,
-  FaChevronLeft,
-  FaChevronRight,
-  FaRegHandRock
-} from 'react-icons/fa';
-import AppShortcuts from './app-shortcuts/AppShortcuts';
-import FreeTextSearch from './free-text-search/FreeTextSearch';
-import ToolBar from './toolbar/ToolBar';
-import CloseButton from './toolbar/CloseButton';
 import './App.css';
-
-const isLauncherHorizontal = edge => edge === ScreenEdge.TOP;
+import FreeTextSearch from './free-text-search/FreeTextSearch';
+import getUndockedPosition from './helpers/getUndockedPosition';
+import Watchlist from './app-shortcuts/Watchlist';
+import Titlebar from './titlebar/Titlebar';
+import ToolBar from './toolbar/ToolBar';
 
 export default () => {
+  const [options] = useOptions();
+  const defaultHeight = options ? options.defaultHeight : 75;
+  const defaultWidth = options ? options.defaultWidth : 50;
+  const isDockable = options ? options.customData.isDockable : false;
+  const [undockPosition, setUndockPosition] = useState({ left: 0, top: 0 });
+  const [isHorizontal, setHorizontal] = useState(true);
   const [edge, windowActions] = useDockWindow(
     ScreenEdge.TOP,
     OpenfinApiHelpers.getCurrentWindowSync(),
     true,
-    { dockedWidth: 50, dockedHeight: 50 }
+    {
+      dockedWidth: isHorizontal ? defaultWidth : 80,
+      dockedHeight: defaultHeight
+    },
+    {
+      undockPosition: { left: undockPosition.left, top: undockPosition.top },
+      undockSize: { width: 724, height: 88 }
+    }
   );
 
-  const prevEdgeRef = useRef();
-  useEffect(() => {
-    prevEdgeRef.current = edge;
-  });
-  const prevEdge = prevEdgeRef.current;
+  const iconStyle = `icon ${isHorizontal ? 'horizontal' : 'vertical'}`;
+  const toolbarStyle = isHorizontal ? 'toolbar' : 'toolbar t-vertical';
 
-  const edgeToBeChecked = edge === ScreenEdge.NONE ? prevEdge : edge;
+  /* Hook undock if initialDocked is false on start */
+  useEffect(() => {
+    if (
+      options &&
+      options.customData &&
+      options.customData.initialDocked === false
+    ) {
+      windowActions.dockNone();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [options]);
+
+  /* Make sure window shrinks when dragged from top */
+  useEffect(() => {
+    if (edge === ScreenEdge.NONE) {
+      getUndockedPosition().then(position => {
+        setUndockPosition({ left: position.left, top: position.top });
+
+        windowActions.dockNone();
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [edge]);
+
+  useEffect(() => {
+    setHorizontal([ScreenEdge.TOP, ScreenEdge.NONE].includes(edge));
+  }, [edge]);
 
   return (
-    <div className={cx('app', edgeToBeChecked)}>
-      {!isLauncherHorizontal(edgeToBeChecked) && CloseButton}
-      <AppShortcuts />
-      <FreeTextSearch
-        dockedTo={edge}
-        showTextInput={!isLauncherHorizontal(edgeToBeChecked)}
-      />
-      <ToolBar
-        tools={[
-          {
-            label: <FaChevronUp />,
-            onClick: windowActions.dockTop,
-            disabled: edge === ScreenEdge.TOP
-          },
-          {
-            label: <FaChevronLeft />,
-            onClick: windowActions.dockLeft,
-            disabled: edge === ScreenEdge.LEFT
-          },
-          {
-            label: <FaChevronRight />,
-            onClick: windowActions.dockRight,
-            disabled: edge === ScreenEdge.RIGHT
-          },
-          {
-            label: <FaRegHandRock />,
-            className: 'drag-handle'
-          }
-        ]}
-      />
-      {isLauncherHorizontal(edgeToBeChecked) && CloseButton}
+    <div className="launcher">
+      <div className="launcher-title">
+        <Titlebar dockedTo={edge} />
+      </div>
+      <div className={cx('app', edge)}>
+        <div className={iconStyle}>
+          <Watchlist symbol="TSLA" name="Tesla" />
+        </div>
+
+        <FreeTextSearch dockedTo={edge} />
+
+        <ToolBar
+          style={toolbarStyle}
+          tools={[
+            {
+              className: 'icon',
+              label: <Components.Icons.Launcher.LeftIcon />,
+              onClick: windowActions.dockLeft,
+              disabled: edge === ScreenEdge.LEFT,
+              visible: isDockable
+            },
+            {
+              className: 'icon',
+              label: <Components.Icons.Launcher.TopIcon />,
+              onClick: windowActions.dockTop,
+              disabled: edge === ScreenEdge.TOP,
+              visible: isDockable
+            },
+            {
+              className: 'icon',
+              label: <Components.Icons.Launcher.RightIcon />,
+              onClick: windowActions.dockRight,
+              disabled: edge === ScreenEdge.RIGHT,
+              visible: isDockable
+            }
+          ]}
+        />
+      </div>
     </div>
   );
 };
