@@ -1,0 +1,1289 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="4051" height="1632" viewBox="0 0 4051 1632">
+  <defs>
+    <rect id="chart_v2_specs-b" width="97" height="84" x="46" y="1021"/>
+    <filter id="chart_v2_specs-a" width="139.2%" height="145.2%" x="-19.6%" y="-20.2%" filterUnits="objectBoundingBox">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="1.5" result="shadowSpreadOuter1"/>
+      <feOffset dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="4.5"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/>
+    </filter>
+    <linearGradient id="chart_v2_specs-c" x1="71.438%" x2="100%" y1="26.789%" y2="26.789%">
+      <stop offset="0%" stop-color="#0D2437"/>
+      <stop offset="100%" stop-color="#0D2437" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="chart_v2_specs-d" x1="50%" x2="50%" y1="26.789%" y2="100%">
+      <stop offset="0%" stop-color="#0D2437"/>
+      <stop offset="100%" stop-color="#0D2437" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="chart_v2_specs-e" x1="71.438%" x2="100%" y1="26.789%" y2="26.789%">
+      <stop offset="0%" stop-color="#0D2437"/>
+      <stop offset="100%" stop-color="#0D2437" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="chart_v2_specs-f" x1="71.438%" x2="100%" y1="26.789%" y2="26.789%">
+      <stop offset="0%" stop-color="#0D2437"/>
+      <stop offset="100%" stop-color="#0D2437" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <rect width="4051" height="1632" fill="#FFF"/>
+    <use fill="#000" filter="url(#chart_v2_specs-a)" xlink:href="#chart_v2_specs-b"/>
+    <use fill="#0D2437" xlink:href="#chart_v2_specs-b"/>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="11" font-weight="bold">
+      <tspan x="171" y="1037">Shadow for Chart Window</tspan> <tspan x="171" y="1063" font-family="Roboto-Regular, Roboto" font-weight="normal">y = 2</tspan> <tspan x="171" y="1076" font-family="Roboto-Regular, Roboto" font-weight="normal">blur = 9</tspan> <tspan x="171" y="1089" font-family="Roboto-Regular, Roboto" font-weight="normal">spread = 3</tspan>
+    </text>
+    <g transform="translate(794.384 208)">
+      <rect width="850" height="474" y="28" fill="#0D2437"/>
+      <rect width="850" height="94" y="387" fill="#071521"/>
+      <g transform="translate(35 408.5)">
+        <polyline stroke="#21B1CA" points=".003 21.895 7.108 20.455 13.597 21.515 20.088 17.43 26.578 24.884 33.068 30.222 39.559 35.901 46.049 38.859 52.539 41.662 59.029 38.371 65.52 37.486 72.01 31.935 78.5 27.063 84.991 31.423 91.48 24.304 97.971 20.523 104.461 23.449 110.951 28.679 117.442 27.779 123.932 25.956 130.422 20.979 136.912 21.235 143.403 16.402 149.893 19.076 156.383 18.929 162.874 12.628 169.363 13.954 175.854 19.427 182.344 17.866 188.834 22.857 195.325 24.023 201.815 20.607 208.305 24.443 214.795 17.451 221.286 20.09 227.776 18.955 234.266 19.107 240.757 21.582 247.246 21.696 253.737 17.689 260.228 16.791 266.717 13.541 273.208 14.596 279.698 16.675 286.188 14.707 292.678 11.592 299.169 13.314 305.659 11.44 312.149 15.309 318.64 16.59 325.129 17.565 331.62 16.346 338.111 22.328 344.6 20.019 351.091 22.096 357.581 22.304 364.071 22.651 370.562 20.892 377.052 25.816 383.542 27.668 390.032 29.76 396.523 26.194 403.013 26.359 409.503 26.146 415.994 28.011 422.483 30.5 428.974 29.143 435.464 32.802 441.954 33.586 448.445 33.21 454.935 31.992 461.425 32.115 467.915 26.671 474.406 27.706 480.896 29.406 487.386 32.455 493.877 34.085 500.366 34.255 506.857 29.026 513.347 21.5 519.837 25.876 526.328 22.239 532.818 17.486 539.308 20.774 545.798 15.718 552.289 18.074 558.779 15.329 565.269 18.081 571.76 13.242 578.249 13.584 584.74 15.938 591.23 12.787 597.72 10.125 604.211 8.946 610.701 9.642 617.191 11.749 623.681 11.528 630.172 9.455 636.662 14.62 643.152 16.119 649.643 19.233 656.132 17.404 662.623 18.639 669.113 14.912 675.603 18.199 682.094 16.591 688.584 12.515 695.074 11.563 701.564 13.75 708.055 15.941 714.545 19.258 721.035 23.164 727.526 17.101 734.015 17.727 740.506 12.024 746.996 13.261 753.486 8.845 759.977 9.559 766.467 6.535 772.957 7.671 780 10.125"/>
+        <polygon fill="#21B1CA" fill-opacity=".2" points="0 21.972 7.315 20.425 13.801 21.546 20.287 17.229 26.774 25.106 33.26 30.745 39.746 36.746 46.232 39.871 52.718 42.833 59.205 39.355 65.691 38.421 72.177 32.555 78.663 27.407 85.15 32.014 91.635 24.492 98.122 20.497 104.608 23.59 111.094 29.115 117.58 28.164 124.067 26.238 130.552 20.979 137.039 21.25 143.525 16.144 150.011 18.969 156.497 18.813 162.984 12.156 169.469 13.557 175.956 19.339 182.442 17.69 188.928 22.964 195.414 24.195 201.901 20.586 208.387 24.639 214.873 17.251 221.359 20.04 227.845 18.841 234.332 19.001 240.818 21.616 247.304 21.737 253.79 17.503 260.277 16.555 266.762 13.121 273.249 14.235 279.735 16.432 286.221 14.353 292.707 11.062 299.194 12.881 305.679 10.901 312.166 14.988 318.652 16.342 325.138 17.372 331.624 16.084 338.111 22.405 344.596 19.965 351.083 22.16 357.569 22.38 364.055 22.746 370.541 20.887 377.028 26.09 383.514 28.047 390 30.257 396.486 26.49 402.972 26.664 409.459 26.439 415.945 28.409 422.431 31.039 428.917 29.606 435.404 33.472 441.889 34.3 448.376 33.902 454.862 32.615 461.348 32.746 467.834 26.994 474.321 28.087 480.806 29.883 487.293 33.105 493.779 34.827 500.265 35.006 506.751 29.482 513.238 21.53 519.723 26.154 526.21 22.311 532.696 17.289 539.182 20.763 545.668 15.42 552.155 17.91 558.641 15.01 565.127 17.918 571.613 12.805 578.099 13.166 584.586 15.653 591.072 12.324 597.558 9.511 604.044 8.265 610.531 9.001 617.016 11.227 623.503 10.993 629.989 8.803 636.475 14.261 642.961 15.845 649.448 19.135 655.933 17.203 662.42 18.507 668.906 14.569 675.392 18.042 681.878 16.343 688.365 12.037 694.85 11.03 701.337 13.341 707.823 15.656 714.309 19.161 720.795 23.288 727.282 16.882 733.768 17.543 740.254 11.517 746.74 12.824 753.226 8.159 759.713 8.913 766.199 5.718 772.685 6.918 780 9.511 780 44.113 0 44.113"/>
+        <rect width="779" height="44" x=".5" y=".5" stroke="#ABB3B9"/>
+        <rect width="229" height="45" x="551" y=".106" fill="#30BED1" fill-opacity=".2"/>
+        <g transform="translate(548 1.035)">
+          <circle cx="2.958" cy="22" r="2.958" fill="#FFF"/>
+          <line x1="2.958" x2="2.958" y2="43" stroke="#FFF" stroke-linecap="square" stroke-width="1.5"/>
+        </g>
+        <g transform="translate(777.128 1.035)">
+          <circle cx="2.958" cy="22" r="2.958" fill="#FFF"/>
+          <line x1="2.958" x2="2.958" y2="43" stroke="#FFF" stroke-linecap="square" stroke-width="1.5"/>
+        </g>
+      </g>
+      <g fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400" transform="translate(803 71)">
+        <text>
+          <tspan x="0" y="10">250.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="50">245.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="90">240.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="130">235.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="170">230.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="210">225.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="250">220.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="290">215.00</tspan>
+        </text>
+      </g>
+      <g stroke="#55555B" stroke-linecap="square" transform="translate(56 77)">
+        <line x2="744" y1=".5" y2=".5" stroke-width=".5"/>
+        <line x2="744" y1="40.5" y2="40.5" stroke-width=".5"/>
+        <line x2="744" y1="80.5" y2="80.5" stroke-width=".5"/>
+        <line x2="744" y1="120.5" y2="120.5" stroke-width=".5"/>
+        <line x2="744" y1="160.5" y2="160.5" stroke-width=".5"/>
+        <line x2="744" y1="200.5" y2="200.5" stroke-width=".5"/>
+        <line x2="744" y1="240.5" y2="240.5" stroke-width=".5"/>
+      </g>
+      <g stroke="#55555B" stroke-linecap="square" transform="translate(103 36)">
+        <line x1="622.91" x2="622.91" y2="328" stroke-width=".5"/>
+        <line x1="553.808" x2="553.808" y2="328" stroke-width=".5"/>
+        <line x1="484.705" x2="484.705" y2="328" stroke-width=".5"/>
+        <line x1="415.603" x2="415.603" y2="328" stroke-width=".5"/>
+        <line x1="346.5" x2="346.5" y2="328" stroke-width=".5"/>
+        <line x1="277.397" x2="277.397" y2="328" stroke-width=".5"/>
+        <line x1="208.295" x2="208.295" y2="328" stroke-width=".5"/>
+        <line x1="139.192" x2="139.192" y2="328" stroke-width=".5"/>
+        <line x1="70.09" x2="70.09" y2="328" stroke-width=".5"/>
+        <line x1=".987" x2=".987" y2="328" stroke-width=".5"/>
+      </g>
+      <g stroke="#FFF" stroke-linecap="square" transform="translate(56 36)">
+        <line x1=".499" x2="744.501" y1="321.5" y2="321.5" stroke-width=".5"/>
+        <line x1="739.013" x2="739.013" y1=".5" y2="328.5" stroke-width=".5"/>
+      </g>
+      <g fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400" transform="translate(83 368)">
+        <text>
+          <tspan x="702.995" y="10">Oct</tspan>
+        </text>
+        <text>
+          <tspan x="631.304" y="10">Sept</tspan>
+        </text>
+        <text>
+          <tspan x="563.695" y="10">Aug</tspan>
+        </text>
+        <text>
+          <tspan x="496.986" y="10">Jul</tspan>
+        </text>
+        <text>
+          <tspan x="426.332" y="10">Jun</tspan>
+        </text>
+        <text>
+          <tspan x="356.072" y="10">May</tspan>
+        </text>
+        <text>
+          <tspan x="287.938" y="10">Apr</tspan>
+        </text>
+        <text>
+          <tspan x="217.776" y="10">Mar</tspan>
+        </text>
+        <text>
+          <tspan x="149.487" y="10">Feb</tspan>
+        </text>
+        <text>
+          <tspan x="72.791" y="10">Jan 19</tspan>
+        </text>
+        <text>
+          <tspan x="11.076" y="10">Dec</tspan>
+        </text>
+      </g>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="743.136" y="470">Jul</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="807.295" y="470">Oct</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="676.938" y="470">Apr</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="611.262" y="470">Jan</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="546.695" y="470">Oct</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="482.536" y="470">Jul</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="416.338" y="470">Apr</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="350.662" y="470">Jan </tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="9" font-weight="400">
+        <tspan x="349.52" y="402.5">2018 </tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="9" font-weight="400">
+        <tspan x="88.92" y="402.5">2017</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="9" font-weight="400">
+        <tspan x="610.12" y="402.5">2019 </tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="286.095" y="470">Oct</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="221.936" y="470">Jul</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="155.738" y="470">Apr</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="90.062" y="470">Jan</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="25.495" y="470">Oct</tspan>
+      </text>
+      <g stroke="#CFD8E3" stroke-dasharray="2" stroke-linecap="square" stroke-width=".75" transform="translate(56 32.5)">
+        <line x1="411" x2="411" y1="324.5" y2=".5"/>
+        <line x1=".5" x2="738.5" y1="190" y2="190"/>
+      </g>
+      <g transform="translate(62 245)">
+        <line x1="738.559" x2=".559" y1="7.5" y2="7.5" stroke="#21B1CA" stroke-dasharray="1" stroke-linecap="square" stroke-width=".5"/>
+        <rect width="41" height="14" x="738" fill="#21B1CA"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+          <tspan x="741" y="11">227.88</tspan>
+        </text>
+      </g>
+      <rect width="99" height="325" y="31" fill="url(#chart_v2_specs-c)"/>
+      <g transform="translate(13 57)">
+        <g font-size="12" transform="translate(1 153)">
+          <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-weight="bold">
+            <tspan x="0" y="11">O</tspan>
+          </text>
+          <text fill="#43C578" font-family="Roboto-Regular, Roboto">
+            <tspan x="13" y="11">000000.00</tspan>
+          </text>
+        </g>
+        <g font-size="12" transform="translate(1 183)">
+          <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-weight="bold">
+            <tspan x="0" y="11">H</tspan>
+          </text>
+          <text fill="#43C578" font-family="Roboto-Regular, Roboto">
+            <tspan x="13" y="11">000000.00</tspan>
+          </text>
+        </g>
+        <g font-size="12" transform="translate(1 213)">
+          <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-weight="bold">
+            <tspan x="0" y="11">L</tspan>
+          </text>
+          <text fill="#43C578" font-family="Roboto-Regular, Roboto">
+            <tspan x="13" y="11">000000.00</tspan>
+          </text>
+        </g>
+        <g font-size="12" transform="translate(1 243)">
+          <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-weight="bold">
+            <tspan x="0" y="11">C</tspan>
+          </text>
+          <text fill="#43C578" font-family="Roboto-Regular, Roboto">
+            <tspan x="13" y="11">000000.00</tspan>
+          </text>
+        </g>
+        <g font-size="12" transform="translate(1 273)">
+          <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-weight="bold">
+            <tspan x="0" y="11">V</tspan>
+          </text>
+          <text fill="#43C578" font-family="Roboto-Regular, Roboto">
+            <tspan x="13" y="11">000000 M</tspan>
+          </text>
+        </g>
+        <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+          <tspan x="1" y="36">Company name</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="18">
+          <tspan x="0" y="81">000000.00</tspan>
+        </text>
+        <text fill="#43C578" font-family="Roboto-Regular, Roboto" font-size="12">
+          <tspan x="2" y="105">+0.00</tspan>
+        </text>
+        <text fill="#43C578" font-family="Roboto-Regular, Roboto" font-size="12">
+          <tspan x="1" y="124">(+0.00%)</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-size="16" font-weight="bold">
+          <tspan x="1" y="15">STOCK</tspan>
+        </text>
+      </g>
+      <rect width="850" height="22" y="31" fill="url(#chart_v2_specs-d)"/>
+      <g transform="translate(749 484)">
+        <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+          <tspan x="0" y="10">Powered by</tspan>
+        </text>
+        <path fill="#8A96A6" d="M25.969479 9.15275995C24.3109569 9.15275995 22.9676911 7.58793325 22.9676911 5.80166881 22.9676911 4.01540436 24.3246637 2.53915276 25.9968926 2.53915276L27.0797293 2.53915276 27.0660225 1.22528883 27.0660225 0 22.0082156 0 20.4593479 0 18.6226375 0C16.9641154 0 15.6071429 1.46148909 15.6071429 3.24775353L15.6071429 3.36585366 15.6071429 11.5 17.8824706 11.5 17.8824706 6.42169448C18.1154861 6.48074454 18.3759152 6.52503209 18.6226375 6.52503209L19.8288353 6.52503209 19.8288353 4.4139923 18.9104802 4.4139923C18.4170356 4.4139923 18.0058318 3.97111682 18.0058318 3.43966624 18.0058318 2.90821566 18.4170356 2.46534018 18.9104802 2.46534018L20.4593479 2.46534018 21.7203729 2.46534018C21.5558914 2.46534018 21.2406351 3.51347882 21.1858079 3.6758665 21.04874 4.11874198 20.9939128 4.56161746 20.9664992 5.03401797 20.8568449 6.436457 21.0076196 7.92747112 21.7340797 9.12323492 22.3234718 10.097561 23.2281202 10.8356868 24.2561297 11.2047497 24.7358675 11.3818999 25.2430189 11.4557125 25.7501703 11.4557125L27.1071429 11.4557125 27.1071429 9.06418485 25.969479 9.15275995zM6.15417511 5.75C6.15417511 7.52941176 4.78811382 9 3.10468475 9L2.29056742 9 2.29056742 2.5 3.10468475 2.5C4.78811382 2.5 6.15417511 3.95588235 6.15417511 5.75L6.15417511 5.75zM10.9422889 0L9.97638701 0 7.534035 0 0 0 0 .102941176 0 2.44117647 0 11.4558824 2.05599124 11.4558824 2.29056742 11.4558824 3.35305953 11.4558824C6.00239052 11.4558824 8.16877055 9.14705882 8.16877055 6.32352941L8.16877055 5.25C8.16877055 4.22058824 7.87899997 3.25 7.38225041 2.44117647L9.96258841 2.44117647 10.6387198 2.44117647C11.1354693 2.44117647 11.5494273 2.88235294 11.5494273 3.41176471 11.5494273 3.94117647 11.1354693 4.38235294 10.6387198 4.38235294L9.71421363 4.38235294 9.71421363 7.02941176 10.6387198 7.02941176C11.1354693 7.02941176 11.5494273 7.47058824 11.5494273 8 11.5494273 8.52941176 11.1354693 8.97058824 10.6387198 8.97058824L8.7483117 8.97058824 8.7483117 11.4264706C8.92769349 11.4705882 9.10707528 11.5 9.30025566 11.5L10.9284903 11.4558824C12.5981208 11.4558824 13.9641821 10 13.9641821 8.22058824 13.9641821 7.23529412 13.5364255 6.33823529 12.8740928 5.75 13.5364255 5.14705882 13.9641821 4.26470588 13.9641821 3.27941176 13.9779807 1.45588235 12.6119194 0 10.9422889 0L10.9422889 0z" transform="translate(62 .5)"/>
+      </g>
+      <g transform="translate(0 1)">
+        <rect width="850" height="30" fill="#071521"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="13" y="22">Chart</tspan>
+        </text>
+        <g transform="translate(821.5)">
+          <rect width="24" height="28" fill="#1B3B56" opacity="0"/>
+          <polygon fill="#FFF" points="17.619 8 18.91 9.291 13.745 14.454 18.91 19.619 17.619 20.91 12.454 15.745 7.291 20.91 6 19.619 11.164 14.454 6 9.291 7.291 8 12.454 13.164"/>
+        </g>
+        <g transform="translate(794.5)">
+          <rect width="24" height="28" fill="#D8D8D8" opacity="0"/>
+          <rect width="12" height="2" x="6" y="19" fill="#FFF"/>
+        </g>
+      </g>
+      <line x1="98.997" x2="98.997" y1="405.023" y2="408.023" stroke="#979797" stroke-linecap="square"/>
+      <line x1="360" x2="360" y1="405.023" y2="408.023" stroke="#979797" stroke-linecap="square"/>
+      <line x1="620.5" x2="620.5" y1="405.023" y2="408.023" stroke="#979797" stroke-linecap="square"/>
+    </g>
+    <g transform="translate(2211 208)">
+      <rect width="850" height="474" y="28" fill="#0D2437"/>
+      <rect width="850" height="94" y="387" fill="#071521"/>
+      <g transform="translate(35 408.5)">
+        <polyline stroke="#21B1CA" points=".003 21.895 7.108 20.455 13.597 21.515 20.088 17.43 26.578 24.884 33.068 30.222 39.559 35.901 46.049 38.859 52.539 41.662 59.029 38.371 65.52 37.486 72.01 31.935 78.5 27.063 84.991 31.423 91.48 24.304 97.971 20.523 104.461 23.449 110.951 28.679 117.442 27.779 123.932 25.956 130.422 20.979 136.912 21.235 143.403 16.402 149.893 19.076 156.383 18.929 162.874 12.628 169.363 13.954 175.854 19.427 182.344 17.866 188.834 22.857 195.325 24.023 201.815 20.607 208.305 24.443 214.795 17.451 221.286 20.09 227.776 18.955 234.266 19.107 240.757 21.582 247.246 21.696 253.737 17.689 260.228 16.791 266.717 13.541 273.208 14.596 279.698 16.675 286.188 14.707 292.678 11.592 299.169 13.314 305.659 11.44 312.149 15.309 318.64 16.59 325.129 17.565 331.62 16.346 338.111 22.328 344.6 20.019 351.091 22.096 357.581 22.304 364.071 22.651 370.562 20.892 377.052 25.816 383.542 27.668 390.032 29.76 396.523 26.194 403.013 26.359 409.503 26.146 415.994 28.011 422.483 30.5 428.974 29.143 435.464 32.802 441.954 33.586 448.445 33.21 454.935 31.992 461.425 32.115 467.915 26.671 474.406 27.706 480.896 29.406 487.386 32.455 493.877 34.085 500.366 34.255 506.857 29.026 513.347 21.5 519.837 25.876 526.328 22.239 532.818 17.486 539.308 20.774 545.798 15.718 552.289 18.074 558.779 15.329 565.269 18.081 571.76 13.242 578.249 13.584 584.74 15.938 591.23 12.787 597.72 10.125 604.211 8.946 610.701 9.642 617.191 11.749 623.681 11.528 630.172 9.455 636.662 14.62 643.152 16.119 649.643 19.233 656.132 17.404 662.623 18.639 669.113 14.912 675.603 18.199 682.094 16.591 688.584 12.515 695.074 11.563 701.564 13.75 708.055 15.941 714.545 19.258 721.035 23.164 727.526 17.101 734.015 17.727 740.506 12.024 746.996 13.261 753.486 8.845 759.977 9.559 766.467 6.535 772.957 7.671 780 10.125"/>
+        <polygon fill="#21B1CA" fill-opacity=".2" points="0 21.972 7.315 20.425 13.801 21.546 20.287 17.229 26.774 25.106 33.26 30.745 39.746 36.746 46.232 39.871 52.718 42.833 59.205 39.355 65.691 38.421 72.177 32.555 78.663 27.407 85.15 32.014 91.635 24.492 98.122 20.497 104.608 23.59 111.094 29.115 117.58 28.164 124.067 26.238 130.552 20.979 137.039 21.25 143.525 16.144 150.011 18.969 156.497 18.813 162.984 12.156 169.469 13.557 175.956 19.339 182.442 17.69 188.928 22.964 195.414 24.195 201.901 20.586 208.387 24.639 214.873 17.251 221.359 20.04 227.845 18.841 234.332 19.001 240.818 21.616 247.304 21.737 253.79 17.503 260.277 16.555 266.762 13.121 273.249 14.235 279.735 16.432 286.221 14.353 292.707 11.062 299.194 12.881 305.679 10.901 312.166 14.988 318.652 16.342 325.138 17.372 331.624 16.084 338.111 22.405 344.596 19.965 351.083 22.16 357.569 22.38 364.055 22.746 370.541 20.887 377.028 26.09 383.514 28.047 390 30.257 396.486 26.49 402.972 26.664 409.459 26.439 415.945 28.409 422.431 31.039 428.917 29.606 435.404 33.472 441.889 34.3 448.376 33.902 454.862 32.615 461.348 32.746 467.834 26.994 474.321 28.087 480.806 29.883 487.293 33.105 493.779 34.827 500.265 35.006 506.751 29.482 513.238 21.53 519.723 26.154 526.21 22.311 532.696 17.289 539.182 20.763 545.668 15.42 552.155 17.91 558.641 15.01 565.127 17.918 571.613 12.805 578.099 13.166 584.586 15.653 591.072 12.324 597.558 9.511 604.044 8.265 610.531 9.001 617.016 11.227 623.503 10.993 629.989 8.803 636.475 14.261 642.961 15.845 649.448 19.135 655.933 17.203 662.42 18.507 668.906 14.569 675.392 18.042 681.878 16.343 688.365 12.037 694.85 11.03 701.337 13.341 707.823 15.656 714.309 19.161 720.795 23.288 727.282 16.882 733.768 17.543 740.254 11.517 746.74 12.824 753.226 8.159 759.713 8.913 766.199 5.718 772.685 6.918 780 9.511 780 44.113 0 44.113"/>
+        <rect width="779" height="44" x=".5" y=".5" stroke="#ABB3B9"/>
+        <rect width="229" height="45" x="551" y=".106" fill="#30BED1" fill-opacity=".2"/>
+        <g transform="translate(548 1.035)">
+          <circle cx="2.958" cy="22" r="2.958" fill="#FFF"/>
+          <line x1="2.958" x2="2.958" y2="43" stroke="#FFF" stroke-linecap="square" stroke-width="1.5"/>
+        </g>
+        <g transform="translate(777.128 1.035)">
+          <circle cx="2.958" cy="22" r="2.958" fill="#FFF"/>
+          <line x1="2.958" x2="2.958" y2="43" stroke="#FFF" stroke-linecap="square" stroke-width="1.5"/>
+        </g>
+      </g>
+      <g fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400" transform="translate(803 71)">
+        <text>
+          <tspan x="0" y="10">250.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="50">245.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="90">240.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="130">235.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="170">230.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="210">225.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="250">220.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="290">215.00</tspan>
+        </text>
+      </g>
+      <g stroke="#55555B" stroke-linecap="square" transform="translate(56 77)">
+        <line x2="744" y1=".5" y2=".5" stroke-width=".5"/>
+        <line x2="744" y1="40.5" y2="40.5" stroke-width=".5"/>
+        <line x2="744" y1="80.5" y2="80.5" stroke-width=".5"/>
+        <line x2="744" y1="120.5" y2="120.5" stroke-width=".5"/>
+        <line x2="744" y1="160.5" y2="160.5" stroke-width=".5"/>
+        <line x2="744" y1="200.5" y2="200.5" stroke-width=".5"/>
+        <line x2="744" y1="240.5" y2="240.5" stroke-width=".5"/>
+      </g>
+      <g stroke="#55555B" stroke-linecap="square" transform="translate(103 36)">
+        <line x1="622.91" x2="622.91" y2="328" stroke-width=".5"/>
+        <line x1="553.808" x2="553.808" y2="328" stroke-width=".5"/>
+        <line x1="484.705" x2="484.705" y2="328" stroke-width=".5"/>
+        <line x1="415.603" x2="415.603" y2="328" stroke-width=".5"/>
+        <line x1="346.5" x2="346.5" y2="328" stroke-width=".5"/>
+        <line x1="277.397" x2="277.397" y2="328" stroke-width=".5"/>
+        <line x1="208.295" x2="208.295" y2="328" stroke-width=".5"/>
+        <line x1="139.192" x2="139.192" y2="328" stroke-width=".5"/>
+        <line x1="70.09" x2="70.09" y2="328" stroke-width=".5"/>
+        <line x1=".987" x2=".987" y2="328" stroke-width=".5"/>
+      </g>
+      <g stroke="#FFF" stroke-linecap="square" transform="translate(56 36)">
+        <line x1=".499" x2="744.501" y1="321.5" y2="321.5" stroke-width=".5"/>
+        <line x1="739.013" x2="739.013" y1=".5" y2="328.5" stroke-width=".5"/>
+      </g>
+      <g fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400" transform="translate(83 368)">
+        <text>
+          <tspan x="702.995" y="10">Oct</tspan>
+        </text>
+        <text>
+          <tspan x="631.304" y="10">Sept</tspan>
+        </text>
+        <text>
+          <tspan x="563.695" y="10">Aug</tspan>
+        </text>
+        <text>
+          <tspan x="496.986" y="10">Jul</tspan>
+        </text>
+        <text>
+          <tspan x="426.332" y="10">Jun</tspan>
+        </text>
+        <text>
+          <tspan x="356.072" y="10">May</tspan>
+        </text>
+        <text>
+          <tspan x="287.938" y="10">Apr</tspan>
+        </text>
+        <text>
+          <tspan x="217.776" y="10">Mar</tspan>
+        </text>
+        <text>
+          <tspan x="149.487" y="10">Feb</tspan>
+        </text>
+        <text>
+          <tspan x="72.791" y="10">Jan 19</tspan>
+        </text>
+        <text>
+          <tspan x="11.076" y="10">Dec</tspan>
+        </text>
+      </g>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="743.136" y="470">Jul</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="807.295" y="470">Oct</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="676.938" y="470">Apr</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="611.262" y="470">Jan</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="546.695" y="470">Oct</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="482.536" y="470">Jul</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="416.338" y="470">Apr</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="350.662" y="470">Jan </tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="9" font-weight="400">
+        <tspan x="349.52" y="402.5">2018 </tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="9" font-weight="400">
+        <tspan x="88.92" y="402.5">2017</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="9" font-weight="400">
+        <tspan x="610.12" y="402.5">2019 </tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="286.095" y="470">Oct</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="221.936" y="470">Jul</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="155.738" y="470">Apr</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="90.062" y="470">Jan</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="25.495" y="470">Oct</tspan>
+      </text>
+      <g stroke="#CFD8E3" stroke-dasharray="2" stroke-linecap="square" stroke-width=".75" transform="translate(56 32.5)">
+        <line x1="411" x2="411" y1="324.5" y2=".5"/>
+        <line x1=".5" x2="738.5" y1="190" y2="190"/>
+      </g>
+      <g transform="translate(62 245)">
+        <line x1="738.559" x2=".559" y1="7.5" y2="7.5" stroke="#21B1CA" stroke-dasharray="1" stroke-linecap="square" stroke-width=".5"/>
+        <rect width="41" height="14" x="738" fill="#21B1CA"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+          <tspan x="741" y="11">227.88</tspan>
+        </text>
+      </g>
+      <rect width="99" height="325" y="31" fill="url(#chart_v2_specs-c)"/>
+      <g transform="translate(13 57)">
+        <g font-size="12" transform="translate(1 153)">
+          <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-weight="bold">
+            <tspan x="0" y="11">O</tspan>
+          </text>
+          <text fill="#43C578" font-family="Roboto-Regular, Roboto">
+            <tspan x="13" y="11">000000.00</tspan>
+          </text>
+        </g>
+        <g font-size="12" transform="translate(1 183)">
+          <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-weight="bold">
+            <tspan x="0" y="11">H</tspan>
+          </text>
+          <text fill="#43C578" font-family="Roboto-Regular, Roboto">
+            <tspan x="13" y="11">000000.00</tspan>
+          </text>
+        </g>
+        <g font-size="12" transform="translate(1 213)">
+          <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-weight="bold">
+            <tspan x="0" y="11">L</tspan>
+          </text>
+          <text fill="#43C578" font-family="Roboto-Regular, Roboto">
+            <tspan x="13" y="11">000000.00</tspan>
+          </text>
+        </g>
+        <g font-size="12" transform="translate(1 243)">
+          <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-weight="bold">
+            <tspan x="0" y="11">C</tspan>
+          </text>
+          <text fill="#43C578" font-family="Roboto-Regular, Roboto">
+            <tspan x="13" y="11">000000.00</tspan>
+          </text>
+        </g>
+        <g font-size="12" transform="translate(1 273)">
+          <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-weight="bold">
+            <tspan x="0" y="11">V</tspan>
+          </text>
+          <text fill="#43C578" font-family="Roboto-Regular, Roboto">
+            <tspan x="13" y="11">000000 M</tspan>
+          </text>
+        </g>
+        <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+          <tspan x="1" y="36">Company name</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="18">
+          <tspan x="0" y="81">000000.00</tspan>
+        </text>
+        <text fill="#43C578" font-family="Roboto-Regular, Roboto" font-size="12">
+          <tspan x="2" y="105">+0.00</tspan>
+        </text>
+        <text fill="#43C578" font-family="Roboto-Regular, Roboto" font-size="12">
+          <tspan x="1" y="124">(+0.00%)</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-size="16" font-weight="bold">
+          <tspan x="1" y="15">STOCK</tspan>
+        </text>
+      </g>
+      <rect width="850" height="22" y="31" fill="url(#chart_v2_specs-d)"/>
+      <g transform="translate(749 484)">
+        <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+          <tspan x="0" y="10">Powered by</tspan>
+        </text>
+        <path fill="#8A96A6" d="M25.969479 9.15275995C24.3109569 9.15275995 22.9676911 7.58793325 22.9676911 5.80166881 22.9676911 4.01540436 24.3246637 2.53915276 25.9968926 2.53915276L27.0797293 2.53915276 27.0660225 1.22528883 27.0660225 0 22.0082156 0 20.4593479 0 18.6226375 0C16.9641154 0 15.6071429 1.46148909 15.6071429 3.24775353L15.6071429 3.36585366 15.6071429 11.5 17.8824706 11.5 17.8824706 6.42169448C18.1154861 6.48074454 18.3759152 6.52503209 18.6226375 6.52503209L19.8288353 6.52503209 19.8288353 4.4139923 18.9104802 4.4139923C18.4170356 4.4139923 18.0058318 3.97111682 18.0058318 3.43966624 18.0058318 2.90821566 18.4170356 2.46534018 18.9104802 2.46534018L20.4593479 2.46534018 21.7203729 2.46534018C21.5558914 2.46534018 21.2406351 3.51347882 21.1858079 3.6758665 21.04874 4.11874198 20.9939128 4.56161746 20.9664992 5.03401797 20.8568449 6.436457 21.0076196 7.92747112 21.7340797 9.12323492 22.3234718 10.097561 23.2281202 10.8356868 24.2561297 11.2047497 24.7358675 11.3818999 25.2430189 11.4557125 25.7501703 11.4557125L27.1071429 11.4557125 27.1071429 9.06418485 25.969479 9.15275995zM6.15417511 5.75C6.15417511 7.52941176 4.78811382 9 3.10468475 9L2.29056742 9 2.29056742 2.5 3.10468475 2.5C4.78811382 2.5 6.15417511 3.95588235 6.15417511 5.75L6.15417511 5.75zM10.9422889 0L9.97638701 0 7.534035 0 0 0 0 .102941176 0 2.44117647 0 11.4558824 2.05599124 11.4558824 2.29056742 11.4558824 3.35305953 11.4558824C6.00239052 11.4558824 8.16877055 9.14705882 8.16877055 6.32352941L8.16877055 5.25C8.16877055 4.22058824 7.87899997 3.25 7.38225041 2.44117647L9.96258841 2.44117647 10.6387198 2.44117647C11.1354693 2.44117647 11.5494273 2.88235294 11.5494273 3.41176471 11.5494273 3.94117647 11.1354693 4.38235294 10.6387198 4.38235294L9.71421363 4.38235294 9.71421363 7.02941176 10.6387198 7.02941176C11.1354693 7.02941176 11.5494273 7.47058824 11.5494273 8 11.5494273 8.52941176 11.1354693 8.97058824 10.6387198 8.97058824L8.7483117 8.97058824 8.7483117 11.4264706C8.92769349 11.4705882 9.10707528 11.5 9.30025566 11.5L10.9284903 11.4558824C12.5981208 11.4558824 13.9641821 10 13.9641821 8.22058824 13.9641821 7.23529412 13.5364255 6.33823529 12.8740928 5.75 13.5364255 5.14705882 13.9641821 4.26470588 13.9641821 3.27941176 13.9779807 1.45588235 12.6119194 0 10.9422889 0L10.9422889 0z" transform="translate(62 .5)"/>
+      </g>
+      <g transform="translate(0 1)">
+        <rect width="850" height="30" fill="#071521"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="13" y="22">Chart</tspan>
+        </text>
+        <g transform="translate(821.5)">
+          <rect width="24" height="28" fill="#1B3B56" opacity="0"/>
+          <polygon fill="#FFF" points="17.619 8 18.91 9.291 13.745 14.454 18.91 19.619 17.619 20.91 12.454 15.745 7.291 20.91 6 19.619 11.164 14.454 6 9.291 7.291 8 12.454 13.164"/>
+        </g>
+        <g transform="translate(794.5)">
+          <rect width="24" height="28" fill="#D8D8D8" opacity="0"/>
+          <rect width="12" height="2" x="6" y="19" fill="#FFF"/>
+        </g>
+      </g>
+      <line x1="98.997" x2="98.997" y1="405.023" y2="408.023" stroke="#979797" stroke-linecap="square"/>
+      <line x1="360" x2="360" y1="405.023" y2="408.023" stroke="#979797" stroke-linecap="square"/>
+      <line x1="620.5" x2="620.5" y1="405.023" y2="408.023" stroke="#979797" stroke-linecap="square"/>
+    </g>
+    <g transform="translate(794.384 923)">
+      <rect width="850" height="474" y="28" fill="#0D2437"/>
+      <rect width="850" height="94" y="387" fill="#071521"/>
+      <g transform="translate(35 408.5)">
+        <polyline stroke="#21B1CA" points=".003 21.895 7.108 20.455 13.597 21.515 20.088 17.43 26.578 24.884 33.068 30.222 39.559 35.901 46.049 38.859 52.539 41.662 59.029 38.371 65.52 37.486 72.01 31.935 78.5 27.063 84.991 31.423 91.48 24.304 97.971 20.523 104.461 23.449 110.951 28.679 117.442 27.779 123.932 25.956 130.422 20.979 136.912 21.235 143.403 16.402 149.893 19.076 156.383 18.929 162.874 12.628 169.363 13.954 175.854 19.427 182.344 17.866 188.834 22.857 195.325 24.023 201.815 20.607 208.305 24.443 214.795 17.451 221.286 20.09 227.776 18.955 234.266 19.107 240.757 21.582 247.246 21.696 253.737 17.689 260.228 16.791 266.717 13.541 273.208 14.596 279.698 16.675 286.188 14.707 292.678 11.592 299.169 13.314 305.659 11.44 312.149 15.309 318.64 16.59 325.129 17.565 331.62 16.346 338.111 22.328 344.6 20.019 351.091 22.096 357.581 22.304 364.071 22.651 370.562 20.892 377.052 25.816 383.542 27.668 390.032 29.76 396.523 26.194 403.013 26.359 409.503 26.146 415.994 28.011 422.483 30.5 428.974 29.143 435.464 32.802 441.954 33.586 448.445 33.21 454.935 31.992 461.425 32.115 467.915 26.671 474.406 27.706 480.896 29.406 487.386 32.455 493.877 34.085 500.366 34.255 506.857 29.026 513.347 21.5 519.837 25.876 526.328 22.239 532.818 17.486 539.308 20.774 545.798 15.718 552.289 18.074 558.779 15.329 565.269 18.081 571.76 13.242 578.249 13.584 584.74 15.938 591.23 12.787 597.72 10.125 604.211 8.946 610.701 9.642 617.191 11.749 623.681 11.528 630.172 9.455 636.662 14.62 643.152 16.119 649.643 19.233 656.132 17.404 662.623 18.639 669.113 14.912 675.603 18.199 682.094 16.591 688.584 12.515 695.074 11.563 701.564 13.75 708.055 15.941 714.545 19.258 721.035 23.164 727.526 17.101 734.015 17.727 740.506 12.024 746.996 13.261 753.486 8.845 759.977 9.559 766.467 6.535 772.957 7.671 780 10.125"/>
+        <polygon fill="#21B1CA" fill-opacity=".2" points="0 21.972 7.315 20.425 13.801 21.546 20.287 17.229 26.774 25.106 33.26 30.745 39.746 36.746 46.232 39.871 52.718 42.833 59.205 39.355 65.691 38.421 72.177 32.555 78.663 27.407 85.15 32.014 91.635 24.492 98.122 20.497 104.608 23.59 111.094 29.115 117.58 28.164 124.067 26.238 130.552 20.979 137.039 21.25 143.525 16.144 150.011 18.969 156.497 18.813 162.984 12.156 169.469 13.557 175.956 19.339 182.442 17.69 188.928 22.964 195.414 24.195 201.901 20.586 208.387 24.639 214.873 17.251 221.359 20.04 227.845 18.841 234.332 19.001 240.818 21.616 247.304 21.737 253.79 17.503 260.277 16.555 266.762 13.121 273.249 14.235 279.735 16.432 286.221 14.353 292.707 11.062 299.194 12.881 305.679 10.901 312.166 14.988 318.652 16.342 325.138 17.372 331.624 16.084 338.111 22.405 344.596 19.965 351.083 22.16 357.569 22.38 364.055 22.746 370.541 20.887 377.028 26.09 383.514 28.047 390 30.257 396.486 26.49 402.972 26.664 409.459 26.439 415.945 28.409 422.431 31.039 428.917 29.606 435.404 33.472 441.889 34.3 448.376 33.902 454.862 32.615 461.348 32.746 467.834 26.994 474.321 28.087 480.806 29.883 487.293 33.105 493.779 34.827 500.265 35.006 506.751 29.482 513.238 21.53 519.723 26.154 526.21 22.311 532.696 17.289 539.182 20.763 545.668 15.42 552.155 17.91 558.641 15.01 565.127 17.918 571.613 12.805 578.099 13.166 584.586 15.653 591.072 12.324 597.558 9.511 604.044 8.265 610.531 9.001 617.016 11.227 623.503 10.993 629.989 8.803 636.475 14.261 642.961 15.845 649.448 19.135 655.933 17.203 662.42 18.507 668.906 14.569 675.392 18.042 681.878 16.343 688.365 12.037 694.85 11.03 701.337 13.341 707.823 15.656 714.309 19.161 720.795 23.288 727.282 16.882 733.768 17.543 740.254 11.517 746.74 12.824 753.226 8.159 759.713 8.913 766.199 5.718 772.685 6.918 780 9.511 780 44.113 0 44.113"/>
+        <rect width="779" height="44" x=".5" y=".5" stroke="#ABB3B9"/>
+        <rect width="229" height="45" x="551" y=".106" fill="#30BED1" fill-opacity=".2"/>
+        <g transform="translate(548 1.035)">
+          <circle cx="2.958" cy="22" r="2.958" fill="#FFF"/>
+          <line x1="2.958" x2="2.958" y2="43" stroke="#FFF" stroke-linecap="square" stroke-width="1.5"/>
+        </g>
+        <g transform="translate(777.128 1.035)">
+          <circle cx="2.958" cy="22" r="2.958" fill="#FFF"/>
+          <line x1="2.958" x2="2.958" y2="43" stroke="#FFF" stroke-linecap="square" stroke-width="1.5"/>
+        </g>
+      </g>
+      <g fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400" transform="translate(803 71)">
+        <text>
+          <tspan x="0" y="10">250.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="50">245.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="90">240.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="130">235.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="170">230.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="210">225.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="250">220.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="290">215.00</tspan>
+        </text>
+      </g>
+      <g stroke="#55555B" stroke-linecap="square" transform="translate(56 77)">
+        <line x2="744" y1=".5" y2=".5" stroke-width=".5"/>
+        <line x2="744" y1="40.5" y2="40.5" stroke-width=".5"/>
+        <line x2="744" y1="80.5" y2="80.5" stroke-width=".5"/>
+        <line x2="744" y1="120.5" y2="120.5" stroke-width=".5"/>
+        <line x2="744" y1="160.5" y2="160.5" stroke-width=".5"/>
+        <line x2="744" y1="200.5" y2="200.5" stroke-width=".5"/>
+        <line x2="744" y1="240.5" y2="240.5" stroke-width=".5"/>
+      </g>
+      <g stroke="#55555B" stroke-linecap="square" transform="translate(103 36)">
+        <line x1="622.91" x2="622.91" y2="328" stroke-width=".5"/>
+        <line x1="553.808" x2="553.808" y2="328" stroke-width=".5"/>
+        <line x1="484.705" x2="484.705" y2="328" stroke-width=".5"/>
+        <line x1="415.603" x2="415.603" y2="328" stroke-width=".5"/>
+        <line x1="346.5" x2="346.5" y2="328" stroke-width=".5"/>
+        <line x1="277.397" x2="277.397" y2="328" stroke-width=".5"/>
+        <line x1="208.295" x2="208.295" y2="328" stroke-width=".5"/>
+        <line x1="139.192" x2="139.192" y2="328" stroke-width=".5"/>
+        <line x1="70.09" x2="70.09" y2="328" stroke-width=".5"/>
+        <line x1=".987" x2=".987" y2="328" stroke-width=".5"/>
+      </g>
+      <g stroke="#FFF" stroke-linecap="square" transform="translate(56 36)">
+        <line x1=".499" x2="744.501" y1="321.5" y2="321.5" stroke-width=".5"/>
+        <line x1="739.013" x2="739.013" y1=".5" y2="328.5" stroke-width=".5"/>
+      </g>
+      <g fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400" transform="translate(83 368)">
+        <text>
+          <tspan x="702.995" y="10">Oct</tspan>
+        </text>
+        <text>
+          <tspan x="631.304" y="10">Sept</tspan>
+        </text>
+        <text>
+          <tspan x="563.695" y="10">Aug</tspan>
+        </text>
+        <text>
+          <tspan x="496.986" y="10">Jul</tspan>
+        </text>
+        <text>
+          <tspan x="426.332" y="10">Jun</tspan>
+        </text>
+        <text>
+          <tspan x="356.072" y="10">May</tspan>
+        </text>
+        <text>
+          <tspan x="287.938" y="10">Apr</tspan>
+        </text>
+        <text>
+          <tspan x="217.776" y="10">Mar</tspan>
+        </text>
+        <text>
+          <tspan x="149.487" y="10">Feb</tspan>
+        </text>
+        <text>
+          <tspan x="72.791" y="10">Jan 19</tspan>
+        </text>
+        <text>
+          <tspan x="11.076" y="10">Dec</tspan>
+        </text>
+      </g>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="743.136" y="470">Jul</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="807.295" y="470">Oct</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="676.938" y="470">Apr</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="611.262" y="470">Jan</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="546.695" y="470">Oct</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="482.536" y="470">Jul</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="416.338" y="470">Apr</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="350.662" y="470">Jan </tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="9" font-weight="400">
+        <tspan x="349.52" y="402.5">2018 </tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="9" font-weight="400">
+        <tspan x="88.92" y="402.5">2017</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="9" font-weight="400">
+        <tspan x="610.12" y="402.5">2019 </tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="286.095" y="470">Oct</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="221.936" y="470">Jul</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="155.738" y="470">Apr</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="90.062" y="470">Jan</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="25.495" y="470">Oct</tspan>
+      </text>
+      <g stroke="#CFD8E3" stroke-dasharray="2" stroke-linecap="square" stroke-width=".75" transform="translate(56 32.5)">
+        <line x1="411" x2="411" y1="324.5" y2=".5"/>
+        <line x1=".5" x2="738.5" y1="190" y2="190"/>
+      </g>
+      <g transform="translate(62 245)">
+        <line x1="738.559" x2=".559" y1="7.5" y2="7.5" stroke="#21B1CA" stroke-dasharray="1" stroke-linecap="square" stroke-width=".5"/>
+        <rect width="41" height="14" x="738" fill="#21B1CA"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+          <tspan x="741" y="11">227.88</tspan>
+        </text>
+      </g>
+      <rect width="99" height="325" y="31" fill="url(#chart_v2_specs-c)"/>
+      <g transform="translate(13 57)">
+        <g font-size="12" transform="translate(1 153)">
+          <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-weight="bold">
+            <tspan x="0" y="11">O</tspan>
+          </text>
+          <text fill="#43C578" font-family="Roboto-Regular, Roboto">
+            <tspan x="13" y="11">000000.00</tspan>
+          </text>
+        </g>
+        <g font-size="12" transform="translate(1 183)">
+          <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-weight="bold">
+            <tspan x="0" y="11">H</tspan>
+          </text>
+          <text fill="#43C578" font-family="Roboto-Regular, Roboto">
+            <tspan x="13" y="11">000000.00</tspan>
+          </text>
+        </g>
+        <g font-size="12" transform="translate(1 213)">
+          <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-weight="bold">
+            <tspan x="0" y="11">L</tspan>
+          </text>
+          <text fill="#43C578" font-family="Roboto-Regular, Roboto">
+            <tspan x="13" y="11">000000.00</tspan>
+          </text>
+        </g>
+        <g font-size="12" transform="translate(1 243)">
+          <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-weight="bold">
+            <tspan x="0" y="11">C</tspan>
+          </text>
+          <text fill="#43C578" font-family="Roboto-Regular, Roboto">
+            <tspan x="13" y="11">000000.00</tspan>
+          </text>
+        </g>
+        <g font-size="12" transform="translate(1 273)">
+          <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-weight="bold">
+            <tspan x="0" y="11">V</tspan>
+          </text>
+          <text fill="#43C578" font-family="Roboto-Regular, Roboto">
+            <tspan x="13" y="11">000000 M</tspan>
+          </text>
+        </g>
+        <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+          <tspan x="1" y="36">Company name</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="18">
+          <tspan x="0" y="81">000000.00</tspan>
+        </text>
+        <text fill="#43C578" font-family="Roboto-Regular, Roboto" font-size="12">
+          <tspan x="2" y="105">+0.00</tspan>
+        </text>
+        <text fill="#43C578" font-family="Roboto-Regular, Roboto" font-size="12">
+          <tspan x="1" y="124">(+0.00%)</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-size="16" font-weight="bold">
+          <tspan x="1" y="15">STOCK</tspan>
+        </text>
+      </g>
+      <rect width="850" height="22" y="31" fill="url(#chart_v2_specs-d)"/>
+      <g transform="translate(749 484)">
+        <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+          <tspan x="0" y="10">Powered by</tspan>
+        </text>
+        <path fill="#8A96A6" d="M25.969479 9.15275995C24.3109569 9.15275995 22.9676911 7.58793325 22.9676911 5.80166881 22.9676911 4.01540436 24.3246637 2.53915276 25.9968926 2.53915276L27.0797293 2.53915276 27.0660225 1.22528883 27.0660225 0 22.0082156 0 20.4593479 0 18.6226375 0C16.9641154 0 15.6071429 1.46148909 15.6071429 3.24775353L15.6071429 3.36585366 15.6071429 11.5 17.8824706 11.5 17.8824706 6.42169448C18.1154861 6.48074454 18.3759152 6.52503209 18.6226375 6.52503209L19.8288353 6.52503209 19.8288353 4.4139923 18.9104802 4.4139923C18.4170356 4.4139923 18.0058318 3.97111682 18.0058318 3.43966624 18.0058318 2.90821566 18.4170356 2.46534018 18.9104802 2.46534018L20.4593479 2.46534018 21.7203729 2.46534018C21.5558914 2.46534018 21.2406351 3.51347882 21.1858079 3.6758665 21.04874 4.11874198 20.9939128 4.56161746 20.9664992 5.03401797 20.8568449 6.436457 21.0076196 7.92747112 21.7340797 9.12323492 22.3234718 10.097561 23.2281202 10.8356868 24.2561297 11.2047497 24.7358675 11.3818999 25.2430189 11.4557125 25.7501703 11.4557125L27.1071429 11.4557125 27.1071429 9.06418485 25.969479 9.15275995zM6.15417511 5.75C6.15417511 7.52941176 4.78811382 9 3.10468475 9L2.29056742 9 2.29056742 2.5 3.10468475 2.5C4.78811382 2.5 6.15417511 3.95588235 6.15417511 5.75L6.15417511 5.75zM10.9422889 0L9.97638701 0 7.534035 0 0 0 0 .102941176 0 2.44117647 0 11.4558824 2.05599124 11.4558824 2.29056742 11.4558824 3.35305953 11.4558824C6.00239052 11.4558824 8.16877055 9.14705882 8.16877055 6.32352941L8.16877055 5.25C8.16877055 4.22058824 7.87899997 3.25 7.38225041 2.44117647L9.96258841 2.44117647 10.6387198 2.44117647C11.1354693 2.44117647 11.5494273 2.88235294 11.5494273 3.41176471 11.5494273 3.94117647 11.1354693 4.38235294 10.6387198 4.38235294L9.71421363 4.38235294 9.71421363 7.02941176 10.6387198 7.02941176C11.1354693 7.02941176 11.5494273 7.47058824 11.5494273 8 11.5494273 8.52941176 11.1354693 8.97058824 10.6387198 8.97058824L8.7483117 8.97058824 8.7483117 11.4264706C8.92769349 11.4705882 9.10707528 11.5 9.30025566 11.5L10.9284903 11.4558824C12.5981208 11.4558824 13.9641821 10 13.9641821 8.22058824 13.9641821 7.23529412 13.5364255 6.33823529 12.8740928 5.75 13.5364255 5.14705882 13.9641821 4.26470588 13.9641821 3.27941176 13.9779807 1.45588235 12.6119194 0 10.9422889 0L10.9422889 0z" transform="translate(62 .5)"/>
+      </g>
+      <g transform="translate(0 1)">
+        <rect width="850" height="30" fill="#071521"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="13" y="22">Chart</tspan>
+        </text>
+        <g transform="translate(821.5)">
+          <rect width="24" height="28" fill="#1B3B56" opacity="0"/>
+          <polygon fill="#FFF" points="17.619 8 18.91 9.291 13.745 14.454 18.91 19.619 17.619 20.91 12.454 15.745 7.291 20.91 6 19.619 11.164 14.454 6 9.291 7.291 8 12.454 13.164"/>
+        </g>
+        <g transform="translate(794.5)">
+          <rect width="24" height="28" fill="#D8D8D8" opacity="0"/>
+          <rect width="12" height="2" x="6" y="19" fill="#FFF"/>
+        </g>
+      </g>
+      <line x1="98.997" x2="98.997" y1="405.023" y2="408.023" stroke="#979797" stroke-linecap="square"/>
+      <line x1="360" x2="360" y1="405.023" y2="408.023" stroke="#979797" stroke-linecap="square"/>
+      <line x1="620.5" x2="620.5" y1="405.023" y2="408.023" stroke="#979797" stroke-linecap="square"/>
+    </g>
+    <path stroke="#FF9191" stroke-dasharray="3" stroke-linecap="square" d="M900,266 L1590,266 L1590,566 L900,566 L900,266 Z"/>
+    <line x1="1590" x2="1739.5" y1="269" y2="240.5" stroke="#FF9191" stroke-dasharray="3" stroke-linecap="square"/>
+    <line x1="1522.5" x2="1739.5" y1="298" y2="297" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="1590" x2="1739.5" y1="508.5" y2="402" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="1554.5" x2="1739.25" y1="566" y2="412.75" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="11">
+      <tspan x="1749" y="237.5">Candle stick chart can’t go out of this box</tspan> <tspan x="1749" y="250.5">Dimentions: 690 x 300 px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="11">
+      <tspan x="3105" y="837">W: 850 px</tspan> <tspan x="3105" y="850">H: 22 px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="11">
+      <tspan x="2222.5" y="1207">W: 94 px</tspan> <tspan x="2222.5" y="1220">H: 342 px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="11">
+      <tspan x="2491" y="962">Colour: </tspan> <tspan x="2491" y="975">Blue 3 - 0D2437 then fade to 0% opacity</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="11" font-weight="bold">
+      <tspan x="1749" y="298">Lines price/dates:</tspan> <tspan x="1749" y="311" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: 55555B</tspan> <tspan x="1749" y="324" font-family="Roboto-Regular, Roboto" font-weight="normal">Line: .5px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="11" font-weight="bold">
+      <tspan x="1749" y="403">Outer X and Y axes: </tspan> <tspan x="1749" y="416" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: FFFFFF</tspan> <tspan x="1749" y="429" font-family="Roboto-Regular, Roboto" font-weight="normal">Line: .5px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="11">
+      <tspan x="1749" y="357">Lines from graph come out 6px </tspan> <tspan x="1749" y="370">after the axis</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="11" font-weight="bold">
+      <tspan x="1749" y="581">Bottom chat: </tspan> <tspan x="1749" y="594" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: 21B1CA, opacity 20%</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="11" font-weight="bold">
+      <tspan x="1749" y="638">Blue 5 - #071521 </tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="11">
+      <tspan x="1708" y="744">3px line to indicate years</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="11" font-weight="bold">
+      <tspan x="1749" y="527">Blue 3 - #0D2437</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="11" font-weight="bold">
+      <tspan x="1752" y="1332">Text</tspan> <tspan x="1752" y="1358" font-family="Roboto-Regular, Roboto" font-weight="normal">Candle stick chart price and dates: </tspan> <tspan x="1752" y="1371" font-family="Roboto-Regular, Roboto" font-weight="normal">Roboto, Medium, 11px</tspan> <tspan x="1752" y="1384" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: 9E9E9E</tspan> <tspan x="1752" y="1410" font-family="Roboto-Regular, Roboto" font-weight="normal">Bottom chart (blue line) dates: </tspan> <tspan x="1752" y="1423" font-family="Roboto-Regular, Roboto" font-weight="normal">Roboto, Medium, 11px</tspan> <tspan x="1752" y="1436" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: 9E9E9E</tspan> <tspan x="1752" y="1462" font-family="Roboto-Regular, Roboto" font-weight="normal">Bottom chart (blue line) years: </tspan> <tspan x="1752" y="1475" font-family="Roboto-Regular, Roboto" font-weight="normal">Roboto, Medium, 9px</tspan> <tspan x="1752" y="1488" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: 9E9E9E</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="11" font-weight="bold">
+      <tspan x="560" y="1006">Text</tspan> <tspan x="560" y="1032" font-family="Roboto-Regular, Roboto" font-weight="normal">Chart - top nav: </tspan> <tspan x="560" y="1045" font-family="Roboto-Regular, Roboto" font-weight="normal">Roboto, Medium, 18px</tspan> <tspan x="560" y="1058" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: FFFFFF</tspan> <tspan x="560" y="1084" font-family="Roboto-Regular, Roboto" font-weight="normal">STOCK: </tspan> <tspan x="560" y="1097" font-family="Roboto-Regular, Roboto" font-weight="normal">Roboto, Bold, 16px</tspan> <tspan x="560" y="1110" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: FFFFFF</tspan> <tspan x="560" y="1136" font-family="Roboto-Regular, Roboto" font-weight="normal">Company name: </tspan> <tspan x="560" y="1149" font-family="Roboto-Regular, Roboto" font-weight="normal">Roboto, Bold, 12px</tspan> <tspan x="560" y="1162" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: FFFFFF</tspan> <tspan x="560" y="1188" font-family="Roboto-Regular, Roboto" font-weight="normal">Price: </tspan> <tspan x="560" y="1201" font-family="Roboto-Regular, Roboto" font-weight="normal">Roboto, Regular, 18px</tspan> <tspan x="560" y="1214" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: FFFFFF</tspan> <tspan x="560" y="1240" font-family="Roboto-Regular, Roboto" font-weight="normal">+ or -, % change and OHLCV values: </tspan> <tspan x="560" y="1253" font-family="Roboto-Regular, Roboto" font-weight="normal">Roboto, Medium, 12px</tspan> <tspan x="560" y="1266" font-family="Roboto-Regular, Roboto" font-weight="normal">Colours</tspan> <tspan x="560" y="1279" font-family="Roboto-Regular, Roboto" font-weight="normal">If positive: 3AC975</tspan> <tspan x="560" y="1292" font-family="Roboto-Regular, Roboto" font-weight="normal">If negative: FF7171</tspan> <tspan x="560" y="1318" font-family="Roboto-Regular, Roboto" font-weight="normal">OHLCV titles: </tspan> <tspan x="560" y="1331" font-family="Roboto-Regular, Roboto" font-weight="normal">Roboto, Bold, 12px</tspan> <tspan x="560" y="1344" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: FFFFFF</tspan>
+    </text>
+    <line x1="1631.5" x2="1732.5" y1="618.5" y2="634.5" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="1631.5" x2="1739.5" y1="544.5" y2="523.5" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="1742" x2="1637.5" y1="1358" y2="1286.5" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="1742" x2="1601" y1="1358" y2="1301" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="1742" x2="1621" y1="1416" y2="1389" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="1742" x2="1429.5" y1="1469" y2="1322.5" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="3078" y="226">28px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="3078" y="438">357px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="3078" y="649">95px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="3078" y="704">20px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="3028.5" y="737">27px x 12px</tspan>
+    </text>
+    <rect width="94" height="342" x="2216" y="831" fill="url(#chart_v2_specs-e)"/>
+    <rect width="850" height="22" x="2216" y="831" fill="url(#chart_v2_specs-d)"/>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="11">
+      <tspan x="2050" y="1130">69 px - solid then begins to fade</tspan>
+    </text>
+    <line x1="2477.5" x2="2289.5" y1="962.5" y2="932.5" stroke="#979797" stroke-linecap="square"/>
+    <line x1="2477.5" x2="2413.5" y1="947.5" y2="837.5" stroke="#979797" stroke-linecap="square"/>
+    <line x1="3041.5" x2="3053.5" y1="708.5" y2="726.5" stroke="#979797" stroke-linecap="square"/>
+    <line x1="1575.5" x2="1590.5" y1="1423.5" y2="1515.5" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="11">
+      <tspan x="1556" y="1533">Roboto, Regular, 11px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="11">
+      <tspan x="1596.5" y="1479.5">Colour: 9E9E9E</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="11" font-weight="bold">
+      <tspan x="1752" y="1523">If more than 6 digits (i.e. 2155.00 or </tspan> <tspan x="1752" y="1536">higher); reduce text to 9px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="11" font-weight="bold">
+      <tspan x="1752" y="1100.5">Curent price</tspan> <tspan x="1752" y="1126.5" font-family="Roboto-Regular, Roboto" font-weight="normal">Price box: </tspan> <tspan x="1752" y="1139.5" font-family="Roboto-Regular, Roboto" font-weight="normal">Box Dimentions: 41 x 14px</tspan> <tspan x="1752" y="1165.5" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: Teal (new) 21B1CA</tspan> <tspan x="1752" y="1178.5" font-family="Roboto-Regular, Roboto" font-weight="normal">Text Colour: FFFFFF</tspan> <tspan x="1752" y="1191.5" font-family="Roboto-Regular, Roboto" font-weight="normal">Text: Roboto, Medium, 11px</tspan> <tspan x="1752" y="1217.5" font-family="Roboto-Regular, Roboto" font-weight="normal">Blue line:</tspan> <tspan x="1752" y="1230.5" font-family="Roboto-Regular, Roboto" font-weight="normal">Line: .75px</tspan> <tspan x="1752" y="1243.5" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: Teal (new) 21B1CA</tspan> <tspan x="1752" y="1256.5" font-family="Roboto-Regular, Roboto" font-weight="normal">Dash: 1 px</tspan> <tspan x="1752" y="1269.5" font-family="Roboto-Regular, Roboto" font-weight="normal">Legth: 738px</tspan>
+    </text>
+    <line x1="1637.5" x2="1746.5" y1="1184.5" y2="1100.5" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="11" font-weight="bold">
+      <tspan x="1752" y="969">Date picker - line: </tspan> <tspan x="1752" y="982" font-family="Roboto-Regular, Roboto" font-weight="normal">Line: .75px</tspan> <tspan x="1752" y="995" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: Grey-blue-light - CFD8E3</tspan> <tspan x="1752" y="1008" font-family="Roboto-Regular, Roboto" font-weight="normal">Dash: 2px</tspan> <tspan x="1752" y="1021" font-family="Roboto-Regular, Roboto" font-weight="normal">Length: 738px</tspan> <tspan x="1752" y="1034" font-family="Roboto-Regular, Roboto" font-weight="normal">Hight: 324 px</tspan>
+    </text>
+    <line x1="1266.5" x2="1746.5" y1="1142.5" y2="969.5" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <circle cx="1520.712" cy="569.712" r="6.712" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <circle cx="1414.712" cy="614.712" r="6.712" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <circle cx="1590" cy="365.712" r="6.712" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="1522.5" x2="1746.5" y1="563" y2="356.5" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="1596.5" x2="1746.5" y1="365.5" y2="356.5" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="1421.5" x2="1702.5" y1="618.5" y2="740.5" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="1609.5" x2="1590.5" y1="1462.5" y2="1423.5" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="20" font-weight="400">
+      <tspan x="46.5" y="72.669">Chart</tspan>
+    </text>
+    <line x1="783.5" x2="754.5" y1="1274" y2="1274" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="754.5" x2="754.5" y1="923" y2="1274.5" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="754.5" x2="582.5" y1="985.5" y2="985.5" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="783.5" x2="754.5" y1="923" y2="923" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="2208.5" x2="2283.5" y1="1126.5" y2="1126.5" stroke="#979797" stroke-linecap="square"/>
+    <line x1="2211" x2="3077.04" y1="238" y2="238" stroke="#FF9191" stroke-dasharray="3" stroke-linecap="square"/>
+    <line x1="2211" x2="3077.04" y1="595" y2="595" stroke="#FF9191" stroke-dasharray="3" stroke-linecap="square"/>
+    <line x1="2211" x2="3077.04" y1="690" y2="690" stroke="#FF9191" stroke-dasharray="3" stroke-linecap="square"/>
+    <line x1="2211" x2="3077.04" y1="710" y2="710" stroke="#FF9191" stroke-dasharray="3" stroke-linecap="square"/>
+    <line x1="1621.5" x2="1621.5" y1="1462.5" y2="1423.5" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="11" font-weight="bold">
+      <tspan x="496" y="229">About the page</tspan> <tspan x="496" y="255" font-family="Roboto-Regular, Roboto" font-weight="normal">When the chart is first launched the default state </tspan> <tspan x="496" y="268" font-family="Roboto-Regular, Roboto" font-weight="normal">for the page is: </tspan> <tspan x="496" y="294" font-family="Roboto-Regular, Roboto" font-weight="normal"> - 10 months (from today’s date) for the </tspan> <tspan x="496" y="307" font-family="Roboto-Regular, Roboto" font-weight="normal"> candle stick chart </tspan> <tspan x="496" y="320" font-family="Roboto-Regular, Roboto" font-weight="normal"> - No change for stocks / company’s </tspan> <tspan x="496" y="333" font-family="Roboto-Regular, Roboto" font-weight="normal"> which are less then 10 months old</tspan> <tspan x="496" y="359" font-family="Roboto-Regular, Roboto" font-weight="normal"> - 3 years (from today’s date) for the bottom </tspan> <tspan x="496" y="372" font-family="Roboto-Regular, Roboto" font-weight="normal"> (blue) chart</tspan> <tspan x="496" y="385" font-family="Roboto-Regular, Roboto" font-weight="normal"> - Stocks which have less then 3 </tspan> <tspan x="496" y="398" font-family="Roboto-Regular, Roboto" font-weight="normal"> years history, then display the chart </tspan> <tspan x="496" y="411" font-family="Roboto-Regular, Roboto" font-weight="normal"> since coming to market plus one </tspan> <tspan x="496" y="424" font-family="Roboto-Regular, Roboto" font-weight="normal"> month at the beginning. e.i. company </tspan> <tspan x="496" y="437" font-family="Roboto-Regular, Roboto" font-weight="normal"> went came to market in March 2018, </tspan> <tspan x="496" y="450" font-family="Roboto-Regular, Roboto" font-weight="normal"> then chart should be from February </tspan> <tspan x="496" y="463" font-family="Roboto-Regular, Roboto" font-weight="normal"> 2018 - present</tspan>
+    </text>
+    <line x1="739.5" x2="935.5" y1="307.5" y2="311.5" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="739.5" x2="837.5" y1="398.5" y2="626.5" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <g transform="translate(2856 1018)">
+      <rect width="850" height="474" y="27" fill="#0D2437"/>
+      <rect width="850" height="94" y="386" fill="#071521"/>
+      <g transform="translate(35 407.5)">
+        <polyline stroke="#21B1CA" points=".003 21.895 7.108 20.455 13.597 21.515 20.088 17.43 26.578 24.884 33.068 30.222 39.559 35.901 46.049 38.859 52.539 41.662 59.029 38.371 65.52 37.486 72.01 31.935 78.5 27.063 84.991 31.423 91.48 24.304 97.971 20.523 104.461 23.449 110.951 28.679 117.442 27.779 123.932 25.956 130.422 20.979 136.912 21.235 143.403 16.402 149.893 19.076 156.383 18.929 162.874 12.628 169.363 13.954 175.854 19.427 182.344 17.866 188.834 22.857 195.325 24.023 201.815 20.607 208.305 24.443 214.795 17.451 221.286 20.09 227.776 18.955 234.266 19.107 240.757 21.582 247.246 21.696 253.737 17.689 260.228 16.791 266.717 13.541 273.208 14.596 279.698 16.675 286.188 14.707 292.678 11.592 299.169 13.314 305.659 11.44 312.149 15.309 318.64 16.59 325.129 17.565 331.62 16.346 338.111 22.328 344.6 20.019 351.091 22.096 357.581 22.304 364.071 22.651 370.562 20.892 377.052 25.816 383.542 27.668 390.032 29.76 396.523 26.194 403.013 26.359 409.503 26.146 415.994 28.011 422.483 30.5 428.974 29.143 435.464 32.802 441.954 33.586 448.445 33.21 454.935 31.992 461.425 32.115 467.915 26.671 474.406 27.706 480.896 29.406 487.386 32.455 493.877 34.085 500.366 34.255 506.857 29.026 513.347 21.5 519.837 25.876 526.328 22.239 532.818 17.486 539.308 20.774 545.798 15.718 552.289 18.074 558.779 15.329 565.269 18.081 571.76 13.242 578.249 13.584 584.74 15.938 591.23 12.787 597.72 10.125 604.211 8.946 610.701 9.642 617.191 11.749 623.681 11.528 630.172 9.455 636.662 14.62 643.152 16.119 649.643 19.233 656.132 17.404 662.623 18.639 669.113 14.912 675.603 18.199 682.094 16.591 688.584 12.515 695.074 11.563 701.564 13.75 708.055 15.941 714.545 19.258 721.035 23.164 727.526 17.101 734.015 17.727 740.506 12.024 746.996 13.261 753.486 8.845 759.977 9.559 766.467 6.535 772.957 7.671 780 10.125"/>
+        <polygon fill="#21B1CA" fill-opacity=".2" points="0 21.972 7.315 20.425 13.801 21.546 20.287 17.229 26.774 25.106 33.26 30.745 39.746 36.746 46.232 39.871 52.718 42.833 59.205 39.355 65.691 38.421 72.177 32.555 78.663 27.407 85.15 32.014 91.635 24.492 98.122 20.497 104.608 23.59 111.094 29.115 117.58 28.164 124.067 26.238 130.552 20.979 137.039 21.25 143.525 16.144 150.011 18.969 156.497 18.813 162.984 12.156 169.469 13.557 175.956 19.339 182.442 17.69 188.928 22.964 195.414 24.195 201.901 20.586 208.387 24.639 214.873 17.251 221.359 20.04 227.845 18.841 234.332 19.001 240.818 21.616 247.304 21.737 253.79 17.503 260.277 16.555 266.762 13.121 273.249 14.235 279.735 16.432 286.221 14.353 292.707 11.062 299.194 12.881 305.679 10.901 312.166 14.988 318.652 16.342 325.138 17.372 331.624 16.084 338.111 22.405 344.596 19.965 351.083 22.16 357.569 22.38 364.055 22.746 370.541 20.887 377.028 26.09 383.514 28.047 390 30.257 396.486 26.49 402.972 26.664 409.459 26.439 415.945 28.409 422.431 31.039 428.917 29.606 435.404 33.472 441.889 34.3 448.376 33.902 454.862 32.615 461.348 32.746 467.834 26.994 474.321 28.087 480.806 29.883 487.293 33.105 493.779 34.827 500.265 35.006 506.751 29.482 513.238 21.53 519.723 26.154 526.21 22.311 532.696 17.289 539.182 20.763 545.668 15.42 552.155 17.91 558.641 15.01 565.127 17.918 571.613 12.805 578.099 13.166 584.586 15.653 591.072 12.324 597.558 9.511 604.044 8.265 610.531 9.001 617.016 11.227 623.503 10.993 629.989 8.803 636.475 14.261 642.961 15.845 649.448 19.135 655.933 17.203 662.42 18.507 668.906 14.569 675.392 18.042 681.878 16.343 688.365 12.037 694.85 11.03 701.337 13.341 707.823 15.656 714.309 19.161 720.795 23.288 727.282 16.882 733.768 17.543 740.254 11.517 746.74 12.824 753.226 8.159 759.713 8.913 766.199 5.718 772.685 6.918 780 9.511 780 44.113 0 44.113"/>
+        <rect width="779" height="44" x=".5" y=".5" stroke="#ABB3B9"/>
+        <rect width="229" height="45" x="551" y=".106" fill="#30BED1" fill-opacity=".2"/>
+        <g transform="translate(548 1.035)">
+          <circle cx="2.958" cy="22" r="2.958" fill="#FFF"/>
+          <line x1="2.958" x2="2.958" y2="43" stroke="#FFF" stroke-linecap="square" stroke-width="1.5"/>
+        </g>
+        <g transform="translate(777.128 1.035)">
+          <circle cx="2.958" cy="22" r="2.958" fill="#FFF"/>
+          <line x1="2.958" x2="2.958" y2="43" stroke="#FFF" stroke-linecap="square" stroke-width="1.5"/>
+        </g>
+      </g>
+      <g fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400" transform="translate(803 70)">
+        <text>
+          <tspan x="0" y="10">250.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="50">245.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="90">240.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="130">235.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="170">230.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="210">225.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="250">220.00</tspan>
+        </text>
+        <text>
+          <tspan x="0" y="290">215.00</tspan>
+        </text>
+      </g>
+      <g stroke="#55555B" stroke-linecap="square" stroke-width=".5" transform="translate(56 76)">
+        <line x2="744" y1=".5" y2=".5"/>
+        <line x2="744" y1="40.5" y2="40.5"/>
+        <line x2="744" y1="80.5" y2="80.5"/>
+        <line x2="744" y1="120.5" y2="120.5"/>
+        <line x2="744" y1="160.5" y2="160.5"/>
+        <line x2="744" y1="200.5" y2="200.5"/>
+        <line x2="744" y1="240.5" y2="240.5"/>
+      </g>
+      <g stroke="#55555B" stroke-linecap="square" stroke-width=".5" transform="translate(103 35)">
+        <line x1="622.91" x2="622.91" y2="328"/>
+        <line x1="553.808" x2="553.808" y2="328"/>
+        <line x1="484.705" x2="484.705" y2="328"/>
+        <line x1="415.603" x2="415.603" y2="328"/>
+        <line x1="346.5" x2="346.5" y2="328"/>
+        <line x1="277.397" x2="277.397" y2="328"/>
+        <line x1="208.295" x2="208.295" y2="328"/>
+        <line x1="139.192" x2="139.192" y2="328"/>
+        <line x1="70.09" x2="70.09" y2="328"/>
+        <line x1=".987" x2=".987" y2="328"/>
+      </g>
+      <g stroke="#FFF" stroke-linecap="square" stroke-width=".5" transform="translate(56 35)">
+        <line x1=".499" x2="744.501" y1="321.5" y2="321.5"/>
+        <line x1="739.013" x2="739.013" y1=".5" y2="328.5"/>
+      </g>
+      <g fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400" transform="translate(83 367)">
+        <text>
+          <tspan x="702.995" y="10">Oct</tspan>
+        </text>
+        <text>
+          <tspan x="631.304" y="10">Sept</tspan>
+        </text>
+        <text>
+          <tspan x="563.695" y="10">Aug</tspan>
+        </text>
+        <text>
+          <tspan x="496.986" y="10">Jul</tspan>
+        </text>
+        <text>
+          <tspan x="426.332" y="10">Jun</tspan>
+        </text>
+        <text>
+          <tspan x="356.072" y="10">May</tspan>
+        </text>
+        <text>
+          <tspan x="287.938" y="10">Apr</tspan>
+        </text>
+        <text>
+          <tspan x="217.776" y="10">Mar</tspan>
+        </text>
+        <text>
+          <tspan x="149.487" y="10">Feb</tspan>
+        </text>
+        <text>
+          <tspan x="72.791" y="10">Jan 19</tspan>
+        </text>
+        <text>
+          <tspan x="11.076" y="10">Dec</tspan>
+        </text>
+      </g>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="743.136" y="469">Jul</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="807.295" y="469">Oct</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="676.938" y="469">Apr</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="611.262" y="469">Jan</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="546.695" y="469">Oct</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="482.536" y="469">Jul</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="416.338" y="469">Apr</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="350.662" y="469">Jan </tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="9" font-weight="400">
+        <tspan x="349.52" y="401.5">2018 </tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="9" font-weight="400">
+        <tspan x="88.92" y="401.5">2017</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="9" font-weight="400">
+        <tspan x="610.12" y="401.5">2019 </tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="286.095" y="469">Oct</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="221.936" y="469">Jul</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="155.738" y="469">Apr</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="90.062" y="469">Jan</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="25.495" y="469">Oct</tspan>
+      </text>
+      <rect width="850" height="22" y="30" fill="url(#chart_v2_specs-d)"/>
+      <g transform="translate(749 483)">
+        <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+          <tspan x="0" y="10">Powered by</tspan>
+        </text>
+        <path fill="#8A96A6" d="M25.969479 9.15275995C24.3109569 9.15275995 22.9676911 7.58793325 22.9676911 5.80166881 22.9676911 4.01540436 24.3246637 2.53915276 25.9968926 2.53915276L27.0797293 2.53915276 27.0660225 1.22528883 27.0660225 0 22.0082156 0 20.4593479 0 18.6226375 0C16.9641154 0 15.6071429 1.46148909 15.6071429 3.24775353L15.6071429 3.36585366 15.6071429 11.5 17.8824706 11.5 17.8824706 6.42169448C18.1154861 6.48074454 18.3759152 6.52503209 18.6226375 6.52503209L19.8288353 6.52503209 19.8288353 4.4139923 18.9104802 4.4139923C18.4170356 4.4139923 18.0058318 3.97111682 18.0058318 3.43966624 18.0058318 2.90821566 18.4170356 2.46534018 18.9104802 2.46534018L20.4593479 2.46534018 21.7203729 2.46534018C21.5558914 2.46534018 21.2406351 3.51347882 21.1858079 3.6758665 21.04874 4.11874198 20.9939128 4.56161746 20.9664992 5.03401797 20.8568449 6.436457 21.0076196 7.92747112 21.7340797 9.12323492 22.3234718 10.097561 23.2281202 10.8356868 24.2561297 11.2047497 24.7358675 11.3818999 25.2430189 11.4557125 25.7501703 11.4557125L27.1071429 11.4557125 27.1071429 9.06418485 25.969479 9.15275995zM6.15417511 5.75C6.15417511 7.52941176 4.78811382 9 3.10468475 9L2.29056742 9 2.29056742 2.5 3.10468475 2.5C4.78811382 2.5 6.15417511 3.95588235 6.15417511 5.75L6.15417511 5.75zM10.9422889 0L9.97638701 0 7.534035 0 0 0 0 .102941176 0 2.44117647 0 11.4558824 2.05599124 11.4558824 2.29056742 11.4558824 3.35305953 11.4558824C6.00239052 11.4558824 8.16877055 9.14705882 8.16877055 6.32352941L8.16877055 5.25C8.16877055 4.22058824 7.87899997 3.25 7.38225041 2.44117647L9.96258841 2.44117647 10.6387198 2.44117647C11.1354693 2.44117647 11.5494273 2.88235294 11.5494273 3.41176471 11.5494273 3.94117647 11.1354693 4.38235294 10.6387198 4.38235294L9.71421363 4.38235294 9.71421363 7.02941176 10.6387198 7.02941176C11.1354693 7.02941176 11.5494273 7.47058824 11.5494273 8 11.5494273 8.52941176 11.1354693 8.97058824 10.6387198 8.97058824L8.7483117 8.97058824 8.7483117 11.4264706C8.92769349 11.4705882 9.10707528 11.5 9.30025566 11.5L10.9284903 11.4558824C12.5981208 11.4558824 13.9641821 10 13.9641821 8.22058824 13.9641821 7.23529412 13.5364255 6.33823529 12.8740928 5.75 13.5364255 5.14705882 13.9641821 4.26470588 13.9641821 3.27941176 13.9779807 1.45588235 12.6119194 0 10.9422889 0L10.9422889 0z" transform="translate(62 .5)"/>
+      </g>
+      <rect width="850" height="30" fill="#071521"/>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+        <tspan x="13" y="22">Chart</tspan>
+      </text>
+      <g transform="translate(821.5)">
+        <rect width="24" height="28" fill="#1B3B56" opacity="0"/>
+        <polygon fill="#FFF" points="17.619 8 18.91 9.291 13.745 14.454 18.91 19.619 17.619 20.91 12.454 15.745 7.291 20.91 6 19.619 11.164 14.454 6 9.291 7.291 8 12.454 13.164"/>
+      </g>
+      <g transform="translate(794.5)">
+        <rect width="24" height="28" fill="#D8D8D8" opacity="0"/>
+        <rect width="12" height="2" x="6" y="19" fill="#FFF"/>
+      </g>
+      <line x1="98.997" x2="98.997" y1="404.023" y2="407.023" stroke="#979797" stroke-linecap="square"/>
+      <line x1="360" x2="360" y1="404.023" y2="407.023" stroke="#979797" stroke-linecap="square"/>
+      <line x1="620.5" x2="620.5" y1="404.023" y2="407.023" stroke="#979797" stroke-linecap="square"/>
+      <g transform="translate(108 73)">
+        <g stroke="#FFF" stroke-width=".5">
+          <line x1=".547" x2=".547" y1="33.395" y2=".089"/>
+          <line x1="15.374" x2="15.374" y1="60.991" y2="3.896"/>
+          <line x1="30.201" x2="30.201" y1="91.441" y2="39.104"/>
+          <line x1="45.028" x2="45.028" y1="124.747" y2="90.49"/>
+          <line x1="59.855" x2="59.855" y1="104.763" y2="47.668"/>
+          <line x1="74.682" x2="74.682" y1="114.279" y2="66.7"/>
+          <line x1="89.509" x2="89.509" y1="84.78" y2="64.797"/>
+          <line x1="104.336" x2="104.336" y1="100.005" y2="64.797"/>
+          <line x1="119.163" x2="119.163" y1="115.231" y2="79.071"/>
+          <line x1="133.99" x2="133.99" y1="98.102" y2="71.458"/>
+          <line x1="148.817" x2="148.817" y1="110.473" y2="78.119"/>
+          <line x1="163.644" x2="163.644" y1="102.86" y2="36.249"/>
+          <line x1="178.471" x2="178.471" y1="84.78" y2="34.346"/>
+          <line x1="193.298" x2="193.298" y1="111.424" y2="41.959"/>
+          <line x1="207.847" x2="207.847" y1="131.568" y2="105.876"/>
+          <line x1="222.952" x2="222.952" y1="163.762" y2="103.812"/>
+          <line x1="237.779" x2="237.779" y1="175.181" y2="139.02"/>
+          <line x1="252.606" x2="252.606" y1="159.955" y2="128.553"/>
+          <line x1="267.433" x2="267.433" y1="151.391" y2="120.94"/>
+          <line x1="282.26" x2="282.26" y1="137.117" y2="88.586"/>
+          <line x1="297.087" x2="297.087" y1="115.231" y2="88.586"/>
+          <line x1="311.913" x2="311.913" y1="121.892" y2="92.393"/>
+          <line x1="326.74" x2="326.74" y1="166.616" y2="115.231"/>
+          <line x1="341.567" x2="341.567" y1="156.149" y2="130.456"/>
+          <line x1="356.394" x2="356.394" y1="166.616" y2="107.618"/>
+          <line x1="371.221" x2="371.221" y1="166.616" y2="103.812"/>
+          <line x1="386.048" x2="386.048" y1="175.181" y2="109.521"/>
+          <line x1="400.875" x2="400.875" y1="155.197" y2="119.989"/>
+          <line x1="415.702" x2="415.702" y1="158.052" y2="127.601"/>
+          <line x1="430.529" x2="430.529" y1="159.004" y2="115.231"/>
+          <line x1="445.356" x2="445.356" y1="180.89" y2="114.279"/>
+          <line x1="460.183" x2="460.183" y1="220.857" y2="180.89"/>
+          <line x1="475.01" x2="475.01" y1="228.469" y2="177.084"/>
+          <line x1="489.837" x2="489.837" y1="250.356" y2="193.261"/>
+          <line x1="504.664" x2="504.664" y1="250.356" y2="215.147"/>
+          <line x1="519.491" x2="519.491" y1="254.162" y2="208.486"/>
+          <line x1="534.318" x2="534.318" y1="246.549" y2="174.229"/>
+          <line x1="549.145" x2="549.145" y1="223.711" y2="188.503"/>
+          <line x1="563.972" x2="563.972" y1="248.452" y2="199.922"/>
+          <line x1="578.799" x2="578.799" y1="268.436" y2="209.438"/>
+          <line x1="593.626" x2="593.626" y1="274.145" y2="197.067"/>
+          <line x1="608.453" x2="608.453" y1="212.292" y2="196.115"/>
+          <line x1="623.28" x2="623.28" y1="269.387" y2="195.164"/>
+          <line x1="638.107" x2="638.107" y1="277" y2="179.938"/>
+          <line x1="652.934" x2="652.934" y1="212.292" y2="181.842"/>
+          <line x1="667.761" x2="667.761" y1="201.825" y2="157.1"/>
+          <line x1="682.588" x2="682.588" y1="208.486" y2="159.955"/>
+        </g>
+        <g stroke-width="6" transform="translate(0 3.693)">
+          <line x1=".871" x2=".871" y1="28.491" y2=".824" stroke="#43C578"/>
+          <line x1="60.151" x2="60.151" y1="97.181" y2="54.25" stroke="#43C578"/>
+          <line x1="89.791" x2="89.791" y1="80.008" y2="71.422" stroke="#43C578"/>
+          <line x1="134.251" x2="134.251" y1="93.365" y2="70.468" stroke="#43C578"/>
+          <line x1="163.891" x2="163.891" y1="93.365" y2="31.353" stroke="#43C578"/>
+          <line x1="252.81" x2="252.81" y1="155.376" y2="124.847" stroke="#43C578"/>
+          <line x1="282.45" x2="282.45" y1="114.353" y2="89.548" stroke="#43C578"/>
+          <line x1="312.09" x2="312.09" y1="105.767" y2="102.905" stroke="#43C578"/>
+          <line x1="341.73" x2="341.73" y1="151.56" y2="141.066" stroke="#43C578"/>
+          <line x1="356.55" x2="356.55" y1="148.698" y2="102.905" stroke="#43C578"/>
+          <line x1="386.19" x2="386.19" y1="154.422" y2="118.169" stroke="#43C578"/>
+          <line x1="475.109" x2="475.109" y1="224.066" y2="177.319" stroke="#43C578"/>
+          <line x1="504.749" x2="504.749" y1="244.1" y2="214.525" stroke="#43C578"/>
+          <line x1="534.389" x2="534.389" y1="242.192" y2="175.411" stroke="#43C578"/>
+          <line x1="564.029" x2="564.029" y1="224.066" y2="206.893" stroke="#43C578"/>
+          <line x1="593.669" x2="593.669" y1="253.64" y2="201.169" stroke="#43C578"/>
+          <line x1="608.489" x2="608.489" y1="201.169" y2="197.353" stroke="#43C578"/>
+          <line x1="638.129" x2="638.129" y1="262.227" y2="178.273" stroke="#43C578"/>
+          <line x1="667.768" x2="667.768" y1="177.319" y2="165.87" stroke="#43C578"/>
+          <line x1="208.088" x2="208.088" y1="115.109" y2="120.033" stroke="#FD5958" stroke-linecap="square"/>
+          <line x1="682.588" x2="682.588" y1="164.916" y2="155.376" stroke="#43C578"/>
+        </g>
+        <g stroke="#FD5958" stroke-width="6" transform="translate(14 1.231)">
+          <line x1="1.331" x2="1.331" y1=".732" y2="45.519"/>
+          <line x1="16.151" x2="16.151" y1="53.142" y2="88.4"/>
+          <line x1="30.971" x2="30.971" y1="96.023" y2="99.835"/>
+          <line x1="60.611" x2="60.611" y1="66.483" y2="76.012"/>
+          <line x1="90.251" x2="90.251" y1="76.965" y2="85.541"/>
+          <line x1="105.071" x2="105.071" y1="93.165" y2="100.788"/>
+          <line x1="134.711" x2="134.711" y1="75.059" y2="92.212"/>
+          <line x1="164.351" x2="164.351" y1="34.084" y2="75.059"/>
+          <line x1="208.81" x2="208.81" y1="108.411" y2="160.821"/>
+          <line x1="223.63" x2="223.63" y1="156.057" y2="157.963"/>
+          <line x1="253.27" x2="253.27" y1="126.517" y2="129.375"/>
+          <line x1="282.91" x2="282.91" y1="88.4" y2="101.741"/>
+          <line x1="312.55" x2="312.55" y1="116.035" y2="154.151"/>
+          <line x1="357.01" x2="357.01" y1="100.788" y2="152.245"/>
+          <line x1="386.649" x2="386.649" y1="117.94" y2="137.952"/>
+          <line x1="401.469" x2="401.469" y1="137.952" y2="140.81"/>
+          <line x1="416.289" x2="416.289" y1="132.234" y2="156.057"/>
+          <line x1="431.109" x2="431.109" y1="142.716" y2="177.974"/>
+          <line x1="445.929" x2="445.929" y1="181.786" y2="217.996"/>
+          <line x1="475.569" x2="475.569" y1="190.362" y2="247.536"/>
+          <line x1="505.209" x2="505.209" y1="217.043" y2="241.819"/>
+          <line x1="534.849" x2="534.849" y1="185.597" y2="216.09"/>
+          <line x1="564.489" x2="564.489" y1="208.467" y2="264.689"/>
+          <line x1="608.948" x2="608.948" y1="197.985" y2="256.113"/>
+          <line x1="638.588" x2="638.588" y1="180.833" y2="184.644"/>
+          <line x1="179.17" x2="179.17" y1="76.012" y2="108.411"/>
+        </g>
+      </g>
+      <g stroke="#CFD8E3" stroke-dasharray="2" stroke-linecap="square" stroke-width=".75" transform="translate(56 32)">
+        <line x1="453" x2="453" y1="324"/>
+        <line x1=".5" x2="738.5" y1="179.5" y2="179.5"/>
+      </g>
+      <g transform="translate(62 224)">
+        <line x1="738.559" x2=".559" y1="7.5" y2="7.5" stroke="#21B1CA" stroke-dasharray="1" stroke-linecap="square" stroke-width=".5"/>
+        <rect width="41" height="14" x="738" fill="#21B1CA"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+          <tspan x="741" y="11">230.91</tspan>
+        </text>
+      </g>
+      <rect width="105" height="325" y="30" fill="url(#chart_v2_specs-f)"/>
+      <g transform="translate(13 56)">
+        <g font-size="12" transform="translate(1 153)">
+          <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-weight="bold">
+            <tspan x="0" y="11">O</tspan>
+          </text>
+          <text fill="#43C578" font-family="Roboto-Regular, Roboto">
+            <tspan x="13" y="11">229.34</tspan>
+          </text>
+        </g>
+        <g font-size="12" transform="translate(1 183)">
+          <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-weight="bold">
+            <tspan x="0" y="11">H</tspan>
+          </text>
+          <text fill="#43C578" font-family="Roboto-Regular, Roboto">
+            <tspan x="13" y="11">230.91</tspan>
+          </text>
+        </g>
+        <g font-size="12" transform="translate(1 213)">
+          <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-weight="bold">
+            <tspan x="0" y="11">L</tspan>
+          </text>
+          <text fill="#43C578" font-family="Roboto-Regular, Roboto">
+            <tspan x="13" y="11">229.02</tspan>
+          </text>
+        </g>
+        <g font-size="12" transform="translate(1 243)">
+          <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-weight="bold">
+            <tspan x="0" y="11">C</tspan>
+          </text>
+          <text fill="#43C578" font-family="Roboto-Regular, Roboto">
+            <tspan x="13" y="11">230.01</tspan>
+          </text>
+        </g>
+        <g font-size="12" transform="translate(1 273)">
+          <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-weight="bold">
+            <tspan x="0" y="11">V</tspan>
+          </text>
+          <text fill="#43C578" font-family="Roboto-Regular, Roboto">
+            <tspan x="13" y="11">2.3 M</tspan>
+          </text>
+        </g>
+        <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+          <tspan x="1" y="36">Tesla, Inc</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="18">
+          <tspan x="0" y="81">230.91</tspan>
+        </text>
+        <text fill="#43C578" font-family="Roboto-Regular, Roboto" font-size="12">
+          <tspan x="2" y="105">+0.19</tspan>
+        </text>
+        <text fill="#43C578" font-family="Roboto-Regular, Roboto" font-size="12">
+          <tspan x="1" y="124">(+0.02%)</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-size="16" font-weight="bold">
+          <tspan x="1" y="15">TSLA</tspan>
+        </text>
+      </g>
+    </g>
+    <rect width="35" height="35" x="47" y="338.916" fill="#21B1CA" stroke="#000"/>
+    <rect width="36" height="36" x="46.5" y="253.5" fill="#071521"/>
+    <rect width="36" height="36" x="46.5" y="178.084" fill="#0D2437"/>
+    <rect width="35" height="35" x="47" y="411.916" fill="#FF7171" stroke="#000"/>
+    <rect width="35" height="35" x="47" y="490.916" fill="#43C578" stroke="#000"/>
+    <rect width="35" height="35" x="47" y="570.204" fill="#FFF" stroke="#000"/>
+    <rect width="35" height="35" x="47" y="641.068" fill="#ABB3B9" stroke="#000"/>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="101.5" y="349.416">(New) Teal - This colour has been updated </tspan> <tspan x="101.5" y="363.416">Used for the bottom line chart and the current </tspan> <tspan x="101.5" y="377.416">price on the candlestick chart</tspan> <tspan x="101.5" y="391.416">21B1CA</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="101.5" y="264.5">Blue 5 (Unchanged) </tspan> <tspan x="101.5" y="278.5">Used for nav bar and as the background for blue </tspan> <tspan x="101.5" y="292.5">line chart</tspan> <tspan x="101.5" y="306.5">071521</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="101.5" y="189.084">Blue 3 (Unchanged) </tspan> <tspan x="101.5" y="203.084">Used as background colour</tspan> <tspan x="101.5" y="217.084">0D2437</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="101.5" y="422.416">Red-1 </tspan> <tspan x="101.5" y="436.416">Used for negative values on OHLCV and candle </tspan> <tspan x="101.5" y="450.416">sitck chart</tspan> <tspan x="101.5" y="464.416">FF7171</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="101.5" y="501.704">Green-1 </tspan> <tspan x="101.5" y="515.704">Used for positive values on OHLCV and candle </tspan> <tspan x="101.5" y="529.704">sitck chart </tspan> <tspan x="101.5" y="543.704">43C578</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="101.5" y="580.992">White </tspan> <tspan x="101.5" y="594.992">FFFFFF</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="101.5" y="651.856">Grey-3</tspan> <tspan x="101.5" y="665.856">ABB3B9</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="103.5" y="722.432">Grey-6</tspan> <tspan x="103.5" y="736.432">Used for lines for price and dates for candlestick </tspan> <tspan x="103.5" y="750.432">chart</tspan> <tspan x="103.5" y="764.432">55555B</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="103.5" y="801.72">Grey-6</tspan> <tspan x="103.5" y="815.72">Used for lines for price and dates for candlestick chart</tspan> <tspan x="103.5" y="829.72">&amp; ‘Powered by’ text and logo </tspan> <tspan x="103.5" y="843.72">9E9E9E</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="103.5" y="892.584">Grey_blue_light</tspan> <tspan x="103.5" y="906.584">Used for dashed line on chart (moves arround with the </tspan> <tspan x="103.5" y="920.584">user’s curser)</tspan> <tspan x="103.5" y="934.584">CFD8E3</tspan>
+    </text>
+    <rect width="35" height="35" x="47" y="711.932" fill="#55555B" stroke="#000"/>
+    <rect width="35" height="35" x="47" y="792.22" fill="#9E9E9E" stroke="#000"/>
+    <rect width="35" height="35" x="47" y="885.084" fill="#CFD8E3" stroke="#000"/>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="46" y="159">Colour</tspan>
+    </text>
+    <line x1="432.5" x2="432.5" y1="162.5" y2="1230.5" stroke="#979797" stroke-linecap="square"/>
+    <line x1="517" x2="1973" y1="817.5" y2="817.5" stroke="#979797" stroke-linecap="square"/>
+    <line x1="2012.5" x2="2012.5" y1="244.5" y2="1569.5" stroke="#979797" stroke-linecap="square"/>
+    <line x1="2211" x2="3077" y1="208" y2="208" stroke="#FF9191" stroke-dasharray="3" stroke-linecap="square"/>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="2856" y="1000">Chart with the candle stick chart: </tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="3752" y="1254.5">This would move with the current </tspan> <tspan x="3752" y="1268.5">price of the stock and stay fixed on </tspan> <tspan x="3752" y="1282.5">the page</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="3744.5" y="1389">Candle sticks are White FFFFFF</tspan>
+    </text>
+    <line x1="3744.5" x2="3698.5" y1="1256.5" y2="1253.5" stroke="#979797" stroke-linecap="square"/>
+    <line x1="3733.5" x2="3647.5" y1="1378.5" y2="1292.5" stroke="#979797" stroke-linecap="square"/>
+  </g>
+</svg>
