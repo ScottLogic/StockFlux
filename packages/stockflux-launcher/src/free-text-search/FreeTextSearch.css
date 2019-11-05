@@ -36,9 +36,14 @@
 }
 
 .searchSVG {
+  color: var(--icon-inactive);
   height: 40px;
   margin-top: var(--margin-large) !important;
   width: 60px;
+}
+
+.searchSVG:hover{
+  color: var(--icon-active);
 }
 
 div#root > .free-text-search {
