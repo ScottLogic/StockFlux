@@ -37,7 +37,7 @@
 
 .searchSVG {
   height: 40px;
-  margin-top: 15px !important;
+  margin-top: var(--margin-large) !important;
   width: 60px;
 }
 

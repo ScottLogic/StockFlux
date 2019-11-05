@@ -63,8 +63,8 @@ export default () => {
   }, [edge]);
 
   return (
-    <div className="launcher-container">
-      <div className="launcher-title">
+    <div className="launcher">
+      <div className="title">
         <Titlebar dockedTo={edge} />
       </div>
       <div className={cx('app', edge)}>
