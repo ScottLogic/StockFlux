@@ -9,14 +9,14 @@ export default ({ tools, style }) => {
       {tools
         .filter(tool => tool.visible)
         .map((tool, index) => (
-          <Components.Buttons.Borderless
+          <Components.Buttons.Round
             key={index}
             onClick={() => tool.onClick()}
             disabled={!!tool.disabled}
             className={cx({ [tool.className]: tool.className })}
           >
             {tool.label}
-          </Components.Buttons.Borderless>
+          </Components.Buttons.Round>
         ))}
     </div>
   );

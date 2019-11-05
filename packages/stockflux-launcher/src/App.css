@@ -2,7 +2,7 @@ html {
   background-color: var(--window-background-color);
 }
 
-.launcher-container {
+.launcher {
   display: flex;
   flex-wrap: wrap;
   height: 100%;
@@ -13,11 +13,11 @@ html {
   margin-bottom: 8px;
 }
 
-.icon:hover {
+.icon:hover:enabled{
   color: var(--icon-active);
 }
 
-.launcher-title {
+.title {
   width: 100%;
   height: 28px;
 }

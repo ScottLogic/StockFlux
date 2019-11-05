@@ -6,9 +6,6 @@ import { OpenfinApiHelpers } from 'stockflux-core';
 import './App.css';
 import FreeTextSearch from './free-text-search/FreeTextSearch';
 import getUndockedPosition from './helpers/getUndockedPosition';
-import { ReactComponent as LeftIcon } from './icons/left.svg';
-import { ReactComponent as RightIcon } from './icons/right.svg';
-import { ReactComponent as TopIcon } from './icons/top.svg';
 import Watchlist from './app-shortcuts/Watchlist';
 import ToolBar from './toolbar/ToolBar';
 
@@ -73,8 +70,8 @@ export default () => {
   }, [edge]);
 
   return (
-    <div className="launcher-container">
-      <div className="launcher-title">
+    <div className="launcher">
+      <div className="title">
         <Components.Titlebar title={title} confirmClose={true} />
       </div>
       <div className={cx('app', edge)}>
@@ -96,21 +93,21 @@ export default () => {
           tools={[
             {
               className: 'icon',
-              label: <LeftIcon />,
+              label: <Components.Icons.Launcher.LeftIcon />,
               onClick: windowActions.dockLeft,
               disabled: edge === ScreenEdge.LEFT,
               visible: isDockable
             },
             {
               className: 'icon',
-              label: <TopIcon />,
+              label: <Components.Icons.Launcher.TopIcon />,
               onClick: windowActions.dockTop,
               disabled: edge === ScreenEdge.TOP,
               visible: isDockable
             },
             {
               className: 'icon',
-              label: <RightIcon />,
+              label: <Components.Icons.Launcher.RightIcon />,
               onClick: windowActions.dockRight,
               disabled: edge === ScreenEdge.RIGHT,
               visible: isDockable
