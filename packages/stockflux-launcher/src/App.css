@@ -71,19 +71,15 @@ html {
   z-index: 1;
 }
 
+.strong {
+  font-weight: var(--font-weight-bold);
+}
+
 .title {
   color: var(--text-color);
+  font-family: var(--font-family);
   font-size: 21px;
   user-select:none;
-}
-
-.title-light {
-  font-family: var(--font-family);
-}
-
-.title-strong {
-  font-family: var(--font-family);
-  font-weight: var(--font-weight-bold);
 }
 
 .title-vertical {

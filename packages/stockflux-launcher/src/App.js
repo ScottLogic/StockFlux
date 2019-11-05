@@ -34,8 +34,8 @@ export default () => {
   const toolbarStyle = isHorizontal ? 'toolbar' : 'toolbar t-vertical';
   const title = isHorizontal ? (
     <span>
-      <span className="title title-strong">Stock</span>
-      <span className="title title-light">Flux</span>
+      <span className="title strong">Stock</span>
+      <span className="title">Flux</span>
     </span>
   ) : (
     ''
@@ -78,8 +78,8 @@ export default () => {
         {!isHorizontal && (
           <div className="title title-vertical">
             <br></br>
-            <span className="title title-strong">S</span>
-            <span className="title title-light">F</span>
+            <span className="title strong">S</span>
+            <span className="title">F</span>
           </div>
         )}
         <div className={iconStyle}>
