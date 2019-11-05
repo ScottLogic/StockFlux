@@ -71,7 +71,7 @@ export default () => {
 
   return (
     <div className="launcher">
-      <div className="launcher-title">
+      <div className="titlebar">
         <Components.Titlebar title={title} confirmClose={true} />
       </div>
       <div className={cx('app', edge)}>
