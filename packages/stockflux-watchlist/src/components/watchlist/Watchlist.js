@@ -49,8 +49,7 @@ const Watchlist = () => {
     setNewSymbol(newSymbol);
     if (notification) {
       notification.launch({
-        url: 'notification.html',
-        timeout: 'never'
+        url: 'notification.html'
       });
     }
   };
