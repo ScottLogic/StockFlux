@@ -1,23 +1,40 @@
+html {
+    border-radius:20px;
+}
 body {
     overflow: hidden;
     padding: 4vh 4vw;
-    border:var(--border);
-    box-sizing: border-box;
+    border:none;
+    box-sizing: border-box;    
+    background-color:var(--window-background-color);
+}
+#root {
+    display:flex;
+    align-items: center;
 }
 .popup{
-    color:var(--text-grey-lighter);        
+    color:var(--text-color);
+    width:100%;
 }
 
 .popup-message{
     text-align: center;
     font-size: var(--font-large);
+    margin-bottom: 21px;
 }
+
 
 .popup-options {
     text-align: right;
+    display: flex;
+    flex-direction: row;
 }
 
 .popup-options button {
-    color:var(--text-teal-light);
-    border-color:var(--text-teal-light);
+    margin: 0 7vw;
+    padding: 5vh 0vw;
+    flex-grow: 1;
+    border:none;
+    background-color: var(--color-highlight);
+    border-radius:5px
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import RoundButton from '../buttons/round-button/RoundButton';
+import DialogButton from '../buttons/dialog-button/DialogButton';
 import { useChildWindow } from 'openfin-react-hooks';
 
 const PopupWindow = ({ message, options, children }) => {
@@ -26,11 +26,10 @@ const PopupWindow = ({ message, options, children }) => {
       saveWindowState: false,
       showTaskbarIcon: false,
       resizable: false,
-      backgroundColor: '#28313D',
       waitForPageLoad: true,
       alwaysOnTop: true,
-      defaultWidth: 300,
-      defaultHeight: 100
+      defaultWidth: 270,
+      defaultHeight: 145
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -54,13 +53,13 @@ const PopupWindow = ({ message, options, children }) => {
           <p className="popup-message">{message}</p>
           <div className="popup-options">
             {options.map(option => (
-              <RoundButton
+              <DialogButton
                 key={option.name}
                 onClick={() => handleSelection(option.name)}
                 className={option.className}
               >
                 {option.icon}
-              </RoundButton>
+              </DialogButton>
             ))}
           </div>
         </div>

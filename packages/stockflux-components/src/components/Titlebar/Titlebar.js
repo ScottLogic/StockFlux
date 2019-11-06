@@ -52,7 +52,7 @@ export default ({ title, confirmClose }) => {
         {confirmClose && (
           <div className="header-icon">
             <ConfirmationWindow
-              message="This will close all related windows. Do you wish to continue?"
+              message="Do you wish to close StockFlux?"
               onConfirm={onCloseClick}
             >
               <CloseIcon />
