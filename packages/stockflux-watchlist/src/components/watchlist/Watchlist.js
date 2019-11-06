@@ -69,26 +69,15 @@ const Watchlist = () => {
     if (notification.state === 'LAUNCHED') {
       const alreadyInWatchlist = watchlist.includes(newSymbol);
       notification.populate(
-        <>
-          <div className="notification-icon">
-            <img
-              id="icon"
-              className={alreadyInWatchlist ? 'arrow-up' : 'card-icon'}
-              src={alreadyInWatchlist ? 'ArrowUp.png' : 'CardIcon.png'}
-              alt="Notification Icon"
-            />
-          </div>
-          <div id="notification-content">
-            <p id="title">WATCHLIST UPDATED</p>
-            <hr />
-            <p id="info">
-              <span id="symbol">{newSymbol}</span>
-              <span id="message">{`${
-                alreadyInWatchlist ? ' moved' : ' added'
-              } to the top`}</span>
-            </p>
-          </div>
-        </>
+        <div className="notification">
+          <div className="icon"></div>
+          <p>
+            {newSymbol}
+            {alreadyInWatchlist
+              ? ' has been moved to the top of your Watchlist'
+              : ' has been added to your Watchlist'}
+          </p>
+        </div>
       );
     }
   });

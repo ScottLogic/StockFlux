@@ -91,7 +91,7 @@ body {
 .card-wrapper.dragOverBottom,
 .card-wrapper.dragOver,
 .card-wrapper.dragging {
-  background-color: rgba(41,233,227,0.2);
+  background-color: rgba(41, 233, 227, 0.2);
 }
 
 .card-wrapper.dragOver {
