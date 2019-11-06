@@ -7,7 +7,6 @@ import './App.css';
 import FreeTextSearch from './free-text-search/FreeTextSearch';
 import getUndockedPosition from './helpers/getUndockedPosition';
 import Watchlist from './app-shortcuts/Watchlist';
-import Titlebar from './titlebar/Titlebar';
 import ToolBar from './toolbar/ToolBar';
 
 export default () => {
@@ -33,6 +32,14 @@ export default () => {
 
   const iconStyle = `icon ${isHorizontal ? 'horizontal' : 'vertical'}`;
   const toolbarStyle = isHorizontal ? 'toolbar' : 'toolbar t-vertical';
+  const title = isHorizontal ? (
+    <span>
+      <span className="title strong">Stock</span>
+      <span className="title">Flux</span>
+    </span>
+  ) : (
+    ''
+  );
 
   /* Hook undock if initialDocked is false on start */
   useEffect(() => {
@@ -64,10 +71,17 @@ export default () => {
 
   return (
     <div className="launcher">
-      <div className="launcher-title">
-        <Titlebar dockedTo={edge} />
+      <div className="titlebar">
+        <Components.Titlebar title={title} confirmClose={true} />
       </div>
       <div className={cx('app', edge)}>
+        {!isHorizontal && (
+          <div className="title title-vertical">
+            <br></br>
+            <span className="title strong">S</span>
+            <span className="title">F</span>
+          </div>
+        )}
         <div className={iconStyle}>
           <Watchlist symbol="TSLA" name="Tesla" />
         </div>
