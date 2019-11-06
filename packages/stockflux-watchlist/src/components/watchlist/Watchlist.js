@@ -3,7 +3,6 @@ import WatchlistCard from '../watchlist-card/WatchlistCard';
 import Components from 'stockflux-components';
 import { StockFluxHooks, OpenfinApiHelpers, Launchers } from 'stockflux-core';
 import * as fdc3 from 'openfin-fdc3';
-import { showNotification } from '../notifications/Notification';
 import {
   useInterApplicationBusSubscribe,
   useOptions
@@ -14,9 +13,16 @@ import {
   resetDragState,
   onDrop
 } from '../watchlist-card/WatchlistCard.Dragging';
+import { useNotification } from 'openfin-react-hooks';
 import './Watchlist.css';
 
 let latestListener;
+
+const NOTIFICATION_OPTIONS = {
+  cssUrl: './notification.css',
+  parentDocument: document,
+  shouldInheritCss: true
+};
 
 const getDistinctElementArray = array => [...new Set(array)];
 
@@ -24,6 +30,7 @@ const Watchlist = () => {
   const [dragOverIndex, setDragOverIndex] = useState(null);
   const [unwatchedSymbol, setUnwatchedSymbol] = useState(null);
   const [displayPreview, setDisplayPreview] = useState(false);
+  const [newSymbol, setNewSymbol] = useState(null);
   const [windowOptions, setWindowOptions] = useState(null);
   const [previewDetails, setPreviewDetails] = useState({
     position: { top: 0, left: 0 },
@@ -36,17 +43,15 @@ const Watchlist = () => {
   const WINDOW_OFFSET = 5;
 
   const [options] = useOptions();
+  const notification = useNotification(NOTIFICATION_OPTIONS);
 
   const displayNotification = newSymbol => {
-    const alreadyInWatchlist = watchlist.includes(newSymbol);
-    showNotification({
-      message: {
-        symbol: newSymbol,
-        watchlistName: 'My Watchlist',
-        alreadyInWatchlist,
-        messageText: `${alreadyInWatchlist ? ' moved' : ' added'} to the top`
-      }
-    });
+    setNewSymbol(newSymbol);
+    if (notification) {
+      notification.launch({
+        url: 'notification.html'
+      });
+    }
   };
 
   const addToWatchlist = symbol => {
@@ -59,6 +64,33 @@ const Watchlist = () => {
     'stockflux-watchlist'
   );
 
+  useEffect(() => {
+    if (notification.state === 'LAUNCHED') {
+      const alreadyInWatchlist = watchlist.includes(newSymbol);
+      notification.populate(
+        <>
+          <div className="notification-icon">
+            <img
+              id="icon"
+              className={alreadyInWatchlist ? 'arrow-up' : 'card-icon'}
+              src={alreadyInWatchlist ? 'ArrowUp.png' : 'CardIcon.png'}
+              alt="Notification Icon"
+            />
+          </div>
+          <div id="notification-content">
+            <p id="title">WATCHLIST UPDATED</p>
+            <hr />
+            <p id="info">
+              <span id="symbol">{newSymbol}</span>
+              <span id="message">{`${
+                alreadyInWatchlist ? ' moved' : ' added'
+              } to the top`}</span>
+            </p>
+          </div>
+        </>
+      );
+    }
+  });
   useEffect(() => {
     if (data && data.message) {
       if (data.message.symbol) {
