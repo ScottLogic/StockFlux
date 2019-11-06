@@ -50,12 +50,14 @@ export default ({ title, confirmClose }) => {
           </div>
         )}
         {confirmClose && (
-          <div className="header-icon">
+          <div>
             <ConfirmationWindow
               message="This will close all related windows. Do you wish to continue?"
               onConfirm={onCloseClick}
             >
-              <CloseIcon />
+              <div className="header-icon">
+                <CloseIcon />
+              </div>
             </ConfirmationWindow>
           </div>
         )}
