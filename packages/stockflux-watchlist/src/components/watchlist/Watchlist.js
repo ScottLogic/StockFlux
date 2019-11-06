@@ -191,7 +191,7 @@ const Watchlist = () => {
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [displayPreview, windowOptions]);
+  }, [displayPreview, displayDelete, windowOptions]);
 
   return (
     <div
