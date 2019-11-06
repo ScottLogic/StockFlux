@@ -30,7 +30,7 @@ const Watchlist = () => {
   const [dragOverIndex, setDragOverIndex] = useState(null);
   const [unwatchedSymbol, setUnwatchedSymbol] = useState(null);
   const [displayPreview, setDisplayPreview] = useState(false);
-  const [newSymbol, setNewSymbol] = useState(null);
+  const [newSymbol, setNewSymbol] = useState({ symbol: null, isNew: false });
   const [windowOptions, setWindowOptions] = useState(null);
   const [previewDetails, setPreviewDetails] = useState({
     position: { top: 0, left: 0 },
@@ -45,18 +45,20 @@ const Watchlist = () => {
   const [options] = useOptions();
   const notification = useNotification(NOTIFICATION_OPTIONS);
 
-  const displayNotification = newSymbol => {
-    setNewSymbol(newSymbol);
+  const displayNotification = async () => {
     if (notification) {
-      notification.launch({
+      await notification.launch({
         url: 'notification.html'
       });
     }
   };
-
-  const addToWatchlist = symbol => {
-    setWatchlist(getDistinctElementArray([symbol, ...watchlist]));
-    displayNotification(symbol);
+  const addToWatchlist = async incomingSymbol => {
+    setNewSymbol({
+      symbol: incomingSymbol,
+      isNew: !watchlist.includes(incomingSymbol)
+    });
+    await displayNotification(incomingSymbol);
+    setWatchlist(getDistinctElementArray([incomingSymbol, ...watchlist]));
   };
 
   const { data } = useInterApplicationBusSubscribe(
@@ -66,25 +68,22 @@ const Watchlist = () => {
 
   useEffect(() => {
     if (notification.state === 'LAUNCHED') {
-      const alreadyInWatchlist = watchlist.includes(newSymbol);
       notification.populate(
         <div className="notification">
           <div className="icon"></div>
           <p>
-            {newSymbol}
-            {alreadyInWatchlist
-              ? ' has been moved to the top of your Watchlist'
-              : ' has been added to your Watchlist'}
+            {newSymbol.symbol}
+            {newSymbol.isNew
+              ? ' has been added to your Watchlist'
+              : ' has been moved to the top of your Watchlist'}
           </p>
         </div>
       );
     }
   });
   useEffect(() => {
-    if (data && data.message) {
-      if (data.message.symbol) {
-        addToWatchlist(data.message.symbol);
-      }
+    if (data && data.message && data.message.symbol) {
+      addToWatchlist(data.message.symbol);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
