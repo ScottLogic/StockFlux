@@ -25,16 +25,16 @@ html, body{
 
 .handle.handle--w{
   /* border-radius: 50%; */
-  rx: 22;
-  width: .5%;
+  /* rx: 22; */
+  width: .3%;
   height: 100%;
   fill: white;
 }
 
 .handle.handle--e{
-  rx: 22;
+  /* rx: 22; */
   /* ry: 100; */
-  width: .5%;
+  width: .3%;
   height: 100%;
   fill: white;
 }
@@ -67,8 +67,8 @@ fill-opacity: 0.2
 } */
 
 .line{
-  stroke: var(--chart-teal);
-  stroke-width: 2
+  stroke: #21B1CA;
+  stroke-width: 1
 }
   
 .cartesian-chart >.plot-area {

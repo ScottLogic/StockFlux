@@ -51,11 +51,18 @@ body {
 #navigation-container {
     background: #091A29;
     height: 20%;
+    padding: 0px 0px 0px 0px
+
 }
 
 #navigation-container >.cartesian-chart >.plot-area{
-    stroke: grey;
+    stroke: #21B1CA;
     stroke-width: 1px;
+    /* margin: 0px 30px 0px 30px */
+}
+
+.area {
+    fill: rgba(33,177,202,0.2);
 }
 
 #navigation-container .y-axis {

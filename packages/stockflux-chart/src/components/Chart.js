@@ -20,16 +20,22 @@ const Chart = ({ chartData, chartType }) => {
 
   function makeChart(data) {
 
+    //Extents calculate the domain/(min/max) of data
     var yExtent = fc.extentLinear().accessors([function (d) { return d.high; },
     function (d) { return d.low }]).pad([0.1, 0.1])
 
     var xExtent = fc.extentDate()
       .accessors([function (d) { return d.date; }]);
 
-    var x = d3.scaleTime()
+    var xScale = d3.scaleTime()
       .domain(xExtent(data));
-    var y = d3.scaleLinear()
+    var yScale = d3.scaleLinear()
       .domain(yExtent(data));
+
+    // var line = d3.svg.line()
+    //   .xScale(function (d) { return xScale(d.date); })
+    //   .y0(height)
+    //   .y1(function (d) { return yScale(d.close); });
 
 
     var chartData = {
@@ -40,7 +46,11 @@ const Chart = ({ chartData, chartType }) => {
 
     var gridlines = fc.annotationSvgGridline().yTicks(10).xTicks(0)
 
-    var area = fc.seriesSvgLine()
+    var line = fc.seriesSvgLine()
+      .crossValue(function (d) { return d.date; })
+      .mainValue(function (d) { return d.close; })
+
+    var area = fc.seriesSvgArea()
       .crossValue(function (d) { return d.date; })
       .mainValue(function (d) { return d.close; })
 
@@ -67,23 +77,21 @@ const Chart = ({ chartData, chartType }) => {
         }
       });
 
-    if (chartType === true) {
-      var mainChart = fc.chartCartesian(x, y)
-        .svgPlotArea(area)
-    } else {
-      var mainChart = fc.chartCartesian(x, y)
-        .svgPlotArea(candlestick)
-        .decorate(function (selection) {
-          var plot = selection.enter().select('.plot-area')
-          plot.attr('class', 'plot-area main-chart')
-        })
-    }
+    // var mainChart = fc.chartCartesian(xScale, yScale)
+    //   .svgPlotArea(line)
+    var mainChart = fc.chartCartesian(xScale, yScale)
+      .svgPlotArea(candlestick)
+      .decorate(function (selection) {
+        var plot = selection.enter().select('.plot-line')
+        plot.attr('class', 'plot-line main-chart')
+      })
 
-    var navigatorChart = fc.chartCartesian(x.copy(), y.copy())
+
+    var navigatorChart = fc.chartCartesian(xScale.copy(), yScale.copy())
       .svgPlotArea(multi);
 
 
-    var scale = d3.scaleTime().domain(x.domain());
+    var scale = d3.scaleTime().domain(xScale.domain());
     mainChart.xDomain(chartData.brushedRange.map(scale.invert));
 
     const render = () => {
@@ -109,10 +117,10 @@ const Chart = ({ chartData, chartType }) => {
 // .decorate(function (selection) {
 //   var enter = selection.enter();
 //   // console.log(enter)
-//   // var handles = enter.select('.plot-area')
+//   // var handles = enter.select('.plot-line')
 //   // console.log(handles)
-//   var area = (d3.select('.plot-area'))
-//   console.log("area", area)
+//   var line = (d3.select('.plot-line'))
+//   console.log("line", line)
 //   var brush = (d3.select('.brush'))
 //   console.log("brush", brush)
 //   var handles = brush.selectAll('.handle')
