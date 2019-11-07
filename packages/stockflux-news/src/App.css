@@ -1,23 +1,11 @@
 .stockflux-news {
   height: 100%;
-  background-color: var(--middle-background);
-}
-
-.header {
-  color: var(--text-grey-lighter);
-  display:flex;
-  flex-direction: row;
-  font-size: var(--font-xxxlarge);
-  font-weight: var(--font-weight-bolder);
-  justify-content: space-between;
-  padding: 12px;
-  height: var(--header-height);
-  border-bottom: 1px solid var(--dark-background);
+  background-color: var(--window-background-color);
 }
 
 .container {
   max-height: 700px;
-  height: calc(100vh - (var(--header-height) + var(--titlebar-height)));
+  height: calc(100vh - var(--titlebar-height));
 }
 
 .icons {
