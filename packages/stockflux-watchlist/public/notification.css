@@ -21,7 +21,7 @@ body {
   margin: auto 20px;
   height: 28px;
   width: 45px;
-  animation: eyeGif 2s steps(45, end) 1s forwards;
+  animation: eyeGif 1.5s steps(45, end) 1s forwards;
   background: url('./animation-assets/eye_outline_animation_long.svg') 0 0
     no-repeat;
 }
@@ -35,7 +35,7 @@ p {
     background-position: 0 0;
   }
   100% {
-    background-position: -2242px 0;
+    background-position: -2250px 0;
   }
 }
 
