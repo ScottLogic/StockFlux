@@ -1,15 +1,10 @@
 .round {
-  border-radius: 100%;
-  height: 35px;
-  width: 35px;
   display: inline-block;
-  margin: 5px;
-  color: var(--text-teal-light);
-  border: var(--border);
+  color: var(--icon-inactive);
+  border: none;
   outline: none;
   background-color: inherit;
   cursor: pointer;
-  padding: 6px;
 }
 
 .round.small {
@@ -31,8 +26,7 @@
 }
 
 .round:hover {
-  color: var(--text-teal-light);
-  border-color: var(--text-teal-light);
+  color: var(--icon-active);
 }
 
 .round:active {
@@ -41,7 +35,6 @@
 
 .round:disabled {
   color: var(--light-background);
-  border: solid 1px var(--light-background);
   cursor: default;
 }
 

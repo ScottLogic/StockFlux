@@ -1,6 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400, 100, 300, 500);
 
-body {
+div#root {
   background-color: rgb(40, 49, 61);
   height: calc(100vh - 2px);
   width: calc(100vw - 2px);
@@ -51,7 +51,7 @@ span#watchlist-name {
 span#symbol {
   padding-left: 9px;
   font-weight: 700;
-  letter-spacing: 1px
+  letter-spacing: 1px;
 }
 
 hr {
