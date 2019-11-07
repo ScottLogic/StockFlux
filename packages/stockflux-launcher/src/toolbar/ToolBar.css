@@ -3,6 +3,10 @@
   align-items: center;
 }
 
+.t-vertical {
+  margin-bottom: 12px;
+}
+
 .left .toolbar,
 .right .toolbar {
   flex-direction: column;
@@ -14,5 +18,6 @@
 }
 
 .toolbar button svg {
+  margin-top: 15px;
   padding: 0;
 }

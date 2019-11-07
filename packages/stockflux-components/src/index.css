@@ -45,6 +45,9 @@
   /* transitions  */
   --icon-transition-duration: 0.5s;
 
+  /* font styles */
+  --font-family: 'Roboto';
+  
   /* font-size */
   --font-normal: 12px;
   --font-medium: 13px;
