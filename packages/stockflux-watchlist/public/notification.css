@@ -20,8 +20,10 @@ body {
 .notification .icon {
   margin: auto 20px;
   height: 28px;
-  width: 44px;
-  animation: eyeGif 2s ease-in 1s forwards;
+  width: 45px;
+  animation: eyeGif 2s steps(45, end) 1s forwards;
+  background: url('./animation-assets/eye_outline_animation_long.svg') 0 0
+    no-repeat;
 }
 
 p {
@@ -30,40 +32,10 @@ p {
 
 @keyframes eyeGif {
   0% {
-    background: url('./animation-assets/eye_outline_animation_1.svg') no-repeat;
-  }
-  6% {
-    background: url('./animation-assets/eye_outline_animation_2.svg') no-repeat;
-  }
-  12% {
-    background: url('./animation-assets/eye_outline_animation_3.svg') no-repeat;
-  }
-  16% {
-    background: url('./animation-assets/eye_outline_animation_4.svg') no-repeat;
-  }
-  20% {
-    background: url('./animation-assets/eye_outline_animation_5.svg') no-repeat;
-  }
-  24% {
-    background: url('./animation-assets/eye_outline_animation_6.svg') no-repeat;
-  }
-  32% {
-    background: url('./animation-assets/eye_outline_animation_7.svg') no-repeat;
-  }
-  38% {
-    background: url('./animation-assets/eye_outline_animation_8.svg') no-repeat;
-  }
-  40% {
-    background: url('./animation-assets/eye_outline_animation_9.svg') no-repeat;
-  }
-  50% {
-    background: url('./animation-assets/eye_outline_animation_10.svg') no-repeat;
-  }
-  60% {
-    background: url('./animation-assets/eye_outline_animation_11.svg') no-repeat;
+    background-position: 0 0;
   }
   100% {
-    background: url('./animation-assets/eye_outline_animation_11.svg') no-repeat;
+    background-position: -2242px 0;
   }
 }
 
