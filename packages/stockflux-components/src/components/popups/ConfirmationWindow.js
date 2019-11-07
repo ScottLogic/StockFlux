@@ -1,19 +1,18 @@
 import React from 'react';
 import PopupWindow from './PopupWindow';
-import { FaCheck, FaTimes } from 'react-icons/fa';
 
 const ConfirmationWindow = ({ message, onConfirm, onReject, children }) => {
   const modalOptions = [
     {
       name: 'Cancel',
-      icon: <FaTimes></FaTimes>,
+      icon: 'No',
       className: 'modal-cancel',
       action: onReject
     },
     {
       name: 'Confirm',
       action: onConfirm,
-      icon: <FaCheck></FaCheck>,
+      icon: 'Yes',
       className: 'modal-confirm'
     }
   ];

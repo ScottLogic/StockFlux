@@ -9,6 +9,7 @@ import currentWindowService from '../../services/currentWindowService';
 import cx from 'classnames';
 import reducer, { initialState } from '../../reducers/open-apps/OpenApps';
 import Action from '../../reducers/open-apps/Action';
+import previewOptions from '../watchlist/PreviewOptions';
 import './WatchlistCard.css';
 
 const WatchlistCard = ({
@@ -32,6 +33,7 @@ const WatchlistCard = ({
     delta: 0,
     percentage: 0
   });
+  const [dragOutcome, setDragOutcome] = useState('');
   const [openApps, dispatch] = useReducer(reducer, initialState);
 
   const determineIfNewsOpen = useCallback(async () => {
@@ -114,13 +116,24 @@ const WatchlistCard = ({
       setDragging({ isDragging: true, clientX, offsetY });
       e.dataTransfer.setData(JSON.stringify(symbolData), '');
       e.dataTransfer.setData(JSON.stringify(windowData), '');
+      bindings.previewMode(dragOutcome);
     };
   };
 
   const onDragEnd = e => {
     if (e.dataTransfer.dropEffect === 'none') {
-      bindings.onDropOutside(symbol, stockData.name);
+      switch (dragOutcome) {
+        case previewOptions.delete:
+          removeFromWatchList(symbol);
+          break;
+        case previewOptions.chart:
+          bindings.onDropOutside(symbol, stockData.name);
+          break;
+        default:
+          console.error('Invalid Action to switch(DragOutcome)');
+      }
     }
+    setDragOutcome(previewOptions.none);
     setDragging({ isDragging: false });
   };
 
@@ -139,7 +152,10 @@ const WatchlistCard = ({
     >
       <div className="drop-target">
         <div className="card default-background" draggable="false">
-          <div className="card-top darkens">
+          <div
+            className="card-top darkens"
+            onMouseDown={() => setDragOutcome(previewOptions.delete)}
+          >
             <div className="details-container">
               <div className="symbol">{symbol}</div>
               <div className="name">{stockData.name}</div>
@@ -179,7 +195,10 @@ const WatchlistCard = ({
           </div>
           <div
             className="card-bottom"
-            onClick={() => bindings.onDropOutside(symbol, stockData.name)}
+            onClick={() => {
+              bindings.onDropOutside(symbol, stockData.name);
+            }}
+            onMouseDown={() => setDragOutcome(previewOptions.chart)}
           >
             <Minichart
               symbol={symbol}

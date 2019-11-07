@@ -1,7 +1,8 @@
 :root {  
   /* UX Colours */
   /* Generic Colours */
-  --color-highlight: #29E9E3;
+  --color-highlight: #21B1CA;
+  --color-highlight-hover: #2198AE;
   --color-inactive: #8A96A6;
   --color-hover:#1B3B56;
   --color-primary:#0D2437;
@@ -13,8 +14,8 @@
   --window-icon:#FFFFFF;
   --window-stock-hover:#091A29;
   /* Charts */
-  --chart-line: #29E9E3;
-  --chart-gradient-top:#29E9E3; 
+  --chart-line: #21B1CA;
+  --chart-gradient-top:#21B1CA; 
   --chart-gradient-bottom:#FFFFFF;
   --chart-hover:#1B3B56;
   /* Scroll Bars */
@@ -24,7 +25,7 @@
   --scroll-bar-track:#1B3B56;
   --scroll-bar-grip:#091A29;
   /* Icons */
-  --icon-active:#29E9E3;
+  --icon-active:#21B1CA;
   --icon-inactive: #8A96A6;
   --icon-hover: #1B3B56;
   --icon-hover-light: rgba(256,256,256,0.15);
@@ -64,7 +65,7 @@
 
   /* padding */
   --padding-small: 5px;
-  --padding-medium: 10px;
+  --padding-medium: 12px;
   --padding-large: 15px;
   --padding-xlarge: 20px;
 

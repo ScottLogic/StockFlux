@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  color: var(--text-color);
 }
 
 body {
@@ -11,7 +12,8 @@ body {
 #root {
   height: 100%;
   --header-height: 60px;
-  --titlebar-height: 35px;
-  --newsitem-height: 150px;
+  --tabbar-height: 36px;
+  --titlebar-height: 28px;
+  --newsitem-height: 143px;
   --no-article-height: 30px;
 }
