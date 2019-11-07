@@ -65,9 +65,6 @@ html {
 
 .header-icon {
   color: var(--text-color);
-  display: inline-block;    
-  cursor: pointer;
-  padding: 8px;
   z-index: 1;
 }
 
