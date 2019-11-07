@@ -45,9 +45,9 @@ const Watchlist = () => {
   const [options] = useOptions();
   const notification = useNotification(NOTIFICATION_OPTIONS);
 
-  const displayNotification = async () => {
+  const displayNotification = () => {
     if (notification) {
-      await notification.launch({
+      notification.launch({
         url: 'notification.html'
       });
     }
@@ -72,10 +72,11 @@ const Watchlist = () => {
         <div className="notification">
           <div className="icon"></div>
           <p>
-            {newSymbol.symbol}
-            {newSymbol.isNew
-              ? ' has been added to your Watchlist'
-              : ' has been moved to the top of your Watchlist'}
+            {`${newSymbol.symbol} ${
+              newSymbol.isNew
+                ? 'has been added to your Watchlist'
+                : 'has been moved to the top of your Watchlist'
+            }`}
           </p>
         </div>
       );
