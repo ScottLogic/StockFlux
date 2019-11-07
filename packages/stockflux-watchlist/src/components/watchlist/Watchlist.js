@@ -15,6 +15,7 @@ import {
 } from '../watchlist-card/WatchlistCard.Dragging';
 import { useNotification } from 'openfin-react-hooks';
 import './Watchlist.css';
+import previewOptions from './PreviewOptions';
 
 let latestListener;
 
@@ -29,7 +30,7 @@ const getDistinctElementArray = array => [...new Set(array)];
 const Watchlist = () => {
   const [dragOverIndex, setDragOverIndex] = useState(null);
   const [unwatchedSymbol, setUnwatchedSymbol] = useState(null);
-  const [displayPreview, setDisplayPreview] = useState(false);
+  const [displayPreview, setDisplayPreview] = useState(previewOptions.none);
   const [newSymbol, setNewSymbol] = useState(null);
   const [windowOptions, setWindowOptions] = useState(null);
   const [previewDetails, setPreviewDetails] = useState({
@@ -135,12 +136,17 @@ const Watchlist = () => {
     }
   };
 
+  const setPreviewMode = mode => {
+    setDisplayPreview(mode);
+  };
+
   const bindings = {
     onModalConfirmClick: onModalConfirmClick,
     onModalBackdropClick: onModalBackdropClick,
     onIconClick: onIconClick,
     resetDragState: resetDragState,
-    onDropOutside: onDropOutside
+    onDropOutside: onDropOutside,
+    previewMode: setPreviewMode
   };
 
   /*
@@ -223,26 +229,32 @@ const Watchlist = () => {
       className="watchlist"
       onDragStart={e => {
         onDragStart(e, watchlist, setDragOverIndex);
-        setDisplayPreview(true);
       }}
       onDragOver={e => {
         onDragOver(e, watchlist, dragOverIndex, setDragOverIndex);
       }}
       onDragEnd={() => {
-        setDisplayPreview(false);
+        setDisplayPreview(previewOptions.none);
         resetDragState(setDragOverIndex);
       }}
       onDrop={e => {
-        setDisplayPreview(false);
+        setDisplayPreview(previewOptions.none);
         onDrop(e, watchlist, getSymbolIndex, setWatchlist, dragOverIndex);
       }}
     >
       <Components.PreviewWindow
         windowName="chart-preview"
-        display={displayPreview}
+        display={displayPreview === previewOptions.chart}
         htmlPath="preview-chart.html"
         position={previewDetails.position}
         size={previewDetails.size}
+      ></Components.PreviewWindow>
+      <Components.PreviewWindow
+        windowName="symbol-delete"
+        display={displayPreview === previewOptions.delete}
+        htmlPath="delete-symbol.html"
+        position={previewDetails.position}
+        size={{ height: 100, width: 400 }}
       ></Components.PreviewWindow>
       <Components.ScrollWrapperY>
         {watchlist.length === 0 ? (
