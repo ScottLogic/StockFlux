@@ -9,6 +9,7 @@ import currentWindowService from '../../services/currentWindowService';
 import cx from 'classnames';
 import reducer, { initialState } from '../../reducers/open-apps/OpenApps';
 import Action from '../../reducers/open-apps/Action';
+import previewOptions from '../watchlist/PreviewOptions';
 import './WatchlistCard.css';
 
 const WatchlistCard = ({
@@ -122,17 +123,17 @@ const WatchlistCard = ({
   const onDragEnd = e => {
     if (e.dataTransfer.dropEffect === 'none') {
       switch (dragOutcome) {
-        case 'DELETE':
+        case previewOptions.delete:
           removeFromWatchList(symbol);
           break;
-        case 'CHART':
+        case previewOptions.chart:
           bindings.onDropOutside(symbol, stockData.name);
           break;
         default:
           console.error('Invalid Action to switch(DragOutcome)');
       }
     }
-    setDragOutcome('');
+    setDragOutcome(previewOptions.none);
     setDragging({ isDragging: false });
   };
 
@@ -153,7 +154,7 @@ const WatchlistCard = ({
         <div className="card default-background" draggable="false">
           <div
             className="card-top darkens"
-            onMouseDown={() => setDragOutcome('DELETE')}
+            onMouseDown={() => setDragOutcome(previewOptions.delete)}
           >
             <div className="details-container">
               <div className="symbol">{symbol}</div>
@@ -195,10 +196,9 @@ const WatchlistCard = ({
           <div
             className="card-bottom"
             onClick={() => {
-              setDragOutcome('');
               bindings.onDropOutside(symbol, stockData.name);
             }}
-            onMouseDown={() => setDragOutcome('CHART')}
+            onMouseDown={() => setDragOutcome(previewOptions.chart)}
           >
             <Minichart
               symbol={symbol}
