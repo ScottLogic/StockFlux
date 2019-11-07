@@ -3,30 +3,47 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: var(--font-family);
 }
 
 .free-text-search input {
   background: var(--dark-background);
-  color: var(--text-teal-light);
-  border: var(--border);
-  border-radius: 20px;
+  color: var(--text-color);
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
   height: var(--search-input-height);
   width: var(--search-input-width);
   min-width: var(--search-input-min-width);
   padding: var(--padding-medium);
-  margin: 0 5px;
+  margin: 0 12px;
   outline: none;
+}
+
+.search-undocked {
+  padding-right: 18px;
+  width: 350px;
 }
 
 .left .free-text-search,
 .right .free-text-search {
   flex-direction: column;
-  justify-content: flex-start;
 }
 
 .left .free-text-search input,
 .right .free-text-search input {
   display: none;
+}
+
+.searchSVG {
+  color: var(--icon-inactive);
+  height: 40px;
+  margin-top: var(--margin-large) !important;
+  width: 60px;
+}
+
+.searchSVG:hover{
+  color: var(--icon-active);
 }
 
 div#root > .free-text-search {
