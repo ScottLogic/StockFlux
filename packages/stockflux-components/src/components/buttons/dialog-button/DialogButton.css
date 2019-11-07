@@ -14,23 +14,12 @@
   margin: 2px;
 }
 
-.dialog svg {
-  margin: auto;
-  display: block;
-  shape-rendering: auto;
-  fill: currentColor;
-}
-
-.dialog svg:hover {
-  color: inherit;
-}
-
 .dialog:hover {
-  background-color: var(--color-hover);
+  background-color: var(--color-highlight-hover);
 }
 
 .dialog:active {
-  background-color: var(--color-highlight);
+  background-color: var(--color-highlight-hover);
 }
 
 .dialog:disabled {
