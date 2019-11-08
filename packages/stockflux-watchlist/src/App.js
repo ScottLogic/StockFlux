@@ -125,14 +125,14 @@ const App = () => {
 
   const getSymbolIndex = symbol => watchlist.indexOf(symbol);
 
-  const onDropOutside = (symbol, stockName) => {
+  const onDropOutside = async (symbol, stockName) => {
     if (windowOptions) {
       /*Always recalculate where the target window should drop, for is the window has been moved. */
       const dropPosition = {
         left: calcLeftPosition(windowOptions.defaultWidth, WINDOW_OFFSET),
         top: window.screenTop
       };
-      Launchers.launchChart(symbol, stockName, dropPosition);
+      return Launchers.launchChart(symbol, stockName, dropPosition);
     }
   };
 

@@ -127,7 +127,7 @@ const WatchlistCard = ({
           removeFromWatchList(symbol);
           break;
         case previewOptions.chart:
-          bindings.onDropOutside(symbol, stockData.name);
+          handleChartOpen();
           break;
         default:
           console.error('Invalid Action to switch(DragOutcome)');
@@ -138,8 +138,9 @@ const WatchlistCard = ({
   };
 
   const handleChartOpen = () => {
-    bindings.onDropOutside(symbol, stockData.name);
-    determineIfChartOpen();
+    bindings
+      .onDropOutside(symbol, stockData.name)
+      .then(() => determineIfChartOpen());
   };
 
   return stockData ? (
