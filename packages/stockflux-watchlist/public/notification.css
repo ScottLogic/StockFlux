@@ -20,7 +20,7 @@ body {
 .notification .icon {
   margin: auto 20px;
   height: 28px;
-  width: 45px;
+  width: 57px;
   animation: eyeGif 1.5s steps(45, end) 1s forwards;
   background: url('./animation-assets/eye_outline_animation_long.svg') 0 0
     no-repeat;
