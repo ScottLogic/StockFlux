@@ -14,7 +14,7 @@ import {
   onDrop
 } from './components/watchlist-card/WatchlistCard.Dragging';
 import { useNotification } from 'openfin-react-hooks';
-import previewOptions from './components/watchlist/PreviewOptions';
+import previewOptions from './components/PreviewOptions';
 import './App.css';
 
 let latestListener;
