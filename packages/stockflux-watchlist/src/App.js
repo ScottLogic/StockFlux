@@ -130,7 +130,8 @@ const App = () => {
     onModalBackdropClick: onModalBackdropClick,
     onIconClick: onIconClick,
     resetDragState: resetDragState,
-    onDropOutside: onDropOutside
+    onDropOutside: onDropOutside,
+    previewMode: setDisplayPreview
   };
 
   /*
@@ -207,56 +208,65 @@ const App = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [displayPreview, windowOptions]);
-
   return (
-    <div
-      className="watchlist"
-      onDragStart={e => {
-        onDragStart(e, watchlist, setDragOverIndex);
-        setDisplayPreview(true);
-      }}
-      onDragOver={e => {
-        onDragOver(e, watchlist, dragOverIndex, setDragOverIndex);
-      }}
-      onDragEnd={() => {
-        setDisplayPreview(false);
-        resetDragState(setDragOverIndex);
-      }}
-      onDrop={e => {
-        setDisplayPreview(false);
-        onDrop(e, watchlist, getSymbolIndex, setWatchlist, dragOverIndex);
-      }}
-    >
-      <Components.PreviewWindow
-        windowName="chart-preview"
-        display={displayPreview}
-        htmlPath="preview-chart.html"
-        position={previewDetails.position}
-        size={previewDetails.size}
-      ></Components.PreviewWindow>
-      <Components.ScrollWrapperY>
-        {watchlist.length === 0 ? (
-          <div className="no-watchlist">
-            <p>You have no stocks to display.</p>
-            <p>Use StockFlux Search app to add new stocks to the list.</p>
-          </div>
-        ) : (
-          watchlist.map((symbol, i) => (
-            <WatchlistCard
-              key={symbol}
-              symbol={symbol}
-              bindings={bindings}
-              isUnwatching={unwatchedSymbol === symbol}
-              dragOver={dragOverIndex === i}
-              dragOverBottom={
-                dragOverIndex === watchlist.length && i === watchlist.length - 1
-              }
-              removeFromWatchList={removeFromWatchList}
-            />
-          ))
-        )}
-      </Components.ScrollWrapperY>
-    </div>
+    <>
+      <Components.Titlebar title="Watchlist" />
+      <div
+        className="watchlist"
+        onDragStart={e => {
+          onDragStart(e, watchlist, setDragOverIndex);
+        }}
+        onDragOver={e => {
+          onDragOver(e, watchlist, dragOverIndex, setDragOverIndex);
+        }}
+        onDragEnd={() => {
+          setDisplayPreview(previewOptions.none);
+          resetDragState(setDragOverIndex);
+        }}
+        onDrop={e => {
+          setDisplayPreview(previewOptions.none);
+          onDrop(e, watchlist, getSymbolIndex, setWatchlist, dragOverIndex);
+        }}
+      >
+        <Components.PreviewWindow
+          windowName="chart-preview"
+          display={displayPreview === previewOptions.chart}
+          htmlPath="preview-chart.html"
+          position={previewDetails.position}
+          size={previewDetails.size}
+        ></Components.PreviewWindow>
+        <Components.PreviewWindow
+          windowName="symbol-delete"
+          display={displayPreview === previewOptions.delete}
+          htmlPath="delete-symbol.html"
+          position={previewDetails.position}
+          size={{ height: 100, width: 400 }}
+        ></Components.PreviewWindow>
+        <Components.ScrollWrapperY>
+          {watchlist.length === 0 ? (
+            <div className="no-watchlist">
+              <p>You have no stocks to display.</p>
+              <p>Use StockFlux Search app to add new stocks to the list.</p>
+            </div>
+          ) : (
+            watchlist.map((symbol, i) => (
+              <WatchlistCard
+                key={symbol}
+                symbol={symbol}
+                bindings={bindings}
+                isUnwatching={unwatchedSymbol === symbol}
+                dragOver={dragOverIndex === i}
+                dragOverBottom={
+                  dragOverIndex === watchlist.length &&
+                  i === watchlist.length - 1
+                }
+                removeFromWatchList={removeFromWatchList}
+              />
+            ))
+          )}
+        </Components.ScrollWrapperY>
+      </div>
+    </>
   );
 };
 
