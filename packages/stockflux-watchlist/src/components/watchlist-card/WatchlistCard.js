@@ -137,6 +137,11 @@ const WatchlistCard = ({
     setDragging({ isDragging: false });
   };
 
+  const handleChartOpen = () => {
+    bindings.onDropOutside(symbol, stockData.name);
+    determineIfChartOpen();
+  };
+
   return stockData ? (
     <div
       id={`stock_${symbol}`}
@@ -170,15 +175,12 @@ const WatchlistCard = ({
                 />
               </div>
               <div className={cx('icon', { open: openApps.chart })}>
-                <Components.Shortcuts.Chart
-                  symbol={symbol}
-                  name={stockData.name}
+                <Components.Buttons.Borderless
+                  onClick={handleChartOpen}
                   small={true}
-                  onClick={() => {
-                    bindings.onDropOutside(symbol, stockData.name);
-                    determineIfChartOpen();
-                  }}
-                />
+                >
+                  <Components.Icons.Small.Chart />
+                </Components.Buttons.Borderless>
               </div>
               <div className="icon open">
                 <Components.Buttons.Borderless
@@ -195,9 +197,7 @@ const WatchlistCard = ({
           </div>
           <div
             className="card-bottom"
-            onClick={() => {
-              bindings.onDropOutside(symbol, stockData.name);
-            }}
+            onClick={handleChartOpen}
             onMouseDown={() => setDragOutcome(previewOptions.chart)}
           >
             <Minichart

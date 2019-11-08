@@ -1,5 +1,3 @@
-import { Launchers } from 'stockflux-core';
-
 let dragStartClientY = null;
 let cardHeight = null;
 
@@ -69,10 +67,6 @@ export const onDrop = (
   } else if (!watchlist.includes(symbol)) {
     setWatchlist(watchlist.push(symbol));
   }
-};
-
-export const onDropOutside = async function(symbol, stockName) {
-  Launchers.launchChart(symbol, stockName);
 };
 
 export const resetDragState = setDragOverIndex => {
