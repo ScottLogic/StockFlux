@@ -1,6 +1,6 @@
 {
   "name": "stockflux",
-  "version": "13.0.0",
+  "version": "13.1.0",
   "devDependencies": {
     "babel-eslint": "10.0.1",
     "concurrently": "^4.1.2",
