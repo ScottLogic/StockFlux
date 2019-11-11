@@ -29,7 +29,7 @@
     "d3fc": "^10.0.0",
     "d3fc-financial-feed": "^3.0.0",
     "d3fc-rebind": "^3.0.1",
-    "stockflux-core": "13.0.0",
+    "stockflux-core": "13.1.0",
     "seedrandom": "^2.4.2"
   },
   "browserslist": [
