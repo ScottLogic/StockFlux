@@ -1,0 +1,44 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400, 100, 300, 500);
+
+div#root {
+  background-color: var(--window-background-color);
+  height: 100vh;
+  overflow: hidden;
+  display: inline-flex;
+}
+
+body {
+  border: none;
+  border-left: 5px solid #21b1ca;
+}
+
+.notification > * {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.notification .icon {
+  margin: auto 20px;
+  height: 28px;
+  width: 57px;
+  animation: eyeGif 1.5s steps(45, end) 1s forwards;
+  background: url('./animation-assets/eye_outline_animation_long.svg') 0 0
+    no-repeat;
+}
+
+p {
+  padding-right: var(--padding-large);
+}
+
+@keyframes eyeGif {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -2250px 0;
+  }
+}
+
+.notification {
+  display: flex;
+}

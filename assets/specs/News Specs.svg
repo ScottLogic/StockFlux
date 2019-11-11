@@ -1,0 +1,553 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1892" height="1779" viewBox="0 0 1892 1779">
+  <defs>
+    <rect id="news-specs-b" width="97" height="84" x="40" y="608"/>
+    <filter id="news-specs-a" width="139.2%" height="145.2%" x="-19.6%" y="-20.2%" filterUnits="objectBoundingBox">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="1.5" result="shadowSpreadOuter1"/>
+      <feOffset dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="4.5"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/>
+    </filter>
+    <path id="news-specs-c" d="M6,3 L10,9 L2,9 L6,3 Z"/>
+    <path id="news-specs-e" d="M6,3 L10,9 L2,9 L6,3 Z"/>
+    <path id="news-specs-g" d="M6,3 L10,9 L2,9 L6,3 Z"/>
+    <path id="news-specs-h" d="M6,3 L10,9 L2,9 L6,3 Z"/>
+    <polygon id="news-specs-i" points="16.667 7 17.708 8 13.541 11.999 17.708 16 16.667 17 12.499 12.999 8.333 17 7.292 16 11.458 11.999 7.292 8 8.333 7 12.499 11"/>
+    <path id="news-specs-k" d="M6,3 L10,9 L2,9 L6,3 Z"/>
+    <path id="news-specs-m" d="M6,3 L10,9 L2,9 L6,3 Z"/>
+    <path id="news-specs-o" d="M10,15 L10,17 L9,17 L9,22 L15,22 L15,17 L14,17 L14,15 L15,15 C16.1045695,15 17,15.8954305 17,17 L17,22 C17,23.1045695 16.1045695,24 15,24 L9,24 C7.8954305,24 7,23.1045695 7,22 L7,17 C7,15.8954305 7.8954305,15 9,15 L10,15 Z M12,8 C12.5522847,8 13,8.44771525 13,9 L13,19 C13,19.5522847 12.5522847,20 12,20 C11.4477153,20 11,19.5522847 11,19 L11,9 C11,8.44771525 11.4477153,8 12,8 Z M15,4 C16.1045695,4 17,4.8954305 17,6 L17,11 C17,12.1045695 16.1045695,13 15,13 L14,13 L14,11 L15,11 L15,6 L9,6 L9,11 L10,11 L10,13 L9,13 C7.8954305,13 7,12.1045695 7,11 L7,6 C7,4.8954305 7.8954305,4 9,4 L15,4 Z"/>
+    <polygon id="news-specs-q" points="16.667 7 17.708 8 13.541 11.999 17.708 16 16.667 17 12.499 12.999 8.333 17 7.292 16 11.458 11.999 7.292 8 8.333 7 12.499 11"/>
+    <rect id="news-specs-s" width="402" height="143" x="0" y="0"/>
+    <path id="news-specs-t" d="M6,3 L10,9 L2,9 L6,3 Z"/>
+    <path id="news-specs-v" d="M6,3 L10,9 L2,9 L6,3 Z"/>
+    <path id="news-specs-x" d="M10,15 L10,17 L9,17 L9,22 L15,22 L15,17 L14,17 L14,15 L15,15 C16.1045695,15 17,15.8954305 17,17 L17,22 C17,23.1045695 16.1045695,24 15,24 L9,24 C7.8954305,24 7,23.1045695 7,22 L7,17 C7,15.8954305 7.8954305,15 9,15 L10,15 Z M12,8 C12.5522847,8 13,8.44771525 13,9 L13,19 C13,19.5522847 12.5522847,20 12,20 C11.4477153,20 11,19.5522847 11,19 L11,9 C11,8.44771525 11.4477153,8 12,8 Z M15,4 C16.1045695,4 17,4.8954305 17,6 L17,11 C17,12.1045695 16.1045695,13 15,13 L14,13 L14,11 L15,11 L15,6 L9,6 L9,11 L10,11 L10,13 L9,13 C7.8954305,13 7,12.1045695 7,11 L7,6 C7,4.8954305 7.8954305,4 9,4 L15,4 Z"/>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <rect width="30" height="30" x="40" y="88" fill="#29E9E3" stroke="#979797"/>
+    <rect width="30" height="30" x="40" y="388" fill="#071521" stroke="#979797" transform="rotate(180 55 403)"/>
+    <rect width="30" height="30" x="40" y="328" fill="#091A29" stroke="#979797" transform="rotate(180 55 343)"/>
+    <rect width="30" height="30" x="40" y="268" fill="#0D2437" stroke="#979797" transform="rotate(180 55 283)"/>
+    <rect width="30" height="30" x="40" y="148" fill="#8A96A6" stroke="#979797" transform="rotate(180 55 163)"/>
+    <rect width="30" height="30" x="40" y="208" fill="#1B3B56" stroke="#979797" transform="rotate(180 55 223)"/>
+    <rect width="30" height="30" x="40" y="448" fill="#FFF" stroke="#979797"/>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="21">
+      <tspan x="86" y="110">Teal - #29E9E3 - Used for headline text and active link icon</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="21">
+      <tspan x="86" y="170">Blue 1 - #8A96A6 - Used for inactive scroll bar arrow</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="21">
+      <tspan x="86" y="230">Blue 2 - #1B3B56 - Used for highlighting active news tab and news hover</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="21">
+      <tspan x="86" y="290">Blue 3 - #0D2437 - Used as background color</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="21">
+      <tspan x="86" y="350">Blue 4 - #091A29 - Used for scroll bar grip and divider lines</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="21">
+      <tspan x="86" y="410">Blue 5 - #071521 - Used for top bar</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="21">
+      <tspan x="86" y="470">White - #FFFFFF - Used for all text except news headlines</tspan>
+    </text>
+    <text fill="#1B3B56" font-family="Roboto-Medium, Roboto" font-size="36" font-weight="400">
+      <tspan x="40" y="59">Colour Palette</tspan>
+    </text>
+    <text fill="#1B3B56" font-family="Roboto-Medium, Roboto" font-size="36" font-weight="400">
+      <tspan x="434" y="562">Type</tspan>
+    </text>
+    <text fill="#1B3B56" font-family="Roboto-Medium, Roboto" font-size="36" font-weight="400">
+      <tspan x="40" y="559">Dropshadow Style</tspan>
+    </text>
+    <text fill="#1B3B56" font-family="Roboto-Medium, Roboto" font-size="36" font-weight="400">
+      <tspan x="434" y="1095">Scroll Bar</tspan>
+    </text>
+    <text fill="#1B3B56" font-family="Roboto-Medium, Roboto" font-size="36" font-weight="400">
+      <tspan x="1035" y="1026">News hover</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="14">
+      <tspan x="434" y="619">Roboto Regular, 14px - News source and time</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="16">
+      <tspan x="434" y="643">Roboto Regular, 16px - Abstract</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+      <tspan x="434" y="668">Roboto Medium, 18px - Title, ‘News’, Ticker</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="18">
+      <tspan x="485" y="1137">12px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="18">
+      <tspan x="434" y="1169">12px</tspan>
+    </text>
+    <polyline stroke="#F37126" stroke-width="2" points="1035 103 1035 88 1448 88 1448 103"/>
+    <polyline stroke="#F37126" stroke-width="2" points="1035 912 1035 897 1437 897 1437 912" transform="matrix(1 0 0 -1 0 1809)"/>
+    <use fill="#000" filter="url(#news-specs-a)" xlink:href="#news-specs-b"/>
+    <use fill="#0D2437" xlink:href="#news-specs-b"/>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="18">
+      <tspan x="148" y="633">y = 2</tspan> <tspan x="148" y="654">blur = 9</tspan> <tspan x="148" y="675">spread = 3</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="21">
+      <tspan x="40" y="738">This dropshadow style will be used for </tspan> <tspan x="40" y="762">every app except the Launcher</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="18">
+      <tspan x="555" y="1270">Height of the Watchlist window minus 28px</tspan> <tspan x="555" y="1312">Scroll Bar always sits beneath the top bar</tspan>
+    </text>
+    <polyline stroke="#F37126" stroke-width="2" points="397 1303 397 1288 679 1288 679 1303" transform="rotate(90 538 1295.5)"/>
+    <polyline stroke="#F37126" stroke-width="2" points="1254 512 1254 497 1893 497 1893 512" transform="rotate(90 1573.5 504.5)"/>
+    <polyline stroke="#F37126" stroke-width="2" points="1426 329 1426 314 1566 314 1566 329" transform="rotate(90 1496 321.5)"/>
+    <g transform="translate(495 1159)">
+      <rect width="12" height="277" fill="#1B3B56"/>
+      <rect width="12" height="108" fill="#091A29" transform="translate(0 12)"/>
+      <mask id="news-specs-d" fill="#fff">
+        <use xlink:href="#news-specs-c"/>
+      </mask>
+      <use fill="#AEB1B5" xlink:href="#news-specs-c"/>
+      <g fill="#091A29" mask="url(#news-specs-d)">
+        <rect width="8" height="7" transform="translate(2 3)"/>
+      </g>
+      <g transform="translate(0 264)">
+        <mask id="news-specs-f" fill="#fff">
+          <use xlink:href="#news-specs-e"/>
+        </mask>
+        <use fill="#AEB1B5" transform="matrix(1 0 0 -1 0 12)" xlink:href="#news-specs-e"/>
+        <g fill="#8A96A6" mask="url(#news-specs-f)">
+          <rect width="8" height="7" transform="translate(2 3)"/>
+        </g>
+      </g>
+    </g>
+    <line x1="507.5" x2="507" y1="1147" y2="1442.72" stroke="#F37126" stroke-dasharray="10 5"/>
+    <line x1="494.5" x2="494" y1="1147" y2="1442.72" stroke="#F37126" stroke-dasharray="10 5"/>
+    <line x1="479" x2="514" y1="1171.501" y2="1171.499" stroke="#F37126" stroke-dasharray="10 5"/>
+    <line x1="479" x2="514" y1="1158.501" y2="1158.499" stroke="#F37126" stroke-dasharray="10 5"/>
+    <rect width="24" height="28" x="439" y="897" fill="#071521"/>
+    <rect width="24" height="28" x="439" y="897" fill="#071521"/>
+    <rect width="24" height="28" x="439" y="954" fill="#071521"/>
+    <g transform="translate(439 954)">
+      <rect width="24" height="28" fill="#D8D8D8" opacity="0"/>
+      <rect width="12" height="2" x="6" y="19" fill="#FFF"/>
+    </g>
+    <g transform="translate(439 897)">
+      <rect width="24" height="28" fill="#D8D8D8" opacity="0"/>
+      <polygon fill="#FFF" points="17.619 8 18.91 9.291 13.745 14.454 18.91 19.619 17.619 20.91 12.454 15.745 7.291 20.91 6 19.619 11.164 14.454 6 9.291 7.291 8 12.454 13.164"/>
+    </g>
+    <text fill="#1B3B56" font-family="Roboto-Medium, Roboto" font-size="36" font-weight="400">
+      <tspan x="434" y="868">Glyphs and icons used</tspan>
+    </text>
+    <text fill="#1B3B56" font-family="Roboto-Medium, Roboto" font-size="36" font-weight="400">
+      <tspan x="45" y="1113">Arrows used</tspan>
+    </text>
+    <text fill="#1B3B56" font-family="Roboto-Medium, Roboto" font-size="36" font-weight="400">
+      <tspan x="45" y="868">Glyph States</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="21">
+      <tspan x="501" y="920">Glyph_Close</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="21">
+      <tspan x="501" y="975">Glyph_Minimize</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="18">
+      <tspan x="84" y="936">Normal - white glyph,</tspan> <tspan x="84" y="957">transparent binding box</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="18">
+      <tspan x="84" y="1001">Hover - white glyph, white</tspan> <tspan x="84" y="1022">binding box with 15% opacity</tspan>
+    </text>
+    <rect width="24" height="97" x="51" y="915" fill="#071521"/>
+    <g transform="translate(51 915)">
+      <rect width="24" height="28" fill="#D8D8D8" opacity="0"/>
+      <polygon fill="#FFF" points="17.619 8 18.91 9.291 13.745 14.454 18.91 19.619 17.619 20.91 12.454 15.745 7.291 20.91 6 19.619 11.164 14.454 6 9.291 7.291 8 12.454 13.164"/>
+    </g>
+    <g fill="#FFF" transform="translate(51 984)">
+      <rect width="24" height="28" opacity=".15"/>
+      <polygon points="17.619 8 18.91 9.291 13.745 14.454 18.91 19.619 17.619 20.91 12.454 15.745 7.291 20.91 6 19.619 11.164 14.454 6 9.291 7.291 8 12.454 13.164"/>
+    </g>
+    <g fill-rule="nonzero" transform="rotate(-16 3591.07 263.52)">
+      <polygon fill="#000" points=".2 16.9 .2 .9 11.8 12.5 5 12.5 4.6 12.6"/>
+      <polygon fill="#000" points="9.3 17.6 5.7 19.1 1 8 4.7 6.5"/>
+      <rect width="2" height="8" x="4.501" y="9.594" fill="#FFF" transform="rotate(-22.773 5.5 13.594)"/>
+      <polygon fill="#FFF" points="1.2 3.3 1.2 14.5 4.2 11.6 4.6 11.5 9.4 11.5"/>
+    </g>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="21">
+      <tspan x="101" y="1161">Scroll_Arrow_Up</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="21">
+      <tspan x="101" y="1203">Scroll_Arrow_Down</tspan>
+    </text>
+    <g transform="translate(45 1191)">
+      <rect width="12" height="12" opacity="0"/>
+      <use fill="#000" transform="matrix(1 0 0 -1 0 12)" xlink:href="#news-specs-g"/>
+    </g>
+    <g transform="translate(45 1149)">
+      <rect width="12" height="12" opacity="0"/>
+      <use fill="#000" xlink:href="#news-specs-h"/>
+    </g>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="18">
+      <tspan x="434" y="1434">12px</tspan>
+    </text>
+    <line x1="479" x2="514" y1="1436.501" y2="1436.499" stroke="#F37126" stroke-dasharray="10 5"/>
+    <line x1="479" x2="514" y1="1423.501" y2="1423.499" stroke="#F37126" stroke-dasharray="10 5"/>
+    <g transform="translate(1035 184)">
+      <rect width="413" height="639" fill="#0D2437"/>
+      <rect width="401" height="39" fill="#091A29" transform="translate(0 27)"/>
+      <g transform="translate(0 28)">
+        <rect width="99" height="36" fill="#1B3B56"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="15.359" y="24">TSLA</tspan>
+        </text>
+        <g transform="translate(74.25 6)">
+          <rect width="25" height="24" fill="#D8D8D8" opacity="0"/>
+          <mask id="news-specs-j" fill="#fff">
+            <use xlink:href="#news-specs-i"/>
+          </mask>
+          <use fill="#FFF" xlink:href="#news-specs-i"/>
+          <g fill="#8A96A6" mask="url(#news-specs-j)">
+            <rect width="25" height="24"/>
+          </g>
+        </g>
+      </g>
+      <g transform="translate(101 28)">
+        <rect width="99" height="36" fill="#0D2437"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="25.695" y="24">MSFT</tspan>
+        </text>
+      </g>
+      <g transform="translate(202 28)">
+        <rect width="99" height="36" fill="#0D2437"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="37.749" y="24">CC</tspan>
+        </text>
+      </g>
+      <g transform="translate(303 28)">
+        <rect width="99" height="36" fill="#0D2437"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="24.82" y="24">GOOG</tspan>
+        </text>
+      </g>
+      <rect width="413" height="28" fill="#071521"/>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+        <tspan x="12" y="20">News</tspan>
+      </text>
+      <g transform="translate(0 66)">
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+          <tspan x="330.644" y="25">12:58 PM</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+          <tspan x="12" y="79">The Economic Times India</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="16">
+          <tspan x="12" y="106">NEW DELHI: Be it smartphones, notebooks or electric </tspan> <tspan x="12" y="125">cars, lithium-ion batteries have...</tspan>
+        </text>
+        <text fill="#29E9E3" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="12" y="27">From Phones To Cars, Li-Ion Batteries </tspan> <tspan x="12" y="48">Come Of Age</tspan>
+        </text>
+      </g>
+      <g transform="translate(0 213)">
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+          <tspan x="330.644" y="25">12:58 PM</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+          <tspan x="12" y="79">The Economic Times India</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="16">
+          <tspan x="12" y="106">NEW DELHI: Be it smartphones, notebooks or electric </tspan> <tspan x="12" y="125">cars, lithium-ion batteries have...</tspan>
+        </text>
+        <text fill="#29E9E3" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="12" y="27">From Phones To Cars, Li-Ion Batteries </tspan> <tspan x="12" y="48">Come Of Age</tspan>
+        </text>
+      </g>
+      <g transform="translate(0 360)">
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+          <tspan x="330.644" y="25">12:58 PM</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+          <tspan x="12" y="79">The Economic Times India</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="16">
+          <tspan x="12" y="106">NEW DELHI: Be it smartphones, notebooks or electric </tspan> <tspan x="12" y="125">cars, lithium-ion batteries have...</tspan>
+        </text>
+        <text fill="#29E9E3" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="12" y="27">From Phones To Cars, Li-Ion Batteries </tspan> <tspan x="12" y="48">Come Of Age</tspan>
+        </text>
+      </g>
+      <g transform="translate(0 507)">
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+          <tspan x="330.644" y="25">12:58 PM</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+          <tspan x="12" y="79">The Economic Times India</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="16">
+          <tspan x="12" y="106">NEW DELHI: Be it smartphones, notebooks or electric </tspan> <tspan x="12" y="125">cars, lithium-ion batteries have...</tspan>
+        </text>
+        <text fill="#29E9E3" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="12" y="27">From Phones To Cars, Li-Ion Batteries </tspan> <tspan x="12" y="48">Come Of Age</tspan>
+        </text>
+      </g>
+      <path fill="#061725" d="M402,505 L402,507 L0,507 L0,505 L402,505 Z M402,357 L402,359 L0,359 L0,357 L402,357 Z M402,208 L402,210 L0,210 L0,208 L402,208 Z M402,64 L402,66 L0,66 L0,64 L402,64 Z"/>
+      <rect width="12" height="611" fill="#1B3B56" transform="translate(401 28)"/>
+      <rect width="12" height="264" fill="#091A29" transform="translate(401 40)"/>
+      <g transform="translate(401 28)">
+        <mask id="news-specs-l" fill="#fff">
+          <use xlink:href="#news-specs-k"/>
+        </mask>
+        <use fill="#AEB1B5" xlink:href="#news-specs-k"/>
+        <g fill="#091A29" mask="url(#news-specs-l)">
+          <rect width="8" height="7" transform="translate(2 3)"/>
+        </g>
+      </g>
+      <g transform="translate(401 627)">
+        <mask id="news-specs-n" fill="#fff">
+          <use xlink:href="#news-specs-m"/>
+        </mask>
+        <use fill="#AEB1B5" transform="matrix(1 0 0 -1 0 12)" xlink:href="#news-specs-m"/>
+        <g fill="#8A96A6" mask="url(#news-specs-n)">
+          <rect width="8" height="7" transform="translate(2 3)"/>
+        </g>
+      </g>
+      <g transform="translate(386)">
+        <rect width="24" height="28" fill="#1B3B56" opacity="0"/>
+        <polygon fill="#FFF" points="17.619 8 18.91 9.291 13.745 14.454 18.91 19.619 17.619 20.91 12.454 15.745 7.291 20.91 6 19.619 11.164 14.454 6 9.291 7.291 8 12.454 13.164"/>
+      </g>
+      <g transform="translate(359)">
+        <rect width="24" height="28" fill="#D8D8D8" opacity="0"/>
+        <rect width="12" height="2" x="6" y="19" fill="#FFF"/>
+      </g>
+      <g transform="translate(332)">
+        <rect width="24" height="28" fill="#1B3B56" opacity="0"/>
+        <mask id="news-specs-p" fill="#fff">
+          <use xlink:href="#news-specs-o"/>
+        </mask>
+        <use fill="#FFF" transform="rotate(90 12 14)" xlink:href="#news-specs-o"/>
+        <g fill="#29E9E3" mask="url(#news-specs-p)">
+          <rect width="24" height="28"/>
+        </g>
+      </g>
+    </g>
+    <g transform="translate(1035 1064)">
+      <rect width="413" height="639" fill="#0D2437"/>
+      <rect width="401" height="39" fill="#091A29" transform="translate(0 27)"/>
+      <g transform="translate(0 28)">
+        <rect width="99" height="36" fill="#1B3B56"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="15.359" y="24">TSLA</tspan>
+        </text>
+        <g transform="translate(74.25 6)">
+          <rect width="25" height="24" fill="#D8D8D8" opacity="0"/>
+          <mask id="news-specs-r" fill="#fff">
+            <use xlink:href="#news-specs-q"/>
+          </mask>
+          <use fill="#FFF" xlink:href="#news-specs-q"/>
+          <g fill="#8A96A6" mask="url(#news-specs-r)">
+            <rect width="25" height="24"/>
+          </g>
+        </g>
+      </g>
+      <g transform="translate(101 28)">
+        <rect width="99" height="36" fill="#0D2437"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="25.695" y="24">MSFT</tspan>
+        </text>
+      </g>
+      <g transform="translate(202 28)">
+        <rect width="99" height="36" fill="#0D2437"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="37.749" y="24">CC</tspan>
+        </text>
+      </g>
+      <g transform="translate(303 28)">
+        <rect width="99" height="36" fill="#0D2437"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="24.82" y="24">GOOG</tspan>
+        </text>
+      </g>
+      <rect width="413" height="28" fill="#071521"/>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+        <tspan x="12" y="20">News</tspan>
+      </text>
+      <g transform="translate(0 66)">
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+          <tspan x="330.644" y="25">12:58 PM</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+          <tspan x="12" y="79">The Economic Times India</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="16">
+          <tspan x="12" y="106">NEW DELHI: Be it smartphones, notebooks or electric </tspan> <tspan x="12" y="125">cars, lithium-ion batteries have...</tspan>
+        </text>
+        <text fill="#29E9E3" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="12" y="27">From Phones To Cars, Li-Ion Batteries </tspan> <tspan x="12" y="48">Come Of Age</tspan>
+        </text>
+      </g>
+      <g transform="translate(0 213)">
+        <use fill="#A6FFFC" fill-opacity=".1" xlink:href="#news-specs-s"/>
+        <use fill="#1B3B56" xlink:href="#news-specs-s"/>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+          <tspan x="330.644" y="25">12:58 PM</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+          <tspan x="12" y="79">The Economic Times India</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="16">
+          <tspan x="12" y="106">NEW DELHI: Be it smartphones, notebooks or electric </tspan> <tspan x="12" y="125">cars, lithium-ion batteries have...</tspan>
+        </text>
+        <text fill="#29E9E3" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="12" y="27">From Phones To Cars, Li-Ion Batteries </tspan> <tspan x="12" y="48">Come Of Age</tspan>
+        </text>
+      </g>
+      <g transform="translate(0 360)">
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+          <tspan x="330.644" y="25">12:58 PM</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+          <tspan x="12" y="79">The Economic Times India</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="16">
+          <tspan x="12" y="106">NEW DELHI: Be it smartphones, notebooks or electric </tspan> <tspan x="12" y="125">cars, lithium-ion batteries have...</tspan>
+        </text>
+        <text fill="#29E9E3" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="12" y="27">From Phones To Cars, Li-Ion Batteries </tspan> <tspan x="12" y="48">Come Of Age</tspan>
+        </text>
+      </g>
+      <g transform="translate(0 507)">
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+          <tspan x="330.644" y="25">12:58 PM</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+          <tspan x="12" y="79">The Economic Times India</tspan>
+        </text>
+        <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="16">
+          <tspan x="12" y="106">NEW DELHI: Be it smartphones, notebooks or electric </tspan> <tspan x="12" y="125">cars, lithium-ion batteries have...</tspan>
+        </text>
+        <text fill="#29E9E3" font-family="Roboto-Medium, Roboto" font-size="18" font-weight="400">
+          <tspan x="12" y="27">From Phones To Cars, Li-Ion Batteries </tspan> <tspan x="12" y="48">Come Of Age</tspan>
+        </text>
+      </g>
+      <path fill="#061725" d="M402,505 L402,507 L0,507 L0,505 L402,505 Z M402,357 L402,359 L0,359 L0,357 L402,357 Z M402,208 L402,210 L0,210 L0,208 L402,208 Z M402,64 L402,66 L0,66 L0,64 L402,64 Z"/>
+      <rect width="12" height="611" fill="#1B3B56" transform="translate(401 28)"/>
+      <rect width="12" height="264" fill="#091A29" transform="translate(401 40)"/>
+      <g transform="translate(401 28)">
+        <mask id="news-specs-u" fill="#fff">
+          <use xlink:href="#news-specs-t"/>
+        </mask>
+        <use fill="#AEB1B5" xlink:href="#news-specs-t"/>
+        <g fill="#091A29" mask="url(#news-specs-u)">
+          <rect width="8" height="7" transform="translate(2 3)"/>
+        </g>
+      </g>
+      <g transform="translate(401 627)">
+        <mask id="news-specs-w" fill="#fff">
+          <use xlink:href="#news-specs-v"/>
+        </mask>
+        <use fill="#AEB1B5" transform="matrix(1 0 0 -1 0 12)" xlink:href="#news-specs-v"/>
+        <g fill="#8A96A6" mask="url(#news-specs-w)">
+          <rect width="8" height="7" transform="translate(2 3)"/>
+        </g>
+      </g>
+      <g transform="translate(386)">
+        <rect width="24" height="28" fill="#1B3B56" opacity="0"/>
+        <polygon fill="#FFF" points="17.619 8 18.91 9.291 13.745 14.454 18.91 19.619 17.619 20.91 12.454 15.745 7.291 20.91 6 19.619 11.164 14.454 6 9.291 7.291 8 12.454 13.164"/>
+      </g>
+      <g transform="translate(359)">
+        <rect width="24" height="28" fill="#D8D8D8" opacity="0"/>
+        <rect width="12" height="2" x="6" y="19" fill="#FFF"/>
+      </g>
+      <g transform="translate(332)">
+        <rect width="24" height="28" fill="#1B3B56" opacity="0"/>
+        <mask id="news-specs-y" fill="#fff">
+          <use xlink:href="#news-specs-x"/>
+        </mask>
+        <use fill="#FFF" transform="rotate(90 12 14)" xlink:href="#news-specs-x"/>
+        <g fill="#29E9E3" mask="url(#news-specs-y)">
+          <rect width="24" height="28"/>
+        </g>
+      </g>
+    </g>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="18">
+      <tspan x="980" y="203">28px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="18">
+      <tspan x="1030" y="163">12px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="18">
+      <tspan x="1218" y="75">12px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="18">
+      <tspan x="1165" y="163">96px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="18">
+      <tspan x="1231" y="163">2px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="18">
+      <tspan x="1506" y="335">143px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="18">
+      <tspan x="986" y="254">2px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="18">
+      <tspan x="986" y="395">2px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="18">
+      <tspan x="979" y="556">12px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="18">
+      <tspan x="980" y="233">36px</tspan>
+    </text>
+    <line x1="1020" x2="1465" y1="212.501" y2="212.499" stroke="#F37126" stroke-dasharray="10 5"/>
+    <line x1="1020" x2="1465" y1="247.501" y2="247.499" stroke="#F37126" stroke-dasharray="10 5"/>
+    <line x1="1020" x2="1465" y1="251.501" y2="251.499" stroke="#F37126" stroke-dasharray="10 5"/>
+    <line x1="1020" x2="1465" y1="395.501" y2="395.499" stroke="#F37126" stroke-dasharray="10 5"/>
+    <line x1="1020" x2="1465" y1="391.501" y2="391.499" stroke="#F37126" stroke-dasharray="10 5"/>
+    <line x1="1020" x2="1465" y1="556.501" y2="556.499" stroke="#F37126" stroke-dasharray="10 5"/>
+    <line x1="1020" x2="1465" y1="544.501" y2="544.499" stroke="#F37126" stroke-dasharray="10 5"/>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="18">
+      <tspan x="979" y="611">12px</tspan>
+    </text>
+    <line x1="1020" x2="1278" y1="611.501" y2="611.499" stroke="#F37126" stroke-dasharray="10 5"/>
+    <line x1="1020" x2="1278" y1="599.501" y2="599.499" stroke="#F37126" stroke-dasharray="10 5"/>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="18">
+      <tspan x="979" y="638">12px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="18">
+      <tspan x="979" y="685">12px</tspan>
+    </text>
+    <line x1="1020" x2="1278" y1="638.501" y2="638.499" stroke="#F37126" stroke-dasharray="10 5"/>
+    <line x1="1020" x2="1278" y1="626.501" y2="626.499" stroke="#F37126" stroke-dasharray="10 5"/>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="18">
+      <tspan x="1415" y="881">12px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="18">
+      <tspan x="1217" y="941">402px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="18">
+      <tspan x="1603" y="527">Window can be resized.</tspan> <tspan x="1603" y="569">Default dimension should be</tspan> <tspan x="1603" y="590">651px to allow 4 news to be </tspan> <tspan x="1603" y="611">shown.</tspan>
+    </text>
+    <line x1="1020" x2="1278" y1="687.501" y2="687.499" stroke="#F37126" stroke-dasharray="10 5"/>
+    <line x1="1020" x2="1278" y1="675.501" y2="675.499" stroke="#F37126" stroke-dasharray="10 5"/>
+    <line x1="1020" x2="1465" y1="183.501" y2="183.499" stroke="#F37126" stroke-dasharray="10 5"/>
+    <line x1="1034.5" x2="1034.25" y1="172" y2="845.653" stroke="#F37126" stroke-dasharray="10 5"/>
+    <line x1="1046.5" x2="1046.25" y1="172" y2="845.653" stroke="#F37126" stroke-dasharray="10 5"/>
+    <line x1="1424.5" x2="1424.25" y1="251" y2="863.684" stroke="#F37126" stroke-dasharray="10 5"/>
+    <line x1="1436.5" x2="1436.25" y1="251" y2="863.684" stroke="#F37126" stroke-dasharray="10 5"/>
+    <line x1="1133.5" x2="1133.25" y1="172" y2="257.956" stroke="#F37126" stroke-dasharray="10 5"/>
+    <line x1="1136.5" x2="1136.25" y1="172" y2="257.956" stroke="#F37126" stroke-dasharray="10 5"/>
+    <line x1="1234.5" x2="1234.25" y1="172" y2="257.956" stroke="#F37126" stroke-dasharray="10 5"/>
+    <line x1="1237.5" x2="1237.25" y1="172" y2="257.956" stroke="#F37126" stroke-dasharray="10 5"/>
+    <line x1="1448.5" x2="1448.25" y1="172" y2="845.653" stroke="#F37126" stroke-dasharray="10 5"/>
+    <g fill-rule="nonzero" transform="translate(1367 1335)">
+      <polygon fill="#000" points=".2 16.9 .2 .9 11.8 12.5 5 12.5 4.6 12.6"/>
+      <polygon fill="#000" points="9.3 17.6 5.7 19.1 1 8 4.7 6.5"/>
+      <rect width="2" height="8" x="4.501" y="9.594" fill="#FFF" transform="rotate(-22.773 5.5 13.594)"/>
+      <polygon fill="#FFF" points="1.2 3.3 1.2 14.5 4.2 11.6 4.6 11.5 9.4 11.5"/>
+    </g>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="18">
+      <tspan x="434" y="1498">There are no hover states for the arrows or </tspan> <tspan x="434" y="1519">the scroll bar grip</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="21">
+      <tspan x="514" y="1027">Icon_Link</tspan>
+    </text>
+    <g transform="translate(439 1006)">
+      <rect width="24" height="28" fill="#1B3B56" opacity="0"/>
+      <path fill="#000" d="M10,15 L10,17 L9,17 L9,22 L15,22 L15,17 L14,17 L14,15 L15,15 C16.1045695,15 17,15.8954305 17,17 L17,22 C17,23.1045695 16.1045695,24 15,24 L9,24 C7.8954305,24 7,23.1045695 7,22 L7,17 C7,15.8954305 7.8954305,15 9,15 L10,15 Z M12,8 C12.5522847,8 13,8.44771525 13,9 L13,19 C13,19.5522847 12.5522847,20 12,20 C11.4477153,20 11,19.5522847 11,19 L11,9 C11,8.44771525 11.4477153,8 12,8 Z M15,4 C16.1045695,4 17,4.8954305 17,6 L17,11 C17,12.1045695 16.1045695,13 15,13 L14,13 L14,11 L15,11 L15,6 L9,6 L9,11 L10,11 L10,13 L9,13 C7.8954305,13 7,12.1045695 7,11 L7,6 C7,4.8954305 7.8954305,4 9,4 L15,4 Z" transform="rotate(90 12 14)"/>
+    </g>
+  </g>
+</svg>

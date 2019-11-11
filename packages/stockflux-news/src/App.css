@@ -1,0 +1,28 @@
+.stockflux-news {
+  height: 100%;
+  background-color: var(--window-background-color);
+}
+
+.container {
+  max-height: 700px;
+  height: calc(100vh - var(--titlebar-height));
+}
+
+.icons {
+  white-space: nowrap;
+}
+
+.no-articles {
+  padding: var(--padding-medium);
+  display: flex;
+  height: var(--no-article-height);
+  justify-content: center;
+  font-size: var(--font-large);
+  color: var(--text-grey-lighter);
+  font-weight: var(--font-weight-bold);
+}
+
+.spin-container {
+  padding: var(--padding-medium) 0;
+  height: 46px;
+}

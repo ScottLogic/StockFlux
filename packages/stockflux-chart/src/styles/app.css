@@ -1,0 +1,103 @@
+body {
+    -webkit-user-select: none;
+}
+
+#app, .main, body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    background-color: var(--dark-background);
+    padding: 0;
+}
+
+#showcase-container {
+    position: absolute;
+    top: var(--toolbar-height);
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#showcase-container .row.primary-row {
+    margin-left: -5px;
+}
+
+.button-icon {
+    display: inline-block;
+    width: var(--icons-size);
+    height: 100%;
+    background-position: 50% 80%;
+    background-repeat: no-repeat;
+    transition: var(--icon-transition-duration) all;
+    cursor: pointer;
+}
+
+.disable-transitions {
+    transition: none !important;
+}
+
+.disable-pointer {
+    pointer-events: none;
+}
+
+#showcase-title {
+    color: var(--color-highlight);
+    position: relative;
+    top: 5px;
+    left: 25px;
+    z-index: 10;
+    display: flex;
+    flex-direction: row;
+}
+#showcase-title .symbol,
+#showcase-title .name {
+    display: inline-block;
+    padding-right: 10px;
+}
+
+#showcase-title .symbol {
+    font: 18px var(--font-weight-bolder);
+}
+
+#showcase-title  .name {
+    font: 14px var(--font-weight-normal);
+}
+
+.chart-nav-icons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.chart-nav-icon svg {
+    fill: var(--color-highlight);
+    padding-right: 10px;
+    height: 20px;
+    width: 30px;
+    shape-rendering: geometricprecision;
+    cursor: pointer;
+}
+
+.chart-nav-icon:not(.icon-disabled):hover svg {
+    fill: var(--color-highlight);
+}
+
+.chart-nav-icon.icon-disabled svg {
+    cursor: not-allowed;
+    opacity: 0.4;
+}
+
+.no-favourites-image {
+    max-width: 1060px;
+    max-height: 500px;
+    width: 100%;
+    position: relative;
+    -webkit-user-drag: none;
+}
+
+.close.button-icon, .close.button-icon:hover {
+    opacity: 1;
+}

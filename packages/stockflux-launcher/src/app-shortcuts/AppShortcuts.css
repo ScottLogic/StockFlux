@@ -1,0 +1,9 @@
+.app-shortcuts {
+  display: flex;
+  align-items: center;
+}
+
+.left .app-shortcuts,
+.right .app-shortcuts {
+  flex-direction: column;
+}

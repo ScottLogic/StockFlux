@@ -1,0 +1,128 @@
+.card {
+  cursor: pointer;
+  height: var(--card-height);
+}
+
+.card:hover {
+  background-color: var(--color-hover);
+}
+
+.drop-target {
+  height: var(--card-height);
+}
+
+.card-wrapper:hover .darkens {
+  background-color: var(--dark-background);
+}
+
+.darkens:hover {
+  background-color: var(--dark-background);
+}
+
+.card-top {
+  padding-top: 8px;
+  padding-left: var(--padding-medium);
+  padding-right: 3px;
+  padding-bottom: 3px;
+  height: 48px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card-top .name {
+  font-size: var(--font-normal);
+  font-weight: var(--font-weight-normal);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-top .symbol {
+  padding-top: 1px;
+  font-size: var(--font-xxxlarge);
+  font-weight: var(--font-weight-bolder);
+}
+
+.card-bottom {
+  height: 60px;
+  margin-right: 3px;
+}
+
+.details {
+  text-align: right;
+}
+
+.percentage {
+  margin-top: 9px;
+  margin-bottom: 9px;
+}
+
+.delta,
+.percentage,
+.price {
+  padding-right: 1px;
+  font-weight: var(--font-weight-bold);
+  line-height: 1.1;
+}
+
+.price {
+  font-size: var(--font-xxlarge);
+}
+.percentage,
+.delta {
+  font-size: var(--font-large);
+}
+
+.percentage svg {
+  margin-right: 3px;
+  height: 9px;
+}
+
+.price_positive,
+.price_positive * {
+  color: var(--text-increase);
+}
+.price_negative,
+.price_negative * {
+  color: var(--text-decrease);
+}
+
+.minichartWrapper {
+  flex: 1;
+}
+
+.default-background {
+  background: var(--window-background-color);
+}
+
+.icons {
+  display: flex;
+  margin-right: 3px;
+  width: 38%;
+}
+
+.icon {
+  align-self: baseline;
+}
+
+.icon > button {
+  height: 23px;
+}
+
+.icon:hover {
+  color: var(--text-color);
+  background-color: var(--icon-hover-light);
+}
+
+.icon:active svg {
+  color: var(--icon-active);
+}
+
+.details-container {
+  width: 61%;
+}
+
+.open path {
+  color: var(--icon-active);
+}

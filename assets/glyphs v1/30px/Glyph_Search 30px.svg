@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="27px" viewBox="0 0 25 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>Glyph_Search</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M14,2 C20.0751322,2 25,6.92486775 25,13 C25,15.953065 23.8363319,18.6343408 21.9425297,20.6102934 L27.7069752,27.2401341 L26.1975561,28.5522521 L20.4342337,21.9229164 C18.624994,23.229828 16.4024387,24 14,24 C7.92486775,24 3,19.0751322 3,13 C3,6.92486775 7.92486775,2 14,2 Z M14,4 C9.02943725,4 5,8.02943725 5,13 C5,17.9705627 9.02943725,22 14,22 C18.9705627,22 23,17.9705627 23,13 C23,8.02943725 18.9705627,4 14,4 Z" id="path-1"></path>
+    </defs>
+    <g id="Screen" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD-Copy" transform="translate(-450.000000, -459.000000)">
+            <g id="Glyph_Search" transform="translate(447.000000, 457.000000)">
+                <rect id="Bounding_box" fill="#D8D8D8" opacity="0" x="0" y="0" width="30" height="30"></rect>
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Search" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>

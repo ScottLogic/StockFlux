@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+  color: var(--text-color);
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+#root {
+  height: 100%;
+  --header-height: 60px;
+  --tabbar-height: 36px;
+  --titlebar-height: 28px;
+  --newsitem-height: 143px;
+  --no-article-height: 30px;
+}

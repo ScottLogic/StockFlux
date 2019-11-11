@@ -1,8 +1,0 @@
-{
-  "extends": "react-app",
-  "settings": {
-    "react": {
-      "version": "^16.8.4"
-    }
-  }
-}

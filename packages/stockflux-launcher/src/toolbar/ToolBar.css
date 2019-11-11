@@ -1,0 +1,23 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+}
+
+.t-vertical {
+  margin-bottom: 12px;
+}
+
+.left .toolbar,
+.right .toolbar {
+  flex-direction: column;
+}
+
+.left .toolbar button,
+.right .toolbar button {
+  margin: 5px 0;
+}
+
+.toolbar button svg {
+  margin-top: 15px;
+  padding: 0;
+}

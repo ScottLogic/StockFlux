@@ -1,0 +1,32 @@
+.dialog {
+  display: inline-block;
+  color: var(--text-color);
+  border: none;
+  outline: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.dialog.small {
+  height: 30px;
+  width: 30px;
+  padding: 5px;
+  margin: 2px;
+}
+
+.dialog:hover {
+  background-color: var(--color-highlight-hover);
+}
+
+.dialog:active {
+  background-color: var(--color-highlight-hover);
+}
+
+.dialog:disabled {
+  color: var(--color-inactive);
+  cursor: default;
+}
+
+.dialog:disabled:hover {
+  background-color: inherit;
+}

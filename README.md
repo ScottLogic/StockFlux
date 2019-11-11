@@ -2,7 +2,7 @@
 
 Stockflux is a suite of applications, components and libraries developed by [Scott Logic](http://www.scottlogic.com) designed to showcase the latest in Openfin and FDC3.
 
-![main_screenshot](https://user-images.githubusercontent.com/2376919/60515108-d3ae6e00-9cd2-11e9-82b9-12a401a37a2f.png)
+![main_screenshot](./stockflux.png)
 
 Here are a few things to try:
 
@@ -16,7 +16,7 @@ Here are a few things to try:
 
 ## Installing
 
-In order to install the Launcher application, download the StockFlux installer [here](https://install.openfin.co/download/?os=win&config=https%3A%2F%2Fd2v92tgq94yxaa.cloudfront.net%2Fapi%2Fapps%2Fv1%2Fstockflux-launcher%2Fapp.json&fileName=stockflux-installer&unzipped=true) and run the executable. If you haven't already installed an OpenFin application, this will install the required runtime. It'll also add the shortcut to StockFlux to your desktop and start menu.
+In order to install the Launcher application, download the StockFlux installer [here](https://install.openfin.co/download/?os=win&config=https%3A%2F%2Fstockflux.scottlogic.com%2Fapi%2Fapps%2Fv1%2Fstockflux-launcher%2Fapp.json&fileName=stockflux&unzipped=true) and run the executable. If you haven't already installed an OpenFin application, this will install the required runtime. It'll also add the shortcut to StockFlux to your desktop and start menu.
 
 The project is deployed and hosted by AWS, so with each time the application is ran the latest released version will be used. This means no further installations will be needed to keep the installed project up to date.
 
@@ -77,20 +77,12 @@ npm install -g openfin-cli
 More information on Openfin-cli can be found [here.](https://github.com/openfin/openfin-cli)
 
 To start you must first build the some of the supporting applications.
-In the following order run these commands
 
 ```bash
 npm install
+npm run bootstrap
 npm run build
 ```
-
-in these projects.
-
-1. Core
-2. Components
-3. Bitflux
-
-This is needed as each app requires Core and Components as a dependency. Chart requires Bitflux to render the chart component.
 
 In isolation each app can be ran individually with the following commands:
 
@@ -101,13 +93,13 @@ npm run launch
 
 The applications run on the following ports:
 
-Application | Port
---- | ---
-Chart | 8051
-Watchlist | 8052
-Launcher | 8053
-Container | 8055
-News | 8056
+| Application | Port |
+| ----------- | ---- |
+| Chart       | 8051 |
+| Watchlist   | 8052 |
+| Launcher    | 8053 |
+| Container   | 8055 |
+| News        | 8056 |
 
 If these port selections conflict with another service you may be running they can be changed in the `package.json` file of each application.
 
@@ -123,7 +115,7 @@ If you are running the app directory locally, by default, it will be found at:
 
 The AWS hosted version is at:
 
-`https://d2v92tgq94yxaa.cloudfront.net/api/apps/v1`
+`https://stockflux.scottlogic.com/api/apps/v1`
 
 Once this change has been made you can run the service start launching applications from it.
 
@@ -135,7 +127,7 @@ To run your own sample app directory please refer to the readme in the [Stockflu
 
 #### AWS Hosted Version
 
-The application suite and it's APIs are all hosted on AWS. The standalone Openfin Installer can be found [here](https://install.openfin.co/download/?os=win&config=https%3A%2F%2Fd2v92tgq94yxaa.cloudfront.net%2Fapi%2Fapps%2Fv1%2Fstockflux-launcher%2Fapp.json&fileName=stockflux-installer&unzipped=true)
+The application suite and it's APIs are all hosted on AWS. The standalone Openfin Installer can be found [here](https://install.openfin.co/download/?os=win&config=https%3A%2F%2Fstockflux.scottlogic.com%2Fapi%2Fapps%2Fv1%2Fstockflux-launcher%2Fapp.json&fileName=stockflux&unzipped=true)
 
 The installer requires no dependencies or prior configuration to be ran.
 

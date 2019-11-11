@@ -24,10 +24,26 @@ export default () => {
   return (
     <div className="titlebar-container">
       <div className="icons-container">
-        <div className="button-icon minimize" onClick={onMinimizeClick} title="Minimize">&nbsp;</div>
-        {isDocked[0] && <div className="button-icon undock" onClick={onUndockClick} title="Undock">&nbsp;</div>}
-        <div className="button-icon close" onClick={onCloseClick} title="Close">&nbsp;</div>
+        <div
+          className="button-icon minimize"
+          onClick={onMinimizeClick}
+          title="Minimize"
+        >
+          &nbsp;
+        </div>
+        {isDocked[0] && (
+          <div
+            className="button-icon undock"
+            onClick={onUndockClick}
+            title="Undock"
+          >
+            &nbsp;
+          </div>
+        )}
+        <div className="button-icon close" onClick={onCloseClick} title="Close">
+          &nbsp;
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};

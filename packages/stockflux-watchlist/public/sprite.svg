@@ -1,0 +1,209 @@
+<svg width="0" height="0" class="hidden">
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_12">
+    <g fill="none" fill-rule="evenodd">
+      <path fill="#21B1CA" d="M33.526 13.386a.972.972 0 0 1-.025 1.26C28.007 20.853 22.508 24 17 24 11.484 24 5.983 20.749.489 14.34a.972.972 0 0 1 0-1.268c5.092-5.921 10.58-8.97 16.444-9.07 5.891-.1 11.43 3.06 16.593 9.384zm-2.372.222c-4.552-5.213-9.276-7.738-14.188-7.655-5.042.086-9.846 2.649-14.432 7.756 4.961 5.588 9.786 8.34 14.466 8.34 4.58 0 9.293-2.545 14.134-7.708l.338-.365-.318-.368z"></path>
+      <circle cx="17" cy="14" r="8.644" stroke="#21B1CA" stroke-width="2"></circle>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_13">
+    <g fill="none" fill-rule="evenodd">
+      <path fill="#21B1CA" d="M33.526 13.386a.972.972 0 0 1-.025 1.26C28.007 20.853 22.508 24 17 24 11.484 24 5.983 20.749.489 14.34a.972.972 0 0 1 0-1.268c5.092-5.921 10.58-8.97 16.444-9.07 5.891-.1 11.43 3.06 16.593 9.384zm-2.372.222c-4.552-5.213-9.276-7.738-14.188-7.655-5.042.086-9.846 2.649-14.432 7.756 4.961 5.588 9.786 8.34 14.466 8.34 4.58 0 9.293-2.545 14.134-7.708l.338-.365-.318-.368z"></path>
+      <circle cx="17" cy="14" r="9" stroke="#21B1CA" stroke-width="2"></circle>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_14">
+    <g fill="none" fill-rule="evenodd">
+      <path fill="#21B1CA" d="M33.097 13.386a.992.992 0 0 1-.025 1.26C27.72 20.853 22.365 24 17 24 11.627 24 6.27 20.749.918 14.34a.992.992 0 0 1 0-1.268c4.96-5.921 10.306-8.97 16.017-9.07 5.738-.1 11.132 3.06 16.162 9.384zm-2.31.222c-4.435-5.213-9.035-7.738-13.82-7.655-4.911.086-9.59 2.649-14.057 7.756 4.832 5.588 9.531 8.34 14.09 8.34 4.461 0 9.051-2.545 13.766-7.708l.33-.365-.31-.368z"></path>
+      <circle cx="17" cy="14" r="9" stroke="#21B1CA" stroke-width="2"></circle>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_15">
+    <g fill="none" fill-rule="evenodd">
+      <path fill="#21B1CA" d="M32.317 13.386c.28.37.27.903-.024 1.26C27.201 20.853 22.105 24 17 24c-5.113 0-10.21-3.251-15.303-9.66a1.031 1.031 0 0 1 .001-1.268c4.719-5.921 9.806-8.97 15.24-9.07 5.46-.1 10.593 3.06 15.379 9.384zm-2.199.222c-4.22-5.213-8.597-7.738-13.15-7.655-4.673.086-9.125 2.649-13.375 7.756 4.598 5.588 9.07 8.34 13.407 8.34 4.245 0 8.613-2.545 13.1-7.708l.313-.365-.295-.368z"></path>
+      <circle cx="17" cy="14" r="9" stroke="#21B1CA" stroke-width="2"></circle>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_16">
+    <g fill="none" fill-rule="evenodd">
+      <path fill="#21B1CA" d="M31.817 13.386c.27.37.26.903-.023 1.26C26.868 20.853 21.938 24 17 24c-4.946 0-9.877-3.251-14.803-9.66a1.059 1.059 0 0 1 0-1.268c4.565-5.921 9.486-8.97 14.743-9.07 5.282-.1 10.247 3.06 14.877 9.384zm-2.127.222c-4.082-5.213-8.316-7.738-12.72-7.655-4.521.086-8.828 2.649-12.94 7.756 4.448 5.588 8.774 8.34 12.97 8.34 4.107 0 8.332-2.545 12.672-7.708l.303-.365-.285-.368z"></path>
+      <circle cx="17" cy="14" r="9" stroke="#21B1CA" stroke-width="2"></circle>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_17">
+    <g fill="none" fill-rule="evenodd">
+      <path fill="#21B1CA" d="M31.362 13.386c.263.37.254.903-.022 1.26C26.565 20.853 21.787 24 17 24c-4.794 0-9.574-3.251-14.35-9.66a1.086 1.086 0 0 1 .001-1.268c4.425-5.921 9.195-8.97 14.29-9.07 5.12-.1 9.934 3.06 14.421 9.384zm-2.061.222c-3.957-5.213-8.061-7.738-12.33-7.655-4.383.086-8.558 2.649-12.543 7.756 4.312 5.588 8.505 8.34 12.572 8.34 3.98 0 8.076-2.545 12.283-7.708l.294-.365-.276-.368z"></path>
+      <circle cx="17" cy="14" r="9" stroke="#21B1CA" stroke-width="2"></circle>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_18">
+    <g fill="none" fill-rule="evenodd">
+      <path fill="#21B1CA" d="M30.81 13.386c.252.37.243.903-.021 1.26C26.197 20.853 21.603 24 17 24c-4.61 0-9.206-3.251-13.797-9.66a1.121 1.121 0 0 1 0-1.268c4.255-5.921 8.841-8.97 13.741-9.07 4.923-.1 9.55 3.06 13.866 9.384zm-1.982.222c-3.805-5.213-7.751-7.738-11.856-7.655-4.214.086-8.228 2.649-12.06 7.756 4.145 5.588 8.177 8.34 12.088 8.34 3.827 0 7.766-2.545 11.81-7.708l.283-.365-.265-.368z"></path>
+      <circle cx="17" cy="14" r="9" stroke="#21B1CA" stroke-width="2"></circle>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_19">
+    <g fill="none" fill-rule="evenodd">
+      <path fill="#21B1CA" d="M30.294 13.386c.243.37.234.903-.02 1.26C25.854 20.853 21.43 24 17 24c-4.437 0-8.862-3.251-13.282-9.66a1.157 1.157 0 0 1 0-1.268c4.096-5.921 8.512-8.97 13.228-9.07 4.739-.1 9.194 3.06 13.348 9.384zm-1.908.222c-3.662-5.213-7.462-7.738-11.413-7.655-4.056.086-7.92 2.649-11.61 7.756 3.991 5.588 7.872 8.34 11.637 8.34 3.684 0 7.475-2.545 11.37-7.708l.271-.365-.255-.368z"></path>
+      <circle cx="17" cy="14" r="9" stroke="#21B1CA" stroke-width="2"></circle>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_20">
+    <g fill="none" fill-rule="evenodd">
+      <path fill="#21B1CA" d="M29.829 13.386c.234.37.226.903-.02 1.26C25.544 20.853 21.276 24 17 24c-4.282 0-8.552-3.251-12.817-9.66a1.192 1.192 0 0 1 0-1.268c3.953-5.921 8.213-8.97 12.765-9.07 4.573-.1 8.873 3.06 12.881 9.384zm-1.841.222c-3.535-5.213-7.201-7.738-11.014-7.655C13.059 6.04 9.33 8.602 5.77 13.71c3.852 5.588 7.597 8.34 11.23 8.34 3.556 0 7.214-2.545 10.972-7.708l.262-.365-.246-.368z"></path>
+      <circle cx="17" cy="14" r="9" stroke="#21B1CA" stroke-width="2"></circle>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_21">
+    <g fill="none" fill-rule="evenodd">
+      <path fill="#21B1CA" d="M29.335 13.386c.225.37.217.903-.02 1.26C25.216 20.853 21.112 24 17 24c-4.117 0-8.223-3.251-12.323-9.66a1.233 1.233 0 0 1 0-1.268c3.8-5.921 7.897-8.97 12.273-9.07 4.397-.1 8.53 3.06 12.385 9.384zm-1.77.222c-3.399-5.213-6.924-7.738-10.59-7.655-3.764.086-7.35 2.649-10.772 7.756 2.314 3.492 4.47 6.318 6.702 7.616 1.34.778 2.785.724 4.095.724 1.592 0 3.37-.347 5.005-1.458 1.876-1.275 3.614-3.492 5.544-6.25l.252-.365-.237-.368z"></path>
+      <circle cx="17" cy="14" r="9" stroke="#21B1CA" stroke-width="2"></circle>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_22">
+    <g fill="none" fill-rule="evenodd">
+      <path fill="#21B1CA" d="M28.829 13.386c.216.37.208.903-.018 1.26C24.878 20.853 20.942 24 17 24c-3.948 0-7.885-3.251-11.818-9.66a1.278 1.278 0 0 1 0-1.268c3.645-5.921 7.573-8.97 11.77-9.07 4.217-.1 8.18 3.06 11.877 9.384zm-1.698.222c-3.259-5.213-6.64-7.738-10.155-7.655-1.296.031-2.73.188-3.982.861-2.236 1.2-4.245 3.622-6.348 6.895 1.76 2.77 3.169 5.577 4.88 6.963 1.741 1.41 3.785 1.377 5.474 1.377 1.6 0 3.513-.157 5.157-1.377 1.726-1.28 3.185-3.687 4.96-6.331l.241-.365-.227-.368z"></path>
+      <circle cx="17" cy="14" r="9" stroke="#21B1CA" stroke-width="2"></circle>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_23">
+    <g fill="none" fill-rule="evenodd">
+      <path fill="#21B1CA" d="M28.466 13.386c.21.37.202.903-.018 1.26C24.636 20.853 20.821 24 17 24c-3.827 0-7.643-3.251-11.455-9.66a1.314 1.314 0 0 1 0-1.268c3.533-5.921 7.34-8.97 11.408-9.07 4.088-.1 7.93 3.06 11.513 9.384zm-1.646.222c-1.66-2.74-3.103-4.962-4.83-6.229-1.56-1.143-3.397-1.465-5.013-1.426-1.41.035-3.166.056-4.524.9-2.01 1.25-3.59 3.807-5.49 6.856 1.532 2.486 2.686 4.848 4.18 6.219 1.863 1.71 4.054 2.12 5.857 2.12 1.546 0 3.4-.2 4.99-1.413 1.677-1.28 3.091-3.643 4.816-6.294l.234-.365-.22-.368z"></path>
+      <circle cx="17" cy="14" r="9" stroke="#21B1CA" stroke-width="2"></circle>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_24">
+    <g fill="none" fill-rule="evenodd">
+      <path fill="#21B1CA" d="M27.926 13.386c.2.37.193.903-.017 1.26C24.277 20.853 20.641 24 17 24c-3.647 0-7.284-3.251-10.916-9.66a1.37 1.37 0 0 1 0-1.268c3.367-5.921 6.995-8.97 10.872-9.07 3.894-.1 7.556 3.06 10.97 9.384zm-1.568.222c-1.464-2.536-2.78-4.777-4.298-6.05-1.604-1.344-3.415-1.648-5.082-1.605-1.549.04-3.606.174-5.088 1.29-1.708 1.286-2.83 3.731-4.454 6.466 1.275 2.172 1.874 4.367 3.122 5.687 1.961 2.075 4.55 2.653 6.442 2.653 1.722 0 3.901-.496 5.68-2.154 1.348-1.26 2.283-3.327 3.664-5.554l.224-.365-.21-.368z"></path>
+      <circle cx="17" cy="14" r="9" stroke="#21B1CA" stroke-width="2"></circle>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_25">
+    <g fill="none" fill-rule="evenodd">
+      <path fill="#21B1CA" d="M27.626 13.386c.194.37.187.903-.016 1.26C24.077 20.853 20.54 24 17 24c-3.547 0-7.084-3.251-10.616-9.66a1.405 1.405 0 0 1 0-1.268c3.274-5.921 6.803-8.97 10.573-9.07 3.788-.1 7.349 3.06 10.669 9.384zm-1.525.222c-1.424-2.536-2.703-4.777-4.18-6.05-1.56-1.344-3.32-1.648-4.943-1.605-1.506.04-3.506.174-4.948 1.29-1.661 1.286-2.752 3.731-4.331 6.466 1.24 2.172 1.823 4.367 3.036 5.687 1.907 2.075 4.426 2.653 6.265 2.653 1.674 0 3.794-.496 5.523-2.154 1.312-1.26 2.222-3.327 3.565-5.554l.217-.365-.204-.368z"></path>
+      <circle cx="17" cy="14" r="9" stroke="#21B1CA" stroke-width="2"></circle>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_26">
+    <g fill="none" fill-rule="evenodd">
+      <circle cx="17" cy="14" r="9" stroke="#21B1CA" stroke-width="2"></circle>
+      <path fill="#21B1CA" d="M27.247 13.386c.188.37.181.903-.015 1.26C23.825 20.853 20.415 24 17 24c-3.42 0-6.831-3.251-10.238-9.66a1.451 1.451 0 0 1 0-1.268c3.157-5.921 6.56-8.97 10.196-9.07 3.653-.1 7.088 3.06 10.29 9.384zm-1.47.222c-1.374-2.536-2.026-4.898-3.45-6.171-1.504-1.344-3.784-1.527-5.348-1.484-1.452.04-3.382.174-4.772 1.29-1.602 1.286-2.654 3.731-4.177 6.466 1.196 2.172 1.758 4.367 2.928 5.687 1.84 2.075 4.268 2.653 6.042 2.653 1.615 0 4.108-.143 5.776-1.802 1.265-1.259 1.693-3.679 2.988-5.906l.21-.365-.197-.368z"></path>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_27">
+    <circle cx="17" cy="14" r="9" fill="none" stroke="#21B1CA" stroke-width="2"></circle>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_28">
+    <g fill="none" fill-rule="evenodd" stroke="#21B1CA" stroke-width="2">
+      <circle cx="17" cy="14" r="9"></circle>
+      <path stroke-linecap="round" d="M11.251 14l.653.758"></path>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_29">
+    <g fill="none" fill-rule="evenodd" stroke="#21B1CA" stroke-width="2">
+      <circle cx="17" cy="14" r="9"></circle>
+      <path stroke-linecap="round" d="M11.251 14l1.306 1.515"></path>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_30">
+    <g fill="none" fill-rule="evenodd" stroke="#21B1CA" stroke-width="2">
+      <circle cx="17" cy="14" r="9"></circle>
+      <path stroke-linecap="round" d="M11.251 14l1.958 2.273"></path>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_31">
+    <g fill="none" fill-rule="evenodd" stroke="#21B1CA" stroke-width="2">
+      <circle cx="17" cy="14" r="9"></circle>
+      <path stroke-linecap="round" d="M11.251 14l2.611 3.03"></path>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_32">
+    <g fill="none" fill-rule="evenodd" stroke="#21B1CA" stroke-width="2">
+      <circle cx="17" cy="14" r="9"></circle>
+      <path stroke-linecap="round" d="M11.251 14l3.264 3.788"></path>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_33">
+    <g fill="none" fill-rule="evenodd" stroke="#21B1CA" stroke-width="2">
+      <circle cx="17" cy="14" r="9"></circle>
+      <path stroke-linecap="round" d="M11.251 14l3.82 4.432"></path>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_34">
+    <g fill="none" fill-rule="evenodd" stroke="#21B1CA" stroke-width="2">
+      <circle cx="17" cy="14" r="9"></circle>
+      <path stroke-linecap="round" d="M11.251 14l3.82 4.432m0 0l.679-.733"></path>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_35">
+    <g fill="none" fill-rule="evenodd" stroke="#21B1CA" stroke-width="2">
+      <circle cx="17" cy="14" r="9"></circle>
+      <path stroke-linecap="round" d="M11.251 14l3.82 4.432m0 0l1.358-1.467"></path>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_36">
+    <g fill="none" fill-rule="evenodd" stroke="#21B1CA" stroke-width="2">
+      <circle cx="17" cy="14" r="9"></circle>
+      <path stroke-linecap="round" d="M11.251 14l3.82 4.432m0 0l2.037-2.201"></path>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_37">
+    <g fill="none" fill-rule="evenodd" stroke="#21B1CA" stroke-width="2">
+      <circle cx="17" cy="14" r="9"></circle>
+      <path stroke-linecap="round" d="M11.251 14l3.82 4.432m0 0l2.717-2.935"></path>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_38">
+    <g fill="none" fill-rule="evenodd" stroke="#21B1CA" stroke-width="2">
+      <circle cx="17" cy="14" r="9"></circle>
+      <path stroke-linecap="round" d="M11.251 14l3.82 4.432m0 0l3.396-3.669"></path>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_39">
+    <g fill="none" fill-rule="evenodd" stroke="#21B1CA" stroke-width="2">
+      <circle cx="17" cy="14" r="9"></circle>
+      <path stroke-linecap="round" d="M11.251 14l3.82 4.432m0 0l4.075-4.403"></path>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_40">
+    <g fill="none" fill-rule="evenodd" stroke="#21B1CA" stroke-width="2">
+      <circle cx="17" cy="14" r="9"></circle>
+      <path stroke-linecap="round" d="M11.251 14l3.82 4.432m0 0l4.754-5.137"></path>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_41">
+    <g fill="none" fill-rule="evenodd" stroke="#21B1CA" stroke-width="2">
+      <circle cx="17" cy="14" r="9"></circle>
+      <path stroke-linecap="round" d="M11.251 14l3.82 4.432m0 0l5.434-5.871"></path>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_42">
+    <g fill="none" fill-rule="evenodd" stroke="#21B1CA" stroke-width="2">
+      <circle cx="17" cy="14" r="9"></circle>
+      <path stroke-linecap="round" d="M11.251 14l3.82 4.432m0 0l6.113-6.605"></path>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_43">
+    <g fill="none" fill-rule="evenodd" stroke="#21B1CA" stroke-width="2">
+      <circle cx="17" cy="14" r="9"></circle>
+      <path stroke-linecap="round" d="M11.251 14l3.82 4.432m0 0l6.792-7.339"></path>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_44">
+    <g fill="none" fill-rule="evenodd" stroke="#21B1CA" stroke-width="2">
+      <circle cx="17" cy="14" r="9"></circle>
+      <path stroke-linecap="round" d="M11.251 14l3.82 4.432m0 0l7.471-8.073"></path>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_45">
+    <g fill="none" fill-rule="evenodd" stroke="#21B1CA" stroke-width="2">
+      <circle cx="17" cy="14" r="9"></circle>
+      <path stroke-linecap="round" d="M11.251 14l3.82 4.432m0 0l8.151-8.806"></path>
+    </g>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 28" id="eye_outline_animation_46">
+    <g fill="none" fill-rule="evenodd" stroke="#21B1CA" stroke-width="2">
+      <circle cx="17" cy="14" r="9"></circle>
+      <path stroke-linecap="round" d="M11.251 14l3.82 4.432m0 0l8.83-9.54"></path>
+    </g>
+  </symbol>
+</svg>

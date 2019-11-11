@@ -1,0 +1,39 @@
+{
+  "name": "stockflux",
+  "version": "13.1.0",
+  "devDependencies": {
+    "babel-eslint": "10.0.1",
+    "concurrently": "^4.1.2",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-config-react-app": "^5.0.1",
+    "eslint-plugin-flowtype": "^4.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^2.0.1",
+    "lerna": "^3.16.4",
+    "prettier": "^1.18.2"
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap --concurrency 1",
+    "build": "lerna run build",
+    "lint": "./node_modules/.bin/eslint \"**/*.js\" --ignore-pattern node_modules/ --ignore-pattern build/ --ignore-pattern dist/ --ignore-pattern serviceWorker.js",
+    "lint-fix": "npm run lint -- --fix",
+    "chart:start": "cd packages/stockflux-chart && npm run start",
+    "container:start": "cd packages/stockflux-container && npm run start",
+    "launcher:start": "cd packages/stockflux-launcher && npm run start",
+    "news:start": "cd packages/stockflux-news && npm run start",
+    "watchlist:start": "cd packages/stockflux-watchlist && npm run start",
+    "all:start": "concurrently \"npm run chart:start\" \"npm run container:start\" \"npm run launcher:start\" \"npm run news:start\" \"npm run watchlist:start\"",
+    "chart:launch": "cd packages/stockflux-chart && npm run launch",
+    "launcher:launch": "cd packages/stockflux-launcher && npm run launch",
+    "news:launch": "cd packages/stockflux-news && npm run launch",
+    "watchlist:launch": "cd packages/stockflux-watchlist && npm run launch",
+    "chart:launch-appd": "cd packages/stockflux-chart && npm run launch-appd",
+    "launcher:launch-appd": "cd packages/stockflux-launcher && npm run launch-appd",
+    "news:launch-appd": "cd packages/stockflux-news && npm run launch-appd",
+    "watchlist:launch-appd": "cd packages/stockflux-watchlist && npm run launch-appd"
+  }
+}

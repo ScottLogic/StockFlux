@@ -1,0 +1,31 @@
+.borderless {
+  display: inline-block;
+  color: var(--text-color);
+  fill: var(--text-color);
+  border: none;
+  outline: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.borderless:hover {
+  color: var(--text-teal-light);
+}
+
+.borderless svg {
+  margin: auto;
+  display: block;
+  shape-rendering: auto;
+  fill: currentColor;
+  stroke: none;
+}
+
+.borderless:active {
+  fill: var(--icon-active);
+}
+
+.borderless:disabled {
+  color: var(--color-inactive);
+  fill: var(--color-inactive);
+  cursor: default;
+}
