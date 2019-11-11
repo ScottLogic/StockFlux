@@ -9,7 +9,16 @@ Currently the library is used locally across the other Stockflux applications.
 Before you run an application that has the components library as a dependency you must build the components. To do so run the following command in the Stockflux-components directory:
 
 ```bash
+npm install
 npm run build
+```
+
+It is added as a dependency in the target applications `package.json` like so:
+
+```json
+"dependencies": {
+    "stockflux-components": "file:../stockflux-components",
+}
 ```
 
 ### Usage
@@ -37,7 +46,7 @@ The global default export is defined as `Components`. You can use it like so:
 
 ```jsx
 <Components.ScrollWrapperY>
-  <Components.Spinner />
-  <Components.Shortcuts.News />
+    <Components.Spinner/>
+    <Components.News/>
 </Components.ScrollWrapperY>
 ```
