@@ -14,7 +14,7 @@ import {
   onDrop
 } from './components/watchlist-card/WatchlistCard.Dragging';
 import { useNotification } from 'openfin-react-hooks';
-import previewOptions from './components/watchlist/PreviewOptions';
+import previewOptions from './components/PreviewOptions';
 import './App.css';
 
 let latestListener;
@@ -46,18 +46,20 @@ const App = () => {
   const [options] = useOptions();
   const notification = useNotification(NOTIFICATION_OPTIONS);
 
-  const displayNotification = newSymbol => {
-    setNewSymbol(newSymbol);
+  const displayNotification = () => {
     if (notification) {
       notification.launch({
         url: 'notification.html'
       });
     }
   };
-
-  const addToWatchlist = symbol => {
-    setWatchlist(getDistinctElementArray([symbol, ...watchlist]));
-    displayNotification(symbol);
+  const addToWatchlist = async incomingSymbol => {
+    setNewSymbol({
+      symbol: incomingSymbol,
+      isNew: !watchlist.includes(incomingSymbol)
+    });
+    await displayNotification(incomingSymbol);
+    setWatchlist(getDistinctElementArray([incomingSymbol, ...watchlist]));
   };
 
   const { data } = useInterApplicationBusSubscribe(
@@ -67,36 +69,23 @@ const App = () => {
 
   useEffect(() => {
     if (notification.state === 'LAUNCHED') {
-      const alreadyInWatchlist = watchlist.includes(newSymbol);
       notification.populate(
-        <>
-          <div className="notification-icon">
-            <img
-              id="icon"
-              className={alreadyInWatchlist ? 'arrow-up' : 'card-icon'}
-              src={alreadyInWatchlist ? 'ArrowUp.png' : 'CardIcon.png'}
-              alt="Notification Icon"
-            />
-          </div>
-          <div id="notification-content">
-            <p id="title">WATCHLIST UPDATED</p>
-            <hr />
-            <p id="info">
-              <span id="symbol">{newSymbol}</span>
-              <span id="message">{`${
-                alreadyInWatchlist ? ' moved' : ' added'
-              } to the top`}</span>
-            </p>
-          </div>
-        </>
+        <div className="notification">
+          <div className="icon"></div>
+          <p>
+            {`${newSymbol.symbol} ${
+              newSymbol.isNew
+                ? 'has been added to your Watchlist'
+                : 'has been moved to the top of your Watchlist'
+            }`}
+          </p>
+        </div>
       );
     }
   });
   useEffect(() => {
-    if (data && data.message) {
-      if (data.message.symbol) {
-        addToWatchlist(data.message.symbol);
-      }
+    if (data && data.message && data.message.symbol) {
+      addToWatchlist(data.message.symbol);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
@@ -136,17 +125,13 @@ const App = () => {
     }
   };
 
-  const setPreviewMode = mode => {
-    setDisplayPreview(mode);
-  };
-
   const bindings = {
     onModalConfirmClick: onModalConfirmClick,
     onModalBackdropClick: onModalBackdropClick,
     onIconClick: onIconClick,
     resetDragState: resetDragState,
     onDropOutside: onDropOutside,
-    previewMode: setPreviewMode
+    previewMode: setDisplayPreview
   };
 
   /*
@@ -223,7 +208,6 @@ const App = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [displayPreview, windowOptions]);
-
   return (
     <>
       <Components.Titlebar title="Watchlist" />
