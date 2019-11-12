@@ -9,7 +9,7 @@ import currentWindowService from '../../services/currentWindowService';
 import cx from 'classnames';
 import reducer, { initialState } from '../../reducers/open-apps/OpenApps';
 import Action from '../../reducers/open-apps/Action';
-import previewOptions from '../watchlist/PreviewOptions';
+import previewOptions from '../PreviewOptions';
 import './WatchlistCard.css';
 
 const WatchlistCard = ({
