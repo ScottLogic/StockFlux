@@ -77,7 +77,6 @@ export default () => {
       <div className={cx('app', edge)}>
         {!isHorizontal && (
           <div className="title title-vertical">
-            <br></br>
             <span className="title strong">S</span>
             <span className="title">F</span>
           </div>

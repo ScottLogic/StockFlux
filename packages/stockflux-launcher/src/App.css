@@ -50,9 +50,8 @@ body {
   flex-direction: column;
   justify-content: space-between;
   display: flex;
-  flex-grow: 3;
-  position: absolute;
-  height: 100%;
+  flex-grow: 3;  
+  height: calc(100vh - var(--titlebar-height));
 }
 
 .none,
