@@ -7,46 +7,11 @@ import {
   useOptions
 } from 'openfin-react-hooks';
 import './App.css';
-
-const SEARCHING = 'searching';
-const SUCCESS = 'success';
-const ERROR = 'error';
-
-const initialSearchState = {
-  isSearching: false,
-  hasErrors: false,
-  results: []
-};
+import searchReducer, { initialState } from './reducers/search';
+import Action from './reducers/search/Action';
 
 function App() {
-  const searchReducer = (state, { type, results }) => {
-    switch (type) {
-      case SEARCHING:
-        return {
-          ...state,
-          hasErrors: false,
-          isSearching: true,
-          results: []
-        };
-      case SUCCESS:
-        return {
-          ...state,
-          isSearching: false,
-          results
-        };
-      case ERROR:
-        return {
-          ...state,
-          hasErrors: true,
-          isSearching: false,
-          results: []
-        };
-      default:
-        throw new Error();
-    }
-  };
-
-  const [searchState, dispatch] = useReducer(searchReducer, initialSearchState);
+  const [searchState, dispatch] = useReducer(searchReducer, initialState);
   const [symbol, setSymbol] = useState(null);
   const [options] = useOptions();
   const listContainer = useRef(null);
@@ -74,12 +39,12 @@ function App() {
 
   useEffect(() => {
     if (symbol) {
-      dispatch({ type: SEARCHING });
+      dispatch({ type: Action.SEARCHING });
       StockFlux.getSymbolNews(symbol)
         .then(results => {
-          dispatch({ type: SUCCESS, results });
+          dispatch({ type: Action.SUCCESS, results });
         })
-        .catch(() => dispatch({ type: ERROR }));
+        .catch(() => dispatch({ type: Action.ERROR }));
     }
   }, [symbol]);
 
