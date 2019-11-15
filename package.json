@@ -34,6 +34,7 @@
     "chart:launch-appd": "cd packages/stockflux-chart && npm run launch-appd",
     "launcher:launch-appd": "cd packages/stockflux-launcher && npm run launch-appd",
     "news:launch-appd": "cd packages/stockflux-news && npm run launch-appd",
-    "watchlist:launch-appd": "cd packages/stockflux-watchlist && npm run launch-appd"
+    "watchlist:launch-appd": "cd packages/stockflux-watchlist && npm run launch-appd",
+    "watchlist:test": "cd packages/stockflux-watchlist && npm run test"
   }
 }
