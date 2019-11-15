@@ -20,6 +20,6 @@ export default (state, { type, payload }) => {
     case ActionType.RESET:
       return initialState;
     default:
-      throw new Error();
+      return state;
   }
 };
