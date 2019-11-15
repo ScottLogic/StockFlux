@@ -6,7 +6,7 @@ export const initialSearchState = {
   results: []
 };
 
-export default (state, { type, results }) => {
+export default (state, { type, results = [] }) => {
   switch (type) {
     case actionType.SEARCHING:
       return {
@@ -31,6 +31,6 @@ export default (state, { type, results }) => {
     case actionType.INITIALISE:
       return initialSearchState;
     default:
-      throw new Error();
+      return state;
   }
 };
