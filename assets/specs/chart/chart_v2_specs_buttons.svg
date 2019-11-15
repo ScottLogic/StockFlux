@@ -83,13 +83,13 @@
       <tspan x="603.579" y="256.875">States</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12" letter-spacing=".086">
-      <tspan x="835.329" y="310">Background: blue_background_light -1B3B56</tspan> <tspan x="835.329" y="324">Button outline: none</tspan> <tspan x="835.329" y="338">Icon &amp; text: grey_innactive - ABB3B9</tspan>
+      <tspan x="835.329" y="310">Background: 1B3B56</tspan> <tspan x="835.329" y="324">Button outline: none</tspan> <tspan x="835.329" y="338">Icon &amp; text: Button/text&amp;icon/inactive 1B3B56</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12" letter-spacing=".086">
-      <tspan x="835.329" y="548.75">Background: blue-background-dark - 091A29</tspan> <tspan x="835.329" y="562.75">Button outline: 1px - grey-light - EAECEE</tspan> <tspan x="835.329" y="576.75">Icon &amp; text: Grey-light - EAECEE</tspan>
+      <tspan x="835.329" y="548.75">Background: 091A29</tspan> <tspan x="835.329" y="562.75">Button outline: White</tspan> <tspan x="835.329" y="576.75">Icon &amp; text: White</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12" letter-spacing=".086">
-      <tspan x="835.329" y="634.75">Background: blue-background-dark - 091A29</tspan> <tspan x="835.329" y="648.75">Button outline: 1px - grey-light - EAECEE</tspan> <tspan x="835.329" y="662.75">Icon &amp; text: Grey-light - EAECEE</tspan> <tspan x="835.329" y="676.75">Inner shadow: black, 50% opacity, X: 0, Y: 0, </tspan> <tspan x="835.329" y="690.75">Blur: 5, Spread: 4</tspan>
+      <tspan x="835.329" y="634.75">Background: 091A29</tspan> <tspan x="835.329" y="648.75">Button outline: 1px, White</tspan> <tspan x="835.329" y="662.75">Icon &amp; text: White</tspan> <tspan x="835.329" y="676.75">Inner shadow: black, 50% opacity, X: 0, Y: 0, </tspan> <tspan x="835.329" y="690.75">Blur: 5, Spread: 4</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12" letter-spacing=".086">
       <tspan x="1133.079" y="306.75">Inactive is when: </tspan> <tspan x="1133.079" y="320.75"> - The Watchlist or News windows aren’t open</tspan> <tspan x="1133.079" y="334.75"> - User isn’t hovering over button </tspan>
@@ -122,10 +122,10 @@
       <tspan x="1547.329" y="457.75">Once this button is clicked, the Watchlist window opens and the </tspan> <tspan x="1547.329" y="471.75">button is active</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12" letter-spacing=".086">
-      <tspan x="835.329" y="381.75">Background: blue-background-dark - 091A29</tspan> <tspan x="835.329" y="395.75">Button outline: none</tspan> <tspan x="835.329" y="409.75">Icon &amp; text: Grey-light - EAECEE</tspan>
+      <tspan x="835.329" y="381.75">Background: 091A29</tspan> <tspan x="835.329" y="395.75">Button outline: none</tspan> <tspan x="835.329" y="409.75">Icon &amp; text: White</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12" letter-spacing=".086">
-      <tspan x="835.329" y="453.75">Background: blue-background-dark - 091A29</tspan> <tspan x="835.329" y="467.75">Button outline: none</tspan> <tspan x="835.329" y="481.75">Icon &amp; text: Grey-light - EAECEE</tspan> <tspan x="835.329" y="495.75">Inner shadow: black, 50% opacity, X: 0, Y: 0, </tspan> <tspan x="835.329" y="509.75">Blur: 4, Spread: 1</tspan>
+      <tspan x="835.329" y="453.75">Background: 091A29</tspan> <tspan x="835.329" y="467.75">Button outline: none</tspan> <tspan x="835.329" y="481.75">Icon &amp; text: White</tspan> <tspan x="835.329" y="495.75">Inner shadow: black, 50% opacity, X: 0, Y: 0, </tspan> <tspan x="835.329" y="509.75">Blur: 4, Spread: 1</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
       <tspan x="1438" y="778.948">Chart Variables</tspan>
