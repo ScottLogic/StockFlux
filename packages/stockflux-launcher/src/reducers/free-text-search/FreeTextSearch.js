@@ -31,6 +31,6 @@ export default (state, { type, results = [] }) => {
     case actionType.INITIALISE:
       return initialSearchState;
     default:
-      return state;
+      throw new Error();
   }
 };

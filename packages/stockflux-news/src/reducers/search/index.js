@@ -29,6 +29,6 @@ export default (state, { type, results = [] }) => {
         results: []
       };
     default:
-      return state;
+      throw new Error();
   }
 };

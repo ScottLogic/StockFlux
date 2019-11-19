@@ -3,8 +3,9 @@ import action from './Action';
 
 describe('Action Reducer', () => {
   it('Should return inital state when given an unknown action', () => {
-    const newState = reducer(initialState, {});
-    expect(newState).toEqual(initialState);
+    expect(() => {
+      reducer(initialState, {});
+    }).toThrow(Error);
   });
 
   it('Should return a valid state on SEARCHING action', () => {
