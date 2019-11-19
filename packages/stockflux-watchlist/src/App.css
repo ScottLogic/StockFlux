@@ -11,15 +11,15 @@
 
   /* Dimensions -----------------------*/
   /*-----------------------------------*/
-  --card-height: 120px;
+  --card-height: 82px;
   --card-width: 532px;
   --bubble-head-width: 10px;
   --bubble-head-height: 10px;
 
   /* Minichart Variables --------------*/
   /*-----------------------------------*/
-  --minichart-width: 153px;
-  --minichart-height: 60px;
+  --minichart-width: 255px;
+  --minichart-height: 49px;
   --chart-stroke: var(--chart-teal);
 
   /* Other ----------------------------*/
@@ -98,7 +98,7 @@ body {
   cursor: pointer;
   border-width: 2px 0;
   max-height: calc(var(--card-height) * 2);
-  border-bottom: 2px solid var(--clr-divider-light);
+  border-bottom: 4px solid var(--clr-divider-light);  
 }
 
 .card-wrapper * {
@@ -122,7 +122,8 @@ body {
 .card-wrapper.dragOverBottom,
 .card-wrapper.dragOver,
 .card-wrapper.dragging {
-  background-color: rgba(41,233,227,0.2);
+  background-color: rgba(13,36,55,0.8);
+  
 }
 
 .card-wrapper.dragOver {

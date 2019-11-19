@@ -114,14 +114,14 @@ const App = () => {
 
   const getSymbolIndex = symbol => watchlist.indexOf(symbol);
 
-  const onDropOutside = (symbol, stockName) => {
+  const onDropOutside = async (symbol, stockName) => {
     if (windowOptions) {
       /*Always recalculate where the target window should drop, for is the window has been moved. */
       const dropPosition = {
         left: calcLeftPosition(windowOptions.defaultWidth, WINDOW_OFFSET),
         top: window.screenTop
       };
-      Launchers.launchChart(symbol, stockName, dropPosition);
+      await Launchers.launchChart(symbol, stockName, dropPosition);
     }
   };
 
@@ -234,13 +234,6 @@ const App = () => {
           htmlPath="preview-chart.html"
           position={previewDetails.position}
           size={previewDetails.size}
-        ></Components.PreviewWindow>
-        <Components.PreviewWindow
-          windowName="symbol-delete"
-          display={displayPreview === previewOptions.delete}
-          htmlPath="delete-symbol.html"
-          position={previewDetails.position}
-          size={{ height: 100, width: 400 }}
         ></Components.PreviewWindow>
         <Components.ScrollWrapperY>
           {watchlist.length === 0 ? (

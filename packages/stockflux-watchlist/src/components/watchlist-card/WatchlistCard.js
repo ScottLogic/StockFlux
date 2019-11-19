@@ -4,7 +4,7 @@ import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Minichart from '../minichart/Minichart';
 import Components from 'stockflux-components';
-import { StockFlux, Utils } from 'stockflux-core';
+import { StockFlux, Utils, Launchers } from 'stockflux-core';
 import currentWindowService from '../../services/currentWindowService';
 import cx from 'classnames';
 import reducer, { initialState } from '../../reducers/open-apps/OpenApps';
@@ -33,8 +33,8 @@ const WatchlistCard = ({
     delta: 0,
     percentage: 0
   });
-  const [dragOutcome, setDragOutcome] = useState('');
   const [openApps, dispatch] = useReducer(reducer, initialState);
+  const [showMenu, setShowMenu] = useState(false);
 
   const determineIfNewsOpen = useCallback(async () => {
     const newsWindow = await OpenfinApiHelpers.windowAlreadyExists(
@@ -116,24 +116,19 @@ const WatchlistCard = ({
       setDragging({ isDragging: true, clientX, offsetY });
       e.dataTransfer.setData(JSON.stringify(symbolData), '');
       e.dataTransfer.setData(JSON.stringify(windowData), '');
-      bindings.previewMode(dragOutcome);
+      bindings.previewMode(previewOptions.chart);
     };
   };
 
+  const openChart = async () => {
+    await bindings.onDropOutside(symbol, stockData.name);
+    determineIfChartOpen();
+  }
+
   const onDragEnd = e => {
     if (e.dataTransfer.dropEffect === 'none') {
-      switch (dragOutcome) {
-        case previewOptions.delete:
-          removeFromWatchList(symbol);
-          break;
-        case previewOptions.chart:
-          bindings.onDropOutside(symbol, stockData.name);
-          break;
-        default:
-          console.error('Invalid Action to switch(DragOutcome)');
-      }
+      openChart();
     }
-    setDragOutcome(previewOptions.none);
     setDragging({ isDragging: false });
   };
 
@@ -152,92 +147,89 @@ const WatchlistCard = ({
     >
       <div className="drop-target">
         <div className="card default-background" draggable="false">
-          <div
-            className="card-top darkens"
-            onMouseDown={() => setDragOutcome(previewOptions.delete)}
-          >
-            <div className="details-container">
-              <div className="symbol">{symbol}</div>
-              <div className="name">{stockData.name}</div>
-            </div>
-            <div className="icons">
-              <div className={cx('icon', { open: openApps.news })}>
-                <Components.Shortcuts.News
-                  symbol={symbol}
-                  name={stockData.name}
-                  small={true}
-                  onClick={determineIfNewsOpen}
-                />
-              </div>
-              <div className={cx('icon', { open: openApps.chart })}>
-                <Components.Shortcuts.Chart
-                  symbol={symbol}
-                  name={stockData.name}
-                  small={true}
-                  onClick={() => {
-                    bindings.onDropOutside(symbol, stockData.name);
-                    determineIfChartOpen();
-                  }}
-                />
-              </div>
-              <div className="icon open">
-                <Components.Buttons.Borderless
-                  onClick={e => {
-                    e.stopPropagation();
-                    removeFromWatchList(symbol);
-                  }}
-                  small={true}
-                >
-                  <Components.Icons.Small.Watchlist />
-                </Components.Buttons.Borderless>
-              </div>
-            </div>
-          </div>
-          <div
-            className="card-bottom"
-            onClick={() => {
-              bindings.onDropOutside(symbol, stockData.name);
-            }}
-            onMouseDown={() => setDragOutcome(previewOptions.chart)}
-          >
-            <Minichart
-              symbol={symbol}
-              chartData={chartData}
-              fetchError={fetchError}
-            />
-            <div className="details">
-              {<div className="price">{stockData.price || 'N/A'}</div>}
-              <div
-                className={`percentage ${
-                  stockData.percentage < 0 ? 'price_negative' : 'price_positive'
-                }`}
-              >
-                {stockData.percentage ? (
-                  <span>
-                    {stockData.percentage < 0 ? (
-                      <Components.Icons.Arrows.PriceDown />
-                    ) : (
-                      <Components.Icons.Arrows.PriceUp />
-                    )}
-                    {stockData.percentage < 0 ? '-' : ''}
-                    {Math.abs(stockData.percentage) + '%'}
-                  </span>
-                ) : (
-                  ''
-                )}
-              </div>
-              {
-                <div
-                  className={`delta ${
+          <div className="card-details">
+            <div className="card-name symbol">{symbol}</div>
+            <div className="card-price">
+              <span className="symbol">
+                <span
+                  className={`${
                     stockData.percentage < 0
                       ? 'price_negative'
                       : 'price_positive'
                   }`}
                 >
-                  {stockData.delta || ''}
-                </div>
-              }
+                  {stockData.percentage < 0 ? (
+                    <Components.Icons.Arrows.PriceDown />
+                  ) : (
+                    <Components.Icons.Arrows.PriceUp />
+                  )}
+                </span>
+                {stockData.price || 'N/A'}
+              </span>
+              <span
+                className={`delta ${
+                  stockData.percentage < 0 ? 'price_negative' : 'price_positive'
+                }`}
+              >
+                {stockData.delta || ''} ({Math.abs(stockData.percentage) + '%'})
+              </span>
             </div>
+          </div>
+          <div className="card-chart">
+            <Minichart
+              symbol={symbol}
+              chartData={chartData}
+              fetchError={fetchError}
+            />
+          </div>
+          <div className="card-menu">
+            {showMenu && (
+              <span>
+                <button
+                  className="card-menu-remove"
+                  onClick={e => {
+                    e.stopPropagation();
+                    removeFromWatchList(symbol);
+                  }}
+                >
+                  <span>
+                    <Components.Icons.Small.RemoveIcon />
+                    Remove
+                  </span>
+                </button>
+                <button
+                  className={cx('card-menu-new', { open: openApps.news })}
+                  onClick={async () => {
+                    await Launchers.launchNews(symbol, stockData.name);
+                    determineIfNewsOpen();
+                  }}
+                >
+                  <span>
+                    <Components.Icons.Small.News />
+                    News
+                  </span>
+                </button>
+                <button
+                  className={cx('card-menu-chart', { open: openApps.chart })}
+                  onClick={openChart}
+                >
+                  <span>
+                    <Components.Icons.Small.Chart />
+                    Chart
+                  </span>
+                </button>
+              </span>
+            )}
+            <button
+              className={cx('card-menu-show', { open: showMenu })}
+              onClick={() => setShowMenu(!showMenu)}
+            >
+              {showMenu ? (
+                <Components.Icons.Small.ShowMenu />
+              ) : (
+                <Components.Icons.Small.HideMenu />
+              )}
+            </button>
           </div>
         </div>
       </div>

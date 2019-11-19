@@ -8,8 +8,8 @@
   --color-primary:#0D2437;
   --color-secondary:#091A29;
   /* Windows*/
-  --window-background-color:#0D2437;  
-  --window-header-bar:#071521;
+  --window-background-color:#071521;  
+  --window-header-bar:#010F1B;
   --window-divider:#091A29;
   --window-icon:#FFFFFF;
   --window-stock-hover:#091A29;
@@ -23,7 +23,7 @@
   --scroll-bar-inactive:#8A96A6;
   --scroll-bar-arrow:#8A96A6;
   --scroll-bar-track:#1B3B56;
-  --scroll-bar-grip:#091A29;
+  --scroll-bar-grip: rgba(98,116,130,0.8);
   /* Icons */
   --icon-active:#21B1CA;
   --icon-inactive: #8A96A6;
@@ -31,8 +31,8 @@
   --icon-hover-light: rgba(256,256,256,0.15);
   /* Text */
   --text-color:#FFFFFF; 
-  --text-increase:#41D442;
-  --text-decrease:#FF7171;
+  --text-increase:#43C578;
+  --text-decrease:#FF6262;
 
   /* dimensions */
   --expanded-width: 230px;
@@ -41,7 +41,7 @@
   --icons-size: 30px;
   --titlebar-height: 28px;
   --bottom-tab-height: 33px;
-  --scrollbar-width: 12px;
+  --scrollbar-width: 6px;
 
   /* transitions  */
   --icon-transition-duration: 0.5s;

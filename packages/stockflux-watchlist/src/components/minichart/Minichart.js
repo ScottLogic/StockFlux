@@ -11,7 +11,6 @@ import {
   scaleDiscontinuous,
   seriesSvgArea,
   seriesSvgLine,
-  seriesSvgPoint,
   seriesSvgMulti
 } from 'd3fc';
 import './Minichart.css';
@@ -114,12 +113,6 @@ const getLine = () => {
     .mainValue(d => d.close);
 };
 
-const getPoint = () => {
-  return seriesSvgPoint()
-    .crossValue(d => d.date)
-    .mainValue(d => d.close);
-};
-
 const getTrimmedData = chartData => {
   return chartData.slice().map(d => {
     const datum = d;
@@ -135,15 +128,12 @@ const getMulti = (symbol, chartData) => {
 
   const area = getArea(symbol, chartData);
   const line = getLine();
-  const point = getPoint();
   return seriesSvgMulti()
-    .series([area, line, point])
+    .series([area, line])
     .xScale(xScale)
     .yScale(yScale)
     .mapping((_, index, series) => {
       switch (series[index]) {
-        case point:
-          return [chartData.slice(0)[0]];
         default:
           return chartData;
       }
