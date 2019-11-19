@@ -123,7 +123,7 @@ const WatchlistCard = ({
   const openChart = async () => {
     await bindings.onDropOutside(symbol, stockData.name);
     determineIfChartOpen();
-  }
+  };
 
   const onDragEnd = e => {
     if (e.dataTransfer.dropEffect === 'none') {
