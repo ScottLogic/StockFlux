@@ -4,6 +4,17 @@ html, body{
   background: var(--primary-dark-blue);
 
 }
+.gridline-y{
+  stroke: #55555B;
+  stroke-width: .5px;
+  stroke-opacity: .75;
+}
+
+.gridline-x{
+  stroke: #55555B;
+  stroke-width: .5px;
+  stroke-opacity: .75;
+}
 
 .candlestick.down{
   fill:#FF7171 ;
@@ -24,33 +35,28 @@ html, body{
 }
 
 .handle.handle--w{
-  /* border-radius: 50%; */
-  /* rx: 22; */
   width: .3%;
   height: 100%;
   fill: white;
+  visibility: visible !important;
+
 }
 
 .handle.handle--e{
-  /* rx: 22; */
-  /* ry: 100; */
   width: .3%;
   height: 100%;
   fill: white;
 }
 
 .selection {
-shape-rendering: unset;
-z-index: 100;
 stroke: none;
-stroke-width: 5px;
 fill: #29E9E3;
 fill-opacity: 0.2
 }
 
 .domain {
-  stroke: white;
-  stroke-width: 2
+  stroke: #FFFFFF;
+  stroke-width: .5
 }
 
 .tick text{
@@ -59,7 +65,8 @@ fill-opacity: 0.2
 }
 
 .tick path{
-  stroke: white
+  stroke: #FFFFFF;
+  stroke-width: .5;
 }
 
 /* path{

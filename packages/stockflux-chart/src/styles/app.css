@@ -34,12 +34,12 @@ body {
 .d3fc-button {
     position: absolute;
     right: 0px;
-    fill:white
+    fill:rgb(191, 191, 204)
     
 }
 
 .chart-tool{
-    color: white;
+    color: rgb(191, 191, 204)
 }
 
 #showcase-container {
@@ -52,13 +52,18 @@ body {
     background: #091A29;
     height: 20%;
     padding: 0px 0px 0px 0px
-
 }
-
+/* #navigation-container >.cartesian-chart {
+    margin: 0px 20px 0px 20px;
+} */
 #navigation-container >.cartesian-chart >.plot-area{
     stroke: #21B1CA;
     stroke-width: 1px;
-    /* margin: 0px 30px 0px 30px */
+    /* overflow: visible !important; */
+}
+
+#navigation-container .brush{
+
 }
 
 .area {
@@ -67,6 +72,7 @@ body {
 
 #navigation-container .y-axis {
     visibility: hidden;
+    width: 0;
 }
 
 #navigation-container .x-axis .domain{

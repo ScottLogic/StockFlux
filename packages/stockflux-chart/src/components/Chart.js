@@ -18,6 +18,38 @@ const Chart = ({ chartData, chartType }) => {
   const showcaseContainer = useRef(null);
   const navigationContainer = useRef(null);
 
+
+  const legend = () => {
+    const labelJoin = fc.dataJoin("text", "legend-label");
+    const valueJoin = fc.dataJoin("text", "legend-value");
+
+    const instance = selection => {
+      selection.each((data, selectionIndex, nodes) => {
+        labelJoin(d3.select(nodes[selectionIndex]), data)
+          .attr("transform", (_, i) => "translate(50, " + (i + 1) * 15 + ")")
+          .text(d => d.name);
+
+        valueJoin(d3.select(nodes[selectionIndex]), data)
+          .attr("transform", (_, i) => "translate(60, " + (i + 1) * 15 + ")")
+          .text(d => d.value);
+      });
+    };
+
+    return instance;
+  };
+
+  const dateFormat = d3.timeFormat("%a %H:%M%p");
+  const priceFormat = d3.format(",.2f");
+  const legendData = datum => [
+    { name: "Open", value: priceFormat(datum.open) },
+    { name: "High", value: priceFormat(datum.high) },
+    { name: "Low", value: priceFormat(datum.low) },
+    { name: "Close", value: priceFormat(datum.close) },
+    { name: "Volume", value: priceFormat(datum.volume) }
+  ];
+
+
+
   function makeChart(data) {
 
     //Extents calculate the domain/(min/max) of data
@@ -29,6 +61,8 @@ const Chart = ({ chartData, chartType }) => {
 
     var xScale = d3.scaleTime()
       .domain(xExtent(data));
+
+    var xScaleSkip = fc.scaleDiscontinuous(d3.scaleTime()).discontinuityProvider(fc.discontinuitySkipWeekends()).domain(xExtent(data))
     var yScale = d3.scaleLinear()
       .domain(yExtent(data));
 
@@ -44,7 +78,7 @@ const Chart = ({ chartData, chartType }) => {
     };
 
 
-    var gridlines = fc.annotationSvgGridline().yTicks(10).xTicks(0)
+    var gridlines = fc.annotationSvgGridline().yTicks(10).xTicks(10)
 
     var line = fc.seriesSvgLine()
       .crossValue(function (d) { return d.date; })
@@ -66,10 +100,16 @@ const Chart = ({ chartData, chartType }) => {
         }
       });
 
+    const chartLegend = legend();
+
     var multi = fc.seriesSvgMulti()
-      .series([area, brush])
+      .series([area, brush, chartLegend])
       .mapping((data, index, series) => {
         switch (series[index]) {
+          case chartLegend:
+            const lastPoint = data[data.length - 1];
+            console.log(lastPoint)
+            return legendData(lastPoint)
           case area:
             return data.series;
           case brush:
@@ -77,22 +117,25 @@ const Chart = ({ chartData, chartType }) => {
         }
       });
 
-    // var mainChart = fc.chartCartesian(xScale, yScale)
-    //   .svgPlotArea(line)
+    const main = fc.seriesSvgMulti()
+      .series([gridlines, candlestick]);
+
+
     var mainChart = fc.chartCartesian(xScale, yScale)
-      .svgPlotArea(candlestick)
-      .decorate(function (selection) {
-        var plot = selection.enter().select('.plot-line')
-        plot.attr('class', 'plot-line main-chart')
-      })
+      .svgPlotArea(main)
+    // .decorate(function (selection) {
+    //   var plot = selection.enter().select('.plot-line')
+    //   plot.attr('class', 'plot-line main-chart')
+    // })
 
 
     var navigatorChart = fc.chartCartesian(xScale.copy(), yScale.copy())
       .svgPlotArea(multi);
 
-
     var scale = d3.scaleTime().domain(xScale.domain());
     mainChart.xDomain(chartData.brushedRange.map(scale.invert));
+
+
 
     const render = () => {
       d3.selectAll("#showcase-container > *").remove();
@@ -102,7 +145,7 @@ const Chart = ({ chartData, chartType }) => {
 
       d3.select('#navigation-container')
         .datum(chartData)
-        .call(navigatorChart);
+        .call(navigatorChart)
     };
 
     render()
