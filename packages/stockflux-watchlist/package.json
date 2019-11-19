@@ -24,7 +24,7 @@
     "launch": "openfin --launch --config ./public/app.dev.json",
     "launch-appd": "openfin --launch --config http://localhost:3000/api/apps/v1/stockflux-watchlist/app.json",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject"
   },
   "browserslist": [
