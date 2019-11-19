@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1224" height="713" viewBox="0 0 1224 713">
+  <g fill="none" fill-rule="evenodd">
+    <rect width="1224" height="713" fill="#FFF"/>
+    <rect width="103.813" height="54" x="57.5" y="174.5" stroke="#E50000"/>
+    <rect width="103.813" height="54" x="57.5" y="337.5" stroke="#E50000"/>
+    <rect width="103.813" height="54" x="413.5" y="174.5" stroke="#E50000"/>
+    <rect width="103.813" height="54" x="413.5" y="337.5" stroke="#E50000"/>
+    <rect width="103.813" height="54" x="781.5" y="174.5" stroke="#E50000"/>
+    <rect width="103.813" height="54" x="781.5" y="337.5" stroke="#E50000"/>
+    <rect width="103.813" height="54" x="594" y="143.5" stroke="#0481D5"/>
+    <rect width="103.813" height="54" x="594" y="306.5" stroke="#0481D5"/>
+    <rect width="103.813" height="54" x="961.563" y="337.5" stroke="#0481D5"/>
+    <rect width="103.813" height="54" x="594" y="205.5" stroke="#0481D5"/>
+    <rect width="103.813" height="54" x="594" y="368.5" stroke="#0481D5"/>
+    <rect width="103.813" height="54" x="57.5" y="521.5" stroke="#0481D5"/>
+    <rect width="103.813" height="54" x="961.563" y="174.5" stroke="#0481D5"/>
+    <rect width="103.813" height="54" x="237.656" y="174.5" stroke="#0481D5"/>
+    <rect width="103.813" height="54" x="237.656" y="337.5" stroke="#0481D5"/>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="81.275" y="191">Types into </tspan> <tspan x="72.287" y="205">search bar on </tspan> <tspan x="85.813" y="219">launcher</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="81.275" y="354">Types into </tspan> <tspan x="72.287" y="368">search bar on </tspan> <tspan x="85.813" y="382">launcher</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="423.722" y="191">Click on ‘add to </tspan> <tspan x="440.692" y="205">watchlist</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="427.842" y="354">Click on chart</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="792.275" y="191">Clicks on ‘open </tspan> <tspan x="807.278" y="205">watchlist’</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="788.583" y="354">Clicks on ‘add to </tspan> <tspan x="807.278" y="368">watchlist’</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="614.073" y="160">Notification </tspan> <tspan x="623.932" y="174">appears</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="608.563" y="323">Chart window </tspan> <tspan x="629.245" y="337">opens</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="988.031" y="354">Watchlist </tspan> <tspan x="974.423" y="368">window opens</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="616.638" y="222">Search bar </tspan> <tspan x="628.147" y="236">closes</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="616.638" y="385">Search bar </tspan> <tspan x="628.147" y="399">closes</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="80.138" y="538">Search bar </tspan> <tspan x="91.647" y="552">closes</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="988.031" y="191">Watchlist </tspan> <tspan x="974.423" y="205">window opens</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="260.828" y="191">Search list </tspan> <tspan x="267.589" y="205">appears</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="260.828" y="354">Search list </tspan> <tspan x="267.589" y="368">appears</tspan>
+    </text>
+    <rect width="103.813" height="52" x="57.5" y="44.5" stroke="#E50000"/>
+    <rect width="103.813" height="52" x="237.656" y="44.5" stroke="#0481D5"/>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="71.447" y="61">User’s actions</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="264.101" y="61">Stockflux</tspan>
+    </text>
+    <path fill="#979797" fill-rule="nonzero" d="M219 197L228 201.5 219 206 219 202 172 202 172 201 219 201 219 197zM398.5 197L407.5 201.5 398.5 206 398.5 202 351.5 202 351.5 201 398.5 201 398.5 197zM578.5 197L587.5 201.5 578.5 206 578.5 202 531.5 202 531.5 201 578.5 201 578.5 197zM755.5 197L764.5 201.5 755.5 206 755.5 202 708.5 202 708.5 201 755.5 201 755.5 197zM949 197L958 201.5 949 206 949 202 902 202 902 201 949 201 949 197zM219 360L228 364.5 219 369 219 365 172 365 172 364 219 364 219 360zM398.5 360L407.5 364.5 398.5 369 398.5 365 351.5 365 351.5 364 398.5 364 398.5 360zM578.5 360L587.5 364.5 578.5 369 578.5 365 531.5 365 531.5 364 578.5 364 578.5 360zM755.5 360L764.5 364.5 755.5 369 755.5 365 708.5 365 708.5 364 755.5 364 755.5 360zM949 360L958 364.5 949 369 949 365 902 365 902 364 949 364 949 360z"/>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12" letter-spacing=".086">
+      <tspan x="190" y="531">The search bar goes back to the empty </tspan> <tspan x="190" y="545">state. It clears, therefore the stock or ticker </tspan> <tspan x="190" y="559">which had been searched is not saved in the </tspan> <tspan x="190" y="573">search </tspan>
+    </text>
+  </g>
+</svg>
