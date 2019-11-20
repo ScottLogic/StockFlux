@@ -1,65 +1,81 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1224" height="713" viewBox="0 0 1224 713">
+<svg xmlns="http://www.w3.org/2000/svg" width="1259" height="1108" viewBox="0 0 1259 1108">
   <g fill="none" fill-rule="evenodd">
-    <rect width="1224" height="713" fill="#FFF"/>
+    <rect width="1259" height="1108" fill="#FFF"/>
     <rect width="103.813" height="54" x="57.5" y="174.5" stroke="#E50000"/>
-    <rect width="103.813" height="54" x="57.5" y="337.5" stroke="#E50000"/>
+    <rect width="103.813" height="54" x="57.5" y="411" stroke="#E50000"/>
+    <rect width="103.813" height="54" x="57.5" y="680.5" stroke="#E50000"/>
     <rect width="103.813" height="54" x="413.5" y="174.5" stroke="#E50000"/>
-    <rect width="103.813" height="54" x="413.5" y="337.5" stroke="#E50000"/>
-    <rect width="103.813" height="54" x="781.5" y="174.5" stroke="#E50000"/>
-    <rect width="103.813" height="54" x="781.5" y="337.5" stroke="#E50000"/>
-    <rect width="103.813" height="54" x="594" y="143.5" stroke="#0481D5"/>
-    <rect width="103.813" height="54" x="594" y="306.5" stroke="#0481D5"/>
-    <rect width="103.813" height="54" x="961.563" y="337.5" stroke="#0481D5"/>
-    <rect width="103.813" height="54" x="594" y="205.5" stroke="#0481D5"/>
-    <rect width="103.813" height="54" x="594" y="368.5" stroke="#0481D5"/>
-    <rect width="103.813" height="54" x="57.5" y="521.5" stroke="#0481D5"/>
-    <rect width="103.813" height="54" x="961.563" y="174.5" stroke="#0481D5"/>
+    <rect width="103.813" height="54" x="413.5" y="411" stroke="#E50000"/>
+    <rect width="103.813" height="54" x="413.5" y="679.5" stroke="#E50000"/>
+    <rect width="103.813" height="54" x="781.5" y="411" stroke="#E50000"/>
+    <rect width="103.813" height="54" x="593.656" y="176.5" stroke="#0481D5"/>
+    <rect width="103.813" height="54" x="961.563" y="411" stroke="#0481D5"/>
+    <rect width="103.813" height="54" x="594" y="380" stroke="#0481D5"/>
+    <rect width="103.813" height="54" x="589.344" y="649.5" stroke="#0481D5"/>
+    <rect width="103.813" height="54" x="593.656" y="238.5" stroke="#0481D5"/>
+    <rect width="103.813" height="54" x="594" y="444" stroke="#0481D5"/>
+    <rect width="103.813" height="54" x="589.344" y="716" stroke="#0481D5"/>
+    <rect width="103.813" height="54" x="54.656" y="946.5" stroke="#0481D5"/>
+    <rect width="103.813" height="54" x="593.656" y="111" stroke="#0481D5"/>
     <rect width="103.813" height="54" x="237.656" y="174.5" stroke="#0481D5"/>
-    <rect width="103.813" height="54" x="237.656" y="337.5" stroke="#0481D5"/>
+    <rect width="103.813" height="54" x="237.656" y="411" stroke="#0481D5"/>
+    <rect width="103.813" height="54" x="237.656" y="680.5" stroke="#0481D5"/>
     <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
       <tspan x="81.275" y="191">Types into </tspan> <tspan x="72.287" y="205">search bar on </tspan> <tspan x="85.813" y="219">launcher</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
-      <tspan x="81.275" y="354">Types into </tspan> <tspan x="72.287" y="368">search bar on </tspan> <tspan x="85.813" y="382">launcher</tspan>
+      <tspan x="81.275" y="427.5">Types into </tspan> <tspan x="72.287" y="441.5">search bar on </tspan> <tspan x="85.813" y="455.5">launcher</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
-      <tspan x="423.722" y="191">Click on ‘add to </tspan> <tspan x="440.692" y="205">watchlist</tspan>
+      <tspan x="81.275" y="697">Types into </tspan> <tspan x="72.287" y="711">search bar on </tspan> <tspan x="85.813" y="725">launcher</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
-      <tspan x="427.842" y="354">Click on chart</tspan>
+      <tspan x="420.583" y="191">Clicks on ‘add to </tspan> <tspan x="440.692" y="205">watchlist</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
-      <tspan x="792.275" y="191">Clicks on ‘open </tspan> <tspan x="807.278" y="205">watchlist’</tspan>
+      <tspan x="424.703" y="427.5">Clicks on chart</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
-      <tspan x="788.583" y="354">Clicks on ‘add to </tspan> <tspan x="807.278" y="368">watchlist’</tspan>
+      <tspan x="424.602" y="696">Clicks on news</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
-      <tspan x="614.073" y="160">Notification </tspan> <tspan x="623.932" y="174">appears</tspan>
+      <tspan x="805.828" y="427.5">(On chart) </tspan> <tspan x="788.583" y="441.5">Clicks on ‘add to </tspan> <tspan x="807.278" y="455.5">watchlist’</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
-      <tspan x="608.563" y="323">Chart window </tspan> <tspan x="629.245" y="337">opens</tspan>
+      <tspan x="613.729" y="193">Notification </tspan> <tspan x="623.589" y="207">appears</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
-      <tspan x="988.031" y="354">Watchlist </tspan> <tspan x="974.423" y="368">window opens</tspan>
+      <tspan x="981.635" y="427.5">Notification </tspan> <tspan x="991.495" y="441.5">appears</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
-      <tspan x="616.638" y="222">Search bar </tspan> <tspan x="628.147" y="236">closes</tspan>
+      <tspan x="608.563" y="396.5">Chart window </tspan> <tspan x="629.245" y="410.5">opens</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
-      <tspan x="616.638" y="385">Search bar </tspan> <tspan x="628.147" y="399">closes</tspan>
+      <tspan x="603.659" y="666">News window </tspan> <tspan x="624.588" y="680">opens</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
-      <tspan x="80.138" y="538">Search bar </tspan> <tspan x="91.647" y="552">closes</tspan>
+      <tspan x="616.294" y="255">Search bar </tspan> <tspan x="627.803" y="269">closes</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
-      <tspan x="988.031" y="191">Watchlist </tspan> <tspan x="974.423" y="205">window opens</tspan>
+      <tspan x="616.638" y="460.5">Search bar </tspan> <tspan x="628.147" y="474.5">closes</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="611.982" y="732.5">Search bar </tspan> <tspan x="623.491" y="746.5">closes</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="77.294" y="963">Search bar </tspan> <tspan x="88.803" y="977">closes</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="620.125" y="127.5">Watchlist </tspan> <tspan x="606.517" y="141.5">window opens</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
       <tspan x="260.828" y="191">Search list </tspan> <tspan x="267.589" y="205">appears</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
-      <tspan x="260.828" y="354">Search list </tspan> <tspan x="267.589" y="368">appears</tspan>
+      <tspan x="260.828" y="427.5">Search list </tspan> <tspan x="267.589" y="441.5">appears</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="260.828" y="697">Search list </tspan> <tspan x="267.589" y="711">appears</tspan>
     </text>
     <rect width="103.813" height="52" x="57.5" y="44.5" stroke="#E50000"/>
     <rect width="103.813" height="52" x="237.656" y="44.5" stroke="#0481D5"/>
@@ -69,9 +85,24 @@
     <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
       <tspan x="264.101" y="61">Stockflux</tspan>
     </text>
-    <path fill="#979797" fill-rule="nonzero" d="M219 197L228 201.5 219 206 219 202 172 202 172 201 219 201 219 197zM398.5 197L407.5 201.5 398.5 206 398.5 202 351.5 202 351.5 201 398.5 201 398.5 197zM578.5 197L587.5 201.5 578.5 206 578.5 202 531.5 202 531.5 201 578.5 201 578.5 197zM755.5 197L764.5 201.5 755.5 206 755.5 202 708.5 202 708.5 201 755.5 201 755.5 197zM949 197L958 201.5 949 206 949 202 902 202 902 201 949 201 949 197zM219 360L228 364.5 219 369 219 365 172 365 172 364 219 364 219 360zM398.5 360L407.5 364.5 398.5 369 398.5 365 351.5 365 351.5 364 398.5 364 398.5 360zM578.5 360L587.5 364.5 578.5 369 578.5 365 531.5 365 531.5 364 578.5 364 578.5 360zM755.5 360L764.5 364.5 755.5 369 755.5 365 708.5 365 708.5 364 755.5 364 755.5 360zM949 360L958 364.5 949 369 949 365 902 365 902 364 949 364 949 360z"/>
     <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12" letter-spacing=".086">
-      <tspan x="190" y="531">The search bar goes back to the empty </tspan> <tspan x="190" y="545">state. It clears, therefore the stock or ticker </tspan> <tspan x="190" y="559">which had been searched is not saved in the </tspan> <tspan x="190" y="573">search </tspan>
+      <tspan x="200" y="959">The search bar goes back to the empty </tspan> <tspan x="200" y="973">state (right). The stock or ticker which had </tspan> <tspan x="200" y="987">been searched is not saved in the search </tspan> <tspan x="200" y="1001">bar. </tspan>
     </text>
+    <rect width="103.813" height="54" x="776.844" y="680.5" stroke="#E50000"/>
+    <rect width="103.813" height="54" x="957" y="680.5" stroke="#0481D5"/>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="785.008" y="697">Clicks on article</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="964.299" y="697">internet browser </tspan> <tspan x="963.321" y="711">launches, acticle </tspan> <tspan x="992.245" y="725">opens</tspan>
+    </text>
+    <path fill="#979797" fill-rule="nonzero" d="M219 197L228 201.5 219 206 219 202 172 202 172 201 219 201 219 197zM398.5 197L407.5 201.5 398.5 206 398.5 202 351.5 202 351.5 201 398.5 201 398.5 197zM578.5 197L587.5 201.5 578.5 206 578.5 202 531.5 202 531.5 201 578.5 201 578.5 197zM949 433.5L958 438 949 442.5 949 438.5 902 438.5 902 437.5 949 437.5 949 433.5zM578.5 433.5L587.5 438 578.5 442.5 578.5 438.5 531.5 438.5 531.5 437.5 578.5 437.5 578.5 433.5zM755.5 433.5L764.5 438 755.5 442.5 755.5 438.5 708.5 438.5 708.5 437.5 755.5 437.5 755.5 433.5zM573.84375 703L582.84375 707.5 573.84375 712 573.843 708 526.84375 708 526.84375 707 573.843 707 573.84375 703zM938.34375 703L947.34375 707.5 938.34375 712 938.343 708 891.34375 708 891.34375 707 938.343 707 938.34375 703zM750.84375 706.5L759.84375 711 750.84375 715.5 750.843 711.5 703.84375 711.5 703.84375 710.5 750.843 710.5 750.84375 706.5zM219 433.5L228 438 219 442.5 219 438.5 172 438.5 172 437.5 219 437.5 219 433.5zM398.5 433.5L407.5 438 398.5 442.5 398.5 438.5 351.5 438.5 351.5 437.5 398.5 437.5 398.5 433.5zM219 703L228 707.5 219 712 219 708 172 708 172 707 219 707 219 703zM398.5 703L407.5 707.5 398.5 712 398.5 708 351.5 708 351.5 707 398.5 707 398.5 703z"/>
+    <g transform="translate(492 951)">
+      <rect width="710" height="50" fill="#071521" rx="5"/>
+      <text fill="#C5D2DD" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400">
+        <tspan x="46" y="30.5">Search stock name or ticker</tspan>
+      </text>
+      <path fill="#C5D2DD" d="M9.24545887,1.20653847 C13.4456551,1.72225773 16.4325139,5.54526261 15.9167946,9.74545887 C15.7184096,11.3611753 15.0306259,12.797347 14.0202327,13.9236638 L17.7594771,18.2846351 C18.1220342,18.7075445 18.0731091,19.3442909 17.6501997,19.7068481 C17.2272904,20.0694053 16.5905439,20.0204802 16.2279867,19.5975708 L16.2279867,19.5975708 L12.4876911,15.2361083 C11.0289541,16.1853858 9.24050318,16.6454967 7.37787424,16.4167946 C3.17767798,15.9010754 0.190819218,12.0780705 0.706538472,7.87787424 C1.22225773,3.67767798 5.04526261,0.690819218 9.24545887,1.20653847 Z M2.70874364,8.12371412 C2.328798,11.218123 4.52930524,14.0346438 7.62371412,14.4145895 C10.718123,14.7945351 13.5346438,12.5940279 13.9145895,9.49961898 C14.2945351,6.4052101 12.0940279,3.58868928 8.99961898,3.20874364 C5.9052101,2.828798 3.08868928,5.02930524 2.70874364,8.12371412 Z" transform="translate(13.494 13.733)"/>
+    </g>
   </g>
 </svg>
