@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Chart from './components/Chart';
 import Components from 'stockflux-components';
-import { FaSyncAlt } from 'react-icons/fa';
 import {
   useInterApplicationBusSubscribe,
   useOptions
@@ -16,7 +15,6 @@ const ALL = { uuid: '*' };
 const App = () => {
   const [symbol, setSymbol] = useState(null);
   const [chartData, setChartData] = useState(null);
-  const [chartType, setChartType] = useState(null);
 
   const [parentUuid, setParentUuid] = useState(null);
   const [listenerSymbol, setListenerSymbol] = useState(null);
@@ -115,7 +113,7 @@ const App = () => {
             {symbol && <div className="code">{symbol}</div>}
             <div className="name">{!symbol ? 'Generated Data' : name}</div>
           </div>
-          <Chart chartData={chartData} chartType={chartType} />
+          <Chart chartData={chartData} />
         </div>
         <div className="chart-info">
           <div className="chart-tool">

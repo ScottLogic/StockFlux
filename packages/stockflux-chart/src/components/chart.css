@@ -73,6 +73,32 @@ fill-opacity: 0.2
   stroke: var(--chart-teal)
 } */
 
+#legend-container {
+  position: absolute;
+  top: 25vh;
+  left: -20px;
+}
+
+#legend-container text{
+  color: white;
+}
+
+.legend-label{
+  fill:white;
+}
+
+.legend-value{
+  fill:white;
+}
+
+.annotation-line{
+  stroke:red;
+}
+
+#legend-container > .legend-label{
+
+}
+
 .line{
   stroke: #21B1CA;
   stroke-width: 1

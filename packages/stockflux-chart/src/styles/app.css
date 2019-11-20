@@ -26,8 +26,8 @@ body {
 
 .symbol-info{
     position: absolute;
-    top: 10vh;
-    left: 5vw;
+    top: 12vh;
+    left: 2vw;
     width: 10vw;
 }
 
@@ -43,9 +43,9 @@ body {
 }
 
 #showcase-container {
-    margin: 0px 0px 0px 30px;
+    margin: 0px 0px 0px 10vw;
     height: 80%;
-    width: 95%
+    width: 90%
 }
 
 #navigation-container {
