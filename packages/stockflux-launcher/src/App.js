@@ -11,7 +11,7 @@ import ToolBar from './toolbar/ToolBar';
 
 export default () => {
   const [options] = useOptions();
-  const defaultHeight = options ? options.defaultHeight : 75;
+  const defaultHeight = options ? options.defaultHeight : 90;
   const defaultWidth = options ? options.defaultWidth : 50;
   const isDockable = options ? options.customData.isDockable : false;
   const [undockPosition, setUndockPosition] = useState({ left: 0, top: 0 });
@@ -21,7 +21,7 @@ export default () => {
     OpenfinApiHelpers.getCurrentWindowSync(),
     true,
     {
-      dockedWidth: isHorizontal ? defaultWidth : 80,
+      dockedWidth: isHorizontal ? defaultWidth : 60,
       dockedHeight: defaultHeight
     },
     {
@@ -82,7 +82,7 @@ export default () => {
           </div>
         )}
         <div className={iconStyle}>
-          <Watchlist symbol="TSLA" name="Tesla" />
+          <Watchlist symbol="TSLA" name="Tesla" isHorizontal={isHorizontal} />
         </div>
 
         <FreeTextSearch dockedTo={edge} />
