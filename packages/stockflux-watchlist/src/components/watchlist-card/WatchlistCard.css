@@ -36,10 +36,12 @@
 
 .price_positive,
 .price_positive * {
+  fill:var(--text-increase);
   color: var(--text-increase);
 }
 .price_negative,
 .price_negative * {
+  fill:var(--text-decrease);
   color: var(--text-decrease);
 }
 
@@ -76,9 +78,15 @@
 }
 
 .card-chart {
-  padding-left:16px;
+  padding-left:0px;
   height:24px;
   width: 100%;
+}
+
+.card-chart svg{
+  background: linear-gradient(90deg, #071521 0%, rgba(7,21,33,0) 100%) top left no-repeat;
+  background-size: 48px;
+  background-blend-mode: overlay !important;  
 }
 
 .card-menu {
@@ -91,24 +99,26 @@
   display: flex;
 }
 
-.card-menu-show {  
-  width:22px;  
-}
-
 .card-menu  button {
   height:22px;  
-  border:none;
+  border:transparent 1px solid;  
   background-color: #1B3B56;
   border-radius: 3px;
-  margin-left: 5px;  
-  border:solid 1px black;
-  padding: 0px 8px 0px 0px;
+  margin-left: 5px;
+  padding: 0px 0px 0px 0px;
 }
 
 .card-menu  button > span{
   display: flex;
   align-items: center;
-  font-size:10px;
+  font-size:10px;  
+  height: 100%;    
+}
+
+.card-menu-remove span,
+.card-menu-news span,
+.card-menu-chart span {
+  padding-right:8px;
 }
 
 .button-content {

@@ -146,7 +146,7 @@ const WatchlistCard = ({
       onDragEnd={onDragEnd}
     >
       <div className="drop-target">
-        <div className="card default-background" draggable="false">
+        <div className="card default-background" draggable="false">          
           <div className="card-details">
             <div className="card-name symbol">{symbol}</div>
             <div className="card-price">
@@ -171,6 +171,7 @@ const WatchlistCard = ({
                   stockData.percentage < 0 ? 'price_negative' : 'price_positive'
                 }`}
               >
+                {stockData.delta > 0 && '+'}
                 {stockData.delta || ''} ({Math.abs(stockData.percentage) + '%'})
               </span>
             </div>
@@ -198,7 +199,7 @@ const WatchlistCard = ({
                   </span>
                 </button>
                 <button
-                  className={cx('card-menu-new', { open: openApps.news })}
+                  className={cx('card-menu-news', { open: openApps.news })}
                   onClick={async () => {
                     await Launchers.launchNews(symbol, stockData.name);
                     determineIfNewsOpen();
@@ -224,11 +225,13 @@ const WatchlistCard = ({
               className={cx('card-menu-show', { open: showMenu })}
               onClick={() => setShowMenu(!showMenu)}
             >
-              {showMenu ? (
-                <Components.Icons.Small.ShowMenu />
-              ) : (
-                <Components.Icons.Small.HideMenu />
-              )}
+              <span>
+                {showMenu ? (
+                  <Components.Icons.Small.ShowMenu />
+                ) : (
+                  <Components.Icons.Small.HideMenu />
+                )}
+              </span>
             </button>
           </div>
         </div>

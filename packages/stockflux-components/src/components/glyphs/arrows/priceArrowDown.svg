@@ -1,8 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="9px" height="7px" viewBox="0 0 9 7" version="1.1" 
-    xmlns="http://www.w3.org/2000/svg" 
-    xmlns:xlink="http://www.w3.org/1999/xlink">        
-    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path fill="currentColor" d="M4.5,0 L9,7 L0,7 L4.5,0 Z" transform="translate(4.500000, 3.500000) scale(1, -1) translate(-4.500000, -3.500000)"></path>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="7" height="6" viewBox="0 0 7 6">
+  <path fill-rule="evenodd" d="M1.30666917,0.302713702 C1.08962691,-0.00822447283 0.647649328,-0.0935782741 0.319484602,0.112070651 C-0.00868012387,0.317719576 -0.0987626838,0.736496163 0.118279573,1.04743434 L3.38212551,5.72327172 L6.64597144,1.04743434 C6.8630137,0.736496163 6.77293114,0.317719576 6.44476641,0.112070651 C6.11660169,-0.0935782741 5.6746241,-0.00822447283 5.45758185,0.302713702 L3.38212551,3.27604533 L1.30666917,0.302713702 Z"/>
 </svg>

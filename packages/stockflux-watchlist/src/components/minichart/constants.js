@@ -1,5 +1,5 @@
 // Minichart Dimensions in px
-const WIDTH = 255;
+const WIDTH = 271;
 const HEIGHT = 49;
 const PADDING_LEFT = 0;
 const PADDING_RIGHT = 0;
