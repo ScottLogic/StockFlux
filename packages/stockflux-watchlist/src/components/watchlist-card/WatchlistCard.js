@@ -146,7 +146,7 @@ const WatchlistCard = ({
       onDragEnd={onDragEnd}
     >
       <div className="drop-target">
-        <div className="card default-background" draggable="false">          
+        <div className="card default-background" draggable="false">
           <div className="card-details">
             <div className="card-name symbol">{symbol}</div>
             <div className="card-price">
