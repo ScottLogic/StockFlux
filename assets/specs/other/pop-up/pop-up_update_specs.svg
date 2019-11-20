@@ -145,10 +145,10 @@
       </text>
     </g>
     <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
-      <tspan x="1270.846" y="143.497">Text</tspan> <tspan x="1270.846" y="171.497" font-family="Roboto-Regular, Roboto" font-weight="normal">Top line: Roboto Medium 14px</tspan> <tspan x="1270.846" y="185.497" font-family="Roboto-Regular, Roboto" font-weight="normal">Line height: 21px</tspan> <tspan x="1270.846" y="199.497" font-family="Roboto-Regular, Roboto" font-weight="normal">Text colour: FFFFFF</tspan>
+      <tspan x="1111.25" y="56.5">Text</tspan> <tspan x="1111.25" y="84.5" font-family="Roboto-Regular, Roboto" font-weight="normal">Roboto Medium 14px</tspan> <tspan x="1111.25" y="98.5" font-family="Roboto-Regular, Roboto" font-weight="normal">Line height: 21px</tspan> <tspan x="1111.25" y="112.5" font-family="Roboto-Regular, Roboto" font-weight="normal">Text colour: FFFFFF</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
-      <tspan x="1126.173" y="71.886">Logo</tspan> <tspan x="1126.173" y="99.886" font-family="Roboto-Regular, Roboto" font-weight="normal">Stock: Bold </tspan> <tspan x="1126.173" y="113.886" font-family="Roboto-Regular, Roboto" font-weight="normal">Flux: Regular</tspan>
+      <tspan x="1264.692" y="126.5">Logo</tspan> <tspan x="1264.692" y="154.5" font-family="Roboto-Regular, Roboto" font-weight="normal">Stock: Bold </tspan> <tspan x="1264.692" y="168.5" font-family="Roboto-Regular, Roboto" font-weight="normal">Flux: Regular</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
       <tspan x="1270.846" y="242.5">Button text</tspan> <tspan x="1270.846" y="270.5" font-family="Roboto-Regular, Roboto" font-weight="normal">Button: Roboto Medium 14px</tspan> <tspan x="1270.846" y="284.5" font-family="Roboto-Regular, Roboto" font-weight="normal">Text colour: FFFFFF</tspan>
@@ -158,10 +158,10 @@
       <tspan x="46" y="74">Pop-up; closing StockFlux</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
-      <tspan x="46" y="166.497">Option 1: </tspan> <tspan x="46" y="180.497">If the users clicks on the ‘x’ on the Laucher </tspan> <tspan x="46" y="194.497">and there are </tspan> <tspan x="119.078" y="194.497" font-family="Roboto-Bold, Roboto" font-weight="bold">no windows open</tspan> <tspan x="212.564" y="194.497">:</tspan>
+      <tspan x="46" y="166.497">Option 1: </tspan> <tspan x="46" y="180.497">If the users clicks on the ‘x’ on the Laucher </tspan> <tspan x="46" y="194.497">and there are </tspan> <tspan x="119.078" y="194.497" font-family="Roboto-Bold, Roboto" font-weight="bold">no windows open</tspan> <tspan x="212.564" y="194.497">, then this </tspan> <tspan x="46" y="208.497">pop-up would appear:</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
-      <tspan x="46" y="495">Option 2: </tspan> <tspan x="46" y="509">If the users clicks on the ‘x’ on the Laucher </tspan> <tspan x="46" y="523">and there </tspan> <tspan x="99.162" y="523" font-family="Roboto-Bold, Roboto" font-weight="bold">are windows open (either news, </tspan> <tspan x="46" y="537" font-family="Roboto-Bold, Roboto" font-weight="bold">chart or watchlist)</tspan> <tspan x="144.074" y="537">:</tspan>
+      <tspan x="46" y="488">Option 2: </tspan> <tspan x="46" y="502">If the users clicks on the ‘x’ on the Laucher </tspan> <tspan x="46" y="516">and there </tspan> <tspan x="99.162" y="516" font-family="Roboto-Bold, Roboto" font-weight="bold">are windows open (either news, </tspan> <tspan x="46" y="530" font-family="Roboto-Bold, Roboto" font-weight="bold">chart or watchlist)</tspan> <tspan x="144.074" y="530">, then this pop-up would </tspan> <tspan x="46" y="544">appear:</tspan>
     </text>
     <rect width="133" height="287" x="500.269" y="637.883" fill="#071521"/>
     <g transform="translate(526.77 663.861)">
@@ -184,13 +184,13 @@
         <tspan x="28.365" y="21.25">Yes</tspan>
       </text>
     </g>
-    <line x1="1187.5" x2="1263.346" y1="188.5" y2="143.497" stroke="#979797" stroke-linecap="square"/>
-    <line x1="1130" x2="1143.5" y1="188.5" y2="120.5" stroke="#979797" stroke-linecap="square"/>
+    <line x1="1190" x2="1263.346" y1="188.5" y2="143.497" stroke="#979797" stroke-linecap="square"/>
+    <line x1="1078" x2="1143.5" y1="185" y2="120.5" stroke="#979797" stroke-linecap="square"/>
     <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
       <tspan x="1046.115" y="651.861">Dimentions</tspan> <tspan x="1046.115" y="665.861" font-family="Roboto-Medium, Roboto" font-weight="400"> </tspan> <tspan x="1046.115" y="679.861" font-family="Roboto-Regular, Roboto" font-weight="normal">W: 80px</tspan> <tspan x="1046.115" y="693.861" font-family="Roboto-Regular, Roboto" font-weight="normal">H: 27px</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
-      <tspan x="1154.692" y="346.867">Blue 3: 0D2437</tspan>
+      <tspan x="1154.692" y="346.867">071521</tspan>
     </text>
     <line x1="703.707" x2="732.346" y1="285" y2="285" stroke="#979797" stroke-linecap="square"/>
     <line x1="1203.346" x2="1263.346" y1="242" y2="242" stroke="#979797" stroke-linecap="square"/>
@@ -204,7 +204,7 @@
       <tspan x="643.462" y="665.361">Background: 1B3B56</tspan> <tspan x="643.462" y="679.361">Button outline: none</tspan> <tspan x="643.462" y="693.361">Icon &amp; text: Button/text&amp;icon/inactive </tspan> <tspan x="643.462" y="707.361">1B3B56</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12" letter-spacing=".086">
-      <tspan x="643.462" y="760.106">Background: 091A29</tspan> <tspan x="643.462" y="774.106">Button outline: White</tspan> <tspan x="643.462" y="788.106">Icon &amp; text: White</tspan>
+      <tspan x="643.462" y="760.106">Background: 091A29</tspan> <tspan x="643.462" y="774.106">Button outline: 1px, White</tspan> <tspan x="643.462" y="788.106">Icon &amp; text: White</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12" letter-spacing=".086">
       <tspan x="643.462" y="850.473">Background: 091A29</tspan> <tspan x="643.462" y="864.473">Button outline: 1px, White</tspan> <tspan x="643.462" y="878.473">Icon &amp; text: White</tspan> <tspan x="643.462" y="892.473">Inner shadow: black, 50% opacity, X: 0, Y: </tspan> <tspan x="643.462" y="906.473">0, Blur: 5, Spread: 4</tspan>
