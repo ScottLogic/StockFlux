@@ -1,0 +1,259 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1496" height="995" viewBox="0 0 1496 995">
+  <defs>
+    <rect id="pop-up_update_specs-b" width="270" height="145" x="0" y="0" rx="5"/>
+    <filter id="pop-up_update_specs-a" width="105.9%" height="111%" x="-3%" y="-4.8%" filterUnits="objectBoundingBox">
+      <feMorphology in="SourceAlpha" operator="dilate" radius=".5" result="shadowSpreadOuter1"/>
+      <feOffset dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/>
+    </filter>
+    <rect id="pop-up_update_specs-d" width="270" height="145" x="0" y="0" rx="5"/>
+    <filter id="pop-up_update_specs-c" width="105.9%" height="111%" x="-3%" y="-4.8%" filterUnits="objectBoundingBox">
+      <feMorphology in="SourceAlpha" operator="dilate" radius=".5" result="shadowSpreadOuter1"/>
+      <feOffset dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/>
+    </filter>
+    <rect id="pop-up_update_specs-f" width="270" height="145" x="0" y="0" rx="5"/>
+    <filter id="pop-up_update_specs-e" width="105.9%" height="111%" x="-3%" y="-4.8%" filterUnits="objectBoundingBox">
+      <feMorphology in="SourceAlpha" operator="dilate" radius=".5" result="shadowSpreadOuter1"/>
+      <feOffset dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/>
+    </filter>
+    <rect id="pop-up_update_specs-h" width="270" height="145" x="0" y="0" rx="5"/>
+    <filter id="pop-up_update_specs-g" width="105.9%" height="111%" x="-3%" y="-4.8%" filterUnits="objectBoundingBox">
+      <feMorphology in="SourceAlpha" operator="dilate" radius=".5" result="shadowSpreadOuter1"/>
+      <feOffset dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/>
+    </filter>
+    <rect id="pop-up_update_specs-i" width="80" height="27" x="0" y="0" rx="3"/>
+    <filter id="pop-up_update_specs-j" width="111.2%" height="133.3%" x="-5.6%" y="-16.7%" filterUnits="objectBoundingBox">
+      <feMorphology in="SourceAlpha" radius="4" result="shadowSpreadInner1"/>
+      <feGaussianBlur in="shadowSpreadInner1" result="shadowBlurInner1" stdDeviation="2.5"/>
+      <feOffset in="shadowBlurInner1" result="shadowOffsetInner1"/>
+      <feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"/>
+      <feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0.0188519022   0 0 0 0 0.0188519022   0 0 0 0 0.0188519022  0 0 0 0.5 0"/>
+    </filter>
+    <rect id="pop-up_update_specs-l" width="270" height="145" x="0" y="0" rx="5"/>
+    <filter id="pop-up_update_specs-k" width="105.9%" height="111%" x="-3%" y="-4.8%" filterUnits="objectBoundingBox">
+      <feMorphology in="SourceAlpha" operator="dilate" radius=".5" result="shadowSpreadOuter1"/>
+      <feOffset dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/>
+    </filter>
+    <rect id="pop-up_update_specs-n" width="270" height="145" x="0" y="0" rx="5"/>
+    <filter id="pop-up_update_specs-m" width="105.9%" height="111%" x="-3%" y="-4.8%" filterUnits="objectBoundingBox">
+      <feMorphology in="SourceAlpha" operator="dilate" radius=".5" result="shadowSpreadOuter1"/>
+      <feOffset dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <rect width="1496" height="995" fill="#FFF"/>
+    <g transform="translate(425.846 142.5)">
+      <use fill="#000" filter="url(#pop-up_update_specs-a)" xlink:href="#pop-up_update_specs-b"/>
+      <use fill="#071521" xlink:href="#pop-up_update_specs-b"/>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+        <tspan x="34.519" y="52">Do you wish to close </tspan> <tspan x="166.849" y="52" font-family="Roboto-Bold, Roboto" font-weight="bold">Stock</tspan> <tspan x="202.881" y="52" font-family="Roboto-Regular, Roboto" font-weight="normal">Flux</tspan> <tspan x="228.673" y="52">?</tspan>
+      </text>
+      <g transform="translate(157 90)">
+        <rect width="79" height="27" fill="#1B3B56" rx="3"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+          <tspan x="27.865" y="21.25">Yes</tspan>
+        </text>
+      </g>
+      <g transform="translate(34 90)">
+        <rect width="79" height="27" fill="#1B3B56" rx="3"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+          <tspan x="30.545" y="21.25">No</tspan>
+        </text>
+      </g>
+    </g>
+    <g transform="translate(46 252.997)">
+      <use fill="#000" filter="url(#pop-up_update_specs-c)" xlink:href="#pop-up_update_specs-d"/>
+      <use fill="#071521" xlink:href="#pop-up_update_specs-d"/>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+        <tspan x="34.519" y="52">Do you wish to close </tspan> <tspan x="166.849" y="52" font-family="Roboto-Bold, Roboto" font-weight="bold">Stock</tspan> <tspan x="202.881" y="52" font-family="Roboto-Regular, Roboto" font-weight="normal">Flux</tspan> <tspan x="228.673" y="52">?</tspan>
+      </text>
+      <g transform="translate(157 90)">
+        <rect width="79" height="27" fill="#1B3B56" rx="3"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+          <tspan x="27.865" y="21.25">Yes</tspan>
+        </text>
+      </g>
+      <g transform="translate(34 90)">
+        <rect width="79" height="27" fill="#1B3B56" rx="3"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+          <tspan x="30.545" y="21.25">No</tspan>
+        </text>
+      </g>
+    </g>
+    <g transform="translate(955.192 384.25)">
+      <use fill="#000" filter="url(#pop-up_update_specs-e)" xlink:href="#pop-up_update_specs-f"/>
+      <use fill="#071521" xlink:href="#pop-up_update_specs-f"/>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+        <tspan x="34.519" y="52">Do you wish to close </tspan> <tspan x="166.849" y="52" font-family="Roboto-Bold, Roboto" font-weight="bold">Stock</tspan> <tspan x="202.881" y="52" font-family="Roboto-Regular, Roboto" font-weight="normal">Flux</tspan> <tspan x="228.673" y="52">?</tspan>
+      </text>
+      <g transform="translate(157 90)">
+        <rect width="79" height="27" fill="#1B3B56" rx="3"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+          <tspan x="27.865" y="21.25">Yes</tspan>
+        </text>
+      </g>
+      <g transform="translate(34 90)">
+        <rect width="79" height="27" fill="#1B3B56" rx="3"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+          <tspan x="30.545" y="21.25">No</tspan>
+        </text>
+      </g>
+    </g>
+    <g transform="translate(950.846 142.5)">
+      <use fill="#000" filter="url(#pop-up_update_specs-g)" xlink:href="#pop-up_update_specs-h"/>
+      <use fill="#071521" xlink:href="#pop-up_update_specs-h"/>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+        <tspan x="34.519" y="52">Do you wish to close </tspan> <tspan x="166.849" y="52" font-family="Roboto-Bold, Roboto" font-weight="bold">Stock</tspan> <tspan x="202.881" y="52" font-family="Roboto-Regular, Roboto" font-weight="normal">Flux</tspan> <tspan x="228.673" y="52">?</tspan>
+      </text>
+      <g transform="translate(157 90)">
+        <rect width="79" height="27" fill="#1B3B56" rx="3"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+          <tspan x="27.865" y="21.25">Yes</tspan>
+        </text>
+      </g>
+      <g transform="translate(34 90)">
+        <rect width="79" height="27" fill="#1B3B56" rx="3"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+          <tspan x="30.545" y="21.25">No</tspan>
+        </text>
+      </g>
+    </g>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="738.692" y="217.5">Dimentions</tspan> <tspan x="738.692" y="231.5" font-family="Roboto-Medium, Roboto" font-weight="400"> </tspan> <tspan x="738.692" y="245.5" font-family="Roboto-Regular, Roboto" font-weight="normal">W: 270px </tspan> <tspan x="738.692" y="259.5" font-family="Roboto-Regular, Roboto" font-weight="normal">H: 145px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="643.462" y="627.111">Button</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="737.846" y="288.5">Border radius: 5px</tspan>
+    </text>
+    <g transform="translate(940.115 669.361)">
+      <rect width="80" height="27" fill="#1B3B56" rx="3"/>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+        <tspan x="28.365" y="21.25">Yes</tspan>
+      </text>
+    </g>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="1270.846" y="143.497">Text</tspan> <tspan x="1270.846" y="171.497" font-family="Roboto-Regular, Roboto" font-weight="normal">Top line: Roboto Medium 14px</tspan> <tspan x="1270.846" y="185.497" font-family="Roboto-Regular, Roboto" font-weight="normal">Line height: 21px</tspan> <tspan x="1270.846" y="199.497" font-family="Roboto-Regular, Roboto" font-weight="normal">Text colour: FFFFFF</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="1126.173" y="71.886">Logo</tspan> <tspan x="1126.173" y="99.886" font-family="Roboto-Regular, Roboto" font-weight="normal">Stock: Bold </tspan> <tspan x="1126.173" y="113.886" font-family="Roboto-Regular, Roboto" font-weight="normal">Flux: Regular</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="1270.846" y="242.5">Button text</tspan> <tspan x="1270.846" y="270.5" font-family="Roboto-Regular, Roboto" font-weight="normal">Button: Roboto Medium 14px</tspan> <tspan x="1270.846" y="284.5" font-family="Roboto-Regular, Roboto" font-weight="normal">Text colour: FFFFFF</tspan>
+    </text>
+    <circle cx="693.777" cy="285.431" r="9.431" stroke="#979797"/>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="20" font-weight="400">
+      <tspan x="46" y="74">Pop-up; closing StockFlux</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="46" y="166.497">Option 1: </tspan> <tspan x="46" y="180.497">If the users clicks on the ‘x’ on the Laucher </tspan> <tspan x="46" y="194.497">and there are </tspan> <tspan x="119.078" y="194.497" font-family="Roboto-Bold, Roboto" font-weight="bold">no windows open</tspan> <tspan x="212.564" y="194.497">:</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="46" y="495">Option 2: </tspan> <tspan x="46" y="509">If the users clicks on the ‘x’ on the Laucher </tspan> <tspan x="46" y="523">and there </tspan> <tspan x="99.162" y="523" font-family="Roboto-Bold, Roboto" font-weight="bold">are windows open (either news, </tspan> <tspan x="46" y="537" font-family="Roboto-Bold, Roboto" font-weight="bold">chart or watchlist)</tspan> <tspan x="144.074" y="537">:</tspan>
+    </text>
+    <rect width="133" height="287" x="500.269" y="637.883" fill="#071521"/>
+    <g transform="translate(526.77 663.861)">
+      <rect width="80" height="27" fill="#1B3B56" rx="3"/>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+        <tspan x="28.365" y="21.25">Yes</tspan>
+      </text>
+    </g>
+    <g transform="translate(526.77 749.106)">
+      <rect width="79" height="26" x=".5" y=".5" fill="#091A29" stroke="#FFF" rx="3"/>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+        <tspan x="28.365" y="21.25">Yes</tspan>
+      </text>
+    </g>
+    <g transform="translate(523.77 839.473)">
+      <use fill="#091A29" xlink:href="#pop-up_update_specs-i"/>
+      <use fill="#000" filter="url(#pop-up_update_specs-j)" xlink:href="#pop-up_update_specs-i"/>
+      <rect width="79" height="26" x=".5" y=".5" stroke="#EAECEE" stroke-linejoin="square" rx="3"/>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+        <tspan x="28.365" y="21.25">Yes</tspan>
+      </text>
+    </g>
+    <line x1="1187.5" x2="1263.346" y1="188.5" y2="143.497" stroke="#979797" stroke-linecap="square"/>
+    <line x1="1130" x2="1143.5" y1="188.5" y2="120.5" stroke="#979797" stroke-linecap="square"/>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="1046.115" y="651.861">Dimentions</tspan> <tspan x="1046.115" y="665.861" font-family="Roboto-Medium, Roboto" font-weight="400"> </tspan> <tspan x="1046.115" y="679.861" font-family="Roboto-Regular, Roboto" font-weight="normal">W: 80px</tspan> <tspan x="1046.115" y="693.861" font-family="Roboto-Regular, Roboto" font-weight="normal">H: 27px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="1154.692" y="346.867">Blue 3: 0D2437</tspan>
+    </text>
+    <line x1="703.707" x2="732.346" y1="285" y2="285" stroke="#979797" stroke-linecap="square"/>
+    <line x1="1203.346" x2="1263.346" y1="242" y2="242" stroke="#979797" stroke-linecap="square"/>
+    <line x1="883.5" x2="883.5" y1="132.5" y2="537" stroke="#979797" stroke-linecap="square"/>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="1034.115" y="732.361">Border radius: 3px</tspan>
+    </text>
+    <circle cx="1018.685" cy="693.861" r="9.431" stroke="#979797"/>
+    <line x1="1020.115" x2="1028.615" y1="703.792" y2="728.861" stroke="#979797" stroke-linecap="square"/>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12" letter-spacing=".086">
+      <tspan x="643.462" y="665.361">Background: 1B3B56</tspan> <tspan x="643.462" y="679.361">Button outline: none</tspan> <tspan x="643.462" y="693.361">Icon &amp; text: Button/text&amp;icon/inactive </tspan> <tspan x="643.462" y="707.361">1B3B56</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12" letter-spacing=".086">
+      <tspan x="643.462" y="760.106">Background: 091A29</tspan> <tspan x="643.462" y="774.106">Button outline: White</tspan> <tspan x="643.462" y="788.106">Icon &amp; text: White</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12" letter-spacing=".086">
+      <tspan x="643.462" y="850.473">Background: 091A29</tspan> <tspan x="643.462" y="864.473">Button outline: 1px, White</tspan> <tspan x="643.462" y="878.473">Icon &amp; text: White</tspan> <tspan x="643.462" y="892.473">Inner shadow: black, 50% opacity, X: 0, Y: </tspan> <tspan x="643.462" y="906.473">0, Blur: 5, Spread: 4</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="1272.346" y="400.75">Shadow</tspan> <tspan x="1315.237" y="400.75" font-family="Roboto-Medium, Roboto" font-weight="400"> </tspan> <tspan x="1272.346" y="414.75" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: Black, 000000</tspan> <tspan x="1272.346" y="428.75" font-family="Roboto-Regular, Roboto" font-weight="normal">Opacity: 50%</tspan> <tspan x="1272.346" y="442.75" font-family="Roboto-Regular, Roboto" font-weight="normal">X: 0</tspan> <tspan x="1272.346" y="456.75" font-family="Roboto-Regular, Roboto" font-weight="normal">Y: 1</tspan> <tspan x="1272.346" y="470.75" font-family="Roboto-Regular, Roboto" font-weight="normal">Blur: 4</tspan> <tspan x="1272.346" y="484.75" font-family="Roboto-Regular, Roboto" font-weight="normal">Spread: 1</tspan>
+    </text>
+    <g transform="translate(46 568.183)">
+      <use fill="#000" filter="url(#pop-up_update_specs-k)" xlink:href="#pop-up_update_specs-l"/>
+      <use fill="#071521" xlink:href="#pop-up_update_specs-l"/>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+        <tspan x="34.519" y="24">Do you wish to close </tspan> <tspan x="166.849" y="24" font-family="Roboto-Bold, Roboto" font-weight="bold">Stock</tspan> <tspan x="202.881" y="24" font-family="Roboto-Regular, Roboto" font-weight="normal">Flux</tspan> <tspan x="228.673" y="24">?</tspan> <tspan x="44.653" y="45">All of the windows will close. </tspan>
+      </text>
+      <g transform="translate(157 90)">
+        <rect width="79" height="27" fill="#1B3B56" rx="3"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+          <tspan x="27.865" y="21.25">Yes</tspan>
+        </text>
+      </g>
+      <g transform="translate(34 90)">
+        <rect width="79" height="27" fill="#1B3B56" rx="3"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+          <tspan x="30.545" y="21.25">No</tspan>
+        </text>
+      </g>
+    </g>
+    <g transform="translate(425.846 316.117)">
+      <use fill="#000" filter="url(#pop-up_update_specs-m)" xlink:href="#pop-up_update_specs-n"/>
+      <use fill="#071521" xlink:href="#pop-up_update_specs-n"/>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+        <tspan x="34.519" y="24">Do you wish to close </tspan> <tspan x="166.849" y="24" font-family="Roboto-Bold, Roboto" font-weight="bold">Stock</tspan> <tspan x="202.881" y="24" font-family="Roboto-Regular, Roboto" font-weight="normal">Flux</tspan> <tspan x="228.673" y="24">?</tspan> <tspan x="44.653" y="45">All of the windows will close. </tspan>
+      </text>
+      <g transform="translate(157 90)">
+        <rect width="79" height="27" fill="#1B3B56" rx="3"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+          <tspan x="27.865" y="21.25">Yes</tspan>
+        </text>
+      </g>
+      <g transform="translate(34 90)">
+        <rect width="79" height="27" fill="#1B3B56" rx="3"/>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+          <tspan x="30.545" y="21.25">No</tspan>
+        </text>
+      </g>
+    </g>
+    <line x1="1232.692" x2="1264.692" y1="398.5" y2="398.5" stroke="#979797" stroke-linecap="square"/>
+    <line x1="1172.192" x2="1172.192" y1="357.367" y2="416.367" stroke="#979797" stroke-linecap="square"/>
+    <line x1="426.615" x2="1174.769" y1="603.5" y2="603.5" stroke="#979797" stroke-linecap="square"/>
+    <line x1="896.462" x2="896.462" y1="641.058" y2="933.665" stroke="#979797" stroke-linecap="square"/>
+    <line x1="374" x2="374" y1="113.197" y2="933.665" stroke="#979797" stroke-linecap="square"/>
+  </g>
+</svg>

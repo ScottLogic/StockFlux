@@ -247,7 +247,10 @@
       <tspan x="1110" y="153">Border radius: 3px</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
-      <tspan x="1107" y="295">Scroll bar appears when there </tspan> <tspan x="1107" y="309">enought cards. layout of cards </tspan> <tspan x="1107" y="323">doesn’t change with or without a </tspan> <tspan x="1107" y="337">scoll bar</tspan> <tspan x="1107" y="365">It is 3px from nav</tspan> <tspan x="1107" y="379">and 2px from right end </tspan>
+      <tspan x="1107" y="295">Scroll bar appears when there </tspan> <tspan x="1107" y="309">enought news cards. Layout of </tspan> <tspan x="1107" y="323">cards doesn’t change without a scoll </tspan> <tspan x="1107" y="337">bar</tspan> <tspan x="1107" y="365">It is 3px from the top nav</tspan> <tspan x="1107" y="379">and 2px from right end of window</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="1096.438" y="627.943">include the first couple lines of the </tspan> <tspan x="1096.438" y="641.943">article and ‘…’ before is cuts</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
       <tspan x="1107" y="465.5">4px between each card</tspan>
@@ -257,10 +260,11 @@
     </text>
     <circle cx="1079.5" cy="142.5" r="10.5" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
     <line x1="1073.75" x2="1100" y1="224.25" y2="285" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="1051.5" x2="1090" y1="589.531" y2="627.943" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
     <line x1="666.5" x2="601.375" y1="172.625" y2="226.25" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
     <line x1="1089.875" x2="1103" y1="146" y2="149.5" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
     <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
-      <tspan x="533" y="245.625">1px between nav </tspan> <tspan x="533" y="259.625">and the first card</tspan>
+      <tspan x="533" y="245.625">1px between top </tspan> <tspan x="533" y="259.625">nav and the first </tspan> <tspan x="533" y="273.625">card</tspan>
     </text>
     <rect width="40" height="40" x="1788" y="277.151" fill="#071521"/>
     <rect width="40" height="40" x="1788" y="343.651" fill="#0D2437"/>
@@ -286,13 +290,13 @@
       <tspan x="177.5" y="772.281">Shadow</tspan> <tspan x="220.391" y="772.281" font-family="Roboto-Medium, Roboto" font-weight="400"> for the news window</tspan> <tspan x="177.5" y="786.281" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: Black, 000000</tspan> <tspan x="177.5" y="800.281" font-family="Roboto-Regular, Roboto" font-weight="normal">Opacity: 50%</tspan> <tspan x="177.5" y="814.281" font-family="Roboto-Regular, Roboto" font-weight="normal">X: 0</tspan> <tspan x="177.5" y="828.281" font-family="Roboto-Regular, Roboto" font-weight="normal">Y: 1</tspan> <tspan x="177.5" y="842.281" font-family="Roboto-Regular, Roboto" font-weight="normal">Blur: 4</tspan> <tspan x="177.5" y="856.281" font-family="Roboto-Regular, Roboto" font-weight="normal">Spread: 1</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
-      <tspan x="63.5" y="113.719">About this window</tspan> <tspan x="63.5" y="141.719" font-family="Roboto-Regular, Roboto" font-weight="normal">When it is opened, it displays the related news </tspan> <tspan x="63.5" y="155.719" font-family="Roboto-Regular, Roboto" font-weight="normal">from the last year </tspan>
+      <tspan x="63.5" y="113.719">About this window</tspan> <tspan x="63.5" y="141.719" font-family="Roboto-Regular, Roboto" font-weight="normal">When opened, this window displays the </tspan> <tspan x="63.5" y="155.719" font-family="Roboto-Regular, Roboto" font-weight="normal">related news.</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="20" font-weight="bold">
       <tspan x="63.5" y="68.719">News</tspan>
     </text>
     <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
-      <tspan x="63.5" y="573.943">Article dates</tspan> <tspan x="63.5" y="601.943" font-family="Roboto-Regular, Roboto" font-weight="normal">If the article is from today then show the time </tspan> <tspan x="63.5" y="629.943" font-family="Roboto-Regular, Roboto" font-weight="normal">If the article is from yesterday to 1 week ago </tspan> <tspan x="63.5" y="643.943" font-family="Roboto-Regular, Roboto" font-weight="normal">then write the day (Monday, Tuesday, etc) </tspan> <tspan x="63.5" y="671.943" font-family="Roboto-Regular, Roboto" font-weight="normal">If it is older then a week write the date (i.e. </tspan> <tspan x="63.5" y="685.943" font-family="Roboto-Regular, Roboto" font-weight="normal">21st June). For months longer then 4 </tspan> <tspan x="63.5" y="699.943" font-family="Roboto-Regular, Roboto" font-weight="normal">characters, please abbreviate, (i.e. September </tspan> <tspan x="63.5" y="713.943" font-family="Roboto-Regular, Roboto" font-weight="normal">= Sept, Octover = Oct, November = Nov, </tspan> <tspan x="63.5" y="727.943" font-family="Roboto-Regular, Roboto" font-weight="normal">December = Dec, etc) </tspan>
+      <tspan x="63.5" y="573.943">Article dates</tspan> <tspan x="63.5" y="601.943" font-family="Roboto-Regular, Roboto" font-weight="normal">I</tspan> <tspan x="66.764" y="601.943">f the article is from today:</tspan> <tspan x="205.883" y="601.943" font-family="Roboto-Regular, Roboto" font-weight="normal"> display the time is was published (i.e. 11:43)</tspan> <tspan x="63.5" y="629.943">If the article was published over a day ago and up to one week: </tspan> <tspan x="403.748" y="629.943" font-family="Roboto-Regular, Roboto" font-weight="normal">display the </tspan> <tspan x="63.5" y="643.943" font-family="Roboto-Regular, Roboto" font-weight="normal">day (i.e: Monday, Tuesday, etc) </tspan> <tspan x="63.5" y="671.943">If the article is older then a week:</tspan> <tspan x="242.387" y="671.943" font-family="Roboto-Regular, Roboto" font-weight="normal"> write the date (i.e. 21st June). For </tspan> <tspan x="63.5" y="685.943" font-family="Roboto-Regular, Roboto" font-weight="normal">months longer then 4 characters, please abbreviate, (i.e. September = Sept, </tspan> <tspan x="63.5" y="699.943" font-family="Roboto-Regular, Roboto" font-weight="normal">Octover = Oct, November = Nov, December = Dec, etc) </tspan>
     </text>
     <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
       <tspan x="63.5" y="372.219">Text</tspan>
