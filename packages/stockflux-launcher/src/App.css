@@ -65,6 +65,7 @@ body {
 .header-icon {
   color: var(--text-color);
   z-index: 1;
+  margin-right:6px
 }
 
 .strong {
