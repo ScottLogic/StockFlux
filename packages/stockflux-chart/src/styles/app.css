@@ -12,7 +12,9 @@ body {
     background-color: var(--dark-background);
     padding: 0;
 }
-
+.header-icon svg{
+    stroke:none
+}
 #showcase-container {
     position: absolute;
     top: var(--toolbar-height);
