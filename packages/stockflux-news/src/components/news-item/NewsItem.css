@@ -5,7 +5,7 @@
     cursor: pointer;
     flex-direction: column;
     padding: var(--padding-medium);
-    border-top: 2px solid var(--window-divider);
+    border-bottom: 2px solid var(--window-divider);
 }
 
 .newsitem:hover {
@@ -15,11 +15,14 @@
 .source {
     display: flex;
     justify-content: center;
+    color:  #9E9E9E;
     padding-right: var(--padding-small);
+    padding-top: var(--padding-small);
+
 }
 
 .newsitem-content {
-    padding-top: var(--padding-small);
+    padding-top: var(--padding-medium);
     width: 100%;
     max-height: 80px;
     overflow: hidden;
@@ -33,7 +36,7 @@
     font-size: var(--font-xlarge);
     text-transform: capitalize;
     font-weight: var(--font-weight-bold);
-    color: var(--color-highlight);
+    color: white;
     width: 70%;
     min-width: 0;
     text-overflow: ellipsis;
@@ -52,7 +55,7 @@
 }
 
 .summary {
-    font-size: var(--font-large);    
+    font-size: var(--font-normal);    
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
