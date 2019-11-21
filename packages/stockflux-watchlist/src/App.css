@@ -40,7 +40,7 @@ body {
   color: var(--text-color);
   user-select: none;
   margin: 0;
-  border: 1px solid var(--dark-background);
+  overflow-y: hidden;
 }
 
 .watchlist-name {
