@@ -29,11 +29,11 @@ export default (
     defaultLeft,
     saveWindowState: false,
     showTaskbarIcon: false,
-    backgroundColor: '#28313D',
+    backgroundColor: '#071521',
     waitForPageLoad: true,
     alwaysOnTop: false,
-    maxWidth: 400,
-    minWidth: 400,
-    minHeight: 300
+    maxWidth: 710,
+    minWidth: 710,
+    minHeight: 350
   };
 };

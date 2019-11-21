@@ -27,7 +27,9 @@
             "width": 0
         },
         "customData": {
-            "apiBaseUrl": "https://d3capoqa8f983r.cloudfront.net/api"
+            "apiBaseUrl": "https://d3capoqa8f983r.cloudfront.net/api",
+            "isDockable": true,
+            "initialDocked": true
         }
     },
     "services": [],

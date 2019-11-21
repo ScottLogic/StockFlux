@@ -1,6 +1,7 @@
 body {
   overflow-x: hidden;
   height: inherit;
+  background-color: #071521;
 }
 
 div#root {
@@ -24,7 +25,9 @@ div.scrollWrapperY > p {
 }
 
 .card {
-  padding: var(--padding-medium);
+  padding: 1px;
+  background-color: #0D2437;
+  height:40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -48,12 +51,8 @@ div#actions {
 
 .name {
   letter-spacing: 0.5px;
+  line-height: 16px;
+  font-size: 14px;
   font-weight: var(--font-weight-bold);
-  color: var(--text-teal-light);
-}
-.symbol {
-  letter-spacing: 1px;
-  font-size: var(--font-xlarge);
-  font-weight: var(--font-weight-bolder);
-  color: var(--text-grey-lighter);
+  color: var(--text-color);
 }

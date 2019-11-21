@@ -4,6 +4,7 @@ import Components from 'stockflux-components';
 import './ToolBar.css';
 
 export default ({ tools, style }) => {
+  console.log(tools);
   return (
     <div className={style}>
       {tools

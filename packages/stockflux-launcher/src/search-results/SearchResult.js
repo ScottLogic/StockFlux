@@ -7,8 +7,9 @@ const SearchResult = ({ symbol, name }) => {
   return (
     <div className="card">
       <div className="info">
-        <p className="name">{Utils.truncate(name)}</p>
-        <p className="symbol">{symbol}</p>
+        <p className="name">
+          {symbol.toUpperCase()} * {Utils.truncate(name)}
+        </p>
       </div>
       <div id="actions" className="actions">
         <Components.Shortcuts.News symbol={symbol} name={name} small={true} />

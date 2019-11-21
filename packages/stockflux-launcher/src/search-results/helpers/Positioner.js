@@ -1,7 +1,7 @@
 import { ScreenEdge } from 'openfin-react-hooks';
 
-const DEFAULT_LAUNCHER_SIZE = 88;
-const DEFAULT_SEARCH_RESULTS_SIZE = 400;
+const DEFAULT_LAUNCHER_SIZE = 90;
+const DEFAULT_SEARCH_RESULTS_SIZE = 350;
 
 export default (searchButtonRef, inputRef, dockedTo, windowBounds) => {
   const searchButtonRect = searchButtonRef.current.getBoundingClientRect();
@@ -10,7 +10,7 @@ export default (searchButtonRef, inputRef, dockedTo, windowBounds) => {
       const searchInputRect = inputRef.current.getBoundingClientRect();
       return {
         defaultTop: parseInt(windowBounds.top) + DEFAULT_LAUNCHER_SIZE,
-        defaultLeft: windowBounds.left + parseInt(searchInputRect.left),
+        defaultLeft: windowBounds.left + parseInt(searchButtonRect.left),
         defaultWidth: parseInt(searchInputRect.width),
         defaultHeight: DEFAULT_SEARCH_RESULTS_SIZE
       };
