@@ -132,6 +132,10 @@ const WatchlistCard = ({
     setDragging({ isDragging: false });
   };
 
+  const formatNumber = i => {
+    return Math.abs(i);
+  };
+
   return stockData ? (
     <div
       id={`stock_${symbol}`}
@@ -161,10 +165,10 @@ const WatchlistCard = ({
                   {stockData.percentage < 0 ? (
                     <Components.Icons.Arrows.PriceDown />
                   ) : (
-                    <Components.Icons.Arrows.PriceUp />
+                    stockData.percentage && <Components.Icons.Arrows.PriceUp />
                   )}
                 </span>
-                {stockData.price || 'N/A'}
+                {stockData.price || ''}
               </span>
               <span
                 className={`delta ${
@@ -172,13 +176,16 @@ const WatchlistCard = ({
                 }`}
               >
                 {stockData.delta > 0 && '+'}
-                {stockData.delta || ''} ({Math.abs(stockData.percentage) + '%'})
+                {stockData.delta || ''}{' '}
+                {stockData.percentage &&
+                  stockData.percentage !== 'Infinity' &&
+                  '(' + Math.abs(stockData.percentage) + '%)'}
               </span>
             </div>
           </div>
           <div className="card-chart">
             <Minichart
-              symbol={symbol}
+              symbol={symbol.replace('.', '')}
               chartData={chartData}
               fetchError={fetchError}
             />

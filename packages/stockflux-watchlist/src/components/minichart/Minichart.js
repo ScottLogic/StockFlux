@@ -49,7 +49,10 @@ const Minichart = props => {
     </svg>
   ) : (
     <div className="minichart minichart-error">
-      {props.fetchError || <Components.Spinner />}
+      {props.fetchError ||
+        (props.chartData.length === 0 && 'No Results Returned') || (
+          <Components.Spinner />
+        )}
     </div>
   );
 };
