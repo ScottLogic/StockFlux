@@ -132,10 +132,6 @@ const WatchlistCard = ({
     setDragging({ isDragging: false });
   };
 
-  const formatNumber = i => {
-    return Math.abs(i);
-  };
-
   return stockData ? (
     <div
       id={`stock_${symbol}`}
