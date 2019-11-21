@@ -2,6 +2,10 @@ body {
     -webkit-user-select: none;
 }
 
+.titlebar-container {
+    background-color: #071521;
+  }
+  
 #app, .main, body, html {
     height: 100%;
     margin: 0;
@@ -9,7 +13,7 @@ body {
 }
 
 .main {
-    background-color: #0D2437;
+    background-color: #071521;
     padding: 0;
     height: 100vh
 }
@@ -49,7 +53,7 @@ body {
 }
 
 #navigation-container {
-    background: #091A29;
+    background: #010F1B;
     height: 20%;
     padding: 0px 0px 0px 0px
 }

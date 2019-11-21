@@ -37,7 +37,7 @@ const Chart = ({ chartData }) => {
 
         valueJoin(d3.select(nodes[selectionIndex]), data)
           .attr("transform", (_, i) => "translate(0, " + (i + 1) * 15 + ")")
-          .attr('x', '25%')
+          .attr('x', '15%')
           .text(d => d.value);
       });
     };
@@ -48,12 +48,14 @@ const Chart = ({ chartData }) => {
   };
 
   const priceFormat = d3.format(",.2f");
+  const volumeFormat = d3.format(",.4s");
+
   const legendData = datum => [
-    { name: "Open", value: priceFormat(datum.open) },
-    { name: "High", value: priceFormat(datum.high) },
-    { name: "Low", value: priceFormat(datum.low) },
-    { name: "Close", value: priceFormat(datum.close) },
-    { name: "Volume", value: priceFormat(datum.volume) }
+    { name: "O", value: priceFormat(datum.open) },
+    { name: "H", value: priceFormat(datum.high) },
+    { name: "L", value: priceFormat(datum.low) },
+    { name: "C", value: priceFormat(datum.close) },
+    { name: "V", value: volumeFormat(datum.volume) }
   ];
 
 
