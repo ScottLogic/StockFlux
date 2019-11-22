@@ -10,15 +10,17 @@
     "url": "http://localhost:8052/index.html",
     "applicationIcon": "http://localhost:8052/favicon.ico",
     "autoShow": true,
-    "defaultWidth": 230,
+    "defaultWidth": 271,
     "defaultHeight": 600,
-    "maxWidth": 230,
-    "minWidth": 230,
-    "minHeight": 300,
+    "maxWidth": 271,
+    "minWidth": 271,
+    "minHeight": 300,    
+    "defaultLeft": 90,
+    "defaultTop": 90,
     "frame": false,
     "contextMenu": true,
     "customData": {
-      "apiBaseUrl": "https://d3capoqa8f983r.cloudfront.net/api"
+      "apiBaseUrl": "http://localhost:3010/api"
     }
   },
   "services": [

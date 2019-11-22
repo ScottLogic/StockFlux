@@ -17,22 +17,24 @@ module.exports = baseUrl => (req, res) => {
   };
 
   const url = baseUrl + path;
+  const override = overrides[path];
 
+  // eslint-disable-next-line no-console
   console.log(
-    overrides[path]
-      ? `Overriding path '${path}'`
-      : `No overrides for path '${path}'`
+    override ? `Overriding path '${path}'` : `No overrides for path '${path}'`
   );
 
   fetch(url, options)
     .then(proxyRes => {
-      console.log(proxyRes);
       return proxyRes.json();
     })
     .then(proxyData => {
-      const overriddenData = merge(proxyData, overrides[path] || {});
-      console.log(overriddenData);
-      res.json(overriddenData);
+      if (override) {
+        const overriddenData = merge(proxyData, overrides[path] || {});
+        res.json(overriddenData);
+      } else {
+        res.send(proxyData); // This helps handle non-overridden ones that are not JSON (aka news feeds)
+      }
     })
-    .catch(err => console.error(err));
+    .catch(err => console.error('Proxy Error', err));
 };

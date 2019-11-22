@@ -10,9 +10,8 @@
         "url": "http://localhost:8053/index.html",
         "applicationIcon": "http://localhost:8053/favicon.ico",
         "autoShow": true,
-        "defaultHeight": 88,
+        "defaultHeight": 90,
         "defaultWidth": 800,
-        "defaultTop": 0,
         "resizable": false,
         "maximizable": false,
         "minimizable": false,
@@ -27,7 +26,9 @@
             "width": 0
         },
         "customData": {
-            "apiBaseUrl": "http://localhost:3010/api"
+            "apiBaseUrl": "http://localhost:3010/api",
+            "isDockable": true,
+            "initialDocked": true
         }
     },
     "services": [],
