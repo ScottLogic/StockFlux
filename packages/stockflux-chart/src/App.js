@@ -66,7 +66,7 @@ const App = () => {
   // }
 
   const getData = useCallback(async () => {
-    var date = format(subYears(new Date(), 1), 'YYYY-MM-DD');
+    var date = format(subYears(new Date(), 3), 'YYYY-MM-DD');
     var url = `https://d3capoqa8f983r.cloudfront.net/api/ohlc/${symbol}/${date}`
 
     const response = await fetch(url, {
