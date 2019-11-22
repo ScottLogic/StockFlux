@@ -52,10 +52,11 @@ body {
 .vertical {
   padding-left: 10px;
   padding-right: 10px;
-  margin-top: 52px;
+  padding-top:13px;
 }
 
-.vertical button {
+.vertical button,
+.side-docked button {
   height: 40px;
   width: 40px;
   background-color: #1b3b56;
@@ -66,12 +67,16 @@ body {
   padding:0px;
 }
 
+.side-docked svg {
+  margin-top:0px !important;
+}
+
 .left,
 .right {
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: left;
   display: flex;
-  flex-grow: 3;
+  /* flex-grow: 3; */
   height: calc(100vh - var(--titlebar-height));
 }
 
@@ -81,6 +86,11 @@ body {
   justify-content: space-between;
   align-items: center;
   height: 60px;
+  flex-wrap: nowrap;
+}
+
+.none {
+  justify-content: row ;
 }
 
 .header-icon {
@@ -101,6 +111,6 @@ body {
 
 .title-vertical {
   height: 28px;
-  padding-left: 30px;
-  padding-top: 5px;
+  background-color: var(--window-header-bar);
+  text-align: center;
 }

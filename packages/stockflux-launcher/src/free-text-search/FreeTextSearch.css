@@ -35,6 +35,10 @@
 .left .free-text-search,
 .right .free-text-search {
   flex-direction: column;
+  min-width: 0;
+  width: 100%;
+  flex: inherit;
+  background-color: var(--window-background-color);
 }
 
 .left .free-text-search input,
@@ -55,7 +59,6 @@
 div#root > .free-text-search {
   padding: 8px 10px 8px 0;
   width: var(--search-input-width);
-  background-color: var(--middle-background);
   border-bottom: 1px solid var(--clr-divider-light);
 }
 
@@ -66,4 +69,25 @@ div#root > .spinner {
 
 div#root > .cards.padding-top {
   padding-top: calc(var(--search-input-height) + 18px);
+}
+
+.actions-button {
+  display: inline-block;
+  color: var(--text-color);
+  fill: var(--text-color);
+  border: none;
+  outline: none;
+  background-color: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  height: 40px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.actions-button:hover {
+  background-color: #475F74;
+  border: 1.5px solid #FFFFFF;
 }

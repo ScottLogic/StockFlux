@@ -8,6 +8,7 @@ import FreeTextSearch from './free-text-search/FreeTextSearch';
 import getUndockedPosition from './helpers/getUndockedPosition';
 import Watchlist from './app-shortcuts/Watchlist';
 import ToolBar from './toolbar/ToolBar';
+import DockSelector from './dock-selector/DockSelector';
 
 export default () => {
   const [options] = useOptions();
@@ -26,7 +27,7 @@ export default () => {
     },
     {
       undockPosition: { left: undockPosition.left, top: undockPosition.top },
-      undockSize: { width: 724, height: 88 }
+      undockSize: { width: 993, height: 90 }
     }
   );
 
@@ -85,8 +86,11 @@ export default () => {
           <Watchlist symbol="TSLA" name="Tesla" isHorizontal={isHorizontal} />
         </div>
 
-        <FreeTextSearch dockedTo={edge} />
+        {isHorizontal && <FreeTextSearch dockedTo={edge} />}
 
+        <div className={iconStyle}>
+          <DockSelector />
+        </div>
         <ToolBar
           style={toolbarStyle}
           tools={[
@@ -113,6 +117,8 @@ export default () => {
             }
           ]}
         />
+
+        {!isHorizontal && <FreeTextSearch dockedTo={edge} />}
       </div>
     </div>
   );

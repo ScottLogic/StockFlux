@@ -20,6 +20,10 @@ import MinimizeIcon from './components/icons/minimize.svg';
 import NewsIcon from './components/glyphs/small/news.svg';
 import WatchListIcon from './components/glyphs/small/watchlist.svg';
 
+import ChartIconNormal from './components/glyphs/normal/chart.svg';
+import NewsIconNormal from './components/glyphs/normal/news.svg';
+import WatchListNormal from './components/glyphs/normal/watchlist.svg';
+
 import PriceUp from './components/glyphs/arrows/priceArrowUp.svg';
 import PriceDown from './components/glyphs/arrows/priceArrowDown.svg';
 
@@ -47,6 +51,11 @@ export default {
   },
   Icons: {
     Small: { Chart: ChartIcon, News: NewsIcon, Watchlist: WatchListIcon },
+    Normal: {
+      Chart: ChartIconNormal,
+      News: NewsIconNormal,
+      Watchlist: WatchListNormal
+    },
     Arrows: { PriceUp, PriceDown },
     Launcher: { LeftIcon, RightIcon, TopIcon, SearchIcon, WatchlistIcon },
     Toolbar: { MinimizeIcon, CloseIcon }
