@@ -4,13 +4,14 @@
   --color-highlight: #21B1CA;
   --color-highlight-hover: #2198AE;
   --color-inactive: #8A96A6;
-  --color-hover:#1B3B56;
+  --color-hover:#0D2437;
   --color-primary:#0D2437;
   --color-secondary:#091A29;
   /* Windows*/
-  --window-background-color:#071521;  
+  --window-background-color:#0D2437;
+  --window-background-color-dark:#071521;
   --window-header-bar:#010F1B;
-  --window-divider:#091A29;
+  --window-divider:#010F1B;
   --window-icon:#FFFFFF;
   --window-stock-hover:#091A29;
   /* Charts */
@@ -28,7 +29,8 @@
   --icon-active:#21B1CA;
   --icon-inactive: #8A96A6;
   --icon-hover: #1B3B56;
-  --icon-hover-light: rgba(256,256,256,0.15);
+  --icon-hover-light:#1B3B56;
+  --header-icon: #ABB3B9;
   /* Text */
   --text-color:#FFFFFF; 
   --text-increase:#43C578;
@@ -39,7 +41,7 @@
   --toolbar-height: 50px;
   --search-result-height: 60px;
   --icons-size: 30px;
-  --titlebar-height: 28px;
+  --titlebar-height: 30px;
   --bottom-tab-height: 33px;
   --scrollbar-width: 6px;
 
