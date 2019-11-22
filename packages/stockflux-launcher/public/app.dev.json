@@ -27,7 +27,7 @@
             "width": 0
         },
         "customData": {
-            "apiBaseUrl": "https://d3capoqa8f983r.cloudfront.net/api"
+            "apiBaseUrl": "http://localhost:3010/api"
         }
     },
     "services": [],

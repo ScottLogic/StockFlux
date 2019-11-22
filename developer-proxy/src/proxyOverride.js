@@ -8,7 +8,7 @@ module.exports = baseUrl => (req, res) => {
 
   const options = {
     method,
-    mode: 'cors',
+    mode: 'no-cors',
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     headers: {
       'Content-Type': 'application/json'
@@ -25,11 +25,14 @@ module.exports = baseUrl => (req, res) => {
   );
 
   fetch(url, options)
-    .then(proxyRes => proxyRes.json())
+    .then(proxyRes => {
+      console.log(proxyRes);
+      return proxyRes.json();
+    })
     .then(proxyData => {
       const overriddenData = merge(proxyData, overrides[path] || {});
-
-      res.send(overriddenData);
+      console.log(overriddenData);
+      res.json(overriddenData);
     })
     .catch(err => console.error(err));
 };
