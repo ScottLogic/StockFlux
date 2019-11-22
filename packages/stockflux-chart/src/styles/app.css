@@ -2,6 +2,10 @@ body {
     -webkit-user-select: none;
 }
 
+.titlebar-container {
+    background-color: #010F1B;
+  }
+  
 #app, .main, body, html {
     height: 100%;
     margin: 0;
@@ -9,97 +13,97 @@ body {
 }
 
 .main {
-    background-color: var(--dark-background);
+    background-color: #071521;
     padding: 0;
-}
-.header-icon svg{
-    stroke:none
-}
-#showcase-container {
-    position: absolute;
-    top: var(--toolbar-height);
-    right: 0;
-    bottom: 0;
-    left: 0;
+    height: 100vh
 }
 
-#showcase-container .row.primary-row {
-    margin-left: -5px;
-}
-
-.button-icon {
-    display: inline-block;
-    width: var(--icons-size);
-    height: 100%;
-    background-position: 50% 80%;
-    background-repeat: no-repeat;
-    transition: var(--icon-transition-duration) all;
-    cursor: pointer;
-}
-
-.disable-transitions {
-    transition: none !important;
-}
-
-.disable-pointer {
-    pointer-events: none;
-}
-
-#showcase-title {
-    color: var(--color-highlight);
-    position: relative;
-    top: 5px;
-    left: 25px;
-    z-index: 10;
+.chart-info {
+    position: absolute; 
+    right: 0px;
+    margin-right: 24px;
+    height: 28px;
+    width: 100px;
     display: flex;
-    flex-direction: row;
-}
-#showcase-title .symbol,
-#showcase-title .name {
-    display: inline-block;
-    padding-right: 10px;
-}
-
-#showcase-title .symbol {
-    font: 18px var(--font-weight-bolder);
-}
-
-#showcase-title  .name {
-    font: 14px var(--font-weight-normal);
-}
-
-.chart-nav-icons {
-    display: flex;
-    flex-direction: row;
     align-items: center;
 }
 
-.chart-nav-icon svg {
-    fill: var(--color-highlight);
-    padding-right: 10px;
-    height: 20px;
-    width: 30px;
-    shape-rendering: geometricprecision;
-    cursor: pointer;
+.symbol-info{
+    position: absolute;
+    top: 12vh;
+    left: 2vw;
+    width: 10vw;
 }
 
-.chart-nav-icon:not(.icon-disabled):hover svg {
-    fill: var(--color-highlight);
+.d3fc-button {
+    position: absolute;
+    right: 0px;
+    fill:rgb(191, 191, 204)
+    
 }
 
-.chart-nav-icon.icon-disabled svg {
-    cursor: not-allowed;
-    opacity: 0.4;
+.chart-tool{
+    color: rgb(191, 191, 204)
 }
 
-.no-favourites-image {
-    max-width: 1060px;
-    max-height: 500px;
-    width: 100%;
+#showcase-container {
+    margin: 0px 0px 0px 10vw;
+    height: 80%;
+    width: 90%
+}
+
+#navigation-container {
+    background: #010F1B;
+    height: 20%;
+    padding: 0px 0px 0px 0px
+}
+/* #navigation-container >.cartesian-chart {
+    margin: 0px 20px 0px 20px;
+} */
+#navigation-container >.cartesian-chart >.plot-area{
+    stroke: #21B1CA;
+    stroke-width: 1px;
+    /* overflow: visible !important; */
+}
+
+#navigation-container .brush{
+
+}
+
+.area {
+    fill: rgba(33,177,202,0.2);
+}
+
+#navigation-container .y-axis {
+    visibility: hidden;
+    width: 0;
+}
+
+#navigation-container .x-axis .domain{
+    visibility: hidden;
+}
+
+
+#showcase-title {
+    color: white;
+    display: flex;
+    align-items: center;
+    height: 55px;
+}
+
+.code{
+    color:white;
     position: relative;
-    -webkit-user-drag: none;
+    top: 0px;
+    font-size: 18px;
+    font-weight: var(--font-weight-bold);
+
 }
 
-.close.button-icon, .close.button-icon:hover {
-    opacity: 1;
+.name {
+    margin-top: 4px;
+    color: white;
+    font: 18px var(--font-weight-normal);
+    font-weight: var(--font-weight-bold);
+
 }

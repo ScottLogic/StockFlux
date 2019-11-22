@@ -1,167 +1,109 @@
-div#legend {
-    background-color: default;
-    margin-top: 5px;
-    margin-left: 1px;
-    padding: 5px 5px 5px 0;
-    align-self: flex-start;
+html, body{
+  overflow-x: hidden;
+  overflow-y: hidden;
+  background: var(--primary-dark-blue);
+
 }
-div#legend svg#tooltip {
-    padding-top: 10px;
+.gridline-y{
+  stroke: #55555B;
+  stroke-width: .5px;
+  stroke-opacity: .75;
 }
-.selectors button {
-    cursor: default;
+
+.gridline-x{
+  stroke: #55555B;
+  stroke-width: .5px;
+  stroke-opacity: .75;
 }
-.selectors button:hover {
-    background: var(--button-hover);
+
+.candlestick.down{
+  fill:#FF7171 ;
+  stroke: #FF7171 ;
+  width: 10%;
+  height: 10%
 }
-.selectors .dropdown.open button {
-    background: var(--dropdown-open-button);
+.candlestick.up{
+  fill:#78FF79  ;
+  stroke: #78FF79  ;
+  width: 10%;
+  height: 10%;
 }
-.selectors .dropdown-toggle {
-    height: 28px;
-    border-radius: 0;
+
+.chart-content{
+  height: calc(100vh - 65px) ;
+  width: 100%;
 }
-.selectors .selector-dropdown:nth-child(2) .dropdown-toggle {
-    width: inherit;
-    padding-top: 2px;
-    padding-left: 8px;
-    padding-right: 8px;
+
+.handle.handle--w{
+  width: .3%;
+  height: 100%;
+  fill: white;
+  visibility: visible !important;
+
 }
-.selectors .selector-dropdown.open .dropdown-toggle {
-    border-bottom: none;
-    z-index: 2;
+
+.handle.handle--e{
+  width: .3%;
+  height: 100%;
+  fill: white;
 }
-.selectors .selector-dropdown.open .dropdown-menu {
-    z-index: 1;
+
+.selection {
+stroke: none;
+fill: #29E9E3;
+fill-opacity: 0.2
 }
-.selectors .selector-dropdown .dropdown-menu {
-    top: 25px;
-    border-radius: 0;
+
+.domain {
+  stroke: #9E9E9E ;
+  stroke-width: .5
 }
-.container-fluid {
-    padding-right: 0px;
-    padding-left: 0px;
+
+.tick text{
+  fill: #9E9E9E ;
+  /* overflow: visible */
 }
-#primary-container .average > path.line {
-    stroke-dasharray: 0;
+
+.tick path{
+  stroke: #FFFFFF;
+  stroke-width: .5;
 }
-.secondary-container .bar {
-    stroke: var(--chart-fade) !important;
-    fill: var(--chart-fade) !important;
+
+/* path{
+  stroke: var(--chart-teal)
+} */
+
+#legend-container {
+  position: absolute;
+  top: 35vh;
+  left: -20px;
 }
-.secondary-container .macd-divergence .bar {
-    stroke: var(--chart-fade) !important;
-    fill: var(--chart-fade) !important;
+
+#legend-container text{
+  color: white;
 }
-.secondary-container .macd-signal .line, .secondary-container .macd .line, .secondary-container .rsi {
-    stroke-width: 2px;
+
+.legend-label{
+  fill:white;
+  font-weight: var(--font-weight-bold);
+
 }
-#navbar-row {
-    padding-top: 20px;
+
+.legend-value{
+  fill:white;
+  font-weight: var(--font-weight-bold);
+
 }
-#navbar-row #navbar-container .plot-area .multi .area {
-    fill: url(#brush-gradient) !important;
-    fill-opacity: 0.2;
+
+.annotation-line{
+  stroke:red;
 }
-#navbar-row #navbar-container .plot-area .multi path {
-    stroke: var(--chart-fade) !important;
-    stroke-width: 1.5px;
+
+.line{
+  stroke: #21B1CA;
+  stroke-width: 1
 }
-#navbar-row #navbar-container .plot-area .w, #navbar-row #navbar-container .plot-area .e {
-    width: 1px;
-}
-#navbar-row #navbar-container .plot-area .w > rect, #navbar-row #navbar-container .plot-area .e > rect {
-    fill: var(--chart-teal) !important;
-}
-#navbar-row #navbar-container .plot-area .w .outer-handle, #navbar-row #navbar-container .plot-area .w .inner-handle, #navbar-row #navbar-container .plot-area .e .outer-handle, #navbar-row #navbar-container .plot-area .e .inner-handle {
-    stroke: var(--chart-teal) !important;
-}
-#navbar-row #navbar-container .plot-area .w .inner-handle, #navbar-row #navbar-container .plot-area .e .inner-handle {
-    fill: var(--chart-teal) !important;
-}
-#navbar-row #navbar-reset {
-    opacity: 1.0;
-}
-#navbar-row #navbar-reset .reset-button {
-    stroke: var(--chart-teal) !important;
-}
-#navbar-row #navbar-reset .reset-button:hover {
-    fill: var(--button-hover) !important;
-}
-#navbar-row #navbar-container #brush-gradient .brush-gradient-top {
-    stop-color: var(--chart-teal) ;
-}
-.y-axis .close-line.tick > path {
-    stroke: var(--chart-teal) !important;
-    fill: var(--chart-teal) !important;
-}
-.y-axis .close-line.tick > text {
-    fill: black !important;
-}
-.y-axis .tick text, .y-axis #x-axis-container .tick text, .y-axis #navbar-row #navbar-container text {
-    fill:  var(--text-grey);
-}
-#x-axis-container .tick text, #navbar-row #navbar-container text {
-    fill:  var(--text-grey);
-}
-.multi.rsi.indicator {
-    stroke: var(--tertiary-purple);
-}
-.multi.rsi.annotations .annotation.horizontal line {
-    stroke-dasharray: 8px;
-}
-.plot-area .annotation.close-line > line {
-    stroke: var(--chart-teal);
-}
-.dropdown .dropdown-menu {
-    background-color: var(--dark-background) !important;
-    border-color: var(--chart-teal);
-}
-.dropdown .dropdown-menu > li {
-    padding-top: 0px;
-    padding-bottom: 0px;
-}
-.dropdown .dropdown-menu > li:hover {
-    background-color: var(--button-hover);
-}
-.dropdown .dropdown-menu > li:first-of-type {
-    margin-top: 10px;
-}
-.dropdown .dropdown-menu > li > a {
-    color: var(--chart-teal);
-}
-.head-row {
-    display: none;
-}
-.primary-row {
-    margin-top: 19px;
-}
-#charts {
-    padding-right: 0px !important;
-}
-#charts-container {
-    padding-bottom: 3px;
-}
-div.selectors {
-    top: -21px;
-    right: 80px;
-    left: auto;
-}
-#app-container {
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-right: 0px;
-    width: 100%;
-}
-#product-dropdown {
-    display: hide;
-}
-#mobile-product-dropdown .dropdown-toggle {
-    display: none;
-}
-#overlay .edit-indicator .icon {
-    border-radius: 0;
-}
-#overlay .edit-indicator .icon.bf-icon-delete {
-    background-image: url('../assets/png/close_indicator.png');
-}
+  
+.cartesian-chart >.plot-area {
+  /* overflow: visible  !important; */
+} 
