@@ -1,11 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="12px" height="2px" viewBox="0 0 12 2" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Desktop-HD-Copy" transform="translate(-26.000000, -740.000000)">
-            <g id="Minimize" transform="translate(20.000000, 721.000000)">
-                <rect id="Rectangle-Copy-2" fill="#D8D8D8" opacity="0" x="0" y="0" width="24" height="28"></rect>
-                <rect id="Rectangle" fill="currentColor" x="6" y="19" width="12" height="2"></rect>
-            </g>
-        </g>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="27" viewBox="0 0 30 27">
+  <g fill="none" fill-rule="evenodd">
+    <path fill="#ABB3B9" d="M11,18.7695312 L19,18.7695312 C19.2761424,18.7695312 19.5,18.4294819 19.5,18.0100098 C19.5,17.5905376 19.2761424,17.2504883 19,17.2504883 L11,17.2504883 C10.7238576,17.2504883 10.5,17.5905376 10.5,18.0100098 C10.5,18.4294819 10.7238576,18.7695312 11,18.7695312 Z"/>
+  </g>
 </svg>
