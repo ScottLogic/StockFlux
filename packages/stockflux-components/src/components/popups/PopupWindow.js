@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import DialogButton from '../buttons/dialog-button/DialogButton';
 import { useChildWindow } from 'openfin-react-hooks';
+import getUndockedPosition from './getUndockedPosition';
+
+const windowSize = { height: 145, width: 270 };
 
 const PopupWindow = ({ message, options, children }) => {
   const [showPopup, setShowPopup] = useState(false);
@@ -17,19 +20,22 @@ const PopupWindow = ({ message, options, children }) => {
   });
 
   const launchChildWindow = useCallback(() => {
-    childWindow.launch({
-      name: 'popup-window',
-      url: 'child-window.html',
-      frame: false,
-      autoShow: true,
-      defaultCentered: true,
-      saveWindowState: false,
-      showTaskbarIcon: false,
-      resizable: false,
-      waitForPageLoad: true,
-      alwaysOnTop: true,
-      defaultWidth: 270,
-      defaultHeight: 145
+    getUndockedPosition({ windowSize }).then(position => {
+      childWindow.launch({
+        name: 'popup-window',
+        url: 'child-window.html',
+        frame: false,
+        autoShow: true,
+        defaultTop: position.top,
+        defaultLeft: position.left,
+        saveWindowState: false,
+        showTaskbarIcon: false,
+        resizable: false,
+        waitForPageLoad: true,
+        alwaysOnTop: true,
+        defaultWidth: windowSize.width,
+        defaultHeight: windowSize.height
+      });
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
