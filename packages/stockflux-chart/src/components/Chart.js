@@ -31,12 +31,12 @@ const Chart = ({ chartData }) => {
     const instance = selection => {
       selection.each((data, selectionIndex, nodes) => {
         labelJoin(d3.select(nodes[selectionIndex]), data)
-          .attr("transform", (_, i) => "translate(0, " + (i + 1) * 15 + ")")
+          .attr("transform", (_, i) => "translate(5, " + (i + 1) * 30 + ")")
           .attr('x', '10%')
           .text(d => d.name);
 
         valueJoin(d3.select(nodes[selectionIndex]), data)
-          .attr("transform", (_, i) => "translate(0, " + (i + 1) * 15 + ")")
+          .attr("transform", (_, i) => "translate(5, " + (i + 1) * 30 + ")")
           .attr('x', '15%')
           .text(d => d.value);
       });
@@ -66,12 +66,19 @@ const Chart = ({ chartData }) => {
     var yExtent = fc.extentLinear().accessors([function (d) { return d.high; },
     function (d) { return d.low }]).pad([0.1, 0.1])
 
-    var xExtent = fc.extentDate()
+    var xExtent = fc.extentTime()
       .accessors([function (d) { return d.date; }]);
 
-    var xScale = d3.scaleTime()
-      .domain(xExtent(data));
+    var format = (d3.timeFormat("%b %Y"))
 
+    var xScale = d3.scaleTime()
+      .domain(xExtent(data))
+
+    // xScale.ticks(1111)
+
+
+    var x2Scale = d3.scaleTime().domain(xExtent(data))
+    var x2Axis = d3.axisTop(x2Scale);
     // var xScaleSkip = fc.scaleDiscontinuous(d3.scaleTime()).discontinuityProvider(fc.discontinuitySkipWeekends()).domain(xExtent(data))
     var yScale = d3.scaleLinear()
       .domain(yExtent(data));
@@ -79,7 +86,8 @@ const Chart = ({ chartData }) => {
     var chartData = {
       series: data,
       brushedRange: [0.75, 1],
-      crosshair: []
+      crosshair: [],
+      currentValueCrosshair: []
     };
 
     var gridlines = fc.annotationSvgGridline().yTicks(10).xTicks(10)
@@ -116,8 +124,13 @@ const Chart = ({ chartData }) => {
       .annotationSvgCrosshair()
       .x(d => xScale(d.date)).xLabel('')
       .y(d => yScale(d.close)).yLabel('')
+    const currentValueCrosshair = fc
+      .annotationSvgCrosshair()
+      .y(d => yScale(d.close)).yLabel('Close')
+
+    chartData.currentValueCrosshair[0] = chartData.series[chartData.series.length - 1]
     const mainMulti = fc.seriesSvgMulti()
-      .series([gridlines, candlestick, crosshair])
+      .series([gridlines, candlestick, crosshair, currentValueCrosshair])
 
       .mapping((data, index, series) => {
         switch (series[index]) {
@@ -126,6 +139,8 @@ const Chart = ({ chartData }) => {
           //   return legendData(lastPoint)
           case crosshair:
             return data.crosshair
+          case currentValueCrosshair:
+            return data.currentValueCrosshair
           default:
             return data.series
         }
@@ -143,7 +158,20 @@ const Chart = ({ chartData }) => {
     // });
 
     var navigatorChart = fc.chartCartesian(xScale.copy(), yScale.copy())
-      .svgPlotArea(navigationMulti);
+
+      // .decorate(selection => {
+      //   selection.enter().append('d3fc-svg').style('grid-column', 3)
+      //     .style('grid-row', 3).on('measure.x2-axis', () => {
+      //       x2Scale.range([d3.event.detail.width, 0]);
+      //       console.log(d3.event.detail.width)
+      //     }).on('draw.x2-axis', (d, i, nodes) => {
+      //       // draw the axis into the svg within the d3fc-svg element
+      //       d3.select(nodes[i])
+      //         .select('svg')
+      //         .call(x2Axis);
+      //     });
+      // })
+      .svgPlotArea(navigationMulti)
 
     var scale = d3.scaleTime().domain(xScale.domain());
     mainChart.xDomain(chartData.brushedRange.map(scale.invert));
@@ -192,7 +220,6 @@ const Chart = ({ chartData }) => {
         // }
         // );
         // render()
-
 
       });
 

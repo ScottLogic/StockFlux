@@ -3,7 +3,7 @@ body {
 }
 
 .titlebar-container {
-    background-color: #071521;
+    background-color: #010F1B;
   }
   
 #app, .main, body, html {
@@ -96,13 +96,14 @@ body {
     position: relative;
     top: 0px;
     font-size: 18px;
-    font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-bold);
+
 }
 
 .name {
+    margin-top: 4px;
     color: white;
-    position: relative;
-    display: inline;
-    top: 0px;
     font: 18px var(--font-weight-normal);
+    font-weight: var(--font-weight-bold);
+
 }
