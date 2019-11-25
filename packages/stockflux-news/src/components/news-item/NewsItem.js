@@ -5,12 +5,14 @@ import * as PropTypes from 'prop-types';
 import './NewsItem.css';
 
 const handleNewsItemClick = link => {
-  window.fin.System.openUrlWithBrowser(link)
+  window.fin.System.openUrlWithBrowser(link);
 };
 
 const articleDate = unformattedDate => {
   const date = new Date(unformattedDate);
-  return !isToday(date) ? format(date, 'DD MMM') : format(date, 'DD MMM sh:mm A');
+  return !isToday(date)
+    ? format(date, 'DD MMM')
+    : format(date, 'DD MMM sh:mm A');
 };
 
 const NewsItem = ({ headline, source, copy, link, time }) => (
