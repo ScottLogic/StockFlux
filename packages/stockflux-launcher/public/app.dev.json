@@ -10,9 +10,8 @@
         "url": "http://localhost:8053/index.html",
         "applicationIcon": "http://localhost:8053/favicon.ico",
         "autoShow": true,
-        "defaultHeight": 88,
+        "defaultHeight": 90,
         "defaultWidth": 800,
-        "defaultTop": 0,
         "resizable": false,
         "maximizable": false,
         "minimizable": false,
@@ -27,10 +26,87 @@
             "width": 0
         },
         "customData": {
-            "apiBaseUrl": "https://d3capoqa8f983r.cloudfront.net/api"
+            "apiBaseUrl": "http://localhost:3010/api",
+            "isDockable": true,
+            "initialDocked": true
         }
     },
-    "services": [],
+    "services": [
+        {
+            "name": "layouts",
+            "config": {
+                "features": {
+                    "tab": false,
+                    "dock": false,
+                    "snap": false
+                },
+                "rules": [
+                    {
+                        "scope": {
+                            "level": "window",
+                            "uuid": "stockflux-launcher",
+                            "name": "search-results"
+                        },
+                        "config": {
+                            "features": {
+                                "dock": false,
+                                "snap": false,
+                                "tab": false
+                            }
+                        }
+                    },
+                    {
+                        "scope": {
+                            "level": "window",
+                            "uuid": "stockflux-launcher",
+                            "name": {
+                                "expression": "stockflux-news.*"
+                            }
+                        },
+                        "config": {
+                            "features": {
+                                "dock": true,
+                                "snap": true,
+                                "tab": false
+                            }
+                        }
+                    },
+                    {
+                        "scope": {
+                            "level": "window",
+                            "uuid": "stockflux-launcher",
+                            "name": {
+                                "expression": "stockflux-chart.*"
+                            }
+                        },
+                        "config": {
+                            "features": {
+                                "dock": true,
+                                "snap": true,
+                                "tab": false
+                            }
+                        }
+                    },
+                    {
+                        "scope": {
+                            "level": "window",
+                            "uuid": "stockflux-launcher",
+                            "name": {
+                                "expression": "stockflux-watchlist.*"
+                            }
+                        },
+                        "config": {
+                            "features": {
+                                "dock": true,
+                                "snap": true,
+                                "tab": false
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ],
     "shortcut": {
         "company": "ScottLogic",
         "description": "Hosts StockFlux App Launcher as an OpenFin application.",

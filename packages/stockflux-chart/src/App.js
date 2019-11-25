@@ -6,7 +6,7 @@ import {
   useOptions
 } from 'openfin-react-hooks';
 import { format, subYears } from 'date-fns';
-import { ReactComponent as D3FCIcon } from './assets/d3fc.svg'
+import { ReactComponent as D3FCIcon } from './assets/d3fc.svg';
 
 import './styles/app.css';
 
@@ -55,10 +55,10 @@ const App = () => {
   }
 
   if (!symbol) {
-    setSymbol('TSLA')
+    setSymbol('TSLA');
   }
   if (name == null) {
-    setName('Tesla, Inc')
+    setName('Tesla, Inc');
   }
 
   // if (!date) {
@@ -67,20 +67,16 @@ const App = () => {
 
   const getData = useCallback(async () => {
     var date = format(subYears(new Date(), 3), 'YYYY-MM-DD');
-    var url = `https://d3capoqa8f983r.cloudfront.net/api/ohlc/${symbol}/${date}`
+    var url = `https://d3capoqa8f983r.cloudfront.net/api/ohlc/${symbol}/${date}`;
 
     const response = await fetch(url, {
       method: 'GET'
     });
 
-    if (!response.ok)
-      throw new Error("response not successful");
-
+    if (!response.ok) throw new Error('response not successful');
 
     const stockData = await response.json();
-    if (!stockData.success)
-      throw new Error("Not successful")
-
+    if (!stockData.success) throw new Error('Not successful');
 
     const updated = stockData.data.map(item => {
       return {
@@ -91,18 +87,16 @@ const App = () => {
         volume: item.volume,
         date: new Date(item.date)
       };
-    })
+    });
 
-    return updated
-
+    return updated;
   }, [symbol]);
-
 
   useEffect(() => {
     if (symbol) {
-      getData().then(data => setChartData(data))
-    } else setChartData()
-  }, [symbol, getData])
+      getData().then(data => setChartData(data));
+    } else setChartData();
+  }, [symbol, getData]);
 
   return (
     <>
@@ -116,10 +110,10 @@ const App = () => {
           <Chart chartData={chartData} />
         </div>
         <div className="chart-info">
-          <div className="chart-tool">
-            Powered by
+          <div className="chart-tool">Powered by</div>
+          <div className="d3fc-button">
+            <D3FCIcon />
           </div>
-          <div className="d3fc-button"><D3FCIcon /></div>
         </div>
       </div>
     </>
