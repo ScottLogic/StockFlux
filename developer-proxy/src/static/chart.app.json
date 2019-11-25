@@ -1,0 +1,44 @@
+{
+    "runtime": {
+        "arguments": "--enable-aggressive-domstorage-flushing",
+        "version": "12.69.43.22"
+    },
+    "startup_app": {
+        "name": "stockflux-chart",
+        "uuid": "33aa9062-9eb0-4875-b819-c90f38ef03eb",
+        "url": "http://localhost:8051/index.html",
+        "applicationIcon": "http://localhost:8051/favicon.ico",
+        "autoShow": true,
+        "defaultWidth": 850,
+        "defaultHeight": 500,
+        "minWidth": 850,
+        "minHeight": 500,
+        "defaultTop": 80,
+        "saveWindowState": false,
+        "frame": false,
+        "contextMenu": true,
+        "customData": {
+            "apiBaseUrl": "http://localhost:3010/api"
+        }
+    },
+    "services": [
+        {
+            "name": "layouts",
+            "config": {
+                "features": {
+                    "tab": false
+                }
+            }
+        },
+        {
+            "name": "fdc3"
+        }
+    ],
+    "shortcut": {
+        "company": "ScottLogic",
+        "description": "Hosts StockFlux Chart as an OpenFin application.",
+        "name": "StockFlux Chart",
+        "icon": "http://localhost:8051/favicon.ico"
+    },
+    "splashScreenImage": "http://localhost:8051/splashscreen.png"
+}

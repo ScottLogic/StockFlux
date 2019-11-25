@@ -14,7 +14,7 @@
     "defaultHeight": 600,
     "maxWidth": 271,
     "minWidth": 271,
-    "minHeight": 300,    
+    "minHeight": 300,
     "defaultLeft": 90,
     "defaultTop": 90,
     "frame": false,
@@ -28,7 +28,9 @@
       "name": "layouts",
       "config": {
         "features": {
-          "tab": false
+          "tab": false,
+          "dock": true,
+          "snap": true
         }
       }
     }
