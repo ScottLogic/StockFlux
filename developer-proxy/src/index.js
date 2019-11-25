@@ -13,4 +13,5 @@ app.use('/__static', express.static(path.join(__dirname, './static')));
 
 app.get('/**', proxyOverride(baseUrl));
 
+// eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
