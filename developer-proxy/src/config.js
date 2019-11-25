@@ -7,6 +7,9 @@ module.exports = {
     },
     '/api/apps/v1/stockflux-news': {
       manifest: 'http://localhost:3010/__static/news.app.json'
+    },
+    '/api/apps/v1/stockflux-chart': {
+      manifest: 'http://localhost:3010/__static/chart.app.json'
     }
   }
 };
