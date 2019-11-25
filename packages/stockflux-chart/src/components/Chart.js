@@ -101,7 +101,7 @@ const Chart = ({ chartData }) => {
     var brush = fc.brushX()
       .on('brush', function (evt) {
         // if the brush has zero height there is no selection
-        if (evt.selection) {
+        if (evt.selection && evt.selection[0] < 1 && evt.selection[1] > 0) {
           chartData.brushedRange = evt.selection;
           mainChart.xDomain(evt.xDomain);
           render();
