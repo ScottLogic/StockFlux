@@ -55,22 +55,23 @@ const Chart = ({ chartData }) => {
     { name: 'V', value: volumeFormat(datum.volume) }
   ];
 
+  // eslint-disable-next-line 
   function makeChart(data) {
     //Extents calculate the domain/(min/max) of data
     var yExtent = fc
       .extentLinear()
       .accessors([
-        function(d) {
+        function (d) {
           return d.high;
         },
-        function(d) {
+        function (d) {
           return d.low;
         }
       ])
       .pad([0.1, 0.1]);
 
     var xExtent = fc.extentTime().accessors([
-      function(d) {
+      function (d) {
         return d.date;
       }
     ]);
@@ -100,16 +101,16 @@ const Chart = ({ chartData }) => {
 
     var area = fc
       .seriesSvgArea()
-      .crossValue(function(d) {
+      .crossValue(function (d) {
         return d.date;
       })
-      .mainValue(function(d) {
+      .mainValue(function (d) {
         return d.close;
       });
 
     var candlestick = fc.seriesSvgCandlestick();
 
-    var brush = fc.brushX().on('brush', function(evt) {
+    var brush = fc.brushX().on('brush', function (evt) {
       // if the brush has zero height there is no selection
       if (evt.selection) {
         chartData.brushedRange = evt.selection;
@@ -127,6 +128,8 @@ const Chart = ({ chartData }) => {
             return data.series;
           case brush:
             return data.brushedRange;
+          default:
+            return data
         }
       });
 
