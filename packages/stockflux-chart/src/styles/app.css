@@ -52,13 +52,13 @@ body {
 
 #showcase-container {
     margin: 0px 0px 0px 10vw;
-    height: 80%;
+    height: 75%;
     width: 90%
 }
 
 #navigation-container {
     background: #010F1B;
-    height: 20%;
+    height: 25%;
     padding: 0px 0px 0px 0px
 }
 /* #navigation-container >.cartesian-chart {

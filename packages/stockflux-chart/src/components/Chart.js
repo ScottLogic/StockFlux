@@ -76,14 +76,14 @@ const Chart = ({ chartData }) => {
       }
     ]);
 
-    // var format = d3.timeFormat('%b %Y');
-
     var xScale = d3.scaleTime().domain(xExtent(data));
 
-    // xScale.ticks(1111)
+    var x2Scale = d3.scaleTime().domain(xExtent(data));
+    var x2Axis = d3
+      .axisTop(x2Scale)
+      .ticks(d3.timeYear.every(1))
+      .tickFormat(d3.timeFormat('%Y'));
 
-    // var x2Scale = d3.scaleTime().domain(xExtent(data));
-    // var x2Axis = d3.axisTop(x2Scale);
     // var xScaleSkip = fc.scaleDiscontinuous(d3.scaleTime()).discontinuityProvider(fc.discontinuitySkipWeekends()).domain(xExtent(data))
     var yScale = d3.scaleLinear().domain(yExtent(data));
 
@@ -112,7 +112,7 @@ const Chart = ({ chartData }) => {
 
     var brush = fc.brushX().on('brush', function(evt) {
       // if the brush has zero height there is no selection
-      if (evt.selection && evt.selection[0] < 1 && evt.selection[1] > 0) {
+      if (evt.selection && evt.selection[0] < evt.selection[1]) {
         chartData.brushedRange = evt.selection;
         mainChart.xDomain(evt.xDomain);
         render();
@@ -122,6 +122,29 @@ const Chart = ({ chartData }) => {
     var navigationMulti = fc
       .seriesSvgMulti()
       .series([area, brush])
+      .decorate(function(selection) {
+        // var enter = selection.enter();
+        // selection.select('brush').append('circle')
+        //   .attr('cy', 20)
+        //   .attr('cx', 20)
+        //   .attr('r', 7)
+        //   .attr('class', 'circle');
+        // selection.selectAll('.handle--e, .handle--w')
+        // var enter = selection.enter();
+        // var plotArea = enter.select('.plot-area')
+        // console.log(plotArea)
+        // var multi = plotArea.select('.multi')
+        // console.log(multi)
+        // var brush = multi.select('.brush')
+        // console.log(brush)
+        // var handles = brush.selectAll('.handle')
+        // console.log(handles)
+        // handles
+        //   .append('circle')
+        //   .attr('cy', 30)
+        //   .attr('r', 7)
+        //   .attr('class', 'outer-handle');
+      })
       .mapping((data, index, series) => {
         switch (series[index]) {
           case area:
@@ -145,17 +168,15 @@ const Chart = ({ chartData }) => {
       .y(d => yScale(d.close))
       .yLabel('Close');
 
-    chartData.currentValueCrosshair[0] =
+    chartData.currentValueCrosshair =
       chartData.series[chartData.series.length - 1];
+
     const mainMulti = fc
       .seriesSvgMulti()
       .series([gridlines, candlestick, crosshair, currentValueCrosshair])
 
       .mapping((data, index, series) => {
         switch (series[index]) {
-          // case chartLegend:
-          //   const lastPoint = data.series[data.series.length - 1];
-          //   return legendData(lastPoint)
           case crosshair:
             return data.crosshair;
           case currentValueCrosshair:
@@ -165,29 +186,30 @@ const Chart = ({ chartData }) => {
         }
       });
 
-    var mainChart = fc.chartCartesian(xScale, yScale).svgPlotArea(mainMulti);
-
-    // {
-    //   d3.select("#legend-container")
-    //     .datum(legendData(data[data.length - 1]))
-    //     .call(chartLegend);
-    // });
-
     var navigatorChart = fc
       .chartCartesian(xScale.copy(), yScale.copy())
-
-      // .decorate(selection => {
-      //   selection.enter().append('d3fc-svg').style('grid-column', 3)
-      //     .style('grid-row', 3).on('measure.x2-axis', () => {
-      //       x2Scale.range([d3.event.detail.width, 0]);
-      //       console.log(d3.event.detail.width)
-      //     }).on('draw.x2-axis', (d, i, nodes) => {
-      //       // draw the axis into the svg within the d3fc-svg element
-      //       d3.select(nodes[i])
-      //         .select('svg')
-      //         .call(x2Axis);
-      //     });
-      // })
+      .decorate(selection => {
+        selection
+          .enter()
+          .append('d3fc-svg')
+          .style('grid-column', 3)
+          .style('grid-row', 2)
+          .style('height', '1em')
+          .classed('secondary-x-axis', true)
+          .on('measure.x2-axis', (d, i, nodes) => {
+            const { width, height } = d3.event.detail;
+            d3.select(nodes[i])
+              .select('svg')
+              .attr('viewBox', `0 ${-height} ${width} ${height}`);
+            x2Scale.range([0, d3.event.detail.width]);
+          })
+          .on('draw.x2-axis', (d, i, nodes) => {
+            // draw the axis into the svg within the d3fc-svg element
+            d3.select(nodes[i])
+              .select('svg')
+              .call(x2Axis);
+          });
+      })
       .svgPlotArea(navigationMulti);
 
     var scale = d3.scaleTime().domain(xScale.domain());
@@ -216,21 +238,10 @@ const Chart = ({ chartData }) => {
           return chartData.series[closestIndex];
         });
         render();
-
-        // chartData.crosshair = event.map(pointer => {
-        //   console.log(pointer)
-        //   closest(chartData, d =>
-        //     Math.abs(xScale.invert(pointer.x).getTime() - d.date.getTime())
-        //   )
-        // }
-        // );
-        // render()
       });
 
       d3.select('#showcase-container .plot-area').call(pointer);
     };
-
-    // d3.select("#legend-container").datum(legendData(data[data.length - 1])).call(chartLegend);
 
     d3.select('#navigation-container')
       .datum(chartData)
@@ -247,26 +258,5 @@ const Chart = ({ chartData }) => {
     </div>
   );
 };
-// .decorate(function (selection) {
-//   var enter = selection.enter();
-//   // console.log(enter)
-//   // var handles = enter.select('.plot-line')
-//   // console.log(handles)
-//   var line = (d3.select('.plot-line'))
-//   console.log("line", line)
-//   var brush = (d3.select('.brush'))
-//   console.log("brush", brush)
-//   var handles = brush.selectAll('.handle')
-//   console.log("handle", handles)
-//   handles
-//     .append('circle')
-//     .attr('cy', 30)
-//     .attr('r', 7)
-//     .attr('class', 'outer-handle');
-//   handles
-//     .append('circle')
-//     .attr('cy', 30)
-//     .attr('r', 4)
-//     .attr('class', 'inner-handle');
-// })
+
 export default Chart;
