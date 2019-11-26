@@ -19,14 +19,10 @@ html, body{
 .candlestick.down{
   fill:#FF7171 ;
   stroke: #FF7171 ;
-  width: 10%;
-  height: 10%
 }
 .candlestick.up{
   fill:#78FF79  ;
   stroke: #78FF79  ;
-  width: 10%;
-  height: 10%;
 }
 
 .chart-content{
@@ -36,16 +32,15 @@ html, body{
 
 .handle.handle--w{
   width: .3%;
-  height: 100%;
   fill: white;
-  visibility: visible !important;
-
+  /* opacity: 0; */
+  transform: translateX(3px)
 }
 
 .handle.handle--e{
   width: .3%;
-  height: 100%;
   fill: white;
+  /* opacity: 0; */
 }
 
 .selection {
@@ -61,7 +56,6 @@ fill-opacity: 0.2
 
 .tick text{
   fill: #9E9E9E ;
-  /* overflow: visible */
 }
 
 .tick path{
@@ -69,9 +63,14 @@ fill-opacity: 0.2
   stroke-width: .5;
 }
 
-/* path{
-  stroke: var(--chart-teal)
-} */
+.secondary-x-axis .tick line{
+  stroke-width: 1;
+  stroke: #9E9E9E
+}
+
+.secondary-x-axis .domain{
+  stroke-width: 0;
+}
 
 #legend-container {
   position: absolute;
