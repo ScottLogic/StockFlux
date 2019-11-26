@@ -210,7 +210,9 @@ const Chart = ({ chartData }) => {
               .call(x2Axis);
           });
       })
-      .svgPlotArea(navigationMulti);
+      .svgPlotArea(navigationMulti)
+      .xTicks(d3.timeMonth.every(2))
+      .xTickFormat(d3.timeFormat('%B'));
 
     var scale = d3.scaleTime().domain(xScale.domain());
     mainChart.xDomain(chartData.brushedRange.map(scale.invert));
