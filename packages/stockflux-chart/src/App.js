@@ -98,6 +98,10 @@ const App = () => {
     } else setChartData();
   }, [symbol, getData]);
 
+  function handleD3FCClick() {
+    window.fin.System.openUrlWithBrowser("https://d3fc.io/");
+  };
+
   return (
     <>
       <div className="main">
@@ -112,7 +116,7 @@ const App = () => {
         <div className="chart-info">
           <div className="chart-tool">Powered by</div>
           <div className="d3fc-button">
-            <D3FCIcon />
+            <D3FCIcon onClick={() => handleD3FCClick()} />
           </div>
         </div>
       </div>
