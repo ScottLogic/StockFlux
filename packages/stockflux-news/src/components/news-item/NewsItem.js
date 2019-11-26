@@ -12,7 +12,7 @@ const articleDate = unformattedDate => {
   const date = new Date(unformattedDate);
   return !isToday(date)
     ? format(date, 'DD MMM')
-    : format(date, 'DD MMM sh:mm A');
+    : format(date, 'DD MMM h:mm A');
 };
 
 const NewsItem = ({ headline, source, copy, link, time }) => (
