@@ -38,12 +38,16 @@ body {
 .d3fc-button {
     position: absolute;
     right: 0px;
-    fill:rgb(191, 191, 204)
-    
+    fill:#9E9E9E;
+    cursor: pointer;
+}
+
+.d3fc-button:hover{
+    fill: white;
 }
 
 .chart-tool{
-    color: rgb(191, 191, 204)
+    color: #9E9E9E
 }
 
 #showcase-container {

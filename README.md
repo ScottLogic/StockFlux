@@ -87,8 +87,21 @@ npm run build
 In isolation each app can be ran individually with the following commands:
 
 ```bash
-npm start
+npm run start
 npm run launch
+```
+
+To run as a suite of apps run the following commands:
+
+```bash
+npm run all:start
+npm run launcher:launch
+```
+
+For local development and to run the suite of apps from what is on the local machine a proxy override is needed. To run this change into the developer-proxy directory and run:
+
+```bash
+npm run proxy
 ```
 
 The applications run on the following ports:

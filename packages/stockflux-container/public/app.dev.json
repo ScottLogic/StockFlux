@@ -16,7 +16,7 @@
     "frame": false,
     "contextMenu": true,
     "customData": {
-      "apiBaseUrl": "https://d3capoqa8f983r.cloudfront.net/api",
+      "apiBaseUrl": "http://localhost:3010/api",
       "chartEntryPointUrl": "http://localhost:8051/index.html"
     }
   },
