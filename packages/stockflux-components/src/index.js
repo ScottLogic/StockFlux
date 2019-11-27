@@ -23,6 +23,9 @@ import WatchListIcon from './components/glyphs/small/watchlist.svg';
 import ChartIconNormal from './components/glyphs/normal/chart.svg';
 import NewsIconNormal from './components/glyphs/normal/news.svg';
 import WatchListNormal from './components/glyphs/normal/watchlist.svg';
+import RemoveIcon from './components/glyphs/small/remove.svg';
+import ShowMenu from './components/glyphs/small/reveal.svg';
+import HideMenu from './components/glyphs/small/hide.svg';
 
 import PriceUp from './components/glyphs/arrows/priceArrowUp.svg';
 import PriceDown from './components/glyphs/arrows/priceArrowDown.svg';
@@ -50,7 +53,14 @@ export default {
     Close
   },
   Icons: {
-    Small: { Chart: ChartIcon, News: NewsIcon, Watchlist: WatchListIcon },
+    Small: {
+      Chart: ChartIcon,
+      News: NewsIcon,
+      Watchlist: WatchListIcon,
+      RemoveIcon,
+      ShowMenu,
+      HideMenu
+    },
     Normal: {
       Chart: ChartIconNormal,
       News: NewsIconNormal,

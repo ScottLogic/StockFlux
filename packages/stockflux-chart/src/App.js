@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Chart from './components/Chart';
 import Components from 'stockflux-components';
-import { FaSyncAlt } from 'react-icons/fa';
 import {
   useInterApplicationBusSubscribe,
   useOptions
 } from 'openfin-react-hooks';
-import bitflux from 'stockflux-bitflux/dist/bitflux';
+import { format, subYears } from 'date-fns';
+import { ReactComponent as D3FCIcon } from './assets/d3fc.svg'
 
 import './styles/app.css';
 
 const ALL = { uuid: '*' };
 
-const chart = bitflux.app();
-chart.periodsOfDataToFetch(1200);
-chart.proportionOfDataToDisplayByDefault(112 / 1200);
-
 const App = () => {
   const [symbol, setSymbol] = useState(null);
+  const [chartData, setChartData] = useState(null);
+
   const [parentUuid, setParentUuid] = useState(null);
   const [listenerSymbol, setListenerSymbol] = useState(null);
   const [name, setName] = useState(null);
@@ -56,43 +54,72 @@ const App = () => {
     }
   }
 
-  const getData = symbol => {
+  if (!symbol) {
+    setSymbol('TSLA')
+  }
+  if (name == null) {
+    setName('Tesla, Inc')
+  }
+
+  // if (!date) {
+  //   setDate('2019-09-01')
+  // }
+
+  const getData = useCallback(async () => {
+    var date = format(subYears(new Date(), 3), 'YYYY-MM-DD');
+    var url = `https://d3capoqa8f983r.cloudfront.net/api/ohlc/${symbol}/${date}`
+
+    const response = await fetch(url, {
+      method: 'GET'
+    });
+
+    if (!response.ok)
+      throw new Error("response not successful");
+
+
+    const stockData = await response.json();
+    if (!stockData.success)
+      throw new Error("Not successful")
+
+
+    const updated = stockData.data.map(item => {
+      return {
+        open: item.open,
+        close: item.close,
+        high: item.high,
+        low: item.low,
+        volume: item.volume,
+        date: new Date(item.date)
+      };
+    })
+
+    return updated
+
+  }, [symbol]);
+
+
+  useEffect(() => {
     if (symbol) {
-      chart.changeStockFluxProduct(symbol);
-    }
-  };
+      getData().then(data => setChartData(data))
+    } else setChartData()
+  }, [symbol, getData])
 
   return (
     <>
       <div className="main">
-        <div className="main-content">
-          <Components.Titlebar />
-          <div id="showcase-title">
-            {symbol && <div className="symbol">{symbol}</div>}
+        <Components.Titlebar />
+        <div className="chart-stuff">
+          <div className="symbol-info">
+            {symbol && <div className="code">{symbol}</div>}
             <div className="name">{!symbol ? 'Generated Data' : name}</div>
-            <div className="chart-nav-icons">
-              <Components.Shortcuts.News
-                small={true}
-                symbol
-                name
-                disabled={!symbol}
-              />
-              <Components.Shortcuts.Watchlist
-                small={true}
-                symbol
-                name
-                disabled={!symbol}
-              />
-              <Components.Buttons.Borderless
-                small={true}
-                onClick={() => getData(symbol)}
-                disabled={!symbol}
-              >
-                <FaSyncAlt />
-              </Components.Buttons.Borderless>
-            </div>
           </div>
-          <Chart getData={getData} chart={chart} symbol={symbol} />
+          <Chart chartData={chartData} />
+        </div>
+        <div className="chart-info">
+          <div className="chart-tool">
+            Powered by
+          </div>
+          <div className="d3fc-button"><D3FCIcon /></div>
         </div>
       </div>
     </>

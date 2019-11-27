@@ -9,12 +9,13 @@
 
 .titlebar-container > .title-container {
   flex-grow: 1;  
+  margin-top: 5px
 }
 
 .title-container > span {
   font-family: var(--font-roboto-sans-serif);
-  font-size: var(--font-header-text);
-  margin-left: 12px;
+  font-size: var(--font-large);
+  margin-left: 8px;
 }
 
 .titlebar-container > .icons-container {
@@ -22,7 +23,6 @@
   align-items: center;
   flex-grow: 0;
   -webkit-app-region: no-drag;
-  margin-right: 3px;
   justify-content: space-evenly;
 }
 
@@ -32,7 +32,6 @@
 
 .header-icon {
     cursor: pointer;
-    padding:3px;
 }
 
 .header-icon:hover {
@@ -40,7 +39,7 @@
 }
 
 .header-icon > svg > * {
-  color: var(--window-icon);
+  fill: var(--header-icon);
 }
 
 .link-icon > svg > * {

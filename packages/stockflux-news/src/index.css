@@ -13,7 +13,6 @@ body {
   height: 100%;
   --header-height: 60px;
   --tabbar-height: 36px;
-  --titlebar-height: 28px;
   --newsitem-height: 143px;
   --no-article-height: 30px;
 }
