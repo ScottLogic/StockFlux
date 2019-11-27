@@ -7,7 +7,6 @@ import './App.css';
 import FreeTextSearch from './free-text-search/FreeTextSearch';
 import getUndockedPosition from './helpers/getUndockedPosition';
 import AppShortcut from './app-shortcuts/AppShortcuts';
-import Watchlist from './app-shortcuts/Watchlist';
 
 import ToolBar from './toolbar/ToolBar';
 
@@ -40,8 +39,8 @@ export default () => {
       <span className="title">Flux</span>
     </span>
   ) : (
-      ''
-    );
+    ''
+  );
 
   /* Hook undock if initialDocked is false on start */
   useEffect(() => {

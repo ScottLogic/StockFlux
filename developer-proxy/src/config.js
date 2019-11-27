@@ -11,7 +11,6 @@ module.exports = {
     '/api/apps/v1/stockflux-chart': {
       manifest: 'http://localhost:3010/__static/chart.app.json'
     },
-    '/api/apps/v1':
-      'http://localhost:3010/__static/apps.json'
+    '/api/apps/v1': 'http://localhost:3010/__static/apps.json'
   }
-}
+};

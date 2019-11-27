@@ -6,25 +6,28 @@ import RoundButton from '../../round-button/RoundButton';
 
 export default ({ symbol, name, small, disabled, onClick, intentsEnabled }) => {
   if (small) {
-    return <RoundButton
-      className="shortcut chart"
-      onClick={() => Launchers.launchChart(symbol, name, intentsEnabled)}
-      disabled={disabled}
-      small={small}
-    >
-      <ChartIconSmall />
-    </RoundButton>
-  } else return (
-    <RoundButton
-      className="shortcut chart"
-      onClick={async () => {
-        await Launchers.launchChart(symbol, name, intentsEnabled);
-        if (onClick) onClick();
-      }}
-      disabled={disabled}
-      small={small}
-    >
-      <ChartIcon />
-    </RoundButton>
-  )
+    return (
+      <RoundButton
+        className="shortcut chart"
+        onClick={() => Launchers.launchChart(symbol, name, intentsEnabled)}
+        disabled={disabled}
+        small={small}
+      >
+        <ChartIconSmall />
+      </RoundButton>
+    );
+  } else
+    return (
+      <RoundButton
+        className="shortcut chart"
+        onClick={async () => {
+          await Launchers.launchChart(symbol, name, intentsEnabled);
+          if (onClick) onClick();
+        }}
+        disabled={disabled}
+        small={small}
+      >
+        <ChartIcon />
+      </RoundButton>
+    );
 };
