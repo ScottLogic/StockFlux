@@ -7,7 +7,7 @@ export default () => {
   const [apps, setApps] = useState([]);
 
   useEffect(() => {
-    OpenfinApiHelpers.getStockFluxApps()
+    OpenfinApiHelpers.getAllApps()
       .then(setApps)
       .catch(console.error);
   }, []);
@@ -36,6 +36,23 @@ export default () => {
               name="Tesla"
               small={false}
             />
+          );
+        })}
+      {apps
+        .filter(
+          app =>
+            app.customConfig !== undefined &&
+            app.customConfig.showInLauncher &&
+            app.appId.indexOf('stockflux-') === -1
+        )
+        .map(app => {
+          return (
+            <Components.Shortcuts.External
+              key={app.appId}
+              className="shortcut"
+              manifest={app}
+              small={false}
+            ></Components.Shortcuts.External>
           );
         })}
     </div>
