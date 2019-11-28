@@ -14,6 +14,7 @@ const launchAsChildWindow = async (symbol, name) => {
     options => {
       options.name = APP_NAME;
       options.customData.symbol = symbol;
+      options.customData.name = name;
       return options;
     }
   );

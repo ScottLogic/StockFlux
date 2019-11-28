@@ -2,9 +2,7 @@ import React, { useRef, useState, useEffect, useReducer } from 'react';
 import Components from 'stockflux-components';
 import { StockFlux } from 'stockflux-core';
 import NewsItem from './components/news-item/NewsItem';
-import {
-  useOptions
-} from 'openfin-react-hooks';
+import { useOptions } from 'openfin-react-hooks';
 import './App.css';
 
 const SEARCHING = 'searching';
