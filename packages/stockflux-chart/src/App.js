@@ -99,8 +99,8 @@ const App = () => {
   }, [symbol, getData]);
 
   function handleD3FCClick() {
-    window.fin.System.openUrlWithBrowser("https://d3fc.io/");
-  };
+    window.fin.System.openUrlWithBrowser('https://d3fc.io/');
+  }
 
   return (
     <>
