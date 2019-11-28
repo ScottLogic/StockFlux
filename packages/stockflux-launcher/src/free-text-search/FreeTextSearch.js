@@ -126,10 +126,10 @@ const FreeTextSearch = ({ dockedTo, showTextInput }) => {
   }, [query]);
 
   useEffect(() => {
-    if (query === '' && windowRef) {
+    if (query === '' && !isDockedToSide && windowRef) {
       closeChildWindow();
     }
-  }, [windowRef, query, closeChildWindow]);
+  }, [windowRef, query, closeChildWindow, isDockedToSide]);
 
   useEffect(() => {
     if (childWindow) {
