@@ -7,7 +7,7 @@ import React, {
   useCallback
 } from 'react';
 import Components from 'stockflux-components';
-import { useChildWindow } from 'openfin-react-hooks';
+import { useChildWindow, useBounds } from 'openfin-react-hooks';
 import './DockSelector.css';
 
 const DOCK_SELECTOR_WINDOW_NAME = 'dockSelector';
@@ -22,8 +22,22 @@ const DockSelector = ({ dockedTo, tools }) => {
     shouldInheritCss: true,
     shouldClosePreviousOnLaunch: true
   });
+  const bounds = useBounds();
 
   const { windowRef, launch, populate, close } = childWindow;
+
+  const launchChildWindow = useCallback(
+    () =>
+      launch(
+        // getResultsWindowProps(
+        //   DOCK_SELECTOR_WINDOW_NAME,
+        //   searchButtonRef,
+        //   dockedTo,
+        //   bounds
+        // )
+      ),
+    [bounds, dockedTo, launch]
+  );
 
   return (
     <Components.Buttons.Round
