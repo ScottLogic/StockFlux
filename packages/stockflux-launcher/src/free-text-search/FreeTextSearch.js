@@ -129,7 +129,8 @@ const FreeTextSearch = ({ dockedTo, showTextInput }) => {
     if (query === '' && !isDockedToSide && windowRef) {
       closeChildWindow();
     }
-  }, [windowRef, query, closeChildWindow, isDockedToSide]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [windowRef, query, closeChildWindow]);
 
   useEffect(() => {
     if (childWindow) {
