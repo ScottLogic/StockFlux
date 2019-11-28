@@ -139,7 +139,7 @@
     "contactEmail": "contact@giantmachines.com",
     "manifest": "https://stockflux.scottlogic.com/api/apps/v1/giantmachines-watchlist/app.json",
     "manifestType": "openfin",
-    "description": "Giant Machines Watchlist app",
+    "description": "Giant Machines Watchlist",
     "title": "Watchlist",
     "icons": [
       {

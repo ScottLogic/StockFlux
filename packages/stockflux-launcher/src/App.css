@@ -66,6 +66,7 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: nowrap;
   height: 60px;
 }
 

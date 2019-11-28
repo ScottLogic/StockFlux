@@ -45,3 +45,9 @@
 .round:not(:disabled):active {
   background-color: var(--middle-background-lighter);
 }
+
+.external {
+  width: 76px;
+  height:62px;
+  overflow: hidden;
+}
