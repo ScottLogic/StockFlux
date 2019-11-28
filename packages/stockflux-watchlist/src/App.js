@@ -3,10 +3,7 @@ import WatchlistCard from './components/watchlist-card/WatchlistCard';
 import Components from 'stockflux-components';
 import { StockFluxHooks, OpenfinApiHelpers, Launchers } from 'stockflux-core';
 import * as fdc3 from 'openfin-fdc3';
-import {
-  useInterApplicationBusSubscribe,
-  useOptions
-} from 'openfin-react-hooks';
+import { useOptions } from 'openfin-react-hooks';
 import {
   onDragStart,
   onDragOver,
@@ -62,11 +59,6 @@ const App = () => {
     setWatchlist(getDistinctElementArray([incomingSymbol, ...watchlist]));
   };
 
-  const { data } = useInterApplicationBusSubscribe(
-    { uuid: options ? options.uuid : '*' },
-    'stockflux-watchlist'
-  );
-
   useEffect(() => {
     if (notification.state === 'LAUNCHED') {
       notification.populate(
@@ -77,18 +69,19 @@ const App = () => {
               newSymbol.isNew
                 ? 'has been added to your Watchlist'
                 : 'has been moved to the top of your Watchlist'
-              }`}
+            }`}
           </p>
         </div>
       );
     }
   });
+
   useEffect(() => {
-    if (data && data.message && data.message.symbol) {
-      addToWatchlist(data.message.symbol);
+    if (options && options.customData.symbol) {
+      addToWatchlist(options.customData.symbol);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+    // eslint-disable-next-line
+  }, [options]);
 
   const onIconClick = symbol => {
     return e => {
@@ -181,7 +174,7 @@ const App = () => {
   const leftPosition = (targetWidth, offset) =>
     window.screen.availWidth -
       (window.outerWidth + screenLeft() + offset + targetWidth) >
-      0
+    0
       ? window.outerWidth + screenLeft() + offset
       : screenLeft() - offset - targetWidth;
 
@@ -242,21 +235,21 @@ const App = () => {
               <p>Use StockFlux Search app to add new stocks to the list.</p>
             </div>
           ) : (
-              watchlist.map((symbol, i) => (
-                <WatchlistCard
-                  key={symbol}
-                  symbol={symbol}
-                  bindings={bindings}
-                  isUnwatching={unwatchedSymbol === symbol}
-                  dragOver={dragOverIndex === i}
-                  dragOverBottom={
-                    dragOverIndex === watchlist.length &&
-                    i === watchlist.length - 1
-                  }
-                  removeFromWatchList={removeFromWatchList}
-                />
-              ))
-            )}
+            watchlist.map((symbol, i) => (
+              <WatchlistCard
+                key={symbol}
+                symbol={symbol}
+                bindings={bindings}
+                isUnwatching={unwatchedSymbol === symbol}
+                dragOver={dragOverIndex === i}
+                dragOverBottom={
+                  dragOverIndex === watchlist.length &&
+                  i === watchlist.length - 1
+                }
+                removeFromWatchList={removeFromWatchList}
+              />
+            ))
+          )}
         </Components.ScrollWrapperY>
       </div>
     </>
