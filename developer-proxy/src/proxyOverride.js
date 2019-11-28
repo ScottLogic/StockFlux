@@ -19,6 +19,20 @@ module.exports = baseUrl => (req, res) => {
   const url = baseUrl + path;
   const override = overrides[path];
 
+  if (path === '/api/apps/v1') {
+    // eslint-disable-next-line no-console
+    console.log(`Overriding path '${path}`);
+    fetch(override, options)
+      .then(proxyRes => {
+        return proxyRes.json();
+      })
+      .then(proxyData => {
+        res.send(proxyData);
+      })
+      .catch(err => console.error('Proxy Error', err));
+    return;
+  }
+
   // eslint-disable-next-line no-console
   console.log(
     override ? `Overriding path '${path}'` : `No overrides for path '${path}'`

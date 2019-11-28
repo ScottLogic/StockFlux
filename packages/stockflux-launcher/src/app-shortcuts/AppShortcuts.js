@@ -29,7 +29,14 @@ export default () => {
                 .charAt(0)
                 .toUpperCase() + app.appId.slice(11)
             ];
-          return <AppShortcut key={app.appId} symbol="TSLA" name="Tesla" />;
+          return (
+            <AppShortcut
+              key={app.appId}
+              symbol="TSLA"
+              name="Tesla"
+              small={false}
+            />
+          );
         })}
     </div>
   );

@@ -8,6 +8,9 @@ body {
   height: 100%;
 }
 
+.round{
+  margin-bottom: 5px;
+}
 .icon {
   color: var(--icon-inactive);
   margin-bottom: 8px;
@@ -43,6 +46,10 @@ body {
   padding-left: 4px;
   padding-right: 4px;
   margin-top: 52px;
+}
+
+.vertical button{
+  margin-top: 5px
 }
 
 .left,
