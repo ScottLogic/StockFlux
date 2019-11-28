@@ -1,6 +1,6 @@
 # Developer Proxy
 
-Use of the developer proxy allows you to develop locally in reguards to each seperate app. This can be ran be using the command `npm start` with `./developer-proxy` directory. 
+Use of the developer proxy allows you to develop locally in reguards to each seperate app. This can be ran be using the command `npm run proxy`. 
 
 # App Directory
 To modify the app directory to use the local proxy, modify the file `./src/static/apps.json` new stockflux or external apps can be added in for example this is the addition for a Giant Machines Watchlist
