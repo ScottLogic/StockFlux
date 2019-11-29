@@ -19,6 +19,15 @@
   --chart-gradient-top: #21b1ca;
   --chart-gradient-bottom: #ffffff;
   --chart-hover: #1b3b56;
+  --chart-gridline: #55555b;
+  --chart-candlestick-down: #ff7171;
+  --chart-candlestick-up: #78ff79;
+  --chart-handle: #ffffff;
+  --chart-brush-selection: #29e9e3;
+  --chart-tick-path: #ffffff;
+  --chart-domain: #9e9e9e;
+  --chart-area: rgba(33, 177, 202, 0.2);
+
   /* Scroll Bars */
   --scroll-bar-background: #0d2437;
   --scroll-bar-inactive: #8a96a6;

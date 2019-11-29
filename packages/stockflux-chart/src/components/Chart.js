@@ -84,7 +84,6 @@ const Chart = ({ chartData }) => {
       .ticks(d3.timeYear.every(1))
       .tickFormat(d3.timeFormat('%Y'));
 
-    // var xScaleSkip = fc.scaleDiscontinuous(d3.scaleTime()).discontinuityProvider(fc.discontinuitySkipWeekends()).domain(xExtent(data))
     var yScale = d3.scaleLinear().domain(yExtent(data));
 
     var chartData = {
@@ -138,27 +137,17 @@ const Chart = ({ chartData }) => {
     const crosshair = fc
       .annotationSvgCrosshair()
       .x(d => xScale(d.date))
+      .y(d => yScale(d.close))
       .xLabel('')
-      .y(d => yScale(d.close))
       .yLabel('');
-    const currentValueCrosshair = fc
-      .annotationSvgCrosshair()
-      .y(d => yScale(d.close))
-      .yLabel('Close');
-
-    chartData.currentValueCrosshair =
-      chartData.series[chartData.series.length - 1];
 
     const mainMulti = fc
       .seriesSvgMulti()
-      .series([gridlines, candlestick, crosshair, currentValueCrosshair])
-
+      .series([gridlines, candlestick, crosshair])
       .mapping((data, index, series) => {
         switch (series[index]) {
           case crosshair:
             return data.crosshair;
-          case currentValueCrosshair:
-            return data.currentValueCrosshair;
           default:
             return data.series;
         }
@@ -198,7 +187,6 @@ const Chart = ({ chartData }) => {
     mainChart.xDomain(chartData.brushedRange.map(scale.invert));
 
     const render = () => {
-      d3.selectAll('#legend-container > *').remove();
       d3.select('#showcase-container')
         .datum(chartData)
         .call(mainChart);
@@ -216,7 +204,13 @@ const Chart = ({ chartData }) => {
         chartData.crosshair = event.map(({ x }) => {
           const closestIndex = d3
             .bisector(d => d.date)
-            .left(chartData.series, xScale.invert(x));
+            .left(
+              chartData.series,
+              xScale.invert(x),
+              0,
+              chartData.series.length - 1
+            );
+
           return chartData.series[closestIndex];
         });
         render();
@@ -228,7 +222,6 @@ const Chart = ({ chartData }) => {
     d3.select('#navigation-container')
       .datum(chartData)
       .call(navigatorChart);
-
     render();
   }
 
