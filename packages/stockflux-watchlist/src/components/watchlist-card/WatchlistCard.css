@@ -77,6 +77,11 @@
   height: 9px;
 }
 
+.price {
+  width:75px;
+  text-align: right;
+}
+
 .card-chart {
   padding-left:0px;
   height:24px;
