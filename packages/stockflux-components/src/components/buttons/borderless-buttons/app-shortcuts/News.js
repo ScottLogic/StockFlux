@@ -9,7 +9,7 @@ export default ({ symbol, name, small, disabled, intentsEnabled }) => {
     return (
       <RoundButton
         className="shortcut news"
-        onClick={() => Launchers.launchWatchlist(symbol, name, intentsEnabled)}
+        onClick={() => Launchers.launchNews(symbol, name, intentsEnabled)}
         disabled={disabled}
         small={small}
       >
@@ -20,7 +20,7 @@ export default ({ symbol, name, small, disabled, intentsEnabled }) => {
     return (
       <RoundButton
         className="shortcut news"
-        onClick={() => Launchers.launchWatchlist(symbol, name, intentsEnabled)}
+        onClick={() => Launchers.launchNews(symbol, name, intentsEnabled)}
         disabled={disabled}
         small={small}
       >

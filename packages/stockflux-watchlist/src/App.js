@@ -3,7 +3,10 @@ import WatchlistCard from './components/watchlist-card/WatchlistCard';
 import Components from 'stockflux-components';
 import { StockFluxHooks, OpenfinApiHelpers, Launchers } from 'stockflux-core';
 import * as fdc3 from 'openfin-fdc3';
-import { useOptions } from 'openfin-react-hooks';
+import {
+  useOptions,
+  useInterApplicationBusSubscribe
+} from 'openfin-react-hooks';
 import {
   onDragStart,
   onDragOver,
@@ -59,6 +62,11 @@ const App = () => {
     setWatchlist(getDistinctElementArray([incomingSymbol, ...watchlist]));
   };
 
+  const { data } = useInterApplicationBusSubscribe(
+    { uuid: options ? options.uuid : '*' },
+    'stockflux-watchlist'
+  );
+
   useEffect(() => {
     if (notification.state === 'LAUNCHED') {
       notification.populate(
@@ -82,6 +90,13 @@ const App = () => {
     }
     // eslint-disable-next-line
   }, [options]);
+
+  useEffect(() => {
+    if (data && data.message.symbol) {
+      addToWatchlist(data.message.symbol);
+    }
+    // eslint-disable-next-line
+  }, [data]);
 
   const onIconClick = symbol => {
     return e => {
