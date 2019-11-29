@@ -1,74 +1,74 @@
-html, body{
+html,
+body {
   overflow-x: hidden;
   overflow-y: hidden;
   background: var(--primary-dark-blue);
-
 }
-.gridline-y{
-  stroke: #55555B;
-  stroke-width: .5px;
-  stroke-opacity: .75;
-}
-
-.gridline-x{
-  stroke: #55555B;
-  stroke-width: .5px;
-  stroke-opacity: .75;
+.gridline-y {
+  stroke: #55555b;
+  stroke-width: 0.5px;
+  stroke-opacity: 0.75;
 }
 
-.candlestick.down{
-  fill:#FF7171 ;
-  stroke: #FF7171 ;
-}
-.candlestick.up{
-  fill:#78FF79  ;
-  stroke: #78FF79  ;
+.gridline-x {
+  stroke: #55555b;
+  stroke-width: 0.5px;
+  stroke-opacity: 0.75;
 }
 
-.chart-content{
-  height: calc(100vh - 65px) ;
+.candlestick.down {
+  fill: #ff7171;
+  stroke: #ff7171;
+}
+.candlestick.up {
+  fill: #78ff79;
+  stroke: #78ff79;
+}
+
+.chart-content {
+  height: calc(100vh - 65px);
   width: 100%;
 }
 
-.handle.handle--w{
-  width: .3%;
+.handle.handle--w {
+  width: 0.3%;
   fill: white;
   /* opacity: 0; */
-  transform: translateX(3px)
+  transform: translateX(3px);
 }
 
-.handle.handle--e{
-  width: .3%;
+.handle.handle--e {
+  width: 0.3%;
   fill: white;
   /* opacity: 0; */
 }
 
 .selection {
-stroke: none;
-fill: #29E9E3;
-fill-opacity: 0.2
+  stroke: none;
+  fill: #29e9e3;
+  fill-opacity: 0.2;
 }
 
 .domain {
-  stroke: #9E9E9E ;
-  stroke-width: .5
+  stroke: #9e9e9e;
+  stroke-width: 0.5;
 }
 
-.tick text{
-  fill: #9E9E9E ;
+.tick text {
+  fill: #9e9e9e;
 }
 
-.tick path{
-  stroke: #FFFFFF;
-  stroke-width: .5;
+.tick path {
+  stroke: #ffffff;
+  stroke-width: 0.5;
 }
 
-.secondary-x-axis .tick line{
+.secondary-x-axis .tick line {
   stroke-width: 1;
-  stroke: #9E9E9E
+  stroke: #9e9e9e;
 }
 
-.secondary-x-axis .domain{
+.secondary-x-axis .domain {
   stroke-width: 0;
 }
 
@@ -78,31 +78,29 @@ fill-opacity: 0.2
   left: -20px;
 }
 
-#legend-container text{
+#legend-container text {
   color: white;
 }
 
-.legend-label{
-  fill:white;
+.legend-label {
+  fill: white;
   font-weight: var(--font-weight-bold);
-
 }
 
-.legend-value{
-  fill:white;
+.legend-value {
+  fill: white;
   font-weight: var(--font-weight-bold);
-
 }
 
-.annotation-line{
-  stroke:red;
+.annotation-line {
+  stroke: red;
 }
 
-.line{
-  stroke: #21B1CA;
-  stroke-width: 1
+.line {
+  stroke: #21b1ca;
+  stroke-width: 1;
 }
-  
-.cartesian-chart >.plot-area {
+
+.cartesian-chart > .plot-area {
   /* overflow: visible  !important; */
-} 
+}

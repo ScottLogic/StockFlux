@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import './chart.css';
 import * as d3 from 'd3';
 import * as fc from 'd3fc';
+import { format, subYears } from 'date-fns';
 
 const Chart = ({ chartData }) => {
   useEffect(() => {
@@ -10,12 +11,11 @@ const Chart = ({ chartData }) => {
         return a.date - b.date;
       });
       makeChart(chartData);
+    } else {
+      const generator = fc.randomFinancial().startDate(subYears(new Date(), 3));
+      makeChart(generator(1095));
     }
-
-    // else {
-    //   makeChart(fc.randomFinancial()(100))
-    // }
-  }, [chartData, makeChart]);
+  }, [chartData]);
 
   const showcaseContainer = useRef(null);
   const navigationContainer = useRef(null);
@@ -55,7 +55,6 @@ const Chart = ({ chartData }) => {
     { name: 'V', value: volumeFormat(datum.volume) }
   ];
 
-  // eslint-disable-next-line
   function makeChart(data) {
     //Extents calculate the domain/(min/max) of data
     var yExtent = fc
@@ -122,29 +121,7 @@ const Chart = ({ chartData }) => {
     var navigationMulti = fc
       .seriesSvgMulti()
       .series([area, brush])
-      .decorate(function(selection) {
-        // var enter = selection.enter();
-        // selection.select('brush').append('circle')
-        //   .attr('cy', 20)
-        //   .attr('cx', 20)
-        //   .attr('r', 7)
-        //   .attr('class', 'circle');
-        // selection.selectAll('.handle--e, .handle--w')
-        // var enter = selection.enter();
-        // var plotArea = enter.select('.plot-area')
-        // console.log(plotArea)
-        // var multi = plotArea.select('.multi')
-        // console.log(multi)
-        // var brush = multi.select('.brush')
-        // console.log(brush)
-        // var handles = brush.selectAll('.handle')
-        // console.log(handles)
-        // handles
-        //   .append('circle')
-        //   .attr('cy', 30)
-        //   .attr('r', 7)
-        //   .attr('class', 'outer-handle');
-      })
+      .decorate(function(selection) {})
       .mapping((data, index, series) => {
         switch (series[index]) {
           case area:
@@ -185,6 +162,8 @@ const Chart = ({ chartData }) => {
             return data.series;
         }
       });
+
+    var mainChart = fc.chartCartesian(xScale, yScale).svgPlotArea(mainMulti);
 
     var navigatorChart = fc
       .chartCartesian(xScale.copy(), yScale.copy())

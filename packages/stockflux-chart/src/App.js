@@ -20,13 +20,6 @@ const App = () => {
     }
   }, [options, setSymbol, setName]);
 
-  if (!symbol) {
-    setSymbol('TSLA');
-  }
-  if (name == null) {
-    setName('Tesla, Inc');
-  }
-
   const getData = useCallback(async () => {
     var date = format(subYears(new Date(), 3), 'YYYY-MM-DD');
     var url = `https://d3capoqa8f983r.cloudfront.net/api/ohlc/${symbol}/${date}`;
