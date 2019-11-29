@@ -32,7 +32,7 @@ const App = () => {
 
   const determineIfWatchlistOpen = useCallback(async () => {
     const watchlistWindow = await OpenfinApiHelpers.windowAlreadyExists(
-      `stockflux-watchlist`
+      'stockflux-watchlist'
     );
     if (watchlistWindow) {
       watchlistWindow.addListener('closed', determineIfWatchlistOpen);

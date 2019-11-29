@@ -121,7 +121,6 @@ const Chart = ({ chartData }) => {
     var navigationMulti = fc
       .seriesSvgMulti()
       .series([area, brush])
-      .decorate(function(selection) {})
       .mapping((data, index, series) => {
         switch (series[index]) {
           case area:
