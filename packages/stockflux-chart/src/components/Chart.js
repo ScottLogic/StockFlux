@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import './chart.css';
 import * as d3 from 'd3';
 import * as fc from 'd3fc';
-import { format, subYears } from 'date-fns';
+import { subYears } from 'date-fns';
 
 const Chart = ({ chartData }) => {
   useEffect(() => {
@@ -15,6 +15,7 @@ const Chart = ({ chartData }) => {
       const generator = fc.randomFinancial().startDate(subYears(new Date(), 3));
       makeChart(generator(1095));
     }
+    // eslint-disable-next-line
   }, [chartData]);
 
   const showcaseContainer = useRef(null);
@@ -190,7 +191,7 @@ const Chart = ({ chartData }) => {
           });
       })
       .svgPlotArea(navigationMulti)
-      .xTicks(d3.timeMonth.every(2))
+      .xTicks(d3.timeMonth.every(3))
       .xTickFormat(d3.timeFormat('%B'));
 
     var scale = d3.scaleTime().domain(xScale.domain());
