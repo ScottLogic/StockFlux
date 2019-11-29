@@ -150,7 +150,7 @@ const WatchlistCard = ({
           <div className="card-details">
             <div className="card-name symbol">{symbol}</div>
             <div className="card-price">
-              <span className="symbol">
+              <span className="symbol price">
                 <span
                   className={`${
                     stockData.percentage < 0
