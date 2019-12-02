@@ -85,13 +85,6 @@ const App = () => {
   });
 
   useEffect(() => {
-    if (options && options.customData.symbol) {
-      addToWatchlist(options.customData.symbol);
-    }
-    // eslint-disable-next-line
-  }, [options]);
-
-  useEffect(() => {
     if (data && data.message.symbol) {
       addToWatchlist(data.message.symbol);
     }
