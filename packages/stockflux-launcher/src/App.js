@@ -6,7 +6,8 @@ import { OpenfinApiHelpers } from 'stockflux-core';
 import './App.css';
 import FreeTextSearch from './free-text-search/FreeTextSearch';
 import getUndockedPosition from './helpers/getUndockedPosition';
-import Watchlist from './app-shortcuts/Watchlist';
+import AppShortcut from './app-shortcuts/AppShortcuts';
+
 import ToolBar from './toolbar/ToolBar';
 import DockSelector from './dock-selector/DockSelector';
 
@@ -83,7 +84,7 @@ export default () => {
           </div>
         )}
         <div className={iconStyle}>
-          <Watchlist symbol="TSLA" name="Tesla" isHorizontal={isHorizontal} />
+          <AppShortcut small={true} />
         </div>
 
         {isHorizontal && <FreeTextSearch dockedTo={edge} />}

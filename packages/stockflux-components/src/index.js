@@ -6,6 +6,7 @@ import Borderless from './components/buttons/borderless-button/BorderlessButton'
 import Chart from './components/buttons/borderless-buttons/app-shortcuts/Chart';
 import News from './components/buttons/borderless-buttons/app-shortcuts/News';
 import Watchlist from './components/buttons/borderless-buttons/app-shortcuts/Watchlist';
+import External from './components/buttons/borderless-buttons/app-shortcuts/External';
 import Close from './components/buttons/borderless-buttons/Close';
 
 import LeftIcon from './components/glyphs/launcher/left.svg';
@@ -50,7 +51,8 @@ export default {
     Chart,
     News,
     Watchlist,
-    Close
+    Close,
+    External
   },
   Icons: {
     Small: {

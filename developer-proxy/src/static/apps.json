@@ -1,0 +1,189 @@
+[
+  {
+    "images": [],
+    "intents": [],
+    "contactEmail": "stockflux@scottlogic.com",
+    "manifest": "https://stockflux.scottlogic.com/api/apps/v1/fdc3/app.json",
+    "manifestType": "openfin",
+    "description": "Bleeding edge Openfin FDC3 Service, hosted by Scott Logic",
+    "title": "FDC3",
+    "icons": [
+      {
+        "icon": "https://stockflux.scottlogic.com/artifacts/fdc3/favicon.ico"
+      }
+    ],
+    "supportEmail": "stockflux@scottlogic.com",
+    "customConfig": {
+      "showInLauncher": false
+    },
+    "appId": "fdc3",
+    "name": "FDC3 Service",
+    "publisher": "Scott Logic Ltd"
+  },
+  {
+    "images": [],
+    "intents": [],
+    "contactEmail": "stockflux@scottlogic.com",
+    "manifest": "https://stockflux.scottlogic.com/api/apps/v1/stockflux-launcher/app.json",
+    "manifestType": "openfin",
+    "description": "Stockflux launcher app",
+    "title": "launcher",
+    "icons": [
+      {
+        "icon": "https://stockflux.scottlogic.com/artifacts/stockflux-launcher/13.0.645/favicon.ico"
+      },
+      {
+        "icon": "https://stockflux.scottlogic.com/artifacts/stockflux-launcher/13.0.645/launcher.png"
+      }
+    ],
+    "supportEmail": "stockflux@scottlogic.com",
+    "customConfig": {
+      "showInLauncher": false
+    },
+    "appId": "stockflux-launcher",
+    "name": "stockflux-launcher",
+    "publisher": "Scott Logic Ltd"
+  },
+  {
+    "images": [],
+    "intents": [
+      {
+        "name": "WatchlistAdd"
+      },
+      {
+        "name": "WatchlistView"
+      }
+    ],
+    "contactEmail": "stockflux@scottlogic.com",
+    "manifest": "https://stockflux.scottlogic.com/api/apps/v1/stockflux-watchlist/app.json",
+    "manifestType": "openfin",
+    "description": "Stockflux Watchlist app",
+    "title": "Watchlist",
+    "icons": [
+      {
+        "icon": "https://stockflux.scottlogic.com/artifacts/stockflux-watchlist/13.0.645/favicon.ico"
+      },
+      {
+        "icon": "https://stockflux.scottlogic.com/artifacts/stockflux-watchlist/13.0.645/launcher.png"
+      }
+    ],
+    "supportEmail": "stockflux@scottlogic.com",
+    "customConfig": {
+      "showInLauncher": true,
+      "launcherIntent": "viewWatchlist"
+    },
+    "appId": "stockflux-watchlist",
+    "name": "stockflux-watchlist",
+    "publisher": "Scott Logic Ltd"
+  },
+  {
+    "images": [],
+    "intents": [],
+    "contactEmail": "stockflux@scottlogic.com",
+    "manifest": "https://stockflux.scottlogic.com/api/apps/v1/stockflux-news/app.json",
+    "manifestType": "openfin",
+    "description": "Stockflux News app",
+    "title": "News",
+    "icons": [
+      {
+        "icon": "https://stockflux.scottlogic.com/artifacts/stockflux-news/13.0.645/favicon.ico"
+      },
+      {
+        "icon": "https://stockflux.scottlogic.com/artifacts/stockflux-news/13.0.645/launcher.png"
+      }
+    ],
+    "supportEmail": "stockflux@scottlogic.com",
+    "customConfig": {
+      "showInLauncher": false,
+      "launcherIntent": "viewNews"
+    },
+    "appId": "stockflux-news",
+    "name": "stockflux-news",
+    "publisher": "Scott Logic Ltd"
+  },
+  {
+    "images": [],
+    "intents": [],
+    "contactEmail": "stockflux@scottlogic.com",
+    "manifest": "https://stockflux.scottlogic.com/api/apps/v1/stockflux-chart/app.json",
+    "manifestType": "openfin",
+    "description": "Stockflux Chart app",
+    "title": "Chart",
+    "icons": [
+      {
+        "icon": "https://stockflux.scottlogic.com/artifacts/stockflux-chart/13.0.645/favicon.ico"
+      },
+      {
+        "icon": "https://stockflux.scottlogic.com/artifacts/stockflux-chart/13.0.645/launcher.png"
+      }
+    ],
+    "supportEmail": "stockflux@scottlogic.com",
+    "customConfig": {
+      "showInLauncher": false,
+      "launcherIntent": "viewChart"
+    },
+    "appId": "stockflux-chart",
+    "name": "stockflux-chart",
+    "publisher": "Scott Logic Ltd"
+  },
+  {
+    "images": [],
+    "intents": [
+      {
+        "name": "WatchlistAdd"
+      },
+      {
+        "name": "WatchlistView"
+      }
+    ],
+    "contactEmail": "contact@giantmachines.com",
+    "manifest": "https://stockflux.scottlogic.com/api/apps/v1/giantmachines-watchlist/app.json",
+    "manifestType": "openfin",
+    "description": "Giant Machines Watchlist",
+    "title": "Watchlist",
+    "icons": [
+      {
+        "icon": "https://stockflux.scottlogic.com/artifacts/giantmachines-watchlist/favicon.ico"
+      },
+      {
+        "icon": "https://stockflux.scottlogic.com/artifacts/giantmachines-watchlist/launcher.png"
+      }
+    ],
+    "supportEmail": "contact@giantmachines.com",
+    "customConfig": {
+      "showInLauncher": true,
+      "launcherIntent": "viewWatchlist"
+    },
+    "appId": "giantmachines-watchlist",
+    "name": "giantmachines-watchlist",
+    "publisher": "Giant Machines"
+  },
+  {
+    "images": [],
+    "intents": [
+      {
+        "name": "ViewChart"
+      },
+      {
+        "name": "ViewNews"
+      }
+    ],
+    "contactEmail": "stockflux@scottlogic.com",
+    "manifest": "https://stockflux.scottlogic.com/api/apps/v1/stockflux-container/app.json",
+    "manifestType": "openfin",
+    "description": "Stockflux Container app",
+    "title": "Stockflux",
+    "icons": [
+      {
+        "icon": "https://stockflux.scottlogic.com/artifacts/stockflux-container/13.0.645/favicon.ico"
+      }
+    ],
+    "supportEmail": "stockflux@scottlogic.com",
+    "customConfig": {
+      "showInLauncher": false
+    },
+    "appId": "stockflux-container",
+    "name": "stockflux-container",
+    "publisher": "Scott Logic Ltd"
+  }
+]

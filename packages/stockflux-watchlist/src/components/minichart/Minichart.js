@@ -50,7 +50,7 @@ const Minichart = props => {
   ) : (
     <div className="minichart minichart-error">
       {props.fetchError ||
-        (props.chartData.length === 0 && 'No Results Returned') || (
+        (props.chartData.length === 0 && 'No Data Available') || (
           <Components.Spinner />
         )}
     </div>
