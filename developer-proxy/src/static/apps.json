@@ -151,7 +151,7 @@
     ],
     "supportEmail": "contact@giantmachines.com",
     "customConfig": {
-      "showInLauncher": true,
+      "showInLauncher": false,
       "launcherIntent": "viewWatchlist"
     },
     "appId": "giantmachines-watchlist",

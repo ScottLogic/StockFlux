@@ -16,6 +16,7 @@ export default ({ tools, style }) => {
             className={cx({ [tool.className]: tool.className })}
           >
             {tool.label}
+            {tool.description}
           </Components.Buttons.Round>
         ))}
     </div>

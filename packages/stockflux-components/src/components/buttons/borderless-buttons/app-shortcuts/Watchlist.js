@@ -4,7 +4,7 @@ import WatchlistIconSmall from '../../../glyphs/small/watchlist.svg';
 import WatchlistIcon from '../../../glyphs/launcher/watchlist.svg';
 import RoundButton from '../../round-button/RoundButton';
 
-export default ({ symbol, name, small, disabled, intentsEnabled }) => {
+export default ({ symbol, name, small, disabled, intentsEnabled, title }) => {
   if (small) {
     return (
       <RoundButton
@@ -25,6 +25,7 @@ export default ({ symbol, name, small, disabled, intentsEnabled }) => {
         small={small}
       >
         <WatchlistIcon />
+        {title}
       </RoundButton>
     );
 };

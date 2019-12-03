@@ -20,16 +20,15 @@
   border-radius: 4px;
   font-size: 18px;
   height: var(--search-input-height);
-  width: var(--search-input-width);
-  /* min-width: var(--search-input-min-width); */
-  /* padding: var(--padding-medium); */
+  width: var(--search-input-width);  
   margin: 0 12px;
   outline: none;
 }
 
 .search-undocked {
-  /* padding-right: 18px; */
   width: 350px;
+  min-width: 0px;
+  flex-grow: 1;
 }
 
 .left .free-text-search,

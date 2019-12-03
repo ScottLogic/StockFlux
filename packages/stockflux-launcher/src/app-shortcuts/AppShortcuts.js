@@ -3,7 +3,7 @@ import { OpenfinApiHelpers } from 'stockflux-core';
 import Components from 'stockflux-components';
 import './AppShortcuts.css';
 
-export default () => {
+export default ({ showTitle }) => {
   const [apps, setApps] = useState([]);
 
   useEffect(() => {
@@ -35,6 +35,7 @@ export default () => {
               symbol="TSLA"
               name="Tesla"
               small={false}
+              title={showTitle && app.title}
             />
           );
         })}
