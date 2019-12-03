@@ -31,6 +31,6 @@ export default (name, bounds, dockedTo, dockSelectorButton) => {
     cornerRounding: {
       width: 3,
       height: 3
-  }
+    }
   };
 };

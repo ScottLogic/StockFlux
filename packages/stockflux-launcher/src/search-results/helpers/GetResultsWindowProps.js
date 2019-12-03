@@ -34,6 +34,7 @@ export default (
     alwaysOnTop: false,
     maxWidth: 710,
     minWidth: 710,
-    minHeight: 350
+    minHeight: 350,
+    resizable: false
   };
 };
