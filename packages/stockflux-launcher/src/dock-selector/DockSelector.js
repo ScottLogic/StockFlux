@@ -23,6 +23,11 @@ const DockSelector = ({ dockedTo, tools, iconStyle }) => {
 
   const { windowRef, launch, populate, close } = childWindow;
 
+  const { defaultHeight, defaultWidth } =
+    dockedTo === 'right' || dockedTo === 'left'
+      ? { defaultHeight: 50, defaultWidth: 278 }
+      : { defaultHeight: 150, defaultWidth: 96 };
+
   const launchChildWindow = useCallback(
     () =>
       launch(
@@ -30,18 +35,16 @@ const DockSelector = ({ dockedTo, tools, iconStyle }) => {
           DOCK_SELECTOR_WINDOW_NAME,
           bounds,
           dockedTo,
-          dockSelectorButton
+          dockSelectorButton,
+          { defaultHeight, defaultWidth }
         )
       ),
-    [launch, bounds, dockedTo]
+    [launch, bounds, dockedTo, defaultHeight, defaultWidth]
   );
-
-  const populateChildOptions = () => {};
 
   useEffect(() => {
     if (showSelector) {
       launchChildWindow();
-      populateChildOptions();
     } else {
       close();
     }
@@ -68,6 +71,38 @@ const DockSelector = ({ dockedTo, tools, iconStyle }) => {
       populate(childWindowJsx);
     }
   }, [windowRef, tools, populate, dockedTo]);
+
+  useEffect(() => {
+    if (windowRef) {
+      const transitions =
+        dockedTo !== 'right'
+          ? {
+              size: {
+                height: defaultHeight,
+                width: defaultWidth,
+                duration: 100
+              }
+            }
+          : {
+              size: {
+                height: defaultHeight,
+                width: defaultWidth,
+                duration: 100
+              },
+              position: {
+                left: -defaultWidth,
+                duration: 100,
+                relative: true
+              }
+            };
+      const options = {
+        interrupt: false,
+        tween: 'ease-in'
+      };
+      windowRef.animate(transitions, options);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [populate]);
 
   const activeTool = tools
     .filter(tool => tool.visible && tool.disabled)

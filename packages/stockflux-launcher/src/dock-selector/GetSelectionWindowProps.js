@@ -1,10 +1,10 @@
 import getPosition from './Positioner';
 
-export default (name, bounds, dockedTo, dockSelectorButton) => {
+export default (name, bounds, dockedTo, dockSelectorButton, size) => {
   const { defaultHeight, defaultWidth } =
     dockedTo === 'right' || dockedTo === 'left'
-      ? { defaultHeight: 50, defaultWidth: 278 }
-      : { defaultHeight: 150, defaultWidth: 96 };
+      ? { defaultHeight: size.defaultHeight, defaultWidth: 0 }
+      : { defaultHeight: 0, defaultWidth: size.defaultWidth };
   const { defaultTop, defaultLeft } = getPosition(
     dockSelectorButton,
     dockedTo,
