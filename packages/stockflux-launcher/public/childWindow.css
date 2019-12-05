@@ -63,4 +63,16 @@ div#actions {
   font-weight: var(--font-weight-bold);
   color: var(--text-color);  
   text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.info {
+  flex-shrink: 1;
+  flex-grow: 1;
+  overflow-x: hidden;
+}
+
+.actions {
+  flex-shrink: 0;
+  flex-grow: 0;
 }
