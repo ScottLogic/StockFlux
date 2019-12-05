@@ -84,6 +84,7 @@ div#root > .cards.padding-top {
   height: 40px;
   padding-left: 15px;
   padding-right: 15px;
+  border: 1.5px transparent;
 }
 
 .actions-button:hover {
