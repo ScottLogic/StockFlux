@@ -18,7 +18,7 @@
   color: var(--text-color);
   border: none;
   border-radius: 4px;
-  font-size: 18px;
+  font-size: 16px;
   height: var(--search-input-height);
   width: var(--search-input-width);  
   margin: 0 12px;
@@ -47,7 +47,6 @@
 
 .searchSVG {
   color: var(--icon-inactive);
-  margin-top: var(--margin-large) !important;
   width: 40px;
 }
 

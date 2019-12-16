@@ -7,7 +7,7 @@ export default (searchButtonRef, dockedTo, windowBounds, height, width) => {
   switch (dockedTo) {
     case ScreenEdge.TOP:
       return {
-        defaultTop: parseInt(searchButtonRect.bottom),
+        defaultTop: parseInt(windowBounds.bottom),
         defaultLeft: windowBounds.left + parseInt(searchButtonRect.left)
       };
     case ScreenEdge.LEFT:
