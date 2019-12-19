@@ -85,13 +85,6 @@ To use the local developer proxy you will also need to build the proxy component
 npm run proxy:build
 ```
 
-In isolation each app can be ran individually with the following commands:
-
-```bash
-npm run start
-npm run launch
-```
-
 For local development and to run the suite of apps from what is on the local machine a proxy override is needed. This is available on the following command:
 
 ```bash
@@ -103,6 +96,13 @@ To run as a suite of apps run the following commands:
 ```bash
 npm run all:start
 npm run launcher:launch
+```
+
+In isolation each app can be ran individually within its own directory using the following commands:
+
+```bash
+npm run start
+npm run launch
 ```
 
 The applications run on the following ports:
