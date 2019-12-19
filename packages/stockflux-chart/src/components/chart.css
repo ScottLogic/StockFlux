@@ -1,109 +1,92 @@
-html, body{
+html,
+body {
   overflow-x: hidden;
   overflow-y: hidden;
   background: var(--primary-dark-blue);
-
+  color: var(--text-color);
 }
-.gridline-y{
-  stroke: #55555B;
-  stroke-width: .5px;
-  stroke-opacity: .75;
-}
-
-.gridline-x{
-  stroke: #55555B;
-  stroke-width: .5px;
-  stroke-opacity: .75;
+.gridline-y {
+  stroke: var(--chart-gridline);
+  stroke-width: 0.5px;
+  stroke-opacity: 0.75;
 }
 
-.candlestick.down{
-  fill:#FF7171 ;
-  stroke: #FF7171 ;
-  width: 10%;
-  height: 10%
-}
-.candlestick.up{
-  fill:#78FF79  ;
-  stroke: #78FF79  ;
-  width: 10%;
-  height: 10%;
+.gridline-x {
+  stroke: var(--chart-gridline);
+  stroke-width: 0.5px;
+  stroke-opacity: 0.75;
 }
 
-.chart-content{
-  height: calc(100vh - 65px) ;
+.candlestick.down {
+  fill: var(--chart-candlestick-down);
+  stroke: var(--chart-candlestick-down);
+}
+.candlestick.up {
+  fill: var(--chart-candlestick-up);
+  stroke: var(--chart-candlestick-up);
+}
+
+.chart-content {
+  height: calc(100vh - 65px);
   width: 100%;
 }
 
-.handle.handle--w{
-  width: .3%;
-  height: 100%;
-  fill: white;
-  visibility: visible !important;
-
+.handle.handle--w {
+  width: 0.3%;
+  fill: var(--chart-handle);
+  transform: translateX(3px);
 }
 
-.handle.handle--e{
-  width: .3%;
-  height: 100%;
-  fill: white;
+.handle.handle--e {
+  width: 0.3%;
+  fill: var(--chart-handle);
 }
 
 .selection {
-stroke: none;
-fill: #29E9E3;
-fill-opacity: 0.2
+  stroke: none;
+  fill: var(--chart-brush-selection);
+  fill-opacity: 0.2;
 }
 
 .domain {
-  stroke: #9E9E9E ;
-  stroke-width: .5
+  stroke: var(--chart-domain);
+  stroke-width: 0.5;
 }
 
-.tick text{
-  fill: #9E9E9E ;
-  /* overflow: visible */
+.tick text {
+  fill: var(--chart-domain);
 }
 
-.tick path{
-  stroke: #FFFFFF;
-  stroke-width: .5;
+.tick path {
+  stroke: var(--chart-tick-path);
+  stroke-width: 0.5;
 }
 
-/* path{
-  stroke: var(--chart-teal)
-} */
+.secondary-x-axis .tick line {
+  stroke-width: 1;
+  stroke: var(--chart-domain);
+}
+
+.secondary-x-axis .domain {
+  stroke-width: 0;
+}
 
 #legend-container {
   position: absolute;
   top: 35vh;
-  left: -20px;
+  left: -25px;
 }
 
-#legend-container text{
-  color: white;
+#legend-container text {
+  color: var(--text-color);
 }
 
-.legend-label{
-  fill:white;
+.legend-label {
+  fill: var(--text-color);
   font-weight: var(--font-weight-bold);
-
 }
 
-.legend-value{
-  fill:white;
+.legend-value {
+  fill: var(--text-color);
   font-weight: var(--font-weight-bold);
-
 }
-
-.annotation-line{
-  stroke:red;
-}
-
-.line{
-  stroke: #21B1CA;
-  stroke-width: 1
-}
-  
-.cartesian-chart >.plot-area {
-  /* overflow: visible  !important; */
-} 

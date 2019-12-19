@@ -1,113 +1,168 @@
 body {
-    -webkit-user-select: none;
+  -webkit-user-select: none;
 }
 
-.titlebar-container {
-    background-color: #010F1B;
-  }
-  
-#app, .main, body, html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+#app,
+.main,
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .main {
-    background-color: #071521;
-    padding: 0;
-    height: 100vh
+  background-color: var(--window-background-color-dark);
+  padding: 0;
+  height: 100vh;
 }
 
 .chart-info {
-    position: absolute; 
-    right: 0px;
-    margin-right: 24px;
-    height: 28px;
-    width: 100px;
-    display: flex;
-    align-items: center;
+  position: absolute;
+  right: 0px;
+  margin-right: 10px;
+  margin-top: 10px;
+  height: 28px;
+  width: 100px;
+  display: flex;
+  align-items: center;
 }
 
-.symbol-info{
-    position: absolute;
-    top: 12vh;
-    left: 2vw;
-    width: 10vw;
+.symbol-info {
+  position: absolute;
+  top: 12vh;
+  left: 1vw;
+  width: 10vw;
 }
 
 .d3fc-button {
-    position: absolute;
-    right: 0px;
-    fill:#9E9E9E;
-    cursor: pointer;
+  position: absolute;
+  z-index: 10;
+  right: 0px;
+  fill: var(--chart-domain);
+  cursor: pointer;
 }
 
-.d3fc-button:hover{
-    fill: white;
+.d3fc-button:hover {
+  fill: white;
 }
 
-.chart-tool{
-    color: #9E9E9E
+.chart-tool {
+  color: var(--chart-domain);
+  font-size: 12px;
 }
 
 #showcase-container {
-    margin: 0px 0px 0px 10vw;
-    height: 80%;
-    width: 90%
+  margin: 0px 0px 0px 11vw;
+  padding: 5vh 0px 0px 0px;
+  height: 75%;
+  width: 90%;
 }
 
 #navigation-container {
-    background: #010F1B;
-    height: 20%;
-    padding: 0px 0px 0px 0px
-}
-/* #navigation-container >.cartesian-chart {
-    margin: 0px 20px 0px 20px;
-} */
-#navigation-container >.cartesian-chart >.plot-area{
-    stroke: #21B1CA;
-    stroke-width: 1px;
-    /* overflow: visible !important; */
+  border-top: 4px solid var(--window-divider);
+  border-bottom: 4px solid var(--window-divider);
+  height: 23%;
+  position: relative;
+  bottom: 2vh;
+  padding: 0px 0px 0px 0px;
 }
 
-#navigation-container .brush{
-
+#navigation-container > .cartesian-chart > .plot-area {
+  stroke: var(--chart-line);
+  stroke-width: 1px;
 }
 
 .area {
-    fill: rgba(33,177,202,0.2);
+  fill: var(--chart-area);
 }
 
 #navigation-container .y-axis {
-    visibility: hidden;
-    width: 0;
+  visibility: hidden;
+  width: 0;
 }
 
-#navigation-container .x-axis .domain{
-    visibility: hidden;
+#navigation-container .x-axis .domain {
+  visibility: hidden;
 }
-
 
 #showcase-title {
-    color: white;
-    display: flex;
-    align-items: center;
-    height: 55px;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  height: 55px;
 }
 
-.code{
-    color:white;
-    position: relative;
-    top: 0px;
-    font-size: 18px;
-    font-weight: var(--font-weight-bold);
-
+.code {
+  color: var(--text-color);
+  position: relative;
+  top: 0px;
+  font-size: 18px;
+  font-weight: var(--font-weight-bold);
 }
 
 .name {
-    margin-top: 4px;
-    color: white;
-    font: 18px var(--font-weight-normal);
-    font-weight: var(--font-weight-bold);
+  margin-top: 4px;
+  color: var(--text-color);
+  font: 18px var(--font-weight-normal);
+  font-weight: var(--font-weight-bold);
+}
 
+.card-menu {
+  position: absolute;
+  right: 5px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.card-menu > span {
+  display: flex;
+}
+
+.card-menu button {
+  height: 22px;
+  border: transparent 1px solid;
+  background-color: #1b3b56;
+  border-radius: 3px;
+  margin-left: 5px;
+  padding: 0px 0px 0px 0px;
+}
+
+.card-menu button > span {
+  display: flex;
+  align-items: center;
+  font-size: 10px;
+  height: 100%;
+}
+
+.card-menu-remove span,
+.card-menu-news span,
+.card-menu-watchlist span {
+  padding-right: 8px;
+  color: var(--text-color);
+}
+
+.button-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.card-menu .open {
+  border: solid 1px white;
+  background-color: var(--color-secondary);
+}
+
+.card-menu button:hover {
+  background-color: var(--color-secondary);
+}
+
+.card-menu button:active {
+  border: solid 1px white;
+}
+
+.card-menu {
+  transition: 2.6s all;
 }
