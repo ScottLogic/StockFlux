@@ -200,7 +200,8 @@ const FreeTextSearch = ({ dockedTo, showTextInput }) => {
   return (
     <div
       className={cx('free-text-search', {
-        'search-undocked': !isDocked
+        'search-undocked': !isDocked,
+        'side-docked': isDockedToSide
       })}
     >
       <SearchButton

@@ -54,10 +54,6 @@ A collection of common services and util methods that are shared across the suit
 
 A collection of common components shared across the core applications.
 
-#### StockFlux Bitflux
-
-Bitflux is our charting library, this is what powers the Chart application.
-
 ### Key Tech used
 
 - [React](https://reactjs.org/)
@@ -84,11 +80,15 @@ npm run bootstrap
 npm run build
 ```
 
-In isolation each app can be ran individually with the following commands:
+To use the local developer proxy you will also need to build the proxy component using :
+```bash
+npm run proxy:build
+```
+
+For local development and to run the suite of apps from what is on the local machine a proxy override is needed. This is available on the following command:
 
 ```bash
-npm run start
-npm run launch
+npm run proxy:start
 ```
 
 To run as a suite of apps run the following commands:
@@ -98,10 +98,11 @@ npm run all:start
 npm run launcher:launch
 ```
 
-For local development and to run the suite of apps from what is on the local machine a proxy override is needed. To run this change into the developer-proxy directory and run:
+In isolation each app can be ran individually within its own directory using the following commands:
 
 ```bash
-npm run proxy
+npm run start
+npm run launch
 ```
 
 The applications run on the following ports:
@@ -113,6 +114,7 @@ The applications run on the following ports:
 | Launcher    | 8053 |
 | Container   | 8055 |
 | News        | 8056 |
+| Proxy       | 3000 |
 
 If these port selections conflict with another service you may be running they can be changed in the `package.json` file of each application.
 

@@ -21,6 +21,9 @@ import MinimizeIcon from './components/icons/minimize.svg';
 import NewsIcon from './components/glyphs/small/news.svg';
 import WatchListIcon from './components/glyphs/small/watchlist.svg';
 
+import ChartIconNormal from './components/glyphs/normal/chart.svg';
+import NewsIconNormal from './components/glyphs/normal/news.svg';
+import WatchListNormal from './components/glyphs/normal/watchlist.svg';
 import RemoveIcon from './components/glyphs/small/remove.svg';
 import ShowMenu from './components/glyphs/small/reveal.svg';
 import HideMenu from './components/glyphs/small/hide.svg';
@@ -59,6 +62,11 @@ export default {
       RemoveIcon,
       ShowMenu,
       HideMenu
+    },
+    Normal: {
+      Chart: ChartIconNormal,
+      News: NewsIconNormal,
+      Watchlist: WatchListNormal
     },
     Arrows: { PriceUp, PriceDown },
     Launcher: { LeftIcon, RightIcon, TopIcon, SearchIcon, WatchlistIcon },

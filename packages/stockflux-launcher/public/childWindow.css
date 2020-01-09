@@ -1,6 +1,7 @@
 body {
   overflow-x: hidden;
   height: inherit;
+  background-color: #071521;
 }
 
 div#root {
@@ -24,7 +25,10 @@ div.scrollWrapperY > p {
 }
 
 .card {
-  padding: var(--padding-medium);
+  padding: 1px;
+  padding-left:18px;
+  background-color: #0D2437;
+  height:40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -39,21 +43,36 @@ div.scrollWrapperY > p {
 div#actions {
   float: right;
   margin: 0 var(--margin-small);
-  display: inherit;
+  display: none;
+  /*min-width:422px;*/
+  flex-shrink: 0;
 }
 
 .card:hover {
-  background-color: var(--dark-background);
+  background-color: #1B3B56;
+}
+
+.card:hover > .actions {
+  display:flex !important;
 }
 
 .name {
   letter-spacing: 0.5px;
+  line-height: 16px;
+  font-size: 14px;
   font-weight: var(--font-weight-bold);
-  color: var(--text-teal-light);
+  color: var(--text-color);  
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.symbol {
-  letter-spacing: 1px;
-  font-size: var(--font-xlarge);
-  font-weight: var(--font-weight-bolder);
-  color: var(--text-grey-lighter);
+
+.info {
+  flex-shrink: 1;
+  flex-grow: 1;
+  overflow-x: hidden;
+}
+
+.actions {
+  flex-shrink: 0;
+  flex-grow: 0;
 }
