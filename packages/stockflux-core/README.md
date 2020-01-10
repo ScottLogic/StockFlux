@@ -6,15 +6,20 @@ StockFlux-Core is a part of the StockFlux application suite. It is a library of 
 
 Currently the library is used locally across the other Stockflux applications.
 
-Before you run an application that has the components library as a dependency you must build the components.
-Run the following commands in the root package to make lerna do the heavy lifting for you:
+Before you run an application that has the components library as a dependency you must build the components. To do so run the following command in the Stockflux-core directory:
 
 ```bash
 npm install
-npm run bootstrap
 npm run build
 ```
 
+It is added as a dependency in the target applications `package.json` like so:
+
+```json
+"dependencies": {
+    "stockflux-core": "file:../stockflux-core",
+}
+```
 
 ### Usage
 
@@ -90,7 +95,7 @@ The context a listener will recieve will be in the following format:
 To view news for a symbol with the intent `ViewNews`:
 
 ```javascript
-Intents.viewNews(symbol, name);
+Intents.viewNews(symbol);
 ```
 
 The context a listener will recieve will be in the following format:
