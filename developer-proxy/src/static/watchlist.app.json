@@ -29,8 +29,8 @@
       "config": {
         "features": {
           "tab": false,
-          "dock": true,
-          "snap": true
+          "dock": false,
+          "snap": false
         }
       }
     }

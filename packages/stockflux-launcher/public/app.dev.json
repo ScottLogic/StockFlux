@@ -97,8 +97,8 @@
                         },
                         "config": {
                             "features": {
-                                "dock": true,
-                                "snap": true,
+                                "dock": false,
+                                "snap": false,
                                 "tab": false
                             }
                         }
