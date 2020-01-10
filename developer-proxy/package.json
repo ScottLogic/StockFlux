@@ -1,0 +1,16 @@
+{
+  "name": "developer-proxy",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "proxy": "nodemon ./src/index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "deepmerge": "^4.2.2",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
+    "nodemon": "^2.0.0"
+  }
+}

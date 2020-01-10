@@ -3,6 +3,6 @@
   position: relative;  
   overflow-x: hidden;
   height: inherit;  
-  overflow-y: scroll !important;
+  overflow-y: overlay !important;
   margin-right: 0 !important;
 }

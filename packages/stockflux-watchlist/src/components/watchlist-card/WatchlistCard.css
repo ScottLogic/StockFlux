@@ -1,10 +1,5 @@
 .card {
-  cursor: pointer;
-  height: var(--card-height);
-}
-
-.card:hover {
-  background-color: var(--color-hover);
+  box-shadow: 1px 4px 1px rgba(0,0,0,0.5);
 }
 
 .drop-target {
@@ -13,40 +8,6 @@
 
 .card-wrapper:hover .darkens {
   background-color: var(--dark-background);
-}
-
-.darkens:hover {
-  background-color: var(--dark-background);
-}
-
-.card-top {
-  padding-top: 8px;
-  padding-left: var(--padding-medium);
-  padding-right: 3px;
-  padding-bottom: 3px;
-  height: 48px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.card-top .name {
-  font-size: var(--font-normal);
-  font-weight: var(--font-weight-normal);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.card-top .symbol {
-  padding-top: 1px;
-  font-size: var(--font-xxxlarge);
-  font-weight: var(--font-weight-bolder);
-}
-
-.card-bottom {
-  height: 60px;
-  margin-right: 3px;
 }
 
 .details {
@@ -58,19 +19,13 @@
   margin-bottom: 9px;
 }
 
+.symbol,
 .delta,
 .percentage,
 .price {
   padding-right: 1px;
   font-weight: var(--font-weight-bold);
   line-height: 1.1;
-}
-
-.price {
-  font-size: var(--font-xxlarge);
-}
-.percentage,
-.delta {
   font-size: var(--font-large);
 }
 
@@ -81,10 +36,12 @@
 
 .price_positive,
 .price_positive * {
+  fill:var(--text-increase);
   color: var(--text-increase);
 }
 .price_negative,
 .price_negative * {
+  fill:var(--text-decrease);
   color: var(--text-decrease);
 }
 
@@ -92,37 +49,102 @@
   flex: 1;
 }
 
-.default-background {
-  background: var(--window-background-color);
+.card-details {
+  padding-left: 6px;
+  padding-top: 9px;
+  padding-bottom: 10px;
+  padding-right:10px;
+  height:35px;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.icons {
-  display: flex;
+.card-name {
+  width:70px; 
+  flex-grow: 0; 
+}
+
+.card-price {
+  flex-grow: 1;
+  display:flex;
+  justify-content: space-between; 
+  flex-direction: row;
+}
+
+.symbol svg {
   margin-right: 3px;
-  width: 38%;
+  height: 9px;
 }
 
-.icon {
-  align-self: baseline;
+.price {
+  width:75px;
+  text-align: right;
 }
 
-.icon > button {
-  height: 23px;
+.card-chart {
+  padding-left:0px;
+  height:24px;
+  width: 100%;
 }
 
-.icon:hover {
-  color: var(--text-color);
-  background-color: var(--icon-hover-light);
+.card-chart svg{
+  background: linear-gradient(90deg, #071521 0%, rgba(7,21,33,0) 100%) top left no-repeat;
+  background-size: 48px;
+  background-blend-mode: overlay !important;  
 }
 
-.icon:active svg {
-  color: var(--icon-active);
+.card-menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-.details-container {
-  width: 61%;
+.card-menu > span {  
+  display: flex;
 }
 
-.open path {
-  color: var(--icon-active);
+.card-menu  button {
+  height:22px;  
+  border:transparent 1px solid;  
+  background-color: #1B3B56;
+  border-radius: 3px;
+  margin-left: 5px;
+  padding: 0px 0px 0px 0px;
+}
+
+.card-menu  button > span{
+  display: flex;
+  align-items: center;
+  font-size:10px;  
+  height: 100%;    
+}
+
+.card-menu-remove span,
+.card-menu-news span,
+.card-menu-chart span {
+  padding-right:8px;
+}
+
+.button-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.card-menu .open {
+  border:solid 1px white;
+  background-color: #091A29;
+}
+
+.card-menu button:hover {
+  background-color: #091A29;
+}
+
+.card-menu button:active {
+  border:solid 1px white;
+}
+
+.card-menu {  
+  transition: 2.6s all;  
 }

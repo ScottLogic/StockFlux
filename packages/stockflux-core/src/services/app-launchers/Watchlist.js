@@ -17,10 +17,11 @@ const launchAsChildWindow = async (symbol, name) => {
     await getStockFluxApp(APP_NAME),
     options => {
       options.name = APP_NAME;
+      options.customData.symbol = symbol;
+      options.customData.name = name;
       return options;
     }
   );
-
   try {
     const options = await getCurrentWindowOptions();
     await sendInterApplicationMessage(options ? options.uuid : '*', APP_NAME, {

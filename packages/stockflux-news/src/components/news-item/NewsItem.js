@@ -1,35 +1,18 @@
 import React from 'react';
 import { format, isToday } from 'date-fns';
 import * as PropTypes from 'prop-types';
-import { OpenfinApiHelpers } from 'stockflux-core';
 
 import './NewsItem.css';
 
 const handleNewsItemClick = link => {
-  const winOption = {
-    name: link,
-    url: link,
-    autoShow: true,
-    defaultWidth: 800,
-    defaultHeight: 800,
-    minWidth: 850,
-    minHeight: 500,
-    defaultTop: 80,
-    saveWindowState: false,
-    frame: true,
-    contextMenu: true,
-    api: {
-      iframe: {
-        sameOriginInjection: false
-      }
-    }
-  };
-  OpenfinApiHelpers.createWindow(winOption);
+  window.fin.System.openUrlWithBrowser(link);
 };
 
 const articleDate = unformattedDate => {
   const date = new Date(unformattedDate);
-  return !isToday(date) ? format(date, 'DD MMM') : format(date, 'h:mm A');
+  return !isToday(date)
+    ? format(date, 'DD MMM')
+    : format(date, 'DD MMM h:mm A');
 };
 
 const NewsItem = ({ headline, source, copy, link, time }) => (

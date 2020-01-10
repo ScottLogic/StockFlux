@@ -1,7 +1,7 @@
 import { ScreenEdge } from 'openfin-react-hooks';
 
-const DEFAULT_LAUNCHER_SIZE = 88;
-const DEFAULT_SEARCH_RESULTS_SIZE = 400;
+const DEFAULT_LAUNCHER_SIZE = 75;
+const DEFAULT_SEARCH_RESULTS_SIZE = 350;
 
 export default (searchButtonRef, inputRef, dockedTo, windowBounds) => {
   const searchButtonRect = searchButtonRef.current.getBoundingClientRect();
@@ -10,7 +10,7 @@ export default (searchButtonRef, inputRef, dockedTo, windowBounds) => {
       const searchInputRect = inputRef.current.getBoundingClientRect();
       return {
         defaultTop: parseInt(windowBounds.top) + DEFAULT_LAUNCHER_SIZE,
-        defaultLeft: windowBounds.left + parseInt(searchInputRect.left),
+        defaultLeft: windowBounds.left + parseInt(searchButtonRect.left),
         defaultWidth: parseInt(searchInputRect.width),
         defaultHeight: DEFAULT_SEARCH_RESULTS_SIZE
       };
@@ -24,7 +24,7 @@ export default (searchButtonRef, inputRef, dockedTo, windowBounds) => {
     case ScreenEdge.RIGHT:
       return {
         defaultTop: parseInt(searchButtonRect.top),
-        defaultLeft: windowBounds.left - DEFAULT_SEARCH_RESULTS_SIZE,
+        defaultLeft: windowBounds.left - 710,
         defaultWidth: DEFAULT_SEARCH_RESULTS_SIZE,
         defaultHeight: DEFAULT_SEARCH_RESULTS_SIZE
       };
@@ -33,7 +33,7 @@ export default (searchButtonRef, inputRef, dockedTo, windowBounds) => {
       if (searchInputBox.x !== 0) {
         return {
           defaultTop: parseInt(windowBounds.top) + DEFAULT_LAUNCHER_SIZE,
-          defaultLeft: windowBounds.left + parseInt(searchInputBox.left),
+          defaultLeft: windowBounds.left + parseInt(searchButtonRect.left),
           defaultWidth: DEFAULT_SEARCH_RESULTS_SIZE,
           defaultHeight: DEFAULT_SEARCH_RESULTS_SIZE
         };
