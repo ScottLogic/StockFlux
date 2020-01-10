@@ -6,6 +6,7 @@ import Borderless from './components/buttons/borderless-button/BorderlessButton'
 import Chart from './components/buttons/borderless-buttons/app-shortcuts/Chart';
 import News from './components/buttons/borderless-buttons/app-shortcuts/News';
 import Watchlist from './components/buttons/borderless-buttons/app-shortcuts/Watchlist';
+import External from './components/buttons/borderless-buttons/app-shortcuts/External';
 import Close from './components/buttons/borderless-buttons/Close';
 
 import LeftIcon from './components/glyphs/launcher/left.svg';
@@ -19,6 +20,13 @@ import CloseIcon from './components/icons/close.svg';
 import MinimizeIcon from './components/icons/minimize.svg';
 import NewsIcon from './components/glyphs/small/news.svg';
 import WatchListIcon from './components/glyphs/small/watchlist.svg';
+
+import ChartIconNormal from './components/glyphs/normal/chart.svg';
+import NewsIconNormal from './components/glyphs/normal/news.svg';
+import WatchListNormal from './components/glyphs/normal/watchlist.svg';
+import RemoveIcon from './components/glyphs/small/remove.svg';
+import ShowMenu from './components/glyphs/small/reveal.svg';
+import HideMenu from './components/glyphs/small/hide.svg';
 
 import PriceUp from './components/glyphs/arrows/priceArrowUp.svg';
 import PriceDown from './components/glyphs/arrows/priceArrowDown.svg';
@@ -43,10 +51,23 @@ export default {
     Chart,
     News,
     Watchlist,
-    Close
+    Close,
+    External
   },
   Icons: {
-    Small: { Chart: ChartIcon, News: NewsIcon, Watchlist: WatchListIcon },
+    Small: {
+      Chart: ChartIcon,
+      News: NewsIcon,
+      Watchlist: WatchListIcon,
+      RemoveIcon,
+      ShowMenu,
+      HideMenu
+    },
+    Normal: {
+      Chart: ChartIconNormal,
+      News: NewsIconNormal,
+      Watchlist: WatchListNormal
+    },
     Arrows: { PriceUp, PriceDown },
     Launcher: { LeftIcon, RightIcon, TopIcon, SearchIcon, WatchlistIcon },
     Toolbar: { MinimizeIcon, CloseIcon }

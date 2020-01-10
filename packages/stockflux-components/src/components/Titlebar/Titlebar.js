@@ -50,16 +50,14 @@ export default ({ title, confirmClose }) => {
           </div>
         )}
         {confirmClose && (
-          <div>
-            <ConfirmationWindow
-              message="Do you wish to close StockFlux?"
-              onConfirm={onCloseClick}
-            >
-              <div className="header-icon">
-                <CloseIcon />
-              </div>
-            </ConfirmationWindow>
-          </div>
+          <ConfirmationWindow
+            message="Do you wish to close StockFlux?"
+            onConfirm={onCloseClick}
+          >
+            <div className="header-icon">
+              <CloseIcon />
+            </div>
+          </ConfirmationWindow>
         )}
       </div>
     </div>

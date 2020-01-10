@@ -1,55 +1,67 @@
-:root {  
+:root {
   /* UX Colours */
   /* Generic Colours */
-  --color-highlight: #21B1CA;
-  --color-highlight-hover: #2198AE;
-  --color-inactive: #8A96A6;
-  --color-hover:#1B3B56;
-  --color-primary:#0D2437;
-  --color-secondary:#091A29;
+  --color-highlight: #21b1ca;
+  --color-highlight-hover: #2198ae;
+  --color-inactive: #8a96a6;
+  --color-hover: #0d2437;
+  --color-primary: #0d2437;
+  --color-secondary: #091a29;
   /* Windows*/
-  --window-background-color:#0D2437;  
-  --window-header-bar:#071521;
-  --window-divider:#091A29;
-  --window-icon:#FFFFFF;
-  --window-stock-hover:#091A29;
+  --window-background-color: #0d2437;
+  --window-background-color-dark: #071521;
+  --window-header-bar: #010f1b;
+  --window-divider: #010f1b;
+  --window-icon: #ffffff;
+  --window-stock-hover: #091a29;
   /* Charts */
-  --chart-line: #21B1CA;
-  --chart-gradient-top:#21B1CA; 
-  --chart-gradient-bottom:#FFFFFF;
-  --chart-hover:#1B3B56;
+  --chart-line: #21b1ca;
+  --chart-gradient-top: #21b1ca;
+  --chart-gradient-bottom: #ffffff;
+  --chart-hover: #1b3b56;
+  --chart-gridline: #55555b;
+  --chart-candlestick-down: #ff7171;
+  --chart-candlestick-up: #78ff79;
+  --chart-handle: #ffffff;
+  --chart-brush-selection: #29e9e3;
+  --chart-tick-path: #ffffff;
+  --chart-domain: #9e9e9e;
+  --chart-area: rgba(33, 177, 202, 0.2);
+
   /* Scroll Bars */
-  --scroll-bar-background:#0D2437;
-  --scroll-bar-inactive:#8A96A6;
-  --scroll-bar-arrow:#8A96A6;
-  --scroll-bar-track:#1B3B56;
-  --scroll-bar-grip:#091A29;
+  --scroll-bar-background: #0d2437;
+  --scroll-bar-inactive: #8a96a6;
+  --scroll-bar-arrow: #8a96a6;
+  --scroll-bar-track: #1b3b56;
+  --scroll-bar-grip: rgba(98, 116, 130, 0.8);
   /* Icons */
-  --icon-active:#21B1CA;
-  --icon-inactive: #8A96A6;
-  --icon-hover: #1B3B56;
-  --icon-hover-light: rgba(256,256,256,0.15);
+  --icon-active: #21b1ca;
+  --icon-inactive: #8a96a6;
+  --icon-hover: #1b3b56;
+  --icon-hover-light: #1b3b56;
+  --header-icon: #abb3b9;
   /* Text */
-  --text-color:#FFFFFF; 
-  --text-increase:#41D442;
-  --text-decrease:#FF7171;
+  --text-color: #ffffff;
+  --text-increase: #43c578;
+  --text-decrease: #ff6262;
 
   /* dimensions */
   --expanded-width: 230px;
   --toolbar-height: 50px;
   --search-result-height: 60px;
   --icons-size: 30px;
-  --titlebar-height: 28px;
+  --titlebar-height: 30px;
   --bottom-tab-height: 33px;
-  --scrollbar-width: 12px;
+  --scrollbar-width: 6px;
 
   /* transitions  */
   --icon-transition-duration: 0.5s;
 
   /* font styles */
   --font-family: 'Roboto';
-  
+
   /* font-size */
+  --font-small: 11px;
   --font-normal: 12px;
   --font-medium: 13px;
   --font-large: 14px;
@@ -80,7 +92,6 @@
   /* misc */
   --border: solid 2px var(--text-teal);
 
-  
   /* Deprecated Style Colours  */
   --text-grey-darkest: var(--text-color);
   --text-grey-darker: var(--text-color);
@@ -103,5 +114,5 @@
   --dark-background: var(--window-background-color);
 
   --chart-teal: var(--color-highlight);
-  --chart-teal-lighter: var(--color-highlight);  
+  --chart-teal-lighter: var(--color-highlight);
 }

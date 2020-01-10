@@ -1,33 +1,43 @@
 .free-text-search {
-  flex: 1;
+  flex: 0 1;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: var(--font-family);
+  width:710px;
+  min-width:710px;
+  background-color: #071521;
+  border-radius: 5px;
+  padding-top:5px;
+  padding-bottom:5px;
 }
 
 .free-text-search input {
-  background: var(--dark-background);
+  background: #071521;
+  flex-grow:1;
   color: var(--text-color);
   border: none;
   border-radius: 4px;
-  font-size: 18px;
+  font-size: 16px;
   height: var(--search-input-height);
-  width: var(--search-input-width);
-  min-width: var(--search-input-min-width);
-  padding: var(--padding-medium);
+  width: var(--search-input-width);  
   margin: 0 12px;
   outline: none;
 }
 
 .search-undocked {
-  padding-right: 18px;
   width: 350px;
+  min-width: 0px;
+  flex-grow: 1;
 }
 
 .left .free-text-search,
 .right .free-text-search {
   flex-direction: column;
+  min-width: 0;
+  width: 100%;
+  flex: inherit;
+  background-color: var(--window-background-color);
 }
 
 .left .free-text-search input,
@@ -37,9 +47,7 @@
 
 .searchSVG {
   color: var(--icon-inactive);
-  height: 40px;
-  margin-top: var(--margin-large) !important;
-  width: 60px;
+  width: 40px;
 }
 
 .searchSVG:hover{
@@ -49,7 +57,6 @@
 div#root > .free-text-search {
   padding: 8px 10px 8px 0;
   width: var(--search-input-width);
-  background-color: var(--middle-background);
   border-bottom: 1px solid var(--clr-divider-light);
 }
 
@@ -60,4 +67,26 @@ div#root > .spinner {
 
 div#root > .cards.padding-top {
   padding-top: calc(var(--search-input-height) + 18px);
+}
+
+.actions-button {
+  display: inline-block;
+  color: var(--text-color);
+  fill: var(--text-color);
+  border: none;
+  outline: none;
+  background-color: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  height: 40px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 1.5px transparent;
+}
+
+.actions-button:hover {
+  background-color: #475F74;
+  border: 1.5px solid #FFFFFF;
 }

@@ -1,103 +1,168 @@
 body {
-    -webkit-user-select: none;
+  -webkit-user-select: none;
 }
 
-#app, .main, body, html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+#app,
+.main,
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .main {
-    background-color: var(--dark-background);
-    padding: 0;
+  background-color: var(--window-background-color-dark);
+  padding: 0;
+  height: 100vh;
+}
+
+.chart-info {
+  position: absolute;
+  right: 0px;
+  margin-right: 10px;
+  margin-top: 10px;
+  height: 28px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.symbol-info {
+  position: absolute;
+  top: 12vh;
+  left: 1vw;
+  width: 10vw;
+}
+
+.d3fc-button {
+  position: absolute;
+  z-index: 10;
+  right: 0px;
+  fill: var(--chart-domain);
+  cursor: pointer;
+}
+
+.d3fc-button:hover {
+  fill: white;
+}
+
+.chart-tool {
+  color: var(--chart-domain);
+  font-size: 12px;
 }
 
 #showcase-container {
-    position: absolute;
-    top: var(--toolbar-height);
-    right: 0;
-    bottom: 0;
-    left: 0;
+  margin: 0px 0px 0px 11vw;
+  padding: 5vh 0px 0px 0px;
+  height: 75%;
+  width: 90%;
 }
 
-#showcase-container .row.primary-row {
-    margin-left: -5px;
+#navigation-container {
+  border-top: 4px solid var(--window-divider);
+  border-bottom: 4px solid var(--window-divider);
+  height: 23%;
+  position: relative;
+  bottom: 2vh;
+  padding: 0px 0px 0px 0px;
 }
 
-.button-icon {
-    display: inline-block;
-    width: var(--icons-size);
-    height: 100%;
-    background-position: 50% 80%;
-    background-repeat: no-repeat;
-    transition: var(--icon-transition-duration) all;
-    cursor: pointer;
+#navigation-container > .cartesian-chart > .plot-area {
+  stroke: var(--chart-line);
+  stroke-width: 1px;
 }
 
-.disable-transitions {
-    transition: none !important;
+.area {
+  fill: var(--chart-area);
 }
 
-.disable-pointer {
-    pointer-events: none;
+#navigation-container .y-axis {
+  visibility: hidden;
+  width: 0;
+}
+
+#navigation-container .x-axis .domain {
+  visibility: hidden;
 }
 
 #showcase-title {
-    color: var(--color-highlight);
-    position: relative;
-    top: 5px;
-    left: 25px;
-    z-index: 10;
-    display: flex;
-    flex-direction: row;
-}
-#showcase-title .symbol,
-#showcase-title .name {
-    display: inline-block;
-    padding-right: 10px;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  height: 55px;
 }
 
-#showcase-title .symbol {
-    font: 18px var(--font-weight-bolder);
+.code {
+  color: var(--text-color);
+  position: relative;
+  top: 0px;
+  font-size: 18px;
+  font-weight: var(--font-weight-bold);
 }
 
-#showcase-title  .name {
-    font: 14px var(--font-weight-normal);
+.name {
+  margin-top: 4px;
+  color: var(--text-color);
+  font: 18px var(--font-weight-normal);
+  font-weight: var(--font-weight-bold);
 }
 
-.chart-nav-icons {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.card-menu {
+  position: absolute;
+  right: 5px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-.chart-nav-icon svg {
-    fill: var(--color-highlight);
-    padding-right: 10px;
-    height: 20px;
-    width: 30px;
-    shape-rendering: geometricprecision;
-    cursor: pointer;
+.card-menu > span {
+  display: flex;
 }
 
-.chart-nav-icon:not(.icon-disabled):hover svg {
-    fill: var(--color-highlight);
+.card-menu button {
+  height: 22px;
+  border: transparent 1px solid;
+  background-color: #1b3b56;
+  border-radius: 3px;
+  margin-left: 5px;
+  padding: 0px 0px 0px 0px;
 }
 
-.chart-nav-icon.icon-disabled svg {
-    cursor: not-allowed;
-    opacity: 0.4;
+.card-menu button > span {
+  display: flex;
+  align-items: center;
+  font-size: 10px;
+  height: 100%;
 }
 
-.no-favourites-image {
-    max-width: 1060px;
-    max-height: 500px;
-    width: 100%;
-    position: relative;
-    -webkit-user-drag: none;
+.card-menu-remove span,
+.card-menu-news span,
+.card-menu-watchlist span {
+  padding-right: 8px;
+  color: var(--text-color);
 }
 
-.close.button-icon, .close.button-icon:hover {
-    opacity: 1;
+.button-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.card-menu .open {
+  border: solid 1px white;
+  background-color: var(--color-secondary);
+}
+
+.card-menu button:hover {
+  background-color: var(--color-secondary);
+}
+
+.card-menu button:active {
+  border: solid 1px white;
+}
+
+.card-menu {
+  transition: 2.6s all;
 }
