@@ -34,7 +34,7 @@ const FreeTextSearch = ({ dockedTo, showTextInput }) => {
   const [searchState, dispatch] = useReducer(reducer, initialSearchState);
   const [query, setQuery] = useState(null);
   const [parentUuid, setParentUuid] = useState(null);
-  const bounds = useBounds();
+  const [bounds] = useBounds();
   const [debouncedQuery, setDebouncedQuery] = useState(null);
   const childWindow = useChildWindow({
     name: SEARCH_RESULTS_WINDOW_NAME,
