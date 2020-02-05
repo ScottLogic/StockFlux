@@ -1,6 +1,6 @@
 {
   "name": "stockflux-launcher",
-  "version": "13.1.0",
+  "version": "13.1.1",
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
@@ -13,8 +13,8 @@
     "react-dom": "^16.8.6",
     "react-icons": "^3.7.0",
     "react-scripts": "3.0.1",
-    "stockflux-components": "13.1.0",
-    "stockflux-core": "13.1.0",
+    "stockflux-components": "13.1.1",
+    "stockflux-core": "13.1.1",
     "throat": "4.1.0"
   },
   "homepage": "./",
