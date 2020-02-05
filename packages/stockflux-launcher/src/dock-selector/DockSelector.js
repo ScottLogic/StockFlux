@@ -18,7 +18,7 @@ const DockSelector = ({ dockedTo, tools, iconStyle }) => {
     shouldInheritCss: true,
     shouldClosePreviousOnLaunch: true
   });
-  const bounds = useBounds();
+  const [bounds] = useBounds();
   const dockSelectorButton = useRef(null);
 
   const { windowRef, launch, populate, close } = childWindow;
