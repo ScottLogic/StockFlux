@@ -38,8 +38,5 @@
     "proxy:build": "cd developer-proxy && npm i",
     "proxy:start": "cd developer-proxy && npm run start"
   },
-  "dependencies": {
-    "d3": "^5.12.0",
-    "d3fc": "^14.0.55"
-  }
+  "dependencies": {}
 }
