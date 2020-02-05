@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1272" height="868" viewBox="0 0 1272 868">
+  <defs>
+    <rect id="preview_window_specs-b" width="97" height="84" x="71" y="741.5"/>
+    <filter id="preview_window_specs-a" width="139.2%" height="145.2%" x="-19.6%" y="-20.2%" filterUnits="objectBoundingBox">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="1.5" result="shadowSpreadOuter1"/>
+      <feOffset dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="4.5"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <rect width="1272" height="868" fill="#FFF"/>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12" letter-spacing=".086">
+      <tspan x="448" y="774">icon_chart_nobox</tspan>
+    </text>
+    <g transform="translate(71 165)">
+      <rect width="850" height="500" fill="#1B3B56"/>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="20" font-weight="400" letter-spacing=".143">
+        <tspan x="369.602" y="218.5">Drag here to </tspan> <tspan x="368.22" y="242.5">open a chart</tspan>
+      </text>
+      <path fill="#FFF" d="M1,0 C1.55228475,0 2,0.44771525 2,1 L2,1 L2,19.241 L10.418119,9.15749695 C10.7853784,8.71755324 11.4382868,8.68063852 11.8527896,9.05307819 L11.9377716,9.13915463 L17.6558585,15.662193 L23.7343351,7.64528329 C23.2740595,7.05276115 23,6.30838559 23,5.5 C23,3.56700338 24.5670034,2 26.5,2 C28.4329966,2 30,3.56700338 30,5.5 C30,7.43299662 28.4329966,9 26.5,9 C26.1017877,9 25.7191079,8.93349764 25.3624607,8.81099311 L18.5086924,17.8474358 C18.1261812,18.3518059 17.3772055,18.3783619 16.9599334,17.9023493 L16.9599334,17.9023493 L11.2043573,11.336544 L2,22.361 L2,26 L29,26 C29.5522847,26 30,26.4477153 30,27 C30,27.5522847 29.5522847,28 29,28 L29,28 L1,28 C0.44771525,28 0,27.5522847 0,27 L0,27 L0,1 C0,0.44771525 0.44771525,0 1,0 Z M26.5,4 C25.6715729,4 25,4.67157288 25,5.5 C25,6.32842712 25.6715729,7 26.5,7 C27.3284271,7 28,6.32842712 28,5.5 C28,4.67157288 27.3284271,4 26.5,4 Z" transform="translate(410 272.5)"/>
+    </g>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="20" font-weight="400">
+      <tspan x="46.5" y="72.669">Preview window</tspan>
+    </text>
+    <line x1="496.5" x2="496" y1="741.5" y2="479.5" stroke="#979797" stroke-linecap="square"/>
+    <line x1="568.5" x2="1031.5" y1="389.5" y2="389.5" stroke="#979797" stroke-linecap="square"/>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="1042" y="392.5">Roboto, Medium, 20px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="1042" y="189">Dimentions</tspan> <tspan x="1042" y="217" font-family="Roboto-Regular, Roboto" font-weight="normal">W: 850px</tspan> <tspan x="1042" y="231" font-family="Roboto-Regular, Roboto" font-weight="normal">H: 500px</tspan>
+    </text>
+    <rect width="36" height="36" x="71" y="110.669" fill="#1B3B56"/>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="126" y="121.669">Blue light </tspan> <tspan x="126" y="135.669">Used as background colour</tspan> <tspan x="126" y="149.669">1B3B56</tspan>
+    </text>
+    <use fill="#000" filter="url(#preview_window_specs-a)" xlink:href="#preview_window_specs-b"/>
+    <use fill="#1B3B56" xlink:href="#preview_window_specs-b"/>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="11" font-weight="bold">
+      <tspan x="196" y="757.5">Shadow for Preview Window</tspan> <tspan x="196" y="783.5" font-family="Roboto-Regular, Roboto" font-weight="normal">y = 2</tspan> <tspan x="196" y="796.5" font-family="Roboto-Regular, Roboto" font-weight="normal">blur = 9</tspan> <tspan x="196" y="809.5" font-family="Roboto-Regular, Roboto" font-weight="normal">spread = 3</tspan>
+    </text>
+    <rect width="35" height="35" x="337.5" y="111.169" fill="#FFF" stroke="#000"/>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="392" y="121.957">White </tspan> <tspan x="392" y="135.957">Used for text and icon</tspan> <tspan x="392" y="149.957">FFFFFF</tspan>
+    </text>
+  </g>
+</svg>

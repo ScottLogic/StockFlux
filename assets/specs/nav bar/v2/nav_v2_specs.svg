@@ -1,0 +1,230 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1390" height="1121" viewBox="0 0 1390 1121">
+  <defs>
+    <rect id="nav_v2_specs-a" width="30" height="30" x="0" y="0" rx="3"/>
+    <filter id="nav_v2_specs-b" width="116.7%" height="116.7%" x="-8.3%" y="-8.3%" filterUnits="objectBoundingBox">
+      <feMorphology in="SourceAlpha" radius="2" result="shadowSpreadInner1"/>
+      <feGaussianBlur in="shadowSpreadInner1" result="shadowBlurInner1" stdDeviation="1.5"/>
+      <feOffset in="shadowBlurInner1" result="shadowOffsetInner1"/>
+      <feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"/>
+      <feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <rect width="1390" height="1121" fill="#FFF"/>
+    <g transform="translate(99 490.622)">
+      <path fill="#010F1B" d="M3,0 L847,0 C848.656854,-3.04359188e-16 850,1.34314575 850,3 L850,30 L850,30 L0,30 L0,3 C-2.02906125e-16,1.34314575 1.34314575,3.04359188e-16 3,0 Z"/>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+        <tspan x="8" y="20.5">Window</tspan>
+      </text>
+      <g transform="translate(820)">
+        <rect width="30" height="30" rx="3"/>
+        <path fill="#C5D2DD" d="M15,9.54931324 C15.3945447,9.54931324 15.7143864,9.86915494 15.7143864,10.2636997 L15.7143864,10.2636997 L15.7139187,13.9143132 L19.3656949,13.9150081 C19.7273609,13.9150081 20.0262556,14.183764 20.0735598,14.5324565 L20.0800813,14.6293945 C20.0800813,15.0239393 19.7602396,15.343781 19.3656949,15.343781 L19.3656949,15.343781 L15.7139187,15.3433132 L15.7143864,18.9950894 C15.7143864,19.3567554 15.4456306,19.6556501 15.096938,19.7029543 L15,19.7094758 C14.6054553,19.7094758 14.2856136,19.3896341 14.2856136,18.9950894 L14.2856136,18.9950894 L14.2849187,15.3433132 L10.6343051,15.343781 C10.2726391,15.343781 9.97374443,15.0750251 9.92644022,14.7263325 L9.91991871,14.6293945 C9.91991871,14.2348498 10.2397604,13.9150081 10.6343051,13.9150081 L10.6343051,13.9150081 L14.2849187,13.9143132 L14.2856136,10.2636997 C14.2856136,9.90203367 14.5543694,9.60313896 14.903062,9.55583475 Z" transform="rotate(45 15 14.63)"/>
+      </g>
+      <g transform="translate(790)">
+        <rect width="30" height="30" rx="3"/>
+        <path fill="#C5D2DD" d="M11,18.7695312 L19,18.7695312 C19.2761424,18.7695312 19.5,18.4294819 19.5,18.0100098 C19.5,17.5905376 19.2761424,17.2504883 19,17.2504883 L11,17.2504883 C10.7238576,17.2504883 10.5,17.5905376 10.5,18.0100098 C10.5,18.4294819 10.7238576,18.7695312 11,18.7695312 Z"/>
+      </g>
+    </g>
+    <g transform="translate(99 697.834)">
+      <path fill="#010F1B" d="M3,0 L847,0 C848.656854,-3.04359188e-16 850,1.34314575 850,3 L850,30 L850,30 L0,30 L0,3 C-2.02906125e-16,1.34314575 1.34314575,3.04359188e-16 3,0 Z"/>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+        <tspan x="8" y="20.5">Window</tspan>
+      </text>
+      <g transform="translate(820)">
+        <rect width="30" height="30" rx="3"/>
+        <path fill="#C5D2DD" d="M15,9.54931324 C15.3945447,9.54931324 15.7143864,9.86915494 15.7143864,10.2636997 L15.7143864,10.2636997 L15.7139187,13.9143132 L19.3656949,13.9150081 C19.7273609,13.9150081 20.0262556,14.183764 20.0735598,14.5324565 L20.0800813,14.6293945 C20.0800813,15.0239393 19.7602396,15.343781 19.3656949,15.343781 L19.3656949,15.343781 L15.7139187,15.3433132 L15.7143864,18.9950894 C15.7143864,19.3567554 15.4456306,19.6556501 15.096938,19.7029543 L15,19.7094758 C14.6054553,19.7094758 14.2856136,19.3896341 14.2856136,18.9950894 L14.2856136,18.9950894 L14.2849187,15.3433132 L10.6343051,15.343781 C10.2726391,15.343781 9.97374443,15.0750251 9.92644022,14.7263325 L9.91991871,14.6293945 C9.91991871,14.2348498 10.2397604,13.9150081 10.6343051,13.9150081 L10.6343051,13.9150081 L14.2849187,13.9143132 L14.2856136,10.2636997 C14.2856136,9.90203367 14.5543694,9.60313896 14.903062,9.55583475 Z" transform="rotate(45 15 14.63)"/>
+      </g>
+      <g transform="translate(790)">
+        <rect width="30" height="30" rx="3"/>
+        <path fill="#C5D2DD" d="M11,18.7695312 L19,18.7695312 C19.2761424,18.7695312 19.5,18.4294819 19.5,18.0100098 C19.5,17.5905376 19.2761424,17.2504883 19,17.2504883 L11,17.2504883 C10.7238576,17.2504883 10.5,17.5905376 10.5,18.0100098 C10.5,18.4294819 10.7238576,18.7695312 11,18.7695312 Z"/>
+      </g>
+    </g>
+    <g transform="translate(496.5 118)">
+      <path fill="#010F1B" d="M3,0 L847,0 C848.656854,-3.04359188e-16 850,1.34314575 850,3 L850,30 L850,30 L0,30 L0,3 C-2.02906125e-16,1.34314575 1.34314575,3.04359188e-16 3,0 Z"/>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+        <tspan x="8" y="20.5">Window</tspan>
+      </text>
+      <g transform="translate(820)">
+        <rect width="30" height="30" rx="3"/>
+        <path fill="#C5D2DD" d="M15,9.54931324 C15.3945447,9.54931324 15.7143864,9.86915494 15.7143864,10.2636997 L15.7143864,10.2636997 L15.7139187,13.9143132 L19.3656949,13.9150081 C19.7273609,13.9150081 20.0262556,14.183764 20.0735598,14.5324565 L20.0800813,14.6293945 C20.0800813,15.0239393 19.7602396,15.343781 19.3656949,15.343781 L19.3656949,15.343781 L15.7139187,15.3433132 L15.7143864,18.9950894 C15.7143864,19.3567554 15.4456306,19.6556501 15.096938,19.7029543 L15,19.7094758 C14.6054553,19.7094758 14.2856136,19.3896341 14.2856136,18.9950894 L14.2856136,18.9950894 L14.2849187,15.3433132 L10.6343051,15.343781 C10.2726391,15.343781 9.97374443,15.0750251 9.92644022,14.7263325 L9.91991871,14.6293945 C9.91991871,14.2348498 10.2397604,13.9150081 10.6343051,13.9150081 L10.6343051,13.9150081 L14.2849187,13.9143132 L14.2856136,10.2636997 C14.2856136,9.90203367 14.5543694,9.60313896 14.903062,9.55583475 Z" transform="rotate(45 15 14.63)"/>
+      </g>
+      <g transform="translate(790)">
+        <rect width="30" height="30" rx="3"/>
+        <path fill="#C5D2DD" d="M11,18.7695312 L19,18.7695312 C19.2761424,18.7695312 19.5,18.4294819 19.5,18.0100098 C19.5,17.5905376 19.2761424,17.2504883 19,17.2504883 L11,17.2504883 C10.7238576,17.2504883 10.5,17.5905376 10.5,18.0100098 C10.5,18.4294819 10.7238576,18.7695312 11,18.7695312 Z"/>
+      </g>
+    </g>
+    <g transform="translate(98 879.5)">
+      <path fill="#010F1B" d="M3,0 L268,0 C269.656854,-3.04359188e-16 271,1.34314575 271,3 L271,30 L271,30 L0,30 L0,3 C-2.02906125e-16,1.34314575 1.34314575,3.04359188e-16 3,0 Z"/>
+      <g transform="translate(241)">
+        <rect width="30" height="30" rx="3"/>
+        <path fill="#C5D2DD" d="M15,9.54931324 C15.3945447,9.54931324 15.7143864,9.86915494 15.7143864,10.2636997 L15.7143864,10.2636997 L15.7139187,13.9143132 L19.3656949,13.9150081 C19.7273609,13.9150081 20.0262556,14.183764 20.0735598,14.5324565 L20.0800813,14.6293945 C20.0800813,15.0239393 19.7602396,15.343781 19.3656949,15.343781 L19.3656949,15.343781 L15.7139187,15.3433132 L15.7143864,18.9950894 C15.7143864,19.3567554 15.4456306,19.6556501 15.096938,19.7029543 L15,19.7094758 C14.6054553,19.7094758 14.2856136,19.3896341 14.2856136,18.9950894 L14.2856136,18.9950894 L14.2849187,15.3433132 L10.6343051,15.343781 C10.2726391,15.343781 9.97374443,15.0750251 9.92644022,14.7263325 L9.91991871,14.6293945 C9.91991871,14.2348498 10.2397604,13.9150081 10.6343051,13.9150081 L10.6343051,13.9150081 L14.2849187,13.9143132 L14.2856136,10.2636997 C14.2856136,9.90203367 14.5543694,9.60313896 14.903062,9.55583475 Z" transform="rotate(45 15 14.63)"/>
+      </g>
+      <g transform="translate(211)">
+        <rect width="30" height="30" rx="3"/>
+        <path fill="#C5D2DD" d="M11,18.7695312 L19,18.7695312 C19.2761424,18.7695312 19.5,18.4294819 19.5,18.0100098 C19.5,17.5905376 19.2761424,17.2504883 19,17.2504883 L11,17.2504883 C10.7238576,17.2504883 10.5,17.5905376 10.5,18.0100098 C10.5,18.4294819 10.7238576,18.7695312 11,18.7695312 Z"/>
+      </g>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+        <tspan x="8" y="20.5">Window</tspan>
+      </text>
+    </g>
+    <g transform="translate(495.5 289.576)">
+      <path fill="#010F1B" d="M3,0 L268,0 C269.656854,-3.04359188e-16 271,1.34314575 271,3 L271,30 L271,30 L0,30 L0,3 C-2.02906125e-16,1.34314575 1.34314575,3.04359188e-16 3,0 Z"/>
+      <g transform="translate(241)">
+        <rect width="30" height="30" rx="3"/>
+        <path fill="#C5D2DD" d="M15,9.54931324 C15.3945447,9.54931324 15.7143864,9.86915494 15.7143864,10.2636997 L15.7143864,10.2636997 L15.7139187,13.9143132 L19.3656949,13.9150081 C19.7273609,13.9150081 20.0262556,14.183764 20.0735598,14.5324565 L20.0800813,14.6293945 C20.0800813,15.0239393 19.7602396,15.343781 19.3656949,15.343781 L19.3656949,15.343781 L15.7139187,15.3433132 L15.7143864,18.9950894 C15.7143864,19.3567554 15.4456306,19.6556501 15.096938,19.7029543 L15,19.7094758 C14.6054553,19.7094758 14.2856136,19.3896341 14.2856136,18.9950894 L14.2856136,18.9950894 L14.2849187,15.3433132 L10.6343051,15.343781 C10.2726391,15.343781 9.97374443,15.0750251 9.92644022,14.7263325 L9.91991871,14.6293945 C9.91991871,14.2348498 10.2397604,13.9150081 10.6343051,13.9150081 L10.6343051,13.9150081 L14.2849187,13.9143132 L14.2856136,10.2636997 C14.2856136,9.90203367 14.5543694,9.60313896 14.903062,9.55583475 Z" transform="rotate(45 15 14.63)"/>
+      </g>
+      <g transform="translate(211)">
+        <rect width="30" height="30" rx="3"/>
+        <path fill="#C5D2DD" d="M11,18.7695312 L19,18.7695312 C19.2761424,18.7695312 19.5,18.4294819 19.5,18.0100098 C19.5,17.5905376 19.2761424,17.2504883 19,17.2504883 L11,17.2504883 C10.7238576,17.2504883 10.5,17.5905376 10.5,18.0100098 C10.5,18.4294819 10.7238576,18.7695312 11,18.7695312 Z"/>
+      </g>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+        <tspan x="8" y="20.5">Window</tspan>
+      </text>
+    </g>
+    <g transform="translate(98 935)">
+      <path fill="#010F1B" d="M3,0 L268,0 C269.656854,-3.04359188e-16 271,1.34314575 271,3 L271,30 L271,30 L0,30 L0,3 C-2.02906125e-16,1.34314575 1.34314575,3.04359188e-16 3,0 Z"/>
+      <g transform="translate(241)">
+        <rect width="30" height="30" fill="#1B3B56" rx="3"/>
+        <path fill="#EAECEE" d="M15,9.54931324 C15.3945447,9.54931324 15.7143864,9.86915494 15.7143864,10.2636997 L15.7143864,10.2636997 L15.7139187,13.9143132 L19.3656949,13.9150081 C19.7273609,13.9150081 20.0262556,14.183764 20.0735598,14.5324565 L20.0800813,14.6293945 C20.0800813,15.0239393 19.7602396,15.343781 19.3656949,15.343781 L19.3656949,15.343781 L15.7139187,15.3433132 L15.7143864,18.9950894 C15.7143864,19.3567554 15.4456306,19.6556501 15.096938,19.7029543 L15,19.7094758 C14.6054553,19.7094758 14.2856136,19.3896341 14.2856136,18.9950894 L14.2856136,18.9950894 L14.2849187,15.3433132 L10.6343051,15.343781 C10.2726391,15.343781 9.97374443,15.0750251 9.92644022,14.7263325 L9.91991871,14.6293945 C9.91991871,14.2348498 10.2397604,13.9150081 10.6343051,13.9150081 L10.6343051,13.9150081 L14.2849187,13.9143132 L14.2856136,10.2636997 C14.2856136,9.90203367 14.5543694,9.60313896 14.903062,9.55583475 Z" transform="rotate(45 15 14.63)"/>
+      </g>
+      <g transform="translate(211)">
+        <rect width="30" height="30" rx="3"/>
+        <path fill="#C5D2DD" d="M11,18.7695312 L19,18.7695312 C19.2761424,18.7695312 19.5,18.4294819 19.5,18.0100098 C19.5,17.5905376 19.2761424,17.2504883 19,17.2504883 L11,17.2504883 C10.7238576,17.2504883 10.5,17.5905376 10.5,18.0100098 C10.5,18.4294819 10.7238576,18.7695312 11,18.7695312 Z"/>
+      </g>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+        <tspan x="8" y="20.5">Window</tspan>
+      </text>
+    </g>
+    <g transform="translate(98 990.5)">
+      <path fill="#010F1B" d="M3,0 L268,0 C269.656854,-3.04359188e-16 271,1.34314575 271,3 L271,30 L271,30 L0,30 L0,3 C-2.02906125e-16,1.34314575 1.34314575,3.04359188e-16 3,0 Z"/>
+      <g transform="translate(241)">
+        <use fill="#1B3B56" xlink:href="#nav_v2_specs-a"/>
+        <use fill="#000" filter="url(#nav_v2_specs-b)" xlink:href="#nav_v2_specs-a"/>
+        <path fill="#EAECEE" d="M15,9.54931324 C15.3945447,9.54931324 15.7143864,9.86915494 15.7143864,10.2636997 L15.7143864,10.2636997 L15.7139187,13.9143132 L19.3656949,13.9150081 C19.7273609,13.9150081 20.0262556,14.183764 20.0735598,14.5324565 L20.0800813,14.6293945 C20.0800813,15.0239393 19.7602396,15.343781 19.3656949,15.343781 L19.3656949,15.343781 L15.7139187,15.3433132 L15.7143864,18.9950894 C15.7143864,19.3567554 15.4456306,19.6556501 15.096938,19.7029543 L15,19.7094758 C14.6054553,19.7094758 14.2856136,19.3896341 14.2856136,18.9950894 L14.2856136,18.9950894 L14.2849187,15.3433132 L10.6343051,15.343781 C10.2726391,15.343781 9.97374443,15.0750251 9.92644022,14.7263325 L9.91991871,14.6293945 C9.91991871,14.2348498 10.2397604,13.9150081 10.6343051,13.9150081 L10.6343051,13.9150081 L14.2849187,13.9143132 L14.2856136,10.2636997 C14.2856136,9.90203367 14.5543694,9.60313896 14.903062,9.55583475 Z" transform="rotate(45 15 14.63)"/>
+      </g>
+      <g transform="translate(211)">
+        <rect width="30" height="30" rx="3"/>
+        <path fill="#C5D2DD" d="M11,18.7695312 L19,18.7695312 C19.2761424,18.7695312 19.5,18.4294819 19.5,18.0100098 C19.5,17.5905376 19.2761424,17.2504883 19,17.2504883 L11,17.2504883 C10.7238576,17.2504883 10.5,17.5905376 10.5,18.0100098 C10.5,18.4294819 10.7238576,18.7695312 11,18.7695312 Z"/>
+      </g>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+        <tspan x="8" y="20.5">Window</tspan>
+      </text>
+    </g>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="11">
+      <tspan x="981" y="502.622">Border radious - top: 3px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="11">
+      <tspan x="981" y="529.622">Border radious - bottom: 0px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+      <tspan x="99.5" y="557.834">Window - text: </tspan> <tspan x="99.5" y="573.834">Roboto, Medium, 14 px </tspan> <tspan x="99.5" y="589.834">White FFFFFF</tspan>
+    </text>
+    <circle cx="950.5" cy="492.122" r="10.5" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <circle cx="950.5" cy="519.122" r="10.5" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="961.5" x2="975" y1="495.622" y2="499.122" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="961.5" x2="975" y1="522.622" y2="526.122" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="98" y="666.334">8px</tspan>
+    </text>
+    <rect width="30" height="30" x="918.5" y="697.834" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <rect width="30" height="30" x="889.5" y="697.834" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="930.5" y="619.334">Icons - 30 x 30px </tspan> <tspan x="930.5" y="633.334">Can be found in the folder; icons &gt; v2 &gt; component &gt; SVGs: close &amp; minimise </tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="353" y="662.334">Nav-background-colour: 010F1B</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="495.5" y="94.75">Chart: 800 x 30px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="495.5" y="189.083">News: 413 x 30px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="496.5" y="280.583">Watchlist: 271 x 30px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="930.5" y="774.334">Icon should be flush with the end</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="99.5" y="435">Details</tspan> <tspan x="136.807" y="435" font-family="Roboto-Regular, Roboto" font-weight="normal"> </tspan> <tspan x="99.5" y="463" font-family="Roboto-Regular, Roboto" font-weight="normal">the same accross all nav bars</tspan>
+    </text>
+    <rect width="36" height="36" x="91" y="167.083" fill="#010F1B"/>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="145" y="177.788">Nav-background</tspan> <tspan x="145" y="191.788" font-family="Roboto-Regular, Roboto" font-weight="normal">010F1B</tspan>
+    </text>
+    <rect width="35" height="35" x="90.5" y="101.5" fill="#FFF" stroke="#000"/>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="145" y="112.288">White</tspan> <tspan x="145" y="126.288" font-family="Roboto-Regular, Roboto" font-weight="normal">Window text </tspan> <tspan x="145" y="140.288" font-family="Roboto-Regular, Roboto" font-weight="normal">FFFFFF</tspan>
+    </text>
+    <line x1="419.5" x2="429.5" y1="667.334" y2="707.334" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="961.5" x2="949.5" y1="763.334" y2="727.334" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12" letter-spacing=".086">
+      <tspan x="506.25" y="892.5">Background: transparent</tspan> <tspan x="506.25" y="906.5">Icon &amp; text: FFFFFF</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12" letter-spacing=".086">
+      <tspan x="506.25" y="946">Background: 1B3B56</tspan> <tspan x="506.25" y="960">Icon &amp; text: FFFFFF</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12" letter-spacing=".086">
+      <tspan x="506.25" y="1011.75">Background: 1B3B56</tspan> <tspan x="506.25" y="1025.75">Icon &amp; text: FFFFFF</tspan> <tspan x="506.25" y="1039.75">Inner shadow: black, 50% opacity, X: 0, Y: 0, </tspan> <tspan x="506.25" y="1053.75">Blur: 3, Spread: 2</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12" letter-spacing=".086">
+      <tspan x="388" y="892.5">Inactive</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="388" y="859.5">State</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="506.25" y="859.5">Colours and appearance</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12" letter-spacing=".086">
+      <tspan x="388" y="949.5">On hover</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12" letter-spacing=".086">
+      <tspan x="388" y="1014.5">On click</tspan>
+    </text>
+    <rect width="36" height="36" x="91" y="238.583" fill="#1B3B56"/>
+    <rect width="36" height="36" x="91" y="305.371" fill="#ABB3B9"/>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="145" y="249.583">Nav/buttons/on-hover</tspan> <tspan x="145" y="263.583" font-family="Roboto-Regular, Roboto" font-weight="normal">Used for hover state of buttons on nav </tspan> <tspan x="145" y="277.583" font-family="Roboto-Regular, Roboto" font-weight="normal">1B3B56</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="145" y="316.371">Buttons/text&amp;icon/inactive</tspan> <tspan x="145" y="330.371" font-family="Roboto-Regular, Roboto" font-weight="normal">Used for inactive states of the buttons</tspan> <tspan x="145" y="344.371" font-family="Roboto-Regular, Roboto" font-weight="normal">ABB3B9</tspan>
+    </text>
+    <g fill-rule="nonzero" transform="translate(357 955)">
+      <path fill="#000" d="M0.2,0.9 L11.8,12.5 L7.186,12.5 L9.3,17.6 L5.7,19.1 L3.431,13.742 L0.2,16.9 L0.2,0.9 Z"/>
+      <path fill="#FFF" d="M1.2,3.3 L9.4,11.5 L5.706,11.499 L7.97131,16.89531 L6.12711,17.66951 L3.758,12.026 L1.2,14.5 L1.2,3.3 Z"/>
+    </g>
+    <g fill-rule="nonzero" transform="translate(357 1011.75)">
+      <path fill="#000" d="M0.2,0.9 L11.8,12.5 L7.186,12.5 L9.3,17.6 L5.7,19.1 L3.431,13.742 L0.2,16.9 L0.2,0.9 Z"/>
+      <path fill="#FFF" d="M1.2,3.3 L9.4,11.5 L5.706,11.499 L7.97131,16.89531 L6.12711,17.66951 L3.758,12.026 L1.2,14.5 L1.2,3.3 Z"/>
+    </g>
+    <g transform="translate(495.5 202.417)">
+      <path fill="#010F1B" d="M3,0 L410,0 C411.656854,-3.04359188e-16 413,1.34314575 413,3 L413,30 L413,30 L0,30 L0,3 C-2.02906125e-16,1.34314575 1.34314575,3.04359188e-16 3,0 Z"/>
+      <g transform="translate(383)">
+        <rect width="30" height="30" rx="3"/>
+        <path fill="#C5D2DD" d="M15,9.54931324 C15.3945447,9.54931324 15.7143864,9.86915494 15.7143864,10.2636997 L15.7143864,10.2636997 L15.7139187,13.9143132 L19.3656949,13.9150081 C19.7273609,13.9150081 20.0262556,14.183764 20.0735598,14.5324565 L20.0800813,14.6293945 C20.0800813,15.0239393 19.7602396,15.343781 19.3656949,15.343781 L19.3656949,15.343781 L15.7139187,15.3433132 L15.7143864,18.9950894 C15.7143864,19.3567554 15.4456306,19.6556501 15.096938,19.7029543 L15,19.7094758 C14.6054553,19.7094758 14.2856136,19.3896341 14.2856136,18.9950894 L14.2856136,18.9950894 L14.2849187,15.3433132 L10.6343051,15.343781 C10.2726391,15.343781 9.97374443,15.0750251 9.92644022,14.7263325 L9.91991871,14.6293945 C9.91991871,14.2348498 10.2397604,13.9150081 10.6343051,13.9150081 L10.6343051,13.9150081 L14.2849187,13.9143132 L14.2856136,10.2636997 C14.2856136,9.90203367 14.5543694,9.60313896 14.903062,9.55583475 Z" transform="rotate(45 15 14.63)"/>
+      </g>
+      <g transform="translate(353)">
+        <rect width="30" height="30" rx="3"/>
+        <path fill="#C5D2DD" d="M11,18.7695312 L19,18.7695312 C19.2761424,18.7695312 19.5,18.4294819 19.5,18.0100098 C19.5,17.5905376 19.2761424,17.2504883 19,17.2504883 L11,17.2504883 C10.7238576,17.2504883 10.5,17.5905376 10.5,18.0100098 C10.5,18.4294819 10.7238576,18.7695312 11,18.7695312 Z"/>
+      </g>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+        <tspan x="8" y="20.5">Window</tspan>
+      </text>
+    </g>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="20" font-weight="400">
+      <tspan x="46.5" y="72.669">Navigation bars</tspan>
+    </text>
+    <line x1="70.5" x2="1323.5" y1="398.5" y2="398.5" stroke="#979797" stroke-linecap="square"/>
+    <line x1="419.5" x2="419.5" y1="43.5" y2="361.5" stroke="#979797" stroke-linecap="square"/>
+    <line x1="483.5" x2="483.5" y1="848.698" y2="1056.75" stroke="#979797" stroke-linecap="square"/>
+    <line x1="388.31" x2="795.69" y1="868.75" y2="868.75" stroke="#979797" stroke-linecap="square"/>
+    <line x1="388" x2="795.381" y1="921" y2="921" stroke="#979797" stroke-linecap="square"/>
+    <line x1="388.31" x2="795.69" y1="983.25" y2="983.25" stroke="#979797" stroke-linecap="square"/>
+    <line x1="79.5" x2="1347.5" y1="814.5" y2="814.5" stroke="#979797" stroke-linecap="square"/>
+    <line x1="98.5" x2="98.5" y1="673.039" y2="727.629" stroke="#FF9191" stroke-dasharray="3" stroke-linecap="square"/>
+    <line x1="108" x2="108" y1="673.039" y2="727.629" stroke="#FF9191" stroke-dasharray="3" stroke-linecap="square"/>
+    <line x1="930.5" x2="930.5" y1="697.834" y2="652.834" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+  </g>
+</svg>

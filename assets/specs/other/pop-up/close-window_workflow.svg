@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1165" height="555" viewBox="0 0 1165 555">
+  <g fill="none" fill-rule="evenodd">
+    <rect width="1165" height="555" fill="#FFF"/>
+    <rect width="103.813" height="54" x="197.5" y="166.5" stroke="#E50000"/>
+    <rect width="103.813" height="54" x="197.5" y="376.25" stroke="#E50000"/>
+    <rect width="103.813" height="54" x="698.258" y="376.25" stroke="#E50000"/>
+    <rect width="103.813" height="54" x="377.563" y="166.5" stroke="#0481D5"/>
+    <rect width="103.813" height="54" x="500.305" y="310.5" stroke="#0481D5"/>
+    <rect width="103.813" height="54" x="502.539" y="449.875" stroke="#0481D5"/>
+    <rect width="103.813" height="54" x="922.125" y="338" stroke="#0481D5"/>
+    <rect width="103.813" height="54" x="922.125" y="411.75" stroke="#0481D5"/>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="210.18" y="183">Clicks on ‘x’ to </tspan> <tspan x="212.403" y="197">close window</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="210.18" y="392.75">Clicks on ‘x’ to </tspan> <tspan x="210.262" y="406.75">close program</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="716.518" y="392.75">User selects </tspan> <tspan x="730.439" y="406.75">answer</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="388.505" y="183">Window closes</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="510.773" y="327">Pop up window </tspan> <tspan x="507.663" y="341">for just launcher </tspan> <tspan x="530.237" y="355">appears</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="513.007" y="466.375">Pop up window </tspan> <tspan x="515.579" y="480.375">‘are you sure?’ </tspan> <tspan x="532.471" y="494.375">appears</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="929.273" y="354.5">Stockflux closes</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="948.569" y="428.25">Stockflux </tspan> <tspan x="936.966" y="442.25">remains open</tspan>
+    </text>
+    <rect width="103.813" height="52" x="89.031" y="32.5" stroke="#E50000"/>
+    <rect width="103.813" height="52" x="269.188" y="32.5" stroke="#0481D5"/>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="102.978" y="49">User’s actions</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="295.632" y="49">Stockflux</tspan>
+    </text>
+    <path fill="#979797" fill-rule="nonzero" d="M897.41968 372.079867L907.323454 373.858988 899.957893 380.714534 898.829 376.877 815.505058 401.370716 815.223034 400.411308 898.547 375.917 897.41968 372.079867zM615.824819 362.709036L676.376 391.408 678.090047 387.793191 684.295572 395.714142 674.235497 395.925992 675.948 392.311 615.396536 363.612681 615.824819 362.709036zM684.285491 414.515767L678.442262 422.707633 676.568 419.173 617.394055 450.550974 616.925589 449.667493 676.1 418.29 674.22606 414.756304 684.285491 414.515767z"/>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="327.219" y="322.313">If windows (either News, </tspan> <tspan x="327.219" y="336.313">Chart, Watchlist) </tspan> <tspan x="421.199" y="336.313" font-family="Roboto-Bold, Roboto" font-weight="bold">are not </tspan> <tspan x="327.219" y="350.313" font-family="Roboto-Bold, Roboto" font-weight="bold">open</tspan> <tspan x="354.31" y="350.313">: </tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="74.438" y="190.5">On windows: News, </tspan> <tspan x="74.438" y="204.5">Chart, Watchlist </tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="74.438" y="403.5">On Launcher:</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="327.219" y="471.188">If any of the windows </tspan> <tspan x="327.219" y="485.188">(either News, Chart, </tspan> <tspan x="327.219" y="499.188">Watchlist) </tspan> <tspan x="385.484" y="499.188" font-family="Roboto-Bold, Roboto" font-weight="bold">are open</tspan> <tspan x="433.091" y="499.188">:</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="850.582" y="435.375">No</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Medium, Roboto" font-size="12" font-weight="400" letter-spacing=".086">
+      <tspan x="850.433" y="382.5">Yes</tspan>
+    </text>
+    <path fill="#979797" fill-rule="nonzero" d="M478.073537 335.931693L488.036627 337.341245 480.931132 344.465986 479.661 340.672 314.028378 396.132883 313.710867 395.184628 479.343 339.724 478.073537 335.931693zM314.059213 408.790168L479.823 473.325 481.274192 469.597832 488.028434 477.056398 478.009036 477.984652 479.46 474.257 313.696418 409.722037 314.059213 408.790168zM815.506235 408.816144L898.835 433.482 899.970633 429.647426 907.323186 436.516921 897.416058 438.277266 898.551 434.441 815.222394 409.775015 815.506235 408.816144zM365 189L374 193.5 365 198 365 194 318 194 318 193 365 193 365 189z"/>
+    <line x1="65.5" x2="1107.5" y1="278.5" y2="278.5" stroke="#979797" stroke-linecap="square"/>
+    <line x1="65.5" x2="1107.5" y1="123.75" y2="123.75" stroke="#979797" stroke-linecap="square"/>
+  </g>
+</svg>
