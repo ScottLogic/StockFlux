@@ -15,8 +15,8 @@
     "react-dom": "^16.8.6",
     "react-icons": "^3.7.0",
     "react-scripts": "3.0.1",
-    "stockflux-core": "13.1.0",
     "stockflux-components": "13.1.0",
+    "stockflux-core": "13.1.0",
     "throat": "^4.1.0"
   },
   "homepage": "./",
