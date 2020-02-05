@@ -1,6 +1,6 @@
 {
   "name": "stockflux",
-  "version": "13.1.0",
+  "version": "13.1.1",
   "devDependencies": {
     "babel-eslint": "10.0.1",
     "concurrently": "^4.1.2",
@@ -38,8 +38,5 @@
     "proxy:build": "cd developer-proxy && npm i",
     "proxy:start": "cd developer-proxy && npm run start"
   },
-  "dependencies": {
-    "d3": "^5.12.0",
-    "d3fc": "^14.0.55"
-  }
+  "dependencies": {}
 }
