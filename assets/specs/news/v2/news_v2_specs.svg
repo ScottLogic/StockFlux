@@ -1,0 +1,338 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2082" height="924" viewBox="0 0 2082 924">
+  <defs>
+    <rect id="news_v2_specs-a" width="413" height="639" x="0" y="0" rx="3"/>
+    <filter id="news_v2_specs-b" width="103.6%" height="102.3%" x="-1.8%" y="-1.2%" filterUnits="objectBoundingBox">
+      <feMorphology in="SourceAlpha" operator="dilate" radius=".5" result="shadowSpreadOuter1"/>
+      <feOffset in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/>
+    </filter>
+    <rect id="news_v2_specs-d" width="413" height="639" x="0" y="0" rx="3"/>
+    <filter id="news_v2_specs-e" width="103.6%" height="102.3%" x="-1.8%" y="-1.2%" filterUnits="objectBoundingBox">
+      <feMorphology in="SourceAlpha" operator="dilate" radius=".5" result="shadowSpreadOuter1"/>
+      <feOffset in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/>
+    </filter>
+    <rect id="news_v2_specs-h" width="97" height="84" x="63.5" y="763.262" rx="5"/>
+    <filter id="news_v2_specs-g" width="116.5%" height="119%" x="-8.2%" y="-8.3%" filterUnits="objectBoundingBox">
+      <feMorphology in="SourceAlpha" operator="dilate" radius=".5" result="shadowSpreadOuter1"/>
+      <feOffset dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <rect width="2082" height="924" fill="#FFF"/>
+    <g transform="translate(666.5 142)">
+      <mask id="news_v2_specs-c" fill="#fff">
+        <use xlink:href="#news_v2_specs-a"/>
+      </mask>
+      <use fill="#000" filter="url(#news_v2_specs-b)" xlink:href="#news_v2_specs-a"/>
+      <use fill="#010F1B" xlink:href="#news_v2_specs-a"/>
+      <g mask="url(#news_v2_specs-c)">
+        <path fill="#010F1B" d="M3,0 L410,0 C411.656854,-3.04359188e-16 413,1.34314575 413,3 L413,30 L413,30 L0,30 L0,3 C-2.02906125e-16,1.34314575 1.34314575,3.04359188e-16 3,0 Z"/>
+        <g transform="translate(383)">
+          <rect width="30" height="30" rx="3"/>
+          <path fill="#C5D2DD" d="M15,9.54931324 C15.3945447,9.54931324 15.7143864,9.86915494 15.7143864,10.2636997 L15.7143864,10.2636997 L15.7139187,13.9143132 L19.3656949,13.9150081 C19.7273609,13.9150081 20.0262556,14.183764 20.0735598,14.5324565 L20.0800813,14.6293945 C20.0800813,15.0239393 19.7602396,15.343781 19.3656949,15.343781 L19.3656949,15.343781 L15.7139187,15.3433132 L15.7143864,18.9950894 C15.7143864,19.3567554 15.4456306,19.6556501 15.096938,19.7029543 L15,19.7094758 C14.6054553,19.7094758 14.2856136,19.3896341 14.2856136,18.9950894 L14.2856136,18.9950894 L14.2849187,15.3433132 L10.6343051,15.343781 C10.2726391,15.343781 9.97374443,15.0750251 9.92644022,14.7263325 L9.91991871,14.6293945 C9.91991871,14.2348498 10.2397604,13.9150081 10.6343051,13.9150081 L10.6343051,13.9150081 L14.2849187,13.9143132 L14.2856136,10.2636997 C14.2856136,9.90203367 14.5543694,9.60313896 14.903062,9.55583475 Z" transform="rotate(45 15 14.63)"/>
+        </g>
+        <g transform="translate(353)">
+          <rect width="30" height="30" rx="3"/>
+          <path fill="#C5D2DD" d="M11,18.7695312 L19,18.7695312 C19.2761424,18.7695312 19.5,18.4294819 19.5,18.0100098 C19.5,17.5905376 19.2761424,17.2504883 19,17.2504883 L11,17.2504883 C10.7238576,17.2504883 10.5,17.5905376 10.5,18.0100098 C10.5,18.4294819 10.7238576,18.7695312 11,18.7695312 Z"/>
+        </g>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+          <tspan x="8" y="20.5">News</tspan>
+        </text>
+      </g>
+      <g mask="url(#news_v2_specs-c)">
+        <g transform="translate(0 31)">
+          <rect width="413" height="143" fill="#071521"/>
+          <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="12">
+            <tspan x="368.641" y="26">12:53</tspan>
+          </text>
+          <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+            <tspan x="8" y="77">Yahoo Finance</tspan>
+          </text>
+          <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="12">
+            <tspan x="8" y="107">Daimler AG DDAIF has been navigating through rough waters for a </tspan> <tspan x="8" y="121">while now amid regulatory challenges, high research &amp; development …</tspan>
+          </text>
+          <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400">
+            <tspan x="8" y="28">Daimler Outlines Restructuring Plans to </tspan> <tspan x="8" y="47">Offset Cost Woes</tspan>
+          </text>
+        </g>
+      </g>
+      <g mask="url(#news_v2_specs-c)">
+        <g transform="translate(0 178)">
+          <rect width="413" height="143" fill="#071521"/>
+          <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="12">
+            <tspan x="336.859" y="26">Wednesday </tspan>
+          </text>
+          <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+            <tspan x="8" y="77">Yahoo Finance</tspan>
+          </text>
+          <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="12">
+            <tspan x="8" y="107">BEIJING (Reuters) - China&apos;s Didi Chuxing will trial a premium ride </tspan> <tspan x="8" y="121">hailing service in Japan offering Tesla &lt;TSLA.O&gt;, Lexus &lt;7203.T&gt; …</tspan>
+          </text>
+          <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400">
+            <tspan x="8" y="28">Didi Chuxing to trial Japan premium </tspan> <tspan x="8" y="47">service with Tesla, Mercedes cars</tspan>
+          </text>
+        </g>
+      </g>
+      <g mask="url(#news_v2_specs-c)">
+        <g transform="translate(0 325)">
+          <rect width="413" height="143" fill="#071521"/>
+          <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="12">
+            <tspan x="345.73" y="26">21st June</tspan>
+          </text>
+          <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+            <tspan x="8" y="77">Bloomberg Businessweek</tspan>
+          </text>
+          <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="12">
+            <tspan x="8" y="107">Auto giant Ford Motor Co. F unveiled a new electric vehicle in Los </tspan> <tspan x="8" y="121">Angeles on Sunday. Dubbed the Mustang Mach-E, the company’s car …</tspan>
+          </text>
+          <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400">
+            <tspan x="8" y="28">What You Need to Know About Ford&apos;s All-</tspan> <tspan x="8" y="47">Electric Mustang Mach-E</tspan>
+          </text>
+        </g>
+      </g>
+      <g mask="url(#news_v2_specs-c)">
+        <g transform="translate(0 472)">
+          <rect width="413" height="143" fill="#071521"/>
+          <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="12">
+            <tspan x="351.754" y="26">13th Jan</tspan>
+          </text>
+          <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+            <tspan x="8" y="77">Bloomberg Opinion</tspan>
+          </text>
+          <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="12">
+            <tspan x="8" y="107">Earlier this week, my Bloomberg Opinion colleague Chris Bryant </tspan> <tspan x="8" y="121">examined the ongoing troubles for advanced jet engines used …</tspan>
+          </text>
+          <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400">
+            <tspan x="8" y="28">Ford Unveils Electric Mustang SUV to </tspan> <tspan x="8" y="47">Challenge Tesla Dominance</tspan>
+          </text>
+        </g>
+      </g>
+      <rect width="6" height="122" x="405" y="32" fill="#627482" fill-opacity=".8" mask="url(#news_v2_specs-c)" rx="3"/>
+      <g mask="url(#news_v2_specs-c)">
+        <g transform="translate(0 619)">
+          <rect width="413" height="143" fill="#071521"/>
+          <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="12">
+            <tspan x="337.439" y="26">1st Octover</tspan>
+          </text>
+          <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+            <tspan x="8" y="77">Source</tspan>
+          </text>
+          <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="12">
+            <tspan x="8" y="107">Content</tspan>
+          </text>
+          <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400">
+            <tspan x="8" y="28">Another article</tspan>
+          </text>
+        </g>
+      </g>
+    </g>
+    <g transform="translate(1318.5 149)">
+      <mask id="news_v2_specs-f" fill="#fff">
+        <use xlink:href="#news_v2_specs-d"/>
+      </mask>
+      <use fill="#000" filter="url(#news_v2_specs-e)" xlink:href="#news_v2_specs-d"/>
+      <use fill="#010F1B" xlink:href="#news_v2_specs-d"/>
+      <g mask="url(#news_v2_specs-f)">
+        <path fill="#010F1B" d="M3,0 L410,0 C411.656854,-3.04359188e-16 413,1.34314575 413,3 L413,30 L413,30 L0,30 L0,3 C-2.02906125e-16,1.34314575 1.34314575,3.04359188e-16 3,0 Z"/>
+        <g transform="translate(383)">
+          <rect width="30" height="30" rx="3"/>
+          <path fill="#C5D2DD" d="M15,9.54931324 C15.3945447,9.54931324 15.7143864,9.86915494 15.7143864,10.2636997 L15.7143864,10.2636997 L15.7139187,13.9143132 L19.3656949,13.9150081 C19.7273609,13.9150081 20.0262556,14.183764 20.0735598,14.5324565 L20.0800813,14.6293945 C20.0800813,15.0239393 19.7602396,15.343781 19.3656949,15.343781 L19.3656949,15.343781 L15.7139187,15.3433132 L15.7143864,18.9950894 C15.7143864,19.3567554 15.4456306,19.6556501 15.096938,19.7029543 L15,19.7094758 C14.6054553,19.7094758 14.2856136,19.3896341 14.2856136,18.9950894 L14.2856136,18.9950894 L14.2849187,15.3433132 L10.6343051,15.343781 C10.2726391,15.343781 9.97374443,15.0750251 9.92644022,14.7263325 L9.91991871,14.6293945 C9.91991871,14.2348498 10.2397604,13.9150081 10.6343051,13.9150081 L10.6343051,13.9150081 L14.2849187,13.9143132 L14.2856136,10.2636997 C14.2856136,9.90203367 14.5543694,9.60313896 14.903062,9.55583475 Z" transform="rotate(45 15 14.63)"/>
+        </g>
+        <g transform="translate(353)">
+          <rect width="30" height="30" rx="3"/>
+          <path fill="#C5D2DD" d="M11,18.7695312 L19,18.7695312 C19.2761424,18.7695312 19.5,18.4294819 19.5,18.0100098 C19.5,17.5905376 19.2761424,17.2504883 19,17.2504883 L11,17.2504883 C10.7238576,17.2504883 10.5,17.5905376 10.5,18.0100098 C10.5,18.4294819 10.7238576,18.7695312 11,18.7695312 Z"/>
+        </g>
+        <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="14" font-weight="400">
+          <tspan x="8" y="20.5">News</tspan>
+        </text>
+      </g>
+      <g mask="url(#news_v2_specs-f)">
+        <g transform="translate(0 31)">
+          <rect width="413" height="143" fill="#071521"/>
+          <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="12">
+            <tspan x="368.641" y="26">12:53</tspan>
+          </text>
+          <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+            <tspan x="8" y="77">Yahoo Finance</tspan>
+          </text>
+          <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="12">
+            <tspan x="8" y="107">Daimler AG DDAIF has been navigating through rough waters for a </tspan> <tspan x="8" y="121">while now amid regulatory challenges, high research &amp; development …</tspan>
+          </text>
+          <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400">
+            <tspan x="8" y="28">Daimler Outlines Restructuring Plans to </tspan> <tspan x="8" y="47">Offset Cost Woes</tspan>
+          </text>
+        </g>
+      </g>
+      <g mask="url(#news_v2_specs-f)">
+        <g transform="translate(0 178)">
+          <rect width="413" height="143" fill="#0D2437"/>
+          <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="12">
+            <tspan x="336.859" y="26">Wednesday </tspan>
+          </text>
+          <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+            <tspan x="8" y="77">Yahoo Finance</tspan>
+          </text>
+          <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="12">
+            <tspan x="8" y="107">BEIJING (Reuters) - China&apos;s Didi Chuxing will trial a premium ride </tspan> <tspan x="8" y="121">hailing service in Japan offering Tesla &lt;TSLA.O&gt;, Lexus &lt;7203.T&gt; …</tspan>
+          </text>
+          <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400">
+            <tspan x="8" y="28">Didi Chuxing to trial Japan premium </tspan> <tspan x="8" y="47">service with Tesla, Mercedes cars</tspan>
+          </text>
+        </g>
+      </g>
+      <g mask="url(#news_v2_specs-f)">
+        <g transform="translate(0 325)">
+          <rect width="413" height="143" fill="#071521"/>
+          <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="12">
+            <tspan x="345.73" y="26">21st June</tspan>
+          </text>
+          <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+            <tspan x="8" y="77">Bloomberg Businessweek</tspan>
+          </text>
+          <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="12">
+            <tspan x="8" y="107">Auto giant Ford Motor Co. F unveiled a new electric vehicle in Los </tspan> <tspan x="8" y="121">Angeles on Sunday. Dubbed the Mustang Mach-E, the company’s car …</tspan>
+          </text>
+          <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400">
+            <tspan x="8" y="28">What You Need to Know About Ford&apos;s All-</tspan> <tspan x="8" y="47">Electric Mustang Mach-E</tspan>
+          </text>
+        </g>
+      </g>
+      <g mask="url(#news_v2_specs-f)">
+        <g transform="translate(0 472)">
+          <rect width="413" height="143" fill="#071521"/>
+          <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="12">
+            <tspan x="347.395" y="26">30th Sept</tspan>
+          </text>
+          <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+            <tspan x="8" y="77">Bloomberg Opinion</tspan>
+          </text>
+          <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="12">
+            <tspan x="8" y="107">Earlier this week, my Bloomberg Opinion colleague Chris Bryant </tspan> <tspan x="8" y="121">examined the ongoing troubles for advanced jet engines used …</tspan>
+          </text>
+          <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400">
+            <tspan x="8" y="28">Ford Unveils Electric Mustang SUV to </tspan> <tspan x="8" y="47">Challenge Tesla Dominance</tspan>
+          </text>
+        </g>
+      </g>
+      <rect width="6" height="122" x="405" y="32" fill="#627482" fill-opacity=".8" mask="url(#news_v2_specs-f)" rx="3"/>
+      <g mask="url(#news_v2_specs-f)">
+        <g transform="translate(0 619)">
+          <rect width="413" height="143" fill="#071521"/>
+          <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="12">
+            <tspan x="337.439" y="26">1st Octover</tspan>
+          </text>
+          <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+            <tspan x="8" y="77">Source</tspan>
+          </text>
+          <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="12">
+            <tspan x="8" y="107">Content</tspan>
+          </text>
+          <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400">
+            <tspan x="8" y="28">Another article</tspan>
+          </text>
+        </g>
+      </g>
+      <g fill-rule="nonzero" transform="translate(256.5 235.5)">
+        <path fill="#000" d="M0.2,0.9 L11.8,12.5 L7.186,12.5 L9.3,17.6 L5.7,19.1 L3.431,13.742 L0.2,16.9 L0.2,0.9 Z"/>
+        <path fill="#FFF" d="M1.2,3.3 L9.4,11.5 L5.706,11.499 L7.97131,16.89531 L6.12711,17.66951 L3.758,12.026 L1.2,14.5 L1.2,3.3 Z"/>
+      </g>
+    </g>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="1110" y="153">Border radius: 3px</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="1107" y="295">Scroll bar appears when there </tspan> <tspan x="1107" y="309">enought news cards. Layout of </tspan> <tspan x="1107" y="323">cards doesn’t change without a scoll </tspan> <tspan x="1107" y="337">bar</tspan> <tspan x="1107" y="365">It is 3px from the top nav</tspan> <tspan x="1107" y="379">and 2px from right end of window</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="1096.438" y="627.943">include the first couple lines of the </tspan> <tspan x="1096.438" y="641.943">article and ‘…’ before is cuts</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="1107" y="465.5">4px between each card</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="1318.5" y="129">On hover: </tspan>
+    </text>
+    <circle cx="1079.5" cy="142.5" r="10.5" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="1073.75" x2="1100" y1="224.25" y2="285" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="1051.5" x2="1090" y1="589.531" y2="627.943" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="666.5" x2="601.375" y1="172.625" y2="226.25" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="1089.875" x2="1103" y1="146" y2="149.5" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <text fill="#000" font-family="Roboto-Regular, Roboto" font-size="12">
+      <tspan x="533" y="245.625">1px between top </tspan> <tspan x="533" y="259.625">nav and the first </tspan> <tspan x="533" y="273.625">card</tspan>
+    </text>
+    <rect width="40" height="40" x="1788" y="277.151" fill="#071521"/>
+    <rect width="40" height="40" x="1788" y="343.651" fill="#0D2437"/>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="1860" y="289.651">Blue/background/primary</tspan> <tspan x="1860" y="303.651" font-family="Roboto-Regular, Roboto" font-weight="normal">cards - inactive</tspan> <tspan x="1860" y="317.651" font-family="Roboto-Regular, Roboto" font-weight="normal">071521</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="1860" y="353.651">Blue/background/primary/on-hover</tspan> <tspan x="1860" y="367.651" font-family="Roboto-Regular, Roboto" font-weight="normal">cards - on hover</tspan> <tspan x="1860" y="381.651" font-family="Roboto-Regular, Roboto" font-weight="normal">0D2437</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="1788" y="235.25">Dark state</tspan> <tspan x="1788" y="249.25" font-family="Roboto-Regular, Roboto" font-weight="normal">Background colours </tspan>
+    </text>
+    <line x1="1775.5" x2="1696.5" y1="297.5" y2="277.5" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="1775.5" x2="1696.5" y1="370.651" y2="383.651" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <line x1="1775.5" x2="1692" y1="451.5" y2="472" stroke="#FF7272" stroke-linecap="square" stroke-width="2"/>
+    <rect width="40" height="40" x="1788" y="427.5" fill="#010F1B"/>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="1860" y="437.5">Black/background/darkest</tspan> <tspan x="1860" y="451.5" font-family="Roboto-Regular, Roboto" font-weight="normal">window background</tspan> <tspan x="1860" y="465.5" font-family="Roboto-Regular, Roboto" font-weight="normal">010F1B</tspan>
+    </text>
+    <use fill="#000" filter="url(#news_v2_specs-g)" xlink:href="#news_v2_specs-h"/>
+    <rect width="96" height="83" x="64" y="763.762" fill="#071521" stroke="#071521" stroke-linejoin="square" rx="5"/>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="177.5" y="772.281">Shadow</tspan> <tspan x="220.391" y="772.281" font-family="Roboto-Medium, Roboto" font-weight="400"> for the news window</tspan> <tspan x="177.5" y="786.281" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: Black, 000000</tspan> <tspan x="177.5" y="800.281" font-family="Roboto-Regular, Roboto" font-weight="normal">Opacity: 50%</tspan> <tspan x="177.5" y="814.281" font-family="Roboto-Regular, Roboto" font-weight="normal">X: 0</tspan> <tspan x="177.5" y="828.281" font-family="Roboto-Regular, Roboto" font-weight="normal">Y: 1</tspan> <tspan x="177.5" y="842.281" font-family="Roboto-Regular, Roboto" font-weight="normal">Blur: 4</tspan> <tspan x="177.5" y="856.281" font-family="Roboto-Regular, Roboto" font-weight="normal">Spread: 1</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="63.5" y="113.719">About this window</tspan> <tspan x="63.5" y="141.719" font-family="Roboto-Regular, Roboto" font-weight="normal">When opened, this window displays the </tspan> <tspan x="63.5" y="155.719" font-family="Roboto-Regular, Roboto" font-weight="normal">related news.</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="20" font-weight="bold">
+      <tspan x="63.5" y="68.719">News</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="63.5" y="573.943">Article dates</tspan> <tspan x="63.5" y="601.943" font-family="Roboto-Regular, Roboto" font-weight="normal">I</tspan> <tspan x="66.764" y="601.943">f the article is from today:</tspan> <tspan x="205.883" y="601.943" font-family="Roboto-Regular, Roboto" font-weight="normal"> display the time is was published (i.e. 11:43)</tspan> <tspan x="63.5" y="629.943">If the article was published over a day ago and up to one week: </tspan> <tspan x="403.748" y="629.943" font-family="Roboto-Regular, Roboto" font-weight="normal">display the </tspan> <tspan x="63.5" y="643.943" font-family="Roboto-Regular, Roboto" font-weight="normal">day (i.e: Monday, Tuesday, etc) </tspan> <tspan x="63.5" y="671.943">If the article is older then a week:</tspan> <tspan x="242.387" y="671.943" font-family="Roboto-Regular, Roboto" font-weight="normal"> write the date (i.e. 21st June). For </tspan> <tspan x="63.5" y="685.943" font-family="Roboto-Regular, Roboto" font-weight="normal">months longer then 4 characters, please abbreviate, (i.e. September = Sept, </tspan> <tspan x="63.5" y="699.943" font-family="Roboto-Regular, Roboto" font-weight="normal">Octover = Oct, November = Nov, December = Dec, etc) </tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="63.5" y="372.219">Text</tspan>
+    </text>
+    <g transform="translate(63.5 384.693)">
+      <rect width="411" height="155" fill="#071521"/>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400">
+        <tspan x="14" y="27.232">Title: Roboto, medium, 16px, white</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="14" y="55.158">Source: Roboto, medium, 11px, 9E9E9E</tspan>
+      </text>
+      <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="14">
+        <tspan x="14" y="90.375">Content: Roboto, regular, 14px, white </tspan>
+      </text>
+      <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="12">
+        <tspan x="14" y="122.375">Time/date: Roboto, regular, 12px, white </tspan> <tspan x="14" y="136.375">Note: Text is right-aligned</tspan>
+      </text>
+    </g>
+    <g transform="translate(63.5 191.719)">
+      <rect width="413" height="143" fill="#071521"/>
+      <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="12">
+        <tspan x="343.035" y="26">Time/date</tspan>
+      </text>
+      <text fill="#9E9E9E" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400">
+        <tspan x="8" y="77">Source</tspan>
+      </text>
+      <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="12">
+        <tspan x="8" y="107">Content</tspan>
+      </text>
+      <text fill="#FFF" font-family="Roboto-Medium, Roboto" font-size="16" font-weight="400">
+        <tspan x="8" y="28">Title</tspan>
+      </text>
+    </g>
+    <line x1="666.5" x2="1079.5" y1="172.625" y2="172.625" stroke="#FF9191" stroke-dasharray="3" stroke-linecap="square"/>
+    <line x1="667.32" x2="1099.21" y1="466.5" y2="466.5" stroke="#FF9191" stroke-dasharray="3" stroke-linecap="square"/>
+    <line x1="667.32" x2="1099.21" y1="462.5" y2="462.5" stroke="#FF9191" stroke-dasharray="3" stroke-linecap="square"/>
+  </g>
+</svg>

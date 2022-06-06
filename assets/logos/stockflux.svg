@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="92" height="24" viewBox="0 0 92 24">
+  <g fill="#FFF" fill-rule="evenodd" font-size="21">
+    <text font-family="Roboto-Bold, Roboto" font-weight="bold">
+      <tspan x="0" y="19">Stock</tspan>
+    </text>
+    <text font-family="Roboto-Regular, Roboto">
+      <tspan x="53" y="19">Flux</tspan>
+    </text>
+  </g>
+</svg>

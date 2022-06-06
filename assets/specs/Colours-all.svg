@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="3056" height="749" viewBox="0 0 3056 749">
+  <defs>
+    <linearGradient id="colours-all-a" x1="38.317%" x2="90.753%" y1="26.789%" y2="26.789%">
+      <stop offset="0%" stop-color="#071521"/>
+      <stop offset="100%" stop-color="#071521" stop-opacity="0"/>
+    </linearGradient>
+    <rect id="colours-all-b" width="40" height="40" x="1319.5" y="255.887"/>
+    <filter id="colours-all-c" width="115%" height="115%" x="-7.5%" y="-7.5%" filterUnits="objectBoundingBox">
+      <feMorphology in="SourceAlpha" radius="2" result="shadowSpreadInner1"/>
+      <feGaussianBlur in="shadowSpreadInner1" result="shadowBlurInner1" stdDeviation="2"/>
+      <feOffset in="shadowBlurInner1" result="shadowOffsetInner1"/>
+      <feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"/>
+      <feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/>
+    </filter>
+    <rect id="colours-all-d" width="40" height="40" x="18" y="7.014"/>
+    <filter id="colours-all-e" width="115%" height="115%" x="-7.5%" y="-7.5%" filterUnits="objectBoundingBox">
+      <feMorphology in="SourceAlpha" radius="2" result="shadowSpreadInner1"/>
+      <feGaussianBlur in="shadowSpreadInner1" result="shadowBlurInner1" stdDeviation="2"/>
+      <feOffset in="shadowBlurInner1" result="shadowOffsetInner1"/>
+      <feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"/>
+      <feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/>
+    </filter>
+    <rect id="colours-all-g" width="97" height="84" x="2446" y="103.599" rx="5"/>
+    <filter id="colours-all-f" width="116.5%" height="119%" x="-8.2%" y="-8.3%" filterUnits="objectBoundingBox">
+      <feMorphology in="SourceAlpha" operator="dilate" radius=".5" result="shadowSpreadOuter1"/>
+      <feOffset dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <rect width="3056" height="749" fill="#FFF"/>
+    <rect width="40" height="40" x="57" y="110.5" fill="#071521"/>
+    <rect width="40" height="40" x="57" y="177" fill="#0D2437"/>
+    <rect width="40" height="40" x="57" y="244" fill="#0D2437" fill-opacity=".8"/>
+    <rect width="40" height="40" x="57" y="331" fill="url(#colours-all-a)"/>
+    <rect width="40" height="40" x="57" y="398" fill="#627482" fill-opacity=".8"/>
+    <rect width="40" height="40" x="57" y="473" fill="#010F1B"/>
+    <rect width="40" height="40" x="464" y="110" fill="#43C578"/>
+    <rect width="40" height="40" x="464" y="177" fill="#FF6262"/>
+    <rect width="40" height="40" x="464" y="247.5" fill="#21B1CA"/>
+    <rect width="40" height="40" x="464" y="331" fill="#21B1CA" fill-opacity=".2"/>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="129" y="123">Blue/background/primary</tspan> <tspan x="129" y="137" font-family="Roboto-Regular, Roboto" font-weight="normal">071521</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="530" y="123">Positive </tspan> <tspan x="530" y="137" font-family="Roboto-Regular, Roboto" font-weight="normal">43C578</tspan> <tspan x="530" y="151" font-family="Roboto-Regular, Roboto" font-weight="normal">Used on the chart and watchlist windows </tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="129" y="187">Blue/background/primary/on-hover</tspan> <tspan x="129" y="201" font-family="Roboto-Regular, Roboto" font-weight="normal">0D2437</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="530" y="187">Negative</tspan> <tspan x="530" y="201" font-family="Roboto-Regular, Roboto" font-weight="normal">FF6262</tspan> <tspan x="530" y="215" font-family="Roboto-Regular, Roboto" font-weight="normal">Used on the chart and watchlist windows </tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="530" y="257.5">Teal </tspan> <tspan x="530" y="271.5" font-family="Roboto-Regular, Roboto" font-weight="normal">21B1CA</tspan> <tspan x="530" y="285.5" font-family="Roboto-Regular, Roboto" font-weight="normal">Used on the line chart - on the watchlist </tspan> <tspan x="530" y="299.5" font-family="Roboto-Regular, Roboto" font-weight="normal">and chart windows </tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="530" y="341">Teal/20%</tspan> <tspan x="530" y="355" font-family="Roboto-Regular, Roboto" font-weight="normal">21B1CA - opacity 20%</tspan> <tspan x="530" y="369" font-family="Roboto-Regular, Roboto" font-weight="normal">Used to fill in the line chart - on the </tspan> <tspan x="530" y="383" font-family="Roboto-Regular, Roboto" font-weight="normal">watchlist and chart windows </tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="129" y="254">Blue/background/placeholder</tspan> <tspan x="129" y="268" font-family="Roboto-Regular, Roboto" font-weight="normal">0D2437 - opacity 80%</tspan> <tspan x="129" y="282" font-family="Roboto-Regular, Roboto" font-weight="normal">Used on the Watchlist - serves as a </tspan> <tspan x="129" y="296" font-family="Roboto-Regular, Roboto" font-weight="normal">background to the cards when they are </tspan> <tspan x="129" y="310" font-family="Roboto-Regular, Roboto" font-weight="normal">being moved around </tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="129" y="408">Scroll bar</tspan> <tspan x="129" y="422" font-family="Roboto-Regular, Roboto" font-weight="normal">627482 - 80% opacity </tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="129" y="483">Black/background/darkest</tspan> <tspan x="129" y="497" font-family="Roboto-Regular, Roboto" font-weight="normal">Background for navigation bar, </tspan> <tspan x="129" y="511" font-family="Roboto-Regular, Roboto" font-weight="normal">background for the watchlist car, dark </tspan> <tspan x="129" y="525" font-family="Roboto-Regular, Roboto" font-weight="normal">lines on chart page</tspan> <tspan x="129" y="539" font-family="Roboto-Regular, Roboto" font-weight="normal">010F1B</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="129" y="341">Blue/background/primary/gradient</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="922" y="145.599">Grey/price&amp;dates</tspan> <tspan x="922" y="159.599" font-family="Roboto-Regular, Roboto" font-weight="normal">Used for lines for price and dates for candlestick </tspan> <tspan x="922" y="173.599" font-family="Roboto-Regular, Roboto" font-weight="normal">chart</tspan> <tspan x="922" y="187.599" font-family="Roboto-Regular, Roboto" font-weight="normal">55555B</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="922" y="224.887">Grey/lines </tspan> <tspan x="922" y="238.887" font-family="Roboto-Regular, Roboto" font-weight="normal">Used for lines for price and dates for candlestick chart</tspan> <tspan x="922" y="252.887" font-family="Roboto-Regular, Roboto" font-weight="normal">&amp; ‘Powered by’ text and logo </tspan> <tspan x="922" y="266.887" font-family="Roboto-Regular, Roboto" font-weight="normal">9E9E9E</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="922" y="315.751">Grey-blue-light</tspan> <tspan x="922" y="329.751" font-family="Roboto-Regular, Roboto" font-weight="normal">Used for dashed line on chart (moves arround with the </tspan> <tspan x="922" y="343.751" font-family="Roboto-Regular, Roboto" font-weight="normal">user’s curser) </tspan> <tspan x="922" y="357.751" font-family="Roboto-Regular, Roboto" font-weight="normal">CFD8E3</tspan>
+    </text>
+    <rect width="40" height="40" x="865" y="134.599" fill="#55555B"/>
+    <rect width="40" height="40" x="865" y="214.887" fill="#9E9E9E"/>
+    <rect width="40" height="40" x="865" y="307.751" fill="#CFD8E3"/>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="865" y="68.599">Chart - lines and dates</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="464" y="68.599">Charts - design</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="57" y="68.599">Dark state</tspan>
+    </text>
+    <rect width="40" height="40" x="1319.5" y="114.25" fill="#1B3B56"/>
+    <rect width="40" height="40" x="1695" y="114.25" fill="#C5D2DD"/>
+    <rect width="40" height="40" x="1319.5" y="180.75" fill="#091A29"/>
+    <use fill="#091A29" xlink:href="#colours-all-b"/>
+    <use fill="#000" filter="url(#colours-all-c)" xlink:href="#colours-all-b"/>
+    <rect width="76" height="53.112" x="1301.5" y="328.194" fill="#D8D8D8"/>
+    <rect width="76" height="53.112" x="1677" y="176.769" fill="#D8D8D8"/>
+    <rect width="39" height="39" x="1320" y="335.25" fill="#091A29" stroke="#FFF"/>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="1391.5" y="126.75">Button/inactive</tspan> <tspan x="1391.5" y="140.75" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: 1B3B56</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="1767" y="126.75">Button/text&amp;icon/inactive</tspan> <tspan x="1767" y="140.75" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: 1B3B56</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="1391.5" y="190.75">Button/on-hover</tspan> <tspan x="1391.5" y="204.75" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: 091A29</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="1391.5" y="261.75">Button/on-click</tspan> <tspan x="1391.5" y="275.75" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: 091A29</tspan> <tspan x="1391.5" y="289.75" font-family="Roboto-Regular, Roboto" font-weight="normal">Inner shadow: black, 50% opacity, X: 0, Y: </tspan> <tspan x="1391.5" y="303.75" font-family="Roboto-Regular, Roboto" font-weight="normal">0, Blur: 4, Spread: 1</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="1391.5" y="344.75">Button/active</tspan> <tspan x="1391.5" y="358.75" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: 091A29</tspan> <tspan x="1391.5" y="372.75" font-family="Roboto-Regular, Roboto" font-weight="normal">Button outline: 1px, White FFFFFF</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="1319.5" y="72.349">Buttons </tspan> <tspan x="1319.5" y="86.349">On watchlist and chart and top bar on the </tspan> <tspan x="1319.5" y="100.349">launcher</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="1695" y="72.349">Buttons - text &amp; icon</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="2446" y="72.349">Shadow</tspan>
+    </text>
+    <rect width="40" height="40" x="1695" y="183.325" fill="#FFF"/>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="1767" y="193.75">Button/text&amp;icon/active </tspan> <tspan x="1767" y="207.75" font-family="Roboto-Regular, Roboto" font-weight="normal">on hover and active states </tspan> <tspan x="1767" y="221.75" font-family="Roboto-Regular, Roboto" font-weight="normal">FFFFFF</tspan>
+    </text>
+    <rect width="40" height="40" x="2021" y="105.264" fill="#0D2437"/>
+    <rect width="40" height="40" x="2021" y="171.764" fill="#1B3B56"/>
+    <g transform="translate(2003 239.887)">
+      <rect width="76" height="53.112" y=".457" fill="#D8D8D8"/>
+      <rect width="38.5" height="38.5" x="18.75" y="7.764" fill="#475F74" stroke="#FFF" stroke-width="1.5"/>
+    </g>
+    <g transform="translate(2003 324.75)">
+      <rect width="76" height="53.112" y=".457" fill="#D8D8D8"/>
+      <use fill="#475F74" xlink:href="#colours-all-d"/>
+      <use fill="#000" filter="url(#colours-all-e)" xlink:href="#colours-all-d"/>
+      <rect width="38.5" height="38.5" x="18.75" y="7.764" stroke="#FFF" stroke-linejoin="square" stroke-width="1.5"/>
+    </g>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="2093" y="117.764">Search results item/inactive</tspan> <tspan x="2093" y="131.764" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: 0D2437</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="2093" y="181.764">Search results item/on-hover</tspan> <tspan x="2093" y="195.764" font-family="Roboto-Regular, Roboto" font-weight="normal">Background for the buttons of the search </tspan> <tspan x="2093" y="209.764" font-family="Roboto-Regular, Roboto" font-weight="normal">items</tspan> <tspan x="2093" y="223.764" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: 1B3B56</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="2093" y="257.901">Search results item/buttons/on-hover</tspan> <tspan x="2093" y="271.901" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: 475F74</tspan> <tspan x="2093" y="285.901" font-family="Roboto-Regular, Roboto" font-weight="normal">Button outline: 1.5px, White FFFFFF</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="2093" y="340.302">Search results item/buttons/on-click</tspan> <tspan x="2093" y="354.302" font-family="Roboto-Regular, Roboto" font-weight="normal">Colour: 475F74</tspan> <tspan x="2093" y="368.302" font-family="Roboto-Regular, Roboto" font-weight="normal">Button outline: 1.5px, White FFFFFF</tspan> <tspan x="2093" y="382.302" font-family="Roboto-Regular, Roboto" font-weight="normal">Inner shadow: 000000 opacity: 50%</tspan> <tspan x="2093" y="396.302" font-family="Roboto-Regular, Roboto" font-weight="normal">X: 0 Y: 0 Blur: 4 Spread: 2</tspan>
+    </text>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="12" font-weight="bold">
+      <tspan x="2021" y="63.362">Search bar - buttons and line items</tspan>
+    </text>
+    <use fill="#000" filter="url(#colours-all-f)" xlink:href="#colours-all-g"/>
+    <rect width="96" height="83" x="2446.5" y="104.099" fill="#071521" stroke="#071521" stroke-linejoin="square" rx="5"/>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="11" font-weight="bold">
+      <tspan x="2571" y="119.599">Shadow for all the windows (chart, news, watchlist, popup, notification) </tspan> <tspan x="2571" y="145.599" font-family="Roboto-Regular, Roboto" font-weight="normal">000000 </tspan> <tspan x="2571" y="158.599" font-family="Roboto-Regular, Roboto" font-weight="normal">50% opacity</tspan> <tspan x="2571" y="171.599" font-family="Roboto-Regular, Roboto" font-weight="normal">y = 1</tspan> <tspan x="2571" y="184.599" font-family="Roboto-Regular, Roboto" font-weight="normal">blur = 4</tspan> <tspan x="2571" y="197.599" font-family="Roboto-Regular, Roboto" font-weight="normal">spread = 1</tspan>
+    </text>
+  </g>
+</svg>
