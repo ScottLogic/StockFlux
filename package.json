@@ -18,7 +18,7 @@
     "prettier": "^1.18.2"
   },
   "scripts": {
-    "bootstrap": "lerna bootstrap --concurrency 1",
+    "bootstrap": "lerna bootstrap --concurrency 1 -- --legacy-peer-deps",
     "build": "lerna run build",
     "lint": "./node_modules/.bin/eslint \"**/*.js\" --ignore-pattern node_modules/ --ignore-pattern build/ --ignore-pattern dist/ --ignore-pattern serviceWorker.js",
     "lint-fix": "npm run lint -- --fix",
