@@ -20,7 +20,7 @@
     "@babel/preset-env": "^7.5.5",
     "babel-loader": "^8.0.6",
     "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.8"
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "react-dom": "^16.10.2"
