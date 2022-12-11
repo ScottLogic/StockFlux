@@ -9,7 +9,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "deepmerge": "^4.2.2",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "node-fetch": "^2.6.0",
     "nodemon": "^2.0.0"
   }
